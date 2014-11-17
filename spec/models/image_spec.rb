@@ -3,8 +3,9 @@ require 'spec_helper'
 # To upload pictures
 include ActionDispatch::TestProcess
 describe Image do
+
   # Images need to belong to a user 
-  it {should belong_to User}
+  it {should belong_to :user}
   it {should validate_presence_of(:user)}
   # Validators for the file
   it {should have_attached_file :f}
