@@ -29,7 +29,7 @@ describe ImagesController do
         end
         it "Redirects to the image" do
           post :create, image: atrs
-          expect(response).to redirect_to(@image)
+          expect(response).to redirect_to(Image.last)
         end
       end
     end

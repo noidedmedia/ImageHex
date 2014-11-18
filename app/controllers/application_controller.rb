@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
 
   protected
-
+  def ensure_user
+    unless user_signed_in?
+      redirect_to("/users/sign_in")
+    end
+  end
   def configure_devise_permitted_parameters
     registration_params = [:name, :email, :password, :password_confirmation]
 
