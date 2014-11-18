@@ -1,14 +1,14 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/anthony/prog/ImageHex/config/environment.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/home/anthony/prog/ImageHex/config/application.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/application.rb": [
         1,
         null,
         1,
@@ -33,13 +33,13 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/config/boot.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/boot.rb": [
         null,
         1,
         null,
         1
       ],
-      "/home/anthony/prog/ImageHex/config/environments/test.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/environments/test.rb": [
         1,
         null,
         null,
@@ -80,7 +80,7 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/backtrace_silencers.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -89,12 +89,12 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/cookies_serializer.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/devise.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -355,13 +355,13 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/filter_parameter_logging.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/inflections.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -379,18 +379,18 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/mime_types.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/session_store.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/home/anthony/prog/ImageHex/config/initializers/wrap_parameters.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -406,43 +406,30 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/factories/images.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/factories/images.rb": [
         1,
         1,
         1,
-        2,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/home/anthony/prog/ImageHex/spec/factories/users.rb": [
-        1,
-        1,
-        6,
-        6,
         6,
         null,
         null,
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/config/routes.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/factories/users.rb": [
         1,
         1,
+        9,
+        9,
+        9,
         null,
-        1,
         null,
-        1,
         null,
+        null
+      ],
+      "/Users/theshinyhobbiest/Prog/ImageHex/config/routes.rb": [
         1,
-        null,
         1,
-        null,
-        1,
-        null,
-        1,
-        null,
         1,
         1,
         null,
@@ -501,7 +488,7 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/models/user.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/models/user.rb": [
         1,
         null,
         null,
@@ -511,26 +498,26 @@
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/helpers/application_helper.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/helpers/frontpage_helper.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/helpers/frontpage_helper.rb": [
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/helpers/images_helper.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/helpers/images_helper.rb": [
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/controllers/frontpage_controller.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/controllers/frontpage_controller.rb": [
         1,
         1,
         null,
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/controllers/application_controller.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -554,19 +541,17 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/controllers/images_controller_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        null,
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/controllers/images_controller_spec.rb": [
         1,
         null,
         1,
         1,
         1,
         1,
+        2,
+        2,
         null,
+        1,
         1,
         1,
         1,
@@ -584,14 +569,7 @@
         1,
         1,
         1,
-        null,
-        null,
-        null,
         1,
-        1,
-        1,
-        1,
-        null,
         null,
         null,
         1,
@@ -600,31 +578,21 @@
         1,
         null,
         null,
-        null,
-        1,
-        1,
-        1,
         1,
         null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
         null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
         null,
         null,
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/controllers/images_controller.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/controllers/images_controller.rb": [
         1,
         1,
         null,
@@ -648,7 +616,7 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/factories_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/factories_spec.rb": [
         null,
         null,
         null,
@@ -657,14 +625,12 @@
         2,
         2,
         2,
-        1,
-        1,
         null,
         null,
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/helpers/images_helper_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/helpers/images_helper_spec.rb": [
         1,
         null,
         null,
@@ -677,11 +643,10 @@
         null,
         null,
         null,
-        1,
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/models/image_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/models/image_spec.rb": [
         1,
         null,
         null,
@@ -701,7 +666,7 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/app/models/image.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/app/models/image.rb": [
         1,
         1,
         null,
@@ -712,7 +677,7 @@
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/models/user_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -727,56 +692,49 @@
         null,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/views/images/create.html.erb_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/views/images/create.html.erb_spec.rb": [
         1,
         null,
-        1,
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/views/images/destroy.html.erb_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/views/images/destroy.html.erb_spec.rb": [
         1,
         null,
-        1,
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/views/images/edit.html.erb_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/views/images/edit.html.erb_spec.rb": [
         1,
         null,
-        1,
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/views/images/index.html.erb_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/views/images/index.html.erb_spec.rb": [
         1,
         null,
-        1,
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/views/images/new.html.erb_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/views/images/new.html.erb_spec.rb": [
         1,
         null,
-        1,
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/views/images/show.html.erb_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/views/images/show.html.erb_spec.rb": [
         1,
         null,
-        1,
         1,
         null
       ],
-      "/home/anthony/prog/ImageHex/spec/views/images/update.html.erb_spec.rb": [
+      "/Users/theshinyhobbiest/Prog/ImageHex/spec/views/images/update.html.erb_spec.rb": [
         1,
         null,
-        1,
         1,
         null
       ]
     },
-    "timestamp": 1416241733
+    "timestamp": 1416287237
   }
 }
