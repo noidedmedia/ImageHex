@@ -17,6 +17,6 @@ describe Tag do
       expect(tag.name).to eq(str.strip)
     end
   end
-  it{should have_many(:tag_groups).through(:tag_group_member)}
+  it{should have_many(:tag_groups).through(:tag_group_members)}
   it{should have_many(:tag_group_members)}
 end

@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe TagGroupMember do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should validate_presence_of(:tag)}
+  it {should validate_presence_of(:tag_group)}
 end
