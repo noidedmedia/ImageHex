@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates :name, presence: true,  uniqueness: {case_sensitive: false}
   has_many :images
+  validates :page_pref, inclusion: {:in => (1..100)}
 end

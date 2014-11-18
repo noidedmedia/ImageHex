@@ -28,6 +28,8 @@ class ImagesController < ApplicationController
   end
 
   def index
+    @images = Image.page(page: page, per_page: per_page).order('created_at DESC')
+
   end
 
   def show
