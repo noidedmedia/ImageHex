@@ -7,6 +7,10 @@ describe Image do
   # Images need to belong to a user 
   it {should belong_to :user}
   it {should validate_presence_of(:user)}
+  # Images must have both mediums:
+  it {should validate_presence_of(:medium)}
+  it {should validate_presence_of(:license)}
+
   # Validators for the file
   it {should have_attached_file :f}
   it {should validate_attachment_presence(:f)}

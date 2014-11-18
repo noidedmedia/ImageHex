@@ -21,6 +21,11 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  # Delete uploaded files after our tests pass
+  config.after(:suite) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
+  end
+
   # Make testing our files way easier
   config.include Paperclip::Shoulda::Matchers
   # ## Mock Framework
