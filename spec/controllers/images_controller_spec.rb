@@ -2,67 +2,48 @@ require 'spec_helper'
 
 describe ImagesController do
   include Devise::TestHelpers
-
-  describe "GET 'new'" do
-
-    context "when logged in" do
-      before(:each) do
-        @user = FactoryGirl.create(:user)
-        sign_in @user
-      end
-      it "returns http success" do
-        get 'new'
-        response.should be_success
+  context "when logged in" do
+    before(:each) do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+    end
+    describe "GET #new" do
+      it "responds with an HTTP success" do
+        get :new
+        expect(response).to be_success
       end
     end
-    context "when not logged in" do
-      it "redirects to the new user page" do
-        get 'new'
-        expect(response).to redirect_to "/users/sign_up"
+    describe "GET #show" do
+      it "shows the iamge" do
+        get :show, id: FactoryGirl.create(:image)
+        expect(response).to be_success
       end
     end
   end
 
-  describe "GET 'create'" do
-    it "returns http success" do
-      get 'create'
-      response.should be_success
+  context "when not logged in" do
+    describe "GET #new" do
+      it "redirects to the login page" do
+        get :new
+        expect(response).to redirect_to "/users/sign_in"
+      end
     end
-  end
-
-  describe "GET 'update'" do
-    it "returns http success" do
-      get 'update'
-      response.should be_success
+    describe "GET #show" do
+      it "redirects to the login page" do
+        get :show, id: FactoryGirl.create(:image)
+        expect(response).to be_success
+      end
     end
-  end
-
-  describe "GET 'edit'" do
-    it "returns http success" do
-      get 'edit'
-      response.should be_success
+    describe "POST #edit" do
     end
-  end
-
-  describe "GET 'destroy'" do
-    it "returns http success" do
-      get 'destroy'
-      response.should be_success
+    describe "POST 'new'" do
+      it "doesn't do anything" do
+        @images = FactoryGirl.create(:image)
+        expect{
+          post :new, id: @image, image: FactoryGirl.attributes_for(:image)
+        }.to_not change{Image.count}
+      end
     end
-  end
 
-  describe "GET 'index'" do
-    it "returns http success" do
-      get 'index'
-      response.should be_success
-    end
   end
-
-  describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
-      response.should be_success
-    end
-  end
-
 end

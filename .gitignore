@@ -17,3 +17,6 @@
 
 #Ignore weird OSX stuff
 .DS_STORE
+
+#Ignore coverage files.
+/coverage/

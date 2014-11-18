@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
-  get 'images/new'
-
-  get 'images/create'
-
-  get 'images/update'
-
-  get 'images/edit'
-
-  get 'images/destroy'
-
-  get 'images/index'
-
-  get 'images/show'
-
+  resources :images
   devise_for :users
   root to: "frontpage#index"
   # The priority is based upon order of creation: first created -> highest priority.
