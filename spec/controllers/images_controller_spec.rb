@@ -1,11 +1,25 @@
 require 'spec_helper'
 
 describe ImagesController do
+  include Devise::TestHelpers
 
   describe "GET 'new'" do
-    it "returns http success" do
-      get 'new'
-      response.should be_success
+
+    context "when logged in" do
+      before(:each) do
+        @user = FactoryGirl.create(:user)
+        sign_in @user
+      end
+      it "returns http success" do
+        get 'new'
+        response.should be_success
+      end
+    end
+    context "when not logged in" do
+      it "redirects to the new user page" do
+        get 'new'
+        expect(response).to redirect_to "/users/sign_up"
+      end
     end
   end
 
