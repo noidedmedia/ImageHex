@@ -19,6 +19,20 @@ describe ImagesController do
         expect(response).to be_success
       end
     end
+    describe "POST #create" do
+      context "with valid attributes" do
+        let(:atrs){FactoryGirl.attributes_for(:image)}
+        it "creates a new image" do
+          expect{
+            post :create, image: atrs
+          }.to change{Image.count}.by(1)
+        end
+        it "Redirects to the image" do
+          post :create, image: atrs
+          expect(response).to redirect_to(@image)
+        end
+      end
+    end
   end
 
   context "when not logged in" do
