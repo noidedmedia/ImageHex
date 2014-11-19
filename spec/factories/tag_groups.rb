@@ -1,14 +1,8 @@
 FactoryGirl.define do
-  factory :tag_group do
+  factory :tag_group do |f|
     image
-    factory :tag_group_tags do
-      transient do
-        tag_count 4
-      end
-      after(:create) do |group, ev|
-        create_list(:tag, ev.tag_count, group: group)
-      end
+    after(:build) do |tg|
+      tg.tags << FactoryGirl.create(:tag)
     end
   end
-
 end
