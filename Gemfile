@@ -14,9 +14,13 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+# Use postgres
+gem 'pg'
 # Use will-paginate for pagination
 gem 'will_paginate', "~> 3.0.6"
 
+# Use unicorn as the webserver
+gem 'unicorn'
 # Use paperclip to upload images
 gem 'paperclip'
 # Use jquery as the JavaScript library
@@ -53,6 +57,7 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'rails_12factor', group: :production
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
