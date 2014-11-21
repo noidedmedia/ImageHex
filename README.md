@@ -11,3 +11,4 @@ Some things to note:
 3. Once we push this up to Heroku, we're going to create a new branch called
    develop. Please, use that for develop work, and only let Anthony or Connor
    actually push up changes.
+4. Set up the DB according to the config file.
