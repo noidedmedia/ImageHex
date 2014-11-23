@@ -6,8 +6,9 @@ default: &default
   password: "rails"
 
 development:
-  <<: *default
+  adapter: postgresql
   database: imagehex_development
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -15,7 +16,6 @@ development:
 test:
   <<: *default
   database: imagehex_test
-
 
 production:
   adapter: postgressql

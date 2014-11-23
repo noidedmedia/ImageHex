@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141118160551) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "images", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20141118160551) do
     t.integer  "medium"
   end
 
-  add_index "images", ["user_id"], name: "index_images_on_user_id"
+  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "tag_group_members", force: true do |t|
     t.integer  "tag_group_id"
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 20141118160551) do
     t.datetime "updated_at"
   end
 
-  add_index "tag_group_members", ["tag_group_id"], name: "index_tag_group_members_on_tag_group_id"
-  add_index "tag_group_members", ["tag_id"], name: "index_tag_group_members_on_tag_id"
+  add_index "tag_group_members", ["tag_group_id"], name: "index_tag_group_members_on_tag_group_id", using: :btree
+  add_index "tag_group_members", ["tag_id"], name: "index_tag_group_members_on_tag_id", using: :btree
 
   create_table "tag_groups", force: true do |t|
     t.integer  "image_id"
@@ -43,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141118160551) do
     t.datetime "updated_at"
   end
 
-  add_index "tag_groups", ["image_id"], name: "index_tag_groups_on_image_id"
+  add_index "tag_groups", ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 20141118160551) do
     t.integer  "page_pref",              default: 20
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
