@@ -3,7 +3,7 @@
   position: relative;
   margin: 100px auto auto auto;
   text-align: left;
-  width: 320px;
+  width: 350px;
   border: 1px solid #AAAAB2;
   border-radius: 1px;
 
@@ -38,7 +38,7 @@
 }
 
 .field {
-  width: 300px;
+  width: 325px;
   margin: auto;
   padding: 5px auto 5px auto;
   position: relative;
@@ -48,7 +48,7 @@
 .field input[type=text],
 .field input[type=email],
 .field input[type=password] {
-  width: 300px;
+  width: 320px;
   height: 35px;
   box-sizing: border-box;
   padding: 0px 4px 0px 8px;
@@ -100,15 +100,23 @@
   position: relative;
   margin: 10px auto;
   padding: 0;
-  width: 320px;
+  width: 350px;
   text-align: center;
+
+  a {
+    text-decoration: none;
+
+    &:first-of-type {
+      margin-right: 7px;
+    }
+  }
 }
 
 .sign-in-extras {
   display: inline-block;
   position: relative;
   height: 35px;
-  width: 155px;
+  width: 170px;
   box-sizing: border-box;
   border: 1px solid #AAAAB2;
   border-radius: 1px;
