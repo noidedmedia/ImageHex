@@ -38,7 +38,7 @@
 }
 
 .field {
-  width: 325px;
+  width: 330px;
   margin: auto;
   padding: 5px auto 5px auto;
   position: relative;
@@ -48,7 +48,7 @@
 .field input[type=text],
 .field input[type=email],
 .field input[type=password] {
-  width: 320px;
+  width: 330px;
   height: 35px;
   box-sizing: border-box;
   padding: 0px 4px 0px 8px;
@@ -75,15 +75,25 @@
   margin: 5px 3px 0px 0px;
   -webkit-appearance: none;
   vertical-align: bottom;
+  background-color: transparent;
+
+  &:checked {
+    border-color: #333333;
+  }
 
   &:focus {
-    border-color: #333333;
-    background-color: #333333;
-    outline: none;
+      outline: none;
   }
 }
 
+input[type=checkbox]:checked::after {
+  background-color: #FF0004;
+  height: 14px;
+  width: 14px;
+}
+
 .field label {
+  display: inline-block;
   font-weight: 400;
   font-size: 1.4em;
 }
@@ -107,7 +117,7 @@
     text-decoration: none;
 
     &:first-of-type {
-      margin-right: 7px;
+      margin-right: 5px;
     }
   }
 }
@@ -116,7 +126,7 @@
   display: inline-block;
   position: relative;
   height: 35px;
-  width: 170px;
+  width: 171px;
   box-sizing: border-box;
   border: 1px solid #AAAAB2;
   border-radius: 1px;
