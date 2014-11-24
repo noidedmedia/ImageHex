@@ -77,6 +77,10 @@
   vertical-align: bottom;
   background-color: transparent;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:checked {
     border-color: #333333;
   }
@@ -103,12 +107,18 @@ input[type=checkbox]:checked::after {
   padding: 5px auto;
   position: relative;
   color: #333333;
+
+  input[type=submit] {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 #sign-in-extras-container {
   display: block;
   position: relative;
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 0;
   width: 350px;
   text-align: center;
