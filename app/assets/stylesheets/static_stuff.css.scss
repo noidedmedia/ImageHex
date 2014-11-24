@@ -27,6 +27,39 @@
 
 #masthead {
   margin-top: 40px;
+  display: inline-block;
+  position: relative;
+  min-height: calc(100vh - 80px);
+  width: 100vw;
+}
+
+#footer-container {
   display: block;
   position: relative;
+  width: 100vw;
+  height: 40px;
+  box-sizing: border-box;
+  left: 0;
+  bottom: 0;
+  background-color: #FFFFFF;
+  color: #333333;
+  text-align: right;
+  font-size: 1.6em;
+  font-weight: 300;
+  margin: 0;
+  padding: 10px 15px;
+
+  a {
+    display: inline-block;
+    color: #333333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    display: inline-block;
+  }
 }
