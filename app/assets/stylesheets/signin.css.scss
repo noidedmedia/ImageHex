@@ -1,0 +1,122 @@
+#sign-in-container {
+  display: block;
+  position: relative;
+  margin: 100px auto auto auto;
+  text-align: left;
+  width: 320px;
+  border: 1px solid #AAAAB2;
+  border-radius: 1px;
+
+  .header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    height: 35px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    text-align: center;
+    color: #333333;
+    font-weight: 400;
+    font-size: 1.4em;
+    border: 0px;
+    border-top: 1px solid #AAAAB2;
+    background-color: #FFFFFF;
+    -webkit-appearance: none;
+
+    &:focus {
+      border-color: #333333;
+      outline: none;
+    }
+  }
+}
+
+#sign-in {
+  padding: 10px;
+}
+
+.field {
+  width: 300px;
+  margin: auto;
+  padding: 5px auto 5px auto;
+  position: relative;
+  color: #333333;
+}
+
+.field input[type=text],
+.field input[type=email],
+.field input[type=password] {
+  width: 300px;
+  height: 35px;
+  box-sizing: border-box;
+  padding: 0px 4px 0px 8px;
+  margin: 5px auto;
+  border: 1px solid #AAAAB2;
+  border-radius: 1px;
+  background-color: #FFFFFF;
+  color: #333333;
+  font-weight: 400;
+  font-size: 1.4em;
+
+  &:focus {
+    border-color: #333333;
+    outline: none;
+  }
+}
+
+.field input[type=checkbox] {
+  border-image: none;
+  border: 1px solid #AAAAB2;
+  border-radius: 1px;
+  width: 16px;
+  height: 16px;
+  margin: 5px 3px 0px 0px;
+  -webkit-appearance: none;
+  vertical-align: bottom;
+
+  &:focus {
+    border-color: #333333;
+    background-color: #333333;
+    outline: none;
+  }
+}
+
+.field label {
+  font-weight: 400;
+  font-size: 1.4em;
+}
+
+.actions {
+  margin: auto;
+  padding: 5px auto;
+  position: relative;
+  color: #333333;
+}
+
+#sign-in-extras-container {
+  display: block;
+  position: relative;
+  margin: 10px auto;
+  padding: 0;
+  width: 320px;
+  text-align: center;
+}
+
+.sign-in-extras {
+  display: inline-block;
+  position: relative;
+  height: 35px;
+  width: 155px;
+  box-sizing: border-box;
+  border: 1px solid #AAAAB2;
+  border-radius: 1px;
+  background-color: #FFFFFF;
+  color: #333333;
+  font-weight: 400;
+  font-size: 1.4em;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 0px;
+}
