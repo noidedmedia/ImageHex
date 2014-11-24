@@ -6,15 +6,18 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-    <% if notice %>
-      <p class="alert aleert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-  
-  <%= render 'layouts/user_widget' %>
-  <%= yield %>
+  <%= render 'layouts/header' %>
+  <% if notice %>
+    <div class="alert alert-success"><p><%= notice %></p></div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger"><p><%= alert %></p></div>
+  <% end %>
+
+  <div id="masthead">
+    <%= yield %>
+  </div>
 </body>
 </html>

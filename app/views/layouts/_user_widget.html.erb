@@ -1,7 +1,0 @@
-<% if user_signed_in? %>
-  <p><%= current_user.name %></p>
-  <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
-<% else %>
-  <p>You are not signed in.</p>
-  <%= link_to 'Sign in', new_user_session_path %>
-<% end %>

@@ -41,3 +41,7 @@ h4 {
 h5 {
   font-size: 1.8em;
 }
+
+p {
+  margin: 0;
+}
