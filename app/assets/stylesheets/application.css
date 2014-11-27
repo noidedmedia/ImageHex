@@ -18,7 +18,11 @@ html, body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 10px;
   font-weight: 400;
-  background-color: #FFFFFF;
+  background-color: #F0F0F0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
