@@ -5,11 +5,13 @@ describe ImagesController do
   context "when logged in" do
     before(:each) do
       @user = FactoryGirl.create(:user)
+      @user.confirm!
       sign_in @user
     end
     describe "GET #new" do
       it "responds with an HTTP success" do
         get :new
+
         expect(response).to be_success
       end
     end
