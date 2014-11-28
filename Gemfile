@@ -13,6 +13,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+# Monitor stuff with new relic
+gem 'newrelic_rpm'
+
 # Use postgres
 gem 'pg'
 # Use will-paginate for pagination
