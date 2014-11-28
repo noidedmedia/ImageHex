@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class UserMailer < Devise::Mailer
   include Devise::Mailers::Helpers
   default from: "admin@imagehex.com"
   def confirmation_instructions(record, token, other)
