@@ -22,6 +22,9 @@ gem 'will_paginate', "~> 3.0.6"
 gem 'unicorn'
 # Use paperclip to upload images
 gem 'paperclip'
+
+# Use postmark to send email
+gem 'postmark-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
