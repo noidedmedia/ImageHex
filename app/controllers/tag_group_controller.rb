@@ -1,2 +1,0 @@
-class TagGroupController < ApplicationController
-end
