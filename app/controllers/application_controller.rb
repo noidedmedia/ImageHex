@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
 
       
   def configure_devise_permitted_parameters
+    puts "Configuring params"
     registration_params = [:name, :email, :password, :password_confirmation]
 
     if params[:action] == 'update'
