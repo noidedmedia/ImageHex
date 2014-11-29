@@ -56,7 +56,7 @@ foo.bar
    .baz
    .test
    .image
-   .select{|x| x > 3?}
+   .select{|x| x > 3}
 ````
 ### Conventions, Constructs, and Naming
 
