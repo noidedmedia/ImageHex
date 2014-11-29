@@ -16,17 +16,6 @@ ActiveRecord::Schema.define(version: 20141128033532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "edit_records", force: true do |t|
-    t.integer  "target_id"
-    t.string   "target_type"
-    t.integer  "user_id"
-    t.json     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "edit_records", ["user_id"], name: "index_edit_records_on_user_id", using: :btree
-
   create_table "images", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -80,14 +69,12 @@ ActiveRecord::Schema.define(version: 20141128033532) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "page_pref",              default: 20
-    t.string   "authentication_token"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
   end
 
-  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
