@@ -10,10 +10,9 @@
   background-color: #333333;
   color: #FFFFFF;
   text-align: right;
-  font-size: 1.6em;
   font-weight: 300;
   margin: 0;
-  padding: 10px 15px;
+  padding: 0;
 
   a {
     display: inline-block;
@@ -22,6 +21,44 @@
 
   p {
     display: inline-block;
+  }
+}
+
+#header-left {
+  position: absolute;
+  display: inline-block;
+  text-align: left;
+  left: 40px;
+  top: 12px;
+  
+  a {
+    font-size: 1.4em;
+    font-weight: 400;
+    color: #AAAAB2;
+    text-decoration: none;
+
+    &:hover {
+      color: #FFFFFF;
+    }
+  }
+}
+
+#header-right {
+  position: absolute;
+  display: inline-block;
+  text-align: right;
+  right: 40px;
+  top: 12px;
+  
+  a {
+    font-size: 1.4em;
+    font-weight: 400;
+    color: #AAAAB2;
+    text-decoration: none;
+
+    &:hover {
+      color: #FFFFFF;
+    }
   }
 }
 
@@ -44,22 +81,37 @@
   background-color: #FFFFFF;
   color: #333333;
   text-align: right;
-  font-size: 1.6em;
   font-weight: 300;
   margin: 0;
   padding: 10px 15px;
 
-  a {
+  p {
     display: inline-block;
-    color: #333333;
+  }
+}
+
+#footer-left, #footer-right {
+  display: inline-block;
+  position: absolute;
+  bottom: 12px;
+  color: #333333;
+  font-size: 1.4em;
+  font-weight: 400;
+
+  a {
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
+      color: #333333;
     }
   }
+}
 
-  p {
-    display: inline-block;
-  }
+#footer-left {
+  left: 40px;
+}
+
+#footer-right {
+  right: 40px;
 }
