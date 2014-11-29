@@ -1,6 +1,6 @@
 <div id="sign-in-container">
   <div id="sign-in">
-    <h3 class="header">Resend confirmation instructions</h3>
+    <h3 class="header">Email confirmation</h3>
 
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
       <%= devise_error_messages! %>
