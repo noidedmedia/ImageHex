@@ -2,7 +2,8 @@
 
 <%= form_for @image do |f| %>
   <%# start by generating select tags for enums %>
-  <%= f.input :license, as: :select, collection: Image.colors.keys.to_a %>
-  <%= f.input :medium, as: :select, collection: Image.mediums.keys.to_a %>
+  <%= f.select:license, Image.licenses.keys.to_a.map{|x| [x.titleize, x]} %>
+  <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]} %>
   <%= f.file_field :f %> <%# the file to add %>
+  <%= f.submit %>
 <% end %>
