@@ -4,6 +4,7 @@ class Image < ActiveRecord::Base
   has_attached_file :f, styles: { medium: "300x300>", thumb: "100x100>" }
   belongs_to :user
   has_many :tag_groups
+  
   ##
   # ENUMS
   enum license: [:public_domain, :all_rights_reserved, :cc_by, :cc_by_sa, :cc_by_nd, :cc_by_nc, :cc_by_nc_sa, :cc_by_nc_nd]
