@@ -1,14 +1,31 @@
 <header id="header-container">
   <div id="header-left">
-    <a href="/">Home</a>
+    <div class="header-item">
+      <a href="/">Home</a>
+    </div>
   </div>
 
   <div id="header-right">
     <% if user_signed_in? %>
-      <p><%= current_user.name %></p>
-      <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+
+      <div class="header-item">
+        <%= current_user.name %>
+      </div>
+      
+      <div class="header-item">
+        <%= link_to destroy_user_session_path, :method => :delete do %>
+          Sign out
+        <% end %>
+      </div>
+
     <% else %>
-      <%= link_to 'Sign in', new_user_session_path %>
+
+      <div class="header-item">
+        <%= link_to new_user_session_path do %>
+          Sign in
+        <% end %>
+      </div>
+
     <% end %>
   </div>
 </header>
