@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get '/about', to: "static_stuff#about"
 
-  get '/about/people', to: "static_stuff#people"
+  get '/people', to: "static_stuff#people"
 
   get '/contact', to: "static_stuff#contact"
 
