@@ -1,2 +1,8 @@
 <h1>Images#new</h1>
-<p>Find me in app/views/images/new.html.erb</p>
+
+<%= form_for @image do |f| %>
+  <%# start by generating select tags for enums %>
+  <%= f.input :license, as: :select, collection: Image.colors.keys.to_a %>
+  <%= f.input :medium, as: :select, collection: Image.mediums.keys.to_a %>
+  <%= f.file_field :f %> <%# the file to add %>
+<% end %>
