@@ -13,15 +13,6 @@
   font-weight: 300;
   margin: 0;
   padding: 0;
-
-  a {
-    display: inline-block;
-    color: #FFFFFF;
-  }
-
-  p {
-    display: inline-block;
-  }
 }
 
 #header-left {
@@ -30,17 +21,6 @@
   text-align: left;
   left: 40px;
   top: 12px;
-  
-  a {
-    font-size: 1.4em;
-    font-weight: 400;
-    color: #AAAAB2;
-    text-decoration: none;
-
-    &:hover {
-      color: #FFFFFF;
-    }
-  }
 }
 
 #header-right {
@@ -49,16 +29,32 @@
   text-align: right;
   right: 40px;
   top: 12px;
-  
+}
+
+.header-item {
+  display: inline-block;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: #AAAAB2;
+  padding: 0px 15px;
+
   a {
-    font-size: 1.4em;
-    font-weight: 400;
-    color: #AAAAB2;
     text-decoration: none;
+    color: #AAAAB2;
+    transition: color 300ms ease-in-out;
 
     &:hover {
       color: #FFFFFF;
+      text-decoration: none;
     }
+  }
+
+  &:first-of-type {
+    padding-left: 0px;
+  }
+
+  &:last-of-type {
+    padding-right: 0px;
   }
 }
 
