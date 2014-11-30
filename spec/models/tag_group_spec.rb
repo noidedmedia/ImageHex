@@ -12,9 +12,29 @@ describe TagGroup do
       group.image = image
       group.tag_group_string = "falling, dying, hitting things"
       group.save
-      expect(group.tags.map(&:name)).to eq(["faling",
+      expect(group.tags.map(&:name)).to eq(["falling",
                                             "dying",
                                             "hitting things"])
+    end
+    it "doesn't make duplicates" do
+      image = FactoryGirl.create(:image)
+      # we make the tag here
+      tag = FactoryGirl.create(:tag, name: "test")
+      group = TagGroup.new
+      group.image = image
+      # and it shouldn't get made here
+      group.tag_group_string = "test, other test"
+      group.save
+      expect(group.tags).to include(tag)
+    end
+
+    it "properly foramts tags" do
+      image = FactoryGirl.create(:image)
+      group = TagGroup.new
+      group.image = image
+      group.tag_group_string = "tEst, BLACK"
+      group.save
+      expect(group.tags.map(&:name)).to eq(["test", "black"])
     end
   end
 end
