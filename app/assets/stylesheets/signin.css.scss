@@ -8,9 +8,10 @@
   border-radius: 1px;
   background-color: #FFFFFF;
 
-  .header {
+  .sign-in-header {
     text-align: center;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    margin: auto;
   }
 
   input[type=submit] {
@@ -33,7 +34,7 @@
   }
 }
 
-#sign-in {
+#sign-in-fields {
   padding: 10px 10px 2px 10px;
 }
 

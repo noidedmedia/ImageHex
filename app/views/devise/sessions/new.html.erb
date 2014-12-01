@@ -1,8 +1,9 @@
 <div id="sign-in-container">
-  <div id="sign-in">
-    <h3 class="header">Sign in</h3>
+  <h3 class="sign-in-header">Sign in</h3>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div id="sign-in-fields">
       <div class="field">
         <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
       </div>
@@ -17,11 +18,12 @@
           <%= f.label :remember_me %>
         </div>
       <% end -%>
-  </div>
+    </div>
 
     <div class="actions">
       <%= f.submit "Sign in" %>
     </div>
+
   <% end %>
 </div>
 
