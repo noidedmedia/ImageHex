@@ -7,7 +7,7 @@
 # Ignore bundler config.
 /.bundle
 # Ignore images uploaded in dev mode
-./public/system/images/fs
+./public/system/images/*
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal

@@ -41,12 +41,12 @@ class Image < ActiveRecord::Base
     # their image id is in the next group.
     # Folds are a pretty high-level functional programming concept. Be sure
     # to look up what it does if you don't get it.
-    group.inject do |l, r|
+    new_group = group.inject do |l, r|
       l.where(image_id: r.pluck(:image_id))
     end
     ##
     # Now, the only groups which remain belong to images that match the
     # query as a whole. Thus, we can simply grab the image_id.
-    self.where(id: group.pluck(:image_id))
+    self.where(id: new_group.pluck(:image_id))
   end
 end

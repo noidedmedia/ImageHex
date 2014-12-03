@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get '/people', to: "static_stuff#people"
 
   get '/contact', to: "static_stuff#contact"
-
+  
+  get '/search', to: "images#search"
 end

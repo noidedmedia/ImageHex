@@ -3,6 +3,12 @@ class ImagesController < ApplicationController
   before_action :load_image, only: [:update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
   before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy]
+  def search
+    groups = params[:query].map{|x| TagGroup.by_tag_names x}
+    @images = Image.from_groups groups
+
+  end
+  
   def new
     @image = Image.new
   end
@@ -28,13 +34,13 @@ class ImagesController < ApplicationController
   end
 
   def index
-    @images = Image.page(page: page, per_page: per_page).order('created_at DESC')
+    puts params
+    @images = Image.paginate(page: page, per_page: per_page).order('created_at DESC')
 
   end
 
   def show
     @image = Image.find(params[:id])
-
   end
   protected
   # Load the image with the current id into params[:image]
