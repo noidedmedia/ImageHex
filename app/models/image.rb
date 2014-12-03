@@ -47,6 +47,6 @@ class Image < ActiveRecord::Base
     ##
     # Now, the only groups which remain belong to images that match the
     # query as a whole. Thus, we can simply grab the image_id.
-    self.where(id: group.pluck(:id))
+    self.where(id: group.pluck(:image_id))
   end
 end
