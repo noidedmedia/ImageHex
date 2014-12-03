@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   get '/contact', to: "static_stuff#contact"
 
+  get "/search", to: "images#search"
 end

@@ -17,4 +17,18 @@ class Image < ActiveRecord::Base
   validates :user, presence: :true
   validates :license, presence: true
   validates :medium, presence: true
+
+  ##
+  # Class methods
+  
+  ##
+  # Takes an array of tag_groups. Find all images which are in each
+  # group at least once.
+  def self.from_groups(p)
+    # Here's how this works: We fold the groups onto each other,
+    # taking those which have the same image_id as 
+    p.inject do |l, n|
+      l.where(image_id: n.pluc(:image_id))
+    end
+  end
 end

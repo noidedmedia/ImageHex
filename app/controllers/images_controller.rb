@@ -3,6 +3,16 @@ class ImagesController < ApplicationController
   before_action :load_image, only: [:update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
   before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy]
+  
+  def search
+    tags = params[:groups].map do |a|
+      a.split(", ").map{|x| x.downcase.strip.squish}
+    end
+    groups = tags.map{|x| TagGroup.by_tag_names(x)}
+    @image = Image.from_groups(groups)
+
+  end
+  
   def new
     @image = Image.new
   end
