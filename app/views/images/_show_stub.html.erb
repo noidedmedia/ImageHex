@@ -2,6 +2,8 @@
   <% @images.each_with_index do |img, i| %>
     <%# We serialize the query string to allow us to provide %>
     <%# "next" and "prev" links on things. %>
-    <%= link_to image_tag(img.f :medium), image_path(img, params.merge({num: i})) %>
+    <%= link_to image_tag(img.f :medium), image_path(img, params.merge({num: i})), {class: "image_list_member"} %>
   <% end %> 
 <% end %>
+
+<%= will_paginate @images if @images && !@images.empty?%>
