@@ -12,9 +12,8 @@ class ImagesController < ApplicationController
     if @image.save
       redirect_to @image
     else
-      puts @image.errors.full_messages.join(", ")
       # If their image is incorrect, redirect_to the new page again.
-      flash[:error] = @image.errors.full_messages.join(", ")
+      flash[:error] = @image.errors.full_messages.join(', ')
       redirect_to :new
     end
   end

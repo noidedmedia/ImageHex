@@ -6,6 +6,12 @@ describe TagGroup do
   it{should have_many(:tag_group_members)}
   it{should have_many(:tags).through(:tag_group_members)}
   describe "The tag group string" do
+    it "is filled on load" do
+      group = FactoryGirl.create(:tag_group)
+      str = group.tags.map(&:name).join(", ")
+      new = TagGroup.find(group.id)
+      expect(new.tag_group_string).to eq(str)
+    end
     it "seperates by commas" do
       image = FactoryGirl.create(:image)
       group = TagGroup.new
