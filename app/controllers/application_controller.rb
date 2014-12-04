@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
 
   # What page we are on
   def page
-    puts params[:page]
     params[:page] ? params[:page] : 1
   end
   # How many things to display per page
@@ -24,7 +23,7 @@ class ApplicationController < ActionController::Base
     elsif (1..100).include? params[:page]
       params[:page]
     else
-      20
+      10
     end
   end
 
