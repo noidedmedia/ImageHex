@@ -1,5 +1,7 @@
 var ready;
+
 ready = function(){
+  /*
   $("#image_list_container").justifiedGallery({
     rowHeight: 230,
     margins: 10,
@@ -12,6 +14,7 @@ ready = function(){
       lt1024 : "_huge"
     }
   });
+  */
 }
 
 $(document).ready(ready);

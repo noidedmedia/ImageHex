@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     if (1..100).include? params[:page_pref]
       params[:page_pref]
     else
-      10
+      20
     end
   end
 
