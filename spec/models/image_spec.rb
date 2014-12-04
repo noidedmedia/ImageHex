@@ -17,7 +17,8 @@ describe Image do
   it {should validate_attachment_presence(:f)}
   # Make sure the file is an image
   it {should validate_attachment_content_type(:f)
-    .allowing("image/png", "image/gif", "image/jpeg", "image/bmp")
-    .rejecting("text/plain", "text/xml", "audio/mp3") }
+      .allowing("image/png", "image/gif", "image/jpeg", "image/bmp")
+      .rejecting("text/plain", "text/xml", "audio/mp3")}
 
 end
+

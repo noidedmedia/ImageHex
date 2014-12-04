@@ -1,4 +1,6 @@
 class TagGroupsController < ApplicationController
+  before_filter :ensure_user, except: :show
+  before_filter :get_image
   def new
     @tag_group = TagGroup.new
   end
@@ -6,7 +8,7 @@ class TagGroupsController < ApplicationController
   def create
     @tag_group = TagGroup.create(tag_group_params)
     if @tag_group.save
-      redirect_to image
+      redirect_to @image
     else
       render 'new'
     end
@@ -20,7 +22,7 @@ class TagGroupsController < ApplicationController
       .permit(:tag_group_string)
       .merge(image_id: image.id) # Add in the image id automatically
   end
-  def image
-    Image.find(params[:image_id])
+  def get_image
+    @image = Image.find(params[:image_id])
   end
 end

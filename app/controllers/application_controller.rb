@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
 
   # What page we are on
   def page
-    params[:page]
+    puts params[:page]
+    params[:page] ? params[:page] : 1
   end
   # How many things to display per page
   def per_page

@@ -21,25 +21,38 @@ class TagGroup < ActiveRecord::Base
   # CALLBACKS #
   #############
   before_validation :save_tag_group_string
-  
+  after_initialize :load_tag_group_string 
   #################
   # CLASS METHODS #
   #################
   ##
-  # This method takes an array of tag names, and returns all placements
+  # This method takes an array of tag names, or a properly
+  # formatted string,  and returns all placements
   # which have tags by those names.
   def self.by_tag_names(names)
-	self.joins(:tags).where(tags:{name: names})
+
+    if names.is_a? Array
+      to_search = names
+    else
+      names.split(",").map{|x| x.downcase.strip.squish}
+    end
+	  self.joins(:tags).where(tags:{name: to_search})
   end
   ####################
   # INSTANCE METHODS #
   ####################
+
+  private
   def save_tag_group_string
     return unless self.tag_group_string && ! self.tag_group_string.empty?
     array = self.tag_group_string.split(",")
       .map{|str| str.strip.squish.downcase} # Properly format the names
       .map{|str| Tag.where(name: str).first_or_create} # Create or find
     self.tags = array
+  end
+  def load_tag_group_string
+    return unless self.tags.any?
+    self.tag_group_string = self.tags.map(&:name).join(", ")
   end
 end
 

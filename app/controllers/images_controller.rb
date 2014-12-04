@@ -3,13 +3,10 @@ class ImagesController < ApplicationController
   before_action :load_image, only: [:update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
   before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy]
-  
+
   def search
-    tags = params[:groups].map do |a|
-      a.split(", ").map{|x| x.downcase.strip.squish}
-    end
-    groups = tags.map{|x| TagGroup.by_tag_names(x)}
-    @image = Image.from_groups(groups)
+    groups = params[:query].map{|x| TagGroup.by_tag_names x}
+    @images = Image.from_groups groups
 
   end
   
@@ -22,9 +19,8 @@ class ImagesController < ApplicationController
     if @image.save
       redirect_to @image
     else
-      puts @image.errors.full_messages.join(", ")
       # If their image is incorrect, redirect_to the new page again.
-      flash[:error] = @image.errors.full_messages.join(", ")
+      flash[:error] = @image.errors.full_messages.join(', ')
       redirect_to :new
     end
   end
@@ -39,13 +35,13 @@ class ImagesController < ApplicationController
   end
 
   def index
-    @images = Image.page(page: page, per_page: per_page).order('created_at DESC')
+    puts params
+    @images = Image.paginate(page: page, per_page: per_page).order('created_at DESC')
 
   end
 
   def show
     @image = Image.find(params[:id])
-
   end
   protected
   # Load the image with the current id into params[:image]

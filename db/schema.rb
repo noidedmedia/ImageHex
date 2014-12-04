@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20141128033532) do
     t.datetime "updated_at"
   end
 
+  create_table "tracked_changes", force: true do |t|
+    t.json     "changes"
+    t.integer  "change_trackable_id"
+    t.string   "change_trackable_type"
+    t.integer  "user_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
