@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.jstifiedGaller.min
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require turbolinks
 //= require_tree .
