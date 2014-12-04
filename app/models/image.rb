@@ -2,7 +2,19 @@ class Image < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
-  has_attached_file :f, styles: { medium: "300x300>", thumb: "100x100>" }
+  has_attached_file :f, 
+    # Steal Flickr's suffixes
+    :styles => { 
+      small: "140x140>",
+      medium: "300x300>",
+      large: "500x500>",
+      huge: "1000x1000>"},
+    # Use suffixes for the path
+      url: "/system/fs/:class/:id_:style.:extension",
+      path: "public/system/fs/:class/:id_:style.:extension"
+
+
+
   belongs_to :user
   has_many :tag_groups
   
