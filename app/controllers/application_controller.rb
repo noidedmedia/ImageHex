@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
   end
   # How many things to display per page
   def per_page
-    if user_signed_in?
+    # Block is comented out until implimented properly
+    # if user_signed_in?
       # A user's set page preference...
-      current_user.page_pref
+      # current_user.page_pref
     # Or the parameter page pref...
-    elsif (1..100).include? params[:page]
-      params[:page]
+    if (1..100).include? params[:page_pref]
+      params[:page_pref]
     else
       10
     end
