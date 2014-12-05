@@ -1,6 +1,8 @@
 ImageHex
 ========
 
+[View the Wiki for more information.](https://github.com/connorshea/ImageHex/wiki)
+
 Some things to note:
 
 1. You MUST install ImageMagick. Easily acomplished through the package manager
