@@ -1,5 +1,5 @@
 <h1>Images#new</h1>
-
+<%= flash[:error] %>
 <%= form_for @image do |f| %>
   <%# start by generating select tags for enums %>
   <%= f.select :license, Image.licenses.keys.to_a.map{|x| [x.titleize, x]} %>
