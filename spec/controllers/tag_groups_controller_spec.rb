@@ -11,7 +11,7 @@ describe TagGroupsController do
     describe "post #create" do
       it "makes a new tag group" do
         expect{post :create, image_id: image, tag_group: {tag_group_string: "test, another, more"}}
-          .to change{TagGroup.count}.by{1}
+          .to change{TagGroup.count}.by(1)
 
       end
     end
@@ -22,13 +22,13 @@ describe TagGroupsController do
       end
     end
     describe "get #edit" do
+      let(:group){FactoryGirl.create(:tag_group)}
       it "responds successfully" do
-        get :edit, image_id: image
+        get :edit, image_id: group.image, id: group
         expect(response).to be_success
       end
       it "sets the variables correctly" do
-        group = FactoryGirl.create(:tag_group)
-        get :edit, image_id: image, id: group
+        get :edit, image_id: group.image, id: group
         expect(assigns(:tag_group)).to eq(group)
       end
     end
