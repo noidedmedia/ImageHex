@@ -43,7 +43,7 @@ $unemph-text: #6D6D6D; // Unemphasized text
 
 .footer-description-title {
   display: block;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   font-weight: 500;
   padding-bottom: 5px;
   color: $emph-text;
@@ -51,14 +51,14 @@ $unemph-text: #6D6D6D; // Unemphasized text
 
 .footer-description-body {
   display: block;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: 400;
   padding-bottom: 10px;
 }
 
 .footer-description-copyright {
   display: block;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: 500;
   color: $emph-text;
 }
@@ -76,13 +76,13 @@ $unemph-text: #6D6D6D; // Unemphasized text
   margin: 0;
 
   li {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: 400;
     padding: 4px 0px;
 
     &:first-of-type {
       padding: 0px 0px 4px 0px;
-      font-size: 1.3em;
+      font-size: 1.3rem;
       font-weight: 500;
       color: $emph-text;
     }

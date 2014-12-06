@@ -21,7 +21,7 @@
     text-align: center;
     color: #333333;
     font-weight: 400;
-    font-size: 1.4em;
+    font-size: 1.4rem;
     border: 0px;
     border-top: 1px solid #AAAAB2;
     background-color: #FFFFFF;
@@ -58,7 +58,7 @@
   background-color: #FFFFFF;
   color: #333333;
   font-weight: 400;
-  font-size: 1.4em;
+  font-size: 1.4rem;
 
   &:focus {
     border-color: #333333;
@@ -99,7 +99,7 @@ input[type=checkbox]:checked::after {
 .field label {
   display: inline-block;
   font-weight: 400;
-  font-size: 1.4em;
+  font-size: 1.4rem;
 }
 
 .actions {
@@ -148,7 +148,7 @@ input[type=checkbox]:checked::after {
   background-color: #FFFFFF;
   color: #333333;
   font-weight: 400;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   text-align: center;
   text-decoration: none;
   padding: 8px 0px;
