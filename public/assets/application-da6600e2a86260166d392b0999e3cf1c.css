@@ -1,0 +1,761 @@
+/*!
+ * Justified Gallery - v3.4.0
+ * http://miromannino.com/projects/justified-gallery/
+ * Copyright (c) 2014 Miro Mannino
+ * Licensed under the MIT license.
+ */
+
+
+@-webkit-keyframes justified-gallery-show-caption-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+@keyframes justified-gallery-show-caption-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+@-webkit-keyframes justified-gallery-show-entry-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+
+@keyframes justified-gallery-show-entry-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+
+.justified-gallery {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.justified-gallery > a,
+.justified-gallery > div {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.justified-gallery > a > img,
+.justified-gallery > div > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.justified-gallery > a > .caption,
+.justified-gallery > div > .caption {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  padding: 5px;
+  background-color: #000000;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  font-family: sans-serif;
+}
+
+.justified-gallery > a > .caption.caption-visible,
+.justified-gallery > div > .caption.caption-visible {
+  display: initial;
+  opacity: 0.7;
+  -webkit-animation: justified-gallery-show-caption-animation 500ms 0 ease;
+}
+
+.justified-gallery > .entry-visible {
+  opacity: 1.0;
+  -webkit-animation: justified-gallery-show-entry-animation 500ms 0 ease;
+}
+
+.justified-gallery > .spinner {
+  position: absolute;
+  bottom: 0;
+  margin-left: -24px;
+  padding: 10px 0 10px 0;
+  left: 50%;
+  opacity: initial;
+  filter: initial;
+  overflow: initial;
+}
+
+.justified-gallery > .spinner > span {
+  display: inline-block;
+  opacity: 0;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px 0 4px;
+  background-color: #000;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+/* line 3, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#about-page-container,
+#people-page-container,
+#contact-page-container {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  width: 640px;
+  height: 100%;
+  margin: auto;
+  padding: 30px 0px;
+}
+
+/* line 13, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#company-nav-container {
+  width: 60px;
+  height: 100%;
+  padding-top: 44px;
+}
+/* line 18, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#company-nav-container a {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 20px;
+  color: #333;
+  text-decoration: none;
+  padding: 6px 0px;
+  text-align: right;
+}
+/* line 29, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#company-nav-container .current {
+  font-weight: 500;
+}
+
+/* line 34, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-main-column {
+  margin-left: 40px;
+  width: 500px;
+  height: 100%;
+  display: block;
+}
+
+/* line 41, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-header-text {
+  font-size: 3.2rem;
+  color: #333;
+  font-weight: 700;
+  font-family: 'Lato';
+  padding-bottom: 10px;
+}
+
+/* line 49, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-content {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #333;
+}
+/* line 54, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-content p {
+  padding: 0px 0px 12px;
+}
+
+/* line 59, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#people-page-list-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 66, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item {
+  width: 200px;
+  margin: 0px 20px 20px 0px;
+}
+
+/* line 71, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item-photo {
+  width: 200px;
+  height: 240px;
+  margin-bottom: 4px;
+  background-color: #d6d6d6;
+}
+
+/* line 78, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item-name {
+  font-size: 1.4rem;
+  line-height: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* line 85, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item-job-title {
+  font-size: 1.2rem;
+  line-height: 16px;
+  font-weight: 400;
+  text-align: center;
+}
+@-webkit-keyframes alertAnimation {
+  /* line 2, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  0% {
+    display: block;
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 8, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  5% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 13, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  95% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 18, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  99% {
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 23, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  100% {
+    display: none;
+  }
+}
+
+@keyframes alertAnimation {
+  /* line 29, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  0% {
+    display: block;
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 35, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  8% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 40, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  92% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 45, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  99% {
+    display: block;
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 51, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  100% {
+    display: none;
+  }
+}
+
+/* line 56, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert {
+  animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
+  -webkit-animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
+  transform: translate3d(0, -40px, 0);
+  -webkit-transform: translate3d(0, -40px, 0);
+  display: block;
+  position: fixed;
+  width: 100vw;
+  height: 40px;
+  z-index: 999;
+  padding: 10px 40px;
+  margin: 0px;
+  top: 0px;
+  left: 0px;
+}
+/* line 72, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert p {
+  font-size: 1.4rem;
+  line-height: 20px;
+  font-weight: 400;
+  color: #fff;
+}
+
+/* line 80, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-success {
+  background-color: #5bb289;
+}
+
+/* line 84, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-info {
+  background-color: #556db3;
+}
+
+/* line 88, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-warning {
+  background-color: #efb63e;
+}
+
+/* line 92, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-danger {
+  background-color: #cb2e32;
+}
+/* line 4, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer-container {
+  display: block;
+  position: relative;
+  width: 100vw;
+  height: 160px;
+  box-sizing: border-box;
+  left: 0;
+  bottom: 0;
+  background-color: #191a1a;
+  color: #6d6d6d;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 18, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+  width: 60%;
+  min-width: 700px;
+  margin: auto;
+  padding: 25px 0px;
+}
+/* line 27, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer a {
+  color: #6d6d6d;
+  text-decoration: none;
+}
+/* line 31, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer a:hover {
+  color: #828282;
+}
+
+/* line 37, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-column {
+  width: 50%;
+  height: 100%;
+  text-align: left;
+  padding: 0px 25px;
+}
+
+/* line 44, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-title {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding-bottom: 5px;
+  color: #828282;
+}
+
+/* line 52, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-body {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+
+/* line 59, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-copyright {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #828282;
+}
+
+/* line 66, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-column {
+  width: 25%;
+  height: 100%;
+  padding: 0px 30px;
+}
+
+/* line 72, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-list {
+  width: 100%;
+  list-style: none;
+  text-align: left;
+  margin: 0;
+}
+/* line 78, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-list li {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 4px 0px;
+}
+/* line 83, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-list li:first-of-type {
+  padding: 0px 0px 4px 0px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #828282;
+}
+/* line 1, /Users/connor/Programming/ImageHex/app/assets/stylesheets/frontpage.css.scss */
+#home-container {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 20px 40px;
+  text-align: center;
+}
+/* line 9, /Users/connor/Programming/ImageHex/app/assets/stylesheets/frontpage.css.scss */
+#home-container h2 {
+  padding-bottom: 10px;
+}
+/* line 13, /Users/connor/Programming/ImageHex/app/assets/stylesheets/frontpage.css.scss */
+#home-container a {
+  font-size: 1.6rem;
+  line-height: 25px;
+}
+/* line 1, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image {
+  padding: 20px;
+  text-align: center;
+}
+/* line 5, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image img {
+  max-width: 80vw;
+  max-height: 80vh;
+}
+/* line 1, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container {
+  display: block;
+  position: relative;
+  margin: 50px auto auto auto;
+  text-align: left;
+  width: 350px;
+  border: 1px solid #aaaab2;
+  border-radius: 1px;
+  background-color: #fff;
+}
+/* line 11, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container .sign-in-header {
+  text-align: center;
+  padding-top: 10px;
+  margin: auto;
+}
+/* line 17, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container input[type=submit] {
+  width: 100%;
+  height: 35px;
+  margin-top: 10px;
+  text-align: center;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.4rem;
+  border: 0px;
+  border-top: 1px solid #aaaab2;
+  background-color: #fff;
+  -webkit-appearance: none;
+}
+/* line 30, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container input[type=submit]:focus {
+  border-color: #333;
+  outline: none;
+}
+
+/* line 37, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-fields {
+  padding: 10px 10px 2px 10px;
+}
+
+/* line 41, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field {
+  width: 330px;
+  margin: auto;
+  padding: 5px auto 5px auto;
+  position: relative;
+  color: #333333;
+}
+
+/* line 51, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=text],
+.field input[type=email],
+.field input[type=password] {
+  width: 330px;
+  height: 35px;
+  padding: 0px 4px 0px 8px;
+  margin: 5px auto;
+  border: 1px solid #aaaab2;
+  border-radius: 1px;
+  background-color: #fff;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+/* line 63, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=text]:focus,
+.field input[type=email]:focus,
+.field input[type=password]:focus {
+  border-color: #333;
+  outline: none;
+}
+
+/* line 69, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox] {
+  border-image: none;
+  border: 1px solid #aaaab2;
+  border-radius: 1px;
+  width: 16px;
+  height: 16px;
+  margin: 5px 3px 0px 0px;
+  -webkit-appearance: none;
+  vertical-align: bottom;
+  background-color: transparent;
+}
+/* line 80, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:hover {
+  cursor: pointer;
+}
+/* line 84, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:checked {
+  border-color: #333;
+}
+/* line 88, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:focus {
+  outline: none;
+}
+
+/* line 93, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+input[type=checkbox]:checked::after {
+  background-color: #ff0004;
+  height: 14px;
+  width: 14px;
+}
+
+/* line 99, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field label {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+/* line 105, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.actions {
+  margin: auto;
+  position: relative;
+  color: #333;
+}
+/* line 111, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.actions input[type=submit]:hover {
+  cursor: pointer;
+}
+
+/* line 117, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-extras-container {
+  display: block;
+  position: relative;
+  margin: 10px auto;
+  left: 0;
+  right: 0;
+  padding: 0;
+  width: 360px;
+  height: auto;
+  text-align: left;
+}
+/* line 128, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-extras-container a {
+  width: 100%;
+  text-decoration: none;
+  margin: 0px 5px;
+}
+
+/* line 135, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-row {
+  display: flex;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+/* line 141, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-half, .sign-in-extras-full {
+  display: inline-flex;
+  position: relative;
+  height: 35px;
+  flex-flow: column nowrap;
+  border: 1px solid #aaaab2;
+  border-radius: 1px;
+  background-color: #fff;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.4rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 8px 0px;
+}
+
+/* line 157, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-half {
+  flex: 1;
+  width: 100%;
+}
+
+/* line 162, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-full {
+  flex: 1;
+  width: 100%;
+}
+
+/* line 167, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-text {
+  width: 100%;
+}
+/* line 1, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+#header-container {
+  display: block;
+  position: fixed;
+  width: 100vw;
+  height: 40px;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: #333;
+  color: #fff;
+  text-align: right;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 18, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+#header-left {
+  position: absolute;
+  display: inline-block;
+  text-align: left;
+  left: 40px;
+  top: 12px;
+}
+
+/* line 26, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+#header-right {
+  position: absolute;
+  display: inline-block;
+  text-align: right;
+  right: 40px;
+  top: 12px;
+}
+
+/* line 34, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+.header-item {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #aaaab2;
+  padding: 0px 15px;
+}
+/* line 41, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+.header-item a {
+  text-decoration: none;
+  color: #aaaab2;
+  transition: color 300ms ease-in-out;
+}
+/* line 46, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+.header-item a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+/* line 52, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+.header-item:first-of-type {
+  padding-left: 0px;
+}
+/* line 56, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+.header-item:last-of-type {
+  padding-right: 0px;
+}
+
+/* line 61, /Users/connor/Programming/ImageHex/app/assets/stylesheets/static_stuff.css.scss */
+#masthead {
+  margin-top: 40px;
+  display: inline-block;
+  position: relative;
+  min-height: calc(100vh - 200px);
+  width: 100vw;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+
+
+
+ */
+
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.2rem;
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 2.1rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+p {
+  margin: 0;
+}
