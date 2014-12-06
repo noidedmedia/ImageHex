@@ -24,11 +24,11 @@ describe TagGroupsController do
     describe "get #edit" do
       let(:group){FactoryGirl.create(:tag_group)}
       it "responds successfully" do
-        get :edit, image_id: group.image, id: group
+        get :edit, image_id: group.image, id: group.id
         expect(response).to be_success
       end
       it "sets the variables correctly" do
-        get :edit, image_id: group.image, id: group
+        get :edit, image_id: group.image, id: group.id
         expect(assigns(:tag_group)).to eq(group)
       end
     end
