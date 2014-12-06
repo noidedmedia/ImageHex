@@ -7,8 +7,8 @@
   left: 0;
   top: 0;
   z-index: 1000;
-  background-color: #333333;
-  color: #FFFFFF;
+  background-color: #333;
+  color: #fff;
   text-align: right;
   font-weight: 300;
   margin: 0;
@@ -35,16 +35,16 @@
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
-  color: #AAAAB2;
+  color: #aaaab2;
   padding: 0px 15px;
 
   a {
     text-decoration: none;
-    color: #AAAAB2;
+    color: #aaaab2;
     transition: color 300ms ease-in-out;
 
     &:hover {
-      color: #FFFFFF;
+      color: #fff;
       text-decoration: none;
     }
   }

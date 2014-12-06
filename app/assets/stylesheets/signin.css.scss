@@ -4,9 +4,9 @@
   margin: 50px auto auto auto;
   text-align: left;
   width: 350px;
-  border: 1px solid #AAAAB2;
+  border: 1px solid #aaaab2;
   border-radius: 1px;
-  background-color: #FFFFFF;
+  background-color: #fff;
 
   .sign-in-header {
     text-align: center;
@@ -19,16 +19,16 @@
     height: 35px;
     margin-top: 10px;
     text-align: center;
-    color: #333333;
+    color: #333;
     font-weight: 400;
     font-size: 1.4rem;
     border: 0px;
-    border-top: 1px solid #AAAAB2;
-    background-color: #FFFFFF;
+    border-top: 1px solid #aaaab2;
+    background-color: #fff;
     -webkit-appearance: none;
 
     &:focus {
-      border-color: #333333;
+      border-color: #333;
       outline: none;
     }
   }
@@ -53,22 +53,22 @@
   height: 35px;
   padding: 0px 4px 0px 8px;
   margin: 5px auto;
-  border: 1px solid #AAAAB2;
+  border: 1px solid #aaaab2;
   border-radius: 1px;
-  background-color: #FFFFFF;
-  color: #333333;
+  background-color: #fff;
+  color: #333;
   font-weight: 400;
   font-size: 1.4rem;
 
   &:focus {
-    border-color: #333333;
+    border-color: #333;
     outline: none;
   }
 }
 
 .field input[type=checkbox] {
   border-image: none;
-  border: 1px solid #AAAAB2;
+  border: 1px solid #aaaab2;
   border-radius: 1px;
   width: 16px;
   height: 16px;
@@ -82,7 +82,7 @@
   }
 
   &:checked {
-    border-color: #333333;
+    border-color: #333;
   }
 
   &:focus {
@@ -91,7 +91,7 @@
 }
 
 input[type=checkbox]:checked::after {
-  background-color: #FF0004;
+  background-color: #ff0004;
   height: 14px;
   width: 14px;
 }
@@ -105,7 +105,7 @@ input[type=checkbox]:checked::after {
 .actions {
   margin: auto;
   position: relative;
-  color: #333333;
+  color: #333;
 
   input[type=submit] {
     &:hover {
@@ -143,10 +143,10 @@ input[type=checkbox]:checked::after {
   position: relative;
   height: 35px;
   flex-flow: column nowrap;
-  border: 1px solid #AAAAB2;
+  border: 1px solid #aaaab2;
   border-radius: 1px;
-  background-color: #FFFFFF;
-  color: #333333;
+  background-color: #fff;
+  color: #333;
   font-weight: 400;
   font-size: 1.4rem;
   text-align: center;
