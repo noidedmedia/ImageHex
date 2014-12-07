@@ -2,27 +2,27 @@ $emph-text: #828282; // Emphasized text
 $unemph-text: #6D6D6D; // Unemphasized text
 
 #footer-container {
-  display: block;
-  position: relative;
-  width: 100vw;
-  height: 160px;
-  box-sizing: border-box;
-  left: 0;
-  bottom: 0;
   background-color: #191a1a;
+  bottom: 0;
+  box-sizing: border-box;
   color: $unemph-text;
+  display: block;
+  height: 160px;
+  left: 0;
   margin: 0;
   padding: 0;
+  position: relative;
+  width: 100vw;
 }
 
 #footer {
   display: flex;
   flex-flow: row nowrap;
   height: 100%;
-  width: 60%;
-  min-width: 700px;
   margin: auto;
+  min-width: 700px;
   padding: 25px 0px;
+  width: 60%;
 
   a {
     color: $unemph-text;
@@ -35,18 +35,18 @@ $unemph-text: #6D6D6D; // Unemphasized text
 }
 
 .footer-description-column {
-  width: 50%;
   height: 100%;
-  text-align: left;
   padding: 0px 25px;
+  text-align: left;
+  width: 50%;
 }
 
 .footer-description-title {
+  color: $emph-text;
   display: block;
   font-size: 1.4rem;
   font-weight: 500;
   padding-bottom: 5px;
-  color: $emph-text;
 }
 
 .footer-description-body {
@@ -57,23 +57,23 @@ $unemph-text: #6D6D6D; // Unemphasized text
 }
 
 .footer-description-copyright {
+  color: $emph-text;
   display: block;
   font-size: 1.2rem;
   font-weight: 500;
-  color: $emph-text;
 }
 
 .footer-links-column {
-  width: 25%;
   height: 100%;
   padding: 0px 30px;
+  width: 25%;
 }
 
 .footer-links-list {
-  width: 100%;
   list-style: none;
-  text-align: left;
   margin: 0;
+  text-align: left;
+  width: 100%;
 
   li {
     font-size: 1.2rem;
@@ -81,10 +81,10 @@ $unemph-text: #6D6D6D; // Unemphasized text
     padding: 4px 0px;
 
     &:first-of-type {
-      padding: 0px 0px 4px 0px;
+      color: $emph-text;
       font-size: 1.3rem;
       font-weight: 500;
-      color: $emph-text;
+      padding: 0px 0px 4px 0px;
     }
   }
 }

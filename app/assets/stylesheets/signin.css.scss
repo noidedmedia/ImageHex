@@ -1,31 +1,31 @@
 #sign-in-container {
+  background-color: #fff;
+  border-radius: 1px;
+  border: 1px solid #aaaab2;
   display: block;
-  position: relative;
   margin: 50px auto auto auto;
+  position: relative;
   text-align: left;
   width: 350px;
-  border: 1px solid #aaaab2;
-  border-radius: 1px;
-  background-color: #fff;
 
   .sign-in-header {
-    text-align: center;
-    padding-top: 10px;
     margin: auto;
+    padding-top: 10px;
+    text-align: center;
   }
 
   input[type=submit] {
-    width: 100%;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border-top: 1px solid #aaaab2;
+    border: 0px;
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: 400;
     height: 35px;
     margin-top: 10px;
     text-align: center;
-    color: #333;
-    font-weight: 400;
-    font-size: 1.4rem;
-    border: 0px;
-    border-top: 1px solid #aaaab2;
-    background-color: #fff;
-    -webkit-appearance: none;
+    width: 100%;
 
     &:focus {
       border-color: #333;
@@ -39,26 +39,26 @@
 }
 
 .field {
-  width: 330px;
+  color: #333333;
   margin: auto;
   padding: 5px auto 5px auto;
   position: relative;
-  color: #333333;
+  width: 330px;
 }
 
 .field input[type=text],
 .field input[type=email],
 .field input[type=password] {
-  width: 330px;
-  height: 35px;
-  padding: 0px 4px 0px 8px;
-  margin: 5px auto;
-  border: 1px solid #aaaab2;
-  border-radius: 1px;
   background-color: #fff;
+  border-radius: 1px;
+  border: 1px solid #aaaab2;
   color: #333;
-  font-weight: 400;
   font-size: 1.4rem;
+  font-weight: 400;
+  height: 35px;
+  margin: 5px auto;
+  padding: 0px 4px 0px 8px;
+  width: 330px;
 
   &:focus {
     border-color: #333;
@@ -67,15 +67,15 @@
 }
 
 .field input[type=checkbox] {
+  -webkit-appearance: none;
+  background-color: transparent;
   border-image: none;
-  border: 1px solid #aaaab2;
   border-radius: 1px;
-  width: 16px;
+  border: 1px solid #aaaab2;
   height: 16px;
   margin: 5px 3px 0px 0px;
-  -webkit-appearance: none;
   vertical-align: bottom;
-  background-color: transparent;
+  width: 16px;
 
   &:hover {
     cursor: pointer;
@@ -98,14 +98,14 @@ input[type=checkbox]:checked::after {
 
 .field label {
   display: inline-block;
-  font-weight: 400;
   font-size: 1.4rem;
+  font-weight: 400;
 }
 
 .actions {
+  color: #333;
   margin: auto;
   position: relative;
-  color: #333;
 
   input[type=submit] {
     &:hover {
@@ -116,42 +116,42 @@ input[type=checkbox]:checked::after {
 
 #sign-in-extras-container {
   display: block;
-  position: relative;
-  margin: 10px auto;
-  left: 0;
-  right: 0;
-  padding: 0;
-  width: 360px;
   height: auto;
+  left: 0;
+  margin: 10px auto;
+  padding: 0;
+  position: relative;
+  right: 0;
   text-align: left;
+  width: 360px;
 
   a {
-    width: 100%;
-    text-decoration: none;
     margin: 0px 5px;
+    text-decoration: none;
+    width: 100%;
   }
 }
 
 .sign-in-extras-row {
   display: flex;
-  width: 100%;
   margin: 10px 0px;
+  width: 100%;
 }
 
 .sign-in-extras-half, .sign-in-extras-full {
-  display: inline-flex;
-  position: relative;
-  height: 35px;
-  flex-flow: column nowrap;
-  border: 1px solid #aaaab2;
-  border-radius: 1px;
   background-color: #fff;
+  border-radius: 1px;
+  border: 1px solid #aaaab2;
   color: #333;
-  font-weight: 400;
+  display: inline-flex;
+  flex-flow: column nowrap;
   font-size: 1.4rem;
+  font-weight: 400;
+  height: 35px;
+  padding: 8px 0px;
+  position: relative;
   text-align: center;
   text-decoration: none;
-  padding: 8px 0px;
 }
 
 .sign-in-extras-half {

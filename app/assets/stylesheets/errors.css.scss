@@ -60,20 +60,20 @@
     -webkit-transform: translate3d(0, -40px, 0);
 
   display: block;
-  position: fixed;
-  width: 100vw;
   height: 40px;
-  z-index: 999;
-  padding: 10px 40px;
-  margin: 0px;
-  top: 0px;
   left: 0px;
+  margin: 0px;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  z-index: 999;
 
   p {
-    font-size: 1.4rem;
-    line-height: 20px;
-    font-weight: 400;
     color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 20px;
   }
 }
 
