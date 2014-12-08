@@ -24,7 +24,7 @@ class TagGroupsController < ApplicationController
     if @tag_group.update(tag_group_params)
       redirect_to @image
     else
-      flash[:erorrs] = @tag_group.errors
+      flash[:errors] = @tag_group.errors
       render 'edit'
     end
   end

@@ -7,7 +7,6 @@ class ImagesController < ApplicationController
   def search
     groups = params[:query].map{|x| TagGroup.by_tag_names x}
     @images = Image.from_groups groups
-
   end
   
   def new
@@ -23,7 +22,7 @@ class ImagesController < ApplicationController
       redirect_to @image
     else
       # If their image is incorrect, redirect_to the new page again.
-      flash[:error] = @image.errors.full_messages.join(', ')
+      flash[:warning] = @image.errors.full_messages.join(', ')
       redirect_to action: :new
     end
   end
@@ -40,7 +39,6 @@ class ImagesController < ApplicationController
   def index
     puts params
     @images = Image.paginate(page: page, per_page: per_page).order('created_at DESC')
-
   end
 
   def show
