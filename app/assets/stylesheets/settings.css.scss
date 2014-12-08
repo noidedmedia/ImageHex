@@ -8,15 +8,16 @@ $font-stack: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   position: absolute;
   left: 0;
   right: 0;
-  width: calc(40vw + 220px);
+  width: calc(40vw + 300px);
 }
 
 #settings-nav {
   font: 400 1.8rem $font-stack;
   height: auto;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-right: 30px;
   width: 180px;
+  min-width: 180px;
 
   ul {
     li {
@@ -38,21 +39,36 @@ $font-stack: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   position: relative;
   text-align: left;
   width: 40vw;
+}
+
+#settings-container {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  margin: 10px 0px;
 
   .field {
-    width: 100%;
+    width: calc(40vw - 30px);
+    min-width: 470px;
+    max-width: 770px;
   }
 
   input[type=submit] {
     -webkit-appearance: none;
-    background-color: #fff;
+    background-color: #777;
     border: 0px;
     border-top: 1px solid #aaaab2;
-    color: #333;
-    font: 400 1.4rem $font-stack;
-    height: 35px;
+    color: #fff;
+    font: 300 1.6rem $font-stack;
+    height: 40px;
     margin-top: 10px;
     text-align: center;
     width: 100%;
+    margin: 0;
   }
+}
+
+#settings-container-padding {
+  padding: 15px;
 }
