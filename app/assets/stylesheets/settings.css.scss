@@ -1,0 +1,58 @@
+$font-stack: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+#settings-page {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  margin: auto;
+  margin-top: 50px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: calc(40vw + 220px);
+}
+
+#settings-nav {
+  font: 400 1.8rem $font-stack;
+  height: auto;
+  margin-top: 20px;
+  margin-right: 30px;
+  width: 180px;
+
+  ul {
+    li {
+      list-style: none;
+      padding: 5px 0px;
+      text-align: right;
+
+      &:last-of-type {
+        padding-top: 50px;
+      }
+    }
+  }
+}
+
+#settings-column {
+  height: 100%;
+  max-width: 800px;
+  min-width: 500px;
+  position: relative;
+  text-align: left;
+  width: 40vw;
+
+  .field {
+    width: 100%;
+  }
+
+  input[type=submit] {
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 0px;
+    border-top: 1px solid #aaaab2;
+    color: #333;
+    font: 400 1.4rem $font-stack;
+    height: 35px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+  }
+}
