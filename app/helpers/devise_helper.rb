@@ -6,7 +6,7 @@ module DeviseHelper
  
     html = <<-HTML
     <div class="alert alert-danger">
-      #{messages}
+      #{messages}.
     </div>
     HTML
  
