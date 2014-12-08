@@ -66,6 +66,10 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     text-align: center;
     width: 100%;
     margin: 0;
+
+    &:focus {
+      outline: transparent;
+    }
   }
 }
 
