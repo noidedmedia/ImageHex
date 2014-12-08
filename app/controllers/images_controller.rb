@@ -14,6 +14,9 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
 
+  def report
+    @report = Report.new(report_params)
+  end
   def create
     @image = Image.new(image_params)
     if @image.save
@@ -53,4 +56,13 @@ class ImagesController < ApplicationController
     .permit(:f, :license, :medium) # Attributes the user adds
     .merge(user_id: current_user.id) # We add the user id
   end
+
+  ##
+  # Parameters for our report
+  def report_params
+    params.require(:report)
+      .permit(:severity, :message)
+      .merge(user_id: current_user.id, image_id: params[:id])
+  end
+
 end
