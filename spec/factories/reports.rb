@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :report do
-    severity 1
-message "MyString"
+    severity :illegal
+    message "MyString"
+    reportable :image
   end
 
 end

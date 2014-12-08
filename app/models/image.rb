@@ -13,11 +13,11 @@ class Image < ActiveRecord::Base
       url: "/system/fs/:class/:id_:style.:extension",
       path: "public/system/fs/:class/:id_:style.:extension"
 
-
-
   belongs_to :user
+
   has_many :tag_groups
-  
+
+  has_many :reports, as: :reportable
   #########
   # ENUMS #
   #########
@@ -36,8 +36,10 @@ class Image < ActiveRecord::Base
   validates :license, presence: true
   validates :medium, presence: true
 
-  ##
-  # Class methods
+  #################
+  # CLASS METHODS #
+  #################
+  
   
   ##
   # Takes an array of tag_groups. Find all images which are in each
