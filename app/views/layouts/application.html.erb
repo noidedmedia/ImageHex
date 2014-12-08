@@ -16,8 +16,14 @@
   <% if notice %>
     <div class="alert alert-success"><p><%= notice %></p></div>
   <% end %>
+  <% if info %>
+    <div class="alert alert-info"><p><%= info %></p></div>
+  <% end %>
   <% if alert %>
     <div class="alert alert-danger"><p><%= alert %></p></div>
+  <% end %>
+  <% if warning %>
+    <div class="alert alert-warning"><p><%= warning %></p></div>
   <% end %>
 
   <div id="masthead">
