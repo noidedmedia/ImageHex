@@ -14,7 +14,16 @@ class ImagesController < ApplicationController
   end
 
   def report
+    @image = Image.find(params[:id])
     @report = Report.new(report_params)
+    @report.reportable = @image
+    if @report.save
+      redirect_to @image
+    else
+      flash[:error] = @report.errors.full_messages.join(", ")
+      puts flash[:error]
+      redirect_to @image
+    end
   end
   def create
     @image = Image.new(image_params)
@@ -60,7 +69,7 @@ class ImagesController < ApplicationController
   def report_params
     params.require(:report)
       .permit(:severity, :message)
-      .merge(user_id: current_user.id, image_id: params[:id])
+      .merge(user_id: current_user.id)
   end
 
 end

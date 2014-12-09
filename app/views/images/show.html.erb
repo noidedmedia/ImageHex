@@ -1,6 +1,7 @@
 <div class="image">
   <%= image_tag @image.f %>
 </div>
+<%= render "shared/report_stub", subject: @image, url: report_image_path(@image)%>
 <% @image.tag_groups.each do |group| %>
   <%= render "tag_groups/show_stub", tag_group: group %>
 <% end %>
