@@ -33,17 +33,6 @@ ActiveRecord::Schema.define(version: 20141214173427) do
 
   add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
-  create_table "edit_records", force: true do |t|
-    t.integer  "target_id"
-    t.string   "target_type"
-    t.integer  "user_id"
-    t.json     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "edit_records", ["user_id"], name: "index_edit_records_on_user_id", using: :btree
-
   create_table "images", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
