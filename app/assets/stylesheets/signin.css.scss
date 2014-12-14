@@ -74,26 +74,48 @@
 
 /* Styling for "Remember me" checkbox. */
 .field input[type=checkbox] {
+  display: inline-block;
   -webkit-appearance: none;
-  background-color: transparent;
-  border-image: none;
-  border-radius: 1px;
   border: 1px solid #aaaab2;
   height: 16px;
-  margin: 5px 3px 0px 0px;
-  vertical-align: bottom;
   width: 16px;
+  margin: 5px 2px 0px 1px;
+  vertical-align: bottom;
 
+  /* Semi-transparent square on-hover. */
   &:hover {
-    cursor: pointer;
-  }
+    font-size: 2.9rem;
+    line-height: 16px;
+    color: rgba(#333,0.3);
 
-  &:checked {
-    border-color: #333;
+    &:after {
+      content: '■';
+      position: relative;
+      bottom: 3px;
+      left: -1px;
+      text-align: center;
+    }
   }
 
   &:focus {
-      outline: transparent;
+    outline: transparent;
+  }
+}
+
+/* Styling for "Remember me" checkbox when checked. */
+.field input[type=checkbox]:checked {
+  border: 1px solid #333;
+  color: #333;
+  font-size: 2.9rem;
+  line-height: 16px;
+
+  /* Black square on-checked. */
+  &:after {
+    content: '■';
+    position: relative;
+    bottom: 3px;
+    left: -1px;
+    text-align: center;
   }
 }
 
@@ -102,6 +124,7 @@
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
+  top: 1px;
 }
 
 /* Actions container used to host the submit button. */
