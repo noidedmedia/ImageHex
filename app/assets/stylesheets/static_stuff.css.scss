@@ -1,3 +1,4 @@
+/* Container for the header item, always fixed to the top of the screen. */
 #header-container {
   background-color: #333;
   box-sizing: border-box;
@@ -15,6 +16,7 @@
   z-index: 1000;
 }
 
+/* Items aligned to the left side of the header. */
 #header-left {
   display: inline-block;
   left: 40px;
@@ -23,6 +25,7 @@
   top: 12px;
 }
 
+/* Items aligned to the right side of the header. */
 #header-right {
   display: inline-block;
   position: absolute;
@@ -31,6 +34,7 @@
   top: 12px;
 }
 
+/* Header items, e.g. "Sign out", "Upload", etc. */
 .header-item {
   color: #aaaab2;
   display: inline-block;
@@ -49,6 +53,7 @@
     }
   }
 
+  /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
   &:first-of-type {
     padding-left: 0px;
   }
@@ -58,10 +63,11 @@
   }
 }
 
+/* Parent container applied to most pages to prevent clipping of content with the header, footer. */
 #masthead {
   display: inline-block;
   margin-top: 40px;
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px); // This forces the footer down to the bottom of the page regardless of whether or not the page content takes up the full vertical width of the user's browser window.
   position: relative;
   width: 100vw;
 }

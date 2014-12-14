@@ -14,22 +14,25 @@
  *= require_self
  */
 
+/* Selector for all elements, don't put anything here without a lot of thought first. */
+/* Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height. */
 * {
   box-sizing: border-box;
 }
 
+/* Styles applicable to all pages. */
 html, body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 10px;
-  font-weight: 400;
+  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #f0f0f0;
   margin: 0;
 }
 
+/* Removes margins from all header items. */
 h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
+/* Font sizing for all header elements specifically, h1-h5. */
 h1 {
   font-size: 3.2rem;
 }
@@ -50,6 +53,7 @@ h5 {
   font-size: 1.8rem;
 }
 
+/* Removes margin from all paragraph, or "p" elements. */
 p {
   margin: 0;
 }

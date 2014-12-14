@@ -1,0 +1,85 @@
+$font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+/* Container for the settings page. */
+#settings-page {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  margin: auto;
+  margin-top: 50px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: calc(40vw + 300px);
+}
+
+/* Styling for the navigational sidebar on the Settings page. */
+#settings-nav {
+  font: 400 1.4rem $font-stack;
+  height: auto;
+  margin-top: 30px;
+  margin-right: 20px;
+  width: 180px;
+  min-width: 180px;
+
+  ul {
+    li {
+      list-style: none;
+      padding: 8px 0px;
+      text-align: right;
+
+      &:last-of-type {
+        padding-top: 50px;
+      }
+    }
+  }
+}
+
+/* Column containing the settings themselves.*/
+#settings-column {
+  height: 100%;
+  max-width: 800px;
+  min-width: 500px;
+  position: relative;
+  text-align: left;
+  width: 40vw;
+}
+
+/* Container for the actual settings */
+#settings-container {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  margin: 10px 0px;
+
+  /* Styling for fields inside the settings container. */
+  .field {
+    width: calc(40vw - 30px);
+    min-width: 470px;
+    max-width: 770px;
+  }
+
+  /* Styling for the submit button in the settings container. */
+  input[type=submit] {
+    -webkit-appearance: none;
+    background-color: #777;
+    border: 0px;
+    border-top: 1px solid #aaaab2;
+    color: #fff;
+    font: 300 1.6rem $font-stack;
+    height: 40px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+
+    &:focus {
+      outline: transparent;
+    }
+  }
+}
+
+/* Padding inside the settings container. */
+#settings-container-padding {
+  padding: 15px;
+}
