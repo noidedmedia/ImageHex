@@ -20,7 +20,7 @@ class Collection < ActiveRecord::Base
   # What type of collection this is
   enum kind: 
     # Created is a collection of images made by the user. Each user gets one.
-    [:created, 
+    [:creations, 
      # The users favorites. Each user also gets one.
      :favorites,
      # A chronological collection. This is either images in order of date
