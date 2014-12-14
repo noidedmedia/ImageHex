@@ -33,7 +33,7 @@ class Collection < ActiveRecord::Base
   ###############
   validates :user, presence: true
   validates :name, presence: true
-
+  validates :kind, presence: true
   #################
   # CLASS METHODS #
   #################
