@@ -1,5 +1,6 @@
 $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
+/* Container for the settings page. */
 #settings-page {
   display: inline-flex;
   flex-flow: row nowrap;
@@ -11,6 +12,7 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: calc(40vw + 300px);
 }
 
+/* Styling for the navigational sidebar on the Settings page. */
 #settings-nav {
   font: 400 1.4rem $font-stack;
   height: auto;
@@ -32,6 +34,7 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 }
 
+/* Column containing the settings themselves.*/
 #settings-column {
   height: 100%;
   max-width: 800px;
@@ -41,6 +44,7 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 40vw;
 }
 
+/* Container for the actual settings */
 #settings-container {
   box-sizing: border-box;
   width: 100%;
@@ -48,12 +52,14 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background: #fff;
   margin: 10px 0px;
 
+  /* Styling for fields inside the settings container. */
   .field {
     width: calc(40vw - 30px);
     min-width: 470px;
     max-width: 770px;
   }
 
+  /* Styling for the submit button in the settings container. */
   input[type=submit] {
     -webkit-appearance: none;
     background-color: #777;
@@ -73,6 +79,7 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 }
 
+/* Padding inside the settings container. */
 #settings-container-padding {
   padding: 15px;
 }

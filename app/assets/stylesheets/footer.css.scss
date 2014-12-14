@@ -1,6 +1,7 @@
 $emph-text: #828282; // Emphasized text
 $unemph-text: #6D6D6D; // Unemphasized text
 
+/* Container for the footer */
 #footer-container {
   background-color: #191a1a;
   bottom: 0;
@@ -15,6 +16,7 @@ $unemph-text: #6D6D6D; // Unemphasized text
   width: 100vw;
 }
 
+/* Footer div itself. */
 #footer {
   display: flex;
   flex-flow: row nowrap;
@@ -34,6 +36,7 @@ $unemph-text: #6D6D6D; // Unemphasized text
   }
 }
 
+/* First column in the footer for the description, copyright, etc. */
 .footer-description-column {
   height: 100%;
   padding: 0px 25px;
@@ -41,6 +44,7 @@ $unemph-text: #6D6D6D; // Unemphasized text
   width: 50%;
 }
 
+/* "ImageHex" text in the description column. */
 .footer-description-title {
   color: $emph-text;
   display: block;
@@ -49,6 +53,7 @@ $unemph-text: #6D6D6D; // Unemphasized text
   padding-bottom: 5px;
 }
 
+/* Body text in the description column. */
 .footer-description-body {
   display: block;
   font-size: 1.2rem;
@@ -56,6 +61,7 @@ $unemph-text: #6D6D6D; // Unemphasized text
   padding-bottom: 10px;
 }
 
+/* Copyright text in the description column. */
 .footer-description-copyright {
   color: $emph-text;
   display: block;
@@ -63,23 +69,27 @@ $unemph-text: #6D6D6D; // Unemphasized text
   font-weight: 500;
 }
 
+/* Second and third columns in the footer, contain links to various sections. */
 .footer-links-column {
   height: 100%;
   padding: 0px 30px;
   width: 25%;
 }
 
+/* Unordered list styling for second and third columns. */
 .footer-links-list {
   list-style: none;
   margin: 0;
   text-align: left;
   width: 100%;
 
+  /* Styling for each respective list item. */
   li {
     font-size: 1.2rem;
     font-weight: 400;
     padding: 4px 0px;
 
+    /* Special styling for the first list item in each list, as the first item is the list's "title" and should be emphasized. */
     &:first-of-type {
       color: $emph-text;
       font-size: 1.3rem;

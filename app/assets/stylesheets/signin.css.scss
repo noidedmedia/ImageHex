@@ -1,3 +1,4 @@
+/* Styling for sign-in container, used on all registration-related pages (e.g. sign-in, sign-up, forgot password, etc.) */
 #sign-in-container {
   background-color: #fff;
   border-radius: 1px;
@@ -8,12 +9,14 @@
   text-align: left;
   width: 350px;
 
+  /* "Header" for the registration pages that acts as a page title. */
   .sign-in-header {
     margin: auto;
     padding-top: 10px;
     text-align: center;
   }
 
+  /* Styling for the submit button on registration pages. */
   input[type=submit] {
     -webkit-appearance: none;
     background-color: #fff;
@@ -34,10 +37,12 @@
   }
 }
 
+/* Container for all fields in a the sign-up container. */
 #sign-in-fields {
   padding: 10px 10px 2px 10px;
 }
 
+/* Styling applied to all text-input fields in the registration pages. */
 .field {
   color: #333;
   margin: auto;
@@ -46,6 +51,7 @@
   width: 330px;
 }
 
+/* Styling for the text, email, and password fields specifically. */
 .field input[type=text],
 .field input[type=email],
 .field input[type=password] {
@@ -66,6 +72,7 @@
   }
 }
 
+/* Styling for "Remember me" checkbox. */
 .field input[type=checkbox] {
   -webkit-appearance: none;
   background-color: transparent;
@@ -90,18 +97,14 @@
   }
 }
 
-input[type=checkbox]:checked::after {
-  background-color: #ff0004;
-  height: 14px;
-  width: 14px;
-}
-
+/* Styling for field labels. Labels are an HTML element, see the MDN for more information. */
 .field label {
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
 }
 
+/* Actions container used to host the submit button. */
 .actions {
   color: #333;
   margin: auto;
@@ -114,6 +117,7 @@ input[type=checkbox]:checked::after {
   }
 }
 
+/* Sign-in extras are the links below the sign-in container (e.g. forgot password, sign up, etc.) */
 #sign-in-extras-container {
   display: block;
   height: auto;
@@ -132,12 +136,14 @@ input[type=checkbox]:checked::after {
   }
 }
 
+/* Class used to separate each row of sign-in extras, this allows the buttons to change size responsively depending on the registration page the user is viewing. */
 .sign-in-extras-row {
   display: flex;
   margin: 10px 0px;
   width: 100%;
 }
 
+/* Styling for the sign-in extras buttons. */
 .sign-in-extras-half, .sign-in-extras-full {
   background-color: #fff;
   border-radius: 1px;
@@ -154,16 +160,19 @@ input[type=checkbox]:checked::after {
   text-decoration: none;
 }
 
+/* Styling for the sign-in extras button when it takes up only half of a row. */
 .sign-in-extras-half {
   flex: 1;
   width: 100%;
 }
 
+/* Styling for the sign-in extras button when it takes up the full row. */
 .sign-in-extras-full {
   flex: 1;
   width: 100%;
 }
 
+/* Sign-in extras text is applied to all text inside the buttons. */
 .sign-in-extras-text {
   width: 100%;
 }
