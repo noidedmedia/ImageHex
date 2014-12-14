@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :collection do
-    user nil
-name "MyString"
+    user
+    name "MyString"
   end
 
 end
