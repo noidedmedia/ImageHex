@@ -20,5 +20,9 @@ describe Image do
       .allowing("image/png", "image/gif", "image/jpeg", "image/bmp")
       .rejecting("text/plain", "text/xml", "audio/mp3")}
 
+  # Image in relation to collections
+  it {should have_many(:collection_images)}
+  it {should have_many(:collections).through(:collection_images)}
+
 end
 
