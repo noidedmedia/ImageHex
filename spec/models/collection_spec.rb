@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Collection do
   it {should belong_to(:user)}
+  it {should validate_presence_of(:kind)}
+
   it {should have_many(:collection_images)}
   ##
   # Due to what I believe to be a bug in shoulda_mathcers, this test
@@ -16,5 +18,8 @@ describe Collection do
     expect(c.images).to_not eq([i, i])
   end
 
-
+  it "should alias #curator to #user" do
+    c = FactoryGirl.create(:collection)
+    expect(c.user).to eq(c.curator)
+  end
 end

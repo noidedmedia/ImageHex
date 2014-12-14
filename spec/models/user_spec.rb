@@ -12,4 +12,5 @@ describe User do
   # Has many images
   it {should have_many(:images)}
 
+
 end
