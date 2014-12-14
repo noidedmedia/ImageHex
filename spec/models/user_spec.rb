@@ -12,5 +12,12 @@ describe User do
   # Has many images
   it {should have_many(:images)}
 
-
+  describe "creation" do
+    it "gives the user a favorites and created collection" do
+      expect{FactoryGirl.create(:user)}.to change{Collection.count}.by(2)
+      u = FactoryGirl.create(:user)
+      expect(u.collections.where(kind: :favorites).size).to eq(1)
+      expect(u.collections.where(kind: :created).size).to eq(1)
+    end
+  end
 end
