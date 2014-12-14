@@ -1,7 +1,9 @@
+/* Padding for images in image pages, adding properties to this can have unintended consequences effecting all images across the site. */
 .image {
   padding: 20px;
   text-align: center;
 
+  /* Width/height for the image element itself. */
   img {
     max-height: 80vh;
     max-width: 80vw;
