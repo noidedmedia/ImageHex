@@ -16,7 +16,7 @@
 
 /* Selector for all elements, don't put anything here without a lot of thought first. */
 /* Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height. */
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
