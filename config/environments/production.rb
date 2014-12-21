@@ -14,7 +14,6 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
 
     },
-    s3_host_name: "us-west-1"
   }
   # Settings specified here will take precedence over those in config/application.rb.
   #
