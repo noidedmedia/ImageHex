@@ -52,6 +52,6 @@ class Image < ActiveRecord::Base
     end
   end
   def self.by_reports
-    Image.all.sort{|x| x.reports.count}.select{|x| x.reports.count > 0}
+    Image.all.select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
   end
 end
