@@ -109,12 +109,12 @@
 .field input[type=checkbox]:checked {
   border: 1px solid #333;
   color: #333;
-  font-size: 2.9rem;
-  line-height: 16px;
 
   /* Black square on-checked. */
   &:after {
     content: '■';
+    font-size: 2.9rem;
+    line-height: 16px;
     position: relative;
     bottom: 3px;
     left: -1px;
