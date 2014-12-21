@@ -23,7 +23,7 @@ describe Image do
     image = FactoryGirl.create(:image)
     # We make a non-reported image for testing purposes
     image2 = FactoryGirl.create(:image)
-    FactoryGirl.create(report, image: image)
+    FactoryGirl.create(:report, reportable:  image)
     expect(Image.by_reports).to eq([image])
   end
 

@@ -16,6 +16,5 @@ class Report < ActiveRecord::Base
   # VALIDATIONS #
   ###############
   validates :severity, presence: true
-  validates :message, length: {in: 50..500}, allow_blank: true
 
 end
