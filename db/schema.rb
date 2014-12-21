@@ -11,10 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208034705) do
+ActiveRecord::Schema.define(version: 20141221012725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collection_images", force: true do |t|
+    t.integer  "collection_id"
+    t.integer  "image_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "collections", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "kind"
+  end
+
+  add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
+
+  create_table "edit_records", force: true do |t|
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "user_id"
+    t.json     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "edit_records", ["user_id"], name: "index_edit_records_on_user_id", using: :btree
 
   create_table "images", force: true do |t|
     t.integer  "user_id"
@@ -85,6 +113,7 @@ ActiveRecord::Schema.define(version: 20141208034705) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "role",                   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

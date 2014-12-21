@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   validates :name, presence: true,  uniqueness: {case_sensitive: false}
   has_many :images
   validates :page_pref, inclusion: {:in => (1..100)}
+  enum role: [:normal, :admin]
 end
