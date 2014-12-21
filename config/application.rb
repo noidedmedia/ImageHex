@@ -10,6 +10,8 @@ Bundler.require(*Rails.groups)
 
 module ImageHex
   class Application < Rails::Application
+    
+    config.active_record.raise_in_transactional_callbacks = true
     routes.default_url_options[:host] = "localhost"
     ##
     # Use Postmark to send emails
