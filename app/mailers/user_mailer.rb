@@ -5,11 +5,11 @@ class UserMailer < Devise::Mailer
     super
   end
 
-  def reset_password_instructions(record)
+  def reset_password_instructions(record, token, other)
     super
   end
 
-  def unlock_instructions(record)
+  def unlock_instructions(record, token, other)
     super
   end
 end
