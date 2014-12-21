@@ -11,22 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20141214173427) do
+ActiveRecord::Schema.define(version: 20141221012725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "collection_images", force: true do |t|
+  create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "collections", force: true do |t|
+  create_table "collections", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "kind"
@@ -34,26 +33,12 @@ ActiveRecord::Schema.define(version: 20141214173427) do
 
   add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
 
-<<<<<<< HEAD
-  create_table "edit_records", force: true do |t|
-    t.integer  "target_id"
-    t.string   "target_type"
-    t.integer  "user_id"
-    t.json     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "edit_records", ["user_id"], name: "index_edit_records_on_user_id", using: :btree
-
-=======
->>>>>>> b827febb3fc1e40b1dec1edd57b89e3270a763c6
-  create_table "images", force: true do |t|
+  create_table "images", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "f_file_name"
-    t.string   "f_content_type"
+    t.string   "f_file_name",    limit: 255
+    t.string   "f_content_type", limit: 255
     t.integer  "f_file_size"
     t.datetime "f_updated_at"
     t.integer  "license"
@@ -62,11 +47,11 @@ ActiveRecord::Schema.define(version: 20141214173427) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
-  create_table "reports", force: true do |t|
+  create_table "reports", force: :cascade do |t|
     t.integer  "severity"
-    t.string   "message"
+    t.string   "message",         limit: 255
     t.integer  "reportable_id"
-    t.string   "reportable_type"
+    t.string   "reportable_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -74,7 +59,7 @@ ActiveRecord::Schema.define(version: 20141214173427) do
 
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
 
-  create_table "tag_group_members", force: true do |t|
+  create_table "tag_group_members", force: :cascade do |t|
     t.integer  "tag_group_id"
     t.integer  "tag_id"
     t.datetime "created_at"
@@ -84,7 +69,7 @@ ActiveRecord::Schema.define(version: 20141214173427) do
   add_index "tag_group_members", ["tag_group_id"], name: "index_tag_group_members_on_tag_group_id", using: :btree
   add_index "tag_group_members", ["tag_id"], name: "index_tag_group_members_on_tag_id", using: :btree
 
-  create_table "tag_groups", force: true do |t|
+  create_table "tag_groups", force: :cascade do |t|
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,32 +77,32 @@ ActiveRecord::Schema.define(version: 20141214173427) do
 
   add_index "tag_groups", ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
 
-  create_table "tags", force: true do |t|
-    t.string   "name"
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.integer  "page_pref",              default: 20
-    t.string   "confirmation_token"
+    t.string   "name",                   limit: 255
+    t.integer  "page_pref",                          default: 20
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.integer  "role",                   default: 0
+    t.string   "unconfirmed_email",      limit: 255
+    t.integer  "role",                               default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
