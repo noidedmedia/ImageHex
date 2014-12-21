@@ -9,17 +9,20 @@
     <% if user_signed_in? %>
 
       <div class="header-item">
-        <%= current_user.name %>
-      </div>
-      
-      <div class="header-item">
-        <a href="/users/edit">Settings</a>
+        <a href="/images/new">Upload</a>
       </div>
 
-      <div class="header-item">
-        <%= link_to destroy_user_session_path, :method => :delete do %>
-          Sign out
-        <% end %>
+      <div id="dd" class="wrapper-dropdown">
+        <div class="header-item"><%= current_user.name %></div>
+
+        <ul class="dropdown">
+          <li><a href="#">Notifications</a>
+          <li><a href="/users/edit">Settings</a>
+          <li>
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+              Sign out
+            <% end %>
+        </ul>
       </div>
 
     <% else %>

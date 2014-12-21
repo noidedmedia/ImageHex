@@ -1,3 +1,4 @@
+/* Styling for all "Company" page's containers. */
 #about-page-container,
 #people-page-container,
 #contact-page-container {
@@ -10,6 +11,7 @@
   width: 640px;
 }
 
+/* Navigational sidebar for all "Company" pages. */
 #company-nav-container {
   height: 100%;
   padding-top: 44px;
@@ -31,6 +33,7 @@
   }
 }
 
+/* Content container for Company pages. */
 .company-page-main-column {
   display: block;
   height: 100%;
@@ -38,6 +41,7 @@
   width: 500px;
 }
 
+/* Header text for Company pages. */
 .company-page-header-text {
   color: #333;
   font-size: 3.2rem;
@@ -45,6 +49,7 @@
   padding-bottom: 10px;
 }
 
+/* Content for Company pages. */
 .company-page-content {
   color: #333;
   font-size: 1.4rem;
@@ -55,6 +60,7 @@
   }
 }
 
+/* Staff list container. */
 #people-page-list-container {
   display: flex;
   flex-flow: row wrap;
@@ -62,11 +68,13 @@
   width: 100%;
 }
 
+/* List items in the people page. */
 .people-page-list-item {
   width: 200px;
   margin: 0px 20px 20px 0px;
 }
 
+/* Photos for the Staff page. */
 .people-page-list-item-photo {
   background-color: #d6d6d6;
   height: 240px;
@@ -74,6 +82,7 @@
   width: 200px;
 }
 
+/* Styling for staff name's displayed below their portrait.. */
 .people-page-list-item-name {
   font-size: 1.4rem;
   font-weight: 500;
@@ -81,6 +90,7 @@
   text-align: center;
 }
 
+/* Job title for staff members.  */
 .people-page-list-item-job-title {
   font-size: 1.2rem;
   font-weight: 400;
