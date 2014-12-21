@@ -70,4 +70,5 @@ class User < ActiveRecord::Base
                        name: create_name)
 
   end
+  enum role: [:normal, :admin]
 end

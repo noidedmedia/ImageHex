@@ -55,4 +55,7 @@ class Image < ActiveRecord::Base
       l.where(image_id: n.pluck(:image_id))
     end
   end
+  def self.by_reports
+    Image.all.select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
+  end
 end

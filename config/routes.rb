@@ -26,6 +26,15 @@ Rails.application.routes.draw do
       post "add_image"
     end
   end
+  ################
+  # ADMIN ROUTES #
+  ################
+
+  namespace :admin do
+    resources :images, only: [:index, :destroy] do
+      post "absolve", on: :member
+    end
+  end
   #################
   # STATIC ROUTES #
   #################

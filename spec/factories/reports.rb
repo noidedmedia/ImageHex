@@ -1,8 +1,12 @@
 FactoryGirl.define do
   factory :report do
+    user
     severity :illegal
-    message { (0..6).to_a.map{|x| Faker::Name.name}.join("")}
-    reportable { FactoryGirl.build(:image) }
+
+    message "MyString"
+    after(:create) do |r|
+      r.reportable = FactoryGirl.create(:image) unless r.reportable
+    end
   end
 
 end
