@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   ################
 
   namespace :admin do
-    resources :images, only: [:index, :delete]
+    resources :images, only: [:index, :delete] do
+      post "absolve", on: :member
+    end
   end
   #################
   # STATIC ROUTES #

@@ -19,6 +19,13 @@ describe Image do
   it {should validate_attachment_content_type(:f)
       .allowing("image/png", "image/gif", "image/jpeg", "image/bmp")
       .rejecting("text/plain", "text/xml", "audio/mp3")}
+  it "allows selection by reports" do
+    image = FactoryGirl.create(:image)
+    # We make a non-reported image for testing purposes
+    image2 = FactoryGirl.create(:image)
+    FactoryGirl.create(report, image: image)
+    expect(Image.by_reports).to eq([image])
+  end
 
 end
 
