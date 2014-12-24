@@ -29,46 +29,33 @@ class User < ActiveRecord::Base
   ##
   # The collection that holds our favorites
   def favorites_collection
-    collections.where(kind: Collection.kinds["favorites"]).first
   end
   ##
   # Add an image to a user's favorites
   def favorite! i
-    favorites.append(i)
   end
 
   ##
   # All the images in a user's favorites collection
   def favorites
-    favorites_collection.images
   end
 
   ##
   # The collection that holds all images our user has created
   def creations_collection
-    collections.where(kind: Collection.kinds["creations"]).first
   end
 
   ## 
   # Add an image to a user's creations
   def created! i
-    creations.append(i)
   end
 
   def creations
-    creations_collection.images
   end
   protected
   def make_collections
-    fav_name = "#{name.possessive} favorites"
-    create_name = "#{name.possessive} creations"
-    Collection.create!(user: self,
-                       kind: Collection.kinds["favorites"], 
-                       name: fav_name)
-    Collection.create!(user: self, 
-                       kind: Collection.kinds["creations"], 
-                       name: create_name)
-
+    Favorite.create!(user: self)
+    Created.create!(user: self)
   end
   enum role: [:normal, :admin]
 end

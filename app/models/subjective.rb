@@ -1,0 +1,3 @@
+class Subjective < Collection
+
+end
