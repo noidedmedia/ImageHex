@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20141221012725) do
     t.datetime "updated_at"
   end
 
-  add_index "edit_records", ["user_id"], name: "index_edit_records_on_user_id", using: :btree
 
   create_table "images", force: true do |t|
     t.integer  "user_id"
