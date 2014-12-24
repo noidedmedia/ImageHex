@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20141221012725) do
+ActiveRecord::Schema.define(version: 20141224052535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +28,8 @@ ActiveRecord::Schema.define(version: 20141221012725) do
     t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "kind"
+    t.jsonb    "info"
+    t.string   "type"
   end
 
   add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
@@ -38,15 +38,6 @@ ActiveRecord::Schema.define(version: 20141221012725) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-
-  create_table "images", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "f_file_name"
-    t.string   "f_content_type"
     t.string   "f_file_name",    limit: 255
     t.string   "f_content_type", limit: 255
     t.integer  "license"
