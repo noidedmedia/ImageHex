@@ -1,4 +1,4 @@
-class Created < Collection
+class Creation < Collection
   before_validation :make_name
 
   protected

@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   protected
   def make_collections
     Favorite.create!(user: self)
-    Created.create!(user: self)
+    Creation.create!(user: self)
   end
   enum role: [:normal, :admin]
 end

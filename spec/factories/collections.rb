@@ -3,11 +3,11 @@ FactoryGirl.define do
     user
   end
 
-  factory :favorites, parent: :collection, class: "Favorite" do
+  factory :favorite, parent: :collection, class: "Favorite" do
 
   end
 
-  factory :created, parent: :collection, class: "Created" do
+  factory :creation, parent: :collection, class: "Creation" do
 
   end
 

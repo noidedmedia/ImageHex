@@ -17,9 +17,9 @@ class Collection < ActiveRecord::Base
   ###############
   validates :user, presence: true
   validates :name, presence: true
-  #################
-  # CLASS METHODS #
-  #################
+  #####################
+  # INSTANCE  METHODS #
+  #####################
 
   # We add this method alias because it's easier to think about the 
   # "curator" of a collection than it is to think about the user who own it
