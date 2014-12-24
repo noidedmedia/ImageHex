@@ -17,6 +17,14 @@ class Collection < ActiveRecord::Base
   ###############
   validates :user, presence: true
   validates :name, presence: true
+
+  ##########
+  # SCOPES #
+  ##########
+
+  scope :favorites, ->{ where(type: "Favorite") }
+  scope :created, ->{ where(type: "Created") }
+  scope :subjective, -> { where(type: "Subjective") }
   #####################
   # INSTANCE  METHODS #
   #####################
