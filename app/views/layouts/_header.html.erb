@@ -17,6 +17,9 @@
 
         <ul class="dropdown">
           <li><a href="#">Notifications</a>
+          <% if current_user.admin? %>
+            <li><a href="/admin/images">Admin</a>
+          <% end %>
           <li><a href="/users/edit">Settings</a>
           <li>
             <%= link_to destroy_user_session_path, :method => :delete do %>
