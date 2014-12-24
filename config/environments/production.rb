@@ -13,8 +13,9 @@ Rails.application.configure do
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
 
-    }
-    s3_host_name: "us-west-1"
+    },
+    # prevents a permanent redirect error on images:
+    url: ":s3_domain_url"
   }
   # Settings specified here will take precedence over those in config/application.rb.
   #

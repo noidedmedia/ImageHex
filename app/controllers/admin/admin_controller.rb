@@ -13,7 +13,7 @@ class Admin::AdminController < ApplicationController
       return true
       # We're good
     else
-      redirect_to("/login")
+      redirect_to("/users/sign_in")
       return false
     end
   end

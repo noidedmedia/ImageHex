@@ -1,3 +1,4 @@
+/* The following animations are used to move the error dialog down below the header, keep it there for 90% of the duration of the animation, then hide it again. */
 @-webkit-keyframes alertAnimation {
   0% {
     display: block;
@@ -53,6 +54,7 @@
   }
 }
 
+/* Generic alert container for all warnings/errors/successful actions. */
 .alert {
   animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
     -webkit-animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
@@ -81,23 +83,28 @@
     line-height: 20px;
   }
 
+  /* If there are multiple errors listen sequentially, this will change all but the first to lower-case so there aren't random capital letters in the middle of a sentence. */
   p:not(:first-of-type) {
     text-transform: lowercase;
   }
 }
 
+/* Style for positive alerts. */
 .alert-success {
   background-color: #5bb289;
 }
 
+/* Style for informative alerts. */
 .alert-info {
   background-color: #556db3;
 }
 
+/* Style for less severe errors. */
 .alert-warning {
   background-color: #efb63e;
 }
 
+/* Style for "dangerous" errors. */
 .alert-danger {
   background-color: #cb2e32;
 }

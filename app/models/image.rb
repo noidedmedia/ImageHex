@@ -10,7 +10,6 @@ class Image < ActiveRecord::Base
       large: "500x500>",
       huge: "1000x1000>"},
     # Use suffixes for the path
-      url: "/system/fs/:class/:id_:style.:extension",
       path: "public/system/fs/:class/:id_:style.:extension"
 
   belongs_to :user
