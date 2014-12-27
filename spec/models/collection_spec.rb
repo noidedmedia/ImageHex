@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Collection do
   it {should belong_to(:user)}
-  it {should validate_presence_of(:kind)}
 
   it {should have_many(:collection_images)}
   ##

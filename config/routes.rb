@@ -20,12 +20,14 @@ Rails.application.routes.draw do
     resources :tag_groups
     concerns :reportable
   end
-  devise_for :users
-  resources :collections do
-    member do
-      post "add_image"
-    end
+  devise_for :users, path: "accounts"
+
+  resources :users do
+    resources :favorites, only: [:index] 
+    resources :creations, only: [:index]
+
   end
+  
   ################
   # ADMIN ROUTES #
   ################

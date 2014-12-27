@@ -1,9 +1,22 @@
 class ImagesController < ApplicationController
   # Load the image via our id
-  before_action :load_image, only: [:update, :edit, :destroy, :show]
+  before_action :load_image, only: [:favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
   before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy]
 
+  ##
+  # Current user has created this image
+  def created
+    current_user.created! @image
+    redirect_to(@image)
+  end
+
+  ##
+  # Current user wishes to add this image to their favorites
+  def favorite
+    current_user.favorite! @image
+    redirect_to(@image)
+  end
   def search
     groups = params[:query].map{|x| TagGroup.by_tag_names x}
     @images = Image.from_groups groups
