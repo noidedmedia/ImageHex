@@ -1,0 +1,2 @@
+class CreationsController < ApplicationController
+end
