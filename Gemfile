@@ -49,7 +49,7 @@ gem 'aws-sdk'
 
 # Make tests good!
 group :development, :test do
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'faker'
   gem "mailcatcher" # to confirm mails
