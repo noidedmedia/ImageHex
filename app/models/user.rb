@@ -26,31 +26,28 @@ class User < ActiveRecord::Base
   # INSTANCE METHODS #
   ####################
 
-  ##
-  # The collection that holds our favorites
-  def favorites_collection
+  ## 
+  # Convenience method to access the favorites collection for a user
+  def favorites
+    collections.favorites.first
   end
   ##
   # Add an image to a user's favorites
   def favorite! i
+    favorites.images << i
   end
 
-  ##
-  # All the images in a user's favorites collection
-  def favorites
-  end
-
-  ##
-  # The collection that holds all images our user has created
-  def creations_collection
-  end
 
   ## 
   # Add an image to a user's creations
   def created! i
+    creations.images << i
   end
 
+  ##
+  # Convenience method ot access the creations collection for a user
   def creations
+    collections.creations.first
   end
   protected
   def make_collections

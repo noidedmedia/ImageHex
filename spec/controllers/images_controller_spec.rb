@@ -38,11 +38,11 @@ describe ImagesController do
     describe "POST #favorite" do
       let(:i){FactoryGirl.create(:image)}
       it "makes a new favorite for a user" do
-        expect{post :favorite, id: i}.to change{@user.favorites.count}.by(1)
+        expect{post :favorite, id: i}.to change{@user.favorites.images.count}.by(1)
       end
       it "adds the image to the user's favorite" do
         post :favorite, id: i
-        expect(@user.favorites).to include(i)
+        expect(@user.favorites.images).to include(i)
       end
     end
     describe "POST #created" do
@@ -50,11 +50,11 @@ describe ImagesController do
       it "makes a new creation for a user" do
         expect{
           post :created, id: i
-        }.to change{@user.creations.count}.by(1)
+        }.to change{@user.creations.images.count}.by(1)
       end
       it "adds the image to the user's creation" do
         post :created, id: i
-        expect(@user.creations).to include(i)
+        expect(@user.creations.images).to include(i)
       end
     end
   end

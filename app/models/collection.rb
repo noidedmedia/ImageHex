@@ -23,7 +23,7 @@ class Collection < ActiveRecord::Base
   ##########
 
   scope :favorites, ->{ where(type: "Favorite") }
-  scope :created, ->{ where(type: "Created") }
+  scope :creations, ->{ where(type: "Creations") }
   scope :subjective, -> { where(type: "Subjective") }
   #####################
   # INSTANCE  METHODS #

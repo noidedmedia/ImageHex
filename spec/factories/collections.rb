@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :collection do
     user
+    name "Test"
   end
 
   factory :favorite, parent: :collection, class: "Favorite" do
