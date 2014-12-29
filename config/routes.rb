@@ -23,9 +23,7 @@ Rails.application.routes.draw do
   devise_for :users, path: "accounts"
 
   resources :users do
-    resources :favorites, only: [:index] 
-    resources :creations, only: [:index]
-
+    resources :collections
   end
   
   ################
