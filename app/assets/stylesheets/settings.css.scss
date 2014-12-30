@@ -30,6 +30,11 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       &:last-of-type {
         padding-top: 50px;
       }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
     }
   }
 }

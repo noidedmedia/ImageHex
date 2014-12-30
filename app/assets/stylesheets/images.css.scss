@@ -1,6 +1,6 @@
 /* Padding for images in image pages, adding properties to this can have unintended consequences effecting all images across the site. */
 .image {
-  padding: 20px;
+  padding: 15px;
   text-align: center;
 
   /* Width/height for the image element itself. */
@@ -30,6 +30,7 @@
   display: flex;
   flex-flow: row wrap;
   align-items: flex-end;
+  padding-bottom: 15px;
 
   a {
     font-size: 1.4rem;
@@ -47,11 +48,34 @@
 .image-actions {
   width: 100%;
   height: 40px;
-  padding: 10px 0 10px 40px;
+  padding: 10px 0 10px 65px;
 
   &:hover {
     background-color: #333333;
   }
+}
+
+#img-action-favorite::before, #img-action-add::before, #img-action-share::before, #img-action-report::before {
+  position: absolute;
+  display: inline-block;
+  transform: translate(-24px,1px);
+  font-size: 15px;
+}
+
+#img-action-favorite::before {
+  content: '\e600';
+}
+
+#img-action-add::before {
+  content: '\e602';
+}
+
+#img-action-share::before {
+  content: '\e601';
+}
+
+#img-action-report::before {
+  content: '\e603';
 }
 
 #image-page-bottom-container {

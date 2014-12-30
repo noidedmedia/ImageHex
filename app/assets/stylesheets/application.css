@@ -20,9 +20,17 @@
   box-sizing: border-box;
 }
 
+/* Defines the icon font. */
+@font-face {
+  font-family: 'ImageSearchFont';
+  src: url('ImageSearchFont.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Styles applicable to all pages. */
 html, body {
-  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageSearchFont';
   background-color: #f0f0f0;
   margin: 0;
 }
