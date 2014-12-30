@@ -1,10 +1,23 @@
-<div id="image-page-container">
+<div id="image-page-top-container">
+  <div class="image-actions-sidebar">
+    <!-- <%= render "shared/report_stub", subject: @image, url: report_image_path(@image)%> -->
+  
+    <div class="image-actions-container">
+      <div class="image-actions">Favorite</div>
+      <div class="image-actions">Add to Collection</div>
+      <div class="image-actions">Share</div>
+      <div class="image-actions">Report</div>
+    </div>
+
+  </div>
+
   <div class="image">
     <%= image_tag @image.f %>
   </div>
 
-  <%= render "shared/report_stub", subject: @image, url: report_image_path(@image)%>
+</div>
 
+<div id="image-page-bottom-container">
   <% @image.tag_groups.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>
