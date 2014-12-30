@@ -12,11 +12,15 @@
         <a href="/images/new">Upload</a>
       </div>
 
+      <div class="header-item">
+        <a href="#">Notifications</a>
+      </div>
+
       <div id="dd" class="wrapper-dropdown">
-        <div class="header-item"><%= current_user.name %></div>
+        <div class="header-item" id="username"><%= current_user.name %></div>
 
         <ul class="dropdown">
-          <li><a href="#">Notifications</a>
+          <li><a href="#">Profile</a>
           <% if current_user.admin? %>
             <li><a href="/admin/images">Admin</a>
           <% end %>

@@ -30,19 +30,27 @@
   display: flex;
   flex-flow: row wrap;
   align-items: flex-end;
+
+  a {
+    font-size: 1.4rem;
+    font-weight: 300;
+    width: 100%;
+    text-decoration: none;
+    color: rgba(#fff,0.8);
+
+    &:hover {
+      color: rgba(#fff,1.0);
+    }
+  }
 }
 
 .image-actions {
   width: 100%;
   height: 40px;
   padding: 10px 0 10px 40px;
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: rgba(#fff,0.8);
 
   &:hover {
     background-color: #333333;
-    color: rgba(#fff,1.0);
   }
 }
 
