@@ -1,7 +1,8 @@
 /* Padding for images in image pages, adding properties to this can have unintended consequences effecting all images across the site. */
 .image {
-  padding: 15px;
+  padding: 25px;
   text-align: center;
+  flex-grow: 1;
 
   /* Width/height for the image element itself. */
   img {
@@ -22,6 +23,7 @@
   min-width: 300px;
   display: flex;
   align-items: flex-end;
+  right: 0;
 }
 
 .image-actions-container {

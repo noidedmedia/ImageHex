@@ -1,4 +1,9 @@
 <div id="image-page-top-container">
+
+  <div class="image">
+    <%= image_tag @image.f %>
+  </div>
+
   <div class="image-actions-sidebar">
     <!-- <%= render "shared/report_stub", subject: @image, url: report_image_path(@image)%> -->
   
@@ -9,10 +14,6 @@
       <a href="#"><div class="image-actions" id="img-action-report">Report</div></a>
     </div>
 
-  </div>
-
-  <div class="image">
-    <%= image_tag @image.f %>
   </div>
 
 </div>
