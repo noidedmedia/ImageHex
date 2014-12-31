@@ -23,9 +23,12 @@ Rails.application.routes.draw do
   devise_for :users, path: "accounts"
 
   resources :users do
-    resources :collections
+    ##
+    # This is done so it's easier to see a users collections.
+    # Meanwhile, creation and modification of collections is its own thing.
+    resources :collections, only: [:index, :show]
   end
-  
+  resources :collections, except: [:index, :show]
   ################
   # ADMIN ROUTES #
   ################

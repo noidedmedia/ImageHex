@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224052535) do
+ActiveRecord::Schema.define(version: 20141231181800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(version: 20141224052535) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name",       limit: 255
+    t.string   "name",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.jsonb    "info"
     t.string   "type"
+    t.text     "description"
   end
 
   add_index "collections", ["user_id"], name: "index_collections_on_user_id", using: :btree
