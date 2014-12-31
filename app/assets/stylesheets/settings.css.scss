@@ -5,11 +5,12 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: inline-flex;
   flex-flow: row nowrap;
   margin: auto;
-  margin-top: 50px;
+  flex: 1 1 auto;
+  padding: 50px calc((100vw - 40vw - 180px)/2);
   position: absolute;
-  left: 0;
-  right: 0;
-  width: calc(40vw + 300px);
+  height: 100%;
+  width: 100%;
+  background-color: #e3e3e3;
 }
 
 /* Styling for the navigational sidebar on the Settings page. */
@@ -59,7 +60,7 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* Styling for fields inside the settings container. */
   .field {
-    width: calc(40vw - 30px);
+    width: calc(40vw - 50px);
     min-width: 470px;
     max-width: 770px;
   }
