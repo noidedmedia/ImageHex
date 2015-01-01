@@ -11,7 +11,29 @@ RSpec.describe CollectionsController, :type => :controller do
       expect(assigns(:collections)).to match_array(user.collections)
     end
     it "renders the index page" do
-
+      user = FactoryGirl.create(:user)
+      user.collections << [FactoryGirl.create(:collection)]
+      get :index, user_id: user
+      expect(response).to render_template("index")
+    end
+  end
+  describe "get #show" do
+    let(:c){FactoryGirl.create(:collection)}
+    it "is success" do
+      get :show, id: c.id
+      expect(response).to be_success
+    end
+    it "sets the images variable" do
+      get :show, id: c.id
+      expect(assigns(:images)).to eq(c.id)
+    end
+    it "sets the collection variable" do
+      get :show, id: c.id
+      expect(assigns(:collection)).to eq(c)
+    end
+    it "sets the curator variable" do
+      get :show, id: c.id
+      expect(assigns(:curator)).to eq(c.user)
     end
   end
   context "when logged in" do
