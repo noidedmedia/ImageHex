@@ -8,7 +8,7 @@ RSpec.describe CollectionsController, :type => :controller do
       user.collections = [FactoryGirl.create(:collection), 
                           FactoryGirl.create(:collection)]
       get :index, user_id: user
-      expect(assigns(:collections)).to eq(u.collections)
+      expect(assigns(:collections)).to match_array(user.collections)
     end
     it "renders the index page" do
 
@@ -27,21 +27,15 @@ RSpec.describe CollectionsController, :type => :controller do
     describe "post #create" do
       context "with valid attributes" do
         let(:subjective_atrs){ {type: "Subjective",
-                                name: "My Kawaii Images"} }
-        let(:chrono_atrs){ {type: "Chronological",
-                            name: "Comic: Zach Attack!"} }
-
+                                name: "My Kawaii Images"}}
         it "makes a new collection of the proper type" do
           expect{
             post :create, collection: subjective_atrs
           }.to change{Subjective.count}.by(1)
-          expect{
-            post :create, collection: chrono_atrs
-          }.to change{Chronological.count}.by(1)
         end
         it "redirects to the collection" do
-          post :create, collection: FactoryGirl.attributes_for(:subjective)
-          expect(response).to redirect_to(Subjective.last)
+          post :create, collection: subjective_atrs
+          expect(response).to redirect_to(collection_path(Collection.last))
         end
       end
       context "with invalid attributes" do

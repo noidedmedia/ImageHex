@@ -20,25 +20,25 @@ class CollectionsController < ApplicationController
     case collection_params[:type]
     when "Subjective"
       c = Subjective.new(collection_params)
-    when "Chronological"
-      c = Chronological.new(collection_params)
     end
     unless c
+      puts "collection not made, incorrect params"
       flash[:error] = "Collection type not specified or not applicable."
-      redirect_to :new
+      redirect_to action: "new" and return
     end
     if c.save
-      redirect_to c
+      redirect_to collection_path(id: c.id) and return
     else
+      puts "Collection not saved because: #{c.errors.full_messages.inspect}"
       flash[:error] = c.errors.full_messages
-      redirect_to :new
+      redirect_to action: "new"
     end
   end
 
   protected
   def collection_params
     params.require(:collection)
-      .permit(:type, :title, :description)
+      .permit(:type, :name, :description)
       .merge(user_id: current_user.id)
   end
 end
