@@ -5,6 +5,8 @@ class CollectionsController < ApplicationController
     @collections = @user.collections
   end
 
+
+
   def show
     @collection = Collection.find(params[:id])
     @images = @collection.images.paginate(page: page, per_page: per_page)

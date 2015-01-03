@@ -79,5 +79,6 @@ RSpec.describe CollectionsController, :type => :controller do
         it "renders the #edit page with errors set"
       end
     end
+    
   end
 end
