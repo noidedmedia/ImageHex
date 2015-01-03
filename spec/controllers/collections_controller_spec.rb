@@ -25,7 +25,7 @@ RSpec.describe CollectionsController, :type => :controller do
     end
     it "sets the images variable" do
       get :show, id: c.id
-      expect(assigns(:images)).to eq(c.id)
+      expect(assigns(:images)).to eq(c.images)
     end
     it "sets the collection variable" do
       get :show, id: c.id

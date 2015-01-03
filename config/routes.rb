@@ -26,9 +26,9 @@ Rails.application.routes.draw do
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.
-    resources :collections, only: [:index, :show]
+    resources :collections, only: [:index]
   end
-  resources :collections, except: [:index, :show]
+  resources :collections, except: [:index]
   ################
   # ADMIN ROUTES #
   ################

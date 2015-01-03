@@ -7,6 +7,8 @@ class CollectionsController < ApplicationController
 
   def show
     @collection = Collection.find(params[:id])
+    @images = @collection.images.paginate(page: page, per_page: per_page)
+    @curator = @collection.user
   end
 
   def new
