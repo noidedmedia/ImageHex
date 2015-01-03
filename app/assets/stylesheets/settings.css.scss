@@ -2,15 +2,12 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 /* Container for the settings page. */
 #settings-page {
-  display: inline-flex;
+  display: flex;
   flex-flow: row nowrap;
   margin: auto;
-  flex: 1 1 auto;
-  padding: 50px calc((100vw - 40vw - 180px)/2);
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
-  background-color: #e3e3e3;
 }
 
 /* Styling for the navigational sidebar on the Settings page. */
@@ -19,8 +16,8 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   height: auto;
   margin-top: 30px;
   margin-right: 20px;
-  width: 180px;
-  min-width: 180px;
+  width: 160px;
+  min-width: 160px;
 
   ul {
     li {
@@ -28,6 +25,7 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       padding: 8px 0px;
       text-align: right;
 
+      // "Reset all settings" differentiated by spacing.
       &:last-of-type {
         padding-top: 50px;
       }

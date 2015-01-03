@@ -3,33 +3,54 @@
 #people-page-container,
 #contact-page-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   height: 100%;
-  margin: auto;
-  padding: 30px 0px;
+  margin: 0;
   position: relative;
-  width: 640px;
+  width: 100vw;
 }
 
 /* Navigational sidebar for all "Company" pages. */
 #company-nav-container {
-  height: 100%;
-  padding-top: 44px;
-  width: 60px;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+
+  .company-nav {
+    width: 400px;
+    margin: auto;
+    list-style-type: none;
+  }
+
+  ul > li {
+    display: inline-block;
+    padding: 0px 25px;
+  }
 
   a {
     color: #333;
     display: block;
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 20px;
-    padding: 6px 0px;
+    padding: 0;
     text-align: right;
     text-decoration: none;
   }
 
   .current {
-    font-weight: 500;
+    font-weight: 400;
+    color: #17cd94;
+
+    &:after {
+      content: '';
+      background-color: #17cd94;
+      width: calc(100% + 30px);
+      transform: translate(-15px,8px);
+      height: 3px;
+      display: block;
+    }
   }
 }
 
@@ -37,8 +58,8 @@
 .company-page-main-column {
   display: block;
   height: 100%;
-  margin-left: 40px;
-  width: 500px;
+  margin: auto;
+  max-width: 1000px;
 }
 
 /* Header text for Company pages. */
@@ -46,7 +67,8 @@
   color: #333;
   font-size: 3.2rem;
   font-weight: 700;
-  padding-bottom: 10px;
+  padding: 20px 0 10px;
+  text-align: center;
 }
 
 /* Content for Company pages. */
@@ -56,7 +78,7 @@
   font-weight: 300;
 
   p {
-    padding: 0px 0px 12px;
+    padding: 0 0 12px;
   }
 }
 
@@ -71,7 +93,8 @@
 /* List items in the people page. */
 .people-page-list-item {
   width: 200px;
-  margin: 0px 20px 20px 0px;
+  margin: 0 20px 20px 0;
+  list-style-type: none;
 }
 
 /* Photos for the Staff page. */
@@ -96,4 +119,16 @@
   font-weight: 400;
   line-height: 16px;
   text-align: center;
+}
+
+#about-page-description {
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 300;
+  width: 90vw;
+  max-width: 600px;
+
+  p {
+    padding: 0 0 12px;
+  }
 }

@@ -1,4 +1,5 @@
-/* Padding for images in image pages, adding properties to this can have unintended consequences effecting all images across the site. */
+/* Padding for images in image pages. */
+/* Adding properties to this can have unintended consequences effecting all images across the site. */
 .image {
   padding: 25px;
   text-align: center;
@@ -56,7 +57,10 @@
   }
 }
 
-#img-action-favorite::before, #img-action-add::before, #img-action-share::before, #img-action-report::before {
+#img-action-favorite::before,
+#img-action-add::before,
+#img-action-share::before,
+#img-action-report::before {
   position: absolute;
   display: inline-block;
   transform: translate(-24px,1px);
@@ -86,4 +90,8 @@
 
 #image-list-container {
   padding: 20px 40px;
+}
+
+#upload-page-container {
+  
 }
