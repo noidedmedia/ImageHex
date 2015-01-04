@@ -5,6 +5,9 @@ class Collection < ActiveRecord::Base
   # ASSOCIATIONS #
   ################
   
+  # join table: User -> Collection
+  has_many :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user 
   # Join table: User -> Collection
   has_many :curatorships
   has_many :users, through: :curatorships

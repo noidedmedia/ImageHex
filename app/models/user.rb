@@ -2,6 +2,13 @@ class User < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
+  ##
+  # Join table: users -> collections
+  has_many :subscriptions
+  has_many :subscribed_collections,
+    through: :subscrptions,
+    source: :collection
+  
   has_many :images
   has_many :curatorships
   has_many :collections, through: :curatorships
