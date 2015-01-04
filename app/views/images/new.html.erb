@@ -1,9 +1,11 @@
-<h2>Upload</h2>
+<div id="upload-page-container">
+  <h2>Upload</h2>
 
-<%= form_for @image do |f| %>
-  <%# start by generating select tags for enums %>
-  <%= f.select :license, Image.licenses.keys.to_a.map{|x| [x.titleize, x]} %>
-  <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]} %>
-  <%= f.file_field :f %> <%# the file to add %>
-  <%= f.submit "Upload Image" %>
-<% end %>
+  <%= form_for @image do |f| %>
+    <%# start by generating select tags for enums %>
+    <%= f.select :license, Image.licenses.keys.to_a.map{|x| [x.titleize, x]} %>
+    <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]} %>
+    <%= f.file_field :f %> <%# the file to add %>
+    <%= f.submit "Upload Image" %>
+  <% end %>
+</div>

@@ -13,11 +13,19 @@ Rails.application.routes.draw do
   ##################
 
   resources :images do
+    member do
+      post "favorite"
+      post "created"
+    end
     resources :tag_groups
     concerns :reportable
   end
   devise_for :users
-
+  resources :collections do
+    member do
+      post "add_image"
+    end
+  end
   ################
   # ADMIN ROUTES #
   ################

@@ -121,6 +121,7 @@ GEM
       cocaine (~> 0.5.3)
       mime-types
     pg (0.17.1)
+    possessive (1.0.1)
     postmark (1.4.3)
       json
       rake
@@ -256,6 +257,7 @@ DEPENDENCIES
   newrelic_rpm
   paperclip
   pg
+  possessive
   postmark-rails
   rails (= 4.2.0)
   rails_12factor

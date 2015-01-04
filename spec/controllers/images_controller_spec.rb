@@ -35,6 +35,28 @@ describe ImagesController do
         end
       end
     end
+    describe "POST #favorite" do
+      let(:i){FactoryGirl.create(:image)}
+      it "makes a new favorite for a user" do
+        expect{post :favorite, id: i}.to change{@user.favorites.count}.by(1)
+      end
+      it "adds the image to the user's favorite" do
+        post :favorite, id: i
+        expect(@user.favorites).to include(i)
+      end
+    end
+    describe "POST #created" do
+      let(:i){FactoryGirl.create(:image)}
+      it "makes a new creation for a user" do
+        expect{
+          post :created, id: i
+        }.to change{@user.creations.count}.by(1)
+      end
+      it "adds the image to the user's creation" do
+        post :created, id: i
+        expect(@user.creations).to include(i)
+      end
+    end
   end
 
   context "when not logged in" do
