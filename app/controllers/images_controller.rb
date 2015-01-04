@@ -21,7 +21,7 @@ class ImagesController < ApplicationController
     groups = params[:query].map{|x| TagGroup.by_tag_names x}
     @images = Image.from_groups groups
   end
-  
+
   def new
     @image = Image.new
   end
@@ -66,6 +66,17 @@ class ImagesController < ApplicationController
   def show
     @image = Image.find(params[:id])
   end
+  ##
+  # Put this image in a users collection
+  def add
+    c = Collection.find(params[:collection])
+    if c.user != current_user
+      flash[:error] = "You cannot add images to a collection you do not own."
+      redirect_to Image.find(params[:id]) and return
+    end
+    c.images << Image.find(params[:id])
+    redirect_to Image.find(params[:id])
+  end
   protected
   # Load the image with the current id into params[:image]
   def load_image
@@ -73,9 +84,10 @@ class ImagesController < ApplicationController
   end
   def image_params
     params.require(:image)
-    .permit(:f, :license, :medium) # Attributes the user adds
-    .merge(user_id: current_user.id) # We add the user id
+      .permit(:f, :license, :medium) # Attributes the user adds
+      .merge(user_id: current_user.id) # We add the user id
   end
+
 
   ##
   # Parameters for our report

@@ -8,6 +8,14 @@ describe ImagesController do
       @user.confirm!
       sign_in @user
     end
+    describe "post #add" do
+      it "adds the image to a collection" do
+        c = FactoryGirl.create(:collection, user: @user)
+        i = FactoryGirl.create(:image)
+        post :add, id: i.id, collection: c
+        expect(c.images).to include(i)
+      end
+    end
     describe "GET #new" do
       it "responds with an HTTP success" do
         get :new

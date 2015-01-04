@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     member do
       post "favorite"
       post "created"
+      post "add"
     end
     resources :tag_groups
     concerns :reportable
