@@ -63,8 +63,9 @@
 #img-action-report::before {
   position: absolute;
   display: inline-block;
-  transform: translate(-24px,1px);
-  font-size: 15px;
+  transform: translate(-30px,0px);
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
 }
 
 #img-action-favorite::before {
