@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   protected
   def verify_user
-    if current_user && current_user.id = params[:id] then
+    if current_user then
       return true
     else
       redirect_to "/"
