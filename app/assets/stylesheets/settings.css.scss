@@ -3,13 +3,9 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 /* Container for the settings page. */
 #settings-page {
   display: inline-flex;
-  flex-flow: row nowrap;
+  position: relative;
+  margin-top: 20px;
   margin: auto;
-  margin-top: 50px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: calc(40vw + 300px);
 }
 
 /* Styling for the navigational sidebar on the Settings page. */
@@ -18,17 +14,22 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   height: auto;
   margin-top: 30px;
   margin-right: 20px;
-  width: 180px;
-  min-width: 180px;
+  width: 160px;
 
   ul {
     li {
       list-style: none;
-      padding: 8px 0px;
+      padding: 8px 0;
       text-align: right;
 
+      // "Reset all settings" differentiated by spacing.
       &:last-of-type {
         padding-top: 50px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
       }
     }
   }
@@ -42,6 +43,11 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   position: relative;
   text-align: left;
   width: 40vw;
+
+  @media all and (max-width: 700px) {
+    width: 95vw;
+    margin: auto;
+  }
 }
 
 /* Container for the actual settings */
@@ -50,20 +56,27 @@ $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 100%;
   height: auto;
   background: #fff;
-  margin: 10px 0px;
+  margin: 10px 0;
 
   /* Styling for fields inside the settings container. */
   .field {
-    width: calc(40vw - 30px);
-    min-width: 470px;
+    width: calc(40vw - 50px);
     max-width: 770px;
+
+    @media all and (min-width: 700px) {
+      min-width: 470px;
+    }
+
+    @media all and (max-width: 700px) {
+      width: calc(95vw - 50px);
+    }
   }
 
   /* Styling for the submit button in the settings container. */
   input[type=submit] {
     -webkit-appearance: none;
     background-color: #777;
-    border: 0px;
+    border: 0;
     border-top: 1px solid #aaaab2;
     color: #fff;
     font: 300 1.6rem $font-stack;
