@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   # ASSOCIATIONS #
   ################
   has_many :images
-  has_many :collections 
+  has_many :curatorships
+  has_many :collections, through: :curatorships
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -51,8 +52,8 @@ class User < ActiveRecord::Base
   end
   protected
   def make_collections
-    Favorite.create!(user: self)
-    Creation.create!(user: self)
+    Favorite.create!(users: [self])
+    Creation.create!(users: [self])
   end
   enum role: [:normal, :admin]
 end

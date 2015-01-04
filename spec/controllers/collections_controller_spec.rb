@@ -31,9 +31,9 @@ RSpec.describe CollectionsController, :type => :controller do
       get :show, id: c.id
       expect(assigns(:collection)).to eq(c)
     end
-    it "sets the curator variable" do
+    it "sets the curators variable" do
       get :show, id: c.id
-      expect(assigns(:curator)).to eq(c.user)
+      expect(assigns(:curators)).to eq(c.users)
     end
   end
   context "when logged in" do

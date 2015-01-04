@@ -70,7 +70,10 @@ class ImagesController < ApplicationController
   # Put this image in a users collection
   def add
     c = Collection.find(params[:collection])
-    if c.user != current_user
+    ##
+    # If the current usn't doesn't curate this colletion, they cannot
+    # add images to it
+    if ! c.curated?(current_user)
       flash[:error] = "You cannot add images to a collection you do not own."
       redirect_to Image.find(params[:id]) and return
     end

@@ -10,7 +10,7 @@ describe ImagesController do
     end
     describe "post #add" do
       it "adds the image to a collection" do
-        c = FactoryGirl.create(:collection, user: @user)
+        c = FactoryGirl.create(:collection, users: [@user])
         i = FactoryGirl.create(:image)
         post :add, id: i.id, collection: c
         expect(c.images).to include(i)

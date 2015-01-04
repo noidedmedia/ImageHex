@@ -5,8 +5,9 @@ class Collection < ActiveRecord::Base
   # ASSOCIATIONS #
   ################
   
-  # Curator for this collection
-  belongs_to :user
+  # Join table: User -> Collection
+  has_many :curatorships
+  has_many :users, through: :curatorships
   # Join table: Collection -> Images
   has_many :collection_images
   # Collections are useless without images.
@@ -15,7 +16,6 @@ class Collection < ActiveRecord::Base
   ###############
   # VALIDATIONS #
   ###############
-  validates :user, presence: true
   validates :name, presence: true
 
   ##########
@@ -28,10 +28,10 @@ class Collection < ActiveRecord::Base
   #####################
   # INSTANCE  METHODS #
   #####################
-
-  # We add this method alias because it's easier to think about the 
-  # "curator" of a collection than it is to think about the user who own it
-  # in some cases. Mostly for convenience
-  alias_method :curator, :user
-  alias_method :curator=, :user=
+  
+  ##
+  # Does a user curate this collection?
+  def curated?(u)
+    self.users.include?(u)
+  end
 end
