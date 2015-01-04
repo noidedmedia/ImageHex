@@ -16,23 +16,24 @@
   height: 40px;
   background-color: #fff;
   display: flex;
+  text-align: center;
+  padding-top: 4px;
 
   .company-nav {
     width: 400px;
     margin: auto;
-    list-style-type: none;
-  }
 
-  ul > li {
-    display: inline-block;
-    padding: 0px 25px;
+    a {
+      display: inline-block;
+      padding: 0px 25px;
+    }
   }
 
   a {
     color: #333;
     display: block;
     font-size: 1.4rem;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 20px;
     padding: 0;
     text-align: right;
@@ -40,14 +41,14 @@
   }
 
   .current {
-    font-weight: 400;
+    font-weight: 500;
     color: #17cd94;
 
     &:after {
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);
-      transform: translate(-15px,8px);
+      transform: translate(-15px,6px);
       height: 3px;
       display: block;
     }
@@ -78,7 +79,6 @@
 #people-page-list-container {
   display: flex;
   flex-flow: row wrap;
-  height: 100%;
   width: 100%;
 }
 
@@ -86,7 +86,6 @@
 .people-page-list-item {
   width: 200px;
   margin: 0 20px 20px 0;
-  list-style-type: none;
 }
 
 /* Photos for the Staff page. */
