@@ -35,7 +35,7 @@ function clickOutside() {
   // Loops through the array, checking if each value in the array
   // is "active". If it is, "clickoutside" will be binded to
   // removing the active class and then subsequently unbinding the 
-  // "clickoutside" function. to ensure that the dropdown won't be
+  // "clickoutside" function to ensure that the dropdown won't be
   // toggled every time there's a click.
   for (var i = 0; i < classList.length; i++) {
     if (classList[i] == 'active') {
