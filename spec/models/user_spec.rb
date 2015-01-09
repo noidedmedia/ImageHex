@@ -8,7 +8,6 @@ describe User do
   it {should validate_presence_of(:name)}
   # Has many images
   it {should have_many(:images)}
-
   describe "subscriptions" do
     let(:u){FactoryGirl.create(:user)}
     let(:c){FactoryGirl.create(:collection)}
@@ -16,6 +15,15 @@ describe User do
       u.subscribe!(c)
       expect(u.subscribed_collections).to eq([c])
       expect(c.subscribers).to eq([u])
+    end
+    it "provides all images in a user's feed in order" do
+      i1 = FactoryGirl.create(:image)
+      c.images << i1
+      u.subscribe! c
+      c2 = FactoryGirl.create(:collection)
+      i2 = FactoryGirl.create(:image)
+      c2.images << c
+      expect(u.image_feed).to eq([i1, i2])
     end
   end
   describe "creation" do
