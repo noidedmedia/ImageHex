@@ -4,11 +4,14 @@ class User < ActiveRecord::Base
   ################
   ##
   # Join table: users -> collections
+  
   has_many :subscriptions
   has_many :subscribed_collections,
     through: :subscrptions,
-    source: :collection
-  
+    class_name: "Collections",
+    foreign_key: :collection_id
+
+
   has_many :images
   has_many :curatorships
   has_many :collections, through: :curatorships
@@ -33,7 +36,9 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-
+  def subscribe! c
+    c.subscribers << self
+  end
   ## 
   # Convenience method to access the favorites collection for a user
   def favorites

@@ -14,5 +14,12 @@ describe Collection do
     c.images = [i, i]
     expect(c.images).to_not eq([i, i])
   end
-
+  describe "subscriptions" do
+    it "lists all subscribed users with the subscribers method" do
+      c = FactoryGirl.create(:collection)
+      u = FactoryGirl.create(:user)
+      c.subscribers << u
+      expect(c.subscribers).to eq([u])
+    end
+  end
 end
