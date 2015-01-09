@@ -7,10 +7,8 @@ class User < ActiveRecord::Base
   
   has_many :subscriptions
   has_many :subscribed_collections,
-    through: :subscrptions,
-    class_name: "Collections",
-    foreign_key: :collection_id
-
+    through: :subscriptions,
+    source: :collection
 
   has_many :images
   has_many :curatorships
