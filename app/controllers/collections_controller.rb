@@ -5,7 +5,14 @@ class CollectionsController < ApplicationController
     @collections = @user.collections
   end
 
+  def subscribe
+    current_user.subscribe! Collection.find(params[:id])
+    redirect_to :back
 
+    ## in case our session doesn't ahve a back
+  rescue ActionController::RedirectBackError
+    redirect_to root_path
+  end
 
   def show
     @collection = Collection.find(params[:id])

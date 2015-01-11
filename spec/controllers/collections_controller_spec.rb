@@ -42,6 +42,16 @@ RSpec.describe CollectionsController, :type => :controller do
       @user.confirm!
       sign_in @user
     end
+
+    describe "post #subscribe" do
+      let(:c){FactoryGirl.create(:collection)}
+      it "adds the collection to a users subscribed collections" do
+        expect{
+          post "subscribe", id: c
+        }.to change{@user.subscribed_collections.count}.by(1)
+
+      end
+    end
     describe "get #new" do
       it "sets a @collection variable"
       it "renders a new collection form"

@@ -29,7 +29,9 @@ Rails.application.routes.draw do
     # Meanwhile, creation and modification of collections is its own thing.
     resources :collections, only: [:index]
   end
-  resources :collections, except: [:index]
+  resources :collections, except: [:index] do
+    post "subscribe", on: :member
+  end
   ################
   # ADMIN ROUTES #
   ################
