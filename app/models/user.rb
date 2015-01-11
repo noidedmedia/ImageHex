@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
+  def image_feed
+    Image.where(id: subscribed_collections.joins(:collection_images).pluck(:image_id))
+  end
+  
   def subscribe! c
     c.subscribers << self
   end

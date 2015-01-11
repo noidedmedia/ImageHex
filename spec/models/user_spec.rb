@@ -16,13 +16,20 @@ describe User do
       expect(u.subscribed_collections).to eq([c])
       expect(c.subscribers).to eq([u])
     end
+    it "has many subscribed collections" do
+      c2 = FactoryGirl.create(:collection)
+      u.subscribe! c
+      u.subscribe! c2
+      expect(u.subscribed_collections).to match_array([c, c2])
+    end
     it "provides all images in a user's feed in order" do
       i1 = FactoryGirl.create(:image)
       c.images << i1
       u.subscribe! c
       c2 = FactoryGirl.create(:collection)
       i2 = FactoryGirl.create(:image)
-      c2.images << c
+      c2.images << i2
+      u.subscribe! c2
       expect(u.image_feed).to eq([i1, i2])
     end
   end
