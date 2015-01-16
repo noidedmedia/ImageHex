@@ -16,15 +16,21 @@ Rails.application.routes.draw do
     member do
       post "favorite"
       post "created"
+      post "add"
     end
     resources :tag_groups
     concerns :reportable
   end
-  devise_for :users
-  resources :collections do
-    member do
-      post "add_image"
-    end
+  devise_for :users, path: "accounts"
+
+  resources :users do
+    ##
+    # This is done so it's easier to see a users collections.
+    # Meanwhile, creation and modification of collections is its own thing.
+    resources :collections, only: [:index]
+  end
+  resources :collections, except: [:index] do
+    post "subscribe", on: :member
   end
   ################
   # ADMIN ROUTES #
@@ -48,6 +54,8 @@ Rails.application.routes.draw do
 
   get '/contact', to: "static_stuff#contact"
 
+  get '/settings', to: 'users#edit'
 
+  post '/settings', to: 'users#update'
   get '/search', to: "images#search"
 end

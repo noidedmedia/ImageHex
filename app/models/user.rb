@@ -2,8 +2,17 @@ class User < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
+  ##
+  # Join table: users -> collections
+  
+  has_many :subscriptions
+  has_many :subscribed_collections,
+    through: :subscriptions,
+    source: :collection
+
   has_many :images
-  has_many :collections 
+  has_many :curatorships
+  has_many :collections, through: :curatorships
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -25,37 +34,40 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-
-  ##
-  # The collection that holds our favorites
-  def favorites_collection
+  def image_feed
+    Image.where(id: subscribed_collections.joins(:collection_images).pluck(:image_id))
+  end
+  
+  def subscribe! c
+    c.subscribers << self
+  end
+  ## 
+  # Convenience method to access the favorites collection for a user
+  def favorites
+    collections.favorites.first
   end
   ##
   # Add an image to a user's favorites
   def favorite! i
+    favorites.images << i
   end
 
-  ##
-  # All the images in a user's favorites collection
-  def favorites
-  end
-
-  ##
-  # The collection that holds all images our user has created
-  def creations_collection
-  end
 
   ## 
   # Add an image to a user's creations
   def created! i
+    creations.images << i
   end
 
+  ##
+  # Convenience method ot access the creations collection for a user
   def creations
+    collections.creations.first
   end
   protected
   def make_collections
-    Favorite.create!(user: self)
-    Created.create!(user: self)
+    Favorite.create!(users: [self])
+    Creation.create!(users: [self])
   end
   enum role: [:normal, :admin]
 end

@@ -1,14 +1,27 @@
 class ImagesController < ApplicationController
   # Load the image via our id
-  before_action :load_image, only: [:update, :edit, :destroy, :show]
+  before_action :load_image, only: [:favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
   before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy]
 
+  ##
+  # Current user has created this image
+  def created
+    current_user.created! @image
+    redirect_to(@image)
+  end
+
+  ##
+  # Current user wishes to add this image to their favorites
+  def favorite
+    current_user.favorite! @image
+    redirect_to(@image)
+  end
   def search
     groups = params[:query].map{|x| TagGroup.by_tag_names x}
     @images = Image.from_groups groups
   end
-  
+
   def new
     @image = Image.new
   end
@@ -53,6 +66,20 @@ class ImagesController < ApplicationController
   def show
     @image = Image.find(params[:id])
   end
+  ##
+  # Put this image in a users collection
+  def add
+    c = Collection.find(params[:collection])
+    ##
+    # If the current usn't doesn't curate this colletion, they cannot
+    # add images to it
+    if ! c.curated?(current_user)
+      flash[:error] = "You cannot add images to a collection you do not own."
+      redirect_to Image.find(params[:id]) and return
+    end
+    c.images << Image.find(params[:id])
+    redirect_to Image.find(params[:id])
+  end
   protected
   # Load the image with the current id into params[:image]
   def load_image
@@ -60,9 +87,10 @@ class ImagesController < ApplicationController
   end
   def image_params
     params.require(:image)
-    .permit(:f, :license, :medium) # Attributes the user adds
-    .merge(user_id: current_user.id) # We add the user id
+      .permit(:f, :license, :medium) # Attributes the user adds
+      .merge(user_id: current_user.id) # We add the user id
   end
+
 
   ##
   # Parameters for our report
