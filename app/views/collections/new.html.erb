@@ -1,0 +1,9 @@
+<%= form_for @collection do |f| %>
+  <%= f.text_field :title %>
+  <%= f.text_area :description %>
+  <%# ADD SOME KIND OF THING WHERE YOU CAN SELECT A TYPE WHICH IS, BY 
+  DEFAULT, THE STRING "Subjective"! Currently we only have subjective
+  collections so... yeah %>
+  <%= f.submit %>
+<% end %>
+

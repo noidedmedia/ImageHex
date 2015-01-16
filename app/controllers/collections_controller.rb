@@ -33,14 +33,12 @@ class CollectionsController < ApplicationController
       c = Subjective.new(collection_params)
     end
     unless c
-      puts "collection not made, incorrect params"
       flash[:error] = "Collection type not specified or not applicable."
       redirect_to action: "new" and return
     end
     if c.save
       redirect_to collection_path(id: c.id) and return
     else
-      puts "Collection not saved because: #{c.errors.full_messages.inspect}"
       flash[:error] = c.errors.full_messages
       redirect_to action: "new"
     end
