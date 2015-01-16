@@ -155,3 +155,44 @@
   opacity: 1;
   visibility: visible;
 }
+
+#header-search {
+  display: block;
+  position: absolute;
+  width: 300px;
+  top: 0;
+  left: 120px;
+  
+  &:after {
+    font-size: 1.4rem;
+    content: '\e601';
+    position: absolute;
+    color: #aaaab2;
+    left: 12px;
+    top: 13px;
+  }
+
+  input[type="text"] {
+    font-size: 1.4rem;
+    height: 40px;
+    width: 100%;
+    padding: 0 0 0 32px;
+    background-color: #333;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid rgba(#fff,0.3);
+    border-right: 1px solid rgba(#fff,0.3);
+    color: #fff;
+    transition: color 400ms ease, background-color 400ms ease, border 400ms ease;
+    appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+    &:focus {
+      outline: none;
+      border-color: transparent;
+      background-color: #fff;
+      color: #333;
+    }
+  }
+}
