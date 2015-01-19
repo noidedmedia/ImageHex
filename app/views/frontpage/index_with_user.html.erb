@@ -1,3 +1,9 @@
-<h1>Welcome Back, <%= current_user.name %></h1>
-<h3>We have some images for you</h3>
-<%= render 'images/show_stub' %>
+<div id="home-container">
+  <h2>ImageHex</h2>
+
+  <a href="/images/new">Upload an Image</a>
+  <br>
+  <a href="/images">Images</a>
+
+  <%= render 'images/show_stub' %>
+</div>
