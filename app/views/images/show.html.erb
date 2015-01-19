@@ -7,14 +7,10 @@
   <div class="image-actions-sidebar">
     <div class="image-actions-container">
       <a href="#"><div class="image-actions" id="img-action-favorite">Favorite</div></a>
-      <%# Whatever has the id of "collection-add" is going to display the
-        add to collections form %>
       <a href="#"><div class="image-actions" id="img-action-collection">Add to Collection</div></a>
         <%= render 'collection_select' %>
       <a href="#"><div class="image-actions" id="img-action-share">Share</div></a>
       <a href="#"><div class="image-actions" id="img-action-report">Report</div></a>
-    <%# Whatever has the id of "report-show" is goign to show the report box %>
-      <div id="report-show">Report Image</div>
       <%= render "shared/report_stub", subject: @image, url: report_image_path(@image)%>
     </div>
 
