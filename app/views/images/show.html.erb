@@ -19,6 +19,9 @@
 </div>
 
 <div id="image-page-bottom-container">
+  
+  <%= link_to "New Tag Group", new_image_tag_group_path(@image) %>
+
   <% @image.tag_groups.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>
