@@ -1,4 +1,5 @@
-<%= flash[:error] if flash[:error] %>
+<%= flash[:error] %>
+
 <%= form_for @collection do |f| %>
   
   <%= f.text_field :name %>
