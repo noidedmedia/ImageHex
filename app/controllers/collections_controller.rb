@@ -33,13 +33,13 @@ class CollectionsController < ApplicationController
       c = Subjective.new(collection_params)
     end
     unless c
-      flash[:error] = "Collection type not specified or not applicable."
+      flash[:warning] = "Collection type not specified or not applicable."
       redirect_to action: "new" and return
     end
     if c.save
       redirect_to collection_path(id: c.id) and return
     else
-      flash[:error] = c.errors.full_messages
+      flash[:warning] = c.errors.full_messages
       redirect_to action: "new"
     end
   end
