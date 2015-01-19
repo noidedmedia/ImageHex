@@ -39,7 +39,7 @@ class CollectionsController < ApplicationController
     if c.save
       redirect_to collection_path(id: c.id) and return
     else
-      flash[:warning] = c.errors.full_messages
+      flash[:warning] = c.errors.full_messages.join(", ")
       redirect_to action: "new"
     end
   end
