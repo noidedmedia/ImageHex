@@ -1,7 +1,9 @@
 <%# Pass in a reportable as a subject and this will make a form to %>
 <%# report that subject %>
 
-<%= form_for subject.reports.build, url: url do |f| %>
-  <%= f.select :severity, Report.severities.keys.to_a.map{|k| [k.humanize, k]} %>
-  <%= f.text_field :message %>
-<% end %>
+<div id="report-form" data-showon="#report-show">
+  <%= form_for subject.reports.build, url: url do |f| %>
+    <%= f.select :severity, Report.severities.keys.to_a.map{|k| [k.humanize, k]} %>
+    <%= f.text_field :message %>
+  <% end %>
+</div>
