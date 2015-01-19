@@ -58,7 +58,7 @@
 }
 
 #img-action-favorite::before,
-#img-action-add::before,
+#img-action-collection::before,
 #img-action-share::before,
 #img-action-report::before {
   position: absolute;
@@ -72,7 +72,7 @@
   content: '\e600';
 }
 
-#img-action-add::before {
+#img-action-collection::before {
   content: '\e602';
 }
 

@@ -1,4 +1,4 @@
-<div id="collection_select" data-showon="#collection-add">
+<div id="collection_select" data-showon="#img-action-collection">
   <%= form_tag add_image_path(@image), method: :post do %>
 
     <%= select_tag "collection", grouped_options_for_select(collection_select current_user)%>
