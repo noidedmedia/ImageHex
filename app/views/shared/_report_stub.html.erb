@@ -4,9 +4,10 @@
 <div id="report-form" data-showon="#img-action-report">
   <%= form_tag(url) do  %>
     <% Report.severities.each do |k, v| %>
-      <%= k.humanize %> <%= radio_button_tag("report[severity]", k) %>
+      <%= radio_button_tag("report[severity]", k) %>
+      <%= label "report[severity]", k, k.humanize %>
     <% end %>
     <%= text_field_tag "report[message]" %>
     <%= submit_tag %>
- <% end %>
+  <% end %>
 </div>
