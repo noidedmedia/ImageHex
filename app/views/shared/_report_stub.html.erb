@@ -2,11 +2,21 @@
 <%# report that subject %>
 
 <div id="report-form" data-showon="#img-action-report">
-  <%= form_tag(url) do  %>
+  <%= form_tag(url) do %>
+    
+    <p>Reason for report:</p>
+
     <% Report.severities.each do |k, v| %>
-      <%= k.humanize %> <%= radio_button_tag("report[severity]", k) %>
+      <div class="report-row">
+        <%= radio_button_tag("report[severity]", k) %>
+        <%= label "report[severity]", k, k.humanize %>
+      </div>
     <% end %>
-    <%= text_field_tag "report[message]" %>
-    <%= submit_tag %>
- <% end %>
+    
+    <p>Extra information (optional):</p>
+    <%= text_area_tag "report[message]" %>
+
+    <%= button_tag "Cancel", type: :reset %>
+    <%= submit_tag "Submit" %>
+  <% end %>
 </div>
