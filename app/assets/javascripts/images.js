@@ -40,11 +40,16 @@ var stagetwo = function(){
 }
 
 var stagethree = function(){
+  console.log("STAGE THREE");
   var image = $(this).find("img");
-  image.css("max-height", "80vh");
-  image.css("mad-width", "75vw");
+
+  image.css("width", "");
+  image.animate({'max-width': '75vw', 'max-height': '80vh'}, 250, function(){
   $(this).parent().unbind("click");
   $(".image").on("click", stageone);
+
+     
+  });
 }
 var ready = function(){
   $(".image").on("click", stageone);
