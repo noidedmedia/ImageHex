@@ -25,7 +25,7 @@ var stageone = function() {
     image.stop().animate({width: maxwidth}, 250, "linear", function() {
      console.log("Animation over");
      $(this).parent().unbind("click");
-     $(".image").on("click", stagetwo); 
+     $(".image").on("click", stagetwo);
     }); 
   } 
 };
