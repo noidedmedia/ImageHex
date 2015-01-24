@@ -8,7 +8,7 @@
     <div class="image-actions-container">
       <a href="#"><div class="image-actions" id="img-action-favorite">Favorite</div></a>
       <a href="#"><div class="image-actions" id="img-action-collection">Add to Collection</div></a>
-        <%= render 'collection_select'  if current_user %>
+      <%= render 'collection_select'  if current_user %>
       <a href="#"><div class="image-actions" id="img-action-share">Share</div></a>
       <a href="#"><div class="image-actions" id="img-action-report">Report</div></a>
       <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
@@ -19,9 +19,14 @@
 </div>
 
 <div id="image-page-bottom-container">
-  
-  <%= link_to "New Tag Group", new_image_tag_group_path(@image) %>
-
+  <div id="new-group" data-showon="#new-group-button">
+    <%= form_for [@image, @image.tag_groups.build] do |f| %>
+      <%= f.text_field :tag_group_string %>
+    <% end %>
+  </div>
+  <div id="new-group-button">
+    New group
+  </div>
   <% @image.tag_groups.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>
