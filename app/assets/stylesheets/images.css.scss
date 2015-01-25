@@ -139,3 +139,19 @@
     }
   }
 }
+
+.tag-group-show{
+  border: 1px solid black;
+  display: inline-block;
+}
+.tag-box{
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  border: 1px solid black;
+  &:hover{
+    background-color: black;
+    color: white;
+  }
+  transition: 0.25s;
+}
