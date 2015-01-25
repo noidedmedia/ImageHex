@@ -51,7 +51,7 @@ var stagethree = function() {
 };
 
 var ready = function() {
-  $(".image").on("click", stageone);
+  $(".image").click(stageone);
 };
 
-$(document).on("ready", ready);
+$(document).ready(ready);
