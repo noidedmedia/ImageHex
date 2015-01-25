@@ -24,11 +24,17 @@
         <div class="header-item" id="username"><%= current_user.name %></div>
 
         <ul class="dropdown">
-          <li><a href="#">Profile</a>
+          <li>
+            <%= link_to user_path current_user do %>
+              Profile
+            <% end %>
           <% if current_user.admin? %>
             <li><a href="/admin/images">Admin</a>
           <% end %>
-          <li><a href="/users/edit">Settings</a>
+          <li>
+            <%= link_to settings_path do %>
+              Settings
+            <% end %>
           <li>
             <%= link_to destroy_user_session_path, :method => :delete do %>
               Sign out
