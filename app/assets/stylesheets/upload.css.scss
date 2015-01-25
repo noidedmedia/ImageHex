@@ -26,6 +26,7 @@
   transition: background-color 200ms ease;
   
   &:before {
+    color: #aaaab2;
     content: '\e603';
     float: right;
     transition: 300ms ease;
