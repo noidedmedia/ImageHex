@@ -9,10 +9,12 @@ var stageone = function() {
   newimg.src = $(this).find("img").attr("src");
   var realw = newimg.naturalWidth;
   var realh = newimg.naturalHeight;
-  // TERRIBLE HACK INCOMING
-  // JQuery doesn't easily let you remove rules set in stylesheets.
-  // It does, however, let you over-ride them
-  // So we just set max-height to a REALLY BIG NUMBER. Just in case.
+
+  /* TERRIBLE HACK INCOMING
+   * JQuery doesn't easily let you remove rules set in stylesheets.
+   * It does, however, let you over-ride them
+   * So we just set max-height to a REALLY BIG NUMBER. Just in case.
+  */
   image.css("width", image.width());
   image.css("max-height", 1231231231231);
   if (maxwidth > realw) {

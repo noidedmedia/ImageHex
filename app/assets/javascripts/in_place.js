@@ -6,8 +6,8 @@
  *  To use, simply set the data-showon attribute with the Jquery selector
  *  for the node which will show whatever is initially hidden. 
  */
-var show_on = function() {
-  var hide =  $("div").filter(function(index) {
+var showon = function() {
+  var hide = $("div").filter(function(index) {
     return $(this).data("showon");
     // Elements with data in the "showon" property are hidden from the start,
     // appearing only when the selector specified by showon is clicked
@@ -23,7 +23,7 @@ var show_on = function() {
   });
 };
 
-var load_form = function(node) {
+var loadform = function(node) {
   return function() {
     node.load(node.data("editform"), function() {
       console.log(this);
@@ -35,7 +35,7 @@ var load_form = function(node) {
 // This function fins all elements with the data-editform attribute set.
 // It will load the provided form when the provided toggle (in data-toggle)
 // is clicked.
-var form_prep = function() {
+var formprep = function() {
   var nodes = $("div").filter(function(index) {
     return $(this).data("editform");
   });
@@ -43,13 +43,13 @@ var form_prep = function() {
     // Set the toggle here:
     var toggle = $(this).find($(this).data("toggle"));
     // load_form returns a closure which loads the form
-    toggle.on("click", load_form($(this)));
+    toggle.on("click", loadform($(this)));
   });
 };
 
 var ready = function() {
-  show_on();
-  form_prep();
+  showon();
+  formprep();
 };
 
 $(document).ready(ready);
