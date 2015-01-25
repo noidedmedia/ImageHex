@@ -2,10 +2,24 @@
   <h2>Upload</h2>
 
   <%= form_for @image do |f| %>
-    <%# start by generating select tags for enums %>
-    <%= f.select :license, Image.licenses.keys.to_a.map{|x| [x.titleize, x]} %>
+    <%# Start by generating select tags for enums %>
+    <%# The License select is different from the %>
+    <%# medium because the options are specially %>
+    <%# capitalized. %>
+
+    <div class="custom-select-wrapper">
+      <%= f.select :license, Image.licenses.map{|k, v| [k, v]}, {}, { :class => 'custom-select' } %>
+    </div>
+    <%# Note that the above has a "{}" because %>
+    <%# html-options needs to be invoked before %>
+    <%# the CSS class can be used. %>
+
+    <%# The Medium select input. %>
     <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]} %>
-    <%= f.file_field :f %> <%# the file to add %>
+    
+    <%# the file to add %>
+    <%= f.file_field :f %>
+
     <%= f.submit "Upload Image" %>
   <% end %>
 </div>
