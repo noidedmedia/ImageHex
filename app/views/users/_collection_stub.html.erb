@@ -1,0 +1,4 @@
+<%= c.name %>
+<% if c.images.count > 0 %>
+  <%= image_tag c.images.first.f(:large) %>
+<% end %>
