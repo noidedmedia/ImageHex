@@ -18,8 +18,7 @@ class ImagesController < ApplicationController
     redirect_to(@image)
   end
   def search
-    groups = params[:query].map{|x| TagGroup.by_tag_names x}
-    @images = Image.from_groups groups
+    @images = Image.search(params[:query]).paginate(page: page, per_page: per_page)
   end
 
   def new

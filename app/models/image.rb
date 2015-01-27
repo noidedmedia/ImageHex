@@ -43,6 +43,28 @@ class Image < ActiveRecord::Base
   # CLASS METHODS #
   #################
   
+
+  def self.search(q)
+    # This shit is messy
+    # You have been warned.
+
+    # First, properly format group names:
+    names = q.map{|x| x.split(",").map{|y| y.downcase.strip.squish}}
+
+    ## 
+    # Next, find the image_id from every tag_group which matches 
+    # our names
+    groups = names.map do |n|
+      TagGroup.joins(:tags)
+        .where(tags: {name: n})
+        .references(:tags)
+        .pluck(:image_id)
+    end
+    puts groups.inspect
+    # Set intersection of all the sub-arrays of image ids
+    common = groups.inject{|c, g| c & g}
+    where(id: common)
+  end 
   
   ##
   # Takes an array of tag_groups. Find all images which are in each

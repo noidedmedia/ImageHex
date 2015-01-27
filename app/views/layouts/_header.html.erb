@@ -6,7 +6,9 @@
   </div>
 
   <div id="header-search">
-    <input type="text" placeholder="Search" />
+    <form action="/search" method="get">
+      <input type="text" name="query[]" placeholder="Search" />
+    </form>
   </div>
 
   <div id="header-right">

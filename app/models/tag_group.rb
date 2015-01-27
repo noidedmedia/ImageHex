@@ -25,24 +25,18 @@ class TagGroup < ActiveRecord::Base
   #################
   # CLASS METHODS #
   #################
-  ##
-  # This method takes an array of tag names, or a properly
-  # formatted string,  and returns all placements
-  # which have tags by those names.
-  def self.by_tag_names(names)
+  
 
-    if names.is_a? Array
-      to_search = names
-    else
-      names.split(",").map{|x| x.downcase.strip.squish}
-    end
-	  self.joins(:tags).where(tags:{name: to_search})
-  end
+
   ####################
   # INSTANCE METHODS #
   ####################
 
+
+  
   private
+  ##
+  # Converts a comma-seperated list of tags into the actual tags
   def save_tag_group_string
     return unless self.tag_group_string && ! self.tag_group_string.empty?
     array = self.tag_group_string.split(",")
@@ -50,6 +44,9 @@ class TagGroup < ActiveRecord::Base
       .map{|str| Tag.where(name: str).first_or_create} # Create or find
     self.tags = array
   end
+
+  ##
+  # Makes a comma-sperated list of tags from actual tags
   def load_tag_group_string
     return unless self.tags.any?
     self.tag_group_string = self.tags.map(&:name).join(", ")
