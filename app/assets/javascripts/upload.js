@@ -10,6 +10,15 @@ function customSelect() {
       startingoption = "",
       customselect = "";
     
+    /* If the dropdown has an id of "image-license-select"
+     * then use this horrible hack to de-emphasize the
+     * text without screwing around with more complex, but
+     * cleaner solutions to the problem.
+     */
+    if (listid === 'image-license-select') {
+      startingoption = "<span style='color: #aaaab2'>Image License</span>";
+    }
+
     // Check if there are option groups 
     if (groups.length) {
       groups.each(function() {
@@ -67,7 +76,7 @@ function customSelect() {
     }
 
     // Build the custom select
-    customselect = '<div class="dropdown-container"><div class="dropdown-select"><span>' + startingoption + '</span></div><ul class="dropdown-select-ul" data-role="' + listid +'">' + theoptions + '</ul></div>';
+    customselect = '<div class="dropdown-container" id="' + listid + '"><div class="dropdown-select"><span>' + startingoption + '</span></div><ul class="dropdown-select-ul" data-role="' + listid +'">' + theoptions + '</ul></div>';
     
     // Append it after the actual select
     $(customselect).insertAfter(_this);

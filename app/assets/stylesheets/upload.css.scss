@@ -24,15 +24,15 @@
   font-size: 1.4rem;
   cursor: pointer;
   transition: background-color 200ms ease;
-  
-  &:before {
+
+  &:after {
     color: #aaaab2;
     content: '\e603';
     float: right;
     transition: 300ms ease;
   }
   
-  .active &:before {
+  .active &:after {
     transform: rotate(180deg);
   }
 }

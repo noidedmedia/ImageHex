@@ -1,5 +1,7 @@
 <%= @user.name %>
 
+<br>
+
 <% @collections.each do |c| %>
   <%= render "collection_stub", c: c %>
 <% end %>
