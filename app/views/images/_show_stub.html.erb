@@ -3,7 +3,7 @@
     <% @images.each_with_index do |img, i| %>
       <%# We serialize the query string to allow us to provide %>
       <%# "next" and "prev" links on things. %>
-      <%= link_to image_tag(img.f :medium), image_path(img, params.merge({num: i})), {class: "image-list-member"} %>
+      <%= link_to image_tag(img.f :medium), image_path(img), {class: "image-list-member"} %>
     <% end %> 
   <% end %>
 </div>
