@@ -1,3 +1,5 @@
+@import "scss-variables";
+
 /* The following animations are used to move the error dialog down below the header, keep it there for 90% of the duration of the animation, then hide it again. */
 @-webkit-keyframes alertAnimation {
   0% {
@@ -94,7 +96,7 @@
   background-color: #5bb289;
 
   > p:first-of-type::before {
-    content: '\e600';
+    content: $icon-success;
     margin-right: 8px;
     top: 1px;
     position: relative;
@@ -106,7 +108,7 @@
   background-color: #556db3;
 
   > p:first-of-type::before {
-    content: '\e600';
+    content: $icon-info;
     margin-right: 8px;
     top: 1px;
     position: relative;
@@ -118,7 +120,7 @@
   background-color: #efb63e;
 
   > p:first-of-type::before {
-    content: '\e600';
+    content: $icon-warning;
     margin-right: 8px;
     top: 1px;
     position: relative;
@@ -130,7 +132,7 @@
   background-color: #cb2e32;
 
   > p:first-of-type::before {
-    content: '\e600';
+    content: $icon-danger;
     margin-right: 8px;
     top: 1px;
     position: relative;
