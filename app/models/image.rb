@@ -50,19 +50,21 @@ class Image < ActiveRecord::Base
 
     # First, properly format group names:
     names = q.map{|x| x.split(",").map{|y| y.downcase.strip.squish}}
-
-    ## 
-    # Next, find the image_id from every tag_group which matches 
-    # our names
-    groups = names.map do |n|
-      TagGroup.joins(:tags)
-        .where(tags: {name: n})
-        .references(:tags)
-        .pluck(:image_id)
-    end
+    ##
+    # Now we have:
+    # [ [names for tags in a group], [names for another group]]
+    # So we gradually refine that down because I can't into SQL
+    # like so:
+    tags = names.map{|n| Tag.where(name: n)}
+    ##
+    # Tags is now an array of [ [Tags a user wants in a group ] ]
+    # So we make it even worse by doing this shit:
+    groups = tags.map{|t| TagGroup.joins(:tags).where(tags: {id: t.pluck(:id)})}
     puts groups.inspect
-    # Set intersection of all the sub-arrays of image ids
-    common = groups.inject{|c, g| c & g}
+    # Now we just find all the common images for each groups
+    ids = groups.pluck(:image_id)
+    # Intersection of sub-arrays
+    common = ids.inject{|c, g| c & g}
     where(id: common)
   end 
   
