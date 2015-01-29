@@ -8,7 +8,7 @@
     <%# capitalized. %>
 
     <div class="custom-select-wrapper">
-      <%= f.select :license, Image.licenses.map{|k, v| [k, v]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+      <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
     </div>
     <%# Note that the above has a "{}" because %>
     <%# html-options needs to be invoked before %>
