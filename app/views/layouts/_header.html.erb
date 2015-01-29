@@ -29,16 +29,10 @@
               Profile
             <% end %>
           <% if current_user.admin? %>
-            <li><a href="/admin/images">Admin</a>
+            <li><%= link_to 'Admin', admin_images_path %>
           <% end %>
-          <li>
-            <%= link_to settings_path do %>
-              Settings
-            <% end %>
-          <li>
-            <%= link_to destroy_user_session_path, :method => :delete do %>
-              Sign out
-            <% end %>
+          <li><%= link_to 'Settings', settings_path %>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
         </ul>
       </div>
 
