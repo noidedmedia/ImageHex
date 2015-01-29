@@ -1,7 +1,7 @@
 <header id="header-container">
   <div id="header-left">
     <div class="header-item">
-      <a href="/">Home</a>
+      <%= link_to 'Home', root_path %>
     </div>
   </div>
 
@@ -13,7 +13,7 @@
     <% if user_signed_in? %>
 
       <div class="header-item">
-        <a href="/images/new">Upload</a>
+        <%= link_to 'Upload', new_image_path %>
       </div>
 
       <div class="header-item">
@@ -21,7 +21,9 @@
       </div>
 
       <div id="dd" class="wrapper-dropdown">
-        <div class="header-item" id="username"><%= current_user.name %></div>
+        <div class="header-item" id="username">
+          <%= current_user.name %>
+        </div>
 
         <ul class="dropdown">
           <li><%= link_to 'Profile', current_user %>
@@ -39,9 +41,7 @@
     <% else %>
 
       <div class="header-item">
-        <%= link_to new_user_session_path do %>
-          Sign in
-        <% end %>
+        <%= link_to 'Sign in', new_user_session_path %>
       </div>
 
     <% end %>
