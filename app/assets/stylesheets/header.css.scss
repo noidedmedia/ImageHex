@@ -118,6 +118,19 @@
   color: rgba(#fff,0.7);
 }
 
+.wrapper-dropdown .dropdown li input[type=submit] {
+  padding: 10px;
+  width: 100%;
+  text-decoration: none;
+  transition: color 200ms ease-out;
+  color: rgba(#fff,0.7);
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
 .wrapper-dropdown .dropdown li:first-of-type a {
   border: none;
   border-radius: 4px 4px 0 0;
@@ -147,9 +160,10 @@
 }
 
 /* Hover state */
-.wrapper-dropdown .dropdown li:hover a {
+.wrapper-dropdown .dropdown li:hover a, .wrapper-dropdown .dropdown li:hover input[type=submit] {
   background: #333;
   color: #fff;
+  cursor: pointer;
 }
 
 /* Active state */

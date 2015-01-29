@@ -97,6 +97,7 @@
 
   > p:first-of-type::before {
     content: $icon-success;
+    font-size: 1.6rem;
     margin-right: 8px;
     top: 1px;
     position: relative;
@@ -109,6 +110,7 @@
 
   > p:first-of-type::before {
     content: $icon-info;
+    font-size: 1.6rem;
     margin-right: 8px;
     top: 1px;
     position: relative;
@@ -121,6 +123,7 @@
 
   > p:first-of-type::before {
     content: $icon-warning;
+    font-size: 1.6rem;
     margin-right: 8px;
     top: 1px;
     position: relative;
@@ -133,6 +136,7 @@
 
   > p:first-of-type::before {
     content: $icon-danger;
+    font-size: 1.6rem;
     margin-right: 8px;
     top: 1px;
     position: relative;
