@@ -142,18 +142,19 @@
   }
 }
 
-.tag-group-show{
+.tag-group-show {
   border: 1px solid blue;
   display: inline-block;
 }
-.tag-box{
+
+.tag-box {
   padding-left: 10px;
   padding-right: 10px;
   display: inline-block;
   border: 1px solid black;
-  &:hover{
+
+  &:hover {
     background-color: black;
     color: white;
   }
-  transition: 0.25s;
 }
