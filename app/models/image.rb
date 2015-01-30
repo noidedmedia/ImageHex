@@ -53,19 +53,30 @@ class Image < ActiveRecord::Base
     ##
     # Now we have:
     # [ [names for tags in a group], [names for another group]]
-    # So we gradually refine that down because I can't into SQL
-    # like so:
-    tags = names.map{|n| Tag.where(name: n)}
-    ##
-    # Tags is now an array of [ [Tags a user wants in a group ] ]
-    # So we make it even worse by doing this shit:
-    groups = tags.map{|t| TagGroup.joins(:tags).where(tags: {id: t.pluck(:id)})}
-    puts groups.inspect
-    # Now we just find all the common images for each groups
-    ids = groups.pluck(:image_id)
-    # Intersection of sub-arrays
-    common = ids.inject{|c, g| c & g}
-    where(id: common)
+    # We first do set division to find valid images
+    # Query is like this:
+    query = %q{
+    SELECT tag_groups.image_id AS "id"
+      FROM tag_groups
+        INNER JOIN tag_group_members
+          ON tag_groups.id = tag_group_members.tag_group_id
+        INNER JOIN tags
+          ON tags.id = tag_group_members.tag_id
+        WHERE tags.name IN (?)
+        GROUP BY tag_groups.id
+        HAVING COUNT(*) = ?
+    }
+    ids = names.map do |name|
+      
+      # Query is above
+      # We have 2 values to insert: the tag names, and
+      # the number of tag names.
+      
+      d = Image.find_by_sql[query, name, name.count])
+      puts d.inspect
+      d
+    end
+    puts ids.inspect
   end 
   
   ##
