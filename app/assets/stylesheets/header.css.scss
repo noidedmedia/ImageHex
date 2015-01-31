@@ -142,7 +142,7 @@
     position: absolute;
     bottom: 100%;
     right: 20px;
-    border-width: 0 8px 8px 8px;
+    border-width: 0 8px 8px;
     border-style: solid;
     border-color: #555 transparent;
   }
@@ -198,6 +198,7 @@
     border-bottom: none;
     border-left: 1px solid rgba(#fff,0.3);
     border-right: 1px solid rgba(#fff,0.3);
+    border-radius: none;
     color: #fff;
     transition: color 400ms ease, background-color 400ms ease, border 400ms ease;
     appearance: none;
