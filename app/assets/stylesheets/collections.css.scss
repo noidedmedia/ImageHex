@@ -1,3 +1,71 @@
-// Place all the styles related to the Collections controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "scss-variables";
+
+.new-collection-container {
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: column wrap;
+  width: 650px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 100px;
+
+  .label {
+    text-align: right;
+    width: 150px;
+    display: inline-block;
+    padding-right: 5px;
+  }
+
+  @media all and (max-width: $mobile-width) {
+    width: 100vw;
+  }
+}
+
+.new-collection-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#new-collection-title, #new-collection-description {
+  width: calc(100% - 155px);
+  display: inline-block;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-bottom: 1px solid #aaaab2;
+  padding-bottom: 4px;
+  background-color: transparent;
+  display: inline-block;
+  font-size: 1.4rem;
+  transition: border 200ms ease; 
+
+  &:focus {
+    outline: transparent;
+    border-bottom: 1px solid #333;
+  }
+}
+
+#new-collection-description {
+  resize: vertical;
+  max-height: 250px;
+}
+
+#new-collection-submit {
+  margin-left: 150px;
+  width: calc(100% - 150px);
+  color: #fff;
+  background-color: #5bb289;
+  font-size: 1.6rem;
+  padding: 8px;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:focus {
+    outline: transparent;
+  }
+}

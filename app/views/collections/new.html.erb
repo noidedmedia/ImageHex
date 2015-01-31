@@ -1,12 +1,22 @@
 <%= flash[:error] %>
 
-<%= form_for @collection do |f| %>
-  
-  <%= f.text_field :name %>
-  <%= f.text_area :description %>
-  <%# You're going to be able to select the type of collections soon,
-    for now we just use this %>
-  <%= f.hidden_field :type, value: "Subjective" %>
-  <%= f.submit %>
-<% end %>
+<div class="new-collection-container">
+  <%= form_for @collection do |f| %>
+    
+    <div class="new-collection-field">
+      <%= f.label :name, "Title", class: "label" %>
+      <%= f.text_field :name, id: "new-collection-title" %>
+    </div>
 
+    <div class="new-collection-field">
+      <%= f.label :name, "Description", class: "label" %>
+      <%= f.text_area :description, id: "new-collection-description" %>
+    </div>
+
+    <%# You're going to be able to select the type of collections soon,
+      for now we just use this %>
+    <%= f.hidden_field :type, value: "Subjective" %>
+    
+    <%= f.submit "Create Collection", id: "new-collection-submit" %>
+  <% end %>
+</div>
