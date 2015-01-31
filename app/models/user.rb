@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  ##
+  # Use a friendly id to find by name
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   ################
   # ASSOCIATIONS #
   ################
