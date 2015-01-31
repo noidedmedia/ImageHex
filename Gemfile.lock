@@ -36,6 +36,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (6.0.0)
     aws-sdk (1.60.2)
       aws-sdk-v1 (= 1.60.2)
@@ -43,11 +46,19 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     builder (3.2.2)
+    bullet (4.14.2)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.5)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -128,6 +139,8 @@ GEM
     postmark-rails (0.9.0)
       actionmailer (>= 3.0.0)
       postmark (~> 1.4.0)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -238,6 +251,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.6.2)
     warden (1.2.3)
       rack (>= 1.0)
     will_paginate (3.0.7)
@@ -246,7 +260,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   aws-sdk
+  better_errors
+  bullet
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails
@@ -260,6 +277,7 @@ DEPENDENCIES
   pg
   possessive
   postmark-rails
+  quiet_assets
   rails (= 4.2.0)
   rails_12factor
   rspec-rails (~> 3.1)

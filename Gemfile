@@ -55,6 +55,13 @@ group :development, :test do
   gem "mailcatcher" # to confirm mails
 end
 
+group :development do
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'annotate'
+  gem 'bullet'
+
+end
 group :test do
   # Continue to make tests good
   gem 'shoulda-matchers'
