@@ -26,7 +26,9 @@ class User < ActiveRecord::Base
   ###############
   # VALIDATIONS #
   ###############
-  validates :name, presence: true,  uniqueness: {case_sensitive: false}
+  validates :name, presence: true,
+    uniqueness: {case_sensitive: false},
+    format: {with: /\w+/}
   validates :page_pref, inclusion: {:in => (1..100)}
 
   #############

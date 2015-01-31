@@ -17,7 +17,8 @@ class Image < ActiveRecord::Base
   has_many :tag_groups
 
   has_many :reports, as: :reportable
-  
+
+  has_many :comments, as: :commentable 
   has_many :collection_images
   
   has_many :collections, through: :collection_images
