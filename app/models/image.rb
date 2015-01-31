@@ -72,11 +72,12 @@ class Image < ActiveRecord::Base
       # We have 2 values to insert: the tag names, and
       # the number of tag names.
       
-      d = Image.find_by_sql([query, name, name.count])
-      puts d.inspect
-      d
+      Image.find_by_sql([query, name, name.count]).map(&:id)
     end
-    puts ids.inspect
+    ## 
+    # We use a fold to get common ids
+    common = ids.inject{|old, x| x & old}
+    where(id: common)
   end 
   
   ##
