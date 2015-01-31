@@ -3,7 +3,8 @@
 .new-collection-container {
   display: -webkit-flex;
   display: flex;
-  flex-flow: column wrap;
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
   width: 650px;
   padding: 10px;
   margin: auto;
@@ -11,8 +12,7 @@
 
   .label {
     text-align: right;
-    width: 150px;
-    display: inline-block;
+    width: 90px;
     padding-right: 5px;
   }
 
@@ -27,18 +27,20 @@
 }
 
 #new-collection-title, #new-collection-description {
-  width: calc(100% - 155px);
+  width: calc(100% - 95px);
   display: inline-block;
+  vertical-align: top;
   appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
   border: 0;
+  border-radius: 0;
   border-bottom: 1px solid #aaaab2;
   padding-bottom: 4px;
   background-color: transparent;
   display: inline-block;
   font-size: 1.4rem;
-  transition: border 200ms ease; 
+  transition: border 200ms ease;
 
   &:focus {
     outline: transparent;
@@ -52,8 +54,8 @@
 }
 
 #new-collection-submit {
-  margin-left: 150px;
-  width: calc(100% - 150px);
+  margin-left: 90px;
+  width: calc(100% - 90px);
   color: #fff;
   background-color: #5bb289;
   font-size: 1.6rem;
