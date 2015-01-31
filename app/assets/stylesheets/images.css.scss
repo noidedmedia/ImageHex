@@ -171,20 +171,3 @@
     }
   }
 }
-
-.tag-group-show {
-  border: 1px solid blue;
-  display: inline-block;
-}
-
-.tag-box {
-  padding-left: 10px;
-  padding-right: 10px;
-  display: inline-block;
-  border: 1px solid black;
-
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-}
