@@ -15,7 +15,8 @@
   }
 
   @media all and (max-width: $mobile-width) {
-    padding: 25px 0;
+    padding: 0;
+    margin: 0;
 
     img {
       max-width: 100vw;
@@ -26,8 +27,8 @@
 #image-page-top-container {
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
   background-color: #444;
 }
 
