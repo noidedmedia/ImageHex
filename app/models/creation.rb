@@ -1,3 +1,8 @@
+
+##
+# A creation is a collection which holds iamges created by a particular parson.
+# It is different from uploads as it specifies not who put the image on ImageHex, but who made it in the first place.
+# So if User Joe uploads the Mona Lisa, he'd put it into the created collection for Leonardo Da Vinci. 
 class Creation < Collection
   before_validation :make_name
 

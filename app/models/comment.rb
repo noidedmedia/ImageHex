@@ -1,3 +1,15 @@
+##
+# A comment is a model polymorphically related to other models which, as the name suggests, allows commenting.
+# In a comment, you can mention another user by putting an "@" and then their username.
+# Like so:
+#     "@connorshea I dunno, it needs to pop more."
+#
+# You can also reply to one or more other comments by putting ">>" and the ID of the comment.
+# Behold:
+#     ">>1230 no you idiot you know nothing about design"
+# Replies and mentions generate a one-time notification and are otherwise only loosely related on the frontend via javascript.
+# We do not store references to mentioned users or replied comments in this model.
+#
 class Comment < ActiveRecord::Base
   #############
   # RELATIONS #
@@ -53,6 +65,9 @@ class Comment < ActiveRecord::Base
     comments.map{|x| x.notify_reply(self)}
   end
 
+  ## 
+  # Parse the body of the comment, find all mentioned users,
+  # notify them
   def notify_mentioned_users
     ##
     # All words that start with an @ until the spaces
@@ -68,6 +83,7 @@ class Comment < ActiveRecord::Base
                      message: mention_message(user))
     n.save!
   end
+
   def mention_message(user)
     "#{self.user.name} mentioned you in a comment"
   end

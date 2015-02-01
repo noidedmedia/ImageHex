@@ -1,5 +1,11 @@
+##
+# A user is exactly what it says on the tin: somebody who uses imagehex under a name.
+# There are (curently) two types of users: an admin and a normal user. 
+# This distinction is stored as an enum.
+# Admins have power over the entire site and can do basically anything.
+# In order to prevent mishaps, you need direct database access to make a 
+# user an admin. 
 class User < ActiveRecord::Base
-  ##
   # Use a friendly id to find by name
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -40,6 +46,9 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
+  
+  ##
+  # Get all images in all collections this user is subscribed to.
   def image_feed
     Image.where(id: subscribed_collections.joins(:collection_images).pluck(:image_id))
   end
@@ -71,9 +80,14 @@ class User < ActiveRecord::Base
     collections.creations.first
   end
   protected
+
+  ##
+  # All users have to have a Favorite collection and a Created collection.
+  # This method makes both of those collections in a callback on user creation.
   def make_collections
     Favorite.create!(users: [self])
     Creation.create!(users: [self])
   end
+
   enum role: [:normal, :admin]
 end
