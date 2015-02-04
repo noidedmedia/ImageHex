@@ -7,6 +7,9 @@
 # You can also reply to one or more other comments by putting ">>" and the ID of the comment.
 # Behold:
 #     ">>1230 no you idiot you know nothing about design"
+# 
+# To include an image, reference its id with a # in front. Like so:
+#     "#123 is like this image but less awesome"
 # Replies and mentions generate a one-time notification and are otherwise only loosely related on the frontend via javascript.
 # We do not store references to mentioned users or replied comments in this model.
 #
