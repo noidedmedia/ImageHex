@@ -1,7 +1,22 @@
-<%= @user.name %>
+<div id="user-page-container">
+  <div class="user-page-sidebar">
 
-<br>
+    <div class="user-profile-picture">
+      <!-- User's profile picture goes here. -->
+    </div>
 
-<% @collections.each do |c| %>
-  <%= render "collection_stub", c: c %>
-<% end %>
+    <p class="user-page-username"><%= @user.name %></p>
+
+    <!-- User's website goes here. -->
+
+    <!-- User bio goes here. -->
+
+  </div>
+
+
+  <div class="user-content-container">
+    <% @collections.each do |c| %>
+      <%= render "collection_stub", c: c %>
+    <% end %>
+  </div>
+</div>

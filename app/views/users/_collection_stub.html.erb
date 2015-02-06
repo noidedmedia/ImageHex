@@ -1,5 +1,15 @@
-<%= link_to c.name, collection_path(c) %>
+<%= link_to collection_path(c) do %>
+  
+  <div class="embed-collection-container">
 
-<% if c.images.count > 0 %>
-  <%= image_tag c.images.first.f(:large) %>
+    <% if c.images.count > 0 %>
+      <%= image_tag c.images.first.f(:medium) %>
+    <% end %>
+
+    <div class="collection-information">
+      <p class="collection-title"><%= c.name %>
+      <p class="collection-description"><%= c.description %>
+    </div>
+  </div>
+
 <% end %>

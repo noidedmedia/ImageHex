@@ -1,0 +1,72 @@
+#user-page-container {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+}
+
+.user-page-sidebar {
+  position: fixed;
+  box-shadow: 0 0 5px 5px rgba(#000,.1);
+  background-color: #fff;
+  min-width: 330px;
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  padding: 40px;
+}
+
+.user-profile-picture {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+  background-color: #c9c9c9;
+}
+
+.user-content-container {
+  margin-left: 330px;
+  width: 100%;
+  padding: 15px 30px;
+
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  > a {
+    margin: 10px;
+  }
+}
+
+.user-page-username {
+  font-size: 2.1rem;
+  font-weight: 500;
+}
+
+.embed-collection-container {
+  background-color: #fff;
+  padding: 5px;
+  display: flex;
+  flex: 400px 1 1;
+  flex-flow: row nowrap;
+  
+  img {
+    padding-right: 10px;
+    min-width: 300px;
+    max-height: 200px;
+  }
+
+  .collection-information {
+    display: block;
+    width: auto;
+
+  }
+}
+
+.collection-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.collection-description {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
