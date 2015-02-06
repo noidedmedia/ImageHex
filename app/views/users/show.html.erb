@@ -1,7 +1,7 @@
 <div id="user-page-container">
-  <div class="user-page-sidebar">
+  <div id="user-page-sidebar">
 
-    <div class="user-profile-picture">
+    <div id="user-page-profile-picture">
       <!-- User's profile picture goes here. -->
     </div>
 
@@ -14,9 +14,22 @@
   </div>
 
 
-  <div class="user-content-container">
-    <% @collections.each do |c| %>
-      <%= render "collection_stub", c: c %>
-    <% end %>
+  <div id="user-content-container">
+    <div id="user-page-header-tabs">
+      <div class="user-page-header-tab">
+        <a href="#">Uploads</a>
+      </div>
+      
+      <div class="user-page-header-tab">
+        <a href="#">Collections</a>
+      </div>
+    </div>
+
+    <div id="user-collections-container">
+      <% @collections.each do |c| %>
+        <%= render "collection_stub", c: c %>
+      <% end %>
+    </div>
+  
   </div>
 </div>
