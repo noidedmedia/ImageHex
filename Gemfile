@@ -64,7 +64,6 @@ group :development do
   gem 'better_errors'
   gem 'annotate'
   gem 'bullet'
-
 end
 group :test do
   # Continue to make tests good
