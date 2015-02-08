@@ -1,5 +1,6 @@
 <h1> <%= @user.name.possessive %> Collections </h1>
-<h3> He has <%= @collections.count%> of them </h3>
+<h3> He has <%= @collections.count %> of them </h3>
 <% @collections.each do |collection| %>
   <%= collection.name %>
+  <%= collection.description %>
 <% end %>

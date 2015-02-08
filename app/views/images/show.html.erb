@@ -8,7 +8,7 @@
     <div class="image-actions-container">
       <a href="#"><div class="image-actions" id="img-action-favorite">Favorite</div></a>
       <a href="#"><div class="image-actions" id="img-action-collection">Add to Collection</div></a>
-      <%= render 'collection_select'  if current_user %>
+      <%= render 'collection_select' if current_user %>
       <a href="#"><div class="image-actions" id="img-action-share">Share</div></a>
       <a href="#"><div class="image-actions" id="img-action-report">Report</div></a>
       <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>

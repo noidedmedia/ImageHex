@@ -1,3 +1,5 @@
+@import "scss-variables";
+
 /* Container for the header item, always fixed to the top of the screen. */
 #header-container {
   background-color: #333;
@@ -91,7 +93,7 @@
   font-size: 1.4rem;
   font-weight: 400;
   position: absolute;
-  top: 55%;
+  top: 32px;
   left: -45px;
   right: 0;
   width: 150px;
@@ -116,6 +118,19 @@
   color: rgba(#fff,0.7);
 }
 
+.wrapper-dropdown .dropdown li input[type=submit] {
+  padding: 10px;
+  width: 100%;
+  text-decoration: none;
+  transition: color 200ms ease-out;
+  color: rgba(#fff,0.7);
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
 .wrapper-dropdown .dropdown li:first-of-type a {
   border: none;
   border-radius: 4px 4px 0 0;
@@ -127,7 +142,7 @@
     position: absolute;
     bottom: 100%;
     right: 20px;
-    border-width: 0 8px 8px 8px;
+    border-width: 0 8px 8px;
     border-style: solid;
     border-color: #555 transparent;
   }
@@ -145,9 +160,10 @@
 }
 
 /* Hover state */
-.wrapper-dropdown .dropdown li:hover a {
+.wrapper-dropdown .dropdown li:hover a, .wrapper-dropdown .dropdown li:hover input[type=submit] {
   background: #333;
   color: #fff;
+  cursor: pointer;
 }
 
 /* Active state */
@@ -161,15 +177,15 @@
   position: absolute;
   width: 300px;
   top: 0;
-  left: 120px;
+  left: 125px;
   
   &:after {
-    font-size: 1.4rem;
-    content: '\e601';
+    font-size: 1.8rem;
+    content: $icon-search;
     position: absolute;
     color: #aaaab2;
-    left: 12px;
-    top: 13px;
+    left: 10px;
+    top: 10px;
   }
 
   input[type="text"] {
@@ -182,6 +198,7 @@
     border-bottom: none;
     border-left: 1px solid rgba(#fff,0.3);
     border-right: 1px solid rgba(#fff,0.3);
+    border-radius: 0;
     color: #fff;
     transition: color 400ms ease, background-color 400ms ease, border 400ms ease;
     appearance: none;

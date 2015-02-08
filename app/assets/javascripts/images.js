@@ -53,7 +53,11 @@ var stagethree = function() {
 };
 
 var ready = function() {
-  $(".image").click(stageone);
+  var windowwidth = $(window).width();
+
+  if (windowwidth > '700') {
+    $(".image").click(stageone);
+  }
 };
 
 $(document).ready(ready);

@@ -13,12 +13,12 @@ var showon = function() {
     // appearing only when the selector specified by showon is clicked
   });
   hide.each(function() {
-    var that = this;
+    var _this = this;
     $(this).hide();
     var toggle = $($(this).data("showon"));
     $(toggle).on("click", function() {
       console.log("toggled!");
-      $(that).show();
+      $(_this).show();
     });
   });
 };

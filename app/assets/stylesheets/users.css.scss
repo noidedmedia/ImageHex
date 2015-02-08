@@ -1,3 +1,86 @@
-// Place all the styles related to the Users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#user-page-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  height: 100%;
+}
+
+#user-page-sidebar {
+  position: fixed;
+  box-shadow: 0 46px 5px 5px rgba(#000,.1);
+  background-color: #fff;
+  min-width: 330px;
+  min-height: calc(100vh - 100px);
+  height: 100%;
+  padding: 40px;
+  z-index: 100;
+}
+
+#user-page-profile-picture {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 10px;
+  background-color: #c9c9c9;
+}
+
+#user-content-container {
+  margin-left: 330px;
+  width: 100%;
+
+  a {
+    color: #333;
+  }
+}
+
+.user-page-username {
+  font-size: 2.1rem;
+  font-weight: 500;
+}
+
+#user-page-header-tabs {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  padding-left: 30px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  margin-top: 0;
+  box-shadow: 8px 0 5px 5px rgba(#000,.1);
+}
+
+.user-page-header-tab {
+  display: inline-block;
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 20px;
+  height: 40px;
+  padding: 11px 50px 10px 0;
+  cursor: pointer;
+
+  &.current {
+    font-weight: 500;
+    color: #17cd94;
+
+    &:after {
+      content: '';
+      background-color: #17cd94;
+      width: calc(100% + 30px);
+      transform: translate(-15px,6px);
+        -webkit-transform: translate(-15px,6px);
+      height: 3px;
+      display: block;
+    }
+  }
+}
+
+#user-uploads-container, #user-collections-container {
+  margin-top: 40px;
+  padding: 15px 20px;
+  display: none;
+
+  &.current {
+    display: inline-block;
+  }
+}

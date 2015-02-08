@@ -1,4 +1,16 @@
-<%= c.name %>
-<% if c.images.count > 0 %>
-  <%= image_tag c.images.first.f(:large) %>
-<% end %>
+<div class="embed-collection-container">
+
+  <%= link_to collection_path(c) do %>
+    <div class="collection-thumbnail">
+      <% if c.images.count > 0 %>
+        <%= image_tag c.images.first.f(:medium) %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="collection-information">
+    <p class="collection-title"><%= link_to c.name, collection_path(c) %>
+    <p class="collection-curators">Curated by Username
+    <p class="collection-description"><%= c.description %>
+  </div>
+</div>

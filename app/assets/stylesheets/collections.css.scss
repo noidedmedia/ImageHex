@@ -1,3 +1,134 @@
-// Place all the styles related to the Collections controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "scss-variables";
+
+// NEW COLLECTION PAGE
+
+.new-collection-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
+  width: 650px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 100px;
+
+  .label {
+    text-align: right;
+    width: 90px;
+    padding-right: 5px;
+  }
+
+  @media all and (max-width: $mobile-width) {
+    width: 100vw;
+  }
+}
+
+.new-collection-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#new-collection-title, #new-collection-description {
+  width: calc(100% - 95px);
+  display: inline-block;
+  vertical-align: top;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #aaaab2;
+  padding-bottom: 4px;
+  background-color: transparent;
+  display: inline-block;
+  font-size: 1.4rem;
+  transition: border 200ms ease;
+
+  &:focus {
+    outline: transparent;
+    border-bottom: 1px solid #333;
+  }
+}
+
+#new-collection-description {
+  resize: vertical;
+  max-height: 250px;
+}
+
+#new-collection-submit {
+  margin-left: 90px;
+  width: calc(100% - 90px);
+  color: #fff;
+  background-color: #5bb289;
+  font-size: 1.6rem;
+  padding: 8px;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:focus {
+    outline: transparent;
+  }
+}
+
+
+// EMBEDDED COLLECTIONS
+
+.embed-collection-container {
+  background-color: #fff;
+  margin-bottom: 15px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 400px 1 1;
+          flex: 400px 1 1;
+  -webkit-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  position: relative;
+
+  .collection-information {
+    display: block;
+    width: auto;
+    min-width: 250px;
+    margin-left: 10px;
+  }
+}
+
+.collection-thumbnail {
+  width: 300px;
+  height: 200px;
+  position: relative; 
+
+  img {
+    position: absolute;
+    clip: rect(0 300px 200px 0);
+  }
+}
+
+.collection-title {
+  font-size: 2.1rem;
+  font-weight: 500;
+  padding: 8px 0 0;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.collection-description {
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding: 4px 0;
+}
+
+.collection-curators {
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 2px 0;
+}

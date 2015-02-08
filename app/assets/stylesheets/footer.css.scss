@@ -1,5 +1,4 @@
-$emph-text: #828282; // Emphasized text
-$unemph-text: #6D6D6D; // Unemphasized text
+@import "scss-variables";
 
 /* Container for the footer */
 #footer-container {
@@ -14,12 +13,19 @@ $unemph-text: #6D6D6D; // Unemphasized text
   padding: 0;
   position: relative;
   width: 100vw;
+  z-index: 1000;
+
+  @media all and (max-width: $mobile-width) {
+    height: auto;
+  }
 }
 
 /* Footer div itself. */
 #footer {
+  display: -webkit-flex;
   display: flex;
-  flex-flow: row nowrap;
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
   height: 100%;
   margin: auto;
   min-width: 700px;
@@ -34,14 +40,23 @@ $unemph-text: #6D6D6D; // Unemphasized text
       color: $emph-text;
     }
   }
+
+  @media all and (max-width: $mobile-width) {
+    min-width: auto;
+    width: 100%;
+  }
 }
 
 /* First column in the footer for the description, copyright, etc. */
 .footer-description-column {
   height: 100%;
-  padding: 0px 25px;
+  padding: 0 25px;
   text-align: left;
   width: 50%;
+
+  @media all and (max-width: $mobile-width) {
+    width: 100vw;
+  }
 }
 
 /* "ImageHex" text in the description column. */
@@ -51,6 +66,10 @@ $unemph-text: #6D6D6D; // Unemphasized text
   font-size: 1.4rem;
   font-weight: 500;
   padding-bottom: 5px;
+
+  @media all and (max-width: $mobile-width) {
+    font-size: 1.6rem;
+  }
 }
 
 /* Body text in the description column. */
@@ -59,6 +78,10 @@ $unemph-text: #6D6D6D; // Unemphasized text
   font-size: 1.2rem;
   font-weight: 400;
   padding-bottom: 10px;
+
+  @media all and (max-width: $mobile-width) {
+    font-size: 1.4rem;
+  }
 }
 
 /* Copyright text in the description column. */
@@ -67,13 +90,23 @@ $unemph-text: #6D6D6D; // Unemphasized text
   display: block;
   font-size: 1.2rem;
   font-weight: 500;
+
+  @media all and (max-width: $mobile-width) {
+    font-size: 1.4rem;
+  }
 }
 
 /* Second and third columns in the footer, contain links to various sections. */
 .footer-links-column {
   height: 100%;
-  padding: 0px 30px;
+  padding: 0 40px;
   width: 25%;
+
+  @media all and (max-width: $mobile-width) {
+    height: auto;
+    width: 100vw;
+    padding: 0 25px;
+  }
 }
 
 /* Unordered list styling for second and third columns. */
@@ -87,14 +120,27 @@ $unemph-text: #6D6D6D; // Unemphasized text
   li {
     font-size: 1.2rem;
     font-weight: 400;
-    padding: 4px 0px;
+    padding: 4px 0;
 
     /* Special styling for the first list item in each list, as the first item is the list's "title" and should be emphasized. */
     &:first-of-type {
       color: $emph-text;
       font-size: 1.3rem;
       font-weight: 500;
-      padding: 0px 0px 4px 0px;
+      padding: 0 0 4px;
+    }
+  }
+
+  @media all and (max-width: $mobile-width) {
+    padding-top: 25px;
+
+    li {
+      font-size: 1.4rem;
+      padding: 8px 0;
+
+      &:first-of-type {
+        font-size: 1.5rem;
+      }
     }
   }
 }
