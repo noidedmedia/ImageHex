@@ -30,4 +30,5 @@
   <% @image.tag_groups.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>
+  <%= render "shared/comments", url: comment_image_path(@image), subject: @image %>
 </div>

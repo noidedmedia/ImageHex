@@ -1,9 +1,17 @@
 class ImagesController < ApplicationController
   # Load the image via our id
-  before_action :load_image, only: [:favorite, :created, :update, :edit, :destroy, :show]
+  before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
-  before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy]
-
+  before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy, :report, :comment]
+  def comment
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      redirect_to @image
+    else
+      flash[:errors] = @comment.errors.full_messages
+      redirect_to @image
+    end
+  end
   ##
   # The current user alerts the site that an image was created by him.
   def created
@@ -125,4 +133,10 @@ class ImagesController < ApplicationController
       .merge(user_id: current_user.id)
   end
 
+  def comment_params
+    params.require(:comment)
+      .permit(:body)
+      .merge(user_id: current_user.id)
+      .merge(commentable: @image)
+  end
 end
