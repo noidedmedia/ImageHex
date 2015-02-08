@@ -1,5 +1,7 @@
 @import "scss-variables";
 
+// NEW COLLECTION PAGE
+
 .new-collection-container {
   display: -webkit-flex;
   display: flex;
@@ -70,4 +72,55 @@
   &:focus {
     outline: transparent;
   }
+}
+
+
+// EMBEDDED COLLECTIONS
+
+.embed-collection-container {
+  background-color: #fff;
+  margin-bottom: 15px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex: 400px 1 1;
+          flex: 400px 1 1;
+  -webkit-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  position: relative;
+
+  .collection-information {
+    display: block;
+    width: auto;
+    min-width: 250px;
+    margin-left: 10px;
+  }
+}
+
+.collection-thumbnail {
+  width: 300px;
+  height: 200px;
+  position: relative; 
+
+  img {
+    position: absolute;
+    clip: rect(0 300px 200px 0);
+  }
+}
+
+.collection-title {
+  font-size: 2.1rem;
+  font-weight: 500;
+  padding: 8px 0 0;
+}
+
+.collection-description {
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding: 4px 0;
+}
+
+.collection-curators {
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 2px 0;
 }

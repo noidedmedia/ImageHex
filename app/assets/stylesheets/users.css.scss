@@ -1,6 +1,8 @@
 #user-page-container {
+  display: -webkit-flex;
   display: flex;
-  flex-flow: row nowrap;
+  -webkit-flex-flow: row nowrap;
+          flex-flow: row nowrap;
   height: 100%;
 }
 
@@ -30,10 +32,6 @@
     text-decoration: none;
     color: #333;
   }
-
-  > a {
-    margin: 10px;
-  }
 }
 
 .user-page-username {
@@ -48,64 +46,42 @@
   padding-left: 30px;
   background-color: #fff;
   margin-bottom: 10px;
+  margin-top: 0;
   box-shadow: 8px 0 5px 5px rgba(#000,.1);
 }
 
 .user-page-header-tab {
   display: inline-block;
   position: relative;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 400;
+  line-height: 20px;
   height: 40px;
   padding: 11px 50px 10px 0;
+  cursor: pointer;
 
-  &.active {
+  &.current {
     font-weight: 500;
+    color: #17cd94;
 
     &:after {
-
+      content: '';
+      background-color: #17cd94;
+      width: calc(100% + 30px);
+      transform: translate(-15px,6px);
+        -webkit-transform: translate(-15px,6px);
+      height: 3px;
+      display: block;
     }
   }
 }
 
-#user-collections-container {
+#user-uploads-container, #user-collections-container {
   margin-top: 40px;
   padding: 15px 20px;
-}
+  display: none;
 
-.embed-collection-container {
-  background-color: #fff;
-  margin-bottom: 15px;
-  display: flex;
-  flex: 400px 1 1;
-  flex-flow: row nowrap;
-  position: relative;
-
-  .collection-information {
+  &.current {
     display: block;
-    width: auto;
-    min-width: 250px;
-  }
-}
-
-.collection-title {
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-.collection-description {
-  font-size: 1.4rem;
-  font-weight: 300;
-}
-
-.collection-thumbnail {
-  width: 300px;
-  height: 200px;
-  margin-right: 10px;
-  position: relative; 
-
-  img {
-    position: absolute;
-    clip: rect(0 300px 200px 0);
   }
 }
