@@ -2,12 +2,15 @@
   
   <div class="embed-collection-container">
 
-    <% if c.images.count > 0 %>
-      <%= image_tag c.images.first.f(:medium) %>
-    <% end %>
+    <div class="collection-thumbnail">
+      <% if c.images.count > 0 %>
+        <%= image_tag c.images.first.f(:medium) %>
+      <% end %>
+    </div>
 
     <div class="collection-information">
       <p class="collection-title"><%= c.name %>
+      <p class="collection-curators">Curated by ...
       <p class="collection-description"><%= c.description %>
     </div>
   </div>
