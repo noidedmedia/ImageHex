@@ -13,8 +13,9 @@
     <!-- Curators needs to be replaced by an actual list of curators (see Wiki page with mockups). -->
     <p class="collection-curators">Curated by Curators
     <p class="collection-description"><%= c.description %>
-    <p class="collection-subscribe"><%= form_tag(subscribe_collection_path(c.id)) do %>
-    <%= button_tag("submit") %>
-  <% end %>
+    
+    <%= form_tag(subscribe_collection_path(c.id)) do %>
+      <%= button_tag("Follow") %>
+    <% end %>
   </div>
 </div>
