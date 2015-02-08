@@ -60,6 +60,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'reek'
+  gem 'rails_best_practices'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'annotate'
