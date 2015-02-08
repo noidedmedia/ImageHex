@@ -29,7 +29,6 @@
   width: 100%;
 
   a {
-    text-decoration: none;
     color: #333;
   }
 }
@@ -82,6 +81,6 @@
   display: none;
 
   &.current {
-    display: block;
+    display: inline-block;
   }
 }
