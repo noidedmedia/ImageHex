@@ -138,18 +138,6 @@ ActiveRecord::Schema.define(version: 20150131202840) do
     t.datetime "updated_at"
   end
 
-  create_table "tracked_edits", force: :cascade do |t|
-    t.jsonb    "before"
-    t.jsonb    "after"
-    t.integer  "trackable_id"
-    t.string   "trackable_type"
-    t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "tracked_edits", ["user_id"], name: "index_tracked_edits_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -183,5 +171,4 @@ ActiveRecord::Schema.define(version: 20150131202840) do
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
-  add_foreign_key "tracked_edits", "users"
 end
