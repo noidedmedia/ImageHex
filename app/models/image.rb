@@ -1,3 +1,7 @@
+##
+# Image is sort of the fundamental concept of ImageHex, as the name
+# implies.
+# You should be pretty familiar with this file.
 class Image < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
@@ -17,7 +21,8 @@ class Image < ActiveRecord::Base
   has_many :tag_groups
 
   has_many :reports, as: :reportable
-  
+
+  has_many :comments, as: :commentable 
   has_many :collection_images
   
   has_many :collections, through: :collection_images
@@ -43,7 +48,12 @@ class Image < ActiveRecord::Base
   # CLASS METHODS #
   #################
   
-
+  ##
+  # Search takes a query, and returns all images which match this query.
+  # +q+:: array of groups to be searched for. Each group should be a comma-seperated list of tags.
+  # Example usage:
+  #   Image.search(["red hair, blue eyes", "brown hair, green eyes"])
+  #
   def self.search(q)
     # This shit is messy
     # You have been warned.
@@ -79,18 +89,12 @@ class Image < ActiveRecord::Base
     common = ids.inject{|old, x| x & old}
     where(id: common)
   end 
-  
+
   ##
-  # Takes an array of tag_groups. Find all images which are in each
-  # group at least once.
-  def self.from_groups(p)
-    # Here's how this works: We fold the groups onto each other,
-    # taking those which have the same image_id as 
-    p.inject do |l, n|
-      l.where(image_id: n.pluck(:image_id))
-    end
-  end
+  # Return all images by the number of reports. 
+  # Only returns the images which have at least 1 report.
+  # TODO: rewrite this so it uses SQL and doesn't just load every freaking image into memory
   def self.by_reports
-    Image.all.select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
+    Image.inclues(:reports).sort{|x| x.reports.count}
   end
 end

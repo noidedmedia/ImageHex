@@ -1,7 +1,7 @@
 class CollectionsController < ApplicationController
   before_filter :ensure_user, only: [:new, :create, :edit, :destroy, :update]
   def index
-    @user = User.find(params[:user_id])
+    @user = User.friendly.find(params[:user_id])
     @collections = @user.collections
   end
 

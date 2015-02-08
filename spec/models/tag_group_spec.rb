@@ -42,15 +42,4 @@ describe TagGroup do
       expect(group.tags.map(&:name)).to eq(["test", "black"])
     end
   end
-  describe "#by_tag_names" do
-    let(:wanted){FactoryGirl.create(:tag_group)}
-    let(:unwanted){FactoryGirl.create(:tag_group)}
-    it "gets the correct tag groups" do
-      expect(TagGroup.by_tag_names(wanted.tags.map(&:name))).to include(wanted)
-    end
-    it "doesn't get incorrect tag groups" do
-      result = TagGroup.by_tag_names(wanted.tags.map(&:name))
-      expect(result).to_not include(unwanted)
-    end
-  end
 end

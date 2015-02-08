@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     post "report", on: :member
   end
 
+  concern :commentable do
+    post :comment, on: :member
+  end
   ##################
   # RESTFUL ROUTES #
   ##################
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
       post "add"
     end
     resources :tag_groups
-    concerns :reportable
+    concerns :reportable, :commentable
   end
   devise_for :users, path: "accounts"
 

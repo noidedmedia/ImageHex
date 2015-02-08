@@ -13,6 +13,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
+##
+# Use friendly IDs for nice URLs
+gem 'friendly_id', '~> 5.1.0'
+
 # Possessive gem makes a string possessive
 gem "possessive"
 # Monitor stuff with new relic
@@ -55,6 +59,14 @@ group :development, :test do
   gem "mailcatcher" # to confirm mails
 end
 
+group :development do
+  gem 'reek'
+  gem 'rails_best_practices'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'annotate'
+  gem 'bullet'
+end
 group :test do
   # Continue to make tests good
   gem 'shoulda-matchers'
