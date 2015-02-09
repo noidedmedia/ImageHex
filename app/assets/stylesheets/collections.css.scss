@@ -91,8 +91,10 @@
 }
 
 .collection-information {
+  display: -webkit-flex;
   display: flex;
-  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
   position: absolute;
   bottom: 32px;
   height: 300px;
@@ -100,7 +102,8 @@
   padding: 10px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
   color: #fff;
-  align-content: flex-end;
+  -webkit-align-content: flex-end;
+          align-content: flex-end;
 }
 
 

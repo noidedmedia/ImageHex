@@ -79,9 +79,11 @@
   margin-top: 40px;
   padding: 15px 20px;
   display: none;
-  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
 
   &.current {
+    display: -webkit-flex;
     display: flex;
   }
 }
