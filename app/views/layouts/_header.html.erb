@@ -7,8 +7,19 @@
 
   <div id="header-search">
     <form action="/search" method="get">
-      <input type="text" name="query[]" placeholder="Search" />
+      <!-- Search icon -->
+      <label for="header-search-input">
+        <span class="icon icon-small icon-search"></span>
+      </label>
+
+      <!-- Search input -->
+      <input type="search" id="header-search-input" name="query[]" placeholder="Search" required="" autocomplete="off" />
     </form>
+
+    <div id="header-search-suggestions">
+      <span class="icon icon-huge icon-search"></span>
+      <p>Search for the tag you're looking for, suggestions will show up here.
+    </div>
   </div>
 
   <div id="header-right">

@@ -4,12 +4,12 @@
   <%= form_for @collection do |f| %>
     
     <div class="new-collection-field">
-      <%= f.label :name, "Title", class: "label" %>
+      <%= f.label :name, "Title", class: "label", for: "new-collection-title" %>
       <%= f.text_field :name, id: "new-collection-title" %>
     </div>
 
     <div class="new-collection-field">
-      <%= f.label :name, "Description", class: "label" %>
+      <%= f.label :name, "Description", class: "label", for: "new-collection-description" %>
       <%= f.text_area :description, id: "new-collection-description" %>
     </div>
 

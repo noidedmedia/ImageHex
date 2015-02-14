@@ -68,8 +68,14 @@ p {
   font-size: 1.4rem;
 }
 
-/* Fix for stupid WebKit stuff. */
+/* Fix for WebKit lists. */
 ul {
   -webkit-margin-before: 0;
   -webkit-padding-start: 0;
+}
+
+/* Fix for WebKit search decorations. */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }
