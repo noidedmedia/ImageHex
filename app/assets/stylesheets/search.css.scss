@@ -8,7 +8,8 @@
   height: 40px;
   top: 0;
   left: 125px;
-  transition: height 300ms linear 200ms;
+  background-color: #fff;
+  transition: height 300ms ease-in-out;
 
   form input[type="search"] {
     font-size: 1.4rem;
@@ -22,12 +23,13 @@
     border-right: 1px solid rgba(#fff,0.3);
     border-radius: 0;
     color: #fff;
-    transition: color 400ms ease, background-color 400ms ease, border 400ms ease;
+    transition: color 400ms ease-in-out 300ms, background-color 400ms ease-in-out 300ms;
     appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
 
     &:valid, &:focus {
+      transition: color 400ms ease-in-out, background-color 400ms ease-in-out;
       outline: none;
       border-color: transparent;
       background-color: #fff;
@@ -52,22 +54,22 @@
   width: 100%;
   position: relative;
   text-align: center;
-  transition: opacity 300ms ease-in 600ms;
+  transition: opacity 300ms ease-in-out 600ms;
 
   span {
     display: block;
     height: 100px;
+    margin-top: 20px;
   }
 }
 
 #header-search.active {
-  background-color: #fff;
   height: 240px;
+  transition: height 300ms ease-in-out 300ms;
 
   form input[type="search"] {
     border-color: transparent;
     background-color: #fff;
-    color: #333;
   }
 
   #header-search-suggestions {
