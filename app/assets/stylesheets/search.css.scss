@@ -54,7 +54,7 @@
   width: 100%;
   position: relative;
   text-align: center;
-  transition: opacity 300ms ease-in-out 600ms;
+  transition: opacity 300ms ease-in-out;
 
   span {
     display: block;
@@ -75,5 +75,6 @@
   #header-search-suggestions {
     visibility: visible;
     opacity: 1;
+    transition: opacity 300ms ease-in-out 600ms;
   }
 }
