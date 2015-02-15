@@ -124,7 +124,7 @@
  *
  * Styles for the header search box when on a mobile device.
  *
- * 1. Width is that of the browser minus fifty to allow room 
+ * 1. Width is that of the browser minus some to allow room 
  *    for the close button.
  * 2. Overrides default styles for the search input in Firefox,
  *    Chrome, and Safari.
@@ -143,7 +143,7 @@
     form input[type="search"] {
       font: 300 1.6rem $font-stack;
       height: 50px;
-      width: calc(100% - 50px); /* 1 */
+      width: calc(100% - 75px); /* 1 */
       padding: 0 4px 0 12px;
       background-color: #fff;
       border-radius: 0;
@@ -209,7 +209,7 @@
       
       p {
         padding: 0 30px;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
       }
     }
   }
