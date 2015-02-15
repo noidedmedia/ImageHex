@@ -2,6 +2,7 @@ function headerSearch() {
   var headersearch = $("#header-search");
   var headersearchinput = $("#header-search-input");
 
+  // Runs the function when the header-search input is the focused element.
   headersearchinput.on('focus', function() {
     
     // Checks to make sure the "header-search" div doesn't already have an "active" class.
