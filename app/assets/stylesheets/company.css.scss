@@ -1,6 +1,9 @@
 @import "scss-variables";
 
-/* Styling for all "Company" page's containers. */
+
+/* ==============================================
+    Company pages container
+   ============================================== */
 #about-page-container,
 #people-page-container,
 #contact-page-container {
@@ -14,7 +17,16 @@
   width: 100vw;
 }
 
-/* Navigational sidebar for all "Company" pages. */
+
+/**
+ * Company pages navigation
+ *
+ * Navigational header for the company pages.
+ *
+ * 1. Horizontal padding for each of the navigational items.
+ * 2. Green underline for the current section title.
+ */
+ 
 #company-nav-container {
   width: 100vw;
   height: 40px;
@@ -30,7 +42,7 @@
 
     a {
       display: inline-block;
-      padding: 0 25px;
+      padding: 0 25px; /* 1 */
     }
   }
 
@@ -49,6 +61,7 @@
     font-weight: 500;
     color: #17cd94;
 
+    /* 2 */
     &:after {
       content: '';
       background-color: #17cd94;
@@ -60,6 +73,7 @@
     }
   }
 }
+
 
 /* Content container for Company pages. */
 .company-page-main-column {
@@ -80,6 +94,11 @@
     padding: 0 0 12px;
   }
 }
+
+
+/* ==============================================
+    People page
+   ============================================== */
 
 /* Staff list container. */
 #people-page-list-container {
@@ -119,6 +138,11 @@
   line-height: 16px;
   text-align: center;
 }
+
+
+/* ==============================================
+    About page
+   ============================================== */
 
 #about-page-description {
   color: #333;

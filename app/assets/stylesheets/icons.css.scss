@@ -1,0 +1,28 @@
+@import "scss-variables";
+
+.icon:before {
+  position: absolute;
+  color: #aaaab2;
+}
+
+// Search icon
+.icon-search:before {
+  content: $icon-search;
+}
+
+.icon-small:before {
+  font-size: 1.8rem;
+}
+
+.icon-medium:before {
+  font-size: 3.2rem;
+}
+
+.icon-large:before {
+  font-size: 4.8rem;
+}
+
+.icon-huge:before {
+  font-size: 7.2rem;
+  transform: translateX(-3.6rem); // Translate left half of the font-size to enable centering.
+}

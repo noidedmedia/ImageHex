@@ -1,4 +1,5 @@
 // Setting stuff up.
+
 function DropDown(el) {
   this.dd = el;
   this.opts = this.dd.find('ul.dropdown > li');
@@ -49,5 +50,11 @@ function clickOutside() {
 
 // Function runs when the document is "ready".
 $(document).ready(function(){
-  var dd = new DropDown($('#dd'));
+
+  var windowwidth = $(window).width();
+
+  // Only run if the browser window doesn't imply a mobile device.
+  if (windowwidth > '700') {
+    var dd = new DropDown($('#dd'));
+  }
 });
