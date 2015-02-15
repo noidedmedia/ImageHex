@@ -1,3 +1,10 @@
+@import "scss-variables";
+
+
+/* ==============================================
+    User page container
+   ============================================== */
+
 #user-page-container {
   display: -webkit-flex;
   display: flex;
@@ -6,13 +13,29 @@
   height: 100%;
 }
 
+
+/* ==============================================
+    User page sidebar
+   ============================================== */
+
+/**
+ * User page sidebar
+ *
+ * Sidebar for all user pages with the respective user's information.
+ *
+ * 1. Box shadow, "46px" used to move the box-shadow down 46px as
+ *    not to have it run over the userpage tabs.
+ * 2. Ensures that the sidebar will never be smaller than the user's
+ *    browser window minus the height of the header and the footer.
+ */
+ 
 #user-page-sidebar {
   position: fixed;
-  box-shadow: 0 46px 5px 5px rgba(#000,.1);
+  box-shadow: 0 46px 5px 5px rgba(#000,.1); /* 1 */
   background-color: #fff;
   min-width: 330px;
-  min-height: calc(100vh - 100px);
-  height: 100%;
+  min-height: calc(100vh - 200px); /* 2 */
+  height: 100%; /* 2 */
   padding: 40px;
   z-index: 100;
 }
@@ -24,8 +47,18 @@
   background-color: #c9c9c9;
 }
 
+.user-page-username {
+  font-size: 2.1rem;
+  font-weight: 500;
+}
+
+
+/* ==============================================
+    User page content (tabs and/or images)
+   ============================================== */
+
 #user-content-container {
-  margin-left: 330px;
+  margin-left: 330px; /* Width of the user sidebar. */
   width: 100%;
 
   a {
@@ -33,20 +66,27 @@
   }
 }
 
-.user-page-username {
-  font-size: 2.1rem;
-  font-weight: 500;
-}
+
+/**
+ * User page header tabs
+ *
+ * Tabs for the user page (Uploads and Collections).
+ *
+ * 1. User page's header tabs begin 30px from the end of the user
+ *    sidebar.
+ * 2. Box shadow moved right 8 pixels ensure that it won't run
+ *    into the user sidebar.
+ */
 
 #user-page-header-tabs {
   position: fixed;
   z-index: 100;
   width: 100%;
-  padding-left: 30px;
+  padding-left: 30px; /* 1 */
   background-color: #fff;
   margin-bottom: 10px;
   margin-top: 0;
-  box-shadow: 8px 0 5px 5px rgba(#000,.1);
+  box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
 }
 
 .user-page-header-tab {
@@ -58,10 +98,11 @@
   height: 40px;
   padding: 11px 50px 10px 0;
   cursor: pointer;
+  color: #555;
 
   &.current {
     font-weight: 500;
-    color: #17cd94;
+    color: #333;
 
     &:after {
       content: '';
@@ -74,6 +115,10 @@
     }
   }
 }
+
+
+/* Containers for uploads and collections
+   ============================================== */
 
 #user-uploads-container, #user-collections-container {
   margin-top: 40px;
