@@ -157,6 +157,14 @@
     }
   }
 
+  #close-mobile-search-icon {
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    top: 15px;
+
+  }
+
   #mobile-header-search-suggestions {
     display: none;
     opacity: 0;
@@ -177,9 +185,9 @@
 
   #mobile-header-search.active {
     width: 100vw;
-    height: calc(100vh - 50px);
+    height: 100%;
     top: 50px;
-    background: rgba(#fff,.9);
+    background: #fff;
     display: block;
     position: fixed;
     transition: height 300ms ease-in-out 300ms;

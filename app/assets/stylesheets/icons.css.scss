@@ -15,6 +15,11 @@
   content: $icon-search;
 }
 
+// Close icon
+.icon-close:before {
+  content: $icon-placeholder;
+}
+
 .icon-small:before {
   font-size: 1.8rem;
 }

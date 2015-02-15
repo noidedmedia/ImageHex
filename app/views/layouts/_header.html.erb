@@ -67,12 +67,14 @@
     <%= link_to 'Home', root_path %>
   </div>
 
-  <span class="icon icon-small icon-search" id="mobile-search-icon">Kek</span>
+  <span class="icon icon-small icon-search" id="mobile-search-icon"></span>
 
   <div id="mobile-header-search">
 
     <form action="/search" method="get">
       <input type="search" id="mobile-header-search-input" name="query[]" placeholder="Search" required="" autocomplete="off" />
+
+      <span class="icon icon-small icon-close" id="close-mobile-search-icon"></span>
     </form>
 
     <div id="mobile-header-search-suggestions">

@@ -27,11 +27,24 @@ function headerSearch() {
 
 function headerSearchMobile() {
   var headersearch = $("#mobile-header-search");
-  var headersearchinput = $("#mobile-header-search-input");
 
   // Runs the function when the header-search input is the focused element.
   $("#mobile-search-icon").click(function() {
-    $(headersearch).toggleClass('active');
+    $(headersearch).addClass('active');
+    $('body').bind('touchmove', function(e){
+      e.preventDefault()
+    });
+
+    closeHeaderSearchMobile();
+  });
+}
+
+function closeHeaderSearchMobile() {
+  var headersearch = $("#mobile-header-search");
+
+  $("#close-mobile-search-icon").click(function() {
+    $(headersearch).removeClass('active');
+    $('body').unbind('touchmove');
   });
 }
 
