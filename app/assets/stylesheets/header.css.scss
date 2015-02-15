@@ -16,6 +16,10 @@
   top: 0;
   width: 100vw;
   z-index: 1000;
+
+  @media all and (max-width: $mobile-width) {
+    display: none;
+  }
 }
 
 /* Items aligned to the left side of the header. */
@@ -42,7 +46,7 @@
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
-  padding: 0px 15px;
+  padding: 0 15px;
   transition: color 300ms ease-in-out;
 
   &:hover {
@@ -68,6 +72,22 @@
 
   &:last-of-type {
     padding-right: 0px;
+  }
+}
+
+
+/* ==============================================
+    Mobile
+   ============================================== */
+
+#mobile-header {
+  display: none;
+}
+
+@media all and (max-width: $mobile-width) {
+  #mobile-header {
+    display: block;
+    position: absolute;
   }
 }
 

@@ -5,6 +5,11 @@
   color: #aaaab2;
 }
 
+// Home icon
+.icon-home:before {
+  content: $icon-placeholder;
+}
+
 // Search icon
 .icon-search:before {
   content: $icon-search;

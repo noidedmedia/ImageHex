@@ -25,8 +25,27 @@ function headerSearch() {
   });
 }
 
-var ready = function() {
-  headerSearch();
+function headerSearchMobile() {
+  var headersearch = $("#mobile-header-search");
+  var headersearchinput = $("#mobile-header-search-input");
+
+  // Runs the function when the header-search input is the focused element.
+  $("mobile-search-icon").click(function() {
+    $(headersearch).toggleClass('active');
+  });
+}
+
+var ready = function() {  
+  var windowwidth = $(window).width();
+
+  // Only run if the browser window size doesn't imply a mobile device.
+  if (windowwidth >= '700') {
+    headerSearch();
+  }
+  // Only run if the browser window size implies a mobile device.
+  else {
+    headerSearchMobile();
+  }
 };
 
 $(document).ready(ready);

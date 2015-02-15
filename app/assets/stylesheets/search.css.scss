@@ -117,3 +117,75 @@
     transition: opacity 300ms ease-in-out 600ms; /* 2 */
   }
 }
+
+
+/**
+ * Search on mobile
+ *
+ * Styles for the header search box when on a mobile device.
+ *
+ * 1. Overrides default styles for the search input in Firefox,
+ *    Chrome, and Safari.
+ * 2. 
+ */
+
+@media all and (max-width: $mobile-width) {
+  #header-search {
+    display: none;
+  }
+
+  #mobile-header-search {
+    display: none;
+
+    form input[type="search"] {
+      font: 300 1.6rem $font-stack;
+      height: 50px;
+      width: 100%;
+      padding: 0 4px 0 12px;
+      background-color: #fff;
+      border-radius: 0;
+      border: 0;
+      color: #fff;
+      appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+
+      &:valid, &:focus {
+        outline: none;
+        color: #333;
+      }
+    }
+  }
+
+  #mobile-header-search-suggestions {
+    display: none;
+    opacity: 0;
+    color: #aaaab2;
+    padding: 5px;
+    height: 200px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    transition: opacity 300ms ease-in-out; 
+
+    span {
+      display: block;
+      height: 100px;
+      margin-top: 20px;
+    }
+  }
+
+  #mobile-header-search.active {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    top: 50px;
+    background: rgba(#fff,.8);
+    display: block;
+
+    #mobile-header-search-suggestions {
+      display: block;
+      opacity: 1;
+      transition: opacity 300ms ease-in-out 300ms;
+    }
+  }
+}
