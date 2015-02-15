@@ -9,17 +9,21 @@ describe ImagesController do
       sign_in @user
     end
     describe "post #add" do
+      let(:i){FactoryGirl.create(:image)}
+      let(:c){FactoryGirl.create(:collection, users: [@user])}
       it "adds the image to a collection" do
-        c = FactoryGirl.create(:collection, users: [@user])
-        i = FactoryGirl.create(:image)
         post :add, id: i.id, collection: c
         expect(c.images).to include(i)
+      end
+      it "changes the number of images in the collection" do
+        expect{
+          post :add, id: i.id, collection: c
+        }.to change{c.images.count}.by(1)
       end
     end
     describe "GET #new" do
       it "responds with an HTTP success" do
         get :new
-
         expect(response).to be_success
       end
     end
@@ -71,7 +75,7 @@ describe ImagesController do
     describe "GET #new" do
       it "redirects to the login page" do
         get :new
-        expect(response).to redirect_to "/users/sign_in"
+        expect(response).to redirect_to "/sessions/sign_in"
       end
     end
     describe "GET #show" do

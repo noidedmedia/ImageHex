@@ -95,6 +95,6 @@ class Image < ActiveRecord::Base
   # Only returns the images which have at least 1 report.
   # TODO: rewrite this so it uses SQL and doesn't just load every freaking image into memory
   def self.by_reports
-    Image.inclues(:reports).sort{|x| x.reports.count}
+    Image.includes(:reports).select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
   end
 end
