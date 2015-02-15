@@ -1,5 +1,5 @@
 function tabbedMenu() {  
-  $('ul#user-page-header-tabs li').click(function(){
+  $('ul#user-page-header-tabs li').click(function() {
     var tabid = $(this).attr('data-tab');
 
     $('ul#user-page-header-tabs li').removeClass('current');

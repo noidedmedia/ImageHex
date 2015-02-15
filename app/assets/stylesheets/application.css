@@ -79,3 +79,8 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
+
+/* Fix for WebKit input text style. */
+input, textarea, keygen, select, button {
+  font: 400 initial 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageHex-Icon-Font';
+}
