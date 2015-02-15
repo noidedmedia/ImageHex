@@ -124,9 +124,10 @@
  *
  * Styles for the header search box when on a mobile device.
  *
- * 1. Overrides default styles for the search input in Firefox,
+ * 1. Width is that of the browser minus fifty to allow room 
+ *    for the close button.
+ * 2. Overrides default styles for the search input in Firefox,
  *    Chrome, and Safari.
- * 2. 
  */
 
 @media all and (max-width: $mobile-width) {
@@ -136,19 +137,21 @@
 
   #mobile-header-search {
     display: none;
+    visibility: hidden;
+    opacity: 0;
 
     form input[type="search"] {
       font: 300 1.6rem $font-stack;
       height: 50px;
-      width: 100%;
+      width: calc(100% - 50px); /* 1 */
       padding: 0 4px 0 12px;
       background-color: #fff;
       border-radius: 0;
       border: 0;
       color: #fff;
-      appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
+      appearance: none; /* 2 */
+        -webkit-appearance: none; /* 2 */
+        -moz-appearance: none; /* 2 */
 
       &:valid, &:focus {
         outline: none;
@@ -160,9 +163,8 @@
   #close-mobile-search-icon {
     display: inline-block;
     position: absolute;
-    right: 40px;
+    right: 45px;
     top: 15px;
-
   }
 
   #mobile-header-search-suggestions {
@@ -184,14 +186,16 @@
   }
 
   #mobile-header-search.active {
+    visibility: visible;
+    display: block;
+    position: fixed;
+    opacity: 1;
     width: 100vw;
     height: 100%;
     top: 50px;
+    left: 0;
     background: #fff;
-    display: block;
-    position: fixed;
     transition: height 300ms ease-in-out 300ms;
-    overflow-y: hidden;
 
     form input[type="search"] {
       border-color: transparent;
@@ -202,6 +206,20 @@
       display: block;
       opacity: 1;
       transition: opacity 300ms ease-in-out 300ms;
+      
+      p {
+        padding: 0 30px;
+        font-size: 1.4rem;
+      }
     }
   }
+}
+
+#mobile-search-icon {
+  height: 50px;
+  position: absolute;
+  right: 0;
+  width: 50px;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
 }

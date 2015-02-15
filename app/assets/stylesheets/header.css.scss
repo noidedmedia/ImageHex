@@ -88,8 +88,12 @@
   #mobile-header {
     width: 100vw;
     height: 50px;
+    padding: 15px;
     background-color: #333;
-    display: block;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+            flex-flow: row nowrap;
     position: fixed;
     z-index: 999;
   }
