@@ -25,8 +25,40 @@ function headerSearch() {
   });
 }
 
-var ready = function() {
-  headerSearch();
+function headerSearchMobile() {
+  var headersearch = $("#mobile-header-search");
+
+  // Runs the function when the header-search input is the focused element.
+  $("#mobile-search-icon").click(function() {
+    $(headersearch).addClass('active');
+    $('body').bind('touchmove', function(e){
+      e.preventDefault()
+    });
+
+    closeHeaderSearchMobile();
+  });
+}
+
+function closeHeaderSearchMobile() {
+  var headersearch = $("#mobile-header-search");
+
+  $("#close-mobile-search-icon").click(function() {
+    $(headersearch).removeClass('active');
+    $('body').unbind('touchmove');
+  });
+}
+
+var ready = function() {  
+  var windowwidth = $(window).width();
+
+  // Only run if the browser window size doesn't imply a mobile device.
+  if (windowwidth >= '700') {
+    headerSearch();
+  }
+  // Only run if the browser window size implies a mobile device.
+  else {
+    headerSearchMobile();
+  }
 };
 
 $(document).ready(ready);
