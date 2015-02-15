@@ -30,7 +30,7 @@ function headerSearchMobile() {
   var headersearchinput = $("#mobile-header-search-input");
 
   // Runs the function when the header-search input is the focused element.
-  $("mobile-search-icon").click(function() {
+  $("#mobile-search-icon").click(function() {
     $(headersearch).toggleClass('active');
   });
 }

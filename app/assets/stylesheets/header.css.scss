@@ -86,8 +86,12 @@
 
 @media all and (max-width: $mobile-width) {
   #mobile-header {
+    width: 100vw;
+    height: 50px;
+    background-color: #333;
     display: block;
-    position: absolute;
+    position: fixed;
+    z-index: 999;
   }
 }
 

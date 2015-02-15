@@ -162,7 +162,7 @@
     opacity: 0;
     color: #aaaab2;
     padding: 5px;
-    height: 200px;
+    height: auto;
     width: 100%;
     position: relative;
     text-align: center;
@@ -179,8 +179,16 @@
     width: 100vw;
     height: calc(100vh - 50px);
     top: 50px;
-    background: rgba(#fff,.8);
+    background: rgba(#fff,.9);
     display: block;
+    position: fixed;
+    transition: height 300ms ease-in-out 300ms;
+    overflow-y: hidden;
+
+    form input[type="search"] {
+      border-color: transparent;
+      background-color: #fff;
+    }
 
     #mobile-header-search-suggestions {
       display: block;
