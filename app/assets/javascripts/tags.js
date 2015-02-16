@@ -58,6 +58,7 @@ var ready = function() {
     var headersearchinputvalue = $("#header-search-input").val();
     if (headersearchinputvalue === "") {
       $("#header-search-suggestions-empty").addClass("active");
+      $("#header-search-suggestions-fillable").empty();
     }
 
     var str = $(this).val();
