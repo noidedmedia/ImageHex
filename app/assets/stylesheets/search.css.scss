@@ -22,11 +22,11 @@
   display: block;
   position: absolute;
   width: 300px;
-  height: 40px;
+  max-height: 40px;
   top: 0;
   left: 125px;
   background-color: #fff;
-  transition: height 300ms ease-in-out; /* 1 */
+  transition: max-height 300ms ease-in-out; /* 1 */
 
   form input[type="search"] {
     font-size: 1.4rem;
@@ -45,12 +45,16 @@
       -webkit-appearance: none; /* 3 */
       -moz-appearance: none; /* 3 */
 
-    &:valid, &:focus {
+    &:focus {
       transition: color 400ms ease-in-out, background-color 400ms ease-in-out;
       outline: none;
       border-color: transparent;
       background-color: #fff;
       color: #333;
+    }
+
+    &:valid:not(:focus) {
+      color: #fff;
     }
   }
 
@@ -80,8 +84,10 @@
   visibility: hidden; /* 1 */
   opacity: 0;
   color: #aaaab2;
-  padding: 5px;
-  height: 200px;
+  background-color: #fff;
+  padding: 0 5px;
+  height: auto;
+  min-height: 0;
   width: 100%;
   position: relative;
   text-align: center;
@@ -107,8 +113,9 @@
  */
 
 #header-search.active {
-  height: 240px; /* 1 */
-  transition: height 300ms ease-in-out 300ms;
+  height: auto;
+  max-height: 240px; /* 1 */
+  transition: max-height 300ms ease-in-out;
 
   form input[type="search"] {
     border-color: transparent;
@@ -116,11 +123,12 @@
   }
 
   @media all and (max-width: $mobile-width) {
-    height: calc(100% - 50px);
+    height: 100%;
+    max-height: 100%;
     width: 100vw;
     top: 50px;
     left: 0;
-    transition: height 300ms ease-in-out, width 300ms ease-in-out;
+    transition: max-height 300ms ease-in-out, width 300ms ease-in-out;
     display: block;
     position: fixed;
 
@@ -142,6 +150,7 @@
     
     &.active {
       display: block;
+      padding-bottom: 30px;
     }
 
     @media all and (max-width: $mobile-width) {
@@ -199,6 +208,9 @@
   left: 0;
   width: 100%;
   color: #333;
+  overflow-y: auto;
+  height: auto;
+  min-height: 0;
 
   > li {
     background-color: #fff;
