@@ -2,7 +2,8 @@ var selected_element = function(selection){
   var box = $("#header-search-input").val();
   var split = box.split(",");
   split[split.length - 1] = selection;
-  $("#header-search-input").val(split.join(", ") + ", ");
+  var list = split.join(", ") + ", ";
+  $("#header-search-input").val(list.replace(/\s{2,}/g," "));
   $("#header-search-input").focus();
 }
 
@@ -14,6 +15,7 @@ var load_suggestions = function(names){
   for(name in names){
     var element = document.createElement("li");
     element.innerHTML = names[name];
+    console.log(element);
     parent.append(element);
     element.onclick = function(){
       var selected = this.innerHTML;
@@ -37,14 +39,12 @@ var suggest = function(name){
 $(document).ready(function(){
   console.log("ready");
   $("#header-search-input").on("input", function(){
-    console.log("changed");
-    console.log(this);
     var str = $(this).val();
     var tags = str.split(",");
     // We do suggestions on the last tag in the list
     var tag = tags[tags.length -1];
     // equivalent of .strip.squish in ruby
-    tag = $.trim(tag).replace(/\s{2,}/, " ");
+    tag = $.trim(tag).replace(/\s{2,}/g, " ");
     if(tag != ""){
       suggest(tag);
     }
