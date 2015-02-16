@@ -49,7 +49,7 @@
   background-color: #fff;
   box-shadow: 0 0 8px 4px rgba(#000,0.05);
 
-  @media all and (max-width: 700px) {
+  @media all and (max-device-width: $mobile-width) {
     width: 100vw;
     margin: auto;
     box-shadow: none;
@@ -60,7 +60,7 @@
     max-width: 500px;
     margin: 3px 0;
 
-    @media all and (max-width: 700px) {
+    @media all and (max-device-width: $mobile-width) {
       width: calc(95vw - 50px);
     }
   }

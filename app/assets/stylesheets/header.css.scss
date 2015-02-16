@@ -17,7 +17,7 @@
   width: 100vw;
   z-index: 1000;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     width: 100vw;
     height: 50px;
     padding: 15px;
@@ -39,7 +39,7 @@
   text-align: left;
   top: 12px;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     top: 16px;
   }
 }
@@ -52,7 +52,7 @@
   text-align: right;
   top: 12px;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     display: none;
   }
 }
@@ -91,7 +91,7 @@
     padding-right: 0px;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     font-size: 1.6rem;
   }
 }

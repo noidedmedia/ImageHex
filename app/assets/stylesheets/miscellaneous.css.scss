@@ -8,7 +8,7 @@
   position: relative;
   width: 100vw;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     margin-top: 50px; // Header is larger on mobile.
   }
 }

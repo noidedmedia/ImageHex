@@ -14,7 +14,7 @@
     max-width: 75vw;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     padding: 0;
     margin: 0;
 
@@ -41,7 +41,7 @@
   -webkit-align-items: flex-end;
           align-items: flex-end;
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     width: 100vw;
   }
 }
@@ -69,7 +69,7 @@
     }
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     padding-bottom: 0;
   }
 }
@@ -83,7 +83,7 @@
     background-color: #333333;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media all and (max-device-width: $mobile-width) {
     padding: 10px 0 10px 45px;
   }
 }
