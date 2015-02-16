@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
+  resources :tags do
+    collection do
+      get "suggest"
+    end
+  end
+
   resources :images do
     member do
       post "favorite"
@@ -44,6 +50,11 @@ Rails.application.routes.draw do
       post "absolve", on: :member
     end
   end
+
+  ########################
+  # SINGLE ACTION ROUTES #
+  ########################
+
   #################
   # STATIC ROUTES #
   #################
