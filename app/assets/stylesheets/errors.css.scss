@@ -11,22 +11,11 @@
   5% {
     transform: translate3d(0, 40px, 0);
       -webkit-transform: translate3d(0, 40px, 0);
-
-    @media all and (max-device-width: $mobile-width) {
-      transform: translate3d(0, 50px, 0);
-        -webkit-transform: translate3d(0, 50px, 0);
-    }
   }
 
   95% {
     transform: translate3d(0, 40px, 0);
       -webkit-transform: translate3d(0, 40px, 0);
-
-
-    @media all and (max-device-width: $mobile-width) {
-      transform: translate3d(0, 50px, 0);
-        -webkit-transform: translate3d(0, 50px, 0);
-    }
   }
 
   99% {
@@ -49,21 +38,11 @@
   8% {
     transform: translate3d(0, 40px, 0);
       -webkit-transform: translate3d(0, 40px, 0);
-
-    @media all and (max-device-width: $mobile-width) {
-      transform: translate3d(0, 50px, 0);
-        -webkit-transform: translate3d(0, 50px, 0);
-    }
   }
 
   92% {
     transform: translate3d(0, 40px, 0);
       -webkit-transform: translate3d(0, 40px, 0);
-
-    @media all and (max-device-width: $mobile-width) {
-      transform: translate3d(0, 50px, 0);
-        -webkit-transform: translate3d(0, 50px, 0);
-    }
   }
 
   99% {
@@ -83,11 +62,6 @@
     -webkit-animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
   transform: translate3d(0, -40px, 0);
     -webkit-transform: translate3d(0, -40px, 0);
-
-  @media all and (max-device-width: $mobile-width) {
-    transform: translate3d(0, -50px, 0);
-      -webkit-transform: translate3d(0, -50px, 0);
-  }
 
   color: #fff;
   display: block;
