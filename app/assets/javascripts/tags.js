@@ -1,4 +1,4 @@
-var selected_element = function(selection){
+var selectedelement = function(selection) {
   // Text inside the box
   var box = $("#header-search-input").val();
   // turn that into an array of tags
@@ -12,9 +12,9 @@ var selected_element = function(selection){
   $("#header-search-input").val(list.replace(/\s{2,}/g," "));
   // Reutrn focus to the input box
   $("#header-search-input").focus();
-}
+};
 
-var load_suggestions = function(names){
+var loadsuggestions = function(names) {
   console.log("Loading suggestions");
   console.log(names);
   // parent we're adding everything to
@@ -23,17 +23,17 @@ var load_suggestions = function(names){
   parent.empty();
   // Make each element an <li> with an onclick handler which adds it to the
   // list.
-  for(name in names){
+  for (name in names) {
     var element = document.createElement("li");
     element.innerHTML = names[name];
     console.log(element);
     parent.append(element);
     element.onclick = function(){
       var selected = this.innerHTML;
-      selected_element(selected);
-    }
+      selectedelement(selected);
+    };
   }
-}
+};
 
 // Load suggestions for a partial tag
 var suggest = function(name){
@@ -43,9 +43,9 @@ var suggest = function(name){
     console.log(data);
     // if, for some god forsaken reason, we get no data, just give up
     if(!data) return;
-    load_suggestions(data);
+    loadsuggestions(data);
   }, "json");
-}
+};
 
 
 $(document).ready(function(){
@@ -61,7 +61,7 @@ $(document).ready(function(){
     // instance of 2-or-more spaces with one space.
     // You need the "g" flag on that regex. No idea why, but you do.
     tag = $.trim(tag).replace(/\s{2,}/g, " ");
-    if(tag != ""){
+    if(tag !== ""){
       suggest(tag);
     }
   });
