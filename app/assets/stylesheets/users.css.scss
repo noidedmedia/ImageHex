@@ -46,8 +46,10 @@
   z-index: 100;
 
   @media all and (max-width: $mobile-width) {
+    display: -webkit-flex;
     display: flex;
-    flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
     height: auto;
     position: relative;
     width: 100%;
