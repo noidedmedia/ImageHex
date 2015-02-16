@@ -151,15 +151,12 @@
 
 
 /**
- * Search on mobile
+ * Mobile-specific styles
  *
- * Styles for the header search box when on a mobile device.
+ * Styles for making the search feature work properly on a
+ * mobile device.
  *
  * 1. Close button unnecessary on desktop.
- * 2. Width is that of the browser minus some to allow room 
- *    for the close button.
- * 3. Overrides default styles for the search input in Firefox,
- *    Chrome, and Safari.
  */
 
 #close-mobile-search-icon {
