@@ -19,6 +19,17 @@
     width: 90px;
     padding-right: 5px;
   }
+
+  @media all and (max-width: $mobile-width) {
+    width: 100vw;
+    margin-top: 40px;
+
+    .label {
+      text-align: left;
+      width: 90px;
+      padding-right: 5px;
+    }
+  }
 }
 
 .new-collection-field {
@@ -46,6 +57,11 @@
     outline: transparent;
     border-bottom: 1px solid #333;
   }
+
+  @media all and (max-width: $mobile-width) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 #new-collection-description {
@@ -70,27 +86,8 @@
   &:focus {
     outline: transparent;
   }
-}
 
-
-@media all and (max-width: $mobile-width) {
-  .new-collection-container {
-    width: 100vw;
-    margin-top: 40px;
-
-    .label {
-      text-align: left;
-      width: 90px;
-      padding-right: 5px;
-    }
-  }
-
-  #new-collection-title, #new-collection-description {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  #new-collection-submit {
+  @media all and (max-width: $mobile-width) {
     margin-left: 0;
     width: 100%;
   }
