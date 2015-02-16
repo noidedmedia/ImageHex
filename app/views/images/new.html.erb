@@ -9,13 +9,16 @@
 
     <div class="custom-select-wrapper">
       <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+      <%# Note that the above has a "{}" because %>
+      <%# html-options needs to be invoked before %>
+      <%# the CSS class can be used. %>
     </div>
-    <%# Note that the above has a "{}" because %>
-    <%# html-options needs to be invoked before %>
-    <%# the CSS class can be used. %>
+
 
     <%# The Medium select input. %>
-    <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]} %>
+    <div class="custom-select-wrapper">
+      <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
+    </div>
     
     <%# the file to add %>
     <%= f.file_field :f %>

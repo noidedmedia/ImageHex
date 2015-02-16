@@ -19,6 +19,10 @@ function customSelect() {
       startingoption = "<span style='color: #aaaab2'>Image License</span>";
     }
 
+    if (listid === 'image-media-select') {
+      startingoption = "<span style='color: #aaaab2'>Media Type</span>";
+    }
+
     // Check if there are option groups 
     if (groups.length) {
       groups.each(function() {
@@ -92,8 +96,8 @@ function customSelect() {
   });
 
   // Hide it on mouseleave
-  selectul.on('mouseleave',function() {
-    $(this).parent('.dropdown-container').removeClass('active');
+  $('.dropdown-container').on('mouseleave',function() {
+    $(selectul).parent('.dropdown-container').removeClass('active');
   });
 
   // Select the option
