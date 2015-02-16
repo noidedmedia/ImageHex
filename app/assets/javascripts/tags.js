@@ -36,10 +36,10 @@ var loadsuggestions = function(names) {
 };
 
 // Load suggestions for a partial tag
-var suggest = function(name){
+var suggest = function(name) {
   url = "/tags/suggest?name=" + name;
   // Get the AJAX from the query
-  $.get(url, function(data, status){
+  $.get(url, function(data, status) {
     console.log(data);
     // if, for some god forsaken reason, we get no data, just give up
     if(!data) return;
@@ -59,7 +59,7 @@ var ready = function() {
     // instance of 2-or-more spaces with one space.
     // You need the "g" flag on that regex. No idea why, but you do.
     tag = $.trim(tag).replace(/\s{2,}/g, " ");
-    if(tag !== ""){
+    if (tag !== "") {
       suggest(tag);
     }
   });
