@@ -15,7 +15,7 @@ function headerSearch() {
 
       // Binds any click outside the headersearch div to removing the "active" class
       // and therefore hidings the header's search dropdown.
-      headersearch.bind('clickoutside', function(event){        
+      headersearch.bind('clickoutside', function(event) {        
 
         // The following sets the max-height of the element to the
         // height of the element itself, because CSS transitions won't
@@ -27,12 +27,19 @@ function headerSearch() {
         $(headersearch).css('max-height', 40);
         $(headersearch).toggleClass('active');
 
+        // If the input box is empty, the "suggestions empty" div should
+        // be displayed to the user.
+        var headersearchinputvalue = $("#header-search-input").val();
+        if (headersearchinputvalue === "") {
+          $("#header-search-suggestions-empty").addClass("active");
+        }
+
         // Unbinds the function so it can only happen once.
         $(this).unbind('clickoutside');
       });
     });
 
-    headersearch.on('transitionend', function(e){
+    headersearch.on('transitionend', function(e) {
       if ($(e.target).is(headersearch)) {
 
         if (headersearch.hasClass('active')) {
@@ -47,7 +54,7 @@ function headerSearch() {
   // Only run if the browser window size implies a mobile device.
   if (windowwidth <= 700) {
     $('#mobile-search-icon').on('click', function() {
-      $('body').bind('touchmove', function(e){
+      $('body').bind('touchmove', function(e) {
         e.preventDefault();
       });
 

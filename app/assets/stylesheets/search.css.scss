@@ -26,7 +26,7 @@
   top: 0;
   left: 125px;
   background-color: #fff;
-  transition: max-height 300ms ease-in-out 200ms; /* 1 */
+  transition: max-height 300ms ease-in-out; /* 1 */
 
   form input[type="search"] {
     font-size: 1.4rem;
