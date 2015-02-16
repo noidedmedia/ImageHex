@@ -145,12 +145,13 @@
 
   #header-search-suggestions-empty {
     display: none;
-    opacity: 1;
+    opacity: 0;
     height: 170px;
     transition: opacity 300ms ease-in-out;
     
     &.active {
       display: block;
+      opacity: 1;
     }
 
     @media all and (max-width: $mobile-width) {
