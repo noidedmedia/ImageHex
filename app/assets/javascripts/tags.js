@@ -12,7 +12,7 @@ var selectedelement = function(selection) {
   $("#header-search-input").val(list.replace(/\s{2,}/g," "));
   // Return focus to the input box
   $("#header-search-input").focus();
-  
+
   $("#header-search-suggestions-fillable").empty();
 };
 
@@ -52,6 +52,13 @@ var suggest = function(name) {
 var ready = function() {
   $("#header-search-input").on("input", function() {
     $("#header-search-suggestions-empty").removeClass("active");
+
+    // If the input box is empty, the "suggestions empty" div should
+    // be displayed to the user.
+    var headersearchinputvalue = $("#header-search-input").val();
+    if (headersearchinputvalue === "") {
+      $("#header-search-suggestions-empty").addClass("active");
+    }
 
     var str = $(this).val();
     // Extract a list of tags

@@ -27,13 +27,6 @@ function headerSearch() {
         $(headersearch).css('max-height', 40);
         $(headersearch).toggleClass('active');
 
-        // If the input box is empty, the "suggestions empty" div should
-        // be displayed to the user.
-        var headersearchinputvalue = $("#header-search-input").val();
-        if (headersearchinputvalue === "") {
-          $("#header-search-suggestions-empty").addClass("active");
-        }
-
         // Unbinds the function so it can only happen once.
         $(this).unbind('clickoutside');
       });
