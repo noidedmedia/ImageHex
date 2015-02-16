@@ -1,0 +1,206 @@
+@import "scss-variables";
+
+/* ==============================================
+    "New collection" page
+   ============================================== */
+
+.new-collection-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
+  width: 650px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 100px;
+
+  .label {
+    text-align: right;
+    width: 90px;
+    padding-right: 5px;
+  }
+
+  @media all and (max-width: $mobile-width) {
+    width: 100vw;
+  }
+}
+
+.new-collection-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#new-collection-title, #new-collection-description {
+  width: calc(100% - 95px);
+  display: inline-block;
+  vertical-align: top;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #aaaab2;
+  padding-bottom: 4px;
+  background-color: transparent;
+  display: inline-block;
+  font-size: 1.4rem;
+  transition: border 200ms ease;
+
+  &:focus {
+    outline: transparent;
+    border-bottom: 1px solid #333;
+  }
+}
+
+#new-collection-description {
+  resize: vertical;
+  max-height: 250px;
+}
+
+#new-collection-submit {
+  margin-left: 90px;
+  width: calc(100% - 90px);
+  color: #fff;
+  background-color: #5bb289;
+  font-size: 1.6rem;
+  padding: 8px;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:focus {
+    outline: transparent;
+  }
+}
+
+
+/**
+ * Embedded collections styles
+ *
+ * Container for embedded collections, e.g. on the user pages.
+ *
+ * 1. Margins are the same to ensure that the spacing between
+ *    each collection will always be equidistant.
+ * 2. Height of image + height of follow button.
+ */
+
+.embed-collection-container {
+  background-color: #fff;
+  margin-bottom: 15px; /* 1 */
+  margin-right: 15px; /* 1 */
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
+  position: relative;
+  height: 432px; /* 2 */
+  width: 400px;
+}
+
+
+/**
+ * Embedded collection thumbnail
+ *
+ * Thumbnail image for an embedded/in-line collection.
+ *
+ * 1. Height/width of the thumbnail.
+ * 2. Clips the thumbnail to 400px by 400px to ensure that it's square
+ *    and fits in the given space.
+ */
+
+.collection-thumbnail {
+  width: 400px;
+  height: 400px;
+  position: relative;
+
+  img {
+    position: absolute;
+    clip: rect(0 400px 400px 0); /* 2 */
+    max-height: 800px;
+    max-width: 800px;
+  }
+}
+
+
+/**
+ * Embedded collection information
+ *
+ * Title, curators, description etc.
+ *
+ * 1. Offset from the bottom to ensure the Follow button never covers
+ *    the collection information.
+ * 2. A semi-transparent black to full transparency gradient that lies
+ *    under the collection information and on top of the collection 
+ *    thumbnail. This helps with contrast of the information text when
+ *    an image is white or another very light color.
+ */
+
+.collection-information {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
+  position: absolute;
+  bottom: 32px; /* 1 */
+  height: 300px;
+  width: 400px;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* 2 */
+  color: #fff;
+  -webkit-align-content: flex-end;
+          align-content: flex-end;
+}
+
+
+/* Name of the collection */
+.collection-title {
+  font-size: 2.1rem;
+  font-weight: 500;
+  padding: 8px 0 0;
+  width: 100%;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+/* Curators with permission to curate the embedded collection. */
+.collection-curators {
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 2px 0;
+  width: 100%;
+}
+
+/* Description for the embedded collection. */
+.collection-description {
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding-top: 10px;
+  padding-bottom: 2px;
+  width: 100%;
+}
+
+/* Follow button */
+.collection-follow {
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.6rem;
+  width: 100%;
+  height: 32px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: none;
+  background-color: #5bb289;
+  cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}

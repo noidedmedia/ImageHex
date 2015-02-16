@@ -1,0 +1,7 @@
+<%= @collection.name %>
+<%= @collection.description %>
+<%= render 'images/show_stub' %>
+
+<%= form_tag(subscribe_collection_path(@collection.id)) do %>
+  <%= button_tag("Follow") %>
+<% end %>

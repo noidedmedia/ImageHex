@@ -1,0 +1,26 @@
+<div class="embed-collection-container">
+
+  <%= link_to collection_path(c) do %>
+    <div class="collection-thumbnail">
+      <% if c.images.count > 0 %>
+        <%= image_tag c.images.first.f %>
+      <% end %>
+    </div>
+
+    <div class="collection-information">
+      <p class="collection-title"><%= c.name %>
+      <!-- Curators needs to be replaced by an actual list of curators (see Wiki page with mockups). -->
+      <p class="collection-curators">Curated by Curators
+
+      <% if c.description != '' %>
+        <p class="collection-description"><%= c.description %>
+      <% end %>
+    </div>
+
+  <% end %>
+
+  <%= form_tag(subscribe_collection_path(c.id)) do %>
+    <%= button_tag "Follow", class: "collection-follow" %>
+  <% end %>
+
+</div>

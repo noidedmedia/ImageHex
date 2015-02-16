@@ -8,16 +8,39 @@ Rails.application.routes.draw do
     post "report", on: :member
   end
 
+  concern :commentable do
+    post :comment, on: :member
+  end
   ##################
   # RESTFUL ROUTES #
   ##################
 
-  resources :images do
-    resources :tag_groups
-    concerns :reportable
+  resources :tags do
+    collection do
+      get "suggest"
+    end
   end
-  devise_for :users
 
+  resources :images do
+    member do
+      post "favorite"
+      post "created"
+      post "add"
+    end
+    resources :tag_groups
+    concerns :reportable, :commentable
+  end
+  devise_for :users, path: "accounts"
+
+  resources :users do
+    ##
+    # This is done so it's easier to see a users collections.
+    # Meanwhile, creation and modification of collections is its own thing.
+    resources :collections, only: [:index]
+  end
+  resources :collections, except: [:index] do
+    post "subscribe", on: :member
+  end
   ################
   # ADMIN ROUTES #
   ################
@@ -27,6 +50,11 @@ Rails.application.routes.draw do
       post "absolve", on: :member
     end
   end
+
+  ########################
+  # SINGLE ACTION ROUTES #
+  ########################
+
   #################
   # STATIC ROUTES #
   #################
@@ -40,6 +68,8 @@ Rails.application.routes.draw do
 
   get '/contact', to: "static_stuff#contact"
 
+  get '/settings', to: 'users#edit'
 
+  post '/settings', to: 'users#update'
   get '/search', to: "images#search"
 end

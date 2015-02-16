@@ -25,7 +25,7 @@ RSpec.configure do |config|
   config.after(:suite) do
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
   end
-
+  config.infer_spec_type_from_file_location!
   # Make testing our files way easier
   config.include Paperclip::Shoulda::Matchers
   # ## Mock Framework

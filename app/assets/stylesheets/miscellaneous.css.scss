@@ -1,3 +1,5 @@
+@import "scss-variables";
+
 /* Parent container applied to most pages to prevent clipping of content with the header, footer. */
 #masthead {
   display: inline-block;
@@ -5,4 +7,15 @@
   min-height: calc(100vh - 200px); // This forces the footer down to the bottom of the page regardless of whether or not the page content takes up the full vertical width of the user's browser window.
   position: relative;
   width: 100vw;
+
+  @media all and (max-width: $mobile-width) {
+    margin-top: 50px; // Header is larger on mobile.
+  }
+}
+
+.label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: inline-block;
+  vertical-align: top;
 }

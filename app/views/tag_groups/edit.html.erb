@@ -1,4 +1,6 @@
-<h1>Edit tag group</h1>
-<%= form_for [@image, @tag_group] do |f| %>
-  <%= f.text_field :tag_group_string %>
-<% end %>
+<div id="edit-group"
+  data-result=<%= image_tag_group_path @image, @tag_group %>>
+  <%= form_for [@image, @tag_group] do |f| %>
+    <%= f.text_field :tag_group_string %>
+  <% end %>
+</div>

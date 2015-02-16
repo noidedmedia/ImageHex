@@ -20,5 +20,7 @@
 #Ignore weird OSX stuff
 .DS_STORE
 
+# Ignore generated documentation
+/doc
 #Ignore coverage files.
 /coverage/

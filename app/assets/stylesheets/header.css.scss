@@ -1,3 +1,5 @@
+@import "scss-variables";
+
 /* Container for the header item, always fixed to the top of the screen. */
 #header-container {
   background-color: #333;
@@ -14,6 +16,10 @@
   top: 0;
   width: 100vw;
   z-index: 1000;
+
+  @media all and (max-width: $mobile-width) {
+    display: none;
+  }
 }
 
 /* Items aligned to the left side of the header. */
@@ -40,7 +46,13 @@
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
-  padding: 0px 15px;
+  padding: 0 15px;
+  transition: color 300ms ease-in-out;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 
   a {
     color: #aaaab2;
@@ -64,12 +76,33 @@
 }
 
 
+/* ==============================================
+    Mobile
+   ============================================== */
 
-/********************
-*                   *
-*     DROPDOWNS     *
-*                   *
-********************/
+#mobile-header {
+  display: none;
+}
+
+@media all and (max-width: $mobile-width) {
+  #mobile-header {
+    width: 100vw;
+    height: 50px;
+    padding: 15px;
+    background-color: #333;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    position: fixed;
+    z-index: 1001;
+  }
+}
+
+
+/* ==============================================
+    Dropdowns
+   ============================================== */
 
 .wrapper-dropdown {
   position: relative;
@@ -85,7 +118,7 @@
   font-size: 1.4rem;
   font-weight: 400;
   position: absolute;
-  top: 55%;
+  top: 32px;
   left: -45px;
   right: 0;
   width: 150px;
@@ -101,18 +134,6 @@
   visibility: hidden;
 }
 
-.wrapper-dropdown .dropdown:after {
-  content: '';
-  width: 0;
-  height: 0;
-  position: absolute;
-  bottom: 100%;
-  right: 20px;
-  border-width: 0 8px 8px 8px;
-  border-style: solid;
-  border-color: #555 transparent;
-}
-
 .wrapper-dropdown .dropdown li a {
   display: block;
   padding: 10px;
@@ -122,10 +143,42 @@
   color: rgba(#fff,0.7);
 }
 
+.wrapper-dropdown .dropdown li input[type=submit] {
+  padding: 10px;
+  width: 100%;
+  text-decoration: none;
+  transition: color 200ms ease-out;
+  color: rgba(#fff,0.7);
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
 .wrapper-dropdown .dropdown li:first-of-type a {
   border: none;
   border-radius: 4px 4px 0 0;
+
+  &:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 100%;
+    right: 20px;
+    border-width: 0 8px 8px;
+    border-style: solid;
+    border-color: #555 transparent;
+  }
+
+  &:hover {
+    &:after {
+      border-color: #333 transparent;
+    }
+  }
 }
+
 
 .wrapper-dropdown .dropdown li:last-of-type a {
   border: none;
@@ -133,9 +186,15 @@
 }
 
 /* Hover state */
-.wrapper-dropdown .dropdown li:hover a {
+.wrapper-dropdown .dropdown li:hover a, .wrapper-dropdown .dropdown li:hover input[type=submit] {
   background: #333;
   color: #fff;
+  cursor: pointer;
+}
+
+// Fixing bottom-most dropdown item when it's the "Sign out" button.
+.wrapper-dropdown .dropdown li:last-of-type:hover input[type=submit] {
+  border-radius: 0 0 4px 4px;
 }
 
 /* Active state */

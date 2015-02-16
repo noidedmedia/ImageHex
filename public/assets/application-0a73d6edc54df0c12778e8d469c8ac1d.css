@@ -1,0 +1,1108 @@
+@charset "UTF-8";/*!
+ * Justified Gallery - v3.4.0
+ * http://miromannino.com/projects/justified-gallery/
+ * Copyright (c) 2014 Miro Mannino
+ * Licensed under the MIT license.
+ */
+
+
+@-webkit-keyframes justified-gallery-show-caption-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+@keyframes justified-gallery-show-caption-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+@-webkit-keyframes justified-gallery-show-entry-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+
+@keyframes justified-gallery-show-entry-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+
+.justified-gallery {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.justified-gallery > a,
+.justified-gallery > div {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.justified-gallery > a > img,
+.justified-gallery > div > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.justified-gallery > a > .caption,
+.justified-gallery > div > .caption {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  padding: 5px;
+  background-color: #000000;
+  left: 0;
+  right: 0;
+  margin: 0;
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  font-family: sans-serif;
+}
+
+.justified-gallery > a > .caption.caption-visible,
+.justified-gallery > div > .caption.caption-visible {
+  display: initial;
+  opacity: 0.7;
+  -webkit-animation: justified-gallery-show-caption-animation 500ms 0 ease;
+}
+
+.justified-gallery > .entry-visible {
+  opacity: 1.0;
+  -webkit-animation: justified-gallery-show-entry-animation 500ms 0 ease;
+}
+
+.justified-gallery > .spinner {
+  position: absolute;
+  bottom: 0;
+  margin-left: -24px;
+  padding: 10px 0 10px 0;
+  left: 50%;
+  opacity: initial;
+  overflow: initial;
+}
+
+.justified-gallery > .spinner > span {
+  display: inline-block;
+  opacity: 0;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px 0 4px;
+  background-color: #000;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+/* Styling for all "Company" page's containers. */
+/* line 4, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#about-page-container,
+#people-page-container,
+#contact-page-container {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+  margin: auto;
+  padding: 30px 0px;
+  position: relative;
+  width: 640px;
+}
+
+/* Navigational sidebar for all "Company" pages. */
+/* line 15, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#company-nav-container {
+  height: 100%;
+  padding-top: 44px;
+  width: 60px;
+}
+/* line 20, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#company-nav-container a {
+  color: #333;
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 6px 0px;
+  text-align: right;
+  text-decoration: none;
+}
+/* line 31, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#company-nav-container .current {
+  font-weight: 500;
+}
+
+/* Content container for Company pages. */
+/* line 37, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-main-column {
+  display: block;
+  height: 100%;
+  margin-left: 40px;
+  width: 500px;
+}
+
+/* Header text for Company pages. */
+/* line 45, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-header-text {
+  color: #333;
+  font-size: 3.2rem;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+/* Content for Company pages. */
+/* line 53, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-content {
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+/* line 58, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.company-page-content p {
+  padding: 0px 0px 12px;
+}
+
+/* Staff list container. */
+/* line 64, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+#people-page-list-container {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+  width: 100%;
+}
+
+/* List items in the people page. */
+/* line 72, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item {
+  width: 200px;
+  margin: 0px 20px 20px 0px;
+}
+
+/* Photos for the Staff page. */
+/* line 78, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item-photo {
+  background-color: #d6d6d6;
+  height: 240px;
+  margin-bottom: 4px;
+  width: 200px;
+}
+
+/* Styling for staff name's displayed below their portrait.. */
+/* line 86, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item-name {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* Job title for staff members.  */
+/* line 94, /Users/connor/Programming/ImageHex/app/assets/stylesheets/company.css.scss */
+.people-page-list-item-job-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+}
+/* The following animations are used to move the error dialog down below the header, keep it there for 90% of the duration of the animation, then hide it again. */
+@-webkit-keyframes alertAnimation {
+  /* line 4, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  0% {
+    display: block;
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 10, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  5% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 15, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  95% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 20, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  99% {
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 25, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  100% {
+    display: none;
+  }
+}
+
+@keyframes alertAnimation {
+  /* line 31, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  0% {
+    display: block;
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 37, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  8% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 42, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  92% {
+    transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 40px, 0);
+  }
+
+  /* line 47, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  99% {
+    display: block;
+    transform: none;
+    -webkit-transform: none;
+  }
+
+  /* line 53, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+  100% {
+    display: none;
+  }
+}
+
+/* Generic alert container for all warnings/errors/successful actions. */
+/* line 59, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert {
+  animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
+  -webkit-animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
+  transform: translate3d(0, -40px, 0);
+  -webkit-transform: translate3d(0, -40px, 0);
+  color: #fff;
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 40px;
+  left: 0px;
+  line-height: 20px;
+  margin: 0px;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  z-index: 999;
+  /* If there are multiple errors listen sequentially, this will change all but the first to lower-case so there aren't random capital letters in the middle of a sentence. */
+}
+/* line 79, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert p {
+  display: inline;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 20px;
+}
+/* line 88, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert p:not(:first-of-type) {
+  text-transform: lowercase;
+}
+
+/* Style for positive alerts. */
+/* line 94, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-success {
+  background-color: #5bb289;
+}
+
+/* Style for informative alerts. */
+/* line 99, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-info {
+  background-color: #556db3;
+}
+
+/* Style for less severe errors. */
+/* line 104, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-warning {
+  background-color: #efb63e;
+}
+
+/* Style for "dangerous" errors. */
+/* line 109, /Users/connor/Programming/ImageHex/app/assets/stylesheets/errors.css.scss */
+.alert-danger {
+  background-color: #cb2e32;
+}
+/* Container for the footer */
+/* line 5, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer-container {
+  background-color: #191a1a;
+  bottom: 0;
+  box-sizing: border-box;
+  color: #6d6d6d;
+  display: block;
+  height: 160px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100vw;
+}
+
+/* Footer div itself. */
+/* line 20, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+  margin: auto;
+  min-width: 700px;
+  padding: 25px 0px;
+  width: 60%;
+}
+/* line 29, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer a {
+  color: #6d6d6d;
+  text-decoration: none;
+}
+/* line 33, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+#footer a:hover {
+  color: #828282;
+}
+
+/* First column in the footer for the description, copyright, etc. */
+/* line 40, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-column {
+  height: 100%;
+  padding: 0px 25px;
+  text-align: left;
+  width: 50%;
+}
+
+/* "ImageHex" text in the description column. */
+/* line 48, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-title {
+  color: #828282;
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+
+/* Body text in the description column. */
+/* line 57, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-body {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+
+/* Copyright text in the description column. */
+/* line 65, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-description-copyright {
+  color: #828282;
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Second and third columns in the footer, contain links to various sections. */
+/* line 73, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-column {
+  height: 100%;
+  padding: 0px 30px;
+  width: 25%;
+}
+
+/* Unordered list styling for second and third columns. */
+/* line 80, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-list {
+  list-style: none;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  /* Styling for each respective list item. */
+}
+/* line 87, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-list li {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 4px 0px;
+  /* Special styling for the first list item in each list, as the first item is the list's "title" and should be emphasized. */
+}
+/* line 93, /Users/connor/Programming/ImageHex/app/assets/stylesheets/footer.css.scss */
+.footer-links-list li:first-of-type {
+  color: #828282;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 0px 0px 4px 0px;
+}
+/* Simple home container that makes sure the home page's content doesn't clip the header/footer. */
+/* line 2, /Users/connor/Programming/ImageHex/app/assets/stylesheets/frontpage.css.scss */
+#home-container {
+  display: block;
+  height: auto;
+  padding: 20px 40px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+/* line 10, /Users/connor/Programming/ImageHex/app/assets/stylesheets/frontpage.css.scss */
+#home-container h2 {
+  padding-bottom: 10px;
+}
+/* line 14, /Users/connor/Programming/ImageHex/app/assets/stylesheets/frontpage.css.scss */
+#home-container a {
+  font-size: 1.6rem;
+  line-height: 25px;
+}
+/* Container for the header item, always fixed to the top of the screen. */
+/* line 2, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+#header-container {
+  background-color: #333;
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  font-weight: 300;
+  height: 40px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  text-align: right;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
+}
+
+/* Items aligned to the left side of the header. */
+/* line 20, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+#header-left {
+  display: inline-block;
+  left: 40px;
+  position: absolute;
+  text-align: left;
+  top: 12px;
+}
+
+/* Items aligned to the right side of the header. */
+/* line 29, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+#header-right {
+  display: inline-block;
+  position: absolute;
+  right: 40px;
+  text-align: right;
+  top: 12px;
+}
+
+/* Header items, e.g. "Sign out", "Upload", etc. */
+/* line 38, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.header-item {
+  color: #aaaab2;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 0px 15px;
+  transition: color 300ms ease-in-out;
+  /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
+}
+/* line 46, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.header-item:hover {
+  color: #fff;
+  text-decoration: none;
+}
+/* line 51, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.header-item a {
+  color: #aaaab2;
+  text-decoration: none;
+  transition: color 300ms ease-in-out;
+}
+/* line 56, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.header-item a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+/* line 63, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.header-item:first-of-type {
+  padding-left: 0px;
+}
+/* line 67, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.header-item:last-of-type {
+  padding-right: 0px;
+}
+
+/********************
+*                   *
+*     DROPDOWNS     *
+*                   *
+********************/
+/* line 80, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  display: inline;
+}
+
+/* line 90, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown .dropdown {
+  font-size: 1.4rem;
+  font-weight: 400;
+  position: absolute;
+  top: 55%;
+  left: -45px;
+  right: 0;
+  width: 150px;
+  background: #555;
+  border-radius: 4px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
+  transition: opacity 200ms ease-in;
+  list-style: none;
+  opacity: 0;
+  /* Hiding */
+  padding-left: 0px;
+  text-align: left;
+  visibility: hidden;
+}
+
+/* line 110, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown .dropdown li a {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  text-decoration: none;
+  transition: color 200ms ease-out;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* line 119, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown .dropdown li:first-of-type a {
+  border: none;
+  border-radius: 4px 4px 0 0;
+}
+/* line 123, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown .dropdown li:first-of-type a:after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  right: 20px;
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: #555 transparent;
+}
+/* line 136, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown .dropdown li:first-of-type a:hover:after {
+  border-color: #333 transparent;
+}
+
+/* line 142, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown .dropdown li:last-of-type a {
+  border: none;
+  border-radius: 0 0 4px 4px;
+}
+
+/* Hover state */
+/* line 148, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown .dropdown li:hover a {
+  background: #333;
+  color: #fff;
+}
+
+/* Active state */
+/* line 154, /Users/connor/Programming/ImageHex/app/assets/stylesheets/header.css.scss */
+.wrapper-dropdown.active .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+/* Padding for images in image pages, adding properties to this can have unintended consequences effecting all images across the site. */
+/* line 3, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image {
+  padding: 15px;
+  text-align: center;
+  /* Width/height for the image element itself. */
+}
+/* line 8, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image img {
+  max-height: 80vh;
+  max-width: 70vw;
+}
+
+/* line 14, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+#image-page-top-container {
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: #444;
+}
+
+/* line 20, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image-actions-sidebar {
+  width: 25vw;
+  background-color: #272727;
+  min-width: 300px;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* line 28, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image-actions-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  padding-bottom: 15px;
+}
+/* line 36, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image-actions-container a {
+  font-size: 1.4rem;
+  font-weight: 300;
+  width: 100%;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+/* line 43, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image-actions-container a:hover {
+  color: white;
+}
+
+/* line 49, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image-actions {
+  width: 100%;
+  height: 40px;
+  padding: 10px 0 10px 40px;
+}
+/* line 54, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+.image-actions:hover {
+  background-color: #333333;
+}
+
+/* line 71, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+#img-action-report::after {
+  font-family: 'ImageSearchFont';
+  font-size: 18px;
+  content: '\e601';
+}
+
+/* line 77, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+#image-page-bottom-container {
+  padding: 0px 40px;
+  height: 300px;
+}
+
+/* line 82, /Users/connor/Programming/ImageHex/app/assets/stylesheets/images.css.scss */
+#image-list-container {
+  padding: 20px 40px;
+}
+/* Parent container applied to most pages to prevent clipping of content with the header, footer. */
+/* line 2, /Users/connor/Programming/ImageHex/app/assets/stylesheets/miscellaneous.css.scss */
+#masthead {
+  display: inline-block;
+  margin-top: 40px;
+  min-height: calc(100vh - 200px);
+  position: relative;
+  width: 100vw;
+}
+/* Container for the settings page. */
+/* line 4, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-page {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  margin: auto;
+  margin-top: 50px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: calc(40vw + 300px);
+}
+
+/* Styling for the navigational sidebar on the Settings page. */
+/* line 16, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-nav {
+  font: 400 1.4rem "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: auto;
+  margin-top: 30px;
+  margin-right: 20px;
+  width: 180px;
+  min-width: 180px;
+}
+/* line 25, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-nav ul li {
+  list-style: none;
+  padding: 8px 0px;
+  text-align: right;
+}
+/* line 30, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-nav ul li:last-of-type {
+  padding-top: 50px;
+}
+/* line 34, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-nav ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Column containing the settings themselves.*/
+/* line 43, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-column {
+  height: 100%;
+  max-width: 800px;
+  min-width: 500px;
+  position: relative;
+  text-align: left;
+  width: 40vw;
+}
+
+/* Container for the actual settings */
+/* line 53, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-container {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  margin: 10px 0px;
+  /* Styling for fields inside the settings container. */
+  /* Styling for the submit button in the settings container. */
+}
+/* line 61, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-container .field {
+  width: calc(40vw - 30px);
+  min-width: 470px;
+  max-width: 770px;
+}
+/* line 68, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-container input[type=submit] {
+  -webkit-appearance: none;
+  background-color: #777;
+  border: 0px;
+  border-top: 1px solid #aaaab2;
+  color: #fff;
+  font: 300 1.6rem "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 40px;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+/* line 81, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-container input[type=submit]:focus {
+  outline: transparent;
+}
+
+/* Padding inside the settings container. */
+/* line 88, /Users/connor/Programming/ImageHex/app/assets/stylesheets/settings.css.scss */
+#settings-container-padding {
+  padding: 15px;
+}
+
+/* Styling for sign-in container, used on all registration-related pages (e.g. sign-in, sign-up, forgot password, etc.) */
+/* line 2, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container {
+  background-color: #fff;
+  border-radius: 1px;
+  border: 1px solid #aaaab2;
+  display: block;
+  margin: 50px auto auto auto;
+  position: relative;
+  text-align: left;
+  width: 350px;
+  /* "Header" for the registration pages that acts as a page title. */
+  /* Styling for the submit button on registration pages. */
+}
+/* line 13, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container .sign-in-header {
+  margin: auto;
+  padding-top: 10px;
+  text-align: center;
+}
+/* line 20, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container input[type=submit] {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 0px;
+  border-top: 1px solid #aaaab2;
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 35px;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+/* line 33, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-container input[type=submit]:focus {
+  border-color: #333;
+  outline: transparent;
+}
+
+/* Container for all fields in a the sign-up container. */
+/* line 41, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-fields {
+  padding: 10px 10px 2px 10px;
+}
+
+/* Styling applied to all text-input fields in the registration pages. */
+/* line 46, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field {
+  color: #333;
+  margin: auto;
+  padding: 5px auto 5px auto;
+  position: relative;
+  width: 100%;
+}
+
+/* Styling for the text, email, and password fields specifically. */
+/* line 57, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=text],
+.field input[type=email],
+.field input[type=password] {
+  background-color: transparent;
+  border-radius: 1px;
+  border: 1px solid #aaaab2;
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 35px;
+  margin: 5px auto;
+  padding: 0px 8px;
+  transition: all 300ms ease;
+  width: 100%;
+}
+/* line 70, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=text]:focus,
+.field input[type=email]:focus,
+.field input[type=password]:focus {
+  background-color: #f2f2f2;
+  border-color: transparent;
+  outline: transparent;
+}
+
+/* Styling for "Remember me" checkbox. */
+/* line 78, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox] {
+  display: inline-block;
+  -webkit-appearance: none;
+  border: 1px solid #aaaab2;
+  height: 16px;
+  width: 16px;
+  margin: 5px 2px 0px 1px;
+  vertical-align: bottom;
+  /* Semi-transparent square on-hover. */
+}
+/* line 88, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:hover {
+  font-size: 2.9rem;
+  line-height: 16px;
+  color: rgba(51, 51, 51, 0.3);
+  cursor: pointer;
+}
+/* line 94, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:hover:after {
+  content: '■';
+  position: relative;
+  bottom: 3px;
+  left: -1px;
+  text-align: center;
+}
+/* line 103, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:focus {
+  outline: transparent;
+}
+
+/* Styling for "Remember me" checkbox when checked. */
+/* line 109, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:checked {
+  border: 1px solid #333;
+  color: #333;
+  /* Black square on-checked. */
+}
+/* line 114, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field input[type=checkbox]:checked:after {
+  content: '■';
+  font-size: 2.9rem;
+  line-height: 16px;
+  position: relative;
+  bottom: 3px;
+  left: -1px;
+  text-align: center;
+}
+
+/* Styling for field labels. Labels are an HTML element, see the MDN for more information. */
+/* line 126, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field label {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  top: 1px;
+}
+/* line 132, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.field label:hover {
+  cursor: pointer;
+}
+
+/* Actions container used to host the submit button. */
+/* line 138, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.actions {
+  color: #333;
+  margin: auto;
+  position: relative;
+}
+/* line 144, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.actions input[type=submit]:hover {
+  cursor: pointer;
+}
+
+/* Sign-in extras are the links below the sign-in container (e.g. forgot password, sign up, etc.) */
+/* line 151, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-extras-container {
+  display: block;
+  height: auto;
+  left: 0;
+  margin: 10px auto;
+  padding: 0;
+  position: relative;
+  right: 0;
+  text-align: left;
+  width: 360px;
+}
+/* line 162, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+#sign-in-extras-container a {
+  margin: 0px 5px;
+  text-decoration: none;
+  width: 100%;
+}
+
+/* Class used to separate each row of sign-in extras, this allows the buttons to change size responsively depending on the registration page the user is viewing. */
+/* line 170, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-row {
+  display: flex;
+  margin: 10px 0px;
+  width: 100%;
+}
+
+/* Styling for the sign-in extras buttons. */
+/* line 177, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-half, .sign-in-extras-full {
+  background-color: #fff;
+  border-radius: 1px;
+  border: 1px solid #aaaab2;
+  color: #333;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  font-size: 1.4rem;
+  font-weight: 400;
+  height: 35px;
+  padding: 8px 0px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Styling for the sign-in extras button when it takes up only half of a row. */
+/* line 194, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-half {
+  flex: 1;
+  width: 100%;
+}
+
+/* Styling for the sign-in extras button when it takes up the full row. */
+/* line 200, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-full {
+  flex: 1;
+  width: 100%;
+}
+
+/* Sign-in extras text is applied to all text inside the buttons. */
+/* line 206, /Users/connor/Programming/ImageHex/app/assets/stylesheets/signin.css.scss */
+.sign-in-extras-text {
+  width: 100%;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+
+
+
+ */
+
+/* Selector for all elements, don't put anything here without a lot of thought first. */
+/* Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height. */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Defines the icon font. */
+@font-face {
+  font-family: 'ImageSearchFont';
+  src: url(<%= asset_path 'ImageSearchFont.ttf' %>) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Styles applicable to all pages. */
+html, body {
+  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageSearchFont';
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+/* Removes margins from all header items. */
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+/* Font sizing for all header elements specifically, h1-h5. */
+h1 {
+  font-size: 3.2rem;
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 2.1rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+/* Removes margin from all paragraph, or "p" elements. */
+p {
+  margin: 0;
+}
