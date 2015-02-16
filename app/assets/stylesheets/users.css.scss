@@ -11,6 +11,12 @@
   -webkit-flex-flow: row nowrap;
           flex-flow: row nowrap;
   height: 100%;
+
+  @media all and (max-width: $mobile-width) {
+    -webkit-flex-flow: column wrap;
+            flex-flow: column wrap;
+    text-align: center;
+  }
 }
 
 
@@ -38,6 +44,17 @@
   height: 100%; /* 2 */
   padding: 40px;
   z-index: 100;
+
+  @media all and (max-width: $mobile-width) {
+    display: flex;
+    flex-flow: row wrap;
+    height: auto;
+    position: relative;
+    width: 100%;
+    box-shadow: none;
+    min-height: 0;
+    padding: 20px;
+  }
 }
 
 #user-page-profile-picture {
@@ -45,6 +62,12 @@
   height: 250px;
   margin-bottom: 10px;
   background-color: #c9c9c9;
+
+  @media all and (max-width: $mobile-width) {
+    margin-right: 10px;
+    width: 75px;
+    height: 75px;
+  }
 }
 
 .user-page-username {
@@ -63,6 +86,10 @@
 
   a {
     color: #fff;
+  }
+
+  @media all and (max-width: $mobile-width) {
+    margin-left: 0;
   }
 }
 
@@ -87,6 +114,11 @@
   margin-bottom: 10px;
   margin-top: 0;
   box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
+
+  @media all and (max-width: $mobile-width) {
+    position: relative;
+    z-index: 99;
+  }
 }
 
 .user-page-header-tab {
@@ -96,9 +128,11 @@
   font-weight: 400;
   line-height: 20px;
   height: 40px;
-  padding: 11px 50px 10px 0;
+  padding: 11px 11px 11px 0;
+  margin-right: 40px;
   cursor: pointer;
   color: #555;
+  text-align: center;
 
   &.current {
     font-weight: 500;
@@ -130,5 +164,9 @@
   &.current {
     display: -webkit-flex;
     display: flex;
+  }
+
+  @media all and (max-width: $mobile-width) {
+    margin-top: 5px;
   }
 }
