@@ -21,7 +21,9 @@ describe Tag do
     it "suggets properly" do
       FactoryGirl.create(:tag, name: "bob")
       FactoryGirl.create(:tag, name: "billy")
+      FactoryGirl.create(:tag, name: "asdf")
       expect(Tag.suggest("b")).to eq(["bob", "billy"])
+      expect(Tag.suggest("b")).to_not include("asdf")
     end
   end
   it{should have_many(:tag_groups).through(:tag_group_members)}
