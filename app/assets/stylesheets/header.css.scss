@@ -18,7 +18,16 @@
   z-index: 1000;
 
   @media all and (max-width: $mobile-width) {
-    display: none;
+    width: 100vw;
+    height: 50px;
+    padding: 15px;
+    background-color: #333;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    position: fixed;
+    z-index: 1001;
   }
 }
 
@@ -29,6 +38,10 @@
   position: absolute;
   text-align: left;
   top: 12px;
+
+  @media all and (max-width: $mobile-width) {
+    top: 16px;
+  }
 }
 
 /* Items aligned to the right side of the header. */
@@ -38,6 +51,10 @@
   right: 40px;
   text-align: right;
   top: 12px;
+
+  @media all and (max-width: $mobile-width) {
+    display: none;
+  }
 }
 
 /* Header items, e.g. "Sign out", "Upload", etc. */
@@ -73,29 +90,9 @@
   &:last-of-type {
     padding-right: 0px;
   }
-}
 
-
-/* ==============================================
-    Mobile
-   ============================================== */
-
-#mobile-header {
-  display: none;
-}
-
-@media all and (max-width: $mobile-width) {
-  #mobile-header {
-    width: 100vw;
-    height: 50px;
-    padding: 15px;
-    background-color: #333;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-flow: row nowrap;
-            flex-flow: row nowrap;
-    position: fixed;
-    z-index: 1001;
+  @media all and (max-width: $mobile-width) {
+    font-size: 1.6rem;
   }
 }
 
@@ -178,7 +175,6 @@
     }
   }
 }
-
 
 .wrapper-dropdown .dropdown li:last-of-type a {
   border: none;

@@ -60,6 +60,10 @@
     top: 10px;
     cursor: pointer;
   }
+
+  @media all and (max-width: $mobile-width) {
+    display: none;
+  }
 }
 
 /**
@@ -111,102 +115,32 @@
     background-color: #fff;
   }
 
+  @media all and (max-width: $mobile-width) {
+    height: calc(100% - 50px);
+    width: 100vw;
+    top: 50px;
+    left: 0;
+    transition: height 300ms ease-in-out, width 300ms ease-in-out;
+    display: block;
+    position: fixed;
+
+    form input[type="search"] {
+      width: 100%;
+    }
+  }
+
   #header-search-suggestions {
     visibility: visible;
     opacity: 1;
     transition: opacity 300ms ease-in-out 600ms; /* 2 */
   }
-}
 
-
-/**
- * Search on mobile
- *
- * Styles for the header search box when on a mobile device.
- *
- * 1. Width is that of the browser minus some to allow room 
- *    for the close button.
- * 2. Overrides default styles for the search input in Firefox,
- *    Chrome, and Safari.
- */
-
-@media all and (max-width: $mobile-width) {
-  #header-search {
-    display: none;
-  }
-
-  #mobile-header-search {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-
-    form input[type="search"] {
-      font: 300 1.6rem $font-stack;
-      height: 50px;
-      width: calc(100% - 75px); /* 1 */
-      padding: 0 4px 0 12px;
-      background-color: #fff;
-      border-radius: 0;
-      border: 0;
-      color: #fff;
-      appearance: none; /* 2 */
-        -webkit-appearance: none; /* 2 */
-        -moz-appearance: none; /* 2 */
-
-      &:valid, &:focus {
-        outline: none;
-        color: #333;
-      }
-    }
-  }
-
-  #close-mobile-search-icon {
-    display: inline-block;
-    position: absolute;
-    right: 45px;
-    top: 15px;
-  }
-
-  #mobile-header-search-suggestions {
-    display: none;
-    opacity: 0;
-    color: #aaaab2;
-    padding: 5px;
-    height: auto;
-    width: 100%;
-    position: relative;
-    text-align: center;
-    transition: opacity 300ms ease-in-out; 
-
-    span {
-      display: block;
-      height: 100px;
-      margin-top: 20px;
-    }
-  }
-
-  #mobile-header-search.active {
-    visibility: visible;
+  #header-search-suggestions-empty {
     display: block;
-    position: fixed;
     opacity: 1;
-    width: 100vw;
-    height: 100%;
-    top: 50px;
-    left: 0;
-    background: #fff;
-    transition: height 300ms ease-in-out 300ms;
+    transition: opacity 300ms ease-in-out 300ms;
 
-    form input[type="search"] {
-      border-color: transparent;
-      background-color: #fff;
-    }
-
-    #mobile-header-search-suggestions {
-      display: block;
-      opacity: 1;
-      transition: opacity 300ms ease-in-out 300ms;
-      
+    @media all and (max-width: $mobile-width) {
       p {
         padding: 0 30px;
         font-size: 1.6rem;
@@ -215,11 +149,41 @@
   }
 }
 
+
+/**
+ * Mobile-specific styles
+ *
+ * Styles for making the search feature work properly on a
+ * mobile device.
+ *
+ * 1. Close button unnecessary on desktop.
+ */
+
+#close-mobile-search-icon {
+  display: none; /* 1 */
+
+  @media all and (max-width: $mobile-width) {
+    display: inline-block;
+    position: absolute;
+    right: 45px;
+    top: 15px;
+  }
+}
+
 #mobile-search-icon {
+  display: none;
   height: 50px;
   position: absolute;
-  right: 0;
+  right: 10px;
+  top: 0;
   width: 50px;
-  -webkit-transform: translateY(-2px);
-          transform: translateY(-2px);
+
+  span::before {
+    -webkit-transform: translate(-35px,14px);
+            transform: translate(-35px,14px);
+  }
+
+  @media all and (max-width: $mobile-width) {
+    display: block;
+  }
 }

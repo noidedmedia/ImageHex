@@ -5,6 +5,10 @@
     </div>
   </div>
 
+  <div id="mobile-search-icon">
+    <span class="icon icon-small icon-search"></span>
+  </div>
+
   <div id="header-search">
     <form action="/search" method="get">
       <!-- Search icon -->
@@ -14,11 +18,14 @@
 
       <!-- Search input -->
       <input type="search" id="header-search-input" name="query[]" placeholder="Search" required="" autocomplete="off" />
+
+      <span class="icon icon-small icon-close" id="close-mobile-search-icon"></span>
+
     </form>
 
     <div id="header-search-suggestions">
       <ul id="header-search-suggestions-fillable">
-        <!-- Suggestions go here for desktop. -->
+
       </ul>
 
       <div id="header-search-suggestions-empty">
@@ -64,36 +71,5 @@
       </div>
 
     <% end %>
-  </div>
-</header>
-
-<header id="mobile-header">
-
-  <div class="header-item" id="mobile-home-button">
-    <%= link_to 'Home', root_path %>
-  </div>
-
-  <div id="mobile-search-icon">
-    <span class="icon icon-small icon-search"></span>
-  </div>
-
-  <div id="mobile-header-search">
-
-    <form action="/search" method="get">
-      <input type="search" id="mobile-header-search-input" name="query[]" placeholder="Search" required="" autocomplete="off" />
-
-      <span class="icon icon-small icon-close" id="close-mobile-search-icon"></span>
-    </form>
-
-    <div id="mobile-header-search-suggestions">
-      <ul id="mobile-header-search-suggestions-fillable">
-        <!-- Suggestions go here for mobile. -->
-      </ul>
-
-      <div id="mobile-header-search-suggestions-empty">
-        <span class="icon icon-huge icon-search"></span>
-        <p>Search for the tag you're looking for, suggestions will show up here.
-      </div>
-    </div>
   </div>
 </header>
