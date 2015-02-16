@@ -49,8 +49,10 @@ var suggest = function(name) {
 
 var ready = function() {
   $("#header-search-input").on("input", function() {
+    $("#header-search-suggestions-empty").removeClass("active");
+
     var str = $(this).val();
-    // Extract a lsit of tags
+    // Extract a list of tags
     var tags = str.split(",");
     // We do suggestions on the last tag in the list
     var tag = tags[tags.length -1];

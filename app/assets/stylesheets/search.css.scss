@@ -136,9 +136,13 @@
   }
 
   #header-search-suggestions-empty {
-    display: block;
+    display: none;
     opacity: 1;
     transition: opacity 300ms ease-in-out 300ms;
+    
+    &.active {
+      display: block;
+    }
 
     @media all and (max-width: $mobile-width) {
       p {
@@ -185,5 +189,28 @@
 
   @media all and (max-width: $mobile-width) {
     display: block;
+  }
+}
+
+#header-search-suggestions-fillable {
+  text-align: left;
+  font-size: 1.4rem;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  color: #333;
+
+  > li {
+    background-color: #fff;
+    padding-left: 32px;
+    list-style: none;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f4f4f4;
+    }
   }
 }
