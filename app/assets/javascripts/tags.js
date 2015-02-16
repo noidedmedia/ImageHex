@@ -28,7 +28,7 @@ var loadsuggestions = function(names) {
     element.innerHTML = names[name];
     console.log(element);
     parent.append(element);
-    element.onclick = function(){
+    element.onclick = function() {
       var selected = this.innerHTML;
       selectedelement(selected);
     };
@@ -47,10 +47,8 @@ var suggest = function(name){
   }, "json");
 };
 
-
-$(document).ready(function(){
-  console.log("ready");
-  $("#header-search-input").on("input", function(){
+var ready = function() {
+  $("#header-search-input").on("input", function() {
     var str = $(this).val();
     // Extract a lsit of tags
     var tags = str.split(",");
@@ -65,4 +63,6 @@ $(document).ready(function(){
       suggest(tag);
     }
   });
-});
+};
+
+$(document).ready(ready);
