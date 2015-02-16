@@ -26,7 +26,7 @@
   top: 0;
   left: 125px;
   background-color: #fff;
-  transition: max-height 300ms ease-in-out; /* 1 */
+  transition: max-height 300ms ease-in-out 200ms; /* 1 */
 
   form input[type="search"] {
     font-size: 1.4rem;
@@ -96,7 +96,7 @@
   span {
     display: block;
     height: 100px;
-    margin-top: 20px;
+    padding-top: 20px;
   }
 }
 
@@ -115,7 +115,7 @@
 #header-search.active {
   height: auto;
   max-height: 240px; /* 1 */
-  transition: max-height 300ms ease-in-out;
+  transition: max-height 300ms ease-in-out 200ms;
 
   form input[type="search"] {
     border-color: transparent;
@@ -146,11 +146,11 @@
   #header-search-suggestions-empty {
     display: none;
     opacity: 1;
-    transition: opacity 300ms ease-in-out 300ms;
+    height: 170px;
+    transition: opacity 300ms ease-in-out;
     
     &.active {
       display: block;
-      padding-bottom: 30px;
     }
 
     @media all and (max-width: $mobile-width) {

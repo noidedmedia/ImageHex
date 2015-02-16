@@ -10,21 +10,37 @@ function headerSearch() {
       
       // Checks to make sure the "header-search" div doesn't already have an "active" class.
       if (!headersearch.hasClass('active')) {
-        // Variable for moving up one in the HTML hierarchy.
-        var parentform = headersearchinput.parent('form');
-
-        // Moves up another level to the header-search div.
-        parentform.parent('#header-search').toggleClass('active');
+        headersearch.toggleClass('active');
       }
 
       // Binds any click outside the headersearch div to removing the "active" class
       // and therefore hidings the header's search dropdown.
-      headersearch.bind('clickoutside', function(event){
-        $(this).toggleClass('active');
+      headersearch.bind('clickoutside', function(event){        
+
+        // The following sets the max-height of the element to the
+        // height of the element itself, because CSS transitions won't
+        // work if the height is set to auto. So this is the 
+        // work-around.
+        var searchheight = headersearch.outerHeight();
+
+        $(headersearch).css('max-height', searchheight);
+        $(headersearch).css('max-height', 40);
+        $(headersearch).toggleClass('active');
 
         // Unbinds the function so it can only happen once.
         $(this).unbind('clickoutside');
       });
+    });
+
+    headersearch.on('transitionend', function(e){
+      if ($(e.target).is(headersearch)) {
+
+        if (headersearch.hasClass('active')) {
+          headersearch.css('max-height', 240);
+        } else {
+          headersearch.removeAttr('style');
+        }
+      }
     });
   }
 
