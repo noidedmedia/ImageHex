@@ -1,0 +1,230 @@
+@import "scss-variables";
+
+/* ==============================================
+    Header search box
+   ============================================== */
+
+/**
+ * Header search container
+ *
+ * This is used for the search box in the site's universal header.
+ *
+ * 1. Transition without delay because the transition shouldn't be
+ *    delayed when the search dialog is collapsing.
+ * 2. Delay here is to allow for the dialog to collapse before
+ *    changing the color of the search box. The delays here should
+ *    be equivalent to the length of the transition in comment #1.
+ * 3. Overrides default styles for the search input in Firefox,
+ *    Chrome, Opera, and Safari.
+ */
+
+#header-search {
+  display: block;
+  position: absolute;
+  width: 300px;
+  max-height: 40px;
+  top: 0;
+  left: 125px;
+  background-color: #fff;
+  transition: max-height 300ms ease-in-out; /* 1 */
+
+  form input[type="search"] {
+    font-size: 1.4rem;
+    height: 40px;
+    width: 100%;
+    padding: 0 4px 0 32px;
+    background-color: #333;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid rgba(#fff,0.3);
+    border-right: 1px solid rgba(#fff,0.3);
+    border-radius: 0;
+    color: #fff;
+    transition: color 400ms ease-in-out 300ms, background-color 400ms ease-in-out 300ms; /* 2 */
+    appearance: none;
+      -webkit-appearance: none; /* 3 */
+      -moz-appearance: none; /* 3 */
+
+    &:focus {
+      transition: color 400ms ease-in-out, background-color 400ms ease-in-out;
+      outline: none;
+      border-color: transparent;
+      background-color: #fff;
+      color: #333;
+    }
+
+    &:valid:not(:focus) {
+      color: #fff;
+    }
+  }
+
+  label[for="header-search-input"] span {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    display: none;
+  }
+}
+
+/**
+ * Header search suggestions
+ *
+ * Suggestions for the search box (aka auto-complete).
+ *
+ * 1. Search suggestions should be hidden by default.
+ * 2. No delay to ensure that the suggestions element will be 
+ *    transparent before the height transition reaches it.
+ */
+
+#header-search-suggestions {
+  visibility: hidden; /* 1 */
+  opacity: 0;
+  color: #aaaab2;
+  background-color: #fff;
+  height: auto;
+  min-height: 0;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  transition: opacity 300ms ease-in-out; /* 2 */
+
+  span {
+    display: block;
+    height: 100px;
+  }
+}
+
+
+/**
+ * Active header search
+ *
+ * Styles for the header search box when a query is being entered or
+ * the input box is otherwise in-focus.
+ *
+ * 1. Height of the header search when expanded with suggestions div.
+ * 2. 600ms delay when the search suggestions transition to an
+ *    expanded state.
+ */
+
+#header-search.active {
+  height: auto;
+  max-height: 240px; /* 1 */
+  transition: max-height 300ms ease-in-out 200ms;
+  box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.05);
+
+  form input[type="search"] {
+    border-color: transparent;
+    background-color: #fff;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    height: 100%;
+    max-height: 100%;
+    width: 100vw;
+    top: 50px;
+    left: 0;
+    transition: max-height 300ms ease-in-out, width 300ms ease-in-out;
+    display: block;
+    position: fixed;
+    box-shadow: none;
+
+    form input[type="search"] {
+      width: 100%;
+    }
+  }
+
+  #header-search-suggestions {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out 600ms; /* 2 */
+  }
+
+  #header-search-suggestions-empty {
+    display: none;
+    opacity: 0;
+    height: 170px;
+    padding: 0 5px;
+    transition: opacity 300ms ease-in-out;
+    
+    &.active {
+      display: block;
+      opacity: 1;
+    }
+
+    @media all and (max-device-width: $mobile-width) {
+      p {
+        padding: 0 30px;
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+
+/**
+ * Mobile-specific styles
+ *
+ * Styles for making the search feature work properly on a
+ * mobile device.
+ *
+ * 1. Close button unnecessary on desktop.
+ */
+
+#close-mobile-search-icon {
+  display: none; /* 1 */
+
+  @media all and (max-device-width: $mobile-width) {
+    display: inline-block;
+    position: absolute;
+    right: 45px;
+    top: 15px;
+  }
+}
+
+#mobile-search-icon {
+  display: none;
+  height: 50px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 50px;
+
+  span::before {
+    -webkit-transform: translate(-35px,14px);
+            transform: translate(-35px,14px);
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    display: block;
+  }
+}
+
+#header-search-suggestions-fillable {
+  text-align: left;
+  font-size: 1.4rem;
+  position: relative;
+  left: 0;
+  width: 100%;
+  color: #333;
+  overflow-y: auto;
+  height: auto;
+  min-height: 0;
+
+  > li {
+    background-color: #fff;
+    padding-left: 32px;
+    list-style: none;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f4f4f4;
+    }
+  }
+}

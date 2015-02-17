@@ -1,7 +1,37 @@
 <header id="header-container">
   <div id="header-left">
     <div class="header-item">
-      <a href="/">Home</a>
+      <%= link_to 'Home', root_path %>
+    </div>
+  </div>
+
+  <div id="mobile-search-icon">
+    <span class="icon icon-small icon-search"></span>
+  </div>
+
+  <div id="header-search">
+    <form action="/search" method="get">
+      <!-- Search icon -->
+      <label for="header-search-input">
+        <span class="icon icon-small icon-search"></span>
+      </label>
+
+      <!-- Search input -->
+      <input type="search" id="header-search-input" name="query[]" placeholder="Search" required="" autocomplete="off" />
+
+      <span class="icon icon-small icon-close" id="close-mobile-search-icon"></span>
+
+    </form>
+
+    <div id="header-search-suggestions">
+      <ul id="header-search-suggestions-fillable">
+
+      </ul>
+
+      <div id="header-search-suggestions-empty" class="active">
+        <span class="icon icon-huge icon-search"></span>
+        <p>Search for the tag you're looking for, suggestions will show up here.
+      </div>
     </div>
   </div>
 
@@ -9,31 +39,35 @@
     <% if user_signed_in? %>
 
       <div class="header-item">
-        <a href="/images/new">Upload</a>
+        <%= link_to 'Upload', new_image_path %>
+      </div>
+
+      <div class="header-item">
+        <a href="#">Notifications</a>
       </div>
 
       <div id="dd" class="wrapper-dropdown">
-        <div class="header-item"><%= current_user.name %></div>
+        <div class="header-item" id="username">
+          <%= current_user.name %>
+        </div>
 
         <ul class="dropdown">
-          <li><a href="#">Notifications</a>
+          <li><%= link_to 'Profile', current_user %>
+
           <% if current_user.admin? %>
-            <li><a href="/admin/images">Admin</a>
+            <li><%= link_to 'Admin', admin_images_path %>
           <% end %>
-          <li><a href="/users/edit">Settings</a>
-          <li>
-            <%= link_to destroy_user_session_path, :method => :delete do %>
-              Sign out
-            <% end %>
+          
+          <li><%= link_to 'Settings', settings_path %>
+          
+          <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
         </ul>
       </div>
 
     <% else %>
 
       <div class="header-item">
-        <%= link_to new_user_session_path do %>
-          Sign in
-        <% end %>
+        <%= link_to 'Sign in', new_user_session_path %>
       </div>
 
     <% end %>

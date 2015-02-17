@@ -1,0 +1,36 @@
+<div id="user-page-container">
+  <div id="user-page-sidebar">
+
+    <div id="user-page-profile-picture">
+      <!-- User's profile picture goes here. -->
+    </div>
+
+    <p class="user-page-username"><%= @user.name %></p>
+
+    <!-- User's website goes here. -->
+
+    <!-- User bio goes here. -->
+
+  </div>
+
+
+  <div id="user-content-container">
+    <ul id="user-page-header-tabs">
+      <li data-tab="tab-1" class="user-page-header-tab current">Uploads
+      <li data-tab="tab-2" class="user-page-header-tab">Collections
+    </ul>
+
+    <div id="user-uploads-container" class="tab-content tc-tab-1 current">
+      Uploads stuff
+      
+      <!-- Uploads goes here -->
+    </div>
+
+    <div id="user-collections-container" class="tab-content tc-tab-2">
+      <% @collections.each do |c| %>
+        <%= render "collection_stub", c: c %>
+      <% end %>
+    </div>
+  
+  </div>
+</div>

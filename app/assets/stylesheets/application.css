@@ -20,11 +20,20 @@
   box-sizing: border-box;
 }
 
+/* Defines the icon font. */
+@font-face {
+  font-family: 'ImageHex-Icon-Font';
+  src: url('ImageHex-Icon-Font.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* Styles applicable to all pages. */
 html, body {
-  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageHex-Icon-Font';
   background-color: #f0f0f0;
   margin: 0;
+  overflow-x: hidden;
 }
 
 /* Removes margins from all header items. */
@@ -56,4 +65,27 @@ h5 {
 /* Removes margin from all paragraph, or "p" elements. */
 p {
   margin: 0;
+  font-size: 1.4rem;
+}
+
+/* Fix for WebKit lists. */
+ul {
+  -webkit-margin-before: 0;
+  -webkit-padding-start: 0;
+  -webkit-margin-after: 0;
+}
+
+li {
+  display: block;
+}
+
+/* Fix for WebKit search decorations. */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* Fix for WebKit input text style. */
+input, textarea, keygen, select, button {
+  font: 400 initial 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageHex-Icon-Font';
 }

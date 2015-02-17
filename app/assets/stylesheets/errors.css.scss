@@ -1,3 +1,5 @@
+@import "scss-variables";
+
 /* The following animations are used to move the error dialog down below the header, keep it there for 90% of the duration of the animation, then hide it again. */
 @-webkit-keyframes alertAnimation {
   0% {
@@ -66,12 +68,12 @@
   font-size: 1.4rem;
   font-weight: 400;
   height: 40px;
-  left: 0px;
+  left: 0;
   line-height: 20px;
-  margin: 0px;
+  margin: 0;
   padding: 10px 40px;
   position: fixed;
-  top: 0px;
+  top: 0;
   width: 100vw;
   z-index: 999;
 
@@ -92,19 +94,51 @@
 /* Style for positive alerts. */
 .alert-success {
   background-color: #5bb289;
+
+  > p:first-of-type::before {
+    content: $icon-success;
+    font-size: 1.6rem;
+    margin-right: 8px;
+    top: 1px;
+    position: relative;
+  }
 }
 
 /* Style for informative alerts. */
 .alert-info {
   background-color: #556db3;
+
+  > p:first-of-type::before {
+    content: $icon-info;
+    font-size: 1.6rem;
+    margin-right: 8px;
+    top: 1px;
+    position: relative;
+  }
 }
 
 /* Style for less severe errors. */
 .alert-warning {
   background-color: #efb63e;
+
+  > p:first-of-type::before {
+    content: $icon-warning;
+    font-size: 1.6rem;
+    margin-right: 8px;
+    top: 1px;
+    position: relative;
+  }
 }
 
 /* Style for "dangerous" errors. */
 .alert-danger {
   background-color: #cb2e32;
+
+  > p:first-of-type::before {
+    content: $icon-danger;
+    font-size: 1.6rem;
+    margin-right: 8px;
+    top: 1px;
+    position: relative;
+  }
 }

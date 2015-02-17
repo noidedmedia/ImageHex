@@ -27,5 +27,9 @@ describe Image do
     expect(Image.by_reports).to eq([image])
   end
 
+  # Image in relation to collections
+  it {should have_many(:collection_images)}
+  it {should have_many(:collections).through(:collection_images)}
+
 end
 

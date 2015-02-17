@@ -1,0 +1,19 @@
+<div class="comment-container">
+  <%= form_tag(url, {class: "comment_form"}) do %>
+    <%= label_tag :body %> <%= text_field_tag("comment[body]") %>
+  <% end %>
+  <%#We manually include the user of the comment to prevent an N+1 %>
+  <% subject.comments.includes(:user).each do |comment| %>
+    <div class="comment">
+      <div class="user-comment-info">
+        <%= comment.user.name %>
+        commented
+        <%= time_ago_in_words(comment.created_at) %>
+        ago
+      </div>
+      <div class="comment-body">
+        <%= comment.body %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,152 @@
+@import "scss-variables";
+
+//-------------------------//
+//       #Dropdown         //
+//-------------------------//
+
+.custom-select-wrapper {
+  width: 250px;
+  height: 36px;
+  margin: 0;
+}
+
+.custom-select {
+  display: none;
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-select {
+  z-index: 200;
+  padding: 10px;
+  height: 36px;
+  text-align: left;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+
+  &:after {
+    color: #aaaab2;
+    content: $icon-placeholder;
+    float: right;
+    transition: 300ms ease;
+  }
+  
+  .active &:after {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdown-select-ul {
+  margin: 0;
+  display: none;
+  z-index: 100;
+  position: absolute; 
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: left;
+  padding-left: 0px;
+
+  border: 1px solid #aaaab2;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: none;
+  box-shadow: inset 0px -1px 0px #aaaab2;
+  padding-bottom: 2px;
+  
+  li {
+    display: block;
+    padding: 8px 10px;
+    cursor: pointer;
+
+    &.selected,
+    &.optgroup {
+      cursor: default;
+    }
+    
+    &.optgroup {
+      width: 92%;
+      padding-left: .7rem;
+      margin: 0 4%;
+      border-bottom: 1px solid #aaaab2;
+      font-size: 90%;
+      text-align: left;
+    }
+  }
+
+  .active & {
+    display: block;
+      -webkit-animation: fadeIn 400ms linear 0ms 1 both;
+    animation: fadeIn 400ms linear 0ms 1 both;
+  }
+}
+
+.dropdown-select {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #aaaab2;
+  border-radius: 3px;
+
+  &:hover,
+  &:focus {
+    background-color: darken(#fff,3%);
+  }
+
+  .active & {
+    background-color: #fff;
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.dropdown-select-ul {
+  background: #fff;
+  color: #333;
+
+  li {
+    &:hover,
+    &:focus {
+      background: darken(#fff,3%);
+    }
+
+    &.selected {
+      background: darken(#fff,6%);
+      color: #333;
+    }
+
+    &.optgroup {
+      background: #fff;
+      color: darken(#333,10%);
+      border-bottom-color: #333;
+    }
+  }
+}
+
+//-------------------------//
+//     #CSS Animation      //
+//-------------------------//
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -8,10 +8,22 @@ describe ImagesController do
       @user.confirm!
       sign_in @user
     end
+    describe "post #add" do
+      let(:i){FactoryGirl.create(:image)}
+      let(:c){FactoryGirl.create(:collection, users: [@user])}
+      it "adds the image to a collection" do
+        post :add, id: i.id, collection: c
+        expect(c.images).to include(i)
+      end
+      it "changes the number of images in the collection" do
+        expect{
+          post :add, id: i.id, collection: c
+        }.to change{c.images.count}.by(1)
+      end
+    end
     describe "GET #new" do
       it "responds with an HTTP success" do
         get :new
-
         expect(response).to be_success
       end
     end
@@ -35,13 +47,35 @@ describe ImagesController do
         end
       end
     end
+    describe "POST #favorite" do
+      let(:i){FactoryGirl.create(:image)}
+      it "makes a new favorite for a user" do
+        expect{post :favorite, id: i}.to change{@user.favorites.images.count}.by(1)
+      end
+      it "adds the image to the user's favorite" do
+        post :favorite, id: i
+        expect(@user.favorites.images).to include(i)
+      end
+    end
+    describe "POST #created" do
+      let(:i){FactoryGirl.create(:image)}
+      it "makes a new creation for a user" do
+        expect{
+          post :created, id: i
+        }.to change{@user.creations.images.count}.by(1)
+      end
+      it "adds the image to the user's creation" do
+        post :created, id: i
+        expect(@user.creations.images).to include(i)
+      end
+    end
   end
 
   context "when not logged in" do
     describe "GET #new" do
       it "redirects to the login page" do
         get :new
-        expect(response).to redirect_to "/users/sign_in"
+        expect(response).to redirect_to "/sessions/sign_in"
       end
     end
     describe "GET #show" do
