@@ -85,7 +85,6 @@
   opacity: 0;
   color: #aaaab2;
   background-color: #fff;
-  padding: 0 5px;
   height: auto;
   min-height: 0;
   width: 100%;
@@ -96,7 +95,6 @@
   span {
     display: block;
     height: 100px;
-    padding-top: 20px;
   }
 }
 
@@ -116,6 +114,7 @@
   height: auto;
   max-height: 240px; /* 1 */
   transition: max-height 300ms ease-in-out 200ms;
+  box-shadow: 0 0 3px 5px rgba(0, 0, 0, 0.05);
 
   form input[type="search"] {
     border-color: transparent;
@@ -131,6 +130,7 @@
     transition: max-height 300ms ease-in-out, width 300ms ease-in-out;
     display: block;
     position: fixed;
+    box-shadow: none;
 
     form input[type="search"] {
       width: 100%;
@@ -147,6 +147,7 @@
     display: none;
     opacity: 0;
     height: 170px;
+    padding: 0 5px;
     transition: opacity 300ms ease-in-out;
     
     &.active {
@@ -205,7 +206,7 @@
 #header-search-suggestions-fillable {
   text-align: left;
   font-size: 1.4rem;
-  position: absolute;
+  position: relative;
   left: 0;
   width: 100%;
   color: #333;
