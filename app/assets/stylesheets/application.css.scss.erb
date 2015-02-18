@@ -9,6 +9,7 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
+ * 
  *= require_tree ../../../vendor/assets/stylesheets/
  *= require_tree .
  *= require_self
@@ -23,7 +24,7 @@
 /* Defines the icon font. */
 @font-face {
   font-family: 'ImageHex-Icon-Font';
-  src: font-url('ImageHex-Icon-Font.ttf') format('truetype');
+  src: url(<%= asset_path 'ImageHex-Icon-Font.ttf' %>) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
