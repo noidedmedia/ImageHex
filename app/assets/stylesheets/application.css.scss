@@ -23,15 +23,15 @@
 
 /* Defines the icon font. */
 @font-face {
-  font-family: 'ImageHex-Icon-Font';
-  src: url(<%= asset_path 'ImageHex-Icon-Font.ttf' %>) format('truetype');
+  font-family: 'ImageHexIconFont';
+  src: url("/assets/ImageHexIconFont.ttf") format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 /* Styles applicable to all pages. */
 html, body {
-  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageHex-Icon-Font';
+  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageHexIconFont';
   background-color: #f0f0f0;
   margin: 0;
   overflow-x: hidden;
