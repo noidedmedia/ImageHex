@@ -49,7 +49,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Use AWS for storage
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # Make tests good!
 group :development, :test do
