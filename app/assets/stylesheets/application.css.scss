@@ -24,7 +24,7 @@
 /* Defines the icon font. */
 @font-face {
   font-family: 'ImageHex-Icon-Font';
-  src: url(<%= asset_path 'ImageHex-Icon-Font.ttf' %>) format('truetype');
+  src: asset_url('fonts/ImageHex-Icon-Font.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
