@@ -10,6 +10,7 @@ Bundler.require(*Rails.groups)
 
 module ImageHex
   class Application < Rails::Application
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
     config.active_record.raise_in_transactional_callbacks = true
     routes.default_url_options[:host] = "localhost"
