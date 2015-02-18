@@ -10,7 +10,7 @@ Bundler.require(*Rails.groups)
 
 module ImageHex
   class Application < Rails::Application
-    
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
     config.active_record.raise_in_transactional_callbacks = true
     routes.default_url_options[:host] = "localhost"
     ##
