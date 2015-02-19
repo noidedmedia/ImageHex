@@ -15,7 +15,6 @@
   @media all and (max-device-width: $mobile-width) {
     -webkit-flex-flow: column wrap;
             flex-flow: column wrap;
-    text-align: center;
   }
 }
 
@@ -56,6 +55,7 @@
     box-shadow: none;
     min-height: 0;
     padding: 20px;
+    text-align: center;
   }
 }
 
@@ -120,6 +120,7 @@
   @media all and (max-device-width: $mobile-width) {
     position: relative;
     z-index: 99;
+    text-align: center;
   }
 }
 

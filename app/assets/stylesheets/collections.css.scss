@@ -115,6 +115,10 @@
   position: relative;
   height: 432px; /* 2 */
   width: 400px;
+
+  @media all and (max-device-width: $mobile-width) {
+    margin-right: 0;
+  }
 }
 
 
@@ -132,12 +136,16 @@
   width: 400px;
   height: 400px;
   position: relative;
+  overflow: hidden;
 
   img {
     position: absolute;
-    clip: rect(0 400px 400px 0); /* 2 */
-    max-height: 800px;
     max-width: 800px;
+    max-height: 800px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100%;
   }
 }
 
@@ -163,12 +171,13 @@
   position: absolute;
   bottom: 32px; /* 1 */
   height: 300px;
-  width: 400px;
+  width: 100%;
   padding: 10px;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* 2 */
   color: #fff;
   -webkit-align-content: flex-end;
           align-content: flex-end;
+  text-align: left;
 }
 
 
