@@ -60,6 +60,7 @@ class Image < ActiveRecord::Base
 
     # First, properly format group names:
     names = q.map{|x| x.split(",").map{|y| y.downcase.strip.squish}}
+    names.each{|x| x.reject!{|y| y  == ""}}
     ##
     # Now we have:
     # [ [names for tags in a group], [names for another group]]
