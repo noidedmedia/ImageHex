@@ -105,6 +105,9 @@
  *    sidebar.
  * 2. Box shadow moved right 8 pixels ensure that it won't run
  *    into the user sidebar.
+ * 3. z-index moved down one to prevent the box shadow from
+ *    showing up over the "sidebar" when the tabs and "sidebar"
+ *    are combined into one object for mobile devices.
  */
 
 #user-page-header-tabs {
@@ -119,7 +122,7 @@
 
   @media all and (max-device-width: $mobile-width) {
     position: relative;
-    z-index: 99;
+    z-index: 99; /* 3 */
     text-align: center;
   }
 }
