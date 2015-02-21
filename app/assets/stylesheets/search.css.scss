@@ -52,10 +52,6 @@
       background-color: #fff;
       color: #333;
     }
-
-    &:valid:not(:focus) {
-      color: #fff;
-    }
   }
 
   label[for="header-search-input"] span {
