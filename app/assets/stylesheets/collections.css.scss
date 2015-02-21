@@ -94,6 +94,117 @@
 }
 
 
+/* ==============================================
+    Collection page
+   ============================================== */
+
+#collection-page-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  height: 100%;
+}
+
+#collection-page-header {
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  box-shadow: 0 0 5px 5px rgba(#000,.1);
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  padding: 20px 40px;
+  z-index: 100;
+
+  @media all and (max-device-width: $mobile-width) {
+    -webkit-flex-flow: column wrap;
+            flex-flow: column wrap;
+    position: relative;
+    width: 100%;
+    box-shadow: none;
+    min-height: 0;
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+#collection-page-info-container {
+  position: relative;
+  width: calc(100% - 300px);
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100%;
+  }
+
+  > p {
+    padding-bottom: 8px;
+  }
+}
+
+.collection-page-title {
+  font-size: 2.1rem;
+  font-weight: 500;
+
+  @media all and (max-device-width: $mobile-width) {
+    font-size: 2.4rem;
+    text-align: left;
+  }
+}
+
+.collection-page-description {
+  font-size: 1.4rem;
+  font-weight: 300;
+
+  @media all and (max-device-width: $mobile-width) {
+    font-size: 1.6rem;
+    text-align: left;
+  }
+}
+
+.collection-follow {
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.6rem;
+  width: 250px;
+  height: 32px;
+  margin: 5px 0px;
+  position: relative;
+  border-radius: 3px;
+  border: none;
+  background-color: #5bb289;
+  cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+}
+
+#collection-images-container {
+  margin: 10px 30px;
+  width: 100%;
+
+  @media all and (max-device-width: $mobile-width) {
+    margin-left: 0;
+  }
+}
+
+
+/* ==============================================
+    Embedded Collections
+   ============================================== */
+
 /**
  * Embedded collections styles
  *
@@ -211,7 +322,7 @@
 }
 
 /* Follow button */
-.collection-follow {
+.embedded-collection-follow {
   color: #fff;
   font-weight: 300;
   font-size: 1.6rem;
@@ -230,4 +341,3 @@
     outline: none;
   }
 }
-
