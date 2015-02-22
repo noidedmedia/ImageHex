@@ -1,7 +1,17 @@
-<%= @collection.name %>
-<%= @collection.description %>
-<%= render 'images/show_stub' %>
+<div id="collection-page-container">
+  <div id="collection-page-header">
+    <div id="collection-page-info-container">
+      <p class="collection-page-title"><%= @collection.name %>
+      <p class="collection-page-description"><%= @collection.description %>
+    </div>
 
-<%= form_tag(subscribe_collection_path(@collection.id)) do %>
-  <%= button_tag("Follow") %>
-<% end %>
+    <%= form_tag(subscribe_collection_path(@collection.id)) do %>
+      <%= button_tag "Follow", class: "collection-follow" %>
+    <% end %>
+  </div>
+
+  <div id="collection-images-container">
+    <%= render 'images/show_stub' %>
+  </div>
+
+</div>
