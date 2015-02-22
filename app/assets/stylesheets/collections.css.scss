@@ -196,7 +196,8 @@
   width: calc(100% - 60px);
 
   @media all and (max-device-width: $mobile-width) {
-    margin-left: 0;
+    width: 100%;
+    margin: 0;
   }
 }
 
