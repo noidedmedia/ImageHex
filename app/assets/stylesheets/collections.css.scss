@@ -133,7 +133,7 @@
 
 #collection-page-info-container {
   position: relative;
-  width: calc(100% - 300px);
+  width: calc(100% - 250px);
 
   @media all and (max-device-width: $mobile-width) {
     width: 100%;
@@ -170,7 +170,7 @@
   font-size: 1.6rem;
   width: 250px;
   height: 32px;
-  margin: 5px 0px;
+  margin: 5px 0;
   position: relative;
   border-radius: 3px;
   border: none;
@@ -193,7 +193,7 @@
 
 #collection-images-container {
   margin: 10px 30px;
-  width: 100%;
+  width: calc(100% - 60px);
 
   @media all and (max-device-width: $mobile-width) {
     margin-left: 0;
