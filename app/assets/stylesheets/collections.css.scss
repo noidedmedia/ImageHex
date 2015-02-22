@@ -236,10 +236,10 @@
     margin-right: 0;
     width: calc(100vw - 40px);
     height: calc(100vw - 40px);
-    max-width: auto;
-    max-height: auto;
-    min-width: auto;
-    min-height: auto;
+    max-width: 100vw;
+    max-height: 100vh;
+    min-width: 0;
+    min-height: 0;
   }
 
   @media all and (min-device-width: $mobile-width) {
@@ -355,6 +355,7 @@
       height: 1px;
       background: #fff;
       content: '';
+      transition: -webkit-transform 400ms;
       transition: transform 400ms;
       transform: translate3d(-100%,0,0);
         -webkit-transform: translate3d(-100%,0,0);
@@ -373,6 +374,7 @@
 
   @media all and (min-device-width: $mobile-width) {
     opacity: 0;
+    transition: opacity 400ms, -webkit-transform 400ms;
     transition: opacity 400ms, transform 400ms;
     transform: translate3d(0,25px,0);
       -webkit-transform: translate3d(0,25px,0);
@@ -388,6 +390,7 @@
 
   @media all and (min-device-width: $mobile-width) {
     opacity: 0;
+    transition: opacity 400ms, -webkit-transform 400ms;
     transition: opacity 400ms, transform 400ms;
     transform: translate3d(0,25px,0);
       -webkit-transform: translate3d(0,25px,0);
