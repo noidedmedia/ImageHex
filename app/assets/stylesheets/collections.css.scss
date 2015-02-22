@@ -213,7 +213,6 @@
  *
  * 1. Margins are the same to ensure that the spacing between
  *    each collection will always be equidistant.
- * 2. Height of image + height of follow button.
  */
 
 .embed-collection-container {
@@ -225,11 +224,47 @@
   -webkit-flex-flow: column wrap;
           flex-flow: column wrap;
   position: relative;
-  height: 432px; /* 2 */
-  width: 400px;
+  max-width: 500px;
+  max-height: 500px;
+  min-width: 350px;
+  min-height: 350px;
+  width: calc((100vw - 450px) / 3);
+  height: calc((100vw - 450px) / 3);
+  overflow: hidden;
 
   @media all and (max-device-width: $mobile-width) {
     margin-right: 0;
+    width: calc(100vw - 40px);
+    height: calc(100vw - 40px);
+    max-width: auto;
+    max-height: auto;
+    min-width: auto;
+    min-height: auto;
+  }
+
+  @media all and (min-device-width: $mobile-width) {
+    > a:hover {
+      .collection-information {
+        background: rgba(#000,0.4);
+      }
+
+      .collection-title::after {
+        transform: translate3d(0,0,0);
+          -webkit-transform: translate3d(0,0,0);
+      }
+
+      .collection-curators {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+          -webkit-transform: translate3d(0,0,0);
+      }
+
+      .collection-description {
+        opacity: 0.8;
+        transform: translate3d(0,0,0);
+          -webkit-transform: translate3d(0,0,0);
+      }
+    }
   }
 }
 
@@ -245,19 +280,17 @@
  */
 
 .collection-thumbnail {
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden;
 
   img {
-    position: absolute;
-    max-width: 800px;
-    max-height: 800px;
-  }
-
-  @media all and (max-device-width: $mobile-width) {
-    width: 100%;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    max-width: 180%;
+    max-height: 180%;
   }
 }
 
@@ -267,9 +300,7 @@
  *
  * Title, curators, description etc.
  *
- * 1. Offset from the bottom to ensure the Follow button never covers
- *    the collection information.
- * 2. A semi-transparent black to full transparency gradient that lies
+ * 1. A semi-transparent black to full transparency gradient that lies
  *    under the collection information and on top of the collection 
  *    thumbnail. This helps with contrast of the information text when
  *    an image is white or another very light color.
@@ -281,15 +312,24 @@
   -webkit-flex-flow: row wrap;
           flex-flow: row wrap;
   position: absolute;
-  bottom: 32px; /* 1 */
-  height: 300px;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
-  padding: 10px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)); /* 2 */
+  padding: 20px;
+  padding-top: 40px;
+  background: rgba(#000,0.2); /* 1 */
+  transition: background 400ms;
   color: #fff;
-  -webkit-align-content: flex-end;
-          align-content: flex-end;
+  -webkit-align-content: flex-start;
+          align-content: flex-start;
   text-align: left;
+  overflow: hidden;
+
+  @media all and (max-device-width: $mobile-width) {
+    padding-top: 20px;
+    background: rgba(#000,0.4);
+  }
 }
 
 
@@ -297,48 +337,63 @@
 .collection-title {
   font-size: 2.1rem;
   font-weight: 500;
-  padding: 8px 0 0;
+  padding-bottom: 3px;
   width: 100%;
+  position: relative;
+  overflow: hidden;
 
   a {
     text-decoration: none;
+  }
+
+  @media all and (min-device-width: $mobile-width) {
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #fff;
+      content: '';
+      transition: transform 400ms;
+      transform: translate3d(-100%,0,0);
+        -webkit-transform: translate3d(-100%,0,0);
+      backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
   }
 }
 
 /* Curators with permission to curate the embedded collection. */
 .collection-curators {
   font-size: 1.4rem;
-  font-weight: 400;
-  padding: 2px 0;
+  font-weight: 300;
   width: 100%;
+  padding: 5px 0;
+
+  @media all and (min-device-width: $mobile-width) {
+    opacity: 0;
+    transition: opacity 400ms, transform 400ms;
+    transform: translate3d(0,25px,0);
+      -webkit-transform: translate3d(0,25px,0);
+  }
 }
 
 /* Description for the embedded collection. */
 .collection-description {
   font-size: 1.4rem;
   font-weight: 300;
-  padding-top: 10px;
-  padding-bottom: 2px;
   width: 100%;
-}
+  padding: 5px 0;
 
-/* Follow button */
-.embedded-collection-follow {
-  color: #fff;
-  font-weight: 300;
-  font-size: 1.6rem;
-  width: 100%;
-  height: 32px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border: none;
-  background-color: #5bb289;
-  cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  @media all and (min-device-width: $mobile-width) {
+    opacity: 0;
+    transition: opacity 400ms, transform 400ms;
+    transform: translate3d(0,25px,0);
+      -webkit-transform: translate3d(0,25px,0);
+  }
 
-  &:focus {
-    outline: none;
+  @media all and (max-device-width: $mobile-width) {
+    display: none;
   }
 }

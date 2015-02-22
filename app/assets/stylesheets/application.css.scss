@@ -68,13 +68,18 @@ h5 {
 p {
   margin: 0;
   font-size: 1.4rem;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 /* Fix for WebKit lists. */
-ul {
+ul, figure {
   -webkit-margin-before: 0;
-  -webkit-padding-start: 0;
   -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
 }
 
 li {
