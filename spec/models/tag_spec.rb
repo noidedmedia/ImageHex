@@ -26,6 +26,12 @@ describe Tag do
       expect(Tag.suggest("b")).to_not include("asdf")
     end
   end
+  describe "display names" do
+    it "keeps capitalization" do
+      name = "CAPitalizatAtion"
+      expect(FactoryGirl.create(:tag, name: name).display_name).to eq(name)
+    end
+  end
   it{should have_many(:tag_groups).through(:tag_group_members)}
   it{should have_many(:tag_group_members)}
 end
