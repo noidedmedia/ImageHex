@@ -85,11 +85,11 @@
 
   /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
   &:first-of-type {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   &:last-of-type {
-    padding-right: 0px;
+    padding-right: 0;
   }
 
   @media all and (max-device-width: $mobile-width) {
@@ -123,11 +123,11 @@
 
   background: #555;
   border-radius: 4px;
-  box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
   transition: opacity 200ms ease-in;
   list-style: none;
   opacity: 0; /* Hiding */
-  padding-left: 0px;
+  padding-left: 0;
   text-align: left;
   visibility: hidden;
 }
