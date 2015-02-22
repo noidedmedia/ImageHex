@@ -19,6 +19,7 @@ class Tag < ActiveRecord::Base
   end
   private
   def fix_name
+    self.display_name ||= self.name
     self.name = self.name.strip.squish.downcase
   end
 
