@@ -39,10 +39,17 @@ class TagGroup < ActiveRecord::Base
   # Converts a comma-seperated list of tags into the actual tags
   def save_tag_group_string
     return unless self.tag_group_string && ! self.tag_group_string.empty?
-    array = self.tag_group_string.split(",")
-      .map{|str| str.strip.squish.downcase} # Properly format the names
-      .map{|str| Tag.where(name: str).first_or_create} # Create or find
-    self.tags = array
+    tag_names = self.tag_group_string.split(",")
+    formated_tags = tag_names.map{|name| name.downcase.strip.squish}
+    found_tags = formated_tags.zip(tag_names).map do |names|
+      ##
+      # Names is currently an array of [formated name, input name]
+      # so we do this:
+      Tag.where(name: names.first).first_or_create do
+        display_name = names.last
+      end
+    end
+    self.tags = found_tags
   end
 
   ##
