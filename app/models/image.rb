@@ -6,9 +6,9 @@ class Image < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
-  has_attached_file :f, 
+  has_attached_file :f,
     # Steal Flickr's suffixes
-    :styles => { 
+    :styles => {
       small: "140x140>",
       medium: "300x300>",
       large: "500x500>",
@@ -22,14 +22,14 @@ class Image < ActiveRecord::Base
 
   has_many :reports, as: :reportable
 
-  has_many :comments, as: :commentable 
+  has_many :comments, as: :commentable
   has_many :collection_images
-  
+
   has_many :collections, through: :collection_images
   #########
   # ENUMS #
   #########
-  
+
   # What license the image is under
   enum license: ["Public Domain", "All Rights Reserved", "CC-BY", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC", "CC-BY-ND-SA", "CC-BY-NC-ND"]
   # What kind of image this is
@@ -47,7 +47,7 @@ class Image < ActiveRecord::Base
   #################
   # CLASS METHODS #
   #################
-  
+
   ##
   # Search takes a query, and returns all images which match this query.
   # +q+:: array of groups to be searched for. Each group should be a comma-seperated list of tags.
@@ -78,21 +78,21 @@ class Image < ActiveRecord::Base
         HAVING COUNT(*) = ?
     }
     ids = names.map do |name|
-      
+
       # Query is above
       # We have 2 values to insert: the tag names, and
       # the number of tag names.
-      
+
       Image.find_by_sql([query, name, name.count]).map(&:id)
     end
-    ## 
+    ##
     # We use a fold to get common ids
     common = ids.inject{|old, x| x & old}
     where(id: common)
-  end 
+  end
 
   ##
-  # Return all images by the number of reports. 
+  # Return all images by the number of reports.
   # Only returns the images which have at least 1 report.
   # TODO: rewrite this so it uses SQL and doesn't just load every freaking image into memory
   def self.by_reports

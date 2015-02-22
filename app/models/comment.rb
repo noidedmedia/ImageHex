@@ -7,7 +7,7 @@
 # You can also reply to one or more other comments by putting ">>" and the ID of the comment.
 # Behold:
 #     ">>1230 no you idiot you know nothing about design"
-# 
+#
 # To include an image, reference its id with a # in front. Like so:
 #     "#123 is like this image but less awesome"
 # Replies and mentions generate a one-time notification and are otherwise only loosely related on the frontend via javascript.
@@ -40,7 +40,7 @@ class Comment < ActiveRecord::Base
   protected
   ##
   # Notify reply tells us to make a notification of a reply to
-  # this comment. It's protected so only other comments can 
+  # this comment. It's protected so only other comments can
   # call it.
   def notify_reply(other)
     n = Notification.create(user: user,
@@ -68,7 +68,7 @@ class Comment < ActiveRecord::Base
     comments.map{|x| x.notify_reply(self)}
   end
 
-  ## 
+  ##
   # Parse the body of the comment, find all mentioned users,
   # notify them
   def notify_mentioned_users

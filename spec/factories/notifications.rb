@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :notification do
-    user 
+    user
     subject {FactoryGirl.build(:comment)}
     message "We did some things, yay!"
     read false

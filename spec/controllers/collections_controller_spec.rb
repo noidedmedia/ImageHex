@@ -5,7 +5,7 @@ RSpec.describe CollectionsController, :type => :controller do
   describe "get #index" do
     it "shows all a users collections" do
       user = FactoryGirl.create(:user)
-      user.collections = [FactoryGirl.create(:collection), 
+      user.collections = [FactoryGirl.create(:collection),
                           FactoryGirl.create(:collection)]
       get :index, user_id: user
       expect(assigns(:collections)).to match_array(user.collections)
@@ -73,7 +73,7 @@ RSpec.describe CollectionsController, :type => :controller do
       context "with invalid attributes" do
         it "doesn't make a new collection"
         it "renders the #new page with errors set"
-      end 
+      end
     end
     describe "get #edit" do
       it "doesn't update the title of innate collections"
@@ -89,6 +89,6 @@ RSpec.describe CollectionsController, :type => :controller do
         it "renders the #edit page with errors set"
       end
     end
-    
+
   end
 end

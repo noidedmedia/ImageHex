@@ -6,5 +6,5 @@ class TagsController < ApplicationController
     suggestions = Tag.suggest(params["name"])
     render json: suggestions
   end
-  
+
 end

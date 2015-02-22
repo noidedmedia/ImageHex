@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  
+
   # Page pref has to be a sensable value
   it {should validate_inclusion_of(:page_pref).in_range(1..100)}
   # Validations for the name
@@ -45,7 +45,7 @@ describe User do
   describe "favoriting" do
     let(:u){FactoryGirl.create(:user)}
     let(:i){FactoryGirl.create(:image)}
-    
+
     it "adds an image to the favorites" do
       u.favorite!(i)
       expect(u.favorites.images).to eq([i])

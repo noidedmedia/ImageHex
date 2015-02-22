@@ -5,13 +5,13 @@ class TagGroup < ActiveRecord::Base
   belongs_to :image
   has_many :tags, through: :tag_group_members
   has_many :tag_group_members
-  
+
   ###############
   # VALIDATIONS #
   ###############
   validates :image, presence: true
   validates :tags, presence: true
-  
+
   ##############
   # ATTRIBUTES #
   ##############
@@ -21,11 +21,11 @@ class TagGroup < ActiveRecord::Base
   # CALLBACKS #
   #############
   before_validation :save_tag_group_string
-  after_initialize :load_tag_group_string 
+  after_initialize :load_tag_group_string
   #################
   # CLASS METHODS #
   #################
-  
+
 
 
   ####################
@@ -33,7 +33,7 @@ class TagGroup < ActiveRecord::Base
   ####################
 
 
-  
+
   private
   ##
   # Converts a comma-seperated list of tags into the actual tags
