@@ -23,15 +23,16 @@
 
 /* Defines the icon font. */
 @font-face {
-  font-family: 'ImageHexIconFont';
-  src: url("/assets/ImageHexIconFont.ttf") format('truetype');
+  font-family: 'imagehexiconfont';
+  src: font-url('imagehexiconfont.eot');
+  src: font-url('imagehexiconfont.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 /* Styles applicable to all pages. */
 html, body {
-  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageHexIconFont';
+  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
   background-color: #f0f0f0;
   margin: 0;
   overflow-x: hidden;
@@ -88,5 +89,5 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Fix for WebKit input text style. */
 input, textarea, keygen, select, button {
-  font: 400 initial 'Helvetica Neue', Helvetica, Arial, sans-serif, 'ImageHex-Icon-Font';
+  font: 400 inherit 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
 }
