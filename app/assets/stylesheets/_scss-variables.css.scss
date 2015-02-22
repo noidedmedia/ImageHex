@@ -1,5 +1,5 @@
 // Icons
-$icon-close: '\e800';
+$icon-delete: '\e800';
 $icon-info: '\e801';
 $icon-warning: '\e802';
 $icon-danger: '\e803';
@@ -10,6 +10,12 @@ $icon-favorite: '\e806';
 $icon-notifications: '\e807';
 $icon-search: '\e808';
 $icon-add: '\e809';
+$icon-close: '\e80b';
+$icon-source: '\e80c';
+$icon-transcript: '\e80d';
+$icon-location: '\e80e';
+$icon-dropdown: '\e80f';
+
 $icon-placeholder: '\e804';
 
 // Mobile values
@@ -20,4 +26,4 @@ $emph-text: #828282; // Emphasized text
 $unemph-text: #6d6d6d; // Unemphasized text
 
 // Font stack
-$font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
