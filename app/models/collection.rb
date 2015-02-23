@@ -16,7 +16,7 @@ class Collection < ActiveRecord::Base
   has_many :subscribers, through: :subscriptions, source: :user 
   # Join table: User -> Collection
   has_many :curatorships
-  has_many :users, through: :curatorships
+  has_many :curators, through: :curatorships, source: :user
   # Join table: Collection -> Images
   has_many :collection_images
   # Collections are useless without images.
@@ -42,6 +42,6 @@ class Collection < ActiveRecord::Base
   # Does a user curate this collection?
   # +u+:: the user
   def curated?(u)
-    self.users.include?(u)
+    self.curators.include?(u)
   end
 end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :collection do
-    users {[FactoryGirl.create(:user)]}
+    curators {[FactoryGirl.create(:user)]}
     name "Test"
   end
 

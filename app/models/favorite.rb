@@ -6,11 +6,11 @@ class Favorite < Collection
   ##
   # since this will only ever have 1 curator, we make a helpful
   # alias method
-  def user
-    users.first
+  def curator
+    curators.first
   end
   protected
   def fill_name
-    self.name = "#{self.user.name.possessive} Favorites"
+    self.name = "#{self.curator.name.possessive} Favorites"
   end
 end

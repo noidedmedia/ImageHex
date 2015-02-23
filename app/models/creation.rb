@@ -8,11 +8,11 @@ class Creation < Collection
 
   ##
   # Since this will ony ever have one curator, we make this alias:
-  def user
-    users.first
+  def curator
+    curators.first
   end
   protected
   def make_name
-    self.name = "#{self.user.name.possessive} Creations"
+    self.name = "#{self.curator.name.possessive} Creations"
   end
 end
