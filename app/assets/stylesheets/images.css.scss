@@ -104,6 +104,10 @@
   content: $icon-favorite;
 }
 
+.favorited#img-action-favorite::before {
+  content: $icon-placeholder;
+}
+
 #img-action-collection::before {
   content: $icon-add;
 }

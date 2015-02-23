@@ -6,7 +6,10 @@
 
   <div class="image-actions-sidebar">
     <div class="image-actions-container">
-      <a href="#"><div class="image-actions" id="img-action-favorite">Favorite</div></a>
+      <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
+        <div class="image-actions" id="img-action-favorite">Favorite</div>
+      <% end %>
+
       <a href="#"><div class="image-actions" id="img-action-collection">Add to Collection</div></a>
       <%= render 'collection_select' if current_user %>
       <a href="#"><div class="image-actions" id="img-action-share">Share</div></a>
