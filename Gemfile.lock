@@ -131,6 +131,8 @@ GEM
       thin (~> 1.5.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
+    migration_data (0.0.4)
+      rails (>= 4.0.0.rc1)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -313,6 +315,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   mailcatcher
+  migration_data
   newrelic_rpm
   paperclip
   pg
