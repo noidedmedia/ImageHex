@@ -6,8 +6,8 @@ class ImagesController < ApplicationController
   def unfavorite
     col = current_user.favorites
     image = Image.find(params[:id])
-    col.images.delete(image)
-
+    result = col.images.delete(image)
+    render json: result
   end
   def remove
     col = current_user.collections.where(id: params["collection"]).first
