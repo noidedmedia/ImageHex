@@ -67,6 +67,9 @@ class User < ActiveRecord::Base
     favorites.images << i
   end
 
+  def favorited?(image)
+    favorites.include? image
+  end
 
   ## 
   # Add an image to a user's creations
