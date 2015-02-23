@@ -69,6 +69,15 @@ describe ImagesController do
         expect(@user.creations.images).to include(i)
       end
     end
+    describe "DELETE #remove" do
+      it "removes stuff" do
+        image = FactoryGirl.create(:image)
+        @user.favorites.images << image
+        expect{
+          delete :remove, id: image.id, "collection" => @user.favorites
+        }.to change{@user.favorites.images.count}.by(-1)
+      end
+    end
   end
 
   context "when not logged in" do

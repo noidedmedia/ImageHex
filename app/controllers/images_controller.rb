@@ -6,9 +6,12 @@ class ImagesController < ApplicationController
   def remove
     col = current_user.collections.where(id: params["collection"]).first
     image = Image.find(params[:id])
-    if col && col.include?(image)
-      col.delete(image)
+    worked = false
+    if col && col.images.include?(image)
+      col.images.delete(image)
+      worked = true
     end
+    render json: worked
   end
   def comment
     @comment = Comment.new(comment_params)
