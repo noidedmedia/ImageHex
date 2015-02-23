@@ -24,11 +24,20 @@
       <%= f.text_field :tag_group_string %>
     <% end %>
   </div>
+  
   <div id="new-group-button">
     New group
   </div>
+  
   <% @groups.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>
+
+
+  <p><%= @image.license %>
+
+  <p><%= @image.medium.titleize %>
+
+
   <%= render "shared/comments", url: comment_image_path(@image), subject: @image %>
 </div>
