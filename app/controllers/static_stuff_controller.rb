@@ -1,5 +1,5 @@
 ##
-# This controller, essentially, is pointless. 
+# This controller, essentially, is pointless.
 # It serves to render completely static pages.
 # At some point we should replace this with an NGINX thing or something.
 class StaticStuffController < ApplicationController
@@ -14,7 +14,7 @@ class StaticStuffController < ApplicationController
   end
 
   ##
-  # Contact page. How to talk to us. 
+  # Contact page. How to talk to us.
   def contact
   end
 end

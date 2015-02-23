@@ -69,26 +69,26 @@ class ImagesController < ApplicationController
   end
 
   ##
-  # Modify an uploaded image with a PUT. 
-  # Currently does nothing. 
+  # Modify an uploaded image with a PUT.
+  # Currently does nothing.
   def update
   end
 
   ##
   # GET to acquire a page where you can edit an image.
-  # Does nothing currently. 
+  # Does nothing currently.
   def edit
   end
 
   ##
   # DELETE to remove an image.
-  # Does nothing currently. 
+  # Does nothing currently.
   def destroy
   end
 
   ##
   # Obtain all images, in order of uploading.
-  # Paginated according to user preferences. 
+  # Paginated according to user preferences.
   def index
     @images = Image.paginate(page: page, per_page: per_page).order('created_at DESC')
   end

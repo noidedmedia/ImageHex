@@ -5,7 +5,7 @@ include ActionDispatch::TestProcess
 describe Image do
   # Images have many tag groups
   it {should have_many(:tag_groups)}
-  # Images need to belong to a user 
+  # Images need to belong to a user
   it {should belong_to :user}
   it {should validate_presence_of(:user)}
   # Images must have both mediums:

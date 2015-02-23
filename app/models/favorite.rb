@@ -1,4 +1,4 @@
-## 
+##
 # A Favorite is a type of collection that holds a users favorite images.
 class Favorite < Collection
   before_validation :fill_name

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def page
     params[:page] ? params[:page] : 1
   end
-  
+
   # How many things to display per page
   def per_page
     # Block is comented out until implimented properly

@@ -1,19 +1,19 @@
 ##
 # Collection is a way to organize images outside of the content within.
 # An example of this might be all images that happened at a particular place
-# in time, all images which have subjective quality in the opinion of a user 
+# in time, all images which have subjective quality in the opinion of a user
 # (something like "beautiful"), or all the pages of a comic.
-# 
+#
 # It is an abstract class that uses STI to implement different functionality
 # on child classes.
 class Collection < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
-  
+
   # join table: User -> Collection
   has_many :subscriptions
-  has_many :subscribers, through: :subscriptions, source: :user 
+  has_many :subscribers, through: :subscriptions, source: :user
   # Join table: User -> Collection
   has_many :curatorships
   has_many :curators, through: :curatorships, source: :user
@@ -37,7 +37,7 @@ class Collection < ActiveRecord::Base
   #####################
   # INSTANCE  METHODS #
   #####################
-  
+
   ##
   # Does a user curate this collection?
   # +u+:: the user
