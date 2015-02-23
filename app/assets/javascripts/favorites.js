@@ -2,7 +2,13 @@
 // is toggled on the element.
 function favoriteImage() {
   $("#img-action-favorite").parent("a[data-remote]").on("ajax:success", function(e, data, status, xhr) {
-    $("#img-action-favorite").toggleClass("favorited");
+    if ($("#img-action-favorite").hasClass("favorited")) {
+      $("#img-action-favorite").toggleClass("favorited");
+      $("#img-action-favorite").html("Favorite");
+    } else {
+      $("#img-action-favorite").toggleClass("favorited");
+      $("#img-action-favorite").html("Favorited");
+    }
   });
 }
 
