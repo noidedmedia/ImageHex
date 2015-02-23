@@ -9,7 +9,7 @@ class CollectionsController < ApplicationController
     current_user.subscribe! Collection.find(params[:id])
     redirect_to :back
 
-    ## in case our session doesn't ahve a back
+    ## in case our session doesn't have a back
   rescue ActionController::RedirectBackError
     redirect_to root_path
   end

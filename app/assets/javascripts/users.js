@@ -1,4 +1,4 @@
-function tabbedMenu() {  
+function tabbedMenu() {
   $('ul#user-page-header-tabs li').click(function() {
     var tabid = $(this).attr('data-tab');
 
