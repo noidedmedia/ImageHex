@@ -17,7 +17,7 @@ class CollectionsController < ApplicationController
   def show
     @collection = Collection.find(params[:id])
     @images = @collection.images.paginate(page: page, per_page: per_page)
-    @curators = @collection.users
+    @curators = @collection.curators
   end
 
   def new
@@ -48,6 +48,6 @@ class CollectionsController < ApplicationController
   def collection_params
     params.require(:collection)
       .permit(:type, :name, :description)
-      .merge(users: [current_user])
+      .merge(curators: [current_user])
   end
 end
