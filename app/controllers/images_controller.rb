@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
   def remove
     col = current_user.collections.where(id: params["collection"]).first
     image = Image.find(params[:id])
-    if col && col.include? image
+    if col && col.include?(image)
       col.delete(image)
     end
   end
