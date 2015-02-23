@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       post "favorite"
       post "created"
       post "add"
+      delete "remove"
     end
     resources :tag_groups
     concerns :reportable, :commentable

@@ -2,7 +2,14 @@ class ImagesController < ApplicationController
   # Load the image via our id
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
-  before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy, :report, :comment]
+  before_action :ensure_user, only: [:remove, :new, :create, :update, :edit, :destroy, :report, :comment]
+  def remove
+    col = current_user.collections.where(id: params["collection"]).first
+    image = Image.find(params[:id])
+    if col && col.include? image
+      col.delete(image)
+    end
+  end
   def comment
     @comment = Comment.new(comment_params)
     if @comment.save
