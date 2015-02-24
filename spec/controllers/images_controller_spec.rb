@@ -8,19 +8,6 @@ describe ImagesController do
       @user.confirm!
       sign_in @user
     end
-    describe "post #add" do
-      let(:i){FactoryGirl.create(:image)}
-      let(:c){FactoryGirl.create(:collection, users: [@user])}
-      it "adds the image to a collection" do
-        post :add, id: i.id, collection: c
-        expect(c.images).to include(i)
-      end
-      it "changes the number of images in the collection" do
-        expect{
-          post :add, id: i.id, collection: c
-        }.to change{c.images.count}.by(1)
-      end
-    end
     describe "GET #new" do
       it "responds with an HTTP success" do
         get :new
@@ -69,15 +56,7 @@ describe ImagesController do
         expect(@user.creations.images).to include(i)
       end
     end
-    describe "DELETE #remove" do
-      it "removes stuff" do
-        image = FactoryGirl.create(:image)
-        @user.favorites.images << image
-        expect{
-          delete :remove, id: image.id, "collection" => @user.favorites
-        }.to change{@user.favorites.images.count}.by(-1)
-      end
-    end
+   
   end
 
   context "when not logged in" do

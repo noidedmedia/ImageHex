@@ -2,7 +2,7 @@
 
   <%= form_tag add_image_path(@image), method: :post do %>
     <% current_user.collections.each do |c| %>
-      <p><%= link_to c.name, add_image_path(@image), remote: :true, method: :post %>
+      <p><%= link_to c.name, add_collection_path(c), remote: :true, method: :post %>
     <% end %>
   <% end %>
 
