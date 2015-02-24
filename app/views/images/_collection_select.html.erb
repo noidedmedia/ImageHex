@@ -1,7 +1,9 @@
 <div id="collection-select" data-showon="#img-action-collection">
-  <%= form_tag add_image_path(@image), method: :post do %>
 
-    <%= select_tag "collection", grouped_options_for_select(collection_select current_user)%>
-    <%= submit_tag %>
+  <%= form_tag add_image_path(@image), method: :post do %>
+    <% current_user.collections.each do |c| %>
+      <p><%= link_to c.name, add_image_path(@image), remote: :true, method: :post %>
+    <% end %>
   <% end %>
+
 </div>
