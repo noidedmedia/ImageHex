@@ -33,7 +33,37 @@
 }
 
 #image-page-bottom-container {
-  padding: 0 40px 30px;
+  padding: 50px 40px 30px 40px;
   min-height: 300px;
   color: #333;
+  position: relative;
+}
+
+
+/* ==============================================
+    Image page toolbar
+   ============================================== */
+
+#image-page-toolbar {
+  width: 100%;
+  background-color: #fff;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 12px 40px 12px 60px;
+  font-size: 1.4rem;
+}
+
+#add-tag-group-button {
+  cursor: pointer;
+
+  &:before {
+    content: $icon-add;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-22px,-2px);
+      -webkit-transform: translate(-22px,-2px);
+    font-size: 1.8rem;
+  }
 }

@@ -93,7 +93,7 @@
 
 /* Style for positive alerts. */
 .alert-success {
-  background-color: #5bb289;
+  background-color: $color-success;
 
   > p:first-of-type::before {
     content: $icon-success;
@@ -106,7 +106,7 @@
 
 /* Style for informative alerts. */
 .alert-info {
-  background-color: #556db3;
+  background-color: $color-info;
 
   > p:first-of-type::before {
     content: $icon-info;
@@ -119,7 +119,7 @@
 
 /* Style for less severe errors. */
 .alert-warning {
-  background-color: #efb63e;
+  background-color: $color-warning;
 
   > p:first-of-type::before {
     content: $icon-warning;
@@ -132,7 +132,7 @@
 
 /* Style for "dangerous" errors. */
 .alert-danger {
-  background-color: #cb2e32;
+  background-color: $color-danger;
 
   > p:first-of-type::before {
     content: $icon-danger;
