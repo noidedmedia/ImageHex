@@ -3,6 +3,7 @@
     <div id="collection-page-info-container">
       <p class="collection-page-title"><%= @collection.name %>
       <p class="collection-page-description"><%= @collection.description %>
+      <p class="collection-page-curators">Curated by <%= @collection.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
     </div>
 
     <%= form_tag(subscribe_collection_path(@collection.id)) do %>

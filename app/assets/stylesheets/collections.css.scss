@@ -150,7 +150,6 @@
 
   @media all and (max-device-width: $mobile-width) {
     font-size: 2.4rem;
-    text-align: left;
   }
 }
 
@@ -160,7 +159,15 @@
 
   @media all and (max-device-width: $mobile-width) {
     font-size: 1.6rem;
-    text-align: left;
+  }
+}
+
+.collection-page-curators {
+  font-size: 1.4rem;
+  font-weight: 300;
+
+  @media all and (max-device-width: $mobile-width) {
+    font-size: 1.6rem;
   }
 }
 
