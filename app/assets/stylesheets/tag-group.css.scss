@@ -17,6 +17,10 @@
   display: inline-block;
   width: 100%;
 
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #e4e4e4;
+  }    
+
   &:first-of-type {
     font-size: 1.8rem;
     font-weight: 500;

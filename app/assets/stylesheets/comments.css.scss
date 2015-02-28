@@ -10,10 +10,6 @@
   position: relative;
   margin-bottom: 15px;
   display: inline-block;
-
-  @media all and (max-device-width: $mobile-width) {
-    width: 100vw;
-  }
 }
 
 #comment-container-header {
