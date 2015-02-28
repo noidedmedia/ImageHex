@@ -139,6 +139,7 @@
 .collection-add-list-item {
   width: 100%;
   font-size: 1.2rem;
+  font-weight: 300;
   color: rgba(#fff,0.8);
   background-color: #222;
   border: none;
@@ -146,7 +147,7 @@
   -webkit-appearance: none;
   height: 35px;
   text-align: left;
-  padding-left: 60px;
+  padding-left: 38px;
   cursor: pointer;
 
   &:hover {
