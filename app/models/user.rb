@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   end
 
   def favorited?(image)
-    favorites.include? image
+    favorites.images.include? image
   end
 
   ##

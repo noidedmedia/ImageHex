@@ -36,6 +36,7 @@ html, body {
   background-color: #f0f0f0;
   margin: 0;
   overflow-x: hidden;
+  height: 100%;
 }
 
 /* Removes margins from all header items. */
@@ -67,14 +68,18 @@ h5 {
 /* Removes margin from all paragraph, or "p" elements. */
 p {
   margin: 0;
-  font-size: 1.4rem;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 /* Fix for WebKit lists. */
-ul {
+ul, figure {
   -webkit-margin-before: 0;
-  -webkit-padding-start: 0;
   -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
 }
 
 li {
@@ -85,6 +90,10 @@ li {
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
+}
+
+input {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
 }
 
 /* Fix for WebKit input text style. */

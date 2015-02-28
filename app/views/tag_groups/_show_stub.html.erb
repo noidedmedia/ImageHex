@@ -1,16 +1,16 @@
 <%# render the tag_group in group %>
 <% if tag_group.id %>
-  <div class="tag-group-show" 
+  <div class="generic-tag-group" 
     data-editform="<%= edit_image_tag_group_path(@image, tag_group) %> #edit-group"
-    data-toggle=".form-toggle">
+    data-toggle=".edit-generic-tag-group">
+
     <% tag_group.tags.each do |t| %>
       <div class="tag-box">
         <%= t.display_name %>
       </div>
     <% end %>
-    <div class="form-toggle">
-      Edit
-    </div>
+
+    <div class="edit-generic-tag-group"></div>
   </div>
 
 <% end %>

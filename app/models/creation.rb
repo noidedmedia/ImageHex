@@ -1,4 +1,3 @@
-
 ##
 # A creation is a collection which holds iamges created by a particular parson.
 # It is different from uploads as it specifies not who put the image on ImageHex, but who made it in the first place.
@@ -11,6 +10,7 @@ class Creation < Collection
   def curator
     curators.first
   end
+
   protected
   def make_name
     self.name = "#{self.curator.name.possessive} Creations"

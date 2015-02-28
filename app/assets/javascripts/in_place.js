@@ -32,7 +32,7 @@ var loadform = function(node) {
   };
 };
 
-// This function fins all elements with the data-editform attribute set.
+// This function finds all elements with the data-editform attribute set.
 // It will load the provided form when the provided toggle (in data-toggle)
 // is clicked.
 var formprep = function() {

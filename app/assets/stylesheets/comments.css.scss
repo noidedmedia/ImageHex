@@ -1,1 +1,80 @@
 @import "scss-variables";
+
+#comment-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 10px;
+  padding-top: 35px; // To make room for the absolutely positioned header.
+  position: relative;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+#comment-container-header {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  top: 0;
+  left: 0;
+  padding: 4px 10px;
+
+  h3 {
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 5px 0;
+    border-bottom: 1px solid #e4e4e4;
+  }
+}
+
+.comment {
+  width: 100%;
+  display: block;
+  margin: 12px 0;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.user-comment-info {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+
+  a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.comment-body {
+  font-size: 1.2rem;
+}
+
+.new-comment {
+  width: 100%;
+  min-height: 50px;
+  font-size: 1.2rem;
+  resize: vertical;
+  border-color: #c9c9c9;
+
+  &:focus {
+    outline: transparent;
+    border-color: #333;
+  }
+}
+
+.no-comments {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #aaaab2;
+  padding: 35px 0;
+}

@@ -2,7 +2,14 @@ class ImagesController < ApplicationController
   # Load the image via our id
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
-  before_action :ensure_user, only: [:new, :create, :update, :edit, :destroy, :report, :comment]
+  before_action :ensure_user, only: [:unfavorite, :favorite, :created, :new, :create, :update, :edit, :destroy, :report, :comment]
+  def unfavorite
+    col = current_user.favorites
+    image = Image.find(params[:id])
+    result = col.images.delete(image)
+    render json: result
+  end
+
   def comment
     @comment = Comment.new(comment_params)
     if @comment.save
@@ -98,18 +105,7 @@ class ImagesController < ApplicationController
   end
   ##
   # Put this image in a users collection
-  def add
-    c = Collection.find(params[:collection])
-    ##
-    # If the current usn't doesn't curate this colletion, they cannot
-    # add images to it
-    if ! c.curated?(current_user)
-      flash[:error] = "You cannot add images to a collection you do not own."
-      redirect_to Image.find(params[:id]) and return
-    end
-    c.images << Image.find(params[:id])
-    redirect_to Image.find(params[:id])
-  end
+  
   protected
   # Load the image with the current id into params[:image]
   def load_image
