@@ -1,9 +1,9 @@
-<div id="collection-select" data-showon="#img-action-collection">
+<div id="collection-add-list-container" data-showon="#img-action-collection">
 
   <% current_user.collections.each do |c| %>
     <%= form_tag add_collection_path(c.id) do %>
       <%= hidden_field_tag :image_id, @image.id %>
-      <%= submit_tag c.name %>
+      <%= submit_tag c.name, class: 'collection-add-list-item' %>
     <% end %>
   <% end %>
 

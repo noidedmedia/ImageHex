@@ -1,7 +1,7 @@
 @import "scss-variables";
 
 /* ==============================================
-   General
+    General
    ============================================== */
 
 .image-actions-sidebar {
@@ -102,8 +102,55 @@
     Add a collection
    ============================================== */
 
-#collection-select {
+#collection-add-list-container {
   color: #fff;
+  width: 100%;
+  max-height: 175px; // The height of 5 list items.
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 0;
+    position: absolute;
+    right: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: transparent;
+  }
+   
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(#fff,0.7);
+
+    &:hover {
+      background-color: rgba(#fff,0.8);
+    }
+  }
+}
+
+.collection-add-list-item {
+  width: 100%;
+  font-size: 1.2rem;
+  color: rgba(#fff,0.8);
+  background-color: #222;
+  border: none;
+  border-radius: 0;
+  -webkit-appearance: none;
+  height: 35px;
+  text-align: left;
+  padding-left: 60px;
+
+  &:hover {
+    color: #fff;
+    background-color: #333;
+  }
+
+  &:focus {
+    outline: transparent;
+  }
 }
 
 
