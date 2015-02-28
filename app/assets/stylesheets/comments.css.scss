@@ -1,14 +1,15 @@
 @import "scss-variables";
 
 #comment-container {
-  width: 400px;
+  width: 100%;
+  max-width: 600px;
   background-color: #fff;
   border-radius: 2px;
   padding: 10px;
   padding-top: 35px; // To make room for the absolutely positioned header.
   position: relative;
-  margin: 10px 0;
-  display: block;
+  margin-bottom: 15px;
+  display: inline-block;
 
   @media all and (max-device-width: $mobile-width) {
     width: 100vw;
