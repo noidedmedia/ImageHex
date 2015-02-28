@@ -1,8 +1,9 @@
 <div id="collection-select" data-showon="#img-action-collection">
 
   <% current_user.collections.each do |c| %>
-    <%= form_tag add_collection_path(@image) do %>
-      <p><%= link_to c.name, add_collection_path(c), remote: :true, method: :post %>
+    <%= form_tag add_collection_path(c.id) do %>
+      <%= hidden_field_tag :image_id, @image.id %>
+      <%= submit_tag c.name %>
     <% end %>
   <% end %>
 
