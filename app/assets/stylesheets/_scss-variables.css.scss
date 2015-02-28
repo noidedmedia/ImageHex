@@ -16,7 +16,7 @@ $icon-transcript: '\e80d';
 $icon-location: '\e80e';
 $icon-dropdown: '\e80f';
 
-$icon-placeholder: '\e804';
+$icon-placeholder: '\e80c';
 
 // Screen width values
 $mobile-width: 750px;
@@ -29,3 +29,9 @@ $unemph-text: #6d6d6d; // Unemphasized text
 
 // Font stack
 $font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
+
+// Error colors
+$color-success: #5bb289;
+$color-info: #556db3;
+$color-warning: #efb63e;
+$color-danger: #cb2e32;

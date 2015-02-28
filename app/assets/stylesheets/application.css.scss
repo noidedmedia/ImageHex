@@ -36,6 +36,7 @@ html, body {
   background-color: #f0f0f0;
   margin: 0;
   overflow-x: hidden;
+  height: 100%;
 }
 
 /* Removes margins from all header items. */
@@ -67,7 +68,6 @@ h5 {
 /* Removes margin from all paragraph, or "p" elements. */
 p {
   margin: 0;
-  font-size: 1.4rem;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
 }

@@ -158,6 +158,10 @@
     padding: 0 5px;
     transition: opacity 300ms ease-in-out;
     
+    p {
+      font-size: 1.4rem;
+    }
+
     &.active {
       display: block;
       opacity: 1;
