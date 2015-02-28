@@ -3,8 +3,8 @@ class Admin::AdminController < ApplicationController
   protected
   def ensure_admin
     # For some freaking reason rails stores the enum (which you create with
-    # symbols) as a string. 
-    # 
+    # symbols) as a string.
+    #
     # Why?
     #
     # Because life is sad. So you need to compare to the string "admin"

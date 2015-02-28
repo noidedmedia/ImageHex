@@ -5,7 +5,7 @@ RSpec.describe CollectionsController, :type => :controller do
   describe "get #index" do
     it "shows all a users collections" do
       user = FactoryGirl.create(:user)
-      user.collections = [FactoryGirl.create(:collection), 
+      user.collections = [FactoryGirl.create(:collection),
                           FactoryGirl.create(:collection)]
       get :index, user_id: user
       expect(assigns(:collections)).to match_array(user.collections)
@@ -33,7 +33,7 @@ RSpec.describe CollectionsController, :type => :controller do
     end
     it "sets the curators variable" do
       get :show, id: c.id
-      expect(assigns(:curators)).to eq(c.users)
+      expect(assigns(:curators)).to eq(c.curators)
     end
   end
   context "when logged in" do
@@ -41,6 +41,30 @@ RSpec.describe CollectionsController, :type => :controller do
       @user = FactoryGirl.create(:user)
       @user.confirm!
       sign_in @user
+    end
+
+    describe "DELETE #remove" do
+      it "removes stuff" do
+        image = FactoryGirl.create(:image)
+        @user.favorites.images << image
+        expect{
+          delete :remove, id: @user.favorites, image_id: image
+        }.to change{@user.favorites.images.count}.by(-1)
+      end
+    end
+    describe "post #add" do
+      let(:i){FactoryGirl.create(:image)}
+      let(:c){FactoryGirl.create(:collection, curators: [@user])}
+      it "adds the image to a collection" do
+        post :add, id: c.id, image_id: i
+        expect(c.images).to include(i)
+      end
+
+      it "changes the number of images in the collection" do
+        expect{
+          post :add, id: c.id, image_id: i
+        }.to change{c.images.count}.by(1)
+      end
     end
 
     describe "post #subscribe" do
@@ -73,7 +97,7 @@ RSpec.describe CollectionsController, :type => :controller do
       context "with invalid attributes" do
         it "doesn't make a new collection"
         it "renders the #new page with errors set"
-      end 
+      end
     end
     describe "get #edit" do
       it "doesn't update the title of innate collections"
@@ -89,6 +113,6 @@ RSpec.describe CollectionsController, :type => :controller do
         it "renders the #edit page with errors set"
       end
     end
-    
+
   end
 end

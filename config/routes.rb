@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     member do
       post "favorite"
       post "created"
-      post "add"
+      delete "unfavorite"
     end
     resources :tag_groups
     concerns :reportable, :commentable
@@ -39,7 +39,11 @@ Rails.application.routes.draw do
     resources :collections, only: [:index]
   end
   resources :collections, except: [:index] do
-    post "subscribe", on: :member
+    member do
+      post "subscribe"
+      post "add"
+      delete "remove"
+    end
   end
   ################
   # ADMIN ROUTES #

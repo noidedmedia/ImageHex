@@ -1,18 +1,44 @@
 @import "scss-variables";
 
-.tag-group-show {
-  border: 1px solid blue;
+.generic-tag-group {
+  width: 100%;
+  max-width: 600px;
   display: inline-block;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  position: relative;
 }
 
-.tag-box {
-  padding-left: 10px;
-  padding-right: 10px;
+.generic-tag {
+  font-size: 1.2rem;
+  padding: 15px 15px;
   display: inline-block;
-  border: 1px solid black;
+  width: 100%;
 
-  &:hover {
-    background-color: black;
-    color: white;
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #e4e4e4;
+  }    
+
+  &:first-of-type {
+    font-size: 1.8rem;
+    font-weight: 500;
+    height: 100px;
+  }
+}
+
+.edit-generic-tag-group {
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 15px 15px;
+
+  &:before {
+    content: $icon-placeholder;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: inline-block;
+    font-size: 1.8rem;
   }
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131202840) do
+ActiveRecord::Schema.define(version: 20150223234343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20150131202840) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "collection_images", ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
+  add_index "collection_images", ["image_id"], name: "index_collection_images_on_image_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -102,6 +105,8 @@ ActiveRecord::Schema.define(version: 20150131202840) do
     t.integer  "user_id"
   end
 
+  add_index "reports", ["reportable_id"], name: "index_reports_on_reportable_id", using: :btree
+  add_index "reports", ["reportable_type"], name: "index_reports_on_reportable_type", using: :btree
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
@@ -133,10 +138,25 @@ ActiveRecord::Schema.define(version: 20150131202840) do
   add_index "tag_groups", ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "display_name"
   end
+
+  create_table "tracked_edits", force: :cascade do |t|
+    t.jsonb    "before"
+    t.jsonb    "after"
+    t.integer  "trackable_id"
+    t.string   "trackable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "tracked_edits", ["trackable_id"], name: "index_tracked_edits_on_trackable_id", using: :btree
+  add_index "tracked_edits", ["trackable_type"], name: "index_tracked_edits_on_trackable_type", using: :btree
+  add_index "tracked_edits", ["user_id"], name: "index_tracked_edits_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -165,10 +185,16 @@ ActiveRecord::Schema.define(version: 20150131202840) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
+  add_foreign_key "collection_images", "collections"
+  add_foreign_key "collection_images", "images"
+  add_foreign_key "comments", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "curatorships", "collections"
   add_foreign_key "curatorships", "users"
+  add_foreign_key "images", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "tag_groups", "images"
+  add_foreign_key "tracked_edits", "users"
 end

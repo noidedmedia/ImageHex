@@ -5,13 +5,13 @@ class TagGroup < ActiveRecord::Base
   belongs_to :image
   has_many :tags, through: :tag_group_members
   has_many :tag_group_members
-  
+
   ###############
   # VALIDATIONS #
   ###############
   validates :image, presence: true
   validates :tags, presence: true
-  
+
   ##############
   # ATTRIBUTES #
   ##############
@@ -21,11 +21,11 @@ class TagGroup < ActiveRecord::Base
   # CALLBACKS #
   #############
   before_validation :save_tag_group_string
-  after_initialize :load_tag_group_string 
+  after_initialize :load_tag_group_string
   #################
   # CLASS METHODS #
   #################
-  
+
 
 
   ####################
@@ -33,16 +33,23 @@ class TagGroup < ActiveRecord::Base
   ####################
 
 
-  
+
   private
   ##
   # Converts a comma-seperated list of tags into the actual tags
   def save_tag_group_string
     return unless self.tag_group_string && ! self.tag_group_string.empty?
-    array = self.tag_group_string.split(",")
-      .map{|str| str.strip.squish.downcase} # Properly format the names
-      .map{|str| Tag.where(name: str).first_or_create} # Create or find
-    self.tags = array
+    tag_names = self.tag_group_string.split(",")
+    formated_tags = tag_names.map{|name| name.downcase.strip.squish}
+    found_tags = formated_tags.zip(tag_names).map do |names|
+      ##
+      # Names is currently an array of [formated name, input name]
+      # so we do this:
+      Tag.where(name: names.first).first_or_create do
+        display_name = names.last
+      end
+    end
+    self.tags = found_tags
   end
 
   ##

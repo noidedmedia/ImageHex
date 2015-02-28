@@ -14,11 +14,12 @@ class Tag < ActiveRecord::Base
     SELECT tags.name FROM tags
     WHERE tags.name LIKE ?
     }
-    finder = "#{n.gsub("%","")}%"
+    finder = "#{n.gsub("%","").downcase.strip.squish}%"
     find_by_sql([query, finder]).map(&:name)
   end
   private
   def fix_name
+    self.display_name ||= self.name
     self.name = self.name.strip.squish.downcase
   end
 
