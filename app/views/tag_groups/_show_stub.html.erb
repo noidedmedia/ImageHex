@@ -3,15 +3,14 @@
   <div class="generic-tag-group" 
     data-editform="<%= edit_image_tag_group_path(@image, tag_group) %> #edit-group"
     data-toggle=".edit-generic-tag-group">
+
     <% tag_group.tags.each do |t| %>
       <div class="generic-tag">
         <%= t.name %>
       </div>
     <% end %>
 
-    <div class="edit-generic-tag-group">
-      Edit
-    </div>
+    <div class="edit-generic-tag-group"></div>
   </div>
 
 <% end %>

@@ -8,6 +8,7 @@
   background-color: #fff;
   border-radius: 2px;
   border-top-left-radius: 0;
+  position: relative;
 }
 
 .generic-tag {
@@ -15,12 +16,11 @@
   padding: 15px 15px;
   display: inline-block;
   width: 100%;
-  border-bottom: 1px solid #e4e4e4;
-  cursor: pointer;
 
   &:first-of-type {
     font-size: 1.8rem;
     font-weight: 500;
+    height: 100px;
   }
 }
 
@@ -28,4 +28,13 @@
   cursor: pointer;
   font-size: 1.2rem;
   padding: 15px 15px;
+
+  &:before {
+    content: $icon-placeholder;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: inline-block;
+    font-size: 1.8rem;
+  }
 }

@@ -47,6 +47,7 @@
     <p><%= @image.license %>
 
     <p><%= @image.medium.titleize %>
+    
     <% @groups.includes(:tags).each do |group| %>
       <%= render "tag_groups/show_stub", tag_group: group %>
     <% end %>
