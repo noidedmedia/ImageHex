@@ -28,14 +28,16 @@
 </div>
 
 <div id="image-page-bottom-container">
+  <div id="image-subheader">
+    <div id="new-group-button">
+      New group
+    </div>
+  </div>
+
   <div id="new-group" data-showon="#new-group-button">
     <%= form_for [@image, @image.tag_groups.build] do |f| %>
       <%= f.text_field :tag_group_string %>
     <% end %>
-  </div>
-  
-  <div id="new-group-button">
-    New group
   </div>
   
   <% @groups.each do |group| %>
