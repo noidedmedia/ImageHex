@@ -2,25 +2,27 @@
   <div id="comment-container-header">
     <h3>Comments</h3>
   </div>
+  <% if subject.comments.empty? %>
+    No comments found.
+  <% else %>
+    <%# We manually include the user of the comment to prevent an N+1 %>
+    <% subject.comments.includes(:user).each do |comment| %>
+      <div class="comment">
 
-  <%# We manually include the user of the comment to prevent an N+1 %>
-  <% subject.comments.includes(:user).each do |comment| %>
-    <div class="comment">
-      
-      <%# Username, with link to user page, and "commented [time value] ago". %>
-      <div class="user-comment-info">
-        <%= link_to comment.user.name, comment.user %> commented 
-        <%= time_ago_in_words(comment.created_at) %> ago
-      </div>
+        <%# Username, with link to user page, and "commented [time value] ago". %>
+        <div class="user-comment-info">
+          <%= link_to comment.user.name, comment.user %> commented 
+          <%= time_ago_in_words(comment.created_at) %> ago
+        </div>
 
-      <%# Comment body, the text in the comment itself. %>
-      <div class="comment-body">
-        <%= comment.body %>
+        <%# Comment body, the text in the comment itself. %>
+        <div class="comment-body">
+          <%= comment.body %>
+        </div>
+
       </div>
-    
-    </div>
+    <% end %>
   <% end %>
-
   <%= form_tag(url, {class: "comment_form"}) do %>
     <%= text_area(:comment, :body, class: 'new-comment') %>
 

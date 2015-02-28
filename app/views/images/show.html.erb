@@ -6,7 +6,7 @@
 
   <div class="image-actions-sidebar">
     <div class="image-actions-container">
-      <% if current_user.favorited? @image %>
+      <% if current_user && current_user.favorited?(@image) %>
         <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
           <div class="image-actions favorited" id="img-action-favorite">Favorited</div>
         <% end %>
@@ -40,7 +40,7 @@
     <% end %>
   </div>
   
-  <% @groups.each do |group| %>
+  <% @groups.includes(:tags).each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>
 
