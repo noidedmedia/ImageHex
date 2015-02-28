@@ -104,9 +104,13 @@
 
 #collection-add-list-container {
   color: #fff;
-  width: 100%;
-  max-height: 175px; // The height of 5 list items.
+  width: 100%; // The height of 5 list items.
+}
+
+#collection-add-list-scrollbar {
   overflow-y: auto;
+  margin-right: 10px;
+  max-height: 175px;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -142,6 +146,7 @@
   height: 35px;
   text-align: left;
   padding-left: 60px;
+  cursor: pointer;
 
   &:hover {
     color: #fff;
