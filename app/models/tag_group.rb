@@ -40,7 +40,7 @@ class TagGroup < ActiveRecord::Base
   def save_tag_group_string
     return unless self.tag_group_string && ! self.tag_group_string.empty?
     tag_names = self.tag_group_string.split(",")
-    tag_names.map!(&:strip)
+    tag_names.map!(&:strip).map!(&:squish)
     formated_tags = tag_names.map{|name| name.downcase.strip.squish}
     found_tags = formated_tags.zip(tag_names).map do |names|
       ##
