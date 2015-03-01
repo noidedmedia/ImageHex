@@ -2,7 +2,9 @@ class Tag < ActiveRecord::Base
   ##
   # CALLBACKS:
   before_save :fix_name
-
+  ##
+  # SCOPES
+  scope :disp_order, ->{ order('display_name ASC') }
   ##
   # ASSOCIATIONS:
   has_many :tag_group_members
