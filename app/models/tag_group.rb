@@ -40,13 +40,19 @@ class TagGroup < ActiveRecord::Base
   def save_tag_group_string
     return unless self.tag_group_string && ! self.tag_group_string.empty?
     tag_names = self.tag_group_string.split(",")
+    tag_names.map!(&:strip)
     formated_tags = tag_names.map{|name| name.downcase.strip.squish}
     found_tags = formated_tags.zip(tag_names).map do |names|
       ##
       # Names is currently an array of [formated name, input name]
       # so we do this:
-      Tag.where(name: names.first).first_or_create do
-        display_name = names.last
+      if tag = Tag.where(name: names.first).first
+        tag
+      else
+        tag = Tag.create(name: names.first,
+                         display_name: names.last)
+        tag.save
+        tag
       end
     end
     self.tags = found_tags
