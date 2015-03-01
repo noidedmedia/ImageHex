@@ -9,7 +9,5 @@ class ForeignKeyIndexes < ActiveRecord::Migration
     add_index :collection_images, :image_id
     add_index :reports, :reportable_id
     add_index :reports, :reportable_type
-    add_index :tracked_edits, :trackable_id
-    add_index :tracked_edits, :trackable_type
   end
 end
