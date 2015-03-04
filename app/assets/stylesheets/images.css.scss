@@ -65,6 +65,7 @@
 
 #add-tag-group-button {
   cursor: pointer;
+  display: inline-block;
 
   &:before {
     content: $icon-add;
