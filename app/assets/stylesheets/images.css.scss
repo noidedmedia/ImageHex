@@ -78,9 +78,9 @@
 
 #image-page-information {
   @media all and (min-device-width: $mobile-width) {
-    -webkit-columns: 450px 3;
-       -moz-columns: 450px 3;
-            columns: 450px 3;
+    -webkit-columns: 400px 3;
+       -moz-columns: 400px 3;
+            columns: 400px 3;
     -webkit-column-gap: 20px;
        -moz-column-gap: 20px;
             column-gap: 20px;
