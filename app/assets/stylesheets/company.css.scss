@@ -78,7 +78,6 @@
 /* Content container for Company pages. */
 .company-page-main-column {
   display: block;
-  height: 100%;
   margin: auto;
   max-width: 1000px;
   margin-top: 25px;
@@ -113,6 +112,10 @@
 .people-page-list-item {
   width: 200px;
   margin: 0 20px 20px 0;
+
+  @media all and (max-device-width: $mobile-width) {
+    margin: 10px auto;
+  }
 }
 
 /* Photos for the Staff page. */
