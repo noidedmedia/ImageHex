@@ -15,6 +15,8 @@
  *= require_self
  */
 
+@import "scss-variables";
+
 /* Selector for all elements, don't put anything here without a lot of thought first. */
 /* Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height. */
 *, *::before, *::after {
@@ -36,7 +38,17 @@ html, body {
   background-color: #f0f0f0;
   margin: 0;
   overflow-x: hidden;
-  height: 100%;
+
+  /* Only apply "height: 100%" to desktop devices or else 
+     weird things happen with mobile scrolling. */
+  @media all and (min-device-width: $mobile-width) {
+    height: 100%;
+  }
+
+  /* Fix for iOS Safari messing with the text size. */
+  @media all and (max-device-width: $mobile-width) {
+    -webkit-text-size-adjust: none;
+  }
 }
 
 /* Removes margins from all header items. */
