@@ -1,6 +1,6 @@
 <div id="edit-group"
   data-result=<%= image_tag_group_path @image, @tag_group %>>
   <%= form_for [@image, @tag_group] do |f| %>
-    <%= f.text_field :tag_group_string %>
+    <%= f.text_field :tag_group_string, :autocomplete => :off, class: "tag-group-edit-box" %>
   <% end %>
 </div>

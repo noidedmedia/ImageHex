@@ -2,7 +2,7 @@
 
 /* Parent container applied to most pages to prevent clipping of content with the header, footer. */
 #masthead {
-  display: inline-block;
+  display: block;
   margin-top: 40px;
   min-height: calc(100vh - 200px); // This forces the footer down to the bottom of the page regardless of whether or not the page content takes up the full vertical width of the user's browser window.
   position: relative;
