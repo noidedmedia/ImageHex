@@ -65,6 +65,10 @@
   font-size: 1.2rem;
   resize: vertical;
   border-color: #c9c9c9;
+  background-color: #fff;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
 
   &:focus {
     outline: transparent;
