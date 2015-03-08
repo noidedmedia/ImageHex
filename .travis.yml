@@ -1,0 +1,16 @@
+language: ruby
+bundler_args: --without development
+before_script: ./bin/ci/before_build.sh
+script: "bundle exec rake spec:ci"
+env:
+  - CI=true
+rvm:
+  - 2.1.0
+gemfile:
+  - Gemfile
+notifications:
+  recipients:
+    - connor.james.shea@gmail.com
+branches:
+  only:
+    - master
