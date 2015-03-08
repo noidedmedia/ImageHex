@@ -5,7 +5,7 @@ script: "bundle exec rake spec:ci"
 env:
   - CI=true
 rvm:
-  - 2.1.0
+  - 2.2.0
 gemfile:
   - Gemfile
 notifications:
