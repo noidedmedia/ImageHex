@@ -9,8 +9,7 @@ rvm:
 gemfile:
   - Gemfile
 notifications:
-  recipients:
-    - connor.james.shea@gmail.com
+  email: false
 branches:
   only:
     - master
