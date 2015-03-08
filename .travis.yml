@@ -13,3 +13,14 @@ notifications:
 branches:
   only:
     - master
+    - develop
+
+before_script:
+  - pqsl -c 'create database travis_ci_test;', -U postgres
+  # We use travis' test database config for testing
+  #
+   - cp config/database.yml.travis config/database.yml
+
+addons:
+  postgresql: '9.4'
+
