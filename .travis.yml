@@ -16,11 +16,11 @@ branches:
     - develop
 
 before_script:
-  - pqsl -c 'create database travis_ci_test;', -U postgres
+  - "pqsl -c 'create database travis_ci_test;', -U postgres"
   # We use travis' test database config for testing
   #
-   - cp config/database.yml.travis config/database.yml
-
+  - "cp config/database.yml.travis config/database.yml"
+  - "rake db:migrate"
 addons:
   postgresql: '9.4'
 
