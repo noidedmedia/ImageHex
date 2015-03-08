@@ -61,6 +61,21 @@
   @media all and (max-device-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
   }
+
+  > .left {
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+  }
+
+    > .right {
+    text-align: right;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+  }
+
 }
 
 #add-tag-group-button {
@@ -77,6 +92,22 @@
   }
 }
 
-#image-page-information {
-  
+#image-info-button {
+  cursor: pointer;
+  display: inline-block;
+  text-align: right;
+
+  &:before {
+    content: $icon-info;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-2px);
+      -webkit-transform: translate(-24px,-2px);
+    font-size: 1.8rem;
+  }
+}
+
+.toolbar-tooltip {
+  display: none;
+
 }
