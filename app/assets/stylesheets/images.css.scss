@@ -69,11 +69,16 @@
     width: 48%;
   }
 
-    > .right {
+  > .right {
     text-align: right;
     display: inline-block;
     position: relative;
     width: 48%;
+
+    > div {
+      display: inline-block;
+      margin-left: 40px;
+    }
   }
 
 }
@@ -92,18 +97,45 @@
   }
 }
 
+#image-help-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-help;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-6px);
+      -webkit-transform: translate(-24px,-6px);
+    font-size: 2.1rem;
+  }
+}
+
 #image-info-button {
   cursor: pointer;
   display: inline-block;
-  text-align: right;
 
   &:before {
     content: $icon-info;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-2px);
-      -webkit-transform: translate(-24px,-2px);
+    transform: translate(-24px,-4px);
+      -webkit-transform: translate(-24px,-4px);
     font-size: 1.8rem;
+  }
+}
+
+#edit-history-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-history;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-6px);
+      -webkit-transform: translate(-24px,-6px);
+    font-size: 2.1rem;
   }
 }
 
