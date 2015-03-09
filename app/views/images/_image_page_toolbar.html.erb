@@ -15,6 +15,7 @@
         Info
       </div>
 
+      <!-- Metadata table -->
       <div data-showon="#image-info-button" class="toolbar-tooltip" id="image-info-tooltip">
         <table class="image-info-table">
           <tbody>
@@ -42,6 +43,11 @@
             <tr class="table-row">
               <td class="column-one-cell">Medium</td>
               <td class="column-two-cell"><%= @image.medium.titleize %></td>
+            </tr>
+
+            <tr class="table-row">
+              <td class="column-one-cell">License</td>
+              <td class="column-two-cell"><%= @image.license %></td>
             </tr>
 
             <tr class="table-row">

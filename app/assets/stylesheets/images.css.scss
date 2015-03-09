@@ -125,6 +125,34 @@
   }
 }
 
+#image-info-tooltip {
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 4px;
+  margin-top: 5px;
+}
+
+// Styling for the image information/metadata table.
+.image-info-table {
+  font-size: 1.2rem;
+
+  // Styling for cells in column one.
+  .column-one-cell {
+    text-align: right;
+    padding-right: 8px;
+  }
+
+  // Styling for cells in column two.
+  .column-two-cell {
+    text-align: left;
+  }
+
+  // Styling for each respective row.
+  .table-row {
+
+  }
+}
+
 #edit-history-button {
   cursor: pointer;
   display: inline-block;
