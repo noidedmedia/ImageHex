@@ -106,6 +106,14 @@
   background-color: #222;
   color: #fff;
   width: 100%; // The height of 5 list items.
+
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+  }
 }
 
 #collection-add-list-scrollbar {
@@ -168,6 +176,14 @@
 #report-form {
   padding: 0 10px;
   margin-left: 35px;
+
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: inline-block;
+  }
 
   input[type=radio] + label {
     color: rgba(#fff,.8);

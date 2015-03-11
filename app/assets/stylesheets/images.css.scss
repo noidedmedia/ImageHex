@@ -128,7 +128,7 @@
 #image-info-tooltip {
   background-color: #fff;
   border-radius: 2px;
-  padding: 4px;
+  padding: 8px 12px;
   margin-top: 5px;
 }
 
@@ -168,6 +168,14 @@
 }
 
 .toolbar-tooltip {
-  display: none;
+  &.inactive {
+    display: none;
+  }
 
+  &.active {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 40px;
+  }
 }
