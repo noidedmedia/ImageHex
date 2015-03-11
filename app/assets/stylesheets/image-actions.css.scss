@@ -119,14 +119,15 @@
   }
 }
 
-#img-action-favorite.active,
-#img-action-favorited.active {
-  display: block;
-}
+#img-action-favorite,
+#img-action-favorited {
+  &.active {
+    display: block;
+  }
 
-#img-action-favorite.inactive,
-#img-action-favorited.inactive {
-  display: none;
+  &.inactive {
+    display: none;
+  }
 }
 
 
