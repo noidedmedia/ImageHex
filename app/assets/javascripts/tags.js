@@ -10,8 +10,11 @@ var selectedelement = function(selection) {
   // Replace the input box's value with the new list.
   // We also replace any instances of 2 or more spaces with one space
   $("#header-search-input").val(list.replace(/\s{2,}/g," "));
+
   // Return focus to the input box
   $("#header-search-input").focus();
+
+  $("#header-search").addClass("active");
 
   $("#header-search-suggestions-fillable").empty();
 };
