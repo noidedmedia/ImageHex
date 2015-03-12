@@ -1,0 +1,8 @@
+# LICENSE, README, git config files
+- gitattributes$
+- gitignore$
+- gitmodules$
+- ^README$
+
+# Doesn't include vendor files in the language statistics
+vendor/* linguist-vendored
