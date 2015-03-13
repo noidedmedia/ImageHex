@@ -1,5 +1,5 @@
 function dropzoneCreate() {
-  new Dropzone("#dropzone-form", { // Make the whole body a dropzone
+  new Dropzone(document.body, { // Make the whole body a dropzone
     url: "/images", // Set the url
     previewsContainer: ".image-thumbnail", // Define the container to display the previews
     autoProcessQueue: false
