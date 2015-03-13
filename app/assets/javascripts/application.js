@@ -16,3 +16,4 @@
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require turbolinks
 //= require_tree .
+//= require dropzone
