@@ -1,11 +1,13 @@
 <div id="upload-page-container">
   <h2>Upload</h2>
 
-  <%= form_for @image do |f| %>
+  <%= form_for @image, html: {class: "dropzone", id: "dropzone-form"} do |f| %>
     <%# Start by generating select tags for enums %>
     <%# The License select is different from the %>
     <%# medium because the options are specially %>
     <%# capitalized. %>
+
+    <div id="image-thumbnail"></div>
 
     <div class="custom-select-wrapper">
       <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
@@ -14,14 +16,14 @@
       <%# the CSS class can be used. %>
     </div>
 
-
     <%# The Medium select input. %>
     <div class="custom-select-wrapper">
       <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
     </div>
     
-    <%# the file to add %>
-    <%= f.file_field :f %>
+    <div id="click-choose-file">
+      Click here to choose a file
+    </div>
 
     <%= f.submit "Upload Image" %>
   <% end %>
