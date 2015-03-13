@@ -1,30 +1,35 @@
 <div id="upload-page-container">
-  <h2>Upload</h2>
+  <h2>Upload images</h2>
 
   <%= form_for @image, html: {class: "dropzone", id: "dropzone-form"} do |f| %>
-    <%# Start by generating select tags for enums %>
-    <%# The License select is different from the %>
-    <%# medium because the options are specially %>
-    <%# capitalized. %>
+    <%= form_authenticity_token %>
 
-    <div id="image-thumbnail"></div>
+    <div class="upload-container">
+      <%# Start by generating select tags for enums %>
+      <%# The License select is different from the %>
+      <%# medium because the options are specially %>
+      <%# capitalized. %>
+      <div class="image-thumbnail"></div>
 
-    <div class="custom-select-wrapper">
-      <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
-      <%# Note that the above has a "{}" because %>
-      <%# html-options needs to be invoked before %>
-      <%# the CSS class can be used. %>
+      <div class="custom-select-wrapper">
+        <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+        <%# Note that the above has a "{}" because %>
+        <%# html-options needs to be invoked before %>
+        <%# the CSS class can be used. %>
+      </div>
+
+      <%# The Medium select input. %>
+      <div class="custom-select-wrapper">
+        <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
+      </div>
     </div>
 
-    <%# The Medium select input. %>
-    <div class="custom-select-wrapper">
-      <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
-    </div>
-    
-    <div id="click-choose-file">
-      Click here to choose a file
+    <div class="new-upload-container">
+      <%# the file to add %>
+      <%= f.file_field :f, id: "click-choose-file" %>
     </div>
 
-    <%= f.submit "Upload Image" %>
+
+    <%= f.submit "Submit" %>
   <% end %>
 </div>
