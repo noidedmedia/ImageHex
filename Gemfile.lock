@@ -306,7 +306,6 @@ DEPENDENCIES
   aws-sdk (< 2.0)
   better_errors
   bullet
-  coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails
   faker
