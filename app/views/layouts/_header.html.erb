@@ -42,8 +42,18 @@
         <%= link_to 'Upload', new_image_path %>
       </div>
 
-      <div class="header-item">
-        <%= link_to 'Notifications', notifications_path %>
+      <div class="header-item filler"></div>
+
+      <div class="header-notifications">
+        <div class="notifications-unread-count">
+          <%= link_to notifications_path do %>
+            0
+          <% end %>
+        </div>
+
+        <div class="notifications-dropdown">
+          
+        </div>
       </div>
 
       <div id="dd" class="wrapper-dropdown">

@@ -1,0 +1,44 @@
+@import "scss-variables";
+
+.header-notifications {
+  background-color: #222222;
+  height: 100%;
+  top: 0;
+  left: 68px;
+  display: inline-block;
+  position: absolute;
+
+  &.unread {
+    background-color: #b70f3b;
+
+    .notifications-unread-count a {
+      color: #fff;
+    }
+  }
+
+  &.active {
+    background-color: #fff;
+    color: #333;
+  }
+
+  .notifications-unread-count a {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #aaaab2;
+    text-decoration: none;
+    transition: color 300ms ease-in-out;
+    padding: 12px 15px;
+    display: inline-block;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  
+  .notifications-dropdown {
+    display: none;
+  }
+}
+
+

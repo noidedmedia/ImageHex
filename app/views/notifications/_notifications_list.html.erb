@@ -1,4 +1,7 @@
 <% notifications.includes(:subject).each do |note| %>
-  <%= note.message %>
-  <%= link_to "view", note.subject %>
+  <%= link_to note.subject do %>
+    <div class="notifications-list-item">
+      <%= note.message %>
+    </div>
+  <% end %>
 <% end %>
