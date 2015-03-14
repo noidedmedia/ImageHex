@@ -1,0 +1,17 @@
+<div id="image-page-information">
+
+  <%= render "shared/comments", url: comment_image_path(@image), subject: @image %>
+
+  <div id="new-group" data-showon="#add-tag-group-button">
+    <%= form_for [@image, @image.tag_groups.build] do |f| %>
+      <%= f.text_field :tag_group_string %>
+    <% end %>
+  </div>
+
+  <p><%= @image.license %>
+  
+  <% @groups.includes(:tags).each do |group| %>
+    <%= render "tag_groups/show_stub", tag_group: group %>
+  <% end %>
+
+</div>
