@@ -1,10 +1,12 @@
 function notificationsDropdown() {
   $(".notifications-unread-count a").on("click", function(event) {
     event.preventDefault();
-    $(".notifications-dropdown").toggleClass("active");
+    $(".notifications-dropdown").toggleClass("active").toggleClass("inactive");
+    $(".header-notifications").toggleClass("active");
 
     $(".header-notifications").bind("clickoutside", function() {
-      $(".notifications-dropdown").removeClass("active");
+      $(".notifications-dropdown").removeClass("active").addClass("inactive");
+      $(".header-notifications").removeClass("active");
 
       $('.header-notifications').unbind("clickoutside");
     });

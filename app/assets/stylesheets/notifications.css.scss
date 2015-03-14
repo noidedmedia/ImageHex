@@ -15,7 +15,15 @@
 
   &.active {
     background-color: #fff;
-    color: #333;
+
+    .notifications-unread-count a {
+      color: #333;
+      transition: 0;
+
+      &:hover {
+        color: #333;
+      }
+    }
   }
 
   .notifications-unread-count a {
@@ -34,19 +42,25 @@
   }
 
   .notifications-dropdown {
-    display: none;
     background-color: #fff;
     color: #333;
     height: auto;
     width: 300px;
-    max-height: 0;
     position: absolute;
     left: -100px;
     top: 40px;
     text-align: left;
+    opacity: 0;
+    transition: opacity 100ms, max-height 300ms;
+
+    &.inactive {
+      display: none;
+      max-height: 0;
+    }
 
     &.active {
       display: inline-block;
+      opacity: 1;
       max-height: 70vh;
     }
 
@@ -55,7 +69,6 @@
     }
   }
 }
-
 
 .notifications-dropdown > .notifications-container {
   width: calc(100% - 20px);
