@@ -55,11 +55,17 @@
   }
 }
 
+
+.notifications-dropdown > .notifications-container {
+  width: calc(100% - 20px);
+  padding-top: 15px;
+}
+
 .notifications-container {
   width: 90%;
   max-width: 600px;
   margin: auto;
-  padding-top: 15px;
+  padding-top: 100px;
 
   a {
     color: #aaaab2;
