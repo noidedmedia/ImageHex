@@ -4,6 +4,9 @@ class NotificationsController < ApplicationController
     @notifications = current_user.notifications
   end
 
+  def mark_all_read
+    render json: current_user.notifications.unread.update_all(read: true)
+  end
   def read
     n = current_user.notifications.where(id: params[:id]).first
     n.read = true

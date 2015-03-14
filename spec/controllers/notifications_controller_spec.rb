@@ -8,6 +8,15 @@ RSpec.describe NotificationsController, type: :controller do
       @user.confirm!
       sign_in @user
     end
+    describe "post #mark_all_read" do
+      it "marks all as read" do
+        n1 = FactoryGirl.create(:notification, user: @user)
+        n2 = FactoryGirl.create(:notification, user: @user)
+        post :mark_all_read
+        expect(n1.reload.read).to eq(true)
+        expect(n2.reload.read).to eq(true)
+      end
+    end
     describe "get #index" do
       it "gives the users notifications" do
         n = FactoryGirl.create(:notification, user: @user)

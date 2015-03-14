@@ -63,7 +63,7 @@ describe ImagesController do
     describe "GET #new" do
       it "redirects to the login page" do
         get :new
-        expect(response).to redirect_to "/sessions/sign_in"
+        expect(response).to redirect_to "/accounts/sign_in"
       end
     end
     describe "GET #show" do
