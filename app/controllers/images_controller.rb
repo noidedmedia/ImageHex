@@ -117,7 +117,7 @@ class ImagesController < ApplicationController
   # Protected parameters for the image.
   def image_params
     params.require(:image)
-      .permit(:f, :license, :medium) # Attributes the user adds
+      .permit(:f, :license, :medium, :replies_to_inbox) # Attributes the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
 
