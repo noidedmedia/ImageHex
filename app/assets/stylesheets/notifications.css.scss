@@ -2,11 +2,8 @@
 
 .header-notifications {
   background-color: #222222;
-  height: 100%;
-  top: 0;
-  left: 68px;
   display: inline-block;
-  position: absolute;
+  height: 40px;
 
   &.unread {
     background-color: #b70f3b;
@@ -44,7 +41,7 @@
     width: 300px;
     max-height: 0;
     position: absolute;
-    left: -200px;
+    left: -100px;
     top: 40px;
     text-align: left;
 

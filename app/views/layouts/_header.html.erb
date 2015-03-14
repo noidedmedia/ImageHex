@@ -42,28 +42,25 @@
         <%= link_to 'Upload', new_image_path %>
       </div>
 
-      <div class="header-item filler"></div>
+      <% if current_user.notifications.unread.size > 0 %>
 
+        <div class="header-notifications unread">
+          <div class="notifications-unread-count">
+            <%= link_to notifications_path do %>
+              <%= current_user.notifications.unread.size %>
+            <% end %>
+          </div>
+      
+      <% else %>
 
-        <% if current_user.notifications.unread.size > 0 %>
+        <div class="header-notifications">
+          <div class="notifications-unread-count">
+            <%= link_to notifications_path do %>
+              <%= current_user.notifications.unread.size %>
+            <% end %>
+          </div>
 
-          <div class="header-notifications unread">
-            <div class="notifications-unread-count">
-              <%= link_to notifications_path do %>
-                <%= current_user.notifications.unread.size %>
-              <% end %>
-            </div>
-        
-        <% else %>
-
-          <div class="header-notifications">
-            <div class="notifications-unread-count">
-              <%= link_to notifications_path do %>
-                <%= current_user.notifications.unread.size %>
-              <% end %>
-            </div>
-
-        <% end %>
+      <% end %>
 
         <div class="notifications-dropdown">
           <%= render "notifications/notifications", notifications: current_user.notifications %>
