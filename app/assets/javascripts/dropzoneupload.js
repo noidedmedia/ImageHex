@@ -1,10 +1,15 @@
 function dropzoneCreate() {
-  new Dropzone("#upload-dropzone", { // Make the whole body a dropzone
+
+  Dropzone.autoDiscover = false;
+
+  $("#dropzone-form").dropzone({
     url: "/images", // Set the url
     previewsContainer: ".image-thumbnail", // Define the container to display the previews
     autoProcessQueue: false,
-    paramName: "image[f]",
+    paramName: "image",
     clickable: ".file-upload-coverup",
+    addRemoveLinks: true,
+    uploadMultiple: false,
     init: function() {
       this.on("addedfile", function(file) {
         $(".upload-container").addClass("active");
