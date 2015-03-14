@@ -1,4 +1,4 @@
-<% notifications.each do |note| %>
+<% notifications.includes(:subject).each do |note| %>
   <%= note.message %>
   <%= link_to "view", note.subject %>
 <% end %>
