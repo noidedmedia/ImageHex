@@ -37,7 +37,7 @@
     display: none;
     background-color: #fff;
     color: #333;
-    height: 400px;
+    height: auto;
     width: 300px;
     max-height: 0;
     position: absolute;
@@ -47,7 +47,11 @@
 
     &.active {
       display: inline-block;
-      max-height: 100vh;
+      max-height: 70vh;
+    }
+
+    > .notifications-container ul > li:last-of-type {
+      border-bottom: 0;
     }
   }
 }
@@ -86,11 +90,11 @@
     }
 
     .mark-all-read {
-      text-align: right;
-      padding: 6px 10px;
+      padding: 0 10px;
       display: inline-block;
       position: absolute;
       right: 0;
+      top: 4px;
     }
   }
 }

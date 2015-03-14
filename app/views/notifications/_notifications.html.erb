@@ -7,5 +7,7 @@
     <% end %>
   </div>
 
-  <%= render "notifications/notifications_list", notifications: current_user.notifications %>
+  <ul>
+    <%= render "notifications/notifications_list", notifications: current_user.notifications %>
+  </ul>
 </div>
