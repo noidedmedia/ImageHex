@@ -61,6 +61,26 @@
   @media all and (max-device-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
   }
+
+  > .left {
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+  }
+
+  > .right {
+    text-align: right;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+
+    > div {
+      display: inline-block;
+      margin-left: 40px;
+    }
+  }
+
 }
 
 #add-tag-group-button {
@@ -77,6 +97,85 @@
   }
 }
 
-#image-page-information {
-  
+#image-help-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-help;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-6px);
+      -webkit-transform: translate(-24px,-6px);
+    font-size: 2.1rem;
+  }
+}
+
+#image-info-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-info;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-4px);
+      -webkit-transform: translate(-24px,-4px);
+    font-size: 1.8rem;
+  }
+}
+
+#image-info-tooltip {
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 8px 12px;
+  margin-top: 5px;
+}
+
+// Styling for the image information/metadata table.
+.image-info-table {
+  font-size: 1.2rem;
+
+  // Styling for cells in column one.
+  .column-one-cell {
+    text-align: right;
+    padding-right: 8px;
+  }
+
+  // Styling for cells in column two.
+  .column-two-cell {
+    text-align: left;
+  }
+
+  // Styling for each respective row.
+  .table-row {
+
+  }
+}
+
+#edit-history-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-history;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-6px);
+      -webkit-transform: translate(-24px,-6px);
+    font-size: 2.1rem;
+  }
+}
+
+.toolbar-tooltip {
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 40px;
+  }
 }
