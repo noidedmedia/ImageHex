@@ -47,11 +47,34 @@
   margin: auto;
   margin-top: 50px;
 
-  h3 {
-    font-size: 1.8rem;
-    font-weight: 500;
-    padding: 0 0 6px 10px;
+  a {
+    color: #aaaab2;
+    text-decoration: none;
+    font-size: 1.2rem;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  .notifications-header {
     border-bottom: 1px solid #aaaab2;
+    position: relative;
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      padding: 0 0 6px 10px;
+      display: inline-block;
+    }
+
+    .mark-all-read {
+      text-align: right;
+      padding: 6px 10px;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+    }
   }
 }
 
@@ -59,6 +82,10 @@
   width: 100%;
   font-size: 1.2rem;
   border-bottom: 1px solid #aaaab2;
+
+  &.unread {
+    background-color: #fff;
+  }
 
   a {
     display: inline-block;
