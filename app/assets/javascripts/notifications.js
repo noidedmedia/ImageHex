@@ -15,6 +15,10 @@ function notificationsDropdown() {
   $(".mark-all-read").on("click", function() {
     $(".notifications-unread-count a").html("0");
     $(".header-notifications").removeClass("unread");
+
+    $(".notifications-dropdown").removeClass("active").addClass("inactive");
+    $(".header-notifications").removeClass("active");
+    $('.header-notifications').unbind("clickoutside");
   });
 }
 
