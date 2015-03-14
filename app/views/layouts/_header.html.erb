@@ -42,8 +42,18 @@
         <%= link_to 'Upload', new_image_path %>
       </div>
 
-      <div class="header-item">
-        <%= link_to 'Notifications', notifications_path %>
+      <div class="header-item filler"></div>
+
+      <div class="header-notifications">
+        <div class="notifications-unread-count">
+          <%= link_to notifications_path do %>
+            0
+          <% end %>
+        </div>
+
+        <div class="notifications-dropdown">
+          <%= render "notifications/notifications", notifications: @notifications %>
+        </div>
       </div>
 
       <div id="dd" class="wrapper-dropdown">
@@ -65,6 +75,10 @@
       </div>
 
     <% else %>
+
+      <div class="header-item">
+        <%= link_to 'Sign up', new_user_registration_path %>
+      </div>
 
       <div class="header-item">
         <%= link_to 'Sign in', new_user_session_path %>
