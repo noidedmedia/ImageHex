@@ -51,17 +51,28 @@
     top: 40px;
     text-align: left;
     opacity: 0;
-    transition: opacity 100ms, max-height 300ms;
+    display: inline-block;
+    box-shadow: 0 8px 6px 4px rgba(0, 0, 0, 0.05);
+    transition: max-height 400ms;
+
+    .notifications-container {
+      transition: opacity 200ms 400ms;
+      opacity: 0;
+    }
 
     &.inactive {
-      display: none;
+      visibility: hidden;
       max-height: 0;
     }
 
     &.active {
-      display: inline-block;
+      visibility: visible;
       opacity: 1;
       max-height: 70vh;
+
+      .notifications-container {
+        opacity: 1;
+      }
     }
 
     > .notifications-container ul > li:last-of-type {
