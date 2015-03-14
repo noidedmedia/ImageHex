@@ -38,11 +38,23 @@
 
   .notifications-dropdown {
     display: none;
+    background-color: #fff;
+    height: 500px;
+    width: 300px;
+    max-height: 0;
+    position: absolute;
+    left: -160px;
+    top: 40px;
+
+    &.active {
+      display: inline-block;
+      max-height: 100vh;
+    }
   }
 }
 
 .notifications-container {
-  width: 80%;
+  width: 90%;
   max-width: 600px;
   margin: auto;
   margin-top: 50px;
