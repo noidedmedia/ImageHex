@@ -7,18 +7,18 @@
  *  for the node which will show whatever is initially hidden. 
  */
 var showon = function() {
-  var hide = $("div").filter(function(index) {
+  var showondiv = $("div").filter(function(index) {
     return $(this).data("showon");
     // Elements with data in the "showon" property are hidden from the start,
     // appearing only when the selector specified by showon is clicked
   });
-  hide.each(function() {
+  showondiv.each(function() {
     var _this = this;
-    $(this).hide();
+    $(this).addClass('inactive').removeClass('active');
     var toggle = $($(this).data("showon"));
     $(toggle).on("click", function() {
       console.log("toggled!");
-      $(_this).show();
+      $(_this).toggleClass('active').toggleClass('inactive');
     });
   });
 };

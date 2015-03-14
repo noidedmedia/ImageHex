@@ -26,7 +26,7 @@
   top: 0;
   left: 125px;
   background-color: #fff;
-  transition: max-height 300ms ease-in-out; /* 1 */
+  transition: max-height 0 ease-in-out; /* 1 */
 
   form input[type="search"] {
     font-size: 1.4rem;
@@ -145,7 +145,6 @@
     opacity: 1;
     transition: opacity 300ms ease-in-out 600ms; /* 2 */
 
-   
     @media all and (max-device-width: $mobile-width) {
       margin-top: 40px;
     } 
@@ -226,6 +225,7 @@
   color: #333;
   overflow-y: auto;
   height: auto;
+  max-height: 240px;
   min-height: 0;
 
   > li {

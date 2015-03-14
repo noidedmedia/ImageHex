@@ -29,7 +29,9 @@
           align-items: flex-end;
   padding-bottom: 15px;
 
-  a {
+  a,
+  #img-action-favorited,
+  #img-action-favorite {
     font-size: 1.4rem;
     font-weight: 300;
     width: 100%;
@@ -66,6 +68,7 @@
    ============================================== */
 
 #img-action-favorite::before,
+#img-action-favorited::before,
 #img-action-collection::before,
 #img-action-share::before,
 #img-action-report::before {
@@ -81,7 +84,7 @@
   content: $icon-favorite;
 }
 
-.favorited#img-action-favorite::before {
+#img-action-favorited::before {
   content: $icon-placeholder;
 }
 
@@ -99,6 +102,36 @@
 
 
 /* ==============================================
+    Favorite
+   ============================================== */
+
+.image-actions-favorite-container {
+  width: 100%;
+
+  > div > a {
+    display: block;
+    width: 125%;
+    height: 40px;
+    line-height: 40px;
+    -webkit-transform: translate(-62px,-11px);
+            transform: translate(-62px,-11px);
+    text-indent: 62px;
+  }
+}
+
+#img-action-favorite,
+#img-action-favorited {
+  &.active {
+    display: block;
+  }
+
+  &.inactive {
+    display: none;
+  }
+}
+
+
+/* ==============================================
     Add a collection
    ============================================== */
 
@@ -106,6 +139,14 @@
   background-color: #222;
   color: #fff;
   width: 100%; // The height of 5 list items.
+
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+  }
 }
 
 #collection-add-list-scrollbar {
@@ -168,6 +209,14 @@
 #report-form {
   padding: 0 10px;
   margin-left: 35px;
+
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: inline-block;
+  }
 
   input[type=radio] + label {
     color: rgba(#fff,.8);

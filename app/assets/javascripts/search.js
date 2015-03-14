@@ -10,12 +10,14 @@ function headerSearch() {
       
       // Checks to make sure the "header-search" div doesn't already have an "active" class.
       if (!headersearch.hasClass('active')) {
-        headersearch.toggleClass('active');
+        headersearch.addClass('active');
       }
 
       // Binds any click outside the headersearch div to removing the "active" class
       // and therefore hidings the header's search dropdown.
       headersearch.bind('clickoutside', function(event) {        
+
+        console.log("TEST");
 
         // The following sets the max-height of the element to the
         // height of the element itself, because CSS transitions won't
@@ -28,7 +30,7 @@ function headerSearch() {
         $(headersearch).toggleClass('active');
 
         // Unbinds the function so it can only happen once.
-        $(this).unbind('clickoutside');
+        $(headersearch).unbind('clickoutside');
       });
     });
 
