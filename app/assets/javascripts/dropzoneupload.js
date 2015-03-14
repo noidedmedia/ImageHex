@@ -6,7 +6,7 @@ function dropzoneCreate() {
     url: "/images", // Set the url
     previewsContainer: ".image-thumbnail", // Define the container to display the previews
     autoProcessQueue: false,
-    paramName: "image",
+    paramName: "image[f]",
     clickable: ".file-upload-coverup",
     addRemoveLinks: true,
     uploadMultiple: false,

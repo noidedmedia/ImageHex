@@ -61,6 +61,7 @@
         font-size: 1.4rem;
         padding: 15px;
         color: #8e8e8e;
+        margin-top: 140px;
       }
     }
 
@@ -112,6 +113,18 @@
         font-size: 1.4rem;
         padding: 15px;
         color: #8e8e8e;
+        margin-top: 140px;
+      }
+      
+      &:before {
+        content: $icon-folder;
+        position: absolute;
+        display: inline-block;
+        color: #8e8e8e;
+        transform: translate(-60px,20px);
+          -webkit-transform: translate(-60px,20px);
+        font-size: 12.0rem;
+        -webkit-font-smoothing: antialiased;
       }
     }
 
