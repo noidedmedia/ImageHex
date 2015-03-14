@@ -39,12 +39,14 @@
   .notifications-dropdown {
     display: none;
     background-color: #fff;
-    height: 500px;
+    color: #333;
+    height: 400px;
     width: 300px;
     max-height: 0;
     position: absolute;
-    left: -160px;
+    left: -200px;
     top: 40px;
+    text-align: left;
 
     &.active {
       display: inline-block;
@@ -57,7 +59,7 @@
   width: 90%;
   max-width: 600px;
   margin: auto;
-  margin-top: 50px;
+  padding-top: 15px;
 
   a {
     color: #aaaab2;
