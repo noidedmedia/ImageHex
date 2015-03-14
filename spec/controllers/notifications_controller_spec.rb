@@ -8,6 +8,13 @@ RSpec.describe NotificationsController, type: :controller do
       @user.confirm!
       sign_in @user
     end
+    describe "get #index" do
+      it "gives the users notifications" do
+        n = FactoryGirl.create(:notification, user: @user)
+        get :index
+        expect(assigns(:notifications)).to eq(@user.notifications)
+      end
+    end
     describe "get #unread" do
       it "responds with unread notifications" do
         notification = FactoryGirl.create(:notification, user: @user)
