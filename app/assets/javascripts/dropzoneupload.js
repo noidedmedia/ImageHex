@@ -1,15 +1,8 @@
-function dropzoneCreate() {
-  new Dropzone(document.body, { // Make the whole body a dropzone
-    url: "/images", // Set the url
-    previewsContainer: ".image-thumbnail", // Define the container to display the previews
-    autoProcessQueue: false
-  });
-}
+
 
 var ready = function() {
-  if (window.location.href.search("images/new") >= 0) {
-    console.log("Upload page only!");
-    dropzoneCreate();
+  if (window.location.href.search('images/new') >= 0) {
+    console.log('Upload page only!');
   }
 };
 

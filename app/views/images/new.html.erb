@@ -24,8 +24,24 @@
     </div>
 
     <div class="new-upload-container">
-      <%# the file to add %>
-      <%= f.file_field :f %>
+      <div class="top-half">
+
+        <p>Drop images here to upload
+      </div>
+
+      <hr>
+      <p class="or">or
+
+      <div class="bottom-half">
+        <%# the file to add %>
+        <%= f.file_field :f %>
+
+        <div class="file-upload-coverup">
+          
+          <p>Click here to choose a file
+        </div>
+      </div>
+
     </div>
 
 
