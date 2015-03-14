@@ -45,6 +45,15 @@ Rails.application.routes.draw do
       delete "remove"
     end
   end
+
+  resources :notifications, only: [:index] do
+    collection do 
+      get 'unread'
+    end
+    member do
+      post 'read'
+    end
+  end
   ################
   # ADMIN ROUTES #
   ################

@@ -14,12 +14,12 @@ class User < ActiveRecord::Base
   ################
   ##
   # Join table: users -> collections
-
   has_many :subscriptions
   has_many :subscribed_collections,
     through: :subscriptions,
     source: :collection
 
+  has_many :notifications
   has_many :images
   has_many :curatorships
   has_many :collections, through: :curatorships

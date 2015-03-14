@@ -1,0 +1,4 @@
+<% notifications.each do |note| %>
+  <%= note.message %>
+  <%= link_to "view", note.subject %>
+<% end %>
