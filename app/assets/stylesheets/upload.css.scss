@@ -55,6 +55,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      cursor: default;
 
       p {
         font-size: 1.4rem;
@@ -94,6 +95,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
+      cursor: pointer;
     }
 
     .file-upload-coverup {
@@ -103,7 +105,7 @@
       left: 0;
       position: absolute;
       background-color: #fff;
-      pointer-events: none;
+      cursor: pointer;
       border-radius: 4px;
 
       p {

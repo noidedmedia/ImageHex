@@ -131,7 +131,7 @@ function customSelect() {
 }
 
 var ready = function() {
-  customSelect();
+
 };
 
 $(document).ready(ready);
