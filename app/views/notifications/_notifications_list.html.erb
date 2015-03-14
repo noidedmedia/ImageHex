@@ -1,7 +1,8 @@
 <% notifications.includes(:subject).each do |note| %>
-  <%= link_to note.subject do %>
-    <div class="notifications-list-item">
+  <div class="notifications-list-item">
+    <%= link_to note.subject do %>
       <%= note.message %>
-    </div>
-  <% end %>
+      <%= time_ago_in_words(note.created_at) %> ago
+    <% end %>
+  </div>
 <% end %>

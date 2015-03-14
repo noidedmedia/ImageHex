@@ -35,10 +35,37 @@
       text-decoration: none;
     }
   }
-  
+
   .notifications-dropdown {
     display: none;
   }
 }
 
+.notifications-container {
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 50px;
+
+  h3 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding-bottom: 6px;
+  }
+}
+
+.notifications-list-item {
+  width: 100%;
+  height: auto;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #aaaab2;
+
+  a {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #333;
+  }
+}
 
