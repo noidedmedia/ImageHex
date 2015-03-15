@@ -7,12 +7,12 @@ function fileUpload() {
     // Remove "hover" styles on dragleave.
   });
 
-  $("#file-field").on("drop", addedFiles);
+  $("#file-field").on("change", addedFiles);
 }
 
 function addedFiles(event) {
 
-  var files = event.originalEvent.dataTransfer.files;
+  var files = event.target.files || (event.originalEvent.dataTransfer && event.originalEvent.dataTransfer.files);
 
   // console.log(files);
 
