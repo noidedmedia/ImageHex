@@ -1,7 +1,7 @@
 <div id="upload-page-container">
   <h2>Upload images</h2>
 
-  <%= form_for @image, html: {id: "dropzone-form"} do |f| %>
+  <%= form_for @image, html: {id: "upload-form"} do |f| %>
     
     <div class="upload-container">
       <%# Start by generating select tags for enums %>
@@ -10,22 +10,17 @@
       <%# capitalized. %>
       <div class="image-thumbnail"></div>
 
-      <div class="custom-select-wrapper">
-        <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
-        <%# Note that the above has a "{}" because %>
-        <%# html-options needs to be invoked before %>
-        <%# the CSS class can be used. %>
-      </div>
+      <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+      <%# Note that the above has a "{}" because %>
+      <%# html-options needs to be invoked before %>
+      <%# the CSS class can be used. %>
 
       <%# The Medium select input. %>
-      <div class="custom-select-wrapper">
-        <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
-      </div>
+      <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
     </div>
 
     <div class="new-upload-container">
-      <div class="top-half" id="upload-dropzone">
-
+      <div class="top-half">
         <p>Drop images here to upload
       </div>
 
@@ -35,13 +30,14 @@
       <div class="bottom-half">
 
         <div class="file-upload-coverup">
-          
           <p>Click here to choose a file
         </div>
+
+        <%= f.file_field :f, id: "file-field" %>
       </div>
 
     </div>
 
-    <%= f.submit "Submit" %>
+    <%= f.submit "Submit", id: "upload-submit-button" %>
   <% end %>
 </div>
