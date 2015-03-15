@@ -54,6 +54,7 @@
     display: inline-block;
     box-shadow: 0 8px 6px 4px rgba(0, 0, 0, 0.05);
     transition: max-height 400ms;
+    overflow: auto;
 
     .notifications-container {
       transition: opacity 200ms 400ms;
