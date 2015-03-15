@@ -11,35 +11,55 @@ function fileUpload() {
 }
 
 function addedFiles(event) {
-    console.log("Drop.");
+  console.log("Drop.");
 
-    var files = event.originalEvent.dataTransfer.files;
+  var files = event.originalEvent.dataTransfer.files;
 
-    console.log(files);
+  console.log(files);
 
-    if (files) {
-      handleFiles(files);
-    }
+  if (files) {
+    handleFiles(files);
   }
+}
 
 function handleFiles(files) {
-  console.log("Display upload container.");
-  $(".upload-container").addClass("active");
-
-  console.log("Display submit button.");
-  $("#upload-submit-button").addClass("active");
+  var uploadcontainer = $(".upload-container").clone();
 
   for (var i = 0; i < files.length; i++) {
-    $(".image-file-name").html(files[i].name);
+    console.log(i);
+
+    console.log(uploadcontainer);
+
+    var uploadcontainerid = "upload-container-" + i;
+
+    $(uploadcontainer)
+      .attr('id', uploadcontainerid)
+      .insertBefore(".new-upload-container");
+
+    uploadcontainer = $(".upload-container-" + i).clone();
+
+    console.log("Display upload container.");
+    $(uploadcontainerid).addClass("active");
+
+    console.log("Display submit button.");
+    $("#upload-submit-button").addClass("active");
+
+    console.log("Test1.");
+
+    $(uploadcontainerid + " .image-file-name").html(files[i].name);
+
+    console.log("Test2.");
 
     var img = document.createElement("img");
     img.src = window.URL.createObjectURL(files[i]);
     img.width = 348;
     img.onload = function() {
       window.URL.revokeObjectURL(this.src);
-    }
+    };
 
-    $(".image-thumbnail").html(img);
+    console.log("Test3.");
+
+    $(uploadcontainerid + " .image-thumbnail").html(img);
   }
 }
 
