@@ -22,7 +22,8 @@
 
     <div class="new-upload-container">
 
-      <%= f.file_field :f, id: "file-field", :multiple => true %>
+      <!-- Add ":multiple => true" when we're ready for multi-part upload. -->
+      <%= f.file_field :f, id: "file-field" %>
 
       <div class="top-half">
         <p>Drop images here to upload

@@ -1,21 +1,20 @@
 function fileUpload() {
   $("#file-field").on("dragenter", function() {
-    console.log("Drag entered.");
+    // Add "hover" styles for dragging-and-dropping images.
   });
 
   $("#file-field").on("dragleave", function() {
-    console.log("Drag left.");
+    // Remove "hover" styles on dragleave.
   });
 
   $("#file-field").on("drop", addedFiles);
 }
 
 function addedFiles(event) {
-  console.log("Drop.");
 
   var files = event.originalEvent.dataTransfer.files;
 
-  console.log(files);
+  // console.log(files);
 
   if (files) {
     handleFiles(files);
@@ -26,9 +25,8 @@ function handleFiles(files) {
   var uploadcontainer = $(".upload-container").clone();
 
   for (var i = 0; i < files.length; i++) {
-    console.log(i);
-
-    console.log(uploadcontainer);
+    // console.log(i);
+    // console.log(uploadcontainer);
 
     var uploadcontainerid = "upload-container-" + i;
 
@@ -38,17 +36,13 @@ function handleFiles(files) {
 
     uploadcontainer = $("#upload-container-" + i).clone();
 
-    console.log("Display upload container.");
+    // Display upload container.
     $("#" + uploadcontainerid).addClass("active");
 
-    console.log("Display submit button.");
+    // Display submit button.
     $("#upload-submit-button").addClass("active");
 
-    console.log("Test1.");
-
     $("#" + uploadcontainerid + " .image-file-name").html(files[i].name);
-
-    console.log("Test2.");
 
     var img = document.createElement("img");
     img.src = window.URL.createObjectURL(files[i]);
@@ -56,8 +50,6 @@ function handleFiles(files) {
     img.onload = function() {
       window.URL.revokeObjectURL(this.src);
     };
-
-    console.log("Test3.");
 
     $("#" + uploadcontainerid + " .image-thumbnail").html(img);
   }
