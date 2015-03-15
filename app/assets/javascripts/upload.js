@@ -36,17 +36,17 @@ function handleFiles(files) {
       .attr('id', uploadcontainerid)
       .insertBefore(".new-upload-container");
 
-    uploadcontainer = $(".upload-container-" + i).clone();
+    uploadcontainer = $("#upload-container-" + i).clone();
 
     console.log("Display upload container.");
-    $(uploadcontainerid).addClass("active");
+    $("#" + uploadcontainerid).addClass("active");
 
     console.log("Display submit button.");
     $("#upload-submit-button").addClass("active");
 
     console.log("Test1.");
 
-    $(uploadcontainerid + " .image-file-name").html(files[i].name);
+    $("#" + uploadcontainerid + " .image-file-name").html(files[i].name);
 
     console.log("Test2.");
 
@@ -59,7 +59,7 @@ function handleFiles(files) {
 
     console.log("Test3.");
 
-    $(uploadcontainerid + " .image-thumbnail").html(img);
+    $("#" + uploadcontainerid + " .image-thumbnail").html(img);
   }
 }
 
