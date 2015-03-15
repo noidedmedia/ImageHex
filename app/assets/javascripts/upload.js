@@ -15,22 +15,7 @@ function addedFiles(event) {
 
     var files = event.originalEvent.dataTransfer.files;
 
-    console.log(files);
-
-    var file = [];
-
-    for (var i = 0; i < files.length; i++) {
-
-      file[i] = event.originalEvent.dataTransfer.files;
-
-      console.log(i);
-
-      console.log( file[i] );
-    }
-
-    return file;
-
-    handleFiles(file);
+    handleFiles(files);
   }
 
 function handleFiles(files) {
