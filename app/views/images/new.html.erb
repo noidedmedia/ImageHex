@@ -9,6 +9,7 @@
       <%# medium because the options are specially %>
       <%# capitalized. %>
       <div class="image-thumbnail"></div>
+      <div class="image-file-name"></div>
 
       <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
       <%# Note that the above has a "{}" because %>
@@ -20,9 +21,9 @@
     </div>
 
     <div class="new-upload-container">
-      
+
       <%= f.file_field :f, id: "file-field" %>
-    
+
       <div class="top-half">
         <p>Drop images here to upload
       </div>
