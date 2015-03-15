@@ -42,5 +42,19 @@
   </div>
 
   <%= render 'layouts/footer' %>
+
+  <!-- This enables Google Search inline search box -->
+  <script type="application/ld+json">
+  {
+     "@context": "http://schema.org",
+     "@type": "WebSite",
+     "url": "http://www.imagehex.com/",
+     "potentialAction": {
+       "@type": "SearchAction",
+       "target": "http://imagehex.com/search?query%5B%5D={search_term_string}",
+       "query-input": "required name=search_term_string"
+     }
+  }
+  </script>
 </body>
 </html>
