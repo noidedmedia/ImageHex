@@ -53,6 +53,7 @@
     background-color: #fff;
     border-radius: 4px;
     border: 1px solid #aaaab2;
+    overflow: hidden;
   }
 
   .new-upload-container {
@@ -66,6 +67,9 @@
       top: 0;
       left: 0;
       cursor: default;
+      border-radius: 4px;
+      z-index: 10;
+      pointer-events: none;
 
       p {
         font-size: 1.4rem;
@@ -83,6 +87,7 @@
       top: 50%;
       z-index: 10;
       border: 1px solid rgba(#8e8e8e,.4);
+      pointer-events: none;
     }
 
     .or {
@@ -96,8 +101,8 @@
       font-weight: 500;
       color: #8e8e8e;
       text-align: center;
-      cursor: default;
       z-index: 10;
+      pointer-events: none;
     }
 
     .bottom-half {
@@ -144,10 +149,10 @@
       width: 100%;
       height: 100%;
       position: absolute;
-      top: 0;
+      top: -50px;
       left: 0;
-      padding: 40px;
       z-index: 8;
+      cursor: pointer;
 
       &:focus {
         outline: transparent;
@@ -173,10 +178,15 @@
   width: 100%;
   height: 40px;
   background-color: #fff;
-  border: 1px solid #aaaab2;
+  border: none;
+  border-bottom: 1px solid #aaaab2;
   -webkit-appearance: none;
   padding: 5px 10px;
   border-radius: 0;
   font-size: 1.2rem;
   margin: 0;
+
+  &:focus {
+    outline: transparent;
+  }
 }
