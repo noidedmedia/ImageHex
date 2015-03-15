@@ -308,7 +308,6 @@ DEPENDENCIES
   aws-sdk (< 2.0)
   better_errors
   bullet
-  coffee-rails (~> 4.0.0)
   devise
   dropzonejs-rails (~> 0.7.1)
   factory_girl_rails

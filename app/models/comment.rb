@@ -33,11 +33,28 @@ class Comment < ActiveRecord::Base
   #############
   after_save :notify_mentioned_users
   after_save :notify_replied_comments
+  after_save :notify_image
   ####################
   # INSTANCE METHODS #
   ####################
 
   protected
+
+  ##
+  # Notify_image sends a notification to the image owner
+  # when a user comments on their image--if they have it set to do so
+  def notify_image
+    if commentable.class == Image && commentable.replies_to_inbox
+      n = Notification.create(user: commentable.user,
+                              subject: subject,
+                              message: image_reply_message)
+      n.save
+    end
+  end
+
+  def image_reply_message
+    "#{user.name} made a comment on ##{commentable.id}"
+  end
   ##
   # Notify reply tells us to make a notification of a reply to
   # this comment. It's protected so only other comments can
