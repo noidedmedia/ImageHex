@@ -8,8 +8,10 @@
       <%# The License select is different from the %>
       <%# medium because the options are specially %>
       <%# capitalized. %>
-      <div class="image-thumbnail"></div>
-      <div class="image-file-name"></div>
+      <div class="image-thumbnail-container">
+        <div class="image-thumbnail"></div>
+        <div class="image-file-name"></div>
+      </div>
 
       <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
       <%# Note that the above has a "{}" because %>

@@ -52,7 +52,7 @@ function handleFiles(files) {
       window.URL.revokeObjectURL(this.src);
     };
 
-    $("#" + uploadcontainerid + " .image-thumbnail").html(img);
+    $("#" + uploadcontainerid + " .image-thumbnail-container > .image-thumbnail").html(img);
   }
 
   // Remove this when we're ready for multi-image upload.
