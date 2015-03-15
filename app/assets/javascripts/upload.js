@@ -22,6 +22,7 @@ function addedFiles(event) {
 }
 
 function handleFiles(files) {
+
   var uploadcontainer = $(".upload-container").clone();
 
   for (var i = 0; i < files.length; i++) {
@@ -53,6 +54,9 @@ function handleFiles(files) {
 
     $("#" + uploadcontainerid + " .image-thumbnail").html(img);
   }
+
+  // Remove this when we're ready for multi-image upload.
+  $(".new-upload-container").attr("style", "display: none");
 }
 
 var ready = function() {
