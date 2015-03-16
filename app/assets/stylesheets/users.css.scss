@@ -160,7 +160,9 @@
 /* Containers for uploads and collections
    ============================================== */
 
-#user-uploads-container, #user-collections-container {
+#user-uploads-container,
+#user-collections-container,
+#user-creations-container {
   margin-top: 40px;
   padding: 15px 20px;
   display: none;

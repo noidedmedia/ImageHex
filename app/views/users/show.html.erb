@@ -17,16 +17,19 @@
   <div id="user-content-container">
     <ul id="user-page-header-tabs">
       <li data-tab="tab-1" class="user-page-header-tab current">Uploads
-      <li data-tab="tab-2" class="user-page-header-tab">Collections
+      <li data-tab="tab-2" class="user-page-header-tab">Creations
+      <li data-tab="tab-3" class="user-page-header-tab">Collections
     </ul>
 
     <div id="user-uploads-container" class="tab-content tc-tab-1 current">
-      Uploads stuff
-      
-      <!-- Uploads goes here -->
+      <%= render 'images/show_stub' %>
     </div>
 
-    <div id="user-collections-container" class="tab-content tc-tab-2">
+    <div id="user-creations-container" class="tab-content tc-tab-2">
+      <!-- Creations go here -->
+    </div>
+
+    <div id="user-collections-container" class="tab-content tc-tab-3">
       <% @collections.each do |c| %>
         <%= render "collection_stub", c: c %>
       <% end %>
