@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
+  has_one :user_page
   ##
   # Join table: users -> collections
   has_many :subscriptions
@@ -41,8 +42,7 @@ class User < ActiveRecord::Base
   # CALLBACKS #
   #############
   after_create :make_collections
-
-
+  after_create :make_page
   ####################
   # INSTANCE METHODS #
   ####################
@@ -84,6 +84,11 @@ class User < ActiveRecord::Base
   end
   protected
 
+  def make_page
+    p = UserPage.new(user: self,
+                     markdown: "##{name} hasn't made their page yet")
+    p.save!
+  end
   ##
   # All users have to have a Favorite collection and a Created collection.
   # This method makes both of those collections in a callback on user creation.
