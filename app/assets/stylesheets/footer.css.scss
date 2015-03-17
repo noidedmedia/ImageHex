@@ -44,6 +44,8 @@
   @media all and (max-device-width: $mobile-width) {
     min-width: auto;
     width: 100%;
+    -webkit-flex-flow: column nowrap;
+            flex-flow: column nowrap;
   }
 }
 
