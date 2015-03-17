@@ -54,7 +54,7 @@ $(document).ready(function(){
   var windowwidth = $(window).width();
 
   // Only run if the browser window doesn't imply a mobile device.
-  if (windowwidth > '700') {
+  if (windowwidth > '750') {
     var dd = new DropDown($('#dd'));
   }
 });
