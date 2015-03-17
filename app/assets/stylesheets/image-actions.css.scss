@@ -103,6 +103,8 @@
   cursor: pointer;
 
   > div > a {
+    display: block;
+    padding: 10px 15px;
     color: rgba(#fff,0.8);
   }
 
@@ -117,6 +119,8 @@
 
 #img-action-favorite,
 #img-action-favorited {
+  padding: 0;
+
   &.active {
     display: inline-block;
   }
