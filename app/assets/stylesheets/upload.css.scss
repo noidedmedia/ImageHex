@@ -8,8 +8,7 @@
 #upload-page-container {
   width: 80%;
   max-width: 1000px;
-  margin: auto;
-  margin-top: 75px;
+  margin: 75px auto 30px;
   text-align: center;
 
   form {
@@ -46,6 +45,10 @@
 
     &.active {
       display: block;
+    }
+
+    @media all and (max-device-width: $mobile-width) {
+      width: 90vw;
     }
   }
 
