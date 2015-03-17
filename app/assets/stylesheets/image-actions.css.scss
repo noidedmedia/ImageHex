@@ -100,13 +100,14 @@
 
 .image-actions-favorite-container {
   width: 100%;
+  cursor: pointer;
 
   > div > a {
     color: rgba(#fff,0.8);
+  }
 
-    &:hover {
-      color: rgba(#fff,1.0);
-    }
+  &:hover > div > a {
+    color: rgba(#fff,1.0);
   }
 
   @media all and (max-device-width: $mobile-width) {
