@@ -79,6 +79,12 @@
       display: inline-block;
       margin-left: 40px;
     }
+
+    // Hides extra image-page-toolbar options for mobile users
+    // This is a temporary fix.
+    @media all and (max-device-width: $mobile-width) {
+      display: none;
+    }
   }
 
 }
