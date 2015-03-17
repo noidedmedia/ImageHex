@@ -45,7 +45,6 @@
     @media all and (max-device-width: $mobile-width) {
       width: auto;
     }
-
   }
 
   @media all and (max-device-width: $mobile-width) {
@@ -56,10 +55,28 @@
 .image-actions {
   width: 100%;
   height: 40px;
-  padding: 10px 0 10px 65px;
+  padding: 10px 15px;
 
   &:hover {
     background-color: #333333;
+
+    > a > span::before,
+    > span::before {
+      color: rgba(#fff,1.0);
+    }
+  }
+
+  > a > span::before,
+  > span::before {
+    color: rgba(#fff,0.8);
+    font-size: 2.1rem;
+    transform: translate(5px, -4px);
+      -webkit-transform: translate(5px, -4px);
+  }
+
+  > a > p,
+  > p {
+    padding-left: 40px;
   }
 
   @media all and (max-device-width: $mobile-width) {
@@ -68,45 +85,11 @@
     white-space: nowrap;
     width: 40px;
     height: 40px;
+
+    > p {
+      display: none;
+    }
   }
-}
-
-
-/* ==============================================
-    Image Action Icons
-   ============================================== */
-
-#img-action-favorite::before,
-#img-action-favorited::before,
-#img-action-collection::before,
-#img-action-share::before,
-#img-action-report::before {
-  position: absolute;
-  display: inline-block;
-  transform: translate(-30px,-4px);
-    -webkit-transform: translate(-30px,-4px);
-  font-size: 2.0rem;
-  -webkit-font-smoothing: antialiased;
-}
-
-#img-action-favorite::before {
-  content: $icon-favorite;
-}
-
-#img-action-favorited::before {
-  content: $icon-favorited;
-}
-
-#img-action-collection::before {
-  content: $icon-add;
-}
-
-#img-action-share::before {
-  content: $icon-share;
-}
-
-#img-action-report::before {
-  content: $icon-report;
 }
 
 
@@ -118,20 +101,23 @@
   width: 100%;
 
   > div > a {
-    display: block;
-    width: 125%;
-    height: 40px;
-    line-height: 40px;
-    -webkit-transform: translate(-62px,-11px);
-            transform: translate(-62px,-11px);
-    text-indent: 62px;
+    display: inline-block;
+    color: rgba(#fff,0.8);
+
+    &:hover {
+      color: rgba(#fff,1.0);
+    }
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 40px;
   }
 }
 
 #img-action-favorite,
 #img-action-favorited {
   &.active {
-    display: block;
+    display: inline-block;
   }
 
   &.inactive {
