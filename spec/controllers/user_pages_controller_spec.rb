@@ -11,9 +11,9 @@ RSpec.describe UserPagesController, type: :controller do
     describe "put #update" do
       it "allows the user to update their page" do
         str = "we gucci boys"
-        expect{
-          put :update, comment: {body: str}
-        }.to change{@user.user_page.body}.to(sr)
+        params = FactoryGirl.attributes_for(:user_page, body: str)
+        put :update, page: {body: str}
+        expect(@user.user_page.reload.body).to eq(str)
       end
     end
     describe "get #edit" do
