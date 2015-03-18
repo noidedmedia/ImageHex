@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
+
   resources :tags do
     collection do
       get "suggest"
@@ -68,6 +69,10 @@ Rails.application.routes.draw do
   ########################
   # SINGLE ACTION ROUTES #
   ########################
+
+  get "page_edit", to: "user_pages#edit"
+
+  put "page_edit", to: "user_pages#update"
 
   #################
   # STATIC ROUTES #

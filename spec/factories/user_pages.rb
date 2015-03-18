@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :user_page do
-    markdown "MyString"
-    compiled "MyString"
+    body "yo"
     user
     elsewhere {}
   end

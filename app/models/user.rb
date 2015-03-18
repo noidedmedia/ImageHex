@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
 
   def make_page
     p = UserPage.new(user: self,
-                     markdown: "##{name} hasn't made their page yet")
+                     body: "##{name} hasn't made their page yet")
     p.save!
   end
   ##
