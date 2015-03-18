@@ -12,13 +12,16 @@ RSpec.describe UserPagesController, type: :controller do
       it "allows the user to update their page" do
         str = "we gucci boys"
         params = FactoryGirl.attributes_for(:user_page, body: str)
-        put :update, page: {body: str}
+        put :update, id: 10, user_id: 120, user_page: params
         expect(@user.user_page.reload.body).to eq(str)
       end
     end
     describe "get #edit" do
       it "sets the @page variable" do
-        get :edit
+        ##
+        # We put in random numbers here because it doesn't really matter
+        # you're always just updating your own page
+        get :edit, id: 10, user_id: 102
         expect(assigns(:page)).to eq(@user.user_page)
       end
     end

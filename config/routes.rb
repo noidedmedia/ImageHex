@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   devise_for :users, path: "accounts"
 
   resources :users do
+
+    resources :user_pages, only: [:edit, :update]
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.
@@ -56,6 +58,7 @@ Rails.application.routes.draw do
       post 'read'
     end
   end
+
   ################
   # ADMIN ROUTES #
   ################
@@ -69,10 +72,6 @@ Rails.application.routes.draw do
   ########################
   # SINGLE ACTION ROUTES #
   ########################
-
-  get "page_edit", to: "user_pages#edit"
-
-  put "page_edit", to: "user_pages#update"
 
   #################
   # STATIC ROUTES #

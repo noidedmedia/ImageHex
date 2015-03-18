@@ -2,6 +2,7 @@ class UserPagesController < ApplicationController
   before_action :ensure_user
   def edit
     @page = current_user.user_page
+    @user = current_user
   end
 
   def update
@@ -18,6 +19,6 @@ class UserPagesController < ApplicationController
 
   protected
   def page_params
-    params.require(:page).permit(:body)
+    params.require(:user_page).permit(:body)
   end
 end
