@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317214740) do
+ActiveRecord::Schema.define(version: 20150318020537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,12 +162,11 @@ ActiveRecord::Schema.define(version: 20150317214740) do
   end
 
   create_table "user_pages", force: :cascade do |t|
-    t.string   "markdown"
-    t.string   "compiled"
     t.integer  "user_id"
     t.jsonb    "elsewhere"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "body"
   end
 
   add_index "user_pages", ["user_id"], name: "index_user_pages_on_user_id", using: :btree
