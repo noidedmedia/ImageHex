@@ -18,8 +18,7 @@ class Image < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :tag_groups, dependent: :destroy
-
+  has_many :tag_groups, -> {includes :tags}, dependent: :destroy
   has_many :reports, as: :reportable, dependent: :destroy
 
   has_many :comments, as: :commentable, dependent: :destroy
