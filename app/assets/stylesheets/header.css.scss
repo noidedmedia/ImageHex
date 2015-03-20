@@ -79,6 +79,7 @@
       width: 100%;
       display: block;
       padding: 0;
+      font-size: 1.8rem;
 
       a {
         width: 100%;
@@ -122,7 +123,6 @@
     }
   }
 
-
   @media all and (min-device-width: $mobile-width) {
     /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
     &:first-of-type {
@@ -133,10 +133,9 @@
       padding-right: 0;
     }
   }
-
+  
   @media all and (max-device-width: $mobile-width) {
-    font-size: 1.8rem;
-    padding: 12px 15px;
+    padding: 14px 15px;
   }
 }
 
