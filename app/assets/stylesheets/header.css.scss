@@ -64,17 +64,27 @@
     text-align: left;
     background-color: #333;
     z-index: 1000;
-    transition: -webkit-transform 300ms;
-    transition: transform 300ms;
+    transition: -webkit-transform 300ms, box-shadow 300ms 300ms;
+    transition: transform 300ms, box-shadow 100ms 300ms;
+    padding-top: 10px;
 
     &.active {
       -webkit-transform: translateX(0);
               transform: translateX(0);
+      box-shadow: 0 60px 0 60px rgba(0, 0, 0, 0.4);
     }
 
     .header-item {
       width: 100%;
-      display: inline-block;
+      display: block;
+      padding: 0;
+
+      a {
+        width: 100%;
+        display: block;
+        height: 100%;
+        padding: 12px 15px;
+      }
     }
 
     #username {
