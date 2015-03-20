@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314175356) do
+ActiveRecord::Schema.define(version: 20150318035752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,16 @@ ActiveRecord::Schema.define(version: 20150314175356) do
     t.string   "display_name"
   end
 
+  create_table "user_pages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.jsonb    "elsewhere"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "body"
+  end
+
+  add_index "user_pages", ["user_id"], name: "index_user_pages_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -183,4 +193,5 @@ ActiveRecord::Schema.define(version: 20150314175356) do
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tag_groups", "images"
+  add_foreign_key "user_pages", "users"
 end
