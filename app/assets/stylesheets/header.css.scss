@@ -54,19 +54,34 @@
 
   @media all and (max-device-width: $mobile-width) {
     position: absolute;
-    transform: translateX(calc(100vw + 60px));
+    -webkit-transform: translateX(calc(100vw + 60px));
+            transform: translateX(calc(100vw + 60px));
     right: 0;
-    top: 0;
+    top: 50px;
     width: calc(100vw - 60px);
-    height: 100vh;
+    height: calc(100vh - 50px);
     display: block;
     text-align: left;
     background-color: #333;
     z-index: 1000;
+    transition: -webkit-transform 300ms;
     transition: transform 300ms;
 
     &.active {
-      transform: translateX(0);
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+
+    .header-item {
+      width: 100%;
+      display: inline-block;
+    }
+
+    #username {
+      position: absolute;
+      bottom: 0;
+      left: 30px;
+      padding: 12px 24px;
     }
   }
 }
@@ -96,18 +111,21 @@
     }
   }
 
-  /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
-  &:first-of-type {
-    padding-left: 0;
-  }
 
-  &:last-of-type {
-    padding-right: 0;
+  @media all and (min-device-width: $mobile-width) {
+    /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
   }
 
   @media all and (max-device-width: $mobile-width) {
-    font-size: 1.6rem;
-    padding: 0 15px;
+    font-size: 1.8rem;
+    padding: 12px 15px;
   }
 }
 
@@ -122,9 +140,23 @@
   span::before {
     -webkit-transform: translate(-35px,14px);
             transform: translate(-35px,14px);
+
+    transition: color 300ms;
+  }
+
+  &.active {
+    span::before {
+      color: #fff;
+    }
   }
 
   @media all and (max-device-width: $mobile-width) {
     display: block;
+  }
+}
+
+@media all and (max-device-width: $mobile-width) {
+  #header-home {
+    padding: 0 15px;
   }
 }

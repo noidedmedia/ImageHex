@@ -5,8 +5,15 @@ function headerMenu() {
     });
     
     $('#header-right').toggleClass('active');
+    $('#mobile-menu-icon').toggleClass('active');
 
-    setTimeout(clickoutside, 1000);
+    if( $('#mobile-menu-icon').hasClass('active') ) {
+      $('#mobile-menu-icon').on('click', function() {
+        $('#header-right').unbind('clickoutside');
+      });
+    }
+
+    setTimeout(clickoutside, 200);
   });
 }
 
@@ -20,6 +27,7 @@ function clickoutside() {
 // This function binds clicking outside of the dropdown to closing the dropdown.
 function headerMenuClose() {
   $('#header-right').removeClass('active');
+  $('#mobile-menu-icon').removeClass('active');
   $('body').unbind('touchmove');
 }
 

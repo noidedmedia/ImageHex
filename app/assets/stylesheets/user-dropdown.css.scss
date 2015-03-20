@@ -101,3 +101,40 @@
   opacity: 1;
   visibility: visible;
 }
+
+
+@media all and (max-device-width: $mobile-width) {
+  .wrapper-dropdown {
+    position: initial;
+    width: auto;
+    display: auto;
+    padding: 0;
+    margin: 0;
+    background: none;
+
+    .dropdown {
+      background: none;
+      display: inline-block;
+      border: none;
+      position: relative;
+      opacity: 1;
+      visibility: visible;
+      box-shadow: none;
+      top: auto;
+      right: auto;
+      left: auto;
+      bottom: auto;
+      font-size: 1.6rem;
+
+      li input[type=submit], li a {
+        padding: 12px 15px;
+        font-size: 1.8rem;
+        color: #aaaab2;
+      }
+    }
+  }
+
+  .wrapper-dropdown .dropdown li:first-of-type a:after {
+    display: none;
+  }
+}

@@ -1,6 +1,6 @@
 <header id="header-container">
   <div id="header-left">
-    <div class="header-item">
+    <div class="header-item" id="header-home">
       <%= link_to 'Home', root_path %>
     </div>
   </div>
@@ -89,11 +89,11 @@
 
     <% else %>
 
-      <div class="header-item">
+      <div class="header-item" id="header-sign-up">
         <%= link_to 'Sign up', new_user_registration_path %>
       </div>
 
-      <div class="header-item">
+      <div class="header-item" id="header-sign-up">
         <%= link_to 'Sign in', new_user_session_path %>
       </div>
 

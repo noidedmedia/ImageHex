@@ -1,7 +1,7 @@
 @import "scss-variables";
 
 .header-notifications {
-  background-color: #222222;
+  background-color: #222;
   display: inline-block;
   height: 40px;
 
@@ -150,3 +150,10 @@
   }
 }
 
+@media all and (max-device-width: $mobile-width) {
+  .header-notifications {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+}
