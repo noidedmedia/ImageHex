@@ -8,6 +8,13 @@ describe User do
   it {should validate_presence_of(:name)}
   # Has many images
   it {should have_many(:images)}
+  describe "avatars" do
+    let(:i){FactoryGirl.create(:image)}
+    let(:u){FactoryGirl.create(:user, avatar: i)}
+    it "has a helper method" do
+      expect(u.avatar_img).to eq(i.f(:small))
+    end
+  end
   describe "subscriptions" do
     let(:u){FactoryGirl.create(:user)}
     let(:c){FactoryGirl.create(:collection)}

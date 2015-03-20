@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   # ASSOCIATIONS #
   ################
   has_one :user_page
+  
+  ##
+  # ID of the avatar is in avatar_id.
+  belongs_to :avatar, class_name: "Image"
   ##
   # Join table: users -> collections
   has_many :subscriptions
@@ -46,7 +50,10 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-
+  
+  def avatar_img
+    avatar.f(:small)
+  end
   ##
   # Get all images in all collections this user is subscribed to.
   def image_feed
