@@ -47,8 +47,8 @@
   @media all and (max-device-width: $mobile-width) {
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-flow: row wrap;
-            flex-flow: row wrap;
+    -webkit-flex-flow: row nowrap;
+            flex-flow: row nowrap;
     height: auto;
     position: relative;
     width: 100%;
@@ -105,7 +105,7 @@
  *
  * Tabs for the user page (Uploads and Collections).
  *
- * 1. User page's header tabs begin 30px from the end of the user
+ * 1. User page's header tabs begin 10px from the end of the user
  *    sidebar.
  * 2. Box shadow moved right 8 pixels ensure that it won't run
  *    into the user sidebar.
@@ -117,17 +117,23 @@
 #user-page-header-tabs {
   position: fixed;
   z-index: 100;
-  width: 100%;
-  padding-left: 30px; /* 1 */
+  padding-left: 10px; /* 1 */
   background-color: #fff;
   margin-bottom: 10px;
   margin-top: 0;
+  width: 100%;
   box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
 
   @media all and (max-device-width: $mobile-width) {
     position: relative;
     z-index: 99; /* 3 */
     text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 40px;
+    padding-left: 0;
+    text-overflow: clip;
+    white-space: nowrap;
   }
 }
 
@@ -157,6 +163,10 @@
       height: 3px;
       display: block;
     }
+  }
+
+  &:first-of-type {
+    margin-left: 20px;
   }
 }
 

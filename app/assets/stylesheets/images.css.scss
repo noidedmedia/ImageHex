@@ -79,6 +79,12 @@
       display: inline-block;
       margin-left: 40px;
     }
+
+    // Hides extra image-page-toolbar options for mobile users
+    // This is a temporary fix.
+    @media all and (max-device-width: $mobile-width) {
+      display: none;
+    }
   }
 
 }
@@ -106,9 +112,9 @@
     content: $icon-help;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-6px);
-      -webkit-transform: translate(-24px,-6px);
-    font-size: 2.1rem;
+    transform: translate(-24px,-4px);
+      -webkit-transform: translate(-24px,-4px);
+    font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
 }
@@ -164,9 +170,9 @@
     content: $icon-history;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-6px);
-      -webkit-transform: translate(-24px,-6px);
-    font-size: 2.1rem;
+    transform: translate(-24px,-4px);
+      -webkit-transform: translate(-24px,-4px);
+    font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
 }

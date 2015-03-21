@@ -4,48 +4,7 @@
     <%= image_tag @image.f %>
   </div>
 
-  <div class="image-actions-sidebar">
-    <div class="image-actions-container">
-
-      <div class="image-actions-favorite-container">
-        <% if current_user && current_user.favorited?(@image) %>
-          <div class="image-actions inactive" id="img-action-favorite">
-            <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
-              Favorite
-            <% end %>
-          </div>
-
-          <div class="image-actions active" id="img-action-favorited">
-            <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
-              Favorited
-            <% end %>
-          </div>
-
-        <% else %>
-
-          <div class="image-actions active" id="img-action-favorite">
-            <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
-              Favorite
-            <% end %>
-          </div>
-
-          <div class="image-actions inactive" id="img-action-favorited">
-            <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
-              Favorited
-            <% end %>
-          </div>
-
-        <% end %>
-      </div>
-
-      <a href="#"><div class="image-actions" id="img-action-collection">Add to Collection</div></a>
-      <%= render 'collection_select' if current_user %>
-      <a href="#"><div class="image-actions" id="img-action-share">Share</div></a>
-      <a href="#"><div class="image-actions" id="img-action-report">Report</div></a>
-      <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
-    </div>
-
-  </div>
+  <%= render 'image_page_sidebar' %>
 
 </div>
 

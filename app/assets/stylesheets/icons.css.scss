@@ -3,6 +3,8 @@
 .icon:before {
   position: absolute;
   color: #aaaab2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // Home icon
@@ -15,9 +17,34 @@
   content: $icon-search;
 }
 
+// Menu icon
+.icon-menu:before {
+  content: $icon-menu;
+}
+
 // Close icon
 .icon-close:before {
   content: $icon-close;
+}
+
+.icon-favorite:before {
+  content: $icon-favorite;
+}
+
+.icon-favorited:before {
+  content: $icon-favorited;
+}
+
+.icon-add:before {
+  content: $icon-add;
+}
+
+.icon-share:before {
+  content: $icon-share;
+}
+
+.icon-report:before {
+  content: $icon-report;
 }
 
 .icon-small:before {
