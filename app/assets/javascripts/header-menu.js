@@ -6,21 +6,22 @@ function headerMenu() {
     
     $('#header-right').toggleClass('active');
     $('#mobile-menu-icon').toggleClass('active');
+    $('#mobile-menu-overlay').toggleClass('active');
 
     if( $('#mobile-menu-icon').hasClass('active') ) {
       $('#mobile-menu-icon').on('click', function() {
-        $('#header-right').unbind('clickoutside');
+        $('#mobile-menu-overlay').unbind('click');
       });
     }
 
-    setTimeout(clickoutside, 200);
+    setTimeout(clickOverlay, 200);
   });
 }
 
-function clickoutside() {
-  $('#header-right').bind('clickoutside', function() {
+function clickOverlay() {
+  $('#mobile-menu-overlay').bind('click', function() {
     headerMenuClose();
-    $('#header-right').unbind('clickoutside');
+    $('#mobile-menu-overlay').unbind('click');
   });
 }
 
@@ -28,6 +29,7 @@ function clickoutside() {
 function headerMenuClose() {
   $('#header-right').removeClass('active');
   $('#mobile-menu-icon').removeClass('active');
+  $('#mobile-menu-overlay').removeClass('active');
   $('body').unbind('touchmove');
 }
 
