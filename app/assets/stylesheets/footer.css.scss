@@ -29,7 +29,7 @@
   height: 100%;
   margin: auto;
   min-width: 700px;
-  padding: 25px 0px;
+  padding: 25px 0;
   width: 60%;
 
   a {
@@ -44,8 +44,6 @@
   @media all and (max-device-width: $mobile-width) {
     min-width: auto;
     width: 100%;
-    -webkit-flex-flow: column nowrap;
-            flex-flow: column nowrap;
   }
 }
 
