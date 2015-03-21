@@ -15,6 +15,7 @@ DropDown.prototype = {
     // because the dropdown needs to be set up so that clicking
     // outside of it closes it.
     obj.dd.on('click', function(event) {
+      event.preventDefault();
       $(this).toggleClass('active');
       clickOutside();
     });
