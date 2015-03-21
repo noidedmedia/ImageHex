@@ -23,7 +23,13 @@ function notificationsDropdown() {
 }
 
 var ready = function() {
-  notificationsDropdown();
+
+  var windowwidth = $(window).width();
+
+  // Only run if the browser window doesn't imply a mobile device.
+  if (windowwidth > '750') {
+    notificationsDropdown();
+  }
 };
 
 $(document).ready(ready);
