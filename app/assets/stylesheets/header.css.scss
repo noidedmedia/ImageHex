@@ -54,12 +54,12 @@
 
   @media all and (max-device-width: $mobile-width) {
     position: absolute;
-    -webkit-transform: translateX(calc(100vw + 60px));
-            transform: translateX(calc(100vw + 60px));
+    -webkit-transform: translateX(calc(100vw + 90px));
+            transform: translateX(calc(100vw + 90px));
     right: 0;
     top: 50px;
-    width: calc(100vw - 60px);
-    max-width: 400px;
+    width: calc(100vw - 90px);
+    max-width: 250px;
     height: calc(100vh - 50px);
     display: block;
     text-align: left;
