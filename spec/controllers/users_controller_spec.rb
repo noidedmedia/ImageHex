@@ -21,15 +21,22 @@ RSpec.describe UsersController, :type => :controller do
     describe "put #update" do
       describe "updating user page" do
         it "allows updating" do
-          put :update, id: @user.id, user: {page: "test"}
-          expect(@user.user_page.body).to eq("test")
+          put :update, id: @user.id, user: {page_body: "test"}
+          expect(@user.reload.user_page.body).to eq("test")
         end
       end
       describe "updating avatar" do
         it "allows updating" do
+          puts @user.inspect
           img = FactoryGirl.create(:image)
-          put :update, id: @user.id, user: {avatar_id: @image.id}
-          expect(@user.avatar).to eq(img)
+          put :update, id: @user.id, user: {avatar_id: img.id}
+          expect(@user.reload.avatar).to eq(img)
+        end
+      end
+      describe "updating page pref" do
+        it "allows update" do
+          put :update, id: @user.id, user: {page_pref: 10}
+          expect(@user.reload.page_pref).to eq(10)
         end
       end
     end

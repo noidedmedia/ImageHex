@@ -33,9 +33,7 @@ Rails.application.routes.draw do
   end
   devise_for :users, path: "accounts"
 
-  resources :users do
-
-    resources :user_pages, only: [:edit, :update]
+  resources :users, only: [:show, :edit, :update] do
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.
