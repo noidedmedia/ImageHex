@@ -9,11 +9,7 @@
 
     <!-- User's website goes here. -->
 
-    <p class="user-page-bio"><%= @user.user_page.display.html_safe %>
-
-    <!-- <%= link_to "Edit", edit_user_user_page_path(@user, @page) if current_user %> -->
-
-    <%= render "user_pages/edit", url: edit_user_user_page_path(@user.id, @page) if current_user %>
+    <p class="user-page-bio"><%= @user.user_page.display.html_safe %></p>
   </div>
 
 
