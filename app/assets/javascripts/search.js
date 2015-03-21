@@ -15,10 +15,7 @@ function headerSearch() {
 
       // Binds any click outside the headersearch div to removing the "active" class
       // and therefore hidings the header's search dropdown.
-      headersearch.bind('clickoutside', function(event) {        
-
-        console.log("TEST");
-
+      headersearch.bind('clickoutside', function(event) {
         // The following sets the max-height of the element to the
         // height of the element itself, because CSS transitions won't
         // work if the height is set to auto. So this is the 
