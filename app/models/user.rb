@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
-  has_one :user_page
+  has_one :user_page, autosave: true
+  
+  ##
+  # ID of the avatar is in avatar_id.
+  belongs_to :avatar, class_name: "Image"
   ##
   # Join table: users -> collections
   has_many :subscriptions
@@ -37,16 +41,25 @@ class User < ActiveRecord::Base
     uniqueness: {case_sensitive: false},
     format: {with: /\w+/}
   validates :page_pref, inclusion: {:in => (1..100)}
-
+  validates_associated :user_page
   #############
   # CALLBACKS #
   #############
   after_create :make_collections
-  after_create :make_page
+  before_create :make_page
+  before_validation :resolve_page_body
+  after_initialize :load_page_body
+  ##############
+  # ATTRIBUTES #
+  ##############
+  attr_accessor :page_body
   ####################
   # INSTANCE METHODS #
   ####################
-
+  
+  def avatar_img
+    avatar.f(:small)
+  end
   ##
   # Get all images in all collections this user is subscribed to.
   def image_feed
@@ -84,10 +97,18 @@ class User < ActiveRecord::Base
   end
   protected
 
+  def load_page_body
+    page_body = self.user_page.body if self.user_page
+  end
+
   def make_page
-    p = UserPage.new(user: self,
-                     body: "##{name} hasn't made their page yet")
-    p.save!
+    build_user_page(body: "@#{name} hasn't made a page yet")
+  end
+
+  def resolve_page_body
+    return unless page_body
+    user_page.body = page_body
+    user_page.save
   end
   ##
   # All users have to have a Favorite collection and a Created collection.
