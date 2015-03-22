@@ -54,6 +54,13 @@
   text-align: left;
   font-size: 1.4rem;
   font-weight: 400;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    -webkit-appearance: none;
+    outline: transparent;
+  }
 }
 
 .wrapper-dropdown .dropdown li:first-of-type a {
