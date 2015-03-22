@@ -43,6 +43,7 @@
   height: 100%; /* 2 */
   padding: 40px;
   z-index: 100;
+  color: #333;
 
   @media all and (max-device-width: $mobile-width) {
     display: -webkit-flex;
@@ -75,10 +76,28 @@
 .user-page-username {
   font-size: 2.1rem;
   font-weight: 500;
+  width: calc(100% - 40px);
+  display: inline-block;
 }
 
 .user-page-bio {
   font-size: 1.4rem;
+  display: inline-block;
+}
+
+.user-page-bio-edit {
+  display: inline;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #888;
+  text-decoration: none;
+  transition: color 200ms;
+  float: right;
+  line-height: 24px;
+
+  &:hover {
+    color: #333;
+  }
 }
 
 
