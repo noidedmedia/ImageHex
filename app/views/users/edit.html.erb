@@ -1,5 +1,5 @@
 <%= form_for @user do |f| %>
-  <%= f.text_field :page_body %>
+  <%= f.text_area :page_body, :autocomplete => :off %>
   <%= f.number_field :avatar_id %>
   <%= f.submit "Save" %>
 <% end %>
