@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320220536) do
+ActiveRecord::Schema.define(version: 20150323181234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,20 @@ ActiveRecord::Schema.define(version: 20150320220536) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "group_changes", force: :cascade do |t|
+    t.integer  "tag_group_id"
+    t.text     "became",       default: [],              array: true
+    t.integer  "next"
+    t.integer  "score",        default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "previous"
+    t.integer  "user_id"
+  end
+
+  add_index "group_changes", ["tag_group_id"], name: "index_group_changes_on_tag_group_id", using: :btree
+  add_index "group_changes", ["user_id"], name: "index_group_changes_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "user_id"
@@ -134,9 +148,11 @@ ActiveRecord::Schema.define(version: 20150320220536) do
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "tag_groups", ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
+  add_index "tag_groups", ["user_id"], name: "index_tag_groups_on_user_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name",         limit: 255
@@ -189,10 +205,12 @@ ActiveRecord::Schema.define(version: 20150320220536) do
   add_foreign_key "comments", "users"
   add_foreign_key "curatorships", "collections"
   add_foreign_key "curatorships", "users"
+  add_foreign_key "group_changes", "users"
   add_foreign_key "images", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
-  add_foreign_key "tag_groups", "images"
+  add_foreign_key "tag_groups", "images", on_delete: :cascade
+  add_foreign_key "tag_groups", "users"
   add_foreign_key "user_pages", "users"
 end
