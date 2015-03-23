@@ -24,7 +24,6 @@ function headerSearch() {
 
         $(headersearch).css('max-height', searchheight);
         $(headersearch).css('max-height', 40);
-        $(headersearch).toggleClass('active');
 
         // Unbinds the function so it can only happen once.
         $(headersearch).unbind('clickoutside');
@@ -72,14 +71,19 @@ function closeHeaderSearchMobile() {
 }
 
 function addSearchBox(){
-    console.log("Adding a group!");
     var toAdd = $(".page-search-full").last().clone();
-    console.log(toAdd);
+    var list = toAdd.find(".page-suggestions");
     $(".page-search-full").last().after(toAdd);
-
+    toAdd.find("input").on("input", searchSuggestion(list, null));
 }
 var ready = function() {
   headerSearch();
+  // We have to set this up here since the first search box is
+  // already on the page when we start the search
+  var firstSearch = $(".page-search-full");
+  var firstBox = firstSearch.find("input");
+  var firstList = firstSearch.find("ul");
+  firstBox.on("input", searchSuggestion(firstList, null));
   $("#add-group-button").on("click", addSearchBox);
   var windowwidth = $(window).width();
 
