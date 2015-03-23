@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323181723) do
+ActiveRecord::Schema.define(version: 20150323182040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,4 +213,5 @@ ActiveRecord::Schema.define(version: 20150323181723) do
   add_foreign_key "tag_groups", "images", on_delete: :cascade
   add_foreign_key "tag_groups", "users"
   add_foreign_key "user_pages", "users"
+  add_foreign_key "users", "images", column: "avatar_id", on_delete: :nullify
 end
