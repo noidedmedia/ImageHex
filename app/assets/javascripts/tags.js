@@ -30,23 +30,25 @@ var selectedelement = function(selection, input, list) {
  */
 
 var searchSuggestion = function(list, toggle){
-  return function(){
+  return function() {
     var str = $(this).val();
     if(toggle){
-      if (str === ""){
+      if (str === "") {
         toggle.addClass("active");
       }
-      else{
+      else {
         toggle.removeClass("active");
       }
     }
-    // remove suggestions when the user clicks outside
-    $(document).on("click", function(){
+
+    // Remove suggestions when the user clicks outside
+    $(this).on("clickoutside", function() {
       $(list).empty();
       if(toggle){
         toggle.removeClass("active");
       }
     });
+
     // Extract a list of tags
     var tags = str.split(",");
     // We do suggestions on the last tag in the list
@@ -66,7 +68,7 @@ var searchSuggestion = function(list, toggle){
       // we pass it along so later functions can do things with it
       suggest(tag, this, list);
     }
-    else{
+    else {
     }
   };
 }
