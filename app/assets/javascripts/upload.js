@@ -1,137 +1,69 @@
-function customSelect() {
-  var customselect = $('select.custom-select');
-
-  // Create the custom select menus from the existing select input.
-  customselect.each(function() {
-    var _this = $(this);
-    var listid = _this.attr('id'),
-    groups = _this.children('optgroup'),
-      theoptions = "",
-      startingoption = "",
-      customselect = "";
-    
-    /* If the dropdown has an id of "image-license-select"
-     * then use this horrible hack to de-emphasize the
-     * text without screwing around with more complex, but
-     * cleaner solutions to the problem.
-     */
-    if (listid === 'image-license-select') {
-      startingoption = "<span style='color: #aaaab2'>Image License</span>";
-    }
-
-    if (listid === 'image-media-select') {
-      startingoption = "<span style='color: #aaaab2'>Media Type</span>";
-    }
-
-    // Check if there are option groups 
-    if (groups.length) {
-      groups.each(function() {
-
-        var curgroup = $(this);
-        var curname = curgroup.attr('label');
-
-        // Open the option group
-        theoptions += '<li class="optgroup">' + curname + '</li>';
-
-        // Get the options
-        curgroup.children('option').each(function() {
-          var curopt = $(this);
-          var curval = curopt.attr('value');
-          var curhtml = curopt.html();
-          var isselected = curopt.attr('selected');
-          
-          if (isselected === 'selected') {
-            startingoption = curhtml;
-            theoptions += '<li class="selected" data-value="' + curval + '">' + curhtml + '</li>';
-          } else {
-            theoptions += '<li data-value="' + curval + '">' + curhtml + '</li>';
-          }
-        });
-      });
-
-      // Add options not in a group to the top of the list
-      _this.children('option').each(function() {
-        var curopt = $(this);
-        var curval = curopt.attr('value');
-        var curhtml = curopt.html();
-        var isselected = curopt.attr('selected');
-
-        if (isselected === 'selected') {
-          startingoption = curhtml;
-          theoptions = '<li class="selected" data-value="' + curval + '">' + curhtml + '</li>' + theoptions;
-        } else {
-          theoptions = '<li data-value="' + curval + '">' + curhtml + '</li>' + theoptions;
-        }
-      });
-    } else {
-      _this.children('option').each(function() {
-        var curopt = $(this);
-        var curval = curopt.attr('value');
-        var curhtml = curopt.html();
-        var isselected = curopt.attr('selected');
-
-        if (isselected === 'selected') {
-          startingoption = curhtml;
-          theoptions += '<li class="selected" data-value="' + curval + '">' + curhtml + '</li>';
-        } else {
-          theoptions += '<li data-value="' + curval + '">' + curhtml + '</li>';
-        }
-      });
-    }
-
-    // Build the custom select
-    customselect = '<div class="dropdown-container" id="' + listid + '"><div class="dropdown-select"><span>' + startingoption + '</span></div><ul class="dropdown-select-ul" data-role="' + listid +'">' + theoptions + '</ul></div>';
-    
-    // Append it after the actual select
-    $(customselect).insertAfter(_this);
-  });
-  
-  var selectdd = $('.dropdown-select');
-  var selectul = $('.dropdown-select-ul');
-  var selectli = $('.dropdown-select-ul li');
-
-  // Then make them work
-  selectdd.on('click',function() {
-    $(this).parent('.dropdown-container').toggleClass('active');
+function fileUpload() {
+  $("#file-field").on("dragenter", function() {
+    // Add "hover" styles for dragging-and-dropping images.
   });
 
-  // Hide it on mouseleave
-  $('.dropdown-container').on('mouseleave',function() {
-    $(selectul).parent('.dropdown-container').removeClass('active');
+  $("#file-field").on("dragleave", function() {
+    // Remove "hover" styles on dragleave.
   });
 
-  // Select the option
-  selectli.on('click',function() {
-    var _this = $(this);
+  $("#file-field").on("change", addedFiles);
+}
 
-    // Ensure clicking group labels does not cause change
-    if (!_this.hasClass('optgroup')) {
-      var parentul = _this.parent('ul');
-      var thisdd = parentul.siblings('.dropdown-select');
-      var lihtml = _this.html();
-      var livalue = _this.attr('data-value');
-      var originalselect = '#' + parentul.attr('data-role');
+function addedFiles(event) {
 
-      // Close the dropdown
-      parentul.parent('.dropdown-container').toggleClass('active');
-      
-      // Remove selected class from all list items
-      _this.siblings('li').removeClass('selected');
-      
-      // Add .selected to clicked li
-      _this.addClass('selected');
-      
-      // Set the value of the hidden input
-      $(originalselect).val(livalue);
-      
-      // Change the dropdown text
-      thisdd.children('span').html(lihtml);
-    }
-  });
+  var files = event.target.files || (event.originalEvent.dataTransfer && event.originalEvent.dataTransfer.files);
+
+  // console.log(files);
+
+  if (files) {
+    handleFiles(files);
+  }
+}
+
+function handleFiles(files) {
+
+  var uploadcontainer = $(".upload-container").clone();
+
+  for (var i = 0; i < files.length; i++) {
+    // console.log(i);
+    // console.log(uploadcontainer);
+
+    var uploadcontainerid = "upload-container-" + i;
+
+    $(uploadcontainer)
+      .attr('id', uploadcontainerid)
+      .insertBefore(".new-upload-container");
+
+    uploadcontainer = $("#upload-container-" + i).clone();
+
+    // Display upload container.
+    $("#" + uploadcontainerid).addClass("active");
+
+    // Display submit button.
+    $("#upload-submit-button").addClass("active");
+
+    $("#" + uploadcontainerid + " .image-file-name").html(files[i].name);
+
+    var img = document.createElement("img");
+    img.src = window.URL.createObjectURL(files[i]);
+    img.width = 348;
+    img.onload = function() {
+      window.URL.revokeObjectURL(this.src);
+    };
+
+    $("#" + uploadcontainerid + " .image-thumbnail-container > .image-thumbnail").html(img);
+  }
+
+  // Remove this when we're ready for multi-image upload.
+  $(".new-upload-container").attr("style", "display: none");
 }
 
 var ready = function() {
-  customSelect();
+  if (window.location.href.search("images/new") >= 0) {
+    console.log("Upload page only!");
+    fileUpload();
+  }
 };
 
 $(document).ready(ready);

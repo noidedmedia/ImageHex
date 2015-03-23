@@ -207,6 +207,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redcarpet (3.2.2)
     reek (1.6.5)
       parser (~> 2.2.0.pre.7)
       rainbow (>= 1.99, < 3.0)
@@ -306,7 +307,6 @@ DEPENDENCIES
   aws-sdk (< 2.0)
   better_errors
   bullet
-  coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails
   faker
@@ -325,6 +325,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails_12factor
   rails_best_practices
+  redcarpet
   reek
   rspec-rails (~> 3.1)
   sass-rails (~> 4.0.3)

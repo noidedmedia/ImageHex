@@ -43,12 +43,13 @@
   height: 100%; /* 2 */
   padding: 40px;
   z-index: 100;
+  color: #333;
 
   @media all and (max-device-width: $mobile-width) {
     display: -webkit-flex;
     display: flex;
-    -webkit-flex-flow: row wrap;
-            flex-flow: row wrap;
+    -webkit-flex-flow: row nowrap;
+            flex-flow: row nowrap;
     height: auto;
     position: relative;
     width: 100%;
@@ -64,17 +65,112 @@
   height: 250px;
   margin-bottom: 10px;
   background-color: #c9c9c9;
+  overflow: hidden;
+
+  img {
+    min-width: 250px;
+    min-height: 250px;
+  }
 
   @media all and (max-device-width: $mobile-width) {
     margin-right: 10px;
     width: 75px;
     height: 75px;
+
+    img {
+      min-width: 75px;
+      min-height: 75px;
+    }
   }
 }
 
 .user-page-username {
   font-size: 2.1rem;
   font-weight: 500;
+  width: calc(100% - 40px);
+  display: inline-block;
+}
+
+.user-page-bio {
+  font-size: 1.4rem;
+  display: inline-block;
+}
+
+.user-page-bio-edit {
+  display: inline;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #888;
+  text-decoration: none;
+  transition: color 200ms;
+  float: right;
+  line-height: 24px;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+#edit-user-container {
+  width: 300px;
+  display: inline-block;
+  font-size: 1.4rem;
+  margin-top: 75px;
+  margin-left: calc(50vw - 150px);
+
+  input[type="submit"] {
+    width: 300px;
+    display: inline-block;
+    height: 30px;
+    font-size: 1.4rem;
+    border-radius: 3px;
+    border: none;
+    background-color: #5bb289;
+    color: #fff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:focus {
+      outline: transparent;
+    }
+  }
+}
+
+// Text field for editing the user's bio.
+.user-bio-field {
+  resize: vertical;
+  max-height: 250px;
+}
+
+.user-bio-field,
+.user-profile-picture-field,
+.page-pref-field {
+  width: 300px;
+  display: inline-block;
+  vertical-align: top;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #aaaab2;
+  padding-bottom: 4px;
+  background-color: transparent;
+  display: inline-block;
+  font-size: 1.4rem;
+  transition: border 200ms ease;
+  margin-bottom: 15px;
+
+  &:focus {
+    outline: transparent;
+    border-bottom: 1px solid #333;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 
@@ -101,7 +197,7 @@
  *
  * Tabs for the user page (Uploads and Collections).
  *
- * 1. User page's header tabs begin 30px from the end of the user
+ * 1. User page's header tabs begin 10px from the end of the user
  *    sidebar.
  * 2. Box shadow moved right 8 pixels ensure that it won't run
  *    into the user sidebar.
@@ -113,17 +209,23 @@
 #user-page-header-tabs {
   position: fixed;
   z-index: 100;
-  width: 100%;
-  padding-left: 30px; /* 1 */
+  padding-left: 10px; /* 1 */
   background-color: #fff;
   margin-bottom: 10px;
   margin-top: 0;
+  width: 100%;
   box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
 
   @media all and (max-device-width: $mobile-width) {
     position: relative;
     z-index: 99; /* 3 */
     text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 40px;
+    padding-left: 0;
+    text-overflow: clip;
+    white-space: nowrap;
   }
 }
 
@@ -154,13 +256,19 @@
       display: block;
     }
   }
+
+  &:first-of-type {
+    margin-left: 20px;
+  }
 }
 
 
 /* Containers for uploads and collections
    ============================================== */
 
-#user-uploads-container, #user-collections-container {
+#user-uploads-container,
+#user-collections-container,
+#user-creations-container {
   margin-top: 40px;
   padding: 15px 20px;
   display: none;

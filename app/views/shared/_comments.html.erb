@@ -6,7 +6,7 @@
     <p class="no-comments">No comments yet.
   <% else %>
     <%# We manually include the user of the comment to prevent an N+1 %>
-    <% subject.comments.includes(:user).each do |comment| %>
+    <% subject.comments.includes(:user).order('created_at ASC').each do |comment| %>
       <div class="comment">
 
         <%# Username, with link to user page, and "commented [time value] ago". %>

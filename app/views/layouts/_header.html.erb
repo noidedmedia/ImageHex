@@ -1,6 +1,6 @@
 <header id="header-container">
   <div id="header-left">
-    <div class="header-item">
+    <div class="header-item" id="header-home">
       <%= link_to 'Home', root_path %>
     </div>
   </div>
@@ -8,6 +8,12 @@
   <div id="mobile-search-icon">
     <span class="icon icon-small icon-search"></span>
   </div>
+
+  <div id="mobile-menu-icon">
+    <span class="icon icon-small icon-menu"></span>
+  </div>
+
+  <div id="mobile-menu-overlay"></div>
 
   <div id="header-search">
     <form action="/search" method="get">
@@ -24,9 +30,7 @@
     </form>
 
     <div id="header-search-suggestions">
-      <ul id="header-search-suggestions-fillable">
-
-      </ul>
+      <ul id="header-search-suggestions-fillable"></ul>
 
       <div id="header-search-suggestions-empty" class="active">
         <span class="icon icon-huge icon-search"></span>
@@ -42,13 +46,34 @@
         <%= link_to 'Upload', new_image_path %>
       </div>
 
-      <div class="header-item">
-        <a href="#">Notifications</a>
+      <% if current_user.notifications.unread.size > 0 %>
+
+        <div class="header-notifications unread">
+          <div class="notifications-unread-count">
+            <%= link_to notifications_path do %>
+              <%= current_user.notifications.unread.size %>
+            <% end %>
+          </div>
+      
+      <% else %>
+
+        <div class="header-notifications">
+          <div class="notifications-unread-count">
+            <%= link_to notifications_path do %>
+              <%= current_user.notifications.unread.size %>
+            <% end %>
+          </div>
+
+      <% end %>
+
+        <div class="notifications-dropdown inactive">
+          <%= render "notifications/notifications", notifications: current_user.notifications %>
+        </div>
       </div>
 
       <div id="dd" class="wrapper-dropdown">
         <div class="header-item" id="username">
-          <%= current_user.name %>
+          <%= link_to current_user.name, current_user %>
         </div>
 
         <ul class="dropdown">
@@ -58,7 +83,7 @@
             <li><%= link_to 'Admin', admin_images_path %>
           <% end %>
           
-          <li><%= link_to 'Settings', settings_path %>
+          <li><%= link_to 'Settings', edit_user_path(current_user) %>
           
           <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
         </ul>
@@ -66,7 +91,11 @@
 
     <% else %>
 
-      <div class="header-item">
+      <div class="header-item" id="header-sign-up">
+        <%= link_to 'Sign up', new_user_registration_path %>
+      </div>
+
+      <div class="header-item" id="header-sign-up">
         <%= link_to 'Sign in', new_user_session_path %>
       </div>
 

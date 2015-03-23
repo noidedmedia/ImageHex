@@ -61,6 +61,32 @@
   @media all and (max-device-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
   }
+
+  > .left {
+    text-align: left;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+  }
+
+  > .right {
+    text-align: right;
+    display: inline-block;
+    position: relative;
+    width: 48%;
+
+    > div {
+      display: inline-block;
+      margin-left: 40px;
+    }
+
+    // Hides extra image-page-toolbar options for mobile users
+    // This is a temporary fix.
+    @media all and (max-device-width: $mobile-width) {
+      display: none;
+    }
+  }
+
 }
 
 #add-tag-group-button {
@@ -74,20 +100,92 @@
     transform: translate(-24px,-2px);
       -webkit-transform: translate(-24px,-2px);
     font-size: 1.8rem;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-#image-page-information {
-  @media all and (min-device-width: $mobile-width) {
-    -webkit-columns: 400px 3;
-       -moz-columns: 400px 3;
-            columns: 400px 3;
-    -webkit-column-gap: 20px;
-       -moz-column-gap: 20px;
-            column-gap: 20px;
+#image-help-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-help;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-4px);
+      -webkit-transform: translate(-24px,-4px);
+    font-size: 1.8rem;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+#image-info-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-info;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-4px);
+      -webkit-transform: translate(-24px,-4px);
+    font-size: 1.8rem;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+#image-info-tooltip {
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 8px 12px;
+  margin-top: 5px;
+}
+
+// Styling for the image information/metadata table.
+.image-info-table {
+  font-size: 1.2rem;
+
+  // Styling for cells in column one.
+  .column-one-cell {
+    text-align: right;
+    padding-right: 8px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
-    width: 100%;
+  // Styling for cells in column two.
+  .column-two-cell {
+    text-align: left;
+  }
+
+  // Styling for each respective row.
+  .table-row {
+
+  }
+}
+
+#edit-history-button {
+  cursor: pointer;
+  display: inline-block;
+
+  &:before {
+    content: $icon-history;
+    position: absolute;
+    display: inline-block;
+    transform: translate(-24px,-4px);
+      -webkit-transform: translate(-24px,-4px);
+    font-size: 1.8rem;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.toolbar-tooltip {
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 40px;
   }
 }

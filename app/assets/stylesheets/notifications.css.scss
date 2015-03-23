@@ -1,0 +1,170 @@
+@import "scss-variables";
+
+.header-notifications {
+  background-color: #222;
+  display: inline-block;
+  height: 40px;
+
+  &.unread {
+    background-color: #b70f3b;
+
+    .notifications-unread-count a {
+      color: #fff;
+    }
+  }
+
+  &.active {
+    background-color: #fff;
+
+    .notifications-unread-count a {
+      color: #333;
+      transition: 0;
+
+      &:hover {
+        color: #333;
+      }
+    }
+  }
+
+  .notifications-unread-count a {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #aaaab2;
+    text-decoration: none;
+    transition: color 300ms ease-in-out;
+    padding: 12px 15px;
+    display: inline-block;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  .notifications-dropdown {
+    background-color: #fff;
+    color: #333;
+    height: auto;
+    width: 300px;
+    position: absolute;
+    left: -100px;
+    top: 40px;
+    text-align: left;
+    opacity: 0;
+    display: inline-block;
+    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.05);
+    transition: max-height 400ms;
+    overflow: auto;
+
+    .notifications-container {
+      transition: opacity 200ms 400ms;
+      opacity: 0;
+    }
+
+    &.inactive {
+      visibility: hidden;
+      max-height: 0;
+    }
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+      max-height: 400px;
+
+      .notifications-container {
+        opacity: 1;
+      }
+    }
+
+    > .notifications-container ul > li:last-of-type {
+      border-bottom: 0;
+    }
+  }
+}
+
+.notifications-dropdown > .notifications-container {
+  width: calc(100% - 20px);
+  padding-top: 15px;
+}
+
+.notifications-container {
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  padding-top: 100px;
+
+  a {
+    color: #aaaab2;
+    text-decoration: none;
+    font-size: 1.2rem;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  .notifications-header {
+    border-bottom: 1px solid #aaaab2;
+    position: relative;
+
+    h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      padding: 0 0 6px 10px;
+      display: inline-block;
+    }
+
+    .mark-all-read {
+      padding: 0 10px;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 4px;
+    }
+  }
+}
+
+.notifications-list-item {
+  width: 100%;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #aaaab2;
+
+  &.unread {
+    background-color: #fff;
+  }
+
+  a {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 10px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .notification-message {
+    padding-bottom: 2px;
+  }
+
+  .notification-time-ago {
+    color: #aaaab2;
+  }
+}
+
+@media all and (max-device-width: $mobile-width) {
+  .header-notifications {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: #333;
+    height: 45px;
+
+    .notifications-unread-count a {
+      font-size: 1.7rem;
+      padding: 12px 15px;
+    }
+  }
+
+  .notifications-container {
+    padding: 20px 0;
+  }
+}

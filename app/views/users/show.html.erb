@@ -2,31 +2,39 @@
   <div id="user-page-sidebar">
 
     <div id="user-page-profile-picture">
-      <!-- User's profile picture goes here. -->
+      <% if @user.avatar %>
+        <%= image_tag @user.avatar_img %>
+      <% end %>
     </div>
 
-    <p class="user-page-username"><%= @user.name %></p>
+    <div class="user-page-username"><%= @user.name %></div>
+
+    <% if current_user == @user %>
+      <%= link_to "(edit)", edit_user_path, class: "user-page-bio-edit" %>
+    <% end %>
 
     <!-- User's website goes here. -->
 
-    <!-- User bio goes here. -->
-
+    <div class="user-page-bio"><%= @user.user_page.display.html_safe %></div>
   </div>
 
 
   <div id="user-content-container">
     <ul id="user-page-header-tabs">
       <li data-tab="tab-1" class="user-page-header-tab current">Uploads
-      <li data-tab="tab-2" class="user-page-header-tab">Collections
+      <li data-tab="tab-2" class="user-page-header-tab">Creations
+      <li data-tab="tab-3" class="user-page-header-tab">Collections
     </ul>
 
     <div id="user-uploads-container" class="tab-content tc-tab-1 current">
-      Uploads stuff
-      
-      <!-- Uploads goes here -->
+      <%= render 'images/show_stub' %>
     </div>
 
-    <div id="user-collections-container" class="tab-content tc-tab-2">
+    <div id="user-creations-container" class="tab-content tc-tab-2">
+      <!-- Creations go here -->
+    </div>
+
+    <div id="user-collections-container" class="tab-content tc-tab-3">
       <% @collections.each do |c| %>
         <%= render "collection_stub", c: c %>
       <% end %>

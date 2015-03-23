@@ -101,7 +101,7 @@ class ImagesController < ApplicationController
   end
 
   def show
-    @groups = @image.tag_groups.includes(:tags)
+    @groups = TagGroup.where(image: @image).includes(:tags)
   end
   ##
   # Put this image in a users collection
@@ -110,14 +110,13 @@ class ImagesController < ApplicationController
   # Load the image with the current id into params[:image]
   def load_image
     @image = Image.find(params[:id])
-
   end
 
   ##
   # Protected parameters for the image.
   def image_params
     params.require(:image)
-      .permit(:f, :license, :medium) # Attributes the user adds
+      .permit(:f, :license, :medium, :replies_to_inbox) # Attributes the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
 

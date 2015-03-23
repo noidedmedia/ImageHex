@@ -15,6 +15,7 @@ DropDown.prototype = {
     // because the dropdown needs to be set up so that clicking
     // outside of it closes it.
     obj.dd.on('click', function(event) {
+      event.preventDefault();
       $(this).toggleClass('active');
       clickOutside();
     });
@@ -54,7 +55,7 @@ $(document).ready(function(){
   var windowwidth = $(window).width();
 
   // Only run if the browser window doesn't imply a mobile device.
-  if (windowwidth > '700') {
+  if (windowwidth > '750') {
     var dd = new DropDown($('#dd'));
   }
 });

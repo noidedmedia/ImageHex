@@ -8,6 +8,13 @@ describe User do
   it {should validate_presence_of(:name)}
   # Has many images
   it {should have_many(:images)}
+  describe "avatars" do
+    let(:i){FactoryGirl.create(:image)}
+    let(:u){FactoryGirl.create(:user, avatar: i)}
+    it "has a helper method" do
+      expect(u.avatar_img).to eq(i.f(:medium))
+    end
+  end
   describe "subscriptions" do
     let(:u){FactoryGirl.create(:user)}
     let(:c){FactoryGirl.create(:collection)}
@@ -39,6 +46,11 @@ describe User do
       u = FactoryGirl.create(:user)
       expect(u.collections.favorites.size).to eq(1)
       expect(u.collections.creations.size).to eq(1)
+    end
+    it "gives the user a user_page" do
+      expect{FactoryGirl.create(:user)}.to change{UserPage.count}.by(1)
+      u = FactoryGirl.create(:user)
+      expect(u.user_page).to_not eq(nil)
     end
   end
 

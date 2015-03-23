@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
+
   resources :tags do
     collection do
       get "suggest"
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
   end
   devise_for :users, path: "accounts"
 
-  resources :users do
+  resources :users, only: [:show, :edit, :update] do
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.
@@ -45,6 +46,17 @@ Rails.application.routes.draw do
       delete "remove"
     end
   end
+
+  resources :notifications, only: [:index] do
+    collection do 
+      get 'unread'
+      post 'mark_all_read'
+    end
+    member do
+      post 'read'
+    end
+  end
+
   ################
   # ADMIN ROUTES #
   ################

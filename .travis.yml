@@ -1,0 +1,26 @@
+language: ruby
+bundler_args: --without development
+before_script: ./bin/ci/before_build.sh
+script: "bundle exec rspec spec"
+env:
+  - CI=true
+rvm:
+  - 2.2.0
+gemfile:
+  - Gemfile
+notifications:
+  email: false
+branches:
+  only:
+    - master
+    - develop
+
+before_script:
+  - "psql -c 'create database travis_ci_test;' -U postgres"
+  # We use travis' test database config for testing
+  #
+  - "cp config/database.yml.travis config/database.yml"
+  - "rake db:migrate"
+addons:
+  postgresql: '9.4'
+

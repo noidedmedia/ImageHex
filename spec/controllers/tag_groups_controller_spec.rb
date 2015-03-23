@@ -39,13 +39,13 @@ describe TagGroupsController do
     describe "get #new" do
       it "redirects to the login page" do
         get :new, image_id: image
-        expect(response).to redirect_to("/users/sign_in")
+        expect(response).to redirect_to("/accounts/sign_in")
       end
     end
     describe "get #edit" do
       it "redirects to the login page" do
         get :new, image_id: image
-        expect(response).to redirect_to("/users/sign_in")
+        expect(response).to redirect_to("/accounts/sign_in")
       end
     end
   end

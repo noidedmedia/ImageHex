@@ -9,17 +9,25 @@ class User < ActiveRecord::Base
   # Use a friendly id to find by name
   extend FriendlyId
   friendly_id :name, use: :slugged
+  
   ################
   # ASSOCIATIONS #
   ################
+  has_one :user_page, autosave: true
+    # Accept nested attributes for the page
+  accepts_nested_attributes_for :user_page, update_only: true
+ 
+  ##
+  # ID of the avatar is in avatar_id.
+  belongs_to :avatar, class_name: "Image"
   ##
   # Join table: users -> collections
-
   has_many :subscriptions
   has_many :subscribed_collections,
     through: :subscriptions,
     source: :collection
 
+  has_many :notifications
   has_many :images
   has_many :curatorships
   has_many :collections, through: :curatorships
@@ -36,17 +44,25 @@ class User < ActiveRecord::Base
     uniqueness: {case_sensitive: false},
     format: {with: /\w+/}
   validates :page_pref, inclusion: {:in => (1..100)}
-
+  validates_associated :user_page
   #############
   # CALLBACKS #
   #############
   after_create :make_collections
-
-
+  before_create :make_page
+  before_validation :resolve_page_body
+  after_initialize :load_page_body
+  ##############
+  # ATTRIBUTES #
+  ##############
+  attr_accessor :page_body
   ####################
   # INSTANCE METHODS #
   ####################
-
+  
+  def avatar_img
+    avatar.f(:medium)
+  end
   ##
   # Get all images in all collections this user is subscribed to.
   def image_feed
@@ -84,6 +100,19 @@ class User < ActiveRecord::Base
   end
   protected
 
+  def load_page_body
+    page_body = self.user_page.body if self.user_page
+  end
+
+  def make_page
+    build_user_page(body: "@#{name} hasn't made a page yet")
+  end
+
+  def resolve_page_body
+    return unless page_body
+    user_page.body = page_body
+    user_page.save
+  end
   ##
   # All users have to have a Favorite collection and a Created collection.
   # This method makes both of those collections in a callback on user creation.

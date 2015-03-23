@@ -1,0 +1,14 @@
+<div id="edit-user-container">
+  <%= form_for @user do |f| %>
+    <%= f.number_field :avatar_id, placeholder: "Profile Picture Image ID", class: "user-profile-picture-field" %>
+
+    <%= f.fields_for :user_page do |pf| %>
+      <%= pf.text_area :body, autocomplete: false, placeholder: "User Bio", class: "user-bio-field" %>
+      <%= pf.hidden_field :id %>
+    <% end %>
+
+    <%= f.number_field :page_pref, placeholder: "Images per page", class: "page-pref-field" %>
+
+    <%= f.submit "Save" %>
+  <% end %>
+</div>

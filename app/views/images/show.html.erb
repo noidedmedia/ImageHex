@@ -4,54 +4,14 @@
     <%= image_tag @image.f %>
   </div>
 
-  <div class="image-actions-sidebar">
-    <div class="image-actions-container">
-      <% if current_user && current_user.favorited?(@image) %>
-        <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
-          <div class="image-actions favorited" id="img-action-favorite">Favorited</div>
-        <% end %>
-      <% else %>
-        <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
-          <div class="image-actions" id="img-action-favorite">Favorite</div>
-        <% end %>
-      <% end %>
-
-      <a href="#"><div class="image-actions" id="img-action-collection">Add to Collection</div></a>
-      <%= render 'collection_select' if current_user %>
-      <a href="#"><div class="image-actions" id="img-action-share">Share</div></a>
-      <a href="#"><div class="image-actions" id="img-action-report">Report</div></a>
-      <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
-    </div>
-
-  </div>
+  <%= render 'image_page_sidebar' %>
 
 </div>
 
 <div id="image-page-bottom-container">
-  <div id="image-page-toolbar">
-    <div id="add-tag-group-button">
-      Add a tag group
-    </div>
-  </div>
 
-  <div id="image-page-information">
+  <%= render 'image_page_toolbar' %>
 
-    <%= render "shared/comments", url: comment_image_path(@image), subject: @image %>
-
-    <div id="new-group" data-showon="#add-tag-group-button">
-      <%= form_for [@image, @image.tag_groups.build] do |f| %>
-        <%= f.text_field :tag_group_string %>
-      <% end %>
-    </div>
-
-    <p><%= @image.license %>
-
-    <p><%= @image.medium.titleize %>
-    
-    <% @groups.includes(:tags).each do |group| %>
-      <%= render "tag_groups/show_stub", tag_group: group %>
-    <% end %>
-
-  </div>
+  <%= render 'image_page_information' %>
 
 </div>

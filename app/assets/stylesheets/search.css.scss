@@ -145,7 +145,6 @@
     opacity: 1;
     transition: opacity 300ms ease-in-out 600ms; /* 2 */
 
-   
     @media all and (max-device-width: $mobile-width) {
       margin-top: 40px;
     } 
@@ -203,7 +202,7 @@
   display: none;
   height: 50px;
   position: absolute;
-  right: 10px;
+  right: 50px;
   top: 0;
   width: 50px;
 
@@ -226,6 +225,7 @@
   color: #333;
   overflow-y: auto;
   height: auto;
+  max-height: 240px;
   min-height: 0;
 
   > li {

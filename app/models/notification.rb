@@ -10,6 +10,10 @@ class Notification < ActiveRecord::Base
   belongs_to :user
   belongs_to :subject, polymorphic: true
 
+  ##
+  # SCOPES
+  scope :unread, ->{where(read: false)}
+
   ###############
   # VALIDATIONS #
   ###############

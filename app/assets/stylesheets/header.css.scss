@@ -3,7 +3,6 @@
 /* Container for the header item, always fixed to the top of the screen. */
 #header-container {
   background-color: #333;
-  box-sizing: border-box;
   color: #fff;
   display: block;
   font-weight: 300;
@@ -37,7 +36,6 @@
   left: 40px;
   position: absolute;
   text-align: left;
-  top: 12px;
 
   @media all and (max-device-width: $mobile-width) {
     top: 16px;
@@ -51,10 +49,50 @@
   position: absolute;
   right: 40px;
   text-align: right;
-  top: 12px;
+  height: 100%;
 
   @media all and (max-device-width: $mobile-width) {
-    display: none;
+    position: absolute;
+    -webkit-transform: translateX(calc(100vw + 90px));
+            transform: translateX(calc(100vw + 90px));
+    right: 0;
+    top: 50px;
+    width: calc(100vw - 90px);
+    max-width: 250px;
+    height: calc(100vh - 50px);
+    display: block;
+    text-align: left;
+    background-color: #222;
+    z-index: 1000;
+    transition: -webkit-transform 300ms;
+    transition: transform 300ms;
+    padding-top: 10px;
+
+    &.active {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+
+    .header-item {
+      width: 100%;
+      display: block;
+      padding: 0;
+      font-size: 1.8rem;
+
+      a {
+        width: 100%;
+        display: block;
+        height: 100%;
+        padding: 12px 25px;
+      }
+    }
+
+    #username {
+      position: absolute;
+      bottom: 0;
+      left: 30px;
+      padding: 2px;
+    }
   }
 }
 
@@ -64,7 +102,7 @@
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
-  padding: 0 15px;
+  padding: 12px 15px 0;
   transition: color 300ms ease-in-out;
 
   &:hover {
@@ -83,119 +121,73 @@
     }
   }
 
-  /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
-  &:first-of-type {
-    padding-left: 0;
+  @media all and (min-device-width: $mobile-width) {
+    /* Ensures that the horizontal padding of the first and last items aren't used, as the padding is only meant for spacing between header items. */
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+  
+  @media all and (max-device-width: $mobile-width) {
+    padding: 14px 15px;
+  }
+}
+
+#mobile-menu-icon {
+  display: none;
+  height: 50px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 50px;
+
+  span::before {
+    -webkit-transform: translate(-35px,14px);
+            transform: translate(-35px,14px);
+
+    transition: color 300ms;
   }
 
-  &:last-of-type {
-    padding-right: 0;
+  &.active {
+    span::before {
+      color: #fff;
+    }
   }
 
   @media all and (max-device-width: $mobile-width) {
-    font-size: 1.6rem;
+    display: block;
   }
 }
 
-
-/* ==============================================
-    Account Dropdown
-   ============================================== */
-
-.wrapper-dropdown {
-  position: relative;
-  width: 300px;
-  margin: 0 auto;
-  padding: 10px;
-  cursor: pointer;
-  outline: none;
-  display: inline;
+#mobile-menu-overlay {
+  display: none;
 }
 
-.wrapper-dropdown .dropdown {
-  font-size: 1.4rem;
-  font-weight: 400;
-  position: absolute;
-  top: 32px;
-  left: -45px;
-  right: 0;
-  width: 150px;
-
-  background: #555;
-  border-radius: 4px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-  transition: opacity 200ms ease-in;
-  list-style: none;
-  opacity: 0; /* Hiding */
-  padding-left: 0;
-  text-align: left;
-  visibility: hidden;
-}
-
-.wrapper-dropdown .dropdown li a {
-  display: block;
-  padding: 10px;
-  width: 100%;
-  text-decoration: none;
-  transition: color 200ms ease-out;
-  color: rgba(#fff,0.7);
-}
-
-.wrapper-dropdown .dropdown li input[type=submit] {
-  padding: 10px;
-  width: 100%;
-  text-decoration: none;
-  transition: color 200ms ease-out;
-  color: rgba(#fff,0.7);
-  border: none;
-  background-color: transparent;
-  text-align: left;
-  font-size: 1.4rem;
-  font-weight: 400;
-}
-
-.wrapper-dropdown .dropdown li:first-of-type a {
-  border: none;
-  border-radius: 4px 4px 0 0;
-
-  &:after {
-    content: '';
-    width: 0;
-    height: 0;
-    position: absolute;
-    bottom: 100%;
-    right: 20px;
-    border-width: 0 8px 8px;
-    border-style: solid;
-    border-color: #555 transparent;
+@media all and (max-device-width: $mobile-width) {
+  #header-home {
+    padding: 0 15px;
   }
 
-  &:hover {
-    &:after {
-      border-color: #333 transparent;
+  #mobile-menu-overlay {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    position: fixed;
+    display: block;
+    top: 50px;
+    left: 0;
+    pointer-events: none;
+    background-color: rgba(#333,0);
+    z-index: 999;
+    transition: background-color 300ms 0;
+
+    &.active {
+      background-color: rgba(#333,0.4);
+      pointer-events: auto;
+      transition: background-color 300ms 300ms;
     }
   }
-}
-
-.wrapper-dropdown .dropdown li:last-of-type a {
-  border: none;
-  border-radius: 0 0 4px 4px;
-}
-
-/* Hover state */
-.wrapper-dropdown .dropdown li:hover a, .wrapper-dropdown .dropdown li:hover input[type=submit] {
-  background: #333;
-  color: #fff;
-  cursor: pointer;
-}
-
-// Fixing bottom-most dropdown item when it's the "Sign out" button.
-.wrapper-dropdown .dropdown li:last-of-type:hover input[type=submit] {
-  border-radius: 0 0 4px 4px;
-}
-
-/* Active state */
-.wrapper-dropdown.active .dropdown {
-  opacity: 1;
-  visibility: visible;
 }
