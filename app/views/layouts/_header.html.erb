@@ -83,7 +83,7 @@
             <li><%= link_to 'Admin', admin_images_path %>
           <% end %>
           
-          <li><%= link_to 'Settings', edit_user_path %>
+          <li><%= link_to 'Settings', edit_user_path(current_user) %>
           
           <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
         </ul>
