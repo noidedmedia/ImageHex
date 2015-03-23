@@ -112,7 +112,6 @@ var suggest = function(name, input, list, toggle) {
       console.log("Found no suggestions");
       $(list).addClass("active");
       $(list).empty();
-      $(list).append("No suggestions found");
     }
     else{
       console.log("Found suggetions:");

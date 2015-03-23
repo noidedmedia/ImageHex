@@ -70,12 +70,14 @@ function closeHeaderSearchMobile() {
   });
 }
 
-function addSearchBox(){
-    var toAdd = $(".page-search-full").last().clone();
-    var list = toAdd.find(".page-suggestions");
-    $(".page-search-full").last().after(toAdd);
-    toAdd.find("input").on("input", searchSuggestion(list, null));
+function addSearchBox(toaddcount) {
+  var toAdd = $(".page-search-full").last().clone();
+  var list = toAdd.find(".page-suggestions");
+  $(".page-search-full").last().after(toAdd);
+  $(toAdd).attr('id', "page-search-full" + toaddcount);
+  toAdd.find("input").on("input", searchSuggestion(list, null)).val("");
 }
+
 var ready = function() {
   headerSearch();
   // We have to set this up here since the first search box is
@@ -84,7 +86,11 @@ var ready = function() {
   var firstBox = firstSearch.find("input");
   var firstList = firstSearch.find("ul");
   firstBox.on("input", searchSuggestion(firstList, null));
-  $("#add-group-button").on("click", addSearchBox);
+  var toaddcount = 0;
+  $("#add-group-button").on("click", function() {
+    addSearchBox(toaddcount);
+    toaddcount = toaddcount + 1;
+  });
   var windowwidth = $(window).width();
 
   // Only run if the browser window size implies a mobile device.
