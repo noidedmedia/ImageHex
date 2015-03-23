@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      image: "Image"
+    attributes:
+      image:
+        f: "File"
   hello: "Hello world"
