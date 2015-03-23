@@ -38,7 +38,7 @@ class Image < ActiveRecord::Base
   # VALIDATIONS #
   ###############
   validates_attachment_content_type :f, content_type: /\Aimage\/.*\Z/
-  validates_attachment_presence :f
+  validates_attachment_presence :f   
   validates :user, presence: :true
   validates :license, presence: true
   validates :medium, presence: true
