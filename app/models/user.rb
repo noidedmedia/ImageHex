@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   ####################
   
   def avatar_img
-    avatar.f(:small)
+    avatar.f(:medium)
   end
   ##
   # Get all images in all collections this user is subscribed to.

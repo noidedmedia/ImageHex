@@ -12,7 +12,7 @@ describe User do
     let(:i){FactoryGirl.create(:image)}
     let(:u){FactoryGirl.create(:user, avatar: i)}
     it "has a helper method" do
-      expect(u.avatar_img).to eq(i.f(:small))
+      expect(u.avatar_img).to eq(i.f(:medium))
     end
   end
   describe "subscriptions" do
