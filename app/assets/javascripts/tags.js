@@ -40,6 +40,13 @@ var searchSuggestion = function(list, toggle){
         toggle.removeClass("active");
       }
     }
+    // remove suggestions when the user clicks outside
+    $(document).on("click", function(){
+      $(list).empty();
+      if(toggle){
+        toggle.removeClass("active");
+      }
+    });
     // Extract a list of tags
     var tags = str.split(",");
     // We do suggestions on the last tag in the list
