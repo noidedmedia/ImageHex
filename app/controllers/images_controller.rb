@@ -38,7 +38,7 @@ class ImagesController < ApplicationController
   # Query should be in params[:query]
   def search
     @images = Image.search(params[:query])
-    @images.paginate(page: page, per_page: per_page) if @images
+    @images = @images.paginate(page: page, per_page: per_page) if @images
   end
 
   ##
