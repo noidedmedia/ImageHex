@@ -100,6 +100,67 @@
   }
 }
 
+#edit-user-container {
+  width: 300px;
+  display: inline-block;
+  font-size: 1.4rem;
+  margin-top: 75px;
+  margin-left: calc(50vw - 150px);
+
+  input[type="submit"] {
+    width: 300px;
+    display: inline-block;
+    height: 30px;
+    font-size: 1.4rem;
+    border-radius: 3px;
+    border: none;
+    background-color: #5bb289;
+    color: #fff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:focus {
+      outline: transparent;
+    }
+  }
+}
+
+// Text field for editing the user's bio.
+.user-bio-field {
+  resize: vertical;
+  max-height: 250px;
+}
+
+.user-bio-field,
+.user-profile-picture-field {
+  width: 300px;
+  display: inline-block;
+  vertical-align: top;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #aaaab2;
+  padding-bottom: 4px;
+  background-color: transparent;
+  display: inline-block;
+  font-size: 1.4rem;
+  transition: border 200ms ease;
+  margin-bottom: 15px;
+
+  &:focus {
+    outline: transparent;
+    border-bottom: 1px solid #333;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
 
 /* ==============================================
     User page content (tabs and/or images)

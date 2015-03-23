@@ -1,5 +1,7 @@
-<%= form_for @user do |f| %>
-  <%= f.text_area :page_body, :autocomplete => :off %>
-  <%= f.number_field :avatar_id %>
-  <%= f.submit "Save" %>
-<% end %>
+<div id="edit-user-container">
+  <%= form_for @user do |f| %>
+    <%= f.number_field :avatar_id, placeholder: "Profile Picture Image ID", class: "user-profile-picture-field" %>
+    <%= f.text_area :page_body, :autocomplete => :off, placeholder: "User Bio", class: "user-bio-field" %>
+    <%= f.submit "Save" %>
+  <% end %>
+</div>
