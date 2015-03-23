@@ -7,7 +7,9 @@
 
     <div class="user-page-username"><%= @user.name %></div>
 
-    <%= link_to "(edit)", edit_user_path, class: "user-page-bio-edit" if current_user %>
+    <% if current_user == @user %>
+      <%= link_to "(edit)", edit_user_path, class: "user-page-bio-edit" %>
+    <% end %>
 
     <!-- User's website goes here. -->
 
