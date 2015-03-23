@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(current_user) and return
     else
       @user = current_user
+      @user.user_page ||= UserPage.new
     end
   end
 
@@ -25,8 +26,8 @@ class UsersController < ApplicationController
 
   protected
   def user_params
-    params.require(:user).permit(:page_body,
+    params.require(:user).permit(:page_pref,
                                  :avatar_id,
-                                 :page_pref)
+                                 user_page_attributes: [:body])
   end
 end

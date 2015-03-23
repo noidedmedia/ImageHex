@@ -1,5 +1,9 @@
 <%= form_for @user do |f| %>
-  <%= f.text_area :page_body, :autocomplete => :off %>
+  <%= f.fields_for :user_page do |pf| %>
+    <%= pf.text_area :body, autocomplete: false %>
+    <%= pf.hidden_field :id %>
+  <% end %>
   <%= f.number_field :avatar_id %>
+  <%= f.number_field :page_pref %>
   <%= f.submit "Save" %>
 <% end %>

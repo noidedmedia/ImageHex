@@ -9,11 +9,14 @@ class User < ActiveRecord::Base
   # Use a friendly id to find by name
   extend FriendlyId
   friendly_id :name, use: :slugged
+  
   ################
   # ASSOCIATIONS #
   ################
   has_one :user_page, autosave: true
-  
+    # Accept nested attributes for the page
+  accepts_nested_attributes_for :user_page, update_only: true
+ 
   ##
   # ID of the avatar is in avatar_id.
   belongs_to :avatar, class_name: "Image"
