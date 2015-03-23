@@ -71,9 +71,16 @@ function closeHeaderSearchMobile() {
   });
 }
 
+function addSearchBox(){
+    console.log("Adding a group!");
+    var toAdd = $(".page-search-full").last().clone();
+    console.log(toAdd);
+    $(".page-search-full").last().after(toAdd);
+
+}
 var ready = function() {
   headerSearch();
-
+  $("#add-group-button").on("click", addSearchBox);
   var windowwidth = $(window).width();
 
   // Only run if the browser window size implies a mobile device.
