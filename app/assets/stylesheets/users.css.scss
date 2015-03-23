@@ -65,11 +65,22 @@
   height: 250px;
   margin-bottom: 10px;
   background-color: #c9c9c9;
+  overflow: hidden;
+
+  img {
+    min-width: 250px;
+    min-height: 250px;
+  }
 
   @media all and (max-device-width: $mobile-width) {
     margin-right: 10px;
     width: 75px;
     height: 75px;
+
+    img {
+      min-width: 75px;
+      min-height: 75px;
+    }
   }
 }
 
