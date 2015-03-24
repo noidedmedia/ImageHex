@@ -105,7 +105,28 @@
 }
 
 #new-group {
-  
+  width: 100%;
+  max-width: 600px;
+  display: none;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 2px;
+
+  &.active {
+    display: block;
+  }
+
+  input[type="text"] {
+    background-color: transparent;
+    width: 100%;
+    border: 0;
+    font-size: 1.2rem;
+    padding: 15px;
+
+    &:focus {
+      outline: transparent;
+    }
+  }
 }
 
 #image-help-button {
