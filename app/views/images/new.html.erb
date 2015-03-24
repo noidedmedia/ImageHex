@@ -13,13 +13,17 @@
         <div class="image-file-name"></div>
       </div>
 
-      <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+      <div class="select-container">
+        <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+      </div>
       <%# Note that the above has a "{}" because %>
       <%# html-options needs to be invoked before %>
       <%# the CSS class can be used. %>
 
       <%# The Medium select input. %>
-      <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
+      <div class="select-container">
+        <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
+      </div>
     </div>
 
     <div class="new-upload-container">
