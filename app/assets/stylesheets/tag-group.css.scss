@@ -20,12 +20,6 @@
 
 .generic-tag-list {
   > li {
-    &:first-of-type {
-      font-size: 1.8rem;
-      font-weight: 500;
-      height: 100px;
-    }
-
     &:not(:last-of-type) {
       border-bottom: 1px solid #e4e4e4;
     }
