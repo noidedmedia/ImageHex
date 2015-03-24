@@ -1,16 +1,35 @@
 @import "scss-variables";
 
 /* search.html styling */
-#body-search{
-  padding-left: 1%;
+#body-search {
+  margin: auto;
+  padding-top: 60px;
+  display: block;
+  width: 300px;
+
+  button {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-left: 25px;
+  }
+
+  input[type="search"] {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-left: 25px;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    margin-left: 25px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    padding-top: 20px;
+    width: calc(100vw - 40px);
+  }
 }
-#page-submit-button{
-  padding-left: 1%;
-}
-.page-search-full{
-  // MAKE ME PRETTY CONNOR
-  // BE MY FAIRY GODMOTHER OR SOME SHIT
-}
+
 /* ==============================================
     Header search box
    ============================================== */

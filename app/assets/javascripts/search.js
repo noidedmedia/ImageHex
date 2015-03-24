@@ -87,7 +87,8 @@ var ready = function() {
   var firstList = firstSearch.find("ul");
   firstBox.on("input", searchSuggestion(firstList, null));
   var toaddcount = 0;
-  $("#add-group-button").on("click", function() {
+  $("#add-group-button").on("click", function(event) {
+    event.preventDefault();
     addSearchBox(toaddcount);
     toaddcount = toaddcount + 1;
   });
