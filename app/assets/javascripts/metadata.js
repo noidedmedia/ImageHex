@@ -17,6 +17,9 @@ function populateInfo(image) {
         height = EXIF.getTag(image, "PixelYDimension");
   } else {
     console.log("So it has come to this.");
+
+    var width = (image.naturalWidth),
+        height = (image.naturalHeight);
   }
 
   console.log("Dimensions: " + width + "x" + height);
