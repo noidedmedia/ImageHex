@@ -107,10 +107,13 @@
 #new-group {
   width: 100%;
   max-width: 600px;
-  display: none;
   margin-bottom: 15px;
   background-color: #fff;
   border-radius: 2px;
+
+  &.inactive {
+    display: none;
+  }
 
   &.active {
     display: block;
