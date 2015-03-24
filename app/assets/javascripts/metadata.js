@@ -11,7 +11,7 @@ function metadataTest() {
 };
 
 var ready = function() {
-  $(".image > img").on("click", metadataTest);
+  $(".image > img").on("load", metadataTest);
 };
 
 $(document).ready(ready);
