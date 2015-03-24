@@ -150,6 +150,15 @@
   }
 }
 
+.notifications-empty {
+  color: #aaaab2;
+  font-size: 1.2rem;
+  text-align: center;
+  height: 150px;
+  width: 100%;
+  padding: 60px 0;
+}
+
 @media all and (max-device-width: $mobile-width) {
   .header-notifications {
     position: absolute;

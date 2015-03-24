@@ -1,16 +1,16 @@
-
-<form action="/search" method="get">
+<form action="/search" method="get" id="body-search">
   <div class="page-search-full">
     <label for="page-search-input">
       <span class="icon icon-small icon-search"></span>
     </label>
-    <input type="search" class="page-search-input" name="query[]" placeholder="" autocomplete="off" />
+    <input type="search" class="page-search-input" name="query[]" placeholder="Tag group" autocomplete="off" />
+    <ul class="page-suggestions">
 
+    </ul>
   </div>
-  <input type="submit">
+
+  <button id="add-group-button">Add a group</button>
+  <input type="submit" id="page-submit-button" value="Search">
 </form>
-
-
-<p id="add-group-button">Add a group</p>
 
 <%= render 'show_stub' %>

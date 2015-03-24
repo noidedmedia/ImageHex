@@ -54,6 +54,7 @@ class Image < ActiveRecord::Base
   #   Image.search(["red hair, blue eyes", "brown hair, green eyes"])
   #
   def self.search(q)
+    return unless q
     # This shit is messy
     # You have been warned.
 

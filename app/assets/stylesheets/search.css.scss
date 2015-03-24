@@ -1,5 +1,36 @@
 @import "scss-variables";
 
+/* search.html styling */
+#body-search {
+  margin: auto;
+  padding-top: 30px;
+  display: block;
+  width: 300px;
+
+  button {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-left: 25px;
+  }
+
+  input[type="search"] {
+    width: 100%;
+    margin-bottom: 5px;
+    margin-left: 25px;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    margin-left: 25px;
+    margin-bottom: 15px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    padding-top: 20px;
+    width: calc(100vw - 40px);
+  }
+}
+
 /* ==============================================
     Header search box
    ============================================== */

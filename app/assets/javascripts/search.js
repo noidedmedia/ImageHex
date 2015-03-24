@@ -24,7 +24,6 @@ function headerSearch() {
 
         $(headersearch).css('max-height', searchheight);
         $(headersearch).css('max-height', 40);
-        $(headersearch).toggleClass('active');
 
         // Unbinds the function so it can only happen once.
         $(headersearch).unbind('clickoutside');
@@ -71,16 +70,28 @@ function closeHeaderSearchMobile() {
   });
 }
 
-function addSearchBox(){
-    console.log("Adding a group!");
-    var toAdd = $(".page-search-full").last().clone();
-    console.log(toAdd);
-    $(".page-search-full").last().after(toAdd);
-
+function addSearchBox(toaddcount) {
+  var toAdd = $(".page-search-full").last().clone();
+  var list = toAdd.find(".page-suggestions");
+  $(".page-search-full").last().after(toAdd);
+  $(toAdd).attr('id', "page-search-full" + toaddcount);
+  toAdd.find("input").on("input", searchSuggestion(list, null)).val("");
 }
+
 var ready = function() {
   headerSearch();
-  $("#add-group-button").on("click", addSearchBox);
+  // We have to set this up here since the first search box is
+  // already on the page when we start the search
+  var firstSearch = $(".page-search-full");
+  var firstBox = firstSearch.find("input");
+  var firstList = firstSearch.find("ul");
+  firstBox.on("input", searchSuggestion(firstList, null));
+  var toaddcount = 0;
+  $("#add-group-button").on("click", function(event) {
+    event.preventDefault();
+    addSearchBox(toaddcount);
+    toaddcount = toaddcount + 1;
+  });
   var windowwidth = $(window).width();
 
   // Only run if the browser window size implies a mobile device.
