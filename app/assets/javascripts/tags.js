@@ -113,7 +113,7 @@ var suggest = function(name, input, list, toggle) {
       $(list).addClass("active");
       $(list).empty();
     }
-    else{
+    else {
       console.log("Found suggetions:");
       console.log(data);
       // Load the suggestions

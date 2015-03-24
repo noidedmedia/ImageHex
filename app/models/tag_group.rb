@@ -41,10 +41,10 @@ class TagGroup < ActiveRecord::Base
     return unless self.tag_group_string && ! self.tag_group_string.empty?
     tag_names = self.tag_group_string.split(",")
     tag_names.map!(&:strip).map!(&:squish)
-    formated_tags = tag_names.map{|name| name.downcase.strip.squish}
-    found_tags = formated_tags.zip(tag_names).map do |names|
+    formatted_tags = tag_names.map{|name| name.downcase.strip.squish}
+    found_tags = formatted_tags.zip(tag_names).map do |names|
       ##
-      # Names is currently an array of [formated name, input name]
+      # Names is currently an array of [formatted name, input name]
       # so we do this:
       if tag = Tag.where(name: names.first).first
         tag
