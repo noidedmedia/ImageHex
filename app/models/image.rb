@@ -32,12 +32,6 @@ class Image < ActiveRecord::Base
   # What license the image is under
   enum license: [:public_domain, :all_rights_reserved, :cc_by, :cc_by_sa, :cc_by_nd, :cc_by_nc, :cc_by_nd_sa, :cc_by_nc_nd]
 
-  def self.licenses_attributes_for_select
-    licenses.map do |license, k|
-      [I18n.t("activerecord.attributes.licenses.#{license}"), license]
-    end
-  end
-
   # What kind of image this is
   enum medium: [:photograph, :pencil, :paint, :digital_paint, :mixed_media, :three_dimensional_render]
 
@@ -104,5 +98,14 @@ class Image < ActiveRecord::Base
   # TODO: rewrite this so it uses SQL and doesn't just load every freaking image into memory
   def self.by_reports
     Image.includes(:reports).select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
+  end
+
+  ##
+  # Returns a localized list of all license options for use
+  # with the select element on the Upload page.
+  def self.licenses_attributes_for_select
+    licenses.map do |license, k|
+      [I18n.t("activerecord.attributes.licenses.#{license}"), license]
+    end
   end
 end
