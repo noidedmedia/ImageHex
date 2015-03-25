@@ -23,6 +23,13 @@ function populateInfo(image) {
   }
 
   console.log("Dimensions: " + width + "x" + height);
+
+  if ( EXIF.getTag(image, "GPSLatitude") != undefined && EXIF.getTag(image, "GPSLongitude") != undefined ) {
+    var latitude = EXIF.getTag(image, "GPSLatitude"),
+        longitude = EXIF.getTag(image, "GPSLongitude");
+
+    console.log(latitude + " " + longitude);
+  }
 }
 
 var ready = function() {
