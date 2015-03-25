@@ -33,13 +33,25 @@ function populateInfo(image) {
     // pretty much do what you'd expect. A numerator
     // of "1" and denominator of "4" would be "0.25".
     var latitude = EXIF.getTag(image, "GPSLatitude"),
-        longitude = EXIF.getTag(image, "GPSLongitude");
+        longitude = EXIF.getTag(image, "GPSLongitude"),
+        latituderef = EXIF.getTag(image, "GPSLatitudeRef"),
+        longituderef = EXIF.getTag(image, "GPSLongitudeRef");
 
     console.log(latitude);
     console.log(longitude);
+    console.log(latituderef);
+    console.log(longituderef);
 
-    console.log("Latitude: " + latitude);
-    console.log("Longitude: " + longitude);
+    var latitudedegrees = (latitude[0].numerator / latitude[0].denominator),
+        latitudeminutes = (latitude[1].numerator / latitude[1].denominator),
+        latitudeseconds = (latitude[2].numerator / latitude[2].denominator),
+        longitudedegrees = (longitude[0].numerator / longitude[0].denominator),
+        longitudeminutes = (longitude[1].numerator / longitude[1].denominator),
+        longitudeseconds = (longitude[2].numerator / longitude[2].denominator);
+        
+
+    console.log("Latitude: " + latitudedegrees + "° " + latitudeminutes + "' " + latitudeseconds + "\" "+ latituderef);
+    console.log("Longitude: " + longitudedegrees + "° " + longitudeminutes + "' " + longitudeseconds + "\" "+ longituderef);
   }
 }
 
