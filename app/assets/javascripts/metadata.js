@@ -48,10 +48,10 @@ function populateInfo(image) {
         longitudedegrees = (longitude[0].numerator / longitude[0].denominator),
         longitudeminutes = (longitude[1].numerator / longitude[1].denominator),
         longitudeseconds = (longitude[2].numerator / longitude[2].denominator);
-        
 
-    console.log("Latitude: " + latitudedegrees + "° " + latitudeminutes + "' " + latitudeseconds + "\" "+ latituderef);
-    console.log("Longitude: " + longitudedegrees + "° " + longitudeminutes + "' " + longitudeseconds + "\" "+ longituderef);
+
+    console.log("Latitude: " + latitudedegrees + "° " + latitudeminutes + "' " + latitudeseconds + "\" " + latituderef);
+    console.log("Longitude: " + longitudedegrees + "° " + longitudeminutes + "' " + longitudeseconds + "\" " + longituderef);
   }
 }
 
