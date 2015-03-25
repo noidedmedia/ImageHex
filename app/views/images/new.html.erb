@@ -14,7 +14,7 @@
       </div>
 
       <div class="select-container">
-        <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+        <%= f.select :license, options_for_select(Image.licenses_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-license-select' } %>
       </div>
       <%# Note that the above has a "{}" because %>
       <%# html-options needs to be invoked before %>

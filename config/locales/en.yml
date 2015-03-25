@@ -26,4 +26,13 @@ en:
     attributes:
       image:
         f: "File"
+      licenses:
+        public_domain: "Public Domain"
+        all_rights_reserved: "All Rights Reserved"
+        cc_by: "CC-BY"
+        cc_by_sa: "CC-BY-SA"
+        cc_by_nd: "CC-BY-ND"
+        cc_by_nc: "CC-BY-NC"
+        cc_by_nd_sa: "CC-BY-ND-SA"
+        cc_by_nc_nd: "CC-BY-NC-ND"
   hello: "Hello world"

@@ -47,7 +47,7 @@
 
             <tr class="table-row">
               <td class="column-one-cell">License</td>
-              <td class="column-two-cell"><%= @image.license %></td>
+              <td class="column-two-cell"><%= I18n.t("activerecord.attributes.licenses.#{@image.license}") %></td>
             </tr>
 
             <tr class="table-row">

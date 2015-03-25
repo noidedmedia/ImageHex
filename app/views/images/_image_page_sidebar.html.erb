@@ -1,6 +1,13 @@
 <div class="image-actions-sidebar">
   <div class="image-actions-container">
 
+      <a href="#">
+        <div class="image-actions" id="img-action-download">
+          <span class="icon icon-medium icon-download"></span>
+          <p>Download
+        </div>
+      </a>
+
     <div class="image-actions-favorite-container">
       <% if current_user && current_user.favorited?(@image) %>
         <div class="image-actions inactive" id="img-action-favorite">

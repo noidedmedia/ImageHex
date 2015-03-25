@@ -30,7 +30,14 @@ class Image < ActiveRecord::Base
   #########
 
   # What license the image is under
-  enum license: ["Public Domain", "All Rights Reserved", "CC-BY", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC", "CC-BY-ND-SA", "CC-BY-NC-ND"]
+  enum license: [:public_domain, :all_rights_reserved, :cc_by, :cc_by_sa, :cc_by_nd, :cc_by_nc, :cc_by_nd_sa, :cc_by_nc_nd]
+
+  def self.licenses_attributes_for_select
+    licenses.map do |license, k|
+      [I18n.t("activerecord.attributes.licenses.#{license}"), license]
+    end
+  end
+
   # What kind of image this is
   enum medium: [:photograph, :pencil, :paint, :digital_paint, :mixed_media, :three_dimensional_render]
 
