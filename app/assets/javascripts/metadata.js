@@ -25,10 +25,21 @@ function populateInfo(image) {
   console.log("Dimensions: " + width + "x" + height);
 
   if ( EXIF.getTag(image, "GPSLatitude") != undefined && EXIF.getTag(image, "GPSLongitude") != undefined ) {
+    // Both of these are arrays with three numbers.
+    // Degrees, minutes, and seconds, where minutes
+    // are 1/60th of a degree and seconds are 1/60th
+    // of a minute. Each item in the arrays have 
+    // "numberator" and "denominator" numbers, which
+    // pretty much do what you'd expect. A numerator
+    // of "1" and denominator of "4" would be "0.25".
     var latitude = EXIF.getTag(image, "GPSLatitude"),
         longitude = EXIF.getTag(image, "GPSLongitude");
 
-    console.log(latitude + " " + longitude);
+    console.log(latitude);
+    console.log(longitude);
+
+    console.log("Latitude: " + latitude);
+    console.log("Longitude: " + longitude);
   }
 }
 
