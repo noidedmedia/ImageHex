@@ -27,6 +27,10 @@
   content: $icon-close;
 }
 
+.icon-download:before {
+  content: $icon-download;
+}
+
 .icon-favorite:before {
   content: $icon-favorite;
 }
@@ -45,6 +49,10 @@
 
 .icon-report:before {
   content: $icon-report;
+}
+
+.icon-delete:before {
+  content: $icon-delete;
 }
 
 .icon-small:before {

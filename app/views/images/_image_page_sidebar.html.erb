@@ -58,6 +58,16 @@
       </div>
     </a>
     <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
+
+    <% if current_user.admin? %>
+      <%= link_to admin_image_path(@image), method: :delete do %>
+        <div class="image-actions" id="img-action-delete">
+          <span class="icon icon-medium icon-delete"></span>
+          <p>Delete
+        </div>
+      <% end %>
+    <% end %>
+
   </div>
 
 </div>

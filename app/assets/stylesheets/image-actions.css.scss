@@ -216,7 +216,7 @@
 
 
 /* ==============================================
-    Report image
+    Report
    ============================================== */
 
 #report-form {
@@ -267,5 +267,18 @@
     &:focus {
       outline: transparent;
     }
+  }
+}
+
+
+/* ==============================================
+    Delete
+   ============================================== */
+
+#img-action-delete {
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: rgba($color-danger, 0.8);
   }
 }
