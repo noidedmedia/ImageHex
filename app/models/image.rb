@@ -103,6 +103,9 @@ class Image < ActiveRecord::Base
   ##
   # Returns a localized list of all license options for use
   # with the select element on the Upload page.
+  #
+  # The text after "[I18n.t(" is the hierarchal location of
+  # the license translations in the localization file.
   def self.licenses_attributes_for_select
     licenses.map do |license, k|
       [I18n.t("activerecord.attributes.licenses.#{license}"), license]
