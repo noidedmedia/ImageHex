@@ -35,6 +35,13 @@ en:
         cc_by_nc: "CC-BY-NC"
         cc_by_nd_sa: "CC-BY-ND-SA"
         cc_by_nc_nd: "CC-BY-NC-ND"
+      mediums:
+        photograph: "Photograph"
+        pencil: "Pencil"
+        paint: "Paint"
+        digital_paint: "Digital paint"
+        mixed_media: "Mixed media"
+        three_dimensional_render: "3D Render"
   layouts:
     header:
       home: "Home"

@@ -106,9 +106,15 @@ class Image < ActiveRecord::Base
   #
   # The text after "[I18n.t(" is the hierarchal location of
   # the license translations in the localization file.
-  def self.licenses_attributes_for_select
+  def self.license_attributes_for_select
     licenses.map do |license, k|
       [I18n.t("activerecord.attributes.licenses.#{license}"), license]
+    end
+  end
+
+  def self.medium_attributes_for_select
+    media.map do |medium, k|
+      [I18n.t("activerecord.attributes.mediums.#{medium}"), medium]
     end
   end
 end
