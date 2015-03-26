@@ -1,18 +1,18 @@
 <div id="image-page-toolbar">
   <div class="left">
     <div id="add-tag-group-button">
-      Add a tag group
+      <%= t(".add_a_tag_group") %>
     </div>
   </div>
 
   <div class="right">
     <div id="image-help-button">
-      Help
+      <%= t(".help") %>
     </div>
 
     <div id="image-info">
       <div id="image-info-button">
-        Info
+      <%= t(".info") %>
       </div>
 
       <!-- Metadata table -->
@@ -42,7 +42,7 @@
 
             <tr class="table-row">
               <td class="column-one-cell">Medium</td>
-              <td class="column-two-cell"><%= @image.medium.titleize %></td>
+              <td class="column-two-cell"><%= t("activerecord.attributes.licenses.#{@image.medium}") %></td>
             </tr>
 
             <tr class="table-row">
@@ -91,7 +91,7 @@
     </div>
 
     <div id="edit-history-button">
-      View edit history
+      <%= t(".view_edit_history") %>
     </div>
   </div>
 

@@ -32,21 +32,21 @@
       <%= f.file_field :f, id: "file-field" %>
 
       <div class="top-half">
-        <p>Drop images here to upload
+        <p><%= t(".drop_images_here_to_upload") %>
       </div>
 
       <hr>
-      <p class="or">or
+      <p class="or"><%= t(".or") %>
 
       <div class="bottom-half">
 
         <div class="file-upload-coverup">
-          <p>Click here to choose a file
+          <p><%= t(".click_here_to_choose") %>
         </div>
       </div>
 
     </div>
 
-    <%= f.submit "Submit", id: "upload-submit-button" %>
+    <%= f.submit t(".submit"), id: "upload-submit-button" %>
   <% end %>
 </div>

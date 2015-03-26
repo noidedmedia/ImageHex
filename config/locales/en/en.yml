@@ -45,6 +45,8 @@ en:
   layouts:
     header:
       home: "Home"
+      search: "Search"
+      search_suggestions_note: "Search for the tag you're looking for, suggestions will show up here."
       sign_in: "Sign in"
       sign_up: "Sign up"
       upload: "Upload"
@@ -66,6 +68,10 @@ en:
   images:
     new:
       upload_image: "Upload an image"
+      drop_images_here_to_upload: "Drop images here to upload"
+      or: "or"
+      click_here_to_choose: "Click here to choose a file"
+      submit: "Submit"
     image_page_sidebar:
       download: "Download"
       favorite: "Favorite"
@@ -74,3 +80,29 @@ en:
       share: "Share"
       report: "Report"
       delete: "Delete"
+    image_page_toolbar:
+      add_a_tag_group: "Add a tag group"
+      help: "Help"
+      info: "Info"
+      view_edit_history: "View edit history"
+  users:
+    show:
+      uploads: "Uploads"
+      creations: "Creations"
+      collections: "Collections"
+      edit: "(edit)"
+    edit:
+      profile_picture_image_id: "Profile Picture Image ID"
+      user_bio: "User bio"
+      images_per_page: "Images per page"
+  notifications:
+    notifications:
+      notifications_header: "Notifications"
+      mark_all_read: "Mark all as read"
+    notifications_list:
+      no_notifications_yet: "No notifications yet!"
+  shared:
+    comments:
+      comments_header: "Comments"
+      no_comments_yet: "No comments yet."
+      submit: "Submit"
