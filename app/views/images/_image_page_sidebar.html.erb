@@ -5,7 +5,7 @@
       <a href="#">
         <div class="image-actions" id="img-action-download">
           <span class="icon icon-medium icon-download"></span>
-          <p>Download
+          <p><%= t(".download") %>
         </div>
       </a>
     <% end %>
@@ -15,14 +15,14 @@
         <div class="image-actions inactive" id="img-action-favorite">
           <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
             <span class="icon icon-medium icon-favorite"></span>
-            <p>Favorite</p>
+            <p><%= t(".favorite") %></p>
           <% end %>
         </div>
 
         <div class="image-actions active" id="img-action-favorited">
           <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
             <span class="icon icon-medium icon-favorited"></span>
-            <p>Favorited</p>
+            <p><%= t(".favorited") %></p>
           <% end %>
         </div>
 
@@ -31,14 +31,14 @@
         <div class="image-actions active" id="img-action-favorite">
           <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
             <span class="icon icon-medium icon-favorite"></span>
-            <p>Favorite</p>
+            <p><%= t(".favorite") %></p>
           <% end %>
         </div>
 
         <div class="image-actions inactive" id="img-action-favorited">
           <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
             <span class="icon icon-medium icon-favorited"></span>
-            <p>Favorited</p>
+            <p><%= t(".favorited") %></p>
           <% end %>
         </div>
 
@@ -48,7 +48,7 @@
     <a href="#">
       <div class="image-actions" id="img-action-collection">
         <span class="icon icon-medium icon-add"></span>
-        <p>Add to Collection
+        <p><%= t(".add_to_collection") %>
       </div>
     </a>
     <%= render 'collection_select' if current_user %>
@@ -56,14 +56,14 @@
     <a href="#">
       <div class="image-actions" id="img-action-share">
         <span class="icon icon-medium icon-share"></span>
-        <p>Share
+        <p><%= t(".share") %>
       </div>
     </a>
 
     <a href="#">
       <div class="image-actions" id="img-action-report">
         <span class="icon icon-medium icon-report"></span>
-        <p>Report
+        <p><%= t(".report") %>
       </div>
     </a>
     <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
@@ -72,7 +72,7 @@
       <%= link_to admin_image_path(@image), method: :delete do %>
         <div class="image-actions" id="img-action-delete">
           <span class="icon icon-medium icon-delete"></span>
-          <p>Delete
+          <p><%= t(".delete") %>
         </div>
       <% end %>
     <% end %>

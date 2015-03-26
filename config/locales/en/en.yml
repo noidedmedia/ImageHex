@@ -59,3 +59,11 @@ en:
   images:
     new:
       upload_image: "Upload an image"
+    image_page_sidebar:
+      download: "Download"
+      favorite: "Favorite"
+      favorited: "Favorited"
+      add_to_collection: "Add to Collection"
+      share: "Share"
+      report: "Report"
+      delete: "Delete"
