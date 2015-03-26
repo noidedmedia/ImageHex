@@ -43,7 +43,9 @@
     <% if user_signed_in? %>
 
       <div class="header-item">
-        <%= link_to 'Upload', new_image_path %>
+        <%= link_to new_image_path do %>
+          <%= t(".upload") %>
+        <% end %>
       </div>
 
       <% if current_user.notifications.unread.size > 0 %>

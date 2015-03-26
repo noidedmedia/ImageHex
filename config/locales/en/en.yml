@@ -35,4 +35,15 @@ en:
         cc_by_nc: "CC-BY-NC"
         cc_by_nd_sa: "CC-BY-ND-SA"
         cc_by_nc_nd: "CC-BY-NC-ND"
-  upload: "Upload"
+  layouts:
+    header:
+      home: "Home"
+      sign_in: "Sign in"
+      sign_up: "Sign up"
+      upload: "Upload"
+      profile: "Profile"
+      settings: "Settings"
+      sign_out: "Sign out"
+  images:
+    new:
+      upload_image: "Upload an image"
