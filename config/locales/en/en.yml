@@ -85,6 +85,8 @@ en:
       help: "Help"
       info: "Info"
       view_edit_history: "View edit history"
+    image_page_information:
+      new_tag_group: "New Tag Group"
   users:
     show:
       uploads: "Uploads"
