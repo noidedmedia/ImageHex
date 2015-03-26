@@ -1,7 +1,7 @@
 <header id="header-container">
   <div id="header-left">
     <div class="header-item" id="header-home">
-      <%= link_to 'Home', root_path %>
+      <%= link_to t(".home"), root_path %>
     </div>
   </div>
 
@@ -43,9 +43,7 @@
     <% if user_signed_in? %>
 
       <div class="header-item">
-        <%= link_to new_image_path do %>
-          <%= t(".upload") %>
-        <% end %>
+        <%= link_to t(".upload"), new_image_path %>
       </div>
 
       <% if current_user.notifications.unread.size > 0 %>
@@ -79,26 +77,26 @@
         </div>
 
         <ul class="dropdown">
-          <li><%= link_to 'Profile', current_user %>
+          <li><%= link_to t(".profile"), current_user %>
 
           <% if current_user.admin? %>
-            <li><%= link_to 'Admin', admin_images_path %>
+            <li><%= link_to t(".admin"), admin_images_path %>
           <% end %>
           
-          <li><%= link_to 'Settings', edit_user_path(current_user) %>
+          <li><%= link_to t(".settings"), edit_user_path(current_user) %>
           
-          <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+          <li><%= button_to t(".sign_out"), destroy_user_session_path, method: :delete %>
         </ul>
       </div>
 
     <% else %>
 
       <div class="header-item" id="header-sign-up">
-        <%= link_to 'Sign up', new_user_registration_path %>
+        <%= link_to t(".sign_up"), new_user_registration_path %>
       </div>
 
       <div class="header-item" id="header-sign-up">
-        <%= link_to 'Sign in', new_user_session_path %>
+        <%= link_to t(".sign_in"), new_user_session_path %>
       </div>
 
     <% end %>
