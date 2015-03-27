@@ -1,6 +1,5 @@
 @import "scss-variables";
 
-
 //-------------------------//
 //       #Upload           //
 //-------------------------//
@@ -106,8 +105,7 @@
       top: calc(50% - 9px);
       height: 20px;
       padding: 0 8px;
-      -webkit-transform: translateX(-50%);
-              transform: translateX(-50%);
+      @include translateX(-50%);
       font-size: 1.4rem;
       font-weight: 500;
       color: #8e8e8e;
@@ -149,10 +147,8 @@
         position: absolute;
         display: inline-block;
         color: #8e8e8e;
-        transform: translate(-60px,20px);
-          -webkit-transform: translate(-60px,20px);
+        @include translate(-60px,20px);
         font-size: 12.0rem;
-        -webkit-font-smoothing: antialiased;
       }
     }
 

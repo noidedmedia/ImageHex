@@ -97,8 +97,7 @@
     content: $icon-add;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-2px);
-      -webkit-transform: translate(-24px,-2px);
+    @include translate(-24px,-2px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -140,8 +139,7 @@
     content: $icon-help;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
-      -webkit-transform: translate(-24px,-4px);
+    @include translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -155,8 +153,7 @@
     content: $icon-info;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
-      -webkit-transform: translate(-24px,-4px);
+    @include translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -186,7 +183,7 @@
 
   // Styling for each respective row.
   .table-row {
-
+    
   }
 }
 
@@ -198,8 +195,7 @@
     content: $icon-history;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
-      -webkit-transform: translate(-24px,-4px);
+    @include translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }

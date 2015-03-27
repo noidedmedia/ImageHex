@@ -42,3 +42,24 @@ $color-success: #5bb289;
 $color-info: #556db3;
 $color-warning: #efb63e;
 $color-danger: #cb2e32;
+
+
+// Mixins
+// Mixins can be used as follows:
+// @include translateX(10px);
+
+@mixin translateX($value) {
+  -webkit-transform: translateX($value);
+          transform: translateX($value);
+}
+
+@mixin translateY($value) {
+  -webkit-transform: translateY($value);
+          transform: translateY($value);
+}
+
+@mixin translate($value1,$value2) {
+  -webkit-transform: translate($value1,$value2);
+          transform: translate($value1,$value2);
+}
+
