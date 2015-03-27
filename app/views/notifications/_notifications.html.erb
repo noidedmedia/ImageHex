@@ -1,10 +1,13 @@
 <div class="notifications-container">
   <div class="notifications-header">
+    <%# Notifications header %>
     <h3><%= t(".notifications_header") %></h3>
 
+    <%# "Mark all as read" button %>
     <%= link_to t(".mark_all_read"), mark_all_read_notifications_path, class: "mark-all-read", method: :post, remote: true %>
   </div>
 
+  <%# Renders the "_notifications_list" partial. %>
   <ul>
     <%= render "notifications/notifications_list", notifications: current_user.notifications %>
   </ul>

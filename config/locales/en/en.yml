@@ -116,3 +116,8 @@ en:
       comments_header: "Comments"
       no_comments_yet: "No comments yet."
       submit: "Submit"
+    report_stub:
+      reason_for_report: "Reason for report:"
+      extra_information: "Extra information (optional):"
+      cancel: "Cancel"
+      report: "Report"

@@ -1,20 +1,25 @@
 <header id="header-container">
   <div id="header-left">
+    <%# Home button %>
     <div class="header-item" id="header-home">
       <%= link_to t(".home"), root_path %>
     </div>
   </div>
 
+  <%# Search icon that opens a mobile-specific, fullscreen search dialog. %>
   <div id="mobile-search-icon">
     <span class="icon icon-small icon-search"></span>
   </div>
 
+  <%# "Hamburger menu" icon, only displayed on mobile devices. %>
   <div id="mobile-menu-icon">
     <span class="icon icon-small icon-menu"></span>
   </div>
 
+  <%# Semi-transparent black overlay used to hide background content when the mobile sidebar is opened. This is controlled by JavaScript. %>
   <div id="mobile-menu-overlay"></div>
 
+  <%# Header search container %>
   <div id="header-search">
     <form action="/search" method="get">
       <%# Search icon %>
@@ -42,10 +47,12 @@
   <div id="header-right">
     <% if user_signed_in? %>
 
+      <%# Upload %>
       <div class="header-item">
         <%= link_to t(".upload"), new_image_path %>
       </div>
 
+      <%# Displays the number of unread notifications %>
       <% if current_user.notifications.unread.size > 0 %>
 
         <div class="header-notifications unread">
@@ -71,30 +78,39 @@
         </div>
       </div>
 
+      <%# User dropdown %>
       <div id="dd" class="wrapper-dropdown">
+        <%# Current user's username %>
         <div class="header-item" id="username">
           <%= link_to current_user.name, current_user %>
         </div>
 
         <ul class="dropdown">
+          <%# Profile %>
           <li><%= link_to t(".profile"), current_user %>
 
+          <%# Admin, only displayed for admins. %>
           <% if current_user.admin? %>
             <li><%= link_to t(".admin"), admin_images_path %>
           <% end %>
           
+          <%# Settings %>
           <li><%= link_to t(".settings"), edit_user_path(current_user) %>
           
+          <%# Sign out %>
           <li><%= button_to t(".sign_out"), destroy_user_session_path, method: :delete %>
         </ul>
       </div>
 
+    <%# If user isn't signed in, display "Sign up" and "Sign in" buttons only. %>
     <% else %>
 
+      <%# Sign up %>
       <div class="header-item" id="header-sign-up">
         <%= link_to t(".sign_up"), new_user_registration_path %>
       </div>
 
+      <%# Sign in %>
       <div class="header-item" id="header-sign-up">
         <%= link_to t(".sign_in"), new_user_session_path %>
       </div>

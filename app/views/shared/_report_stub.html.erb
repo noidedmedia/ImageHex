@@ -4,7 +4,7 @@
 <div id="report-form" data-showon="#img-action-report">
   <%= form_tag(url) do %>
     
-    <p>Reason for report:</p>
+    <p><%= t(".reason_for_report") %>
 
     <% Report.severities.each do |k, v| %>
       <div class="report-row">
@@ -13,10 +13,10 @@
       </div>
     <% end %>
     
-    <p>Extra information (optional):</p>
+    <p><%= t(".extra_information") %>
     <%= text_area_tag "report[message]" %>
 
-    <%= button_tag "Cancel", type: :reset %>
-    <%= submit_tag "Submit" %>
+    <%= button_tag t(".cancel"), type: :reset %>
+    <%= submit_tag t(".report") %>
   <% end %>
 </div>

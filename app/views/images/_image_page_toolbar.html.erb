@@ -1,21 +1,25 @@
 <div id="image-page-toolbar">
   <div class="left">
+    <%# Add a tag group %>
     <div id="add-tag-group-button">
       <%= t(".add_a_tag_group") %>
     </div>
   </div>
 
   <div class="right">
+    <%# Help %>
     <div id="image-help-button">
       <%= t(".help") %>
     </div>
 
+    <%# Info %>
     <div id="image-info">
       <div id="image-info-button">
         <%= t(".info") %>
       </div>
 
       <%# Metadata table %>
+      <%# Display of the table is toggled when the info button is clicked. %>
       <div data-showon="#image-info-button" class="toolbar-tooltip" id="image-info-tooltip">
         <table class="image-info-table">
           <tbody>
