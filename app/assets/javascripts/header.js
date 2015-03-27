@@ -22,7 +22,7 @@ DropDown.prototype = {
 
     // If you click on one of the objects (defined above as the list items in the dropdown)
     // the other events (namely the dropdown closing) will not happen.
-    obj.opts.on('click',function(event){
+    obj.opts.on('click',function(event) {
       event.stopPropagation();
     });
   }

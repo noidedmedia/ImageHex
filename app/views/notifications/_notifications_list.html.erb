@@ -1,12 +1,18 @@
+<%# If the notification count is greater than 0, notifications are rendered. %>
 <% if notifications.count > 0 %>
   <% notifications.includes(:subject).each do |note| %>
     <li class="notifications-list-item">
       <%= link_to note.subject do %>
-        <p class="notification-message"><%= note.message %></p>
-        <p class="notification-time-ago"><%= time_ago_in_words(note.created_at) %> ago</p>
+        <%# Notification message %>
+        <p class="notification-message"><%= note.message %>
+
+        <%# "Time ago" for notification %>
+        <p class="notification-time-ago"><%= time_ago_in_words(note.created_at) %> ago
       <% end %>
     </li>
   <% end %>
+
+<%# If notification count is equivalent to (or below, although that should never happen) 0, a "No notifications yet!" message will be displayed. %>
 <% else %>
   <div class="notifications-empty">
     <%= t(".no_notifications_yet") %>

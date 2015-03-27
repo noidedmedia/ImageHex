@@ -23,9 +23,13 @@
       </div>
     <% end %>
   <% end %>
-  <%= form_tag(url, {class: "comment_form"}) do %>
-    <%= text_area(:comment, :body, class: 'new-comment') %>
 
-    <%= submit_tag t(".submit") %>
+  <%# New comment section, only appears for users who are signed-in. %>
+  <% if user_signed_in? %>
+    <%= form_tag(url, {class: "comment_form"}) do %>
+      <%= text_area(:comment, :body, class: 'new-comment') %>
+
+      <%= submit_tag t(".submit") %>
+    <% end %>
   <% end %>
 </div>

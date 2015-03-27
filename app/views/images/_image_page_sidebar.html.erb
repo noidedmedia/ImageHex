@@ -1,6 +1,8 @@
 <div class="image-actions-sidebar">
   <div class="image-actions-container">
 
+    <%# Download %>
+    <%# Only accessible when image is available under certain, non-restrictive licenses. %>
     <% if @image.public_domain? %>
       <a href="<%= @image.f %>" download>
         <div class="image-actions" id="img-action-download">
@@ -10,6 +12,9 @@
       </a>
     <% end %>
 
+    <%# Favorite/Favorited %>
+    <%# Initial state determined automatically by Rails. %>
+    <%# Switches between the two on successful contact with server (as determined via JavaScript). %>
     <div class="image-actions-favorite-container">
       <% if current_user && current_user.favorited?(@image) %>
         <div class="image-actions inactive" id="img-action-favorite">
@@ -45,6 +50,7 @@
       <% end %>
     </div>
 
+    <%# Add to collection %>
     <a href="#">
       <div class="image-actions" id="img-action-collection">
         <span class="icon icon-medium icon-add"></span>
@@ -53,6 +59,7 @@
     </a>
     <%= render 'collection_select' if current_user %>
 
+    <%# Share %>
     <a href="#">
       <div class="image-actions" id="img-action-share">
         <span class="icon icon-medium icon-share"></span>
@@ -60,6 +67,7 @@
       </div>
     </a>
 
+    <%# Report %>
     <a href="#">
       <div class="image-actions" id="img-action-report">
         <span class="icon icon-medium icon-report"></span>
@@ -68,6 +76,8 @@
     </a>
     <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
 
+    <%# Delete %>
+    <%# Only accessible to users with admin privileges. %>
     <% if current_user && current_user.admin? %>
       <%= link_to admin_image_path(@image), method: :delete do %>
         <div class="image-actions" id="img-action-delete">

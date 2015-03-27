@@ -1,22 +1,25 @@
 <footer id="footer-container">
   <div id="footer">
 
+  <%# ImageHex description text %>
     <div class="footer-description-column">
-      <p class="footer-description-title">ImageHex
-      <p class="footer-description-body">ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet.
-      <p class="footer-description-copyright">&copy; 2015 #noided Media
+      <p class="footer-description-title"><%= t(".imagehex") %>
+      <p class="footer-description-body"><%= t(".imagehex_description") %>
+      <p class="footer-description-copyright"><%= t(".imagehex_copyright") %>
     </div>
 
+    <%# "Company" footer column %>
     <div class="footer-links-column">
       <ul class="footer-links-list">
         <li><%= t(".company") %>
-        <li><a href="/about"><%= t(".about") %></a>
-        <li><a href="/people"><%= t(".people") %></a>
+        <li><%= link_to t(".about"), about_path %>
+        <li><%= link_to t(".people"), people_path %>
         <li><a href="https://medium.com/imagehex-development-blog"><%= t(".blog") %></a>
-        <li><a href="/contact"><%= t(".contact") %></a>
+        <li><%= link_to t(".contact"), contact_path %>
       </ul>
     </div>
-
+    
+    <%# "Community" footer column %>
     <div class="footer-links-column">
       <ul class="footer-links-list">
         <li><%= t(".community") %>
