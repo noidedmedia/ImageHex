@@ -1,0 +1,110 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+nv:
+  activerecord:
+    models:
+      image: "Binary Representation of Visual Content"
+    attributes:
+      image:
+        f: "Organized binary data under a given name"
+      licenses:
+        public_domain: "Able to be used by anybody without restriction"
+        all_rights_reserved: "Subject to the copyright laws of the nation in which it was created"
+        cc_by: "Creative Commons Attribution"
+        cc_by_sa: "Creative Commons Share Alike"
+        cc_by_nd: "Creative Commons No Derivative Works"
+        cc_by_nc: "Creative Commons Non Commercial"
+        cc_by_nd_sa: "Creative Commons Attribution Non-Commercial Share Alike"
+        cc_by_nc_nd: "Creative Commons Attribution Non-Commercial No Derivative Works"
+      mediums:
+        photograph: "Visual data of the real world"
+        pencil: "Created by rubbing graphite on paper"
+        paint: "Created by pigmented compounds on a canvas"
+        digital_paint: "Created digitally using software such as GIMP"
+        mixed_media: "Containing parts from multiple types of media"
+        three_dimensional_render: "Created by rasterizing 3D data, including shading and textures"
+  layouts:
+    header:
+      home: "Home"
+      search: "Search"
+      search_suggestions_note: "Search for the tag you're looking for, suggestions will show up here."
+      sign_in: "Sign in"
+      sign_up: "Sign up"
+      upload: "Upload"
+      profile: "Profile"
+      admin: "Admin"
+      settings: "Settings"
+      sign_out: "Sign out"
+    footer:
+      company: "Company"
+      about: "About"
+      people: "People"
+      blog: "Blog"
+      contact: "Contact"
+      community: "Community"
+      help: "Help"
+      press: "Press"
+      status: "Status"
+      api: "API"
+  images:
+    new:
+      upload_image: "Upload an image"
+      drop_images_here_to_upload: "Drop images here to upload"
+      or: "or"
+      click_here_to_choose: "Click here to choose a file"
+      submit: "Submit"
+    image_page_sidebar:
+      download: "Download"
+      favorite: "Favorite"
+      favorited: "Favorited"
+      add_to_collection: "Add to Collection"
+      share: "Share"
+      report: "Report"
+      delete: "Delete"
+    image_page_toolbar:
+      add_a_tag_group: "Add a tag group"
+      help: "Help"
+      info: "Info"
+      view_edit_history: "View edit history"
+    image_page_information:
+      new_tag_group: "New Tag Group"
+  users:
+    show:
+      uploads: "Uploads"
+      creations: "Creations"
+      collections: "Collections"
+      edit: "(edit)"
+    edit:
+      profile_picture_image_id: "Profile Picture Image ID"
+      user_bio: "User bio"
+      images_per_page: "Images per page"
+  notifications:
+    notifications:
+      notifications_header: "Notifications"
+      mark_all_read: "Mark all as read"
+    notifications_list:
+      no_notifications_yet: "No notifications yet!"
+  shared:
+    comments:
+      comments_header: "Comments"
+      no_comments_yet: "No comments yet."
+      submit: "Submit"

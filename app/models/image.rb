@@ -14,8 +14,8 @@ class Image < ActiveRecord::Base
       large: "500x500>",
       huge: "1000x1000>"},
     # Use suffixes for the path
+    
       path: "public/system/fs/:class/:id_:style.:extension"
-
   belongs_to :user
 
   has_many :tag_groups, -> {includes :tags}, dependent: :delete_all
