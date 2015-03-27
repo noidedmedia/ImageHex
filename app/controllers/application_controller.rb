@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
 
   # Set the locale in all our URLS
   def default_url_options(options = {})
+    return options if I18n.locale == I18n.default_locale
     { locale: I18n.locale}.merge options
   end
   def configure_devise_permitted_parameters
