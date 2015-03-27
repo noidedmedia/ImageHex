@@ -68,9 +68,9 @@ nv:
   images:
     new:
       upload_image: "Create a new image on ImageHex"
-      drop_images_here_to_upload: "Use the cursor to move a file into this bx in order to upload"
+      drop_images_here_to_upload: "Use the cursor to move a file into this box and upload said file"
       or: "alternatively"
-      click_here_to_choose: "Click here to open your operating system's file browser to select a file"
+      click_here_to_choose: "Click here to open your operating system's file browser and select a file"
       submit: "Send the data to the server"
     image_page_sidebar:
       download: "Initiate a request to save the image to a storage device"
@@ -82,7 +82,7 @@ nv:
       delete: "Remove the record of this image from the database"
     image_page_toolbar:
       add_a_tag_group: "Add a tag group to the database which will be associated with this image, also creating a record of what you added and removed to preserve the history of this image"
-      help: "Help pertaining to this image"
+      help: "Assistance pertaining to this image"
       info: "Information about this image"
       view_edit_history: "View the various states the image has been in over time"
     image_page_information:
