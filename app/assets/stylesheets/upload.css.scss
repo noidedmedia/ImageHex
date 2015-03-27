@@ -106,7 +106,8 @@
       top: calc(50% - 9px);
       height: 20px;
       padding: 0 8px;
-      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
       font-size: 1.4rem;
       font-weight: 500;
       color: #8e8e8e;
