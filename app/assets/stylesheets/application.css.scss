@@ -106,7 +106,8 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
 
-input {
+input,
+textarea {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
 }
 
