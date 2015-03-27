@@ -55,13 +55,16 @@ nv:
       settings: "A group of values that describe how ImageHex works"
       sign_out: "Dissassociate this computer with an identity on ImageHex"
     footer:
+      imagehex: "ImageHex"
+      imagehex_description: "ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet."
+      imagehex_copyright: "Copyrighted during the present year to the company titled #noided Media"
       company: "Tax Entity Comprised of Multiple People"
       about: "Further Information about ImageHex"
       people: "The Workers of ImageHex"
       blog: "A series of articles pertaining to ImageHex"
       contact: "A list of ways to contact us"
       community: "The collective entity of the users of ImageHex"
-      help: "Assistence"
+      help: "Assistance"
       press: "Entities reporting information for the public good"
       status: "State of the website"
       api: "Application Programming Interface"
@@ -87,6 +90,10 @@ nv:
       view_edit_history: "View the various states the image has been in over time"
     image_page_information:
       new_tag_group: "Create a new tag group on this image"
+    search:
+      tag_group: "Tag group"
+      add_a_group: "Add a group"
+      search: "Search"
   users:
     show:
       uploads: "Images which this user has added to out database"
@@ -94,7 +101,7 @@ nv:
       collections: "The collections owned or administered by this user"
       edit: "(modify)"
     edit:
-      profile_picture_image_id: "Profile Picture Image ID"
+      profile_picture_image_id: "Profile Picture Image Identification Number"
       user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
       images_per_page: "Numer of images which ImageHex should display on a page"
   notifications:
@@ -108,3 +115,8 @@ nv:
       comments_header: "Things which other users desired to be displayed in association with this page"
       no_comments_yet: "No user has had the desire to make anything known on this page"
       submit: "Send data to the server for processing"
+    report_stub:
+      reason_for_report: "Reason for report:"
+      extra_information: "Extra information (optional):"
+      cancel: "Cancel"
+      report: "Report"

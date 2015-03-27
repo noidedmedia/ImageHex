@@ -42,7 +42,6 @@ en:
         digital_paint: "Digital paint"
         mixed_media: "Mixed media"
         three_dimensional_render: "Three Dimensional Render"
-        screenshot: "Screenshot"
   layouts:
     header:
       home: "Home"
