@@ -104,6 +104,8 @@ en:
       profile_picture_image_id: "Profile Picture Image ID"
       user_bio: "User bio"
       images_per_page: "Images per page"
+    collection_stub:
+      curated_by: "Curated by"
   notifications:
     notifications:
       notifications_header: "Notifications"
@@ -120,3 +122,11 @@ en:
       extra_information: "Extra information (optional):"
       cancel: "Cancel"
       report: "Report"
+  collections:
+    show:
+      curated_by: "Curated by"
+      follow: "Follow"
+    new:
+      title: "Title"
+      description: "Description"
+      create_collection: "Create Collection"

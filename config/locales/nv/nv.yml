@@ -89,6 +89,8 @@ nv:
       profile_picture_image_id: "Profile Picture Image Identification Number"
       user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
       images_per_page: "Numer of images which ImageHex should display on a page"
+    collection_stub:
+      curated_by: "Curated by"
   notifications:
     notifications:
       notifications_header: "Things which ImageHex desires you to be notified of"
@@ -105,3 +107,11 @@ nv:
       extra_information: "Extra information (optional):"
       cancel: "Cancel"
       report: "Report"
+  collections:
+    show:
+      curated_by: "Curated by"
+      follow: "Follow"
+    new:
+      title: "Title"
+      description: "Description"
+      create_collection: "Create Collection"
