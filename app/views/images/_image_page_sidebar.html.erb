@@ -2,10 +2,10 @@
   <div class="image-actions-container">
 
     <% if @image.public_domain? %>
-      <a href="#">
+      <a href="<%= @image.f %>" download="<%= @image.f %>">
         <div class="image-actions" id="img-action-download">
           <span class="icon icon-medium icon-download"></span>
-          <a download="<%= @image.f %>"><%= t(".download") %></a>
+          <p><%= t(".download") %>
         </div>
       </a>
     <% end %>
