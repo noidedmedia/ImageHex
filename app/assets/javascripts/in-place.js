@@ -14,11 +14,15 @@ var showon = function() {
   });
   showondiv.each(function() {
     var _this = this;
-    $(this).addClass('inactive').removeClass('active');
-    var toggle = $($(this).data("showon"));
+    $(_this).addClass('inactive').removeClass('active');
+    var toggle = $($(_this).data("showon"));
     $(toggle).on("click", function() {
-      console.log("toggled!");
       $(_this).toggleClass('active').toggleClass('inactive');
+
+      if ( $(toggle).hasClass("image-actions") || $(toggle).children().hasClass("image-actions") ) {
+        console.log("test.");
+        $(".image-actions-tooltip").not(_this).removeClass('active').addClass('inactive');
+      }
     });
   });
 };
