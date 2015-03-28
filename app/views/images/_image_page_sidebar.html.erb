@@ -91,8 +91,11 @@
         <span class="icon icon-medium icon-report"></span>
         <p><%= t(".report") %>
       </div>
+
+      <div data-showon="#img-action-report" class="image-actions-tooltip" id="img-action-report-tooltip">
+        <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
+      </div>
     </a>
-    <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
 
     <%# Delete %>
     <%# Only accessible to users with admin privileges. %>

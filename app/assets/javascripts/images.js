@@ -5,7 +5,14 @@ function deleteButtonAlert() {
   });
 }
 
+function cancelReportButton() {
+  $("#report-cancel-button").on("click", function() {
+    $("#img-action-report-tooltip").toggleClass('active').toggleClass('inactive');
+  });
+}
+
 // Function runs when the document is "ready".
 $(document).ready(function() {
   deleteButtonAlert();
+  cancelReportButton();
 });

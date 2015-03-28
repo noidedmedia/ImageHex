@@ -33,7 +33,6 @@
     position: relative;
   }
 
-
   a,
   #img-action-favorited,
   #img-action-favorite {
@@ -102,12 +101,12 @@
   height: auto;
   max-height: 700px;
   position: absolute;
-  right: calc(100% + 20px);
-  top: -25px;
+  z-index: 50;
+  right: calc(100% + 6px);
   background: #fff;
   color: #333;
   border-radius: 3px;
-  box-shadow: -4px 0 10px 5px rgba(0,0,0,0.15);
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.15);
 
   .agree-button {
     display: inline-block;
@@ -116,17 +115,12 @@
     background-color: #5bb289;
     text-align: center;
     padding: 9px;
+    margin-top: 3px;
     border-radius: 0 0 3px 3px;
   }
 
-  a {
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: 400;
-  }
-
   > p {
-    padding: 8px;
+    padding: 12px;
     font-size: 1.3rem;
     line-height: 17px;
   }
@@ -139,13 +133,13 @@
     display: block;
   }
 
+  // Tooltip triangle
   &:after {
     content: '';
     width: 0;
     height: 0;
     position: absolute;
-    top: 40px;
-    right: -13px;
+    right: -12px;
     border-width: 0 10px 10px;
     border-style: solid;
     -webkit-transform: rotate(90deg);
@@ -167,6 +161,24 @@
     > a > span::before {
       @include translate(5px, -1px);
     }
+  }
+}
+
+
+/* ==============================================
+    Download
+   ============================================== */
+
+#img-action-download-tooltip {
+  a {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  &:after {
+    top: 38px;
+    top: -25px;
   }
 }
 
@@ -287,26 +299,31 @@
     Report
    ============================================== */
 
-#report-form {
-  padding: 0 10px;
-  margin-left: 35px;
+#img-action-report-tooltip {
+  top: -170px;
+  cursor: default;
 
-  &.inactive {
-    display: none;
+  &:after {
+    bottom: 64px;
   }
+}
 
-  &.active {
-    display: inline-block;
+#report-form {
+  padding: 12px;
+
+  input[type=radio] {
+    height: 12px;
+    width: 12px;
   }
 
   input[type=radio] + label {
-    color: rgba(#fff,.8);
+    color: #555;
     font-size: 1.4rem;
     font-weight: 300;
   }
 
   input[type=radio]:checked + label {
-    color: #fff;
+    color: #333;
   }
 
   .report-row {
@@ -315,7 +332,7 @@
   }
 
   p {
-    color: rgba(#fff, 0.8);
+    color: #333;
     font-weight: 500;
     font-size: 1.2rem;
     margin-top: 10px;
@@ -326,14 +343,15 @@
     width: 100%;
     height: 75px;
     max-height: 125px;
-    border: 1px solid rgba(#fff, 0.8);
+    border: 1px solid #aaaab2;
     background-color: transparent;
     resize: vertical;
-    color: #fff;
+    color: #333;
     font-size: 1.4em;
 
     &:focus {
       outline: transparent;
+      border: 1px solid #333;
     }
   }
 }
