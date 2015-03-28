@@ -27,6 +27,12 @@
   -webkit-align-items: flex-end;
           align-items: flex-end;
   padding-bottom: 15px;
+  position: relative;
+
+  > a {
+    position: relative;
+  }
+
 
   a,
   #img-action-favorited,
@@ -88,6 +94,70 @@
     > p {
       display: none;
     }
+  }
+}
+
+.image-actions-tooltip {
+  width: 225px;
+  height: auto;
+  max-height: 700px;
+  position: absolute;
+  right: calc(100% + 20px);
+  top: -25px;
+  background: #fff;
+  color: #333;
+  border-radius: 3px;
+  box-shadow: -4px 0 10px 5px rgba(0,0,0,0.15);
+
+  .agree-button {
+    display: inline-block;
+    height: 36px;
+    width: 100%;
+    background-color: #5bb289;
+    text-align: center;
+    padding: 9px;
+    border-radius: 0 0 3px 3px;
+  }
+
+  a {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  > p {
+    padding: 8px;
+    font-size: 1.3rem;
+    line-height: 17px;
+  }
+
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+  }
+
+  &:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 40px;
+    right: -13px;
+    border-width: 0 10px 10px;
+    border-style: solid;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+    border-color: #fff transparent;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100vw;
+    // Height of the page minus the height of the header.
+    height: calc(100vh - 50px);
+    top: 50px;
   }
 }
 

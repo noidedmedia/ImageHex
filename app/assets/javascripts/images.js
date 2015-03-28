@@ -1,6 +1,6 @@
 // Function adds a confirmation dialog to the "Delete" button on images.
 function deleteButtonAlert() {
-  $("#img-action-delete").on("click", function(e) {
+  $("#img-action-delete").on("click", function() {
     return confirm("Are you sure?");
   });
 }
