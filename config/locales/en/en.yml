@@ -77,6 +77,7 @@ en:
       submit: "Submit"
     image_page_sidebar:
       download: "Download"
+      download_license_notice: "This image has been made available under a non-restrictive license. You must credit the creator of this image when using it in any way."
       favorite: "Favorite"
       favorited: "Favorited"
       add_to_collection: "Add to Collection"

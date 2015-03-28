@@ -20,7 +20,7 @@
       </a>
 
       <div data-showon="#img-action-download" class="image-actions-tooltip" id="img-action-download-tooltip">
-        <p>This image has been made available under the terms of the <%= t("activerecord.attributes.licenses.#{@image.license}") %> license. You must credit the creator of this image if you use it in any form.</p>
+        <p><%= t(".download_license_notice") %></p>
 
         <a href="<%= @image.f %>" download>
           <div class="agree-button">
