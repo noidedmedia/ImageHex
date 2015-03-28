@@ -62,6 +62,8 @@ nv:
       submit: "Send the data to the server"
     image_page_sidebar:
       download: "Initiate a request to save the image to a storage device"
+      download_license_notice: "This image has been made available under a non-restrictive license. You must credit the creator of this image when using it in any way."
+      agree_and_download: "Agree and Download"
       favorite: "Add the image to your favorites"
       favorited: "This image is currently in your favorites"
       add_to_collection: "Associate the image with your collection"
