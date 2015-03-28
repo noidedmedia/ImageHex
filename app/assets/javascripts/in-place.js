@@ -19,8 +19,11 @@ var showon = function() {
     $(toggle).on("click", function() {
       $(_this).toggleClass('active').toggleClass('inactive');
 
+      // If the element being pressed is an "image-action" (or is the child of 
+      // such an element, for compatibility reasons) in the image page sidebar,
+      // all other open image-action tooltips will be closed when the element
+      // is pressed.
       if ( $(toggle).hasClass("image-actions") || $(toggle).children().hasClass("image-actions") ) {
-        console.log("test.");
         $(".image-actions-tooltip").not(_this).removeClass('active').addClass('inactive');
       }
     });

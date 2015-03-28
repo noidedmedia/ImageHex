@@ -5,6 +5,7 @@ function deleteButtonAlert() {
   });
 }
 
+// If the "Cancel" button is pressed in the Report tooltip, the tooltip will be closed.
 function cancelReportButton() {
   $("#report-cancel-button").on("click", function() {
     $("#img-action-report-tooltip").toggleClass('active').toggleClass('inactive');
