@@ -228,7 +228,13 @@
     Add a collection
    ============================================== */
 
+#collection-add-list-container {
+  overflow: hidden;
+  border-radius: 3px;
+}
+
 #collection-add-list-scrollbar {
+  overflow: hidden;
   overflow-y: auto;
   margin-right: 10px;
   max-height: 400px;
