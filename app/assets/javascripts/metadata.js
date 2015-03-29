@@ -1,6 +1,6 @@
 function metadataParse() {
   EXIF.getData(this, function() {
-    console.log(EXIF.pretty(this));
+    console.log(EXIF.getAllTags(this));
 
     var image = this;
 
