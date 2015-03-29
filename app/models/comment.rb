@@ -68,7 +68,7 @@ class Comment < ActiveRecord::Base
   end
 
   ##
-  # Notifiation message just returns a string to use as the message
+  # Notification message just returns a string to use as the message
   # in a notification
   def reply_message(other)
     "#{other.user.name} replied to your comment on #{commentable_type} ##{commentable_id}"

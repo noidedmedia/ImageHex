@@ -7,12 +7,14 @@
   <% else %>
     <%# We manually include the user of the comment to prevent an N+1 %>
     <% subject.comments.includes(:user).order('created_at ASC').each do |comment| %>
-      <div class="comment">
-
+      <div class="comment" id="comment-<%= comment.id %>">
+        <%# Anchor for comment links from Notifications. %>
+        <a name= <%= comment.id %> ></a>
+        
         <%# Username, with link to user page, and "commented [time value] ago". %>
         <div class="user-comment-info">
-          <%= link_to comment.user.name, comment.user %> commented 
-          <%= time_ago_in_words(comment.created_at) %> ago
+          <%= link_to comment.user.name, comment.user %>
+          <%= " " + t(".commented") + " " + time_ago_in_words(comment.created_at) + " " + t(".ago") %>
         </div>
 
         <%# Comment body, the text in the comment itself. %>

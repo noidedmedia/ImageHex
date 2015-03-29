@@ -114,9 +114,12 @@ en:
       mark_all_read: "Mark all as read"
     notifications_list:
       no_notifications_yet: "No notifications yet!"
+      ago: "ago"
   shared:
     comments:
       comments_header: "Comments"
+      commented: "commented"
+      ago: "ago"
       no_comments_yet: "No comments yet."
       submit: "Submit"
     report_stub:

@@ -135,6 +135,7 @@
 #image-help-button {
   cursor: pointer;
   display: inline-block;
+  position: relative;
 
   &:before {
     content: $icon-help;
@@ -165,16 +166,23 @@
   border-radius: 2px;
   padding: 8px 12px;
   margin-top: 5px;
+  position: absolute;
+  top: 35px;
+  max-width: 300px;
+  width: auto;
+  @include translateX(-50%);
 }
 
 // Styling for the image details/metadata table.
 .image-details-table {
   font-size: 1.2rem;
+  margin: auto;
 
   // Styling for cells in column one.
   .column-one-cell {
     text-align: right;
     padding-right: 8px;
+    font-weight: 500;
   }
 
   // Styling for cells in column two.
@@ -184,7 +192,13 @@
 
   // Styling for each respective row.
   .table-row {
+    &.inactive {
+      display: none;
+    }
 
+    &.active {
+      display: block;
+    }
   }
 }
 
@@ -210,7 +224,5 @@
   &.active {
     display: block;
     position: absolute;
-    top: 30px;
-    right: 40px;
   }
 }
