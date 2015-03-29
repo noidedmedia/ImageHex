@@ -10,7 +10,7 @@
     <figcaption class="collection-information">
       <p class="collection-title"><%= c.name %>
 
-      <p class="collection-curators">Curated by <%= c.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
+      <p class="collection-curators"><%= t(".curated_by") %> <%= c.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
       
       <% if c.description != '' %>
         <p class="collection-description"><%= c.description %>

@@ -60,8 +60,7 @@
 .alert {
   animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
     -webkit-animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
-  transform: translate3d(0, -40px, 0);
-    -webkit-transform: translate3d(0, -40px, 0);
+  @include translateY(-40px);
 
   color: #fff;
   display: block;

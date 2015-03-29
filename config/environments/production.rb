@@ -5,6 +5,7 @@ Rails.application.routes.default_url_options[:host] = "www.imagehex.com"
 
 
 Rails.application.configure do
+  
   # Use AWS for paperclip
   config.paperclip_defaults = {
     storage: :s3,

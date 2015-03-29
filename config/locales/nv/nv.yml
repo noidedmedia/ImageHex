@@ -1,0 +1,126 @@
+# "nv" stands for "Needlessly verbose".
+# This file is used to test that i18n is working properly, and that
+# strings in other languages will work regardless of their length
+# (e.g. German's infamously long words).
+# It's also fun to write!
+
+nv:
+  activerecord:
+    models:
+      image: "Binary Representation of Visual Content"
+      comment:
+        made_a_comment: "%{username} made a comment on %{commentable}"
+        replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
+        mentioned_you: "%{username} mentioned you in a comment"
+    attributes:
+      image:
+        f: "Organized binary data under a given name"
+      licenses:
+        public_domain: "Able to be used by anybody without restriction"
+        all_rights_reserved: "Subject to the copyright laws of the nation in which it was created"
+        cc_by: "Creative Commons Attribution"
+        cc_by_sa: "Creative Commons Share Alike"
+        cc_by_nd: "Creative Commons No Derivative Works"
+        cc_by_nc: "Creative Commons Non Commercial"
+        cc_by_nd_sa: "Creative Commons Attribution Non-Commercial Share Alike"
+        cc_by_nc_nd: "Creative Commons Attribution Non-Commercial No Derivative Works"
+      mediums:
+        photograph: "Visual data of the real world"
+        pencil: "Created by rubbing graphite on paper"
+        paint: "Created by pigmented compounds on a canvas"
+        digital_paint: "Created digitally using software such as GIMP"
+        mixed_media: "Containing parts from multiple types of media"
+        three_dimensional_render: "Created by rasterizing 3D data, including shading and textures"
+  layouts:
+    header:
+      home: "Page at the root of the URL"
+      search: "Page where you can find many images"
+      search_suggestions_note: "Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags"
+      sign_in: "Verify your identity"
+      sign_up: "Create an identity for yourself"
+      upload: "Create a new image on ImageHex"
+      profile: "Text, set by users, designed to give one a small amount of information about that user"
+      admin: "A user who can do whatever they wish"
+      settings: "A group of values that describe how ImageHex works"
+      sign_out: "Dissassociate this computer with an identity on ImageHex"
+    footer:
+      imagehex: "ImageHex"
+      imagehex_description: "ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet."
+      imagehex_copyright: "Copyrighted during the present year to the company titled #noided Media"
+      company: "Tax Entity Comprised of Multiple People"
+      about: "Further Information about ImageHex"
+      people: "The Workers of ImageHex"
+      blog: "A series of articles pertaining to ImageHex"
+      contact: "A list of ways to contact us"
+      community: "The collective entity of the users of ImageHex"
+      help: "Assistance"
+      press: "Entities reporting information for the public good"
+      status: "State of the website"
+      api: "Application Programming Interface"
+  images:
+    new:
+      upload_image: "Create a new image on ImageHex"
+      drop_images_here_to_upload: "Use the cursor to move a file into this box and upload said file"
+      or: "alternatively"
+      click_here_to_choose: "Click here to open your operating system's file browser and select a file"
+      submit: "Send the data to the server"
+    image_page_sidebar:
+      download: "Initiate a request to save the image to a storage device"
+      download_license_notice: "This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way."
+      agree_and_download: "Agree and Download"
+      favorite: "Add the image to your favorites"
+      favorited: "This image is currently in your favorites"
+      add_to_collection: "Associate the image with your collection"
+      share: "Send the link to somebody else"
+      report: "Alert the admins that this image is against the rules"
+      delete: "Remove the record of this image from the database"
+    image_page_toolbar:
+      add_a_tag_group: "Add a tag group to the database which will be associated with this image, also creating a record of what you added and removed to preserve the history of this image"
+      help: "Assistance pertaining to this image"
+      details: "Details about this image"
+      view_edit_history: "View the various states the image has been in over time"
+    image_page_information:
+      new_tag_group: "Create a new tag group on this image"
+    search:
+      tag_group: "Tag group"
+      add_a_group: "Add a group"
+      search: "Search"
+  users:
+    show:
+      uploads: "Images which this user has added to out database"
+      creations: "Images which this user has caused to come into existance, by photographing or otherwise creating them"
+      collections: "The collections owned or administered by this user"
+      edit: "(modify)"
+    edit:
+      profile_picture_image_id: "Profile Picture Image Identification Number"
+      user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
+      images_per_page: "Numer of images which ImageHex should display on a page"
+    collection_stub:
+      curated_by: "Curated by"
+  notifications:
+    notifications:
+      notifications_header: "Things which ImageHex desires you to be notified of"
+      mark_all_read: "Mark all as read, indicating that you no longer need to see them"
+    notifications_list:
+      no_notifications_yet: "We have not found any notifications at the present time"
+      ago: "ago"
+  shared:
+    comments:
+      comments_header: "Things which other users desired to be displayed in association with this page"
+      commented: "commented"
+      ago: "ago"
+      no_comments_yet: "No user has had the desire to make anything known on this page"
+      submit: "Send data to the server for processing"
+    report_stub:
+      reason_for_report: "Reason for report:"
+      extra_information: "Extra information (optional):"
+      cancel: "Cancel"
+      report: "Report"
+  collections:
+    show:
+      curated_by: "Curated by"
+      follow: "Follow"
+    new:
+      title: "Title"
+      description: "Description"
+      create_collection: "Create Collection"

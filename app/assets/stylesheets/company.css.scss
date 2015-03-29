@@ -66,8 +66,7 @@
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);
-      transform: translate(-15px,6px);
-        -webkit-transform: translate(-15px,6px);
+      @include translate(-15px,6px);
       height: 3px;
       display: block;
     }

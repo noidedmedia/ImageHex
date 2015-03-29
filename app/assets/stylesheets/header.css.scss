@@ -53,8 +53,6 @@
 
   @media all and (max-device-width: $mobile-width) {
     position: absolute;
-    -webkit-transform: translateX(calc(100vw + 90px));
-            transform: translateX(calc(100vw + 90px));
     right: 0;
     top: 50px;
     width: calc(100vw - 90px);
@@ -66,11 +64,11 @@
     z-index: 1000;
     transition: -webkit-transform 300ms;
     transition: transform 300ms;
+    @include translateX(calc(100vw + 90px));
     padding-top: 10px;
 
     &.active {
-      -webkit-transform: translateX(0);
-              transform: translateX(0);
+      @include translateX(0);
     }
 
     .header-item {
@@ -146,8 +144,7 @@
   width: 50px;
 
   span::before {
-    -webkit-transform: translate(-35px,14px);
-            transform: translate(-35px,14px);
+    @include translate(-35px,14px);
 
     transition: color 300ms;
   }
