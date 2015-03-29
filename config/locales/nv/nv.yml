@@ -8,6 +8,10 @@ nv:
   activerecord:
     models:
       image: "Binary Representation of Visual Content"
+      comment:
+        made_a_comment: "%{username} made a comment on %{commentable}"
+        replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
+        mentioned_you: "%{username} mentioned you in a comment"
     attributes:
       image:
         f: "Organized binary data under a given name"
@@ -99,9 +103,12 @@ nv:
       mark_all_read: "Mark all as read, indicating that you no longer need to see them"
     notifications_list:
       no_notifications_yet: "We have not found any notifications at the present time"
+      ago: "ago"
   shared:
     comments:
       comments_header: "Things which other users desired to be displayed in association with this page"
+      commented: "commented"
+      ago: "ago"
       no_comments_yet: "No user has had the desire to make anything known on this page"
       submit: "Send data to the server for processing"
     report_stub:

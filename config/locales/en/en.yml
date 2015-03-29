@@ -23,6 +23,10 @@ en:
   activerecord:
     models:
       image: "Image"
+      comment:
+        made_a_comment: "%{username} made a comment on %{commentable}"
+        replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
+        mentioned_you: "%{username} mentioned you in a comment"
     attributes:
       image:
         f: "File"
