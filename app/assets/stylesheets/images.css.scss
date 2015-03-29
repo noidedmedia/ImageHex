@@ -177,6 +177,11 @@
 .image-details-table {
   font-size: 1.2rem;
   margin: auto;
+  border-collapse: collapse;
+
+  tbody {
+    vertical-align: bottom;
+  }
 
   // Styling for cells in column one.
   .column-one-cell {
@@ -192,6 +197,8 @@
 
   // Styling for each respective row.
   .table-row {
+    padding: 3px 0;
+
     &.inactive {
       display: none;
     }
