@@ -237,7 +237,6 @@
 #collection-add-list-scrollbar {
   overflow: hidden;
   overflow-y: auto;
-  margin-right: 10px;
   max-height: 400px;
 
   &::-webkit-scrollbar {
@@ -264,6 +263,10 @@
 
   input[type="submit"] {
     background-color: #fff;
+    
+    &:hover {
+      background-color: darken(#fff,5%);
+    }
   }
 }
 
