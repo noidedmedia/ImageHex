@@ -20,7 +20,7 @@
       </a>
 
       <div data-showon="#img-action-download" class="image-actions-tooltip" id="img-action-download-tooltip">
-        <p><%= t(".download_license_notice") %></p>
+        <p><%= t(".download_license_notice", license: t("activerecord.attributes.licenses.#{@image.license}")) %></p>
 
         <a href="<%= @image.f %>" download>
           <div class="agree-button">
