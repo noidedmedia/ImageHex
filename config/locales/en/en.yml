@@ -88,7 +88,7 @@ en:
     image_page_toolbar:
       add_a_tag_group: "Add a tag group"
       help: "Help"
-      info: "Info"
+      details: "Details"
       view_edit_history: "View edit history"
     image_page_information:
       new_tag_group: "New Tag Group"

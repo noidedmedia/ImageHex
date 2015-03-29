@@ -73,7 +73,7 @@ nv:
     image_page_toolbar:
       add_a_tag_group: "Add a tag group to the database which will be associated with this image, also creating a record of what you added and removed to preserve the history of this image"
       help: "Assistance pertaining to this image"
-      info: "Information about this image"
+      details: "Details about this image"
       view_edit_history: "View the various states the image has been in over time"
     image_page_information:
       new_tag_group: "Create a new tag group on this image"

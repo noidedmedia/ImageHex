@@ -146,7 +146,7 @@
   }
 }
 
-#image-info-button {
+#image-details-button {
   cursor: pointer;
   display: inline-block;
 
@@ -160,15 +160,15 @@
   }
 }
 
-#image-info-tooltip {
+#image-details-tooltip {
   background-color: #fff;
   border-radius: 2px;
   padding: 8px 12px;
   margin-top: 5px;
 }
 
-// Styling for the image information/metadata table.
-.image-info-table {
+// Styling for the image details/metadata table.
+.image-details-table {
   font-size: 1.2rem;
 
   // Styling for cells in column one.
