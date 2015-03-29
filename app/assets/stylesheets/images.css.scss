@@ -177,6 +177,7 @@
 .image-details-table {
   font-size: 1.2rem;
   margin: auto;
+  margin-bottom: 3px;
   border-collapse: collapse;
 
   tbody {
@@ -197,14 +198,14 @@
 
   // Styling for each respective row.
   .table-row {
-    padding: 3px 0;
+    height: 20px;
 
     &.inactive {
       display: none;
     }
 
     &.active {
-      display: block;
+      display: table-row;
     }
   }
 }
