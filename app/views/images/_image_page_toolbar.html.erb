@@ -24,68 +24,68 @@
         <table class="image-details-table">
           <tbody>
 
-            <tr class="table-row inactive">
-              <td class="column-one-cell">Date taken</td>
-              <td class="column-two-cell">-</td>
-            </tr>
-
-            <tr class="table-row inactive">
-              <td class="column-one-cell">Dimensions</td>
-              <td class="column-two-cell">-</td>
-            </tr>
-
-            <tr class="table-row inactive">
-              <td class="column-one-cell">File name</td>
-              <td class="column-two-cell">-</td>
-            </tr>
-
-            <tr class="table-row inactive">
-              <td class="column-one-cell">File size</td>
-              <td class="column-two-cell">-</td>
-            </tr>
-
             <tr class="table-row active">
-              <td class="column-one-cell">Medium</td>
-              <td class="column-two-cell"><%= t("activerecord.attributes.mediums.#{@image.medium}") %></td>
-            </tr>
-
-            <tr class="table-row active">
-              <td class="column-one-cell">License</td>
+              <td class="column-one-cell"><%= t(".license") %></td>
               <td class="column-two-cell"><%= t("activerecord.attributes.licenses.#{@image.license}") %></td>
             </tr>
 
+            <tr class="table-row active">
+              <td class="column-one-cell"><%= t(".medium") %></td>
+              <td class="column-two-cell"><%= t("activerecord.attributes.mediums.#{@image.medium}") %></td>
+            </tr>
+
             <tr class="table-row inactive">
-              <td class="column-one-cell">Camera</td>
+              <td class="column-one-cell"><%= t(".date_taken") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
             <tr class="table-row inactive">
-              <td class="column-one-cell">Lens</td>
+              <td class="column-one-cell"><%= t(".dimensions") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
             <tr class="table-row inactive">
-              <td class="column-one-cell">Focal Length</td>
+              <td class="column-one-cell"><%= t(".file_name") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
             <tr class="table-row inactive">
-              <td class="column-one-cell">Exposure</td>
+              <td class="column-one-cell"><%= t(".file_size") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
             <tr class="table-row inactive">
-              <td class="column-one-cell">F Number</td>
+              <td class="column-one-cell"><%= t(".camera") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
             <tr class="table-row inactive">
-              <td class="column-one-cell">ISO</td>
+              <td class="column-one-cell"><%= t(".lens") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
             <tr class="table-row inactive">
-              <td class="column-one-cell">Flash</td>
+              <td class="column-one-cell"><%= t(".focal_length") %></td>
+              <td class="column-two-cell">-</td>
+            </tr>
+
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".exposure") %></td>
+              <td class="column-two-cell">-</td>
+            </tr>
+
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".f_number") %></td>
+              <td class="column-two-cell">-</td>
+            </tr>
+
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".iso") %></td>
+              <td class="column-two-cell">-</td>
+            </tr>
+
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".flash") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
