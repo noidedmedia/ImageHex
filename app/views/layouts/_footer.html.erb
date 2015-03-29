@@ -1,29 +1,32 @@
 <footer id="footer-container">
   <div id="footer">
 
+  <%# ImageHex description text %>
     <div class="footer-description-column">
-      <p class="footer-description-title">ImageHex
-      <p class="footer-description-body">ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet.
-      <p class="footer-description-copyright">&copy; 2015 #noided Media
+      <p class="footer-description-title"><%= t(".imagehex") %>
+      <p class="footer-description-body"><%= t(".imagehex_description") %>
+      <p class="footer-description-copyright"><%= t(".imagehex_copyright") %>
     </div>
 
+    <%# "Company" footer column %>
     <div class="footer-links-column">
       <ul class="footer-links-list">
-        <li>Company
-        <li><a href="/about">About</a>
-        <li><a href="/people">People</a>
-        <li><a href="https://medium.com/imagehex-development-blog">Blog</a>
-        <li><a href="/contact">Contact</a>
+        <li><%= t(".company") %>
+        <li><%= link_to t(".about"), about_path %>
+        <li><%= link_to t(".people"), people_path %>
+        <li><a href="https://medium.com/imagehex-development-blog"><%= t(".blog") %></a>
+        <li><%= link_to t(".contact"), contact_path %>
       </ul>
     </div>
-
+    
+    <%# "Community" footer column %>
     <div class="footer-links-column">
       <ul class="footer-links-list">
-        <li>Community
-        <li><a href="/help">Help</a>
-        <li><a href="/press">Press</a>
-        <li><a href="/status">Status</a>
-        <li><a href="/api">API</a>
+        <li><%= t(".community") %>
+        <li><a href="/help"><%= t(".help") %></a>
+        <li><a href="/press"><%= t(".press") %></a>
+        <li><a href="/status"><%= t(".status") %></a>
+        <li><a href="/api"><%= t(".api") %></a>
       </ul>
     </div>
   </div>

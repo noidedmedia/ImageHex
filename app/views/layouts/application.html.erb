@@ -14,10 +14,10 @@
   ga('create', 'UA-30487635-3', 'auto');
   ga('send', 'pageview');
   </script>
-  <!-- Viewport meta tag -->
+  <%# Viewport meta tag %>
   <meta name="viewport" content="width=device-width, user-scalable=no">
 
-  <!-- UTF-8 Character Set -->
+  <%# UTF-8 Character Set %>
   <meta charset="utf-8">
 
   <meta name="description" content="ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet.">
@@ -44,7 +44,7 @@
 
   <%= render 'layouts/footer' %>
 
-  <!-- This enables Google Search inline search box -->
+  <%# This script can be parsed by web crawlers to enable Google's in-results search box. %>
   <script type="application/ld+json">
   {
      "@context": "http://schema.org",
@@ -52,7 +52,7 @@
      "url": "http://www.imagehex.com/",
      "potentialAction": {
        "@type": "SearchAction",
-       "target": "http://imagehex.com/search?query%5B%5D={search_term_string}",
+       "target": "http://www.imagehex.com/search?query%5B%5D={search_term_string}",
        "query-input": "required name=search_term_string"
      }
   }

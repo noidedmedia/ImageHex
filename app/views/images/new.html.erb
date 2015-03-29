@@ -1,5 +1,5 @@
 <div id="upload-page-container">
-  <h2>Upload images</h2>
+  <h2><%= t(".upload_image") %></h2>
 
   <%= form_for @image, html: {id: "upload-form"} do |f| %>
     
@@ -14,7 +14,7 @@
       </div>
 
       <div class="select-container">
-        <%= f.select :license, Image.licenses.map{|k, v| [k, k]}, {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+        <%= f.select :license, options_for_select(Image.license_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-license-select' } %>
       </div>
       <%# Note that the above has a "{}" because %>
       <%# html-options needs to be invoked before %>
@@ -22,7 +22,7 @@
 
       <%# The Medium select input. %>
       <div class="select-container">
-        <%= f.select :medium, Image.media.keys.to_a.map{|x| [x.titleize, x]}, {}, { :class => 'custom-select', :id => 'image-media-select' } %>
+        <%= f.select :medium, options_for_select(Image.medium_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-media-select' } %>
       </div>
     </div>
 
@@ -32,21 +32,21 @@
       <%= f.file_field :f, id: "file-field" %>
 
       <div class="top-half">
-        <p>Drop images here to upload
+        <p><%= t(".drop_images_here_to_upload") %>
       </div>
 
       <hr>
-      <p class="or">or
+      <p class="or"><%= t(".or") %>
 
       <div class="bottom-half">
 
         <div class="file-upload-coverup">
-          <p>Click here to choose a file
+          <p><%= t(".click_here_to_choose") %>
         </div>
       </div>
 
     </div>
 
-    <%= f.submit "Submit", id: "upload-submit-button" %>
+    <%= f.submit t(".submit"), id: "upload-submit-button" %>
   <% end %>
 </div>

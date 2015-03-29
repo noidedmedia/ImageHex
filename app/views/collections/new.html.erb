@@ -4,12 +4,12 @@
   <%= form_for @collection do |f| %>
     
     <div class="new-collection-field">
-      <%= f.label :name, "Title", class: "label", for: "new-collection-title" %>
+      <%= f.label :name, t(".title"), class: "label", for: "new-collection-title" %>
       <%= f.text_field :name, id: "new-collection-title" %>
     </div>
 
     <div class="new-collection-field">
-      <%= f.label :name, "Description", class: "label", for: "new-collection-description" %>
+      <%= f.label :name, t(".description"), class: "label", for: "new-collection-description" %>
       <%= f.text_area :description, id: "new-collection-description" %>
     </div>
 
@@ -17,6 +17,6 @@
       for now we just use this %>
     <%= f.hidden_field :type, value: "Subjective" %>
     
-    <%= f.submit "Create Collection", id: "new-collection-submit" %>
+    <%= f.submit t(".create_collection"), id: "new-collection-submit" %>
   <% end %>
 </div>

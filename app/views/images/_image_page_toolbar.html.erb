@@ -1,87 +1,91 @@
 <div id="image-page-toolbar">
   <div class="left">
+    <%# Add a tag group %>
     <div id="add-tag-group-button">
-      Add a tag group
+      <%= t(".add_a_tag_group") %>
     </div>
   </div>
 
   <div class="right">
+    <%# Help %>
     <div id="image-help-button">
-      Help
+      <%= t(".help") %>
     </div>
 
-    <div id="image-info">
-      <div id="image-info-button">
-        Info
+    <%# Info %>
+    <div id="image-details">
+      <div id="image-details-button">
+        <%= t(".details") %>
       </div>
 
-      <!-- Metadata table -->
-      <div data-showon="#image-info-button" class="toolbar-tooltip" id="image-info-tooltip">
-        <table class="image-info-table">
+      <%# Metadata table %>
+      <%# Display of the table is toggled when the info button is clicked. %>
+      <div data-showon="#image-details-button" class="toolbar-tooltip" id="image-details-tooltip">
+        <table class="image-details-table">
           <tbody>
 
-            <tr class="table-row">
-              <td class="column-one-cell">Date taken</td>
+            <tr class="table-row active">
+              <td class="column-one-cell"><%= t(".license") %></td>
+              <td class="column-two-cell"><%= t("activerecord.attributes.licenses.#{@image.license}") %></td>
+            </tr>
+
+            <tr class="table-row active">
+              <td class="column-one-cell"><%= t(".medium") %></td>
+              <td class="column-two-cell"><%= t("activerecord.attributes.mediums.#{@image.medium}") %></td>
+            </tr>
+
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".date_taken") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">Dimensions</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".dimensions") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">File name</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".file_name") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">File size</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".file_size") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">Medium</td>
-              <td class="column-two-cell"><%= @image.medium.titleize %></td>
-            </tr>
-
-            <tr class="table-row">
-              <td class="column-one-cell">License</td>
-              <td class="column-two-cell"><%= @image.license %></td>
-            </tr>
-
-            <tr class="table-row">
-              <td class="column-one-cell">Camera</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".camera") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">Lens</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".lens") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">Focal Length</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".focal_length") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">Exposure</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".exposure") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">F Number</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".f_number") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">ISO</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".iso") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
-            <tr class="table-row">
-              <td class="column-one-cell">Flash</td>
+            <tr class="table-row inactive">
+              <td class="column-one-cell"><%= t(".flash") %></td>
               <td class="column-two-cell">-</td>
             </tr>
 
@@ -90,8 +94,9 @@
       </div>
     </div>
 
+    <%# Edit history button %>
     <div id="edit-history-button">
-      View edit history
+      <%= t(".view_edit_history") %>
     </div>
   </div>
 

@@ -6,4 +6,11 @@ module ApplicationHelper
   def comment_path(comment)
     polymorphic_path(comment.commentable) + "##{comment.id}"
   end
+
+  ##
+  # Used on the About, People, and Contact pages to add a "current"
+  # class to the tab link if the page linked is the current page.
+  def current(path)
+    "current" if current_page?(path)
+  end
 end

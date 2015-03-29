@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Adds different "flash[:type]" types.
   add_flash_types :warning, :info
-
+  before_action :set_locale
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -32,7 +32,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Set the locale in all our URLS
+  def default_url_options(options = {})
+    return options if I18n.locale == I18n.default_locale
+    { locale: I18n.locale}.merge options
+  end
   def configure_devise_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 end

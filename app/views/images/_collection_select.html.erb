@@ -1,4 +1,4 @@
-<div id="collection-add-list-container" data-showon="#img-action-collection">
+<div id="collection-add-list-container">
   <div id="collection-add-list-scrollbar">
     <% current_user.collections.each do |c| %>
       <%= form_tag add_collection_path(c.id) do %>

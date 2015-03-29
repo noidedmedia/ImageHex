@@ -3,14 +3,14 @@
     <label for="page-search-input">
       <span class="icon icon-small icon-search"></span>
     </label>
-    <input type="search" class="page-search-input" name="query[]" placeholder="Tag group" autocomplete="off" />
+    <input type="search" class="page-search-input" name="query[]" placeholder=<%= t(".tag_group") %> autocomplete="off" />
     <ul class="page-suggestions">
 
     </ul>
   </div>
 
-  <button id="add-group-button">Add a group</button>
-  <input type="submit" id="page-submit-button" value="Search">
+  <button id="add-group-button"><%= t(".add_a_tag_group") %></button>
+  <input type="submit" id="page-submit-button" value=<%= t(".search") %> >
 </form>
 
 <%= render 'show_stub' %>

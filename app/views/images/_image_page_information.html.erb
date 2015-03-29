@@ -4,7 +4,7 @@
 
   <div id="new-group" data-showon="#add-tag-group-button">
     <%= form_for [@image, @image.tag_groups.build] do |f| %>
-      <%= f.text_field :tag_group_string, placeholder: "New Tag Group" %>
+      <%= f.text_field :tag_group_string, placeholder: t(".new_tag_group") %>
     <% end %>
   </div>
   
