@@ -12,6 +12,11 @@ nv:
         made_a_comment: "%{username} made a comment on %{commentable}"
         replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
         mentioned_you: "%{username} mentioned you in a comment"
+      user:
+        user_hasn't_made_a_page: "%{username} hasn't made a page yet."
+      favorite:
+        favorites_collection_title: "%{usernames} Favorites"
+        favorites_collection_description: "Images favorited by %{username}."
     attributes:
       image:
         f: "Organized binary data under a given name"
@@ -78,6 +83,19 @@ nv:
       add_a_tag_group: "Add a tag group to the database which will be associated with this image, also creating a record of what you added and removed to preserve the history of this image"
       help: "Assistance pertaining to this image"
       details: "Details about this image"
+      license: "License"
+      medium: "Medium"
+      date_taken: "Date taken"
+      dimensions: "Dimensions"
+      file_name: "File name"
+      file_size: "File size"
+      camera: "Camera"
+      lens: "Lens"
+      focal_length: "Focal Length"
+      exposure: "Exposure"
+      f_number: "F Number"
+      iso: "ISO"
+      flash: "Flash"
       view_edit_history: "View the various states the image has been in over time"
     image_page_information:
       new_tag_group: "Create a new tag group on this image"
