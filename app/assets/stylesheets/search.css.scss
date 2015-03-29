@@ -238,8 +238,7 @@
   width: 50px;
 
   span::before {
-    -webkit-transform: translate(-35px,14px);
-            transform: translate(-35px,14px);
+    @include translate(-35px,14px);
   }
 
   @media all and (max-device-width: $mobile-width) {

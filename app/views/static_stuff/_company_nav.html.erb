@@ -1,0 +1,9 @@
+<%# The company nav is rendered in-line on the About/People/Contact pages. %>
+<%# The "current(path)" is a Rails helper that passes a "current" class to the link element if the page linked is the page currently displayed. %>
+<nav id="company-nav-container">
+  <div class="company-nav">
+    <%= link_to t(".about"), about_path, class: current(about_path) %>
+    <%= link_to t(".people"), people_path, class: current(people_path) %>
+    <%= link_to t(".contact"), contact_path, class: current(contact_path) %>
+  </div>
+</nav>

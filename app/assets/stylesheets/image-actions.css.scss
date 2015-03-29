@@ -27,6 +27,11 @@
   -webkit-align-items: flex-end;
           align-items: flex-end;
   padding-bottom: 15px;
+  position: relative;
+
+  > a {
+    position: relative;
+  }
 
   a,
   #img-action-favorited,
@@ -69,8 +74,7 @@
   > span::before {
     color: rgba(#fff,0.8);
     font-size: 2.1rem;
-    transform: translate(5px, -4px);
-      -webkit-transform: translate(5px, -4px);
+    @include translate(5px, -4px);
   }
 
   > a > p,
@@ -92,13 +96,90 @@
   }
 }
 
+.image-actions-tooltip {
+  width: 225px;
+  height: auto;
+  max-height: 700px;
+  position: absolute;
+  z-index: 50;
+  right: calc(100% + 6px);
+  background: #fff;
+  color: #333;
+  border-radius: 3px;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.15);
+
+  .agree-button {
+    display: inline-block;
+    height: 36px;
+    width: 100%;
+    background-color: #5bb289;
+    text-align: center;
+    padding: 9px;
+    margin-top: 3px;
+    border-radius: 0 0 3px 3px;
+  }
+
+  > p {
+    padding: 12px;
+    font-size: 1.3rem;
+    line-height: 17px;
+  }
+
+  &.inactive {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+  }
+
+  // Tooltip triangle
+  &:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: -14px;
+    border-width: 0 10px 10px;
+    border-style: solid;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+    border-color: #fff transparent;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100vw;
+    // Height of the page minus the height of the header.
+    height: calc(100vh - 50px);
+    top: 50px;
+  }
+}
+
 @media all and (max-device-width: $mobile-width) {
   #img-action-favorited,
   #img-action-favorite {
     > a > span::before {
-      -webkit-transform: translate(5px, -1px);
-              transform: translate(5px, -1px);
+      @include translate(5px, -1px);
     }
+  }
+}
+
+
+/* ==============================================
+    Download
+   ============================================== */
+
+#img-action-download-tooltip {
+  top: -25px;
+  
+  a {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  &:after {
+    top: 38px;
   }
 }
 
@@ -149,23 +230,14 @@
    ============================================== */
 
 #collection-add-list-container {
-  background-color: #222;
-  color: #fff;
-  width: 100%; // The height of 5 list items.
-
-  &.inactive {
-    display: none;
-  }
-
-  &.active {
-    display: block;
-  }
+  overflow: hidden;
+  border-radius: 3px;
 }
 
 #collection-add-list-scrollbar {
+  overflow: hidden;
   overflow-y: auto;
-  margin-right: 10px;
-  max-height: 175px;
+  max-height: 400px;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -176,16 +248,24 @@
 
   &::-webkit-scrollbar-track {
     border-radius: 0;
-    background-color: #222;
+    background-color: #fff;
   }
    
   /* Handle */
   &::-webkit-scrollbar-thumb {
     border-radius: 0;
-    background-color: rgba(#fff,0.7);
+    background-color: rgba(#333,0.7);
 
     &:hover {
-      background-color: rgba(#fff,0.8);
+      background-color: rgba(#333,0.8);
+    }
+  }
+
+  input[type="submit"] {
+    background-color: #fff;
+    
+    &:hover {
+      background-color: darken(#fff,5%);
     }
   }
 }
@@ -194,19 +274,16 @@
   width: 100%;
   font-size: 1.2rem;
   font-weight: 300;
-  color: rgba(#fff,0.8);
-  background-color: #222;
+  color: rgba(#333,0.8);
   border: none;
   border-radius: 0;
   -webkit-appearance: none;
   height: 35px;
   text-align: left;
-  padding-left: 38px;
   cursor: pointer;
 
   &:hover {
-    color: #fff;
-    background-color: #333;
+    color: #333;
   }
 
   &:focus {
@@ -214,31 +291,45 @@
   }
 }
 
+#img-action-collection-tooltip {
+  top: -10px;
+  cursor: default;
+
+  &:after {
+    top: 22px;
+  }
+}
+
 
 /* ==============================================
-    Report image
+    Report
    ============================================== */
 
-#report-form {
-  padding: 0 10px;
-  margin-left: 35px;
+#img-action-report-tooltip {
+  top: -170px;
+  cursor: default;
 
-  &.inactive {
-    display: none;
+  &:after {
+    bottom: 66px;
   }
+}
 
-  &.active {
-    display: inline-block;
+#report-form {
+  padding: 12px;
+
+  input[type=radio] {
+    height: 12px;
+    width: 12px;
   }
 
   input[type=radio] + label {
-    color: rgba(#fff,.8);
+    color: #555;
     font-size: 1.4rem;
     font-weight: 300;
   }
 
   input[type=radio]:checked + label {
-    color: #fff;
+    color: #333;
   }
 
   .report-row {
@@ -247,7 +338,7 @@
   }
 
   p {
-    color: rgba(#fff, 0.8);
+    color: #333;
     font-weight: 500;
     font-size: 1.2rem;
     margin-top: 10px;
@@ -258,14 +349,28 @@
     width: 100%;
     height: 75px;
     max-height: 125px;
-    border: 1px solid rgba(#fff, 0.8);
+    border: 1px solid #aaaab2;
     background-color: transparent;
     resize: vertical;
-    color: #fff;
-    font-size: 1.4em;
+    color: #333;
+    font-size: 1.4rem;
 
     &:focus {
       outline: transparent;
+      border: 1px solid #333;
     }
+  }
+}
+
+
+/* ==============================================
+    Delete
+   ============================================== */
+
+#img-action-delete {
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: rgba($color-danger, 0.8);
   }
 }

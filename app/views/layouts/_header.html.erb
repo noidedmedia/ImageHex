@@ -1,29 +1,34 @@
 <header id="header-container">
   <div id="header-left">
+    <%# Home button %>
     <div class="header-item" id="header-home">
-      <%= link_to 'Home', root_path %>
+      <%= link_to t(".home"), root_path %>
     </div>
   </div>
 
+  <%# Search icon that opens a mobile-specific, fullscreen search dialog. %>
   <div id="mobile-search-icon">
     <span class="icon icon-small icon-search"></span>
   </div>
 
+  <%# "Hamburger menu" icon, only displayed on mobile devices. %>
   <div id="mobile-menu-icon">
     <span class="icon icon-small icon-menu"></span>
   </div>
 
+  <%# Semi-transparent black overlay used to hide background content when the mobile sidebar is opened. This is controlled by JavaScript. %>
   <div id="mobile-menu-overlay"></div>
 
+  <%# Header search container %>
   <div id="header-search">
     <form action="/search" method="get">
-      <!-- Search icon -->
+      <%# Search icon %>
       <label for="header-search-input">
         <span class="icon icon-small icon-search"></span>
       </label>
 
-      <!-- Search input -->
-      <input type="search" id="header-search-input" name="query[]" placeholder="Search" required="" autocomplete="off" />
+      <%# Search input %>
+      <input type="search" id="header-search-input" name="query[]" placeholder=<%= t(".search") %> required="" autocomplete="off" />
 
       <span class="icon icon-small icon-close" id="close-mobile-search-icon"></span>
 
@@ -34,7 +39,7 @@
 
       <div id="header-search-suggestions-empty" class="active">
         <span class="icon icon-huge icon-search"></span>
-        <p>Search for the tag you're looking for, suggestions will show up here.
+        <p><%= t(".search_suggestions_note") %>
       </div>
     </div>
   </div>
@@ -42,10 +47,12 @@
   <div id="header-right">
     <% if user_signed_in? %>
 
+      <%# Upload %>
       <div class="header-item">
-        <%= link_to 'Upload', new_image_path %>
+        <%= link_to t(".upload"), new_image_path %>
       </div>
 
+      <%# Displays the number of unread notifications %>
       <% if current_user.notifications.unread.size > 0 %>
 
         <div class="header-notifications unread">
@@ -71,32 +78,41 @@
         </div>
       </div>
 
+      <%# User dropdown %>
       <div id="dd" class="wrapper-dropdown">
+        <%# Current user's username %>
         <div class="header-item" id="username">
           <%= link_to current_user.name, current_user %>
         </div>
 
         <ul class="dropdown">
-          <li><%= link_to 'Profile', current_user %>
+          <%# Profile %>
+          <li><%= link_to t(".profile"), current_user %>
 
+          <%# Admin, only displayed for admins. %>
           <% if current_user.admin? %>
-            <li><%= link_to 'Admin', admin_images_path %>
+            <li><%= link_to t(".admin"), admin_images_path %>
           <% end %>
           
-          <li><%= link_to 'Settings', edit_user_path(current_user) %>
+          <%# Settings %>
+          <li><%= link_to t(".settings"), edit_user_path(current_user) %>
           
-          <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+          <%# Sign out %>
+          <li><%= button_to t(".sign_out"), destroy_user_session_path, method: :delete %>
         </ul>
       </div>
 
+    <%# If user isn't signed in, display "Sign up" and "Sign in" buttons only. %>
     <% else %>
 
+      <%# Sign up %>
       <div class="header-item" id="header-sign-up">
-        <%= link_to 'Sign up', new_user_registration_path %>
+        <%= link_to t(".sign_up"), new_user_registration_path %>
       </div>
 
+      <%# Sign in %>
       <div class="header-item" id="header-sign-up">
-        <%= link_to 'Sign in', new_user_session_path %>
+        <%= link_to t(".sign_in"), new_user_session_path %>
       </div>
 
     <% end %>

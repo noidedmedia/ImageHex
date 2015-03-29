@@ -57,6 +57,7 @@
   top: 0;
   padding: 12px 40px 12px 60px;
   font-size: 1.4rem;
+  z-index: 40;
 
   @media all and (max-device-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
@@ -97,8 +98,7 @@
     content: $icon-add;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-2px);
-      -webkit-transform: translate(-24px,-2px);
+    @include translate(-24px,-2px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -135,19 +135,19 @@
 #image-help-button {
   cursor: pointer;
   display: inline-block;
+  position: relative;
 
   &:before {
     content: $icon-help;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
-      -webkit-transform: translate(-24px,-4px);
+    @include translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
 }
 
-#image-info-button {
+#image-details-button {
   cursor: pointer;
   display: inline-block;
 
@@ -155,28 +155,39 @@
     content: $icon-info;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
-      -webkit-transform: translate(-24px,-4px);
+    @include translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
 }
 
-#image-info-tooltip {
+#image-details-tooltip {
   background-color: #fff;
   border-radius: 2px;
   padding: 8px 12px;
   margin-top: 5px;
+  position: absolute;
+  top: 35px;
+  max-width: 300px;
+  width: auto;
+  @include translateX(-50%);
 }
 
-// Styling for the image information/metadata table.
-.image-info-table {
+// Styling for the image details/metadata table.
+.image-details-table {
   font-size: 1.2rem;
+  margin: auto;
+  border-collapse: collapse;
+
+  tbody {
+    vertical-align: bottom;
+  }
 
   // Styling for cells in column one.
   .column-one-cell {
     text-align: right;
     padding-right: 8px;
+    font-weight: 500;
   }
 
   // Styling for cells in column two.
@@ -186,7 +197,15 @@
 
   // Styling for each respective row.
   .table-row {
+    padding: 3px 0;
 
+    &.inactive {
+      display: none;
+    }
+
+    &.active {
+      display: block;
+    }
   }
 }
 
@@ -198,8 +217,7 @@
     content: $icon-history;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
-      -webkit-transform: translate(-24px,-4px);
+    @include translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -213,7 +231,5 @@
   &.active {
     display: block;
     position: absolute;
-    top: 30px;
-    right: 40px;
   }
 }

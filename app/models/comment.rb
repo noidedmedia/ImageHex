@@ -53,7 +53,7 @@ class Comment < ActiveRecord::Base
   end
 
   def image_reply_message
-    "#{user.name} made a comment on ##{commentable.id}"
+    I18n.t 'made_a_comment', username: "#{user.name}", commentable: "##{commentable.id}"
   end
   ##
   # Notify reply tells us to make a notification of a reply to
@@ -68,11 +68,12 @@ class Comment < ActiveRecord::Base
   end
 
   ##
-  # Notifiation message just returns a string to use as the message
+  # Notification message just returns a string to use as the message
   # in a notification
   def reply_message(other)
-    "#{other.user.name} replied to your comment on #{commentable_type} ##{commentable_id}"
+    I18n.t 'replied_to_your_comment', username: "#{other.user.name}", commentable_type: "#{commentable_type}", commentable: "##{commentable.id}"
   end
+
   ##
   # You can reply to another comment 4chan-style, by typing
   #     >>#{id of other comment}
@@ -105,7 +106,7 @@ class Comment < ActiveRecord::Base
   end
 
   def mention_message(user)
-    "#{self.user.name} mentioned you in a comment"
+    I18n.t 'mentioned_you', username: "#{self.user.name}"
   end
 
 end
