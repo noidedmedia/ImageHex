@@ -57,7 +57,6 @@ class ImagesController < ApplicationController
       redirect_to @image
     else
       flash[:error] = @report.errors.full_messages.join(", ")
-      puts flash[:error]
       redirect_to @image
     end
   end
