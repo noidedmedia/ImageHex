@@ -122,6 +122,6 @@ class Image < ActiveRecord::Base
   def downcase_extension
     ext = File.extname(f_file_name).downcase
     base = File.basename(f_file_name).downcase
-    self.f.instance_write :file_name "#{base}.#{ext}"
+    self.f.instance_write :file_name, "#{base}.#{ext}"
   end
 end
