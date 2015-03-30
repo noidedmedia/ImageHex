@@ -18,6 +18,7 @@ class Image < ActiveRecord::Base
       path: "public/system/fs/:class/:id_:style.:extension"
   belongs_to :user
 
+  before_post_process :downcase_extension
   has_many :tag_groups, -> {includes :tags}, dependent: :delete_all
   has_many :reports, as: :reportable, dependent: :delete_all
 
@@ -116,5 +117,11 @@ class Image < ActiveRecord::Base
     media.map do |medium, k|
       [I18n.t("activerecord.attributes.mediums.#{medium}"), medium]
     end
+  end
+
+  def downcase_extension
+    ext = File.extname(f_file_name).downcase
+    base = File.basename(f_file_name).downcase
+    self.f.instance_write :file_name "#{base}.#{ext}"
   end
 end
