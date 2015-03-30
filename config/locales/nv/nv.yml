@@ -101,7 +101,7 @@ nv:
       new_tag_group: "Create a new tag group on this image"
     search:
       tag_group: "Tag group"
-      add_a_group: "Add a group"
+      add_a_tag_group: "Add a tag group"
       search: "Search"
   users:
     show:
