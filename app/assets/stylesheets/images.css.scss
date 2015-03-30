@@ -187,13 +187,17 @@
   // Styling for cells in column one.
   .column-one-cell {
     text-align: right;
-    padding-right: 8px;
     font-weight: 500;
+    min-width: 60px;
   }
 
   // Styling for cells in column two.
   .column-two-cell {
     text-align: left;
+    max-width: 300px;
+    padding-left: 8px;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   // Styling for each respective row.
