@@ -284,6 +284,8 @@
   text-align: left;
   cursor: pointer;
   padding-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     color: #333;
