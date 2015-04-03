@@ -326,11 +326,11 @@
    ============================================== */
 
 #img-action-report-tooltip {
-  top: -170px;
+  top: -200px;
   cursor: default;
 
   &:after {
-    bottom: 66px;
+    bottom: 42px;
   }
 
   @media all and (max-device-width: $mobile-width) {
