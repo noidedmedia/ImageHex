@@ -8,6 +8,7 @@ RDoc::Task.new :documentation do |rdoc|
   rdoc.rdoc_files.include("app/**/*.rb", "lib/**/*.rb", "config/locales/**/*.rdoc")
   rdoc.title = "ImageHex Documentation"
   rdoc.options << "--all"
+  rdoc.options << "--coverage-report"
 end
 require File.expand_path('../config/application', __FILE__)
 

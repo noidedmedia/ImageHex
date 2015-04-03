@@ -1,3 +1,6 @@
+##
+# Controller for things related to Users.
+# Uses friendly_id for ids.
 class UsersController < ApplicationController
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
   ##

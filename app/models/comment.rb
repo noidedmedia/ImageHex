@@ -13,6 +13,11 @@
 # Replies and mentions generate a one-time notification and are otherwise only loosely related on the frontend via javascript.
 # We do not store references to mentioned users or replied comments in this model.
 #
+#== Relations
+# commentable:: What this comment is on
+# user:: Who commented
+# notifications:: Notifications that reference this comment. Used for people 
+#                 who reply to a comment or iamge.
 class Comment < ActiveRecord::Base
   #############
   # RELATIONS #
@@ -52,6 +57,9 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  ##
+  # The message to use when generating a notification for a reply on a user
+  # image.
   def image_reply_message
     I18n.t 'made_a_comment', username: "#{user.name}", commentable: "##{commentable.id}"
   end
@@ -98,6 +106,9 @@ class Comment < ActiveRecord::Base
     users.each{|u| notify_mention(u)}
   end
 
+  ##
+  # Make a new notification for a user mentioned in this comment.
+  # user:: the user to notify.
   def notify_mention(user)
     n = Notification.new(user: user,
                      subject: self,
@@ -105,6 +116,10 @@ class Comment < ActiveRecord::Base
     n.save!
   end
 
+  ##
+  # The message to use on the notification when a user is mentioned
+  # in a comment.
+  # user:: the user being mentioned.
   def mention_message(user)
     I18n.t 'mentioned_you', username: "#{self.user.name}"
   end

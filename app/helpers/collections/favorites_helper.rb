@@ -1,2 +1,0 @@
-module Collections::FavoritesHelper
-end

@@ -27,11 +27,19 @@ class Favorite < Collection
   end
 
   protected
+  ##
+  # Fill the name for the collection, so they are uniform.
+  # As a side-effect of translation, this will produce a description in
+  # the users' favorite language.
   def fill_name
     self.name = I18n.t "favorites_collection_title", usernames: "#{self.curator.name.possessive}"
   end
 
   protected
+  ##
+  # Fill the description for the collection, so they are uniform.
+  # As a side-effect of translation, this will produce a description in
+  # the users' native language.
   def fill_desc
     self.description = I18n.t "favorites_collection_description", username: "#{self.curator.name}"
   end

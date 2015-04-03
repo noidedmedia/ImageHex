@@ -86,7 +86,9 @@ class User < ActiveRecord::Base
   def image_feed
     Image.feed_for(self)
   end
-
+  ##
+  # Add a collection to the user's subscriptions.
+  # c:: the collection to add.
   def subscribe! c
     c.subscribers << self
   end
@@ -101,6 +103,8 @@ class User < ActiveRecord::Base
     favorites.images << i
   end
 
+  ##
+  # Returns true or false depending on if the user has favorited the image.
   def favorited?(image)
     favorites.images.include? image
   end
@@ -118,14 +122,27 @@ class User < ActiveRecord::Base
   end
   protected
 
+  ##
+  # Put the user's page body into page_body.
+  # This makes it a bit easier, since you can just say
+  #     user.page_body
+  # As opposed to
+  #     user.page.body
+  #
+  # Ok, it's not that much easier, but still.
   def load_page_body
     page_body = self.user_page.body if self.user_page
   end
 
+  ##
+  # Create a page with a message indicating that the user hasn't set up their
+  # page on user creation.
   def make_page
     build_user_page(body: I18n.t(".user_hasn't_made_a_page", username: "@#{name}" ) )
   end
 
+  ##
+  # Callback used to save the page_body in page.body on creation.
   def resolve_page_body
     return unless page_body
     user_page.body = page_body

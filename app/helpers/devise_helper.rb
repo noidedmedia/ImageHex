@@ -1,4 +1,8 @@
+##
+# Helpers for devise things
 module DeviseHelper
+  ##
+  # Shows error messages for devise
   def devise_error_messages!
     return '' if resource.errors.empty?
 

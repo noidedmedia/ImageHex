@@ -1,3 +1,5 @@
+##
+# Helpers used universally throughout ImageHex
 module ApplicationHelper
   ##
   # This allows us to get a "link" to a comment, which is really just a link

@@ -1,3 +1,4 @@
+
 ##
 # As the name implies, this contorller handles all actions for images.
 class ImagesController < ApplicationController
@@ -156,6 +157,8 @@ class ImagesController < ApplicationController
       .merge(user_id: current_user.id)
   end
 
+  ##
+  # Parameters for a comment
   def comment_params
     params.require(:comment)
       .permit(:body)
