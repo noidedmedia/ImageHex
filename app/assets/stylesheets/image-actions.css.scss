@@ -384,6 +384,35 @@
       border: 1px solid #333;
     }
   }
+
+  .report-buttons {
+    text-align: right;
+    display: block;
+
+    input[type="submit"],
+    button[type="reset"] {
+      background-color: transparent;
+      border: 0;
+      font-size: 1.3rem;
+      margin-top: 4px;
+      cursor: pointer;
+      color: #333;
+
+      &:focus {
+        outline: transparent;
+      }
+    }
+
+    button[type="reset"] {
+      color: #aaaab2;
+      transition: color 300ms;
+      margin-right: 5px;
+
+      &:hover {
+        color: #333;
+      }
+    }
+  }
 }
 
 

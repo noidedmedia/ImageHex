@@ -16,7 +16,9 @@
     <p><%= t(".extra_information") %>
     <%= text_area_tag "report[message]" %>
 
-    <%= button_tag t(".cancel"), type: :reset, id: "report-cancel-button" %>
-    <%= submit_tag t(".report") %>
+    <div class="report-buttons">
+      <%= button_tag t(".cancel"), type: :reset, id: "report-cancel-button" %>
+      <%= submit_tag t(".report") %>
+    </div>
   <% end %>
 </div>
