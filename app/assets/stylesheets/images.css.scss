@@ -58,6 +58,7 @@
   padding: 12px 40px 12px 60px;
   font-size: 1.4rem;
   z-index: 40;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
 
   @media all and (max-device-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
@@ -110,6 +111,7 @@
   margin-bottom: 15px;
   background-color: #fff;
   border-radius: 2px;
+  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
 
   &.inactive {
     display: none;
@@ -171,6 +173,7 @@
   max-width: 400px;
   width: auto;
   @include translateX(-50%);
+  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
 }
 
 // Styling for the image details/metadata table.
