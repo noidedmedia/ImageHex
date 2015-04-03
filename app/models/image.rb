@@ -119,6 +119,11 @@ class Image < ActiveRecord::Base
     end
   end
 
+  ##
+  # When an image is uploaded, the extension (.jpg, .png, etc.) is forced
+  # to become downcase. This is to ensure that the "Download" button will
+  # always work, since some browsers don't detect files as images if their
+  # extension is something like ".JPG" or another uppercase variant.
   def downcase_extension
     ext = File.extname(f_file_name).downcase
     base = File.basename(f_file_name, File.extname(f_file_name)).downcase

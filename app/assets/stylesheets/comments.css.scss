@@ -33,7 +33,7 @@
 
 .comment {
   width: 100%;
-  display: block;
+  display: flex;
   margin: 12px 0;
   position: relative;
 
@@ -46,13 +46,35 @@
   // This prevents the fixed header from blocking the comment.
   > a {
     position: absolute;
-    top: -50px;
+    top: -60px;
   }
+}
+
+.user-comment-avatar {
+  width: 40px;
+  height: 40px;
+  margin: 2px 12px 2px 4px;
+  background-color: #c9c9c9;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 4px;
+
+  img {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+.comment-text {
+  text-align: left;
+  display: inline-block;
+  width: 100%;
 }
 
 .user-comment-info {
   font-size: 1.2rem;
   margin-bottom: 4px;
+  display: block;
 
   a {
     text-decoration: none;
@@ -67,6 +89,7 @@
 
 .comment-body {
   font-size: 1.2rem;
+  display: block;
 }
 
 .new-comment {

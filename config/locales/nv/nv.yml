@@ -113,6 +113,7 @@ nv:
       profile_picture_image_id: "Profile Picture Image Identification Number"
       user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
       images_per_page: "Numer of images which ImageHex should display on a page"
+      save_changes: "Save changes"
     collection_stub:
       curated_by: "Curated by"
   notifications:
