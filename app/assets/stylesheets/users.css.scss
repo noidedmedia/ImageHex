@@ -86,6 +86,7 @@
     width: 75px;
     height: 75px;
     flex-shrink: 0; // Ensures that the image isn't squished on mobile.
+    -webkit-flex-shrink: 0;
 
     img {
       min-width: 75px;
