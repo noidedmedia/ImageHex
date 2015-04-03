@@ -9,15 +9,17 @@
 # User names must match the regex /w+/, so they only allow A-Z,a-z, and _. 
 # User names must be unique. "Aa" is considered the same name as "aA".
 #
-# Users have a few relations:
-#   * Every user is created with a "favorites" collection and a "creations"
-#     collection. These collections represent things the user has favorite,
-#     and things they've made themselves.
-#   * A "subscriptions" relationship represents all the collections a user is
-#     subscribed to. Using user.image_feed will give a list of all images in
-#     that collection.
-#   * Users have notifications. Using user.notifications.unread gives all
-#     unread notifications.
+# == Relations
+# collections:: collections the user curates. See Collection for more
+#               information. All  users are created with a Favorites 
+#               collection and a Creations collection, which are special.
+# subscriptions:: represents all the collections a user is
+#                 subscribed to. Using user.image_feed will 
+#                 give a list of all images in
+#                 all collections the user is subscribed to.
+# notifications:: Anything the user needs to know. Using user.notifications
+#                 .unread gives all
+#                 unread notifications.
 #
 
 class User < ActiveRecord::Base

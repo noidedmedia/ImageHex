@@ -13,8 +13,8 @@
 #        so users can download a fairly large version of a gigantic image
 #        without havint to kill their bandwidth by downloading the entire thing.
 #
-# 
-# Images have a few relationships:
+#
+# == Relationships 
 # tag_groups:: Tag groups on this image. ImageHex isn't very useful without
 #                these, is it?
 # comments:: Much to Connor Shea's dismay, we allow comments on image. They 
@@ -23,8 +23,8 @@
 #                     is in. It's dependent: :destroy, so if the image is
 #                     removed, it's automatically removed from those
 #                     collections.
-#
-# Images also have 2 enums:
+# 
+# == Enums
 # license:: What license the image is under.
 # medium:: How the image was created
 class Image < ActiveRecord::Base
