@@ -6,6 +6,20 @@
 #
 # It is an abstract class that uses STI to implement different functionality
 # on child classes.
+#
+# == Relationships
+# subscribers:: All users subscribed to this collection. Related via the join
+#               table subscriptions.
+# curators:: All the users who curate this collection. There's different levels
+#            of curatorship that provide different levels of functionality,
+#            but at the moment none of those are implemented. Speaking of which,
+#            TODO: implement those.
+# images:: All images in this collection. Join table'd via collection_images.
+#
+# == Scopes
+# favorites:: All collections of the Favorite variety.
+# creations: All collections of the Creation variety
+# subjective: All collections of the subjective variety.
 class Collection < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
@@ -41,6 +55,9 @@ class Collection < ActiveRecord::Base
   ##
   # Does a user curate this collection?
   # +u+:: the user
+  # Example usage:
+  #   collection.curated?(User.first) #=> true
+  #   collection.curate?(User.last) #=> false
   def curated?(u)
     self.curators.include?(u)
   end

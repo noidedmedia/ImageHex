@@ -72,7 +72,21 @@ class Image < ActiveRecord::Base
   #################
   # CLASS METHODS #
   #################
-
+  
+  ##
+  # Find all images a user is subscribed to. 
+  # user:: The user we're finding the subscription for
+  # example usage:
+  #   Image.feed_for(User.first) #=> first user's image feed
+  def self.feed_for(user)
+    q = %{ SELECT images.* FROM images
+    INNER JOIN collection_images ON collection_images.image_id = images.id
+    INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id
+    WHERE subscriptions.user_id = ?
+    ORDER BY collection_images.created_at DESC
+    }
+    find_by_sql([q, user.id])
+  end
   ##
   # Search takes a query, and returns all images which match this query.
   # +q+:: array of groups to be searched for. Each group should be a comma-seperated list of tags.

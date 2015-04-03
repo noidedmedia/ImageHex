@@ -1,3 +1,7 @@
+##
+# This is a plain-jane join table. It maps tags <-> tag_groups.
+# Not very exciting, never interacted with directly (at the moment, we may
+# need to touch it for filters), kind of boring. Not that bad, though.
 class TagGroupMember < ActiveRecord::Base
   belongs_to :tag_group
   belongs_to :tag

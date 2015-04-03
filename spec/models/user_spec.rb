@@ -37,7 +37,7 @@ describe User do
       i2 = FactoryGirl.create(:image)
       c2.images << i2
       u.subscribe! c2
-      expect(u.image_feed).to eq([i1, i2])
+      expect(u.image_feed).to eq([i2, i1])
     end
   end
   describe "creation" do

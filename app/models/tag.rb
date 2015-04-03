@@ -22,6 +22,7 @@ class Tag < ActiveRecord::Base
   ##
   # Suggest tags beginning with a string.
   # Tags are returned alphabetically.
+  # Returns 10 tags at a time.
   # Usage:
   #   Tag.suggest("ha") => ["hack", "halloween"]
   def self.suggest(n)

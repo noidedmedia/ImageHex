@@ -11,7 +11,7 @@
 #
 # Users have a few relations:
 #   * Every user is created with a "favorites" collection and a "creations"
-#     collection. These collections represent things the user has favorited,
+#     collection. These collections represent things the user has favorite,
 #     and things they've made themselves.
 #   * A "subscriptions" relationship represents all the collections a user is
 #     subscribed to. Using user.image_feed will give a list of all images in
@@ -19,11 +19,13 @@
 #   * Users have notifications. Using user.notifications.unread gives all
 #     unread notifications.
 #
+
 class User < ActiveRecord::Base
   # Use a friendly id to find by name
   extend FriendlyId
   friendly_id :name, use: :slugged
-  
+
+  enum role: [:normal, :admin]
   ################
   # ASSOCIATIONS #
   ################
@@ -80,7 +82,7 @@ class User < ActiveRecord::Base
   ##
   # Get all images in all collections this user is subscribed to.
   def image_feed
-    Image.where(id: subscribed_collections.joins(:collection_images).pluck(:image_id))
+    Image.feed_for(self)
   end
 
   def subscribe! c
@@ -102,7 +104,7 @@ class User < ActiveRecord::Base
   end
 
   ##
-  # Add an image to a user's creations
+  # Add an image to a user's creationed collection.
   def created! i
     creations.images << i
   end
@@ -135,5 +137,4 @@ class User < ActiveRecord::Base
     Creation.create!(curators: [self])
   end
 
-  enum role: [:normal, :admin]
 end
