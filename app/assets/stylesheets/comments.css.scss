@@ -109,6 +109,32 @@
   }
 }
 
+.new-comment-buttons {
+  text-align: right;
+  display: block;
+
+  input[type="submit"],
+  button[type="reset"] {
+    background-color: transparent;
+    border: 0;
+    font-size: 1.3rem;
+    padding-top: 10px;
+
+    &:focus {
+      outline: transparent;
+    }
+  }
+
+  button[type="reset"] {
+    color: #aaaab2;
+    transition: color 300ms;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
 .no-comments {
   text-align: center;
   font-size: 1.4rem;

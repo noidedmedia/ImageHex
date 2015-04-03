@@ -144,6 +144,7 @@ en:
       commented: "commented"
       ago: "ago"
       no_comments_yet: "No comments yet."
+      cancel: "Cancel"
       submit: "Submit"
     report_stub:
       reason_for_report: "Reason for report:"

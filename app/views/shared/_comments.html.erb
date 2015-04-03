@@ -39,7 +39,10 @@
     <%= form_tag(url, {class: "comment_form"}) do %>
       <%= text_area(:comment, :body, class: 'new-comment') %>
 
-      <%= submit_tag t(".submit") %>
+      <div class="new-comment-buttons">
+        <%= button_tag t(".cancel"), type: :reset %>
+        <%= submit_tag t(".submit") %>
+      </div>
     <% end %>
   <% end %>
 </div>
