@@ -5,6 +5,20 @@
 # Admins have power over the entire site and can do basically anything.
 # In order to prevent mishaps, you need direct database access to make a
 # user an admin.
+# 
+# User names must match the regex /w+/, so they only allow A-Z,a-z, and _. 
+# User names must be unique. "Aa" is considered the same name as "aA".
+#
+# Users have a few relations:
+#   * Every user is created with a "favorites" collection and a "creations"
+#     collection. These collections represent things the user has favorited,
+#     and things they've made themselves.
+#   * A "subscriptions" relationship represents all the collections a user is
+#     subscribed to. Using user.image_feed will give a list of all images in
+#     that collection.
+#   * Users have notifications. Using user.notifications.unread gives all
+#     unread notifications.
+#
 class User < ActiveRecord::Base
   # Use a friendly id to find by name
   extend FriendlyId
@@ -105,7 +119,7 @@ class User < ActiveRecord::Base
   end
 
   def make_page
-    build_user_page(body: t(".user_hasn't_made_a_page", username: "@#{name}" ) )
+    build_user_page(body: I18n.t(".user_hasn't_made_a_page", username: "@#{name}" ) )
   end
 
   def resolve_page_body

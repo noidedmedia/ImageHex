@@ -16,4 +16,4 @@ Some things to note:
    When we're ready to push up to Heroku, Anthony or Connor will merge 
    develop back into master and push it up.
 4. Set up the DB according to the config file.
-5. Use "rake doc:app" to generate the RDoc documentation.
+5. Use "rake documentation" to generate the RDoc documentation.

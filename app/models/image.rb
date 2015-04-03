@@ -2,6 +2,31 @@
 # Image is sort of the fundamental concept of ImageHex, as the name
 # implies.
 # You should be pretty familiar with this file.
+#
+# Has one paperclip Attachment, which is "f". That's the actual image file.
+# Avaliable sizes are:
+# small:: A very, very tiny image. 140x140ish.
+# medium:: A bit bigger, at 300x300
+# large:: A decent-sized image at 500x500.
+# huge:: A very big image at 1000x1000. Not really used anywhere at the moment.
+#        We plan on using this size at as a third stage for our mobile app,
+#        so users can download a fairly large version of a gigantic image
+#        without havint to kill their bandwidth by downloading the entire thing.
+#
+# 
+# Images have a few relationships:
+# tag_groups:: Tag groups on this image. ImageHex isn't very useful without
+#                these, is it?
+# comments:: Much to Connor Shea's dismay, we allow comments on image. They 
+#            are related in the normal polymorphatic way.
+# collection_images:: This is here so the image can know what collections it
+#                     is in. It's dependent: :destroy, so if the image is
+#                     removed, it's automatically removed from those
+#                     collections.
+#
+# Images also have 2 enums:
+# license:: What license the image is under.
+# medium:: How the image was created
 class Image < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
@@ -112,6 +137,12 @@ class Image < ActiveRecord::Base
     end
   end
 
+  ##
+  # Returns a localized list of all medium options for use
+  # with the select element on the Upload page.
+  #
+  # The text after "[I18n.t(" is the hierarchal location of the 
+  # license translations in the localization file.
   def self.medium_attributes_for_select
     media.map do |medium, k|
       [I18n.t("activerecord.attributes.mediums.#{medium}"), medium]

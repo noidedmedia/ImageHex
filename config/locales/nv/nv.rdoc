@@ -1,0 +1,6 @@
+nv stands for "needlessly verbose". It's a test language that's basically
+English, but written by a fanfiction author with a thesaurus and a desire to
+sound really smart.
+
+When writing nv translations for testing purposes, feel free to go all-out.
+Maybe not entire paragraphs for everything, but for a lot of things, why not?

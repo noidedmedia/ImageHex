@@ -206,7 +206,6 @@ GEM
     raindrops (0.13.0)
     rake (10.4.2)
     rdoc (4.2.0)
-      json (~> 1.4)
     redcarpet (3.2.2)
     reek (1.6.5)
       parser (~> 2.2.0.pre.7)
@@ -329,7 +328,7 @@ DEPENDENCIES
   reek
   rspec-rails (~> 3.1)
   sass-rails (~> 4.0.3)
-  sdoc (~> 0.4.0)
+  sdoc
   shoulda-matchers
   simplecov (~> 0.9.0)
   spring

@@ -1,0 +1,2 @@
+"en" is the locale for the English language.
+Currently, this is the only real locale we have translated.
