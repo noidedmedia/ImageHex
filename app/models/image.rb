@@ -79,13 +79,18 @@ class Image < ActiveRecord::Base
   # example usage:
   #   Image.feed_for(User.first) #=> first user's image feed
   def self.feed_for(user)
-    q = %{ SELECT images.* FROM images
-    INNER JOIN collection_images ON collection_images.image_id = images.id
-    INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id
-    WHERE subscriptions.user_id = ?
-    ORDER BY collection_images.created_at DESC
-    }
-    find_by_sql([q, user.id])
+    # Make activerecord generate this query, for speed:
+    #
+    # SELECT images.* FROM images
+    # INNER JOIN collection_images ON collection_images.image_id = images.id
+    # INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id
+    # WHERE subscriptions.user_id = ?
+    # ORDER BY collection_images.created_at DESC
+    
+    joins("INNER JOIN collection_images ON collection_images.image_id = images.id")
+      .joins("INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id")
+      .where(subscriptions:{user_id: user.id})
+      .order("collection_images.created_at DESC")
   end
   ##
   # Search takes a query, and returns all images which match this query.
