@@ -7,9 +7,10 @@
   <% else %>
     <%# We manually include the user of the comment to prevent an N+1 %>
     <% subject.comments.includes(:user).order('created_at ASC').each do |comment| %>
+      
+      <%# Anchor for comment links from Notifications. %>
+      <a name= <%= comment.id %> ></a>
       <div class="comment" id="comment-<%= comment.id %>">
-        <%# Anchor for comment links from Notifications. %>
-        <a name= <%= comment.id %> ></a>
         
         <div class="user-comment-avatar">
           <% if comment.user.avatar %>

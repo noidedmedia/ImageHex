@@ -34,20 +34,26 @@
 .comment {
   width: 100%;
   display: flex;
-  margin: 12px 0;
+  margin: 4px 0;
+  padding: 5px 0;
   position: relative;
 
   &:first-of-type {
     margin-top: 0;
   }
+}
 
-  // Anchor links bring the user's browser window to that exact point,
-  // where the top of the browser window is the location of the anchor.
-  // This prevents the fixed header from blocking the comment.
-  > a {
-    position: absolute;
-    top: -60px;
-  }
+// Anchor links bring the user's browser window to that exact point,
+// where the top of the browser window is the location of the anchor.
+// This prevents the fixed header from blocking the comment.
+.comment + a {
+  top: 20px;
+  position: absolute;
+}
+
+a:target + .comment {
+  animation: commentTarget 2s linear 1 normal forwards;
+    -webkit-animation: commentTarget 2s linear 1 normal forwards;
 }
 
 .user-comment-avatar {
@@ -144,4 +150,24 @@
   font-size: 1.4rem;
   color: #aaaab2;
   padding: 35px 0;
+}
+
+@-webkit-keyframes commentTarget {
+  0% {
+    background-color: rgba(#ffe11a,.5);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes commentTarget {
+  0% {
+    background-color: rgba(#ffe11a,.5);
+  }
+
+  100% {
+    background-color: transparent;
+  }
 }
