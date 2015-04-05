@@ -33,7 +33,7 @@ class Tag < ActiveRecord::Base
     LIMIT 10
     }
     finder = "#{n.gsub("%","").downcase.strip.squish}%"
-    find_by_sql([query, finder]).pluck(&:name)
+    find_by_sql([query, finder]).map(&:name)
   end
   private
   ##
