@@ -51,6 +51,10 @@
   position: absolute;
 }
 
+// The "comment" element (profile picture, username, comment body, etc.) is
+// highlighted with a yellow background when an anchor directly above it is
+// targetted (e.g. because the comment was permalinked or someone recieved
+// a notification).
 a:target + .comment {
   animation: commentTarget 2s linear 1 normal forwards;
     -webkit-animation: commentTarget 2s linear 1 normal forwards;
@@ -93,16 +97,19 @@ a:target + .comment {
   }
 }
 
+// Body text of a comment
 .comment-body {
   font-size: 1.2rem;
   display: block;
 }
 
+// New comment text area.
 .new-comment {
   width: 100%;
   min-height: 50px;
   font-size: 1.2rem;
   resize: vertical;
+  max-height: 600px;
   border: 1px solid #c9c9c9;
   background-color: #fff;
 
@@ -115,6 +122,7 @@ a:target + .comment {
   }
 }
 
+// "Cancel" and "Submit" buttons for new comment box.
 .new-comment-buttons {
   text-align: right;
   display: block;
