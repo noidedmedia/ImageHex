@@ -60,6 +60,15 @@
   }
 }
 
+.user-page-information {
+  display: inline-block;
+
+  @media all and (max-device-width: $mobile-width) {
+    display: block;
+    text-align: left;
+  }
+}
+
 #user-page-profile-picture {
   width: 250px;
   height: 250px;
@@ -76,6 +85,8 @@
     margin-right: 10px;
     width: 75px;
     height: 75px;
+    flex-shrink: 0; // Ensures that the image isn't squished on mobile.
+    -webkit-flex-shrink: 0;
 
     img {
       min-width: 75px;
@@ -89,6 +100,10 @@
   font-weight: 500;
   width: calc(100% - 40px);
   display: inline-block;
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100%;
+  }
 }
 
 .user-page-bio {
@@ -97,13 +112,11 @@
 }
 
 .user-page-bio-edit {
-  display: inline;
   font-size: 1.4rem;
   font-weight: 300;
   color: #888;
   text-decoration: none;
   transition: color 200ms;
-  float: right;
   line-height: 24px;
 
   &:hover {

@@ -7,15 +7,19 @@
       <% end %>
     </div>
 
-    <div class="user-page-username"><%= @user.name %></div>
+    <div class="user-page-information">
+      <div class="user-page-username"><%= @user.name %></div>
 
-    <% if current_user == @user %>
-      <%= link_to t(".edit"), edit_user_path, class: "user-page-bio-edit" %>
-    <% end %>
+      <!-- User's website goes here. -->
 
-    <!-- User's website goes here. -->
+      <div class="user-page-bio"><%= @user.user_page.display.html_safe %></div>
 
-    <div class="user-page-bio"><%= @user.user_page.display.html_safe %></div>
+      <% if current_user == @user %>
+        <div class="user-page-bio-edit">
+          <%= link_to t(".edit"), edit_user_path %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 

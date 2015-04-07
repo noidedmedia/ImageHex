@@ -58,6 +58,7 @@
   padding: 12px 40px 12px 60px;
   font-size: 1.4rem;
   z-index: 40;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
 
   @media all and (max-device-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
@@ -110,6 +111,7 @@
   margin-bottom: 15px;
   background-color: #fff;
   border-radius: 2px;
+  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
 
   &.inactive {
     display: none;
@@ -167,16 +169,30 @@
   padding: 8px 12px;
   margin-top: 5px;
   position: absolute;
-  top: 35px;
-  max-width: 300px;
+  top: 38px;
+  max-width: 400px;
   width: auto;
   @include translateX(-50%);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+
+  &:after {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: calc(50% - 25px);
+    top: -10px;
+    border-width: 0 10px 10px;
+    border-style: solid;
+    border-color: #fff transparent;
+  }
 }
 
 // Styling for the image details/metadata table.
 .image-details-table {
   font-size: 1.2rem;
   margin: auto;
+  margin-bottom: 3px;
   border-collapse: collapse;
 
   tbody {
@@ -186,25 +202,30 @@
   // Styling for cells in column one.
   .column-one-cell {
     text-align: right;
-    padding-right: 8px;
     font-weight: 500;
+    min-width: 60px;
   }
 
   // Styling for cells in column two.
   .column-two-cell {
     text-align: left;
+    max-width: 300px;
+    padding-left: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   // Styling for each respective row.
   .table-row {
-    padding: 3px 0;
+    height: 20px;
 
     &.inactive {
       display: none;
     }
 
     &.active {
-      display: block;
+      display: table-row;
     }
   }
 }

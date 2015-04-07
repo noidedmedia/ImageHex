@@ -97,16 +97,18 @@
 }
 
 .image-actions-tooltip {
-  width: 225px;
+  max-width: 300px;
+  min-width: 225px;
+  width: auto;
   height: auto;
-  max-height: 700px;
+  max-height: 600px;
   position: absolute;
   z-index: 50;
   right: calc(100% + 6px);
   background: #fff;
   color: #333;
   border-radius: 3px;
-  box-shadow: 0 0 5px 5px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 
   .agree-button {
     display: inline-block;
@@ -152,6 +154,13 @@
     // Height of the page minus the height of the header.
     height: calc(100vh - 50px);
     top: 50px;
+    position: fixed;
+    left: 0;
+    max-width: 100vw;
+
+    &:after {
+      display: none;
+    }
   }
 }
 
@@ -180,6 +189,10 @@
 
   &:after {
     top: 38px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    top: 50px;
   }
 }
 
@@ -281,6 +294,9 @@
   height: 35px;
   text-align: left;
   cursor: pointer;
+  padding-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     color: #333;
@@ -298,6 +314,10 @@
   &:after {
     top: 22px;
   }
+
+  @media all and (max-device-width: $mobile-width) {
+    top: 50px;
+  }
 }
 
 
@@ -306,11 +326,15 @@
    ============================================== */
 
 #img-action-report-tooltip {
-  top: -170px;
+  top: -200px;
   cursor: default;
 
   &:after {
-    bottom: 66px;
+    bottom: 42px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    top: 50px;
   }
 }
 
@@ -358,6 +382,35 @@
     &:focus {
       outline: transparent;
       border: 1px solid #333;
+    }
+  }
+
+  .report-buttons {
+    text-align: right;
+    display: block;
+
+    input[type="submit"],
+    button[type="reset"] {
+      background-color: transparent;
+      border: 0;
+      font-size: 1.3rem;
+      margin-top: 4px;
+      cursor: pointer;
+      color: #333;
+
+      &:focus {
+        outline: transparent;
+      }
+    }
+
+    button[type="reset"] {
+      color: #aaaab2;
+      transition: color 300ms;
+      margin-right: 5px;
+
+      &:hover {
+        color: #333;
+      }
     }
   }
 }
