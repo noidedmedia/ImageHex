@@ -51,13 +51,42 @@ en:
         digital_paint: "Digital paint"
         mixed_media: "Mixed media"
         three_dimensional_render: "Three Dimensional Render"
+  devise:
+    confirmations:
+    passwords:
+      new: 
+        forgot_your_password: "Forgot your password?"
+        email: "Email"
+        reset_password: "Reset password"
+    registrations:
+      new:
+        create_an_account: "Create an account"
+        email: "Email"
+        username: "Username"
+        password: "Password (minimum 8 characters)"
+        reenter_password: "Re-enter password"
+        submit: "Submit"
+    sessions:
+      new:
+        sign_in: "Sign in"
+        email: "Email"
+        password: "Password"
+        remember_me: "Remember me"
+    shared:
+      links:
+        sign_in: "Sign in"
+        create_an_account: "Create an account"
+        forgot_your_password: "Forgot your password?"
+        didn't_receive_confirmation: "Didn't receive confirmation instructions?"
+        didn't_receive_unlock: "Didn't receive unlock instructions?"
+        sign_in_with: "Sign in with"
   layouts:
     header:
       home: "Home"
       search: "Search"
       search_suggestions_note: "Search for the tag you're looking for, suggestions will show up here."
       sign_in: "Sign in"
-      sign_up: "Sign up"
+      create_an_account: "Create an account"
       upload: "Upload"
       profile: "Profile"
       admin: "Admin"

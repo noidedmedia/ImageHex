@@ -36,13 +36,42 @@ nv:
         digital_paint: "Created digitally using software such as GIMP"
         mixed_media: "Containing parts from multiple types of media"
         three_dimensional_render: "Created by rasterizing 3D data, including shading and textures"
+  devise:
+    confirmations:
+    passwords:
+      new: 
+        forgot_your_password: "Forgot your password?"
+        email: "Email"
+        reset_password: "Reset password"
+    registrations:
+      new:
+        create_an_account: "Create an account"
+        email: "Email"
+        username: "Username"
+        password: "Password (minimum 8 characters)"
+        reenter_password: "Re-enter password"
+        submit: "Submit"
+    sessions:
+      new:
+        sign_in: "Sign in"
+        email: "Email"
+        password: "Password"
+        remember_me: "Remember me"
+    shared:
+      links:
+        sign_in: "Sign in"
+        create_an_account: "Create an account"
+        forgot_your_password: "Forgot your password?"
+        didn't_receive_confirmation: "Didn't receive confirmation instructions?"
+        didn't_receive_unlock: "Didn't receive unlock instructions?"
+        sign_in_with: "Sign in with"
   layouts:
     header:
       home: "Page at the root of the URL"
       search: "Page where you can find many images"
       search_suggestions_note: "Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags"
       sign_in: "Verify your identity"
-      sign_up: "Create an identity for yourself"
+      create_an_account: "Create an identity for yourself"
       upload: "Create a new image on ImageHex"
       profile: "Text, set by users, designed to give one a small amount of information about that user"
       admin: "A user who can do whatever they wish"

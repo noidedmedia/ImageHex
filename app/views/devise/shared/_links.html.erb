@@ -4,13 +4,21 @@
 
 <%- if controller_name != 'sessions' %>
   <%= link_to new_session_path(resource_name) do %>
-    <div class="sign-in-extras-half"><div class="sign-in-extras-text">Sign in</div></div>
+    <div class="sign-in-extras-half">
+      <div class="sign-in-extras-text">
+        <%= t(".sign_in") %>
+      </div>
+    </div>
   <% end %>
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <%= link_to new_registration_path(resource_name) do %>
-    <div class="sign-in-extras-half"><div class="sign-in-extras-text">Sign up</div></div>
+    <div class="sign-in-extras-half">
+      <div class="sign-in-extras-text">
+        <%= t(".create_an_account") %>
+      </div>
+    </div>
   <% end %>
 <% end -%>
 
@@ -22,7 +30,10 @@
 
   <div class="sign-in-extras-row">
     <%= link_to new_password_path(resource_name) do %>
-      <div class="sign-in-extras-full"><div class="sign-in-extras-text">Forgot your password?</div>
+      <div class="sign-in-extras-full">
+        <div class="sign-in-extras-text">
+          <%= t(".forgot_your_password") %>
+        </div>
       </div>
     <% end %>
   </div>
@@ -32,7 +43,10 @@
 
   <div class="sign-in-extras-row">
     <%= link_to new_confirmation_path(resource_name) do %>
-        <div class="sign-in-extras-full"><div class="sign-in-extras-text">Didn't receive confirmation instructions?</div>
+      <div class="sign-in-extras-full">
+        <div class="sign-in-extras-text">
+          <%= t(".didn't_receive_confirmation") %>
+        </div>
       </div>
     <% end %>
   </div>
@@ -42,8 +56,10 @@
 
   <div class="sign-in-extras-row">
     <%= link_to new_unlock_path(resource_name) do %>
-
-        <div class="sign-in-extras-full"><div class="sign-in-extras-text">Didn't receive unlock instructions?</div>
+      <div class="sign-in-extras-full">
+        <div class="sign-in-extras-text">
+          <%= t(".didn't_receive_unlock") %>
+        </div>
       </div>
     <% end %>
   </div>
@@ -53,7 +69,10 @@
   <%- resource_class.omniauth_providers.each do |provider| %>
     <div class="sign-in-extras-row">
       <%= link_to omniauth_authorize_path(resource_name, provider) do %>
-          <div class="sign-in-extras-full"><div class="sign-in-extras-text">Sign in with #{provider.to_s.titleize}</div>
+        <div class="sign-in-extras-full">
+          <div class="sign-in-extras-text">
+            <%= t(".sign_in_with") %> #{provider.to_s.titleize}
+          </div>
         </div>
       <% end %>
     </div>
