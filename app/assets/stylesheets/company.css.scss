@@ -123,6 +123,14 @@
   height: 240px;
   margin-bottom: 4px;
   width: 200px;
+  overflow: hidden;
+
+  img {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 120%;
+    max-height: 120%;
+  }
 }
 
 /* Styling for staff name's displayed below their portrait.. */
