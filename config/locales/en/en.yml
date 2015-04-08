@@ -65,7 +65,6 @@ en:
         username: "Username"
         password: "Password (minimum 8 characters)"
         reenter_password: "Re-enter password"
-        submit: "Submit"
     sessions:
       new:
         sign_in: "Sign in"
