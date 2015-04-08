@@ -1,5 +1,8 @@
 @import "scss-variables";
 
+.hidden_controls{
+  display: hidden;
+}
 /* Padding for images in image pages. */
 /* Adding properties to this can have unintended consequences effecting all images across the site. */
 .image {

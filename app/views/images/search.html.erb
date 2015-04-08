@@ -11,6 +11,12 @@
 
   <button id="add-group-button"><%= t(".add_a_tag_group") %></button>
   <input type="submit" id="page-submit-button" value=<%= t(".search") %> >
+  <div id="trigger-dynamic">CLICK ME</div>
 </form>
-
+<div id="controls-dynamic" class="hidden-controls">
+  <div class="next-image">NEXT IMAGE</div>
+  <div class="prev-image">PREV IMAGE</div>
+</div>
 <%= render 'show_stub' %>
+
+

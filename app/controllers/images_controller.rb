@@ -54,6 +54,10 @@ class ImagesController < ApplicationController
   def search
     @images = Image.search(params[:query])
     @images = @images.paginate(page: page, per_page: per_page) if @images
+    respond_to do |format|
+      format.html
+      format.json{render json: @images}
+    end
   end
 
   ##
