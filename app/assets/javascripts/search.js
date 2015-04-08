@@ -75,7 +75,7 @@ function addSearchBox(toaddcount) {
   var list = toAdd.find(".page-suggestions");
   $(".page-search-full").last().after(toAdd);
   $(toAdd).attr('id', "page-search-full" + toaddcount);
-  toAdd.find("input").on("input", searchSuggestion(list, null)).val("");
+  toAdd.find("input").on("input", searchSuggestion(list, null)).val("").focus();
 }
 
 var ready = function() {
