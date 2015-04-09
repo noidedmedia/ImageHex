@@ -24,6 +24,7 @@ function headerSearch() {
 
         $(headersearch).css('max-height', searchheight);
         $(headersearch).css('max-height', 40);
+        headersearch.removeClass('active');
 
         // Unbinds the function so it can only happen once.
         $(headersearch).unbind('clickoutside');
