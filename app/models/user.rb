@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
   end
 
   def make_page
-    build_user_page(body: t(".user_hasn't_made_a_page", username: "@#{name}" ) )
+    build_user_page(body: "")
   end
 
   def resolve_page_body

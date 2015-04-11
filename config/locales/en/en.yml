@@ -27,8 +27,6 @@ en:
         made_a_comment: "%{username} made a comment on %{commentable}"
         replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
         mentioned_you: "%{username} mentioned you in a comment"
-      user:
-        user_hasn't_made_a_page: "%{username} hasn't made a page yet."
       favorite:
         favorites_collection_title: "%{usernames} Favorites"
         favorites_collection_description: "Images favorited by %{username}."
@@ -151,6 +149,7 @@ en:
       uploads: "Uploads"
       creations: "Creations"
       collections: "Collections"
+      user_page_bio_empty: "You haven't filled out a bio yet."
       edit: "(edit)"
     edit:
       profile_picture_image_id: "Profile Picture Image ID"

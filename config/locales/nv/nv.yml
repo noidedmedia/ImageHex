@@ -71,7 +71,7 @@ nv:
       search_suggestions_note: "Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags"
       sign_in: "Verify your identity"
       create_an_account: "Create an identity for yourself"
-      upload: "Create a new image on ImageHex"
+      upload: "Upload a new image on ImageHex"
       profile: "Text, set by users, designed to give one a small amount of information about that user"
       admin: "A user who can do whatever they wish"
       settings: "A group of values that describe how ImageHex works"
@@ -136,6 +136,7 @@ nv:
       uploads: "Images which this user has added to out database"
       creations: "Images which this user has caused to come into existance, by photographing or otherwise creating them"
       collections: "The collections owned or administered by this user"
+      user_page_bio_empty: "You haven't filled out your autobiographical text yet."
       edit: "(modify)"
     edit:
       profile_picture_image_id: "Profile Picture Image Identification Number"
