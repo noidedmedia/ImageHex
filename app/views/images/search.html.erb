@@ -1,8 +1,5 @@
 <form action="/search" method="get" id="body-search">
   <div class="page-search-full">
-    <label for="page-search-input">
-      <span class="icon icon-small icon-search"></span>
-    </label>
     <input type="search" class="page-search-input" name="query[]" placeholder=<%= t(".tag_group") %> autocomplete="off" />
     <ul class="page-suggestions">
 
@@ -10,7 +7,7 @@
   </div>
 
   <button id="add-group-button"><%= t(".add_a_tag_group") %></button>
-  <input type="submit" id="page-submit-button" value=<%= t(".search") %> >
+  <input type="submit" id="page-submit-button" value=<%= t(".search") %>>
 </form>
 
 <%= render 'show_stub' %>
