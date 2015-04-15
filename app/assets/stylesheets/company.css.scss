@@ -141,7 +141,7 @@
   text-align: center;
 }
 
-/* Job title for staff members.  */
+/* Job title for staff members. */
 .people-page-list-item-job-title {
   font-size: 1.2rem;
   font-weight: 400;
@@ -167,12 +167,10 @@
   }
 }
 
-#about-page-logo {
-  
-  img {
-    width: auto;
-    height: 250px;
-    margin: auto;
-    display: block;
-  }
+#about-page-logo img {
+  width: auto;
+  height: 250px;
+  margin: auto;
+  display: block;
+  pointer-events: none;
 }
