@@ -43,6 +43,19 @@
   }
 }
 
+.imagehex-header-logo {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  background: url("/logo/imagehex-grayscale-blackbg-with-no-text.svg") 50% 50% / 160% 160% no-repeat;
+
+  @media all and (max-device-width: $mobile-width) {
+    top: -7px;
+    background: url("/logo/imagehex-grayscale-blackbg-with-no-text.svg") 85% 85% / 160% 160% no-repeat;
+  }
+}
+
 /* Items aligned to the right side of the header. */
 #header-right {
   display: inline-block;
