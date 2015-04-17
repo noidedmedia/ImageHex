@@ -12,11 +12,11 @@ class Favorite < Collection
 
   protected
   def fill_name
-    self.name = "#{self.curator.name.possessive} Favorites"
+    self.name = I18n.t "favorites_collection_title", usernames: "#{self.curator.name.possessive}"
   end
 
   protected
   def fill_desc
-    self.description = "Images favorited by #{self.curator.name}."
+    self.description = I18n.t "favorites_collection_description", username: "#{self.curator.name}"
   end
 end

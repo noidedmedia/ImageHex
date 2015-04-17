@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
   def avatar_img
     avatar.f(:medium)
   end
+
+  def avatar_img_thumb
+    avatar.f(:small)
+  end
+
   ##
   # Get all images in all collections this user is subscribed to.
   def image_feed
@@ -105,7 +110,7 @@ class User < ActiveRecord::Base
   end
 
   def make_page
-    build_user_page(body: "@#{name} hasn't made a page yet")
+    build_user_page(body: "")
   end
 
   def resolve_page_body

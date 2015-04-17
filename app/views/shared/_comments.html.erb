@@ -1,31 +1,49 @@
 <div id="comment-container">
   <div id="comment-container-header">
-    <h3>Comments</h3>
+    <h3><%= t(".comments_header") %></h3>
   </div>
   <% if subject.comments.empty? %>
-    <p class="no-comments">No comments yet.
+    <p class="no-comments"><%= t(".no_comments_yet") %>
   <% else %>
     <%# We manually include the user of the comment to prevent an N+1 %>
     <% subject.comments.includes(:user).order('created_at ASC').each do |comment| %>
-      <div class="comment">
-
-        <%# Username, with link to user page, and "commented [time value] ago". %>
-        <div class="user-comment-info">
-          <%= link_to comment.user.name, comment.user %> commented 
-          <%= time_ago_in_words(comment.created_at) %> ago
+      
+      <%# Anchor for comment links from Notifications. %>
+      <a name= <%= comment.id %> ></a>
+      <div class="comment" id="comment-<%= comment.id %>">
+        
+        <div class="user-comment-avatar">
+          <% if comment.user.avatar %>
+            <%= image_tag comment.user.avatar_img_thumb %>
+          <% end %>
         </div>
 
-        <%# Comment body, the text in the comment itself. %>
-        <div class="comment-body">
-          <%= comment.body %>
+        <div class="comment-text">
+          <%# Username, with link to user page, and "commented [time value] ago". %>
+          <div class="user-comment-info">
+            <%= link_to comment.user.name, comment.user %>
+            <%= " " + t(".commented") + " " + time_ago_in_words(comment.created_at) + " " + t(".ago") %>
+          </div>
+
+          <%# Comment body, the text in the comment itself. %>
+          <div class="comment-body">
+            <%= comment.body %>
+          </div>
         </div>
 
       </div>
     <% end %>
   <% end %>
-  <%= form_tag(url, {class: "comment_form"}) do %>
-    <%= text_area(:comment, :body, class: 'new-comment') %>
 
-    <%= submit_tag "Submit" %>
+  <%# New comment section, only appears for users who are signed-in. %>
+  <% if user_signed_in? %>
+    <%= form_tag(url, {class: "comment_form"}) do %>
+      <%= text_area(:comment, :body, class: 'new-comment') %>
+
+      <div class="new-comment-buttons">
+        <%= button_tag t(".cancel"), type: :reset %>
+        <%= submit_tag t(".submit") %>
+      </div>
+    <% end %>
   <% end %>
 </div>

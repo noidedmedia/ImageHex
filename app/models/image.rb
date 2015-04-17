@@ -14,10 +14,11 @@ class Image < ActiveRecord::Base
       large: "500x500>",
       huge: "1000x1000>"},
     # Use suffixes for the path
+    
       path: "public/system/fs/:class/:id_:style.:extension"
-
   belongs_to :user
 
+  before_post_process :downcase_extension
   has_many :tag_groups, -> {includes :tags}, dependent: :delete_all
   has_many :reports, as: :reportable, dependent: :delete_all
 
@@ -30,7 +31,8 @@ class Image < ActiveRecord::Base
   #########
 
   # What license the image is under
-  enum license: ["Public Domain", "All Rights Reserved", "CC-BY", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC", "CC-BY-ND-SA", "CC-BY-NC-ND"]
+  enum license: [:public_domain, :all_rights_reserved, :cc_by, :cc_by_sa, :cc_by_nd, :cc_by_nc, :cc_by_nd_sa, :cc_by_nc_nd]
+
   # What kind of image this is
   enum medium: [:photograph, :pencil, :paint, :digital_paint, :mixed_media, :three_dimensional_render]
 
@@ -97,5 +99,34 @@ class Image < ActiveRecord::Base
   # TODO: rewrite this so it uses SQL and doesn't just load every freaking image into memory
   def self.by_reports
     Image.includes(:reports).select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
+  end
+
+  ##
+  # Returns a localized list of all license options for use
+  # with the select element on the Upload page.
+  #
+  # The text after "[I18n.t(" is the hierarchal location of
+  # the license translations in the localization file.
+  def self.license_attributes_for_select
+    licenses.map do |license, k|
+      [I18n.t("activerecord.attributes.licenses.#{license}"), license]
+    end
+  end
+
+  def self.medium_attributes_for_select
+    media.map do |medium, k|
+      [I18n.t("activerecord.attributes.mediums.#{medium}"), medium]
+    end
+  end
+
+  ##
+  # When an image is uploaded, the extension (.jpg, .png, etc.) is forced
+  # to become downcase. This is to ensure that the "Download" button will
+  # always work, since some browsers don't detect files as images if their
+  # extension is something like ".JPG" or another uppercase variant.
+  def downcase_extension
+    ext = File.extname(f_file_name).downcase
+    base = File.basename(f_file_name, File.extname(f_file_name)).downcase
+    self.f.instance_write :file_name, "#{base}#{ext}"
   end
 end

@@ -31,7 +31,6 @@ RSpec.describe UsersController, :type => :controller do
       end
       describe "updating avatar" do
         it "allows updating" do
-          puts @user.inspect
           img = FactoryGirl.create(:image)
           put :update, id: @user.id, user: {avatar_id: img.id}
           expect(@user.reload.avatar).to eq(img)

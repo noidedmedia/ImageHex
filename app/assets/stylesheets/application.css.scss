@@ -106,11 +106,17 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
 
-input {
+input,
+textarea {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
 }
 
 /* Fix for WebKit input text style. */
 input, textarea, keygen, select, button {
   font: 400 inherit 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
+}
+
+// Fix Firefox's ugly default select styling.
+select {
+  -moz-appearance: none;
 }

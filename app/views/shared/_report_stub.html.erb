@@ -1,10 +1,10 @@
 <%# Pass in a reportable as a subject and this will make a form to %>
 <%# report that subject %>
 
-<div id="report-form" data-showon="#img-action-report">
+<div id="report-form">
   <%= form_tag(url) do %>
     
-    <p>Reason for report:</p>
+    <p><%= t(".reason_for_report") %>
 
     <% Report.severities.each do |k, v| %>
       <div class="report-row">
@@ -13,10 +13,12 @@
       </div>
     <% end %>
     
-    <p>Extra information (optional):</p>
+    <p><%= t(".extra_information") %>
     <%= text_area_tag "report[message]" %>
 
-    <%= button_tag "Cancel", type: :reset %>
-    <%= submit_tag "Submit" %>
+    <div class="report-buttons">
+      <%= button_tag t(".cancel"), type: :reset, id: "report-cancel-button" %>
+      <%= submit_tag t(".report") %>
+    </div>
   <% end %>
 </div>

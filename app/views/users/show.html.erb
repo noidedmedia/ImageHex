@@ -7,23 +7,45 @@
       <% end %>
     </div>
 
-    <div class="user-page-username"><%= @user.name %></div>
+    <div class="user-page-information">
+      <div class="user-page-username"><%= @user.name %></div>
 
-    <% if current_user == @user %>
-      <%= link_to "(edit)", edit_user_path, class: "user-page-bio-edit" %>
-    <% end %>
+      <%# User's website goes here. %>
 
-    <!-- User's website goes here. -->
+      <%# User bio %>
+      <% if @user.user_page.display != "" %>
+        <div class="user-page-bio">
+          <%= @user.user_page.display.html_safe %>
+        </div>
 
-    <div class="user-page-bio"><%= @user.user_page.display.html_safe %></div>
+      <% elsif current_user == @user %>
+        <div class="user-page-bio inactive">
+          <%= t(".user_page_bio_empty") %>
+        </div>
+      <% end %>
+
+      <%# Only show "edit" button if the page belongs to the current user. %>
+      <% if current_user == @user %>
+        <div class="user-page-bio-edit">
+          <%= link_to t(".edit"), edit_user_path %>
+        </div>
+      <% end %>
+
+      <%# Only show "follow" if the page does not belong to the current user. %>
+      <% if current_user != @user %>
+        <div class="user-page-follow">
+          <%# <%= link_to t(".follow"), follow_user_path %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 
   <div id="user-content-container">
     <ul id="user-page-header-tabs">
-      <li data-tab="tab-1" class="user-page-header-tab current">Uploads
-      <li data-tab="tab-2" class="user-page-header-tab">Creations
-      <li data-tab="tab-3" class="user-page-header-tab">Collections
+      <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads") %>
+      <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations") %>
+      <li data-tab="tab-3" class="user-page-header-tab"><%= t(".collections") %>
     </ul>
 
     <div id="user-uploads-container" class="tab-content tc-tab-1 current">

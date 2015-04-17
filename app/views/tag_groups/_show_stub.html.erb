@@ -7,7 +7,7 @@
     <div class="edit-generic-tag-group"></div>
 
     <ul class="generic-tag-list">
-      <% tag_group.tags.all.each do |t| %>
+      <% tag_group.tags.alphabetic.all.each do |t| %>
         <li class="generic-tag"><%= t.display_name %>
       <% end %>
     </ul>

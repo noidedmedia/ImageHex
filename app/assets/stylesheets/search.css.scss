@@ -3,31 +3,50 @@
 /* search.html styling */
 #body-search {
   margin: auto;
-  padding-top: 30px;
-  display: block;
-  width: 300px;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100vw;
+  height: 40px;
+  background-color: #fff;
+  position: relative;
+  padding: 0 40px;
 
   button {
-    width: 100%;
-    margin-bottom: 5px;
-    margin-left: 25px;
+    width: auto;
+    height: 40px;
+    display: inline-block;
+    background-color: #fff;
+    border: 0;
   }
 
   input[type="search"] {
-    width: 100%;
-    margin-bottom: 5px;
-    margin-left: 25px;
+    min-width: 150px;
+    width: auto;
+    height: 30px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #fff;
+    border: 0;
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.15);
+    border-radius: 2px;
   }
 
   input[type="submit"] {
-    width: 100%;
-    margin-left: 25px;
-    margin-bottom: 15px;
+    height: 40px;
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
   }
 
-  @media all and (max-device-width: $mobile-width) {
-    padding-top: 20px;
-    width: calc(100vw - 40px);
+  button,
+  input[type="search"],
+  input[type="submit"] {
+    font-size: 1.2rem;
+    padding: 2px 10px;
+
+    &:focus {
+      outline: transparent;
+    }
   }
 }
 
@@ -238,8 +257,7 @@
   width: 50px;
 
   span::before {
-    -webkit-transform: translate(-35px,14px);
-            transform: translate(-35px,14px);
+    @include translate(-35px,14px);
   }
 
   @media all and (max-device-width: $mobile-width) {
