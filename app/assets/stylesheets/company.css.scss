@@ -123,6 +123,14 @@
   height: 240px;
   margin-bottom: 4px;
   width: 200px;
+  overflow: hidden;
+
+  img {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 120%;
+    max-height: 120%;
+  }
 }
 
 /* Styling for staff name's displayed below their portrait.. */
@@ -133,7 +141,7 @@
   text-align: center;
 }
 
-/* Job title for staff members.  */
+/* Job title for staff members. */
 .people-page-list-item-job-title {
   font-size: 1.2rem;
   font-weight: 400;
@@ -157,4 +165,12 @@
   p {
     padding: 0 0 12px;
   }
+}
+
+#about-page-logo img {
+  width: auto;
+  height: 250px;
+  margin: auto;
+  display: block;
+  pointer-events: none;
 }

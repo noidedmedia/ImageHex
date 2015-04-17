@@ -115,3 +115,8 @@ textarea {
 input, textarea, keygen, select, button {
   font: 400 inherit 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
 }
+
+// Fix Firefox's ugly default select styling.
+select {
+  -moz-appearance: none;
+}

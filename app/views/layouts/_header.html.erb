@@ -2,7 +2,9 @@
   <div id="header-left">
     <%# Home button %>
     <div class="header-item" id="header-home">
-      <%= link_to t(".home"), root_path %>
+      <%= link_to root_path do %>
+        <div class="imagehex-header-logo"></div>
+      <% end %>
     </div>
   </div>
 
@@ -107,7 +109,7 @@
 
       <%# Sign up %>
       <div class="header-item" id="header-sign-up">
-        <%= link_to t(".sign_up"), new_user_registration_path %>
+        <%= link_to t(".create_an_account"), new_user_registration_path %>
       </div>
 
       <%# Sign in %>

@@ -24,6 +24,7 @@ function headerSearch() {
 
         $(headersearch).css('max-height', searchheight);
         $(headersearch).css('max-height', 40);
+        headersearch.removeClass('active');
 
         // Unbinds the function so it can only happen once.
         $(headersearch).unbind('clickoutside');
@@ -75,7 +76,7 @@ function addSearchBox(toaddcount) {
   var list = toAdd.find(".page-suggestions");
   $(".page-search-full").last().after(toAdd);
   $(toAdd).attr('id', "page-search-full" + toaddcount);
-  toAdd.find("input").on("input", searchSuggestion(list, null)).val("");
+  toAdd.find("input").on("input", searchSuggestion(list, null)).val("").focus();
 }
 
 var ready = function() {

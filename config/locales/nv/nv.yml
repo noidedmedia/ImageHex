@@ -36,14 +36,42 @@ nv:
         digital_paint: "Created digitally using software such as GIMP"
         mixed_media: "Containing parts from multiple types of media"
         three_dimensional_render: "Created by rasterizing 3D data, including shading and textures"
+  devise:
+    confirmations:
+    passwords:
+      new: 
+        forgot_your_password: "Forgot your password?"
+        email: "Email"
+        reset_password: "Reset password"
+    registrations:
+      new:
+        create_an_account: "Create an account"
+        email: "Email"
+        username: "Username"
+        password: "Password (minimum 8 characters)"
+        reenter_password: "Re-enter password"
+    sessions:
+      new:
+        sign_in: "Sign in"
+        email: "Email"
+        password: "Password"
+        remember_me: "Remember me"
+    shared:
+      links:
+        sign_in: "Sign in"
+        create_an_account: "Create an account"
+        forgot_your_password: "Forgot your password?"
+        didn't_receive_confirmation: "Didn't receive confirmation instructions?"
+        didn't_receive_unlock: "Didn't receive unlock instructions?"
+        sign_in_with: "Sign in with"
   layouts:
     header:
       home: "Page at the root of the URL"
       search: "Page where you can find many images"
       search_suggestions_note: "Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags"
       sign_in: "Verify your identity"
-      sign_up: "Create an identity for yourself"
-      upload: "Create a new image on ImageHex"
+      create_an_account: "Create an identity for yourself"
+      upload: "Upload a new image on ImageHex"
       profile: "Text, set by users, designed to give one a small amount of information about that user"
       admin: "A user who can do whatever they wish"
       settings: "A group of values that describe how ImageHex works"
@@ -101,18 +129,20 @@ nv:
       new_tag_group: "Create a new tag group on this image"
     search:
       tag_group: "Tag group"
-      add_a_group: "Add a group"
+      add_a_tag_group: "Add a tag group"
       search: "Search"
   users:
     show:
       uploads: "Images which this user has added to out database"
       creations: "Images which this user has caused to come into existance, by photographing or otherwise creating them"
       collections: "The collections owned or administered by this user"
+      user_page_bio_empty: "You haven't filled out your autobiographical text yet."
       edit: "(modify)"
     edit:
       profile_picture_image_id: "Profile Picture Image Identification Number"
       user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
       images_per_page: "Numer of images which ImageHex should display on a page"
+      save_changes: "Save changes"
     collection_stub:
       curated_by: "Curated by"
   notifications:
@@ -128,6 +158,7 @@ nv:
       commented: "commented"
       ago: "ago"
       no_comments_yet: "No user has had the desire to make anything known on this page"
+      cancel: "Cancel"
       submit: "Send data to the server for processing"
     report_stub:
       reason_for_report: "Reason for report:"
