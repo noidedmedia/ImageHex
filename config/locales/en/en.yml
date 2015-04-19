@@ -167,7 +167,7 @@ en:
       ago: "ago"
   shared:
     comments:
-      comments_header: "Comments"
+      uploaded_by: "Uploaded by"
       commented: "commented"
       ago: "ago"
       no_comments_yet: "No comments yet."

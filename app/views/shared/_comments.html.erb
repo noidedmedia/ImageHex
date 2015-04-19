@@ -1,6 +1,13 @@
 <div id="comment-container">
-  <div id="comment-container-header">
-    <h3><%= t(".comments_header") %></h3>
+  <div id="upload-info">
+    <div class="uploader-avatar">
+      <%= link_to @image.user do %>
+        <% if @image.user.avatar %>
+          <%= image_tag @image.user.avatar_img_thumb %>
+        <% end %>
+      <% end %>
+    </div>
+    <p><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
   </div>
   <% if subject.comments.empty? %>
     <p class="no-comments"><%= t(".no_comments_yet") %>
@@ -13,8 +20,10 @@
       <div class="comment" id="comment-<%= comment.id %>">
         
         <div class="user-comment-avatar">
-          <% if comment.user.avatar %>
-            <%= image_tag comment.user.avatar_img_thumb %>
+          <%= link_to comment.user do %>
+            <% if comment.user.avatar %>
+              <%= image_tag comment.user.avatar_img_thumb %>
+            <% end %>
           <% end %>
         </div>
 

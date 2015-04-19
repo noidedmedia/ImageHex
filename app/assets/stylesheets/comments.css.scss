@@ -6,28 +6,32 @@
   background-color: #fff;
   border-radius: 2px;
   padding: 10px;
-  padding-top: 35px; // To make room for the absolutely positioned header.
   position: relative;
   margin-bottom: 15px;
   display: inline-block;
   box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
 }
 
-#comment-container-header {
+#upload-info {
   width: 100%;
-  height: 40px;
-  position: absolute;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  top: 0;
-  left: 0;
-  padding: 4px 10px;
+  margin-bottom: 15px;
 
-  h3 {
-    width: 100%;
-    font-size: 1.4rem;
-    padding: 5px 0;
-    border-bottom: 1px solid #e4e4e4;
+  p {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    color: #333;
+    padding-top: 4px;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -60,18 +64,40 @@ a:target + .comment {
     -webkit-animation: commentTarget 3s linear 1 normal forwards;
 }
 
-.user-comment-avatar {
-  width: 40px;
-  height: 40px;
+.user-comment-avatar,
+.uploader-avatar {
   margin: 2px 12px 2px 4px;
   background-color: #c9c9c9;
   overflow: hidden;
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 2px;
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.user-comment-avatar {
+  min-width: 40px;
+  min-height: 40px;
+  height: 40px;
+  width: 40px;
 
   img {
     min-width: 40px;
     min-height: 40px;
+  }
+}
+
+.uploader-avatar {
+  width: 50px;
+  height: 50px;
+
+  img {
+    min-width: 50px;
+    min-height: 50px;
   }
 }
 

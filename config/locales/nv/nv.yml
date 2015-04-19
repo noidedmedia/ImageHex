@@ -154,7 +154,7 @@ nv:
       ago: "ago"
   shared:
     comments:
-      comments_header: "Things which other users desired to be displayed in association with this page"
+      uploaded_by: "Uploaded by"
       commented: "commented"
       ago: "ago"
       no_comments_yet: "No user has had the desire to make anything known on this page"
