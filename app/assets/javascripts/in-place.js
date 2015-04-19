@@ -43,7 +43,7 @@ var showon = function() {
         // Binding "clickoutside" to the dialog itself doesn't work, because
         // the toggle is technically outside the dialog and the dialog's
         // active classes are removed before it's able to display.
-        $(toggle).bind("clickoutside", function(event) {
+        $(toggle).bind("clickoutside", function() {
           $(_this).removeClass('active').addClass('inactive');
           $(_this).unbind("clickoutside");
         });
