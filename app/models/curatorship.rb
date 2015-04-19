@@ -7,4 +7,5 @@
 class Curatorship < ActiveRecord::Base
   belongs_to :user
   belongs_to :collection
+  enum level: [:viewer, :mod, :admin]
 end

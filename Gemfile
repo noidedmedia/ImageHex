@@ -35,6 +35,8 @@ gem 'unicorn'
 # Use paperclip to upload images
 gem 'paperclip'
 
+# Use pundit for authorization
+gem 'pundit'
 # Use postmark to send email
 gem 'postmark-rails'
 # Use jquery as the JavaScript library
