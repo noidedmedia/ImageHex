@@ -30,10 +30,19 @@ var showon = function() {
       // If data-clickoutside="true" then the clickoutside event is binded to the
       // relevant element.
       if ( $(_this).data("clickoutside") === true ) {
+
+        // This prevents "bubbling up" of the click event when it's within the
+        // dialog, to prevent "clickoutside" from erroneously running the
+        // active toggle function when the click is within the dialog.
         $(_this).bind("click", function(event) {
           event.stopPropagation();
         });
 
+        // Binds a function to toggle the active/inactive classes on the dialog
+        // to clicking outside the button that toggles the dialog.
+        // Binding "clickoutside" to the dialog itself doesn't work, because
+        // the toggle is technically outside the dialog and the dialog's
+        // active classes are removed before it's able to display.
         $(toggle).bind("clickoutside", function(event) {
           $(_this).removeClass('active').addClass('inactive');
           $(_this).unbind("clickoutside");
