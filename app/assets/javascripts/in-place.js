@@ -26,6 +26,19 @@ var showon = function() {
       if ( $(toggle).hasClass("image-actions") || $(toggle).children().hasClass("image-actions") ) {
         $(".image-actions-tooltip").not(_this).removeClass('active').addClass('inactive');
       }
+
+      // If data-clickoutside="true" then the clickoutside event is binded to the
+      // relevant element.
+      if ( $(_this).data("clickoutside") === true ) {
+        $(_this).bind("click", function(event) {
+          event.stopPropagation();
+        });
+
+        $(toggle).bind("clickoutside", function(event) {
+          $(_this).removeClass('active').addClass('inactive');
+          $(_this).unbind("clickoutside");
+        });
+      }
     });
   });
 };
