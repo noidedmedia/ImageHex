@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418234204) do
+ActiveRecord::Schema.define(version: 20150420135015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20150418234204) do
     t.integer  "license"
     t.integer  "medium"
     t.boolean  "replies_to_inbox",             default: false
-    t.jsonb    "exif"
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
@@ -189,8 +188,8 @@ ActiveRecord::Schema.define(version: 20150418234204) do
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "users"
-  add_foreign_key "curatorships", "collections"
-  add_foreign_key "curatorships", "users"
+  add_foreign_key "curatorships", "collections", on_delete: :cascade
+  add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "images", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"
