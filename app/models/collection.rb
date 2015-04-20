@@ -11,9 +11,6 @@
 # subscribers:: All users subscribed to this collection. Related via the join
 #               table subscriptions.
 # curators:: All the users who curate this collection. There's different levels
-#            of curatorship that provide different levels of functionality,
-#            but at the moment none of those are implemented. Speaking of which,
-#            TODO: implement those.
 # images:: All images in this collection. Join table'd via collection_images.
 #
 # == Scopes

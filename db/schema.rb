@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20150420142534) do
     t.integer  "license"
     t.integer  "medium"
     t.boolean  "replies_to_inbox",             default: false
+    t.jsonb    "exif"
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree

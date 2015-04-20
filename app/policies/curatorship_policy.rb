@@ -2,15 +2,18 @@ class CuratorshipPolicy < ApplicationPolicy
   def initialize(user, curatorship))
     @user = user
     @curatorship = curatorship
+    @user_curatorship = Curatorship.where(user_id: @user.id,
+                                          collection_id: curatorship.collection.id)
+      .first
   end
   def promote?
-    (c = @user.curatorship_for(@curatorship.collection)) && c.level == :admin
+    @user_curatorship && c.level == :admin
   end
 
   def delete?
-    (c = @user.curatorship_for(@curatorship.collection)) && c.level == :admin
+   @user_curatorship  && c.level == :admin
   end
   def create?
-    (c = @user.curatorship_for(@curatorship.collection)) && c.level == :admin
+    @user_curatorship && c.level == :admin
   end
 end

@@ -6,11 +6,17 @@ class CollectionImagePolicy < ApplicationPolicy
   end
 
   def create?
-    @user.curatorship_for(@record.collection)
+    user_curatorship
   end
 
   def delete?
-    (c = @user.curatorsip_for(@record.collection)) &&
-      (c.level == :mod || c.level == :admin)
+    user_curatorship && 
+      (user_curatorship.level == "admin" || user_curatorship.level  == "mod")
+  end
+
+  def user_curatorship
+    @uc ||= Curatorship.where(user_id: @user.id,
+                              collection_id: @record.collection.id).first
+    @uc
   end
 end

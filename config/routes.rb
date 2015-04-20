@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :collection_images, only: [:create, :destroy] do
     ##
     # An action which sees if an image already exists in the collection
-    collection "exists"
+    get "exists", on: :collection
   end
   resources :tags do
     collection do

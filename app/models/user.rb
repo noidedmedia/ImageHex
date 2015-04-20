@@ -125,6 +125,10 @@ class User < ActiveRecord::Base
   def creations
     collections.creations.first
   end
+
+  def curatorship_for(c)
+    Curatorship.where(user: self, collection: c).first
+  end
   protected
 
   ##
@@ -160,5 +164,6 @@ class User < ActiveRecord::Base
     Favorite.create!(curators: [self])
     Creation.create!(curators: [self])
   end
+
 
 end

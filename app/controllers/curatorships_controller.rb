@@ -1,4 +1,5 @@
 class CuratorshipsController < ApplicationController
+  include Pundit
   before_filter :ensure_user
   def create
     @curatorship = Curatorship.new(curatorship_params)
