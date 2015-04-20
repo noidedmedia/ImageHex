@@ -37,9 +37,25 @@
   <%# Viewport meta tag %>
   <meta name="viewport" content="width=device-width, user-scalable=no">
 
+  <%# Makes the site capable of running as if it was an official app on Android and iOS. %>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <%# Proper application name for "Add to Homescreen" %>
+  <meta name="application-name" content="ImageHex" />
+  <meta name="apple-mobile-web-app-title" content="ImageHex">
+
+  <%# Theme Color for Chrome on Android, Safari for iOS, etc. %>
+  <meta name="theme-color" content="#333333">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#333333">
+
+  <%# WebApp Manifest for icons and things %>
+  <link rel="manifest" href="/manifest.json">
+
   <%# UTF-8 Character Set %>
   <meta charset="utf-8">
 
+  <%# Description for Google, etc. %>
   <meta name="description" content="ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet.">
 </head>
 
