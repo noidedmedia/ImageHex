@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420135015) do
+ActiveRecord::Schema.define(version: 20150420142534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20150420135015) do
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "collection_images", ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
   add_index "collection_images", ["image_id"], name: "index_collection_images_on_image_id", using: :btree
+  add_index "collection_images", ["user_id"], name: "index_collection_images_on_user_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -186,6 +188,7 @@ ActiveRecord::Schema.define(version: 20150420135015) do
 
   add_foreign_key "collection_images", "collections"
   add_foreign_key "collection_images", "images", on_delete: :cascade
+  add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
