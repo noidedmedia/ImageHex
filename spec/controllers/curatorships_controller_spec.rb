@@ -19,7 +19,7 @@ RSpec.describe CuratorshipsController, type: :controller do
                          user: @user,
                          collection: collection,
                          level: :admin)
-      put :update, id: c.id, params: {level: :admin}
+      put :update, id: c.id, curatorship: {level: :admin}
       expect(response).to be_success
       expect(c.reload.level).to eq(:admin)
     end
