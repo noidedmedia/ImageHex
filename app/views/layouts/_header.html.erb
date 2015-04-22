@@ -81,13 +81,13 @@
       </div>
 
       <%# User dropdown %>
-      <div id="dd" class="wrapper-dropdown">
+      <div class="user-bar">
         <%# Current user's username %>
         <div class="header-item" id="username">
           <%= link_to current_user.name, current_user %>
         </div>
 
-        <ul class="dropdown">
+        <ul>
           <%# Profile %>
           <li><%= link_to t(".profile"), current_user %>
 

@@ -1,0 +1,120 @@
+@import "scss-variables";
+
+/* ==============================================
+    Account Dropdown
+   ============================================== */
+
+.user-bar {
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  text-align: left;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  transition: 300ms max-height ease-in-out, 250ms background-color 300ms;
+  max-height: 40px;
+  overflow: hidden;
+
+  &:hover {
+    background-color: #fff;
+    color: #333;
+    max-height: 800px;
+    transition: 250ms background-color, 300ms max-height ease-in-out 250ms;
+    box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.05);
+
+    > div a {
+      color: #333;
+    }
+
+    > ul {
+      visibility: visible;
+      opacity: 1.0;
+    }
+  }
+
+  > div {
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+
+  > ul {
+    visibility: hidden;
+    opacity: 0;
+    transition: 250ms opacity;
+
+    li a,
+    li input[type=submit] {
+      display: block;
+      padding: 10px;
+      width: 100%;
+      text-decoration: none;
+      transition: color 200ms ease-out;
+      color: #aaaab2;
+      background-color: transparent;
+      border: none;
+      appearance: none;
+      -webkit-appearance: none;
+      font-size: 1.4rem;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    li:hover a,
+    li:hover input[type=submit] {
+      color: #333;
+      background-color: #f4f4f4;
+      cursor: pointer;
+    }
+  }
+}
+
+@media all and (max-device-width: $mobile-width) {
+  .user-bar {
+    position: initial;
+    width: auto;
+    display: auto;
+    padding: 0;
+    margin: 0;
+    background: none;
+    width: 100%;
+    max-height: 100vh;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    ul {
+      background: none;
+      display: inline-block;
+      border: none;
+      position: relative;
+      opacity: 1.0;
+      visibility: visible;
+      box-shadow: none;
+      top: auto;
+      right: auto;
+      left: auto;
+      bottom: auto;
+      font-size: 1.6rem;
+      width: 100%;
+
+      li input[type=submit],
+      li a {
+        padding: 12px 25px;
+        font-size: 1.8rem;
+        color: #aaaab2;
+        width: 100%;
+      }
+
+      li:hover input[type=submit],
+      li:hover a {
+        background-color: transparent;
+        color: #aaaab2;
+      }
+    }
+  }
+}
