@@ -16,6 +16,7 @@ class CuratorshipsController < ApplicationController
     authorize @curatorship
     @curatorship.delete
   end
+
   def update
     @curatorship = Curatorship.find(params[:id])
     authorize @curatorship
@@ -28,8 +29,9 @@ class CuratorshipsController < ApplicationController
   end
 
   def curatorship_params
-    params.require(:curatorship).permit(:user_id,
-                                        :collection_id,
-                                        :curatorship_id)
+    params.require(:curatorship)
+    .permit(:user_id,
+            :level)
+    .merge(collection_id: params[:collection_id])
   end
 end

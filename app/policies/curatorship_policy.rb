@@ -7,13 +7,18 @@ class CuratorshipPolicy < ApplicationPolicy
       .first
   end
   def update?
-    @user_curatorship && @user_curatorship.level == "admin"
+    is_admin?
   end
 
   def delete?
-   @user_curatorship  && @user_curatorship.level == "admin"
+    is_admin?
   end
   def create?
-    @user_curatorship && @user_curatorship.level == "admin"
+    is_admin?
+  end
+
+  protected
+  def is_admin?
+    @user_curatorship.try(:level) == "admin"
   end
 end

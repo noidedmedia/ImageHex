@@ -14,8 +14,7 @@ Rails.application.routes.draw do
   ##################
   # RESTFUL ROUTES #
   ##################
-  
-  resources :curatorships, except: [:index, :show]
+
   resources :collection_images, only: [:create, :destroy] do
     ##
     # An action which sees if an image already exists in the collection
@@ -45,6 +44,8 @@ Rails.application.routes.draw do
     resources :collections, only: [:index]
   end
   resources :collections, except: [:index] do
+
+    resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"
       post "add"
