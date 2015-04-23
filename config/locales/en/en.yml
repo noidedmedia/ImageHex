@@ -53,27 +53,32 @@ en:
     confirmations:
     passwords:
       new: 
+        forgot_your_password?: "Forgot your password?"
         forgot_your_password: "Forgot your password?"
         email: "Email"
         reset_password: "Reset password"
     registrations:
       new:
-        create_an_account: "Create an account"
+        let's_get_started: "Let's get started."
+        create_an_account_submit: "Create account"
         email: "Email"
         username: "Username"
         password: "Password (minimum 8 characters)"
         reenter_password: "Re-enter password"
     sessions:
       new:
+        welcome_back: "Welcome back."
         sign_in: "Sign in"
         email: "Email"
         password: "Password"
         remember_me: "Remember me"
     shared:
       links:
-        sign_in: "Sign in"
-        create_an_account: "Create an account"
-        forgot_your_password: "Forgot your password?"
+        already_have_an_account?: "Already have an account?"
+        sign_in: "Sign in."
+        don't_have_an_account?: "Don't have an account?"
+        create_an_account: "Get started here."
+        forgot_your_password?: "Forgot your password?"
         didn't_receive_confirmation: "Didn't receive confirmation instructions?"
         didn't_receive_unlock: "Didn't receive unlock instructions?"
         sign_in_with: "Sign in with"
