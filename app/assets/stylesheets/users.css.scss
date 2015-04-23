@@ -282,8 +282,6 @@
   margin-top: 40px;
   padding: 15px 20px;
   display: none;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
 
   &.current {
     display: -webkit-flex;
@@ -293,4 +291,15 @@
   @media all and (max-device-width: $mobile-width) {
     margin-top: 5px;
   }
+}
+
+#user-collections-container,
+#user-creations-container {
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+#user-uploads-container {
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
 }
