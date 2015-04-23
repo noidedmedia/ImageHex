@@ -6,7 +6,8 @@
 
 .user-bar {
   position: relative;
-  width: 200px;
+  width: auto;
+  min-width: 200px;
   margin: 0 auto;
   padding: 0;
   cursor: pointer;
@@ -44,6 +45,9 @@
   > div {
     padding-bottom: 10px;
     padding-left: 10px;
+
+    // Compensating for the dropdown arrow. 
+    padding-right: 40px;
   }
 
   > ul {
@@ -105,6 +109,10 @@
 
     &:after {
       display: none;
+    }
+
+    div {
+      padding-right: 0;
     }
 
     ul {
