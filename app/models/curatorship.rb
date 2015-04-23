@@ -5,6 +5,16 @@
 class Curatorship < ActiveRecord::Base
   belongs_to :user
   belongs_to :collection
-
+  validates :user, presence: true
+  validates :collection, presence: true
+  validates :level, presence: true
   enum level: [:worker, :mod, :admin]
+
+  attr_accessor :user_name
+  before_save :resolve_user_name
+
+  protected
+  def resolve_user_name
+    user ||= User.friendly.find(user_name) if user_name
+  end
 end

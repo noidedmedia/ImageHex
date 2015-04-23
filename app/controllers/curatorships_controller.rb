@@ -8,7 +8,7 @@ class CuratorshipsController < ApplicationController
       redirect_to @curatorship.collection
     else
       flash[:warning] = @curatorship.errors.full_messages
-      redirect_to @curatorship
+      redirect_to @curatorship.collection
     end
   end
   def delete
@@ -31,6 +31,7 @@ class CuratorshipsController < ApplicationController
   def curatorship_params
     params.require(:curatorship)
     .permit(:user_id,
+            :user_name,
             :level)
     .merge(collection_id: params[:collection_id])
   end

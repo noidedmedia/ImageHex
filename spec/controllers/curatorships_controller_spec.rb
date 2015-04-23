@@ -42,7 +42,20 @@ RSpec.describe CuratorshipsController, type: :controller do
                                                      level: :mod))
         expect(Curatorship.last.level).to eq("mod")
         expect(Curatorship.last.user).to eq(other_user)
-
+      end
+      it "works as admin with a user name" do
+        c = FactoryGirl.create(:curatorship,
+                               user: @user,
+                               collection: collection,
+                               level: :admin)
+        post(:create,
+             collection_id: collection.id,
+             curatorship: FactoryGirl.attributes_for(:curatorship,
+                                                     user_name: other_user,
+                                                     level: :mod))
+        expect(response.status).to eq(200)
+        expect(Curatorship.last.user).to eq(other_user)
+        expect(Curatorship.last.level).to eq("mod")
       end
     end
   end
