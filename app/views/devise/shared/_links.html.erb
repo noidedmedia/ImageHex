@@ -33,9 +33,9 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <div class="sign-in-extras-row">
+    <div class="sign-in-extras-row <%= provider %>">
       <%= link_to omniauth_authorize_path(resource_name, provider) do %>
-        <%= t(".sign_in_with") %> #{provider.to_s.titleize}
+        <%= t(".sign_in_with", provider: provider.to_s.titleize) %>
       <% end %>
     </div>
   <% end -%>

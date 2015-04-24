@@ -66,7 +66,7 @@ nv:
         forgot_your_password?: "Forgot your password?"
         didn't_receive_confirmation: "Didn't receive confirmation instructions?"
         didn't_receive_unlock: "Didn't receive unlock instructions?"
-        sign_in_with: "Sign in with"
+        sign_in_with: "Sign in with %{provider}"
   layouts:
     header:
       home: "Page at the root of the URL"
