@@ -38,6 +38,10 @@ nv:
         three_dimensional_render: "Created by rasterizing 3D data, including shading and textures"
   devise:
     confirmations:
+      new:
+        email_confirmation: "Email confirmation"
+        email: "Email"
+        resend_confirmation_instructions: "Resend confirmation instructions"
     passwords:
       new: 
         forgot_your_password: "Forgot your password?"

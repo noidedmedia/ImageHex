@@ -51,6 +51,10 @@ en:
         three_dimensional_render: "Three Dimensional Render"
   devise:
     confirmations:
+      new:
+        email_confirmation: "Email confirmation"
+        email: "Email"
+        resend_confirmation_instructions: "Resend confirmation instructions"
     passwords:
       new: 
         forgot_your_password?: "Forgot your password?"

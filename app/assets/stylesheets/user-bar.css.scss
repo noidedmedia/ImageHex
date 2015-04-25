@@ -20,7 +20,7 @@
   max-height: 40px;
   overflow: hidden;
 
-  &:hover {
+  &:hover, &:focus {
     background-color: #fff;
     color: #333;
     max-height: 800px;
@@ -72,9 +72,15 @@
     }
 
     li:hover a,
-    li:hover input[type=submit] {
+    li:hover input[type=submit],
+    li:focus a,
+    li:focus input[type=submit] {
       background-color: #f4f4f4;
       cursor: pointer;
+    }
+
+    li input[type=submit]:focus {
+      outline: transparent;
     }
   }
 
