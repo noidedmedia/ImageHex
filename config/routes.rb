@@ -15,11 +15,7 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
-  resources :collection_images, only: [:create, :destroy] do
-    ##
-    # An action which sees if an image already exists in the collection
-    get "exists", on: :collection
-  end
+  
   resources :tags do
     collection do
       get "suggest"
@@ -44,7 +40,14 @@ Rails.application.routes.draw do
     resources :collections, only: [:index]
   end
   resources :collections, except: [:index] do
-
+    ##
+    # OK we get non-REST here
+    # The :id is actually the ID of the image, not the collection_image model
+    resources :collection_images, only: [:create, :destroy] do
+    ##
+    # An action which sees if an image already exists in the collection
+    get "exists", on: :collection
+  end
     resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"

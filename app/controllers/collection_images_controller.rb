@@ -25,16 +25,18 @@ class CollectionImagesController < ApplicationController
     redirect_to(request.referrer || root_path)
   end
 
-  def delete
-    c = CollectionImage.find(params[:id])
+  def destroy
+    c = CollectionImage.where(image_id: params[:id],
+                              collection_id: params[:id])
     authorize c
+    c.delete
   end
-  
+
   protected
   def collection_image_params
     params.require(:collection_image)
-      .permit(:collection_id,
-              :image_id)
-      .merge(user_id: current_user.id)
+      .permit(:image_id)
+      .merge(user_id: current_user.id,
+             collection_id: params[:collection_id])
   end
 end
