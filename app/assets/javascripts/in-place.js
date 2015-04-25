@@ -15,7 +15,12 @@ var showon = function() {
   showondiv.each(function() {
     var _this = this;
     $(_this).addClass('inactive').removeClass('active');
-    var toggle = $($(_this).data("showon"));
+    
+    // "data-showon" should have a value with the name (e.g. class or id) of
+    // the button that toggles the element with the "data-showon" property.
+    // The following line sets "toggle" equal to a jQuery selector for said
+    // value.
+    var toggle = $( $(_this).data("showon") );
     $(toggle).on("click", function() {
       $(_this).toggleClass('active').toggleClass('inactive');
 

@@ -68,6 +68,9 @@ nv:
         didn't_receive_unlock: "Didn't receive unlock instructions?"
         sign_in_with: "Sign in with %{provider}"
   layouts:
+    application:
+      sign_in: "Sign in"
+      create_an_account: "Create an account"
     header:
       home: "Page at the root of the URL"
       search: "Page where you can find many images"

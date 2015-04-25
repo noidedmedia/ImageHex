@@ -1,0 +1,52 @@
+@import "scss-variables";
+
+body.modal-open {
+  overflow: hidden;
+}
+
+#modal-overlay {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255,255,255,0.4);
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &.active {
+    display: block;
+  }
+}
+
+#modal-dialog {
+  margin: 150px auto;
+  height: auto;
+  width: 500px;
+  max-width: calc(100vw - 20px);
+  background-color: #fff;
+  padding: 20px 20px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.25);
+  
+  > p {
+    font-size: 1.4rem;
+  }
+
+  .button-container {
+    width: 100%;
+    display: block;
+    position: relative;
+    height: auto;
+    padding: 10px 0;
+    text-align: right;
+    margin-top: 15px;
+
+    .btn {
+      height: 32px;
+      margin-left: 4px;
+    }
+  }
+}
