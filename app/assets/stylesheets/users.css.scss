@@ -128,24 +128,6 @@
   font-size: 1.4rem;
   margin-top: 75px;
   margin-left: calc(50vw - 150px);
-
-  input[type="submit"] {
-    width: 300px;
-    display: inline-block;
-    height: 30px;
-    font-size: 1.4rem;
-    border-radius: 3px;
-    border: none;
-    background-color: #5bb289;
-    color: #fff;
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    &:focus {
-      outline: transparent;
-    }
-  }
 }
 
 // Text field for editing the user's bio.

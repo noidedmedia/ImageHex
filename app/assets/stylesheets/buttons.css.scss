@@ -8,6 +8,12 @@
   display: inline-block;
   color: #fff;
   transition: background-color 300ms;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  height: 32px;
+  cursor: pointer;
 
   a {
     text-decoration: none;
@@ -32,6 +38,10 @@
   &:hover, &:focus {
     background-color: darken(#5bb289, 6%);
   }
+}
+
+.btn-full-width {
+  width: 100%;
 }
 
 .btn-grey {
