@@ -61,8 +61,7 @@
       padding: 10px;
       width: 100%;
       text-decoration: none;
-      transition: color 200ms ease-out;
-      color: #aaaab2;
+      color: #333;
       background-color: transparent;
       border: none;
       appearance: none;
@@ -74,7 +73,6 @@
 
     li:hover a,
     li:hover input[type=submit] {
-      color: #333;
       background-color: #f4f4f4;
       cursor: pointer;
     }
