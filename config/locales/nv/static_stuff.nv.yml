@@ -1,0 +1,8 @@
+# "static_stuff" strings.
+
+nv:
+  static_stuff:
+    company_nav:
+      people: "People"
+      about: "About"
+      contact: "Contact"
