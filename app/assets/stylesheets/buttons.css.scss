@@ -8,12 +8,13 @@
   display: inline-block;
   color: #fff;
   transition: background-color 300ms;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   border: 0;
   height: 32px;
   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none;
 
   a {
     text-decoration: none;
@@ -30,6 +31,11 @@
 .btn-large {
   height: 40px;
   width: 100%;
+
+  @media all and (max-device-width: $mobile-width) {
+    height: 50px;
+    font-size: 1.6rem;
+  }
 }
 
 .btn-green {

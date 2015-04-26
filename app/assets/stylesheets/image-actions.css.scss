@@ -68,6 +68,10 @@
     > span::before {
       color: rgba(#fff,1.0);
     }
+
+    @media all and (max-device-width: $mobile-width) {
+      background-color: transparent;
+    }
   }
 
   > a > span::before,
