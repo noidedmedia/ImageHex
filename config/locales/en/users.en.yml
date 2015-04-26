@@ -1,0 +1,17 @@
+# Users strings.
+
+en:
+  users:
+    show:
+      uploads: "Uploads"
+      creations: "Creations"
+      collections: "Collections"
+      user_page_bio_empty: "You haven't filled out a bio yet."
+      edit: "(edit)"
+    edit:
+      profile_picture_image_id: "Profile Picture Image ID"
+      user_bio: "User bio"
+      images_per_page: "Images per page"
+      save_changes: "Save changes"
+    collection_stub:
+      curated_by: "Curated by"

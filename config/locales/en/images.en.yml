@@ -1,0 +1,44 @@
+# Images strings.
+
+en:
+  images:
+    new:
+      upload_image: "Upload an image"
+      drop_images_here_to_upload: "Drop images here to upload"
+      or: "or"
+      click_here_to_choose: "Click here to choose a file"
+      submit: "Submit"
+    image_page_sidebar:
+      download: "Download"
+      download_license_notice: "This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way."
+      agree_and_download: "Agree and Download"
+      favorite: "Favorite"
+      favorited: "Favorited"
+      add_to_collection: "Add to Collection"
+      share: "Share"
+      report: "Report"
+      delete: "Delete"
+    image_page_toolbar:
+      add_a_tag_group: "Add a tag group"
+      help: "Help"
+      details: "Details"
+      license: "License"
+      medium: "Medium"
+      date_taken: "Date taken"
+      dimensions: "Dimensions"
+      file_name: "File name"
+      file_size: "File size"
+      camera: "Camera"
+      lens: "Lens"
+      focal_length: "Focal Length"
+      exposure: "Exposure"
+      f_number: "F Number"
+      iso: "ISO"
+      flash: "Flash"
+      view_edit_history: "View edit history"
+    image_page_information:
+      new_tag_group: "New Tag Group"
+    search:
+      tag_group: "Tag group"
+      add_a_tag_group: "Add a tag group"
+      search: "Search"

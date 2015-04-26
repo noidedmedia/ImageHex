@@ -1,0 +1,16 @@
+# Shared strings.
+
+en:
+  shared:
+    comments:
+      uploaded_by: "Uploaded by"
+      commented: "commented"
+      ago: "ago"
+      no_comments_yet: "No comments yet."
+      cancel: "Cancel"
+      submit: "Submit"
+    report_stub:
+      reason_for_report: "Reason for report:"
+      extra_information: "Extra information (optional):"
+      cancel: "Cancel"
+      report: "Report"

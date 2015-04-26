@@ -1,0 +1,17 @@
+# Users strings.
+
+nv:
+  users:
+    show:
+      uploads: "Images which this user has added to out database"
+      creations: "Images which this user has caused to come into existance, by photographing or otherwise creating them"
+      collections: "The collections owned or administered by this user"
+      user_page_bio_empty: "You haven't filled out your autobiographical text yet."
+      edit: "(modify)"
+    edit:
+      profile_picture_image_id: "Profile Picture Image Identification Number"
+      user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
+      images_per_page: "Numer of images which ImageHex should display on a page"
+      save_changes: "Save changes"
+    collection_stub:
+      curated_by: "Curated by"
