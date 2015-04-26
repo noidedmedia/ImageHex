@@ -157,24 +157,9 @@
   }
 }
 
-.collection-follow {
-  color: #fff;
-  font-weight: 300;
-  font-size: 1.6rem;
+#collection-follow {
   width: 250px;
   height: 32px;
-  margin: 5px 0;
-  position: relative;
-  border-radius: 3px;
-  border: none;
-  background-color: #5bb289;
-  cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-  &:focus {
-    outline: none;
-  }
 
   @media all and (max-device-width: $mobile-width) {
     position: relative;
