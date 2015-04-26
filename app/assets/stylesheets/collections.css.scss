@@ -72,20 +72,6 @@
 #new-collection-submit {
   margin-left: 90px;
   width: calc(100% - 90px);
-  color: #fff;
-  background-color: #5bb289;
-  font-size: 1.6rem;
-  padding: 8px;
-  appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  border: 0;
-  border-radius: 2px;
-  cursor: pointer;
-
-  &:focus {
-    outline: transparent;
-  }
 
   @media all and (max-device-width: $mobile-width) {
     margin-left: 0;

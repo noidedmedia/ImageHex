@@ -31,23 +31,8 @@
 
   /* Styling for the submit button on registration pages. */
   input[type=submit] {
-    -webkit-appearance: none;
-    background-color: #5bb289;
-    border: 0;
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: 300;
-    height: 40px;
     margin-top: 12px;
     margin-bottom: 8px;
-    text-align: center;
-    width: 100%;
-    cursor: pointer;
-
-    &:focus {
-      border: #333;
-      outline: transparent;
-    }
   }
 }
 
