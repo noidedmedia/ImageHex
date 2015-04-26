@@ -29,7 +29,8 @@ RSpec.describe CollectionImagesController, type: :controller do
         FactoryGirl.create(:collection_image,
                            image_id: image.id,
                            collection_id: :collection)
-        delete(:create,
+        expect(collection.images).to include(image)
+        delete(:destroy,
                collection_id: collection,
                id: image)
         expect(collection.images).to_not include(image)

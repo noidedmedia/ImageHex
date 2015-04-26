@@ -9,7 +9,7 @@ class CollectionImagePolicy < ApplicationPolicy
     user_curatorship
   end
 
-  def delete?
+  def destroy?
     user_curatorship && 
       (user_curatorship.level == "admin" || user_curatorship.level  == "mod")
   end
