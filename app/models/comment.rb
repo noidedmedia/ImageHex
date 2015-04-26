@@ -61,7 +61,7 @@ class Comment < ActiveRecord::Base
   # The message to use when generating a notification for a reply on a user
   # image.
   def image_reply_message
-    I18n.t 'comment.made_a_comment', username: "#{user.name}", commentable: "##{commentable.id}"
+    I18n.t 'made_a_comment', username: "#{user.name}", commentable: "##{commentable.id}", scope: "activerecord.models.comment"
   end
   ##
   # Notify reply tells us to make a notification of a reply to
@@ -79,7 +79,7 @@ class Comment < ActiveRecord::Base
   # Notification message just returns a string to use as the message
   # in a notification
   def reply_message(other)
-    I18n.t 'comment.replied_to_your_comment', username: "#{other.user.name}", commentable_type: "#{commentable_type}", commentable: "##{commentable.id}"
+    I18n.t 'replied_to_your_comment', username: "#{other.user.name}", commentable_type: "#{commentable_type}", commentable: "##{commentable.id}", scope: "activerecord.models.comment"
   end
 
   ##
@@ -121,7 +121,7 @@ class Comment < ActiveRecord::Base
   # in a comment.
   # user:: the user being mentioned.
   def mention_message(user)
-    I18n.t 'comment.mentioned_you', username: "#{self.user.name}"
+    I18n.t 'mentioned_you', username: "#{self.user.name}", scope: "activerecord.models.comment"
   end
 
 end
