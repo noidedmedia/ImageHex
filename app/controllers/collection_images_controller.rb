@@ -26,11 +26,15 @@ class CollectionImagesController < ApplicationController
   end
 
   def destroy
-    c = CollectionImage.where(image_id: params[:id],
-                              collection_id: params[:collection_id]).first
+    img = Image.find(params[:id])
+    col = Collection.find(params[:collection_id])
+    c = CollectionImage.where(image: img,
+                              collection: col).first
     redirect_to Collection.find(params[:collection_id]) and return unless c
     authorize c
-    c.delete
+    c.destroy
+
+    redirect_to col
   end
 
   protected

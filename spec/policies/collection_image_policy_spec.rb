@@ -22,14 +22,12 @@ describe CollectionImagePolicy do
     end
   end
 
-  permissions :delete? do
+  permissions :destroy? do
     it "allows mods" do
-    
      c =  FactoryGirl.create(:curatorship,
                              user: user,
                              collection: collection,
                              level: :mod)
-     puts c.inspect 
      expect(subject).to permit(user, i)
     end
     it "allows admins" do

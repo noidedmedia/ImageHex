@@ -79,7 +79,8 @@ class Comment < ActiveRecord::Base
   # Notification message just returns a string to use as the message
   # in a notification
   def reply_message(other)
-    I18n.t 'replied_to_your_comment', username: "#{other.user.name}", commentable_type: "#{commentable_type}", commentable: "##{commentable.id}"
+    # I18n.t 'replied_to_your_comment', username: "#{other.user.name}", commentable_type: "#{commentable_type}", commentable: "##{commentable.id}"
+    "#{other.user.name} replied to your comment on #{commentable_type} #{commentable.id}"
   end
 
   ##
@@ -121,7 +122,8 @@ class Comment < ActiveRecord::Base
   # in a comment.
   # user:: the user being mentioned.
   def mention_message(user)
-    I18n.t 'mentioned_you', username: "#{self.user.name}"
+    # I18n.t 'mentioned_you', username: "#{self.user.name}"
+    "#{self.user.name} mentioned you."
   end
 
 end

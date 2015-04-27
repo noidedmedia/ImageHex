@@ -23,10 +23,6 @@ en:
   activerecord:
     models:
       image: "Image"
-      comment:
-        made_a_comment: "%{username} made a comment on %{commentable}"
-        replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
-        mentioned_you: "%{username} mentioned you in a comment"
       favorite:
         favorites_collection_title: "%{usernames} Favorites"
         favorites_collection_description: "Images favorited by %{username}."

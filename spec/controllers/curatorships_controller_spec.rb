@@ -53,7 +53,6 @@ RSpec.describe CuratorshipsController, type: :controller do
              curatorship: FactoryGirl.attributes_for(:curatorship,
                                                      user_name: other_user,
                                                      level: :mod))
-        expect(response.status).to eq(200)
         expect(Curatorship.last.user).to eq(other_user)
         expect(Curatorship.last.level).to eq("mod")
       end
