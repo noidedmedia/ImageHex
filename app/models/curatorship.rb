@@ -1,10 +1,20 @@
 ##
 # A curatorship is a join table between a user who curates a collection and the
-# collections they curate
-# Although it does not currently, it will eventually implement various
-# permissions functionality.
-# For now, it's a relatively boring join table. 
+# collections they curate.
+# It also includes a level of curatorship for permissions purposes.
 class Curatorship < ActiveRecord::Base
   belongs_to :user
   belongs_to :collection
+  validates :user, presence: true
+  validates :collection, presence: true
+  validates :level, presence: true
+  enum level: [:worker, :mod, :admin]
+
+  attr_accessor :user_name
+  before_save :resolve_user_name
+
+  protected
+  def resolve_user_name
+    user ||= User.friendly.find(user_name) if user_name
+  end
 end

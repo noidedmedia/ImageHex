@@ -40,7 +40,7 @@ class Image < ActiveRecord::Base
       huge: "1000x1000>"},
     # Use suffixes for the path
     
-      path: "public/system/fs/:class/:id_:style.:extension"
+      path: ($IMAGE_PATH ? $IMAGE_PATH : "public/system/fs/:class/:id_:style.:extension")
   belongs_to :user
 
   before_post_process :downcase_extension

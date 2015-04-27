@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20150424063111) do
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "collection_images", ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
   add_index "collection_images", ["image_id"], name: "index_collection_images_on_image_id", using: :btree
+  add_index "collection_images", ["user_id"], name: "index_collection_images_on_user_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -50,8 +52,9 @@ ActiveRecord::Schema.define(version: 20150424063111) do
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "collection_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "level",         default: 0, null: false
   end
 
   add_index "curatorships", ["collection_id"], name: "index_curatorships_on_collection_id", using: :btree
@@ -188,10 +191,11 @@ ActiveRecord::Schema.define(version: 20150424063111) do
 
   add_foreign_key "collection_images", "collections"
   add_foreign_key "collection_images", "images", on_delete: :cascade
+  add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "users"
-  add_foreign_key "curatorships", "collections"
-  add_foreign_key "curatorships", "users"
+  add_foreign_key "curatorships", "collections", on_delete: :cascade
+  add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "images", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"

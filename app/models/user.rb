@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   ##
   # Join table: users -> collections
   has_many :subscriptions
+  has_many :comments
   has_many :subscribed_collections,
     through: :subscriptions,
     source: :collection
@@ -124,6 +125,10 @@ class User < ActiveRecord::Base
   # Convenience method ot access the creations collection for a user
   def creations
     collections.creations.first
+  end
+
+  def curatorship_for(c)
+    Curatorship.where(user: self, collection: c).first
   end
   protected
 

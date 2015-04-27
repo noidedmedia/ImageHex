@@ -1,9 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Comment, :type => :model do
-  it {should validate_presence_of(:user)}
-  it {should validate_presence_of(:commentable)}
-  it {should validate_presence_of(:body)}
+  it "should require user to be set" do
+    expect(FactoryGirl.build(:comment,
+                             user: nil)).to_not be_valid
+  end
+  it "should require the commentable to be set" do
+    expect(FactoryGirl.build(:comment,
+                             commentable: nil)).to_not be_valid
+  end
+  it "should require the body to be set" do
+    expect(FactoryGirl.build(:comment,
+                             body: nil)).to_not be_valid
+  end
   it "makes a notification when replying" do
     c = FactoryGirl.create(:comment)
     expect{
