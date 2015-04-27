@@ -68,6 +68,10 @@
     > span::before {
       color: rgba(#fff,1.0);
     }
+
+    @media all and (max-device-width: $mobile-width) {
+      background-color: transparent;
+    }
   }
 
   > a > span::before,
@@ -109,6 +113,7 @@
   color: #333;
   border-radius: 3px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  display: none;
 
   .agree-button {
     display: inline-block;
@@ -128,6 +133,13 @@
   }
 
   &.inactive {
+    display: none;
+  }
+
+  /* A dumb CSS hack to increase the specifity of this selector and 
+   override the .active class. This ensures that the element will not
+   be shown, without relying on an "!important" declaration. */
+  &.not-signed-in.not-signed-in {
     display: none;
   }
 

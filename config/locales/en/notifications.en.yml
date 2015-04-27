@@ -1,0 +1,10 @@
+# Notifications strings
+
+en:
+  notifications:
+    notifications:
+      notifications_header: "Notifications"
+      mark_all_read: "Mark all as read"
+    notifications_list:
+      no_notifications_yet: "No notifications yet!"
+      ago: "ago"

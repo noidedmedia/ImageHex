@@ -72,20 +72,6 @@
 #new-collection-submit {
   margin-left: 90px;
   width: calc(100% - 90px);
-  color: #fff;
-  background-color: #5bb289;
-  font-size: 1.6rem;
-  padding: 8px;
-  appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  border: 0;
-  border-radius: 2px;
-  cursor: pointer;
-
-  &:focus {
-    outline: transparent;
-  }
 
   @media all and (max-device-width: $mobile-width) {
     margin-left: 0;
@@ -171,24 +157,9 @@
   }
 }
 
-.collection-follow {
-  color: #fff;
-  font-weight: 300;
-  font-size: 1.6rem;
+#collection-follow {
   width: 250px;
   height: 32px;
-  margin: 5px 0;
-  position: relative;
-  border-radius: 3px;
-  border: none;
-  background-color: #5bb289;
-  cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-  &:focus {
-    outline: none;
-  }
 
   @media all and (max-device-width: $mobile-width) {
     position: relative;

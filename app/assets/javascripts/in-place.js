@@ -15,7 +15,12 @@ var showon = function() {
   showondiv.each(function() {
     var _this = this;
     $(_this).addClass('inactive').removeClass('active');
-    var toggle = $($(_this).data("showon"));
+    
+    // "data-showon" should have a value with the name (e.g. class or id) of
+    // the button that toggles the element with the "data-showon" property.
+    // The following line sets "toggle" equal to a jQuery selector for said
+    // value.
+    var toggle = $( $(_this).data("showon") );
     $(toggle).on("click", function() {
       $(_this).toggleClass('active').toggleClass('inactive');
 
@@ -25,6 +30,28 @@ var showon = function() {
       // is pressed.
       if ( $(toggle).hasClass("image-actions") || $(toggle).children().hasClass("image-actions") ) {
         $(".image-actions-tooltip").not(_this).removeClass('active').addClass('inactive');
+      }
+
+      // If data-clickoutside="true" then the clickoutside event is binded to the
+      // relevant element.
+      if ( $(_this).data("clickoutside") === true ) {
+
+        // This prevents "bubbling up" of the click event when it's within the
+        // dialog, to prevent "clickoutside" from erroneously running the
+        // active toggle function when the click is within the dialog.
+        $(_this).bind("click", function(event) {
+          event.stopPropagation();
+        });
+
+        // Binds a function to toggle the active/inactive classes on the dialog
+        // to clicking outside the button that toggles the dialog.
+        // Binding "clickoutside" to the dialog itself doesn't work, because
+        // the toggle is technically outside the dialog and the dialog's
+        // active classes are removed before it's able to display.
+        $(toggle).bind("clickoutside", function() {
+          $(_this).removeClass('active').addClass('inactive');
+          $(_this).unbind("clickoutside");
+        });
       }
     });
   });

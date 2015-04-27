@@ -1,5 +1,9 @@
 <div id="sign-in-container">
-  <h3 class="sign-in-header"><%= t(".sign_in") %></h3>
+
+  <div class="sign-in-header">
+    <img src="/logo/imagehex-color-with-black-text.svg">
+    <h4><%= t(".welcome_back") %></h4>
+  </div>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -20,9 +24,7 @@
       <% end -%>
     </div>
 
-    <div class="actions">
-      <%= f.submit t(".sign_in") %>
-    </div>
+    <%= f.submit t(".sign_in"), class: "btn btn-green btn-large" %>
 
   <% end %>
 </div>

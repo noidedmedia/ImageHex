@@ -1,0 +1,11 @@
+# Collections strings.
+
+en:
+  collections:
+    show:
+      curated_by: "Curated by"
+      follow: "Follow"
+    new:
+      title: "Title"
+      description: "Description"
+      create_collection: "Create Collection"

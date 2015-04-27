@@ -6,33 +6,51 @@
   background-color: #fff;
   border-radius: 2px;
   padding: 10px;
-  padding-top: 35px; // To make room for the absolutely positioned header.
   position: relative;
   margin-bottom: 15px;
-  display: inline-block;
   box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+
+  hr {
+    border: 0;
+    border-top: 1px solid #c9c9c9;
+    width: calc(100% - 7px);
+    margin: 10px auto;
+  }
 }
 
-#comment-container-header {
+#upload-info {
   width: 100%;
-  height: 40px;
-  position: absolute;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  top: 0;
-  left: 0;
-  padding: 4px 10px;
+  margin: 0;
+  margin-bottom: 20px;
 
-  h3 {
-    width: 100%;
-    font-size: 1.4rem;
-    padding: 5px 0;
-    border-bottom: 1px solid #e4e4e4;
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.image-description-container {
+  text-align: left;
+  display: inline-block;
+  width: calc(100% - 75px);
+  vertical-align: top;
+  transform: translateY(-4px);
+
+  p {
+    font-size: 1.3rem;
+    color: #333;
+    padding: 6px 0;
   }
 }
 
 .comment {
   width: 100%;
+  display: -webkit-flex;
   display: flex;
   margin: 4px 0;
   padding: 5px 0;
@@ -60,18 +78,42 @@ a:target + .comment {
     -webkit-animation: commentTarget 3s linear 1 normal forwards;
 }
 
-.user-comment-avatar {
-  width: 40px;
-  height: 40px;
-  margin: 2px 12px 2px 4px;
+.user-comment-avatar,
+.uploader-avatar {
+  margin: 4px 8px 4px 4px;
   background-color: #c9c9c9;
   overflow: hidden;
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 2px;
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.user-comment-avatar {
+  min-width: 40px;
+  min-height: 40px;
+  height: 40px;
+  width: 40px;
 
   img {
     min-width: 40px;
     min-height: 40px;
+    width: 100%;
+  }
+}
+
+.uploader-avatar {
+  width: 50px;
+  height: 50px;
+
+  img {
+    min-width: 50px;
+    min-height: 50px;
+    width: 100%;
   }
 }
 
@@ -83,7 +125,8 @@ a:target + .comment {
 
 .user-comment-info {
   font-size: 1.2rem;
-  margin-bottom: 4px;
+  padding-top: 3px;
+  margin-bottom: 5px;
   display: block;
 
   a {
@@ -106,12 +149,16 @@ a:target + .comment {
 // New comment text area.
 .new-comment {
   width: 100%;
-  min-height: 50px;
+  height: 32px;
+  max-height: 32px;
   font-size: 1.2rem;
-  resize: vertical;
-  max-height: 400px;
+  resize: none;
   border: 1px solid #c9c9c9;
   background-color: #fff;
+  margin-top: 15px;
+  padding: 8px;
+  transition: 300ms border-color;
+  border-radius: 0;
 
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -120,12 +167,31 @@ a:target + .comment {
     outline: transparent;
     border-color: #333;
   }
+
+  // When comment is invalid, "Submit" button is grey.
+  &:invalid + .new-comment-buttons input[type="submit"] {
+    color: #aaaab2;
+    cursor: default;
+  }
+
+  &:focus,
+  &:valid {
+    resize: vertical;
+    min-height: 80px;
+    max-height: 400px;
+
+    // Displays cancel/submit buttons only when the text area
+    // has text or is in-focus.
+    + .new-comment-buttons {
+      display: block;
+    }
+  }
 }
 
 // "Cancel" and "Submit" buttons for new comment box.
 .new-comment-buttons {
   text-align: right;
-  display: block;
+  display: none;
 
   input[type="submit"],
   button[type="reset"] {
@@ -156,7 +222,8 @@ a:target + .comment {
 .no-comments {
   text-align: center;
   font-size: 1.4rem;
-  color: #aaaab2;
+  color: #333;
+  font-weight: 300;
   padding: 35px 0;
 }
 

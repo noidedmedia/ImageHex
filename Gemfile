@@ -3,6 +3,7 @@ ruby '2.2.0'
 
 gem 'aws-sdk', '< 2.0'
 gem 'devise'
+gem 'omniauth-twitter'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets

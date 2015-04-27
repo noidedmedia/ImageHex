@@ -2,46 +2,38 @@
 
 /* Styling for sign-in container, used on all registration-related pages (e.g. sign-in, sign-up, forgot password, etc.) */
 #sign-in-container {
-  background-color: #fff;
-  border-radius: 1px;
-  border: 1px solid #aaaab2;
   display: block;
-  margin: 50px auto auto auto;
+  margin: auto;
+  margin-top: 100px;
   position: relative;
   text-align: left;
   width: 350px;
 
   /* "Header" for the registration pages that acts as a page title. */
   .sign-in-header {
-    margin: auto;
-    padding-top: 10px;
+    padding: 10px 0;
     text-align: center;
+    margin: 30px auto;
+
+    img {
+      width: 200px;
+      pointer-events: none;
+      margin: auto;
+    }
+
+    h4 {
+      font-weight: 200;
+      font-size: 1.8rem;
+      color: #777;
+      padding-top: 5px;
+    }
   }
 
   /* Styling for the submit button on registration pages. */
   input[type=submit] {
-    -webkit-appearance: none;
-    background-color: #fff;
-    border: 0;
-    border-top: 1px solid #aaaab2;
-    color: #333;
-    font-size: 1.4rem;
-    font-weight: 400;
-    height: 35px;
-    margin-top: 10px;
-    text-align: center;
-    width: 100%;
-
-    &:focus {
-      border-color: #333;
-      outline: transparent;
-    }
+    margin-top: 12px;
+    margin-bottom: 8px;
   }
-}
-
-/* Container for all fields in a the sign-up container. */
-#sign-in-fields {
-  padding: 10px 10px 2px;
 }
 
 /* Styling applied to all text-input fields in the registration pages. */
@@ -58,7 +50,7 @@
 .field input[type=email],
 .field input[type=password] {
   background-color: transparent;
-  border-radius: 1px;
+  border-radius: 3px;
   border: 1px solid #aaaab2;
   color: #333;
   font-size: 1.4rem;
@@ -71,7 +63,7 @@
 
   &:focus {
     background-color: #f2f2f2;
-    border-color: transparent;
+    border-color: #333;
     outline: transparent;
   }
 }
@@ -81,6 +73,7 @@
   display: inline-block;
   -webkit-appearance: none;
   border: 1px solid #aaaab2;
+  border-radius: 2px;
   height: 16px;
   width: 16px;
   margin: 5px 2px 0 1px;
@@ -88,7 +81,7 @@
 
   /* Semi-transparent square on-hover. */
   &:hover {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     line-height: 16px;
     color: #333;
     cursor: pointer;
@@ -97,7 +90,7 @@
       content: $icon-success;
       opacity: 0.3;
       position: relative;
-      bottom: 5px;
+      bottom: 3px;
       left: 1px;
       text-align: center;
     }
@@ -116,10 +109,10 @@
   &:after {
     content: $icon-success;
     opacity: 1;
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     line-height: 16px;
     position: relative;
-    bottom: 5px;
+    bottom: 3px;
     left: 1px;
     text-align: center;
   }
@@ -137,75 +130,38 @@
   }
 }
 
-/* Actions container used to host the submit button. */
-.actions {
-  color: #333;
-  margin: auto;
-  position: relative;
-
-  input[type=submit] {
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
-
 /* Sign-in extras are the links below the sign-in container (e.g. forgot password, sign up, etc.) */
 #sign-in-extras-container {
   display: block;
   height: auto;
   left: 0;
-  margin: 10px auto;
+  margin: 10px auto 75px;
   padding: 0;
+  text-align: center;
   position: relative;
   right: 0;
-  text-align: left;
   width: 360px;
-
-  a {
-    margin: 0 5px;
-    text-decoration: none;
-    width: 100%;
-  }
 }
 
 /* Class used to separate each row of sign-in extras, this allows the buttons to change size responsively depending on the registration page the user is viewing. */
 .sign-in-extras-row {
-  display: flex;
-  margin: 10px 0;
-  width: 100%;
-}
-
-/* Styling for the sign-in extras buttons. */
-.sign-in-extras-half, .sign-in-extras-full {
-  background-color: #fff;
-  border-radius: 1px;
-  border: 1px solid #aaaab2;
-  color: #333;
-  display: inline-flex;
-  flex-flow: column nowrap;
-  font-size: 1.4rem;
-  font-weight: 400;
-  height: 35px;
-  padding: 8px 0;
-  position: relative;
+  margin: auto;
   text-align: center;
-  text-decoration: none;
-}
+  font-size: 1.2rem;
+  color: #aaaab2;
+  margin-bottom: 8px;
 
-/* Styling for the sign-in extras button when it takes up only half of a row. */
-.sign-in-extras-half {
-  flex: 1;
-  width: 100%;
-}
+  a {
+    color: #333;
+    text-decoration: none;
 
-/* Styling for the sign-in extras button when it takes up the full row. */
-.sign-in-extras-full {
-  flex: 1;
-  width: 100%;
-}
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
-/* Sign-in extras text is applied to all text inside the buttons. */
-.sign-in-extras-text {
-  width: 100%;
+  @media all and (max-device-width: $mobile-width) {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
 }

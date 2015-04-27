@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :tag_groups
     concerns :reportable, :commentable
   end
-  devise_for :users, path: "accounts"
+  devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show, :edit, :update] do
     ##
@@ -76,7 +76,6 @@ Rails.application.routes.draw do
   #################
 
   root to: "frontpage#index"
-
 
   get '/about', to: "static_stuff#about"
 

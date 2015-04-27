@@ -175,15 +175,25 @@
   @include translateX(-50%);
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 
-  &:after {
+  &:before, &:after {
     content: '';
     width: 0;
     height: 0;
     position: absolute;
     left: calc(50% - 25px);
-    top: -10px;
     border-width: 0 10px 10px;
     border-style: solid;
+  }
+
+  // Outline for the arrow protruding outside of the tooltip.
+  &:before {
+    top: -11px;
+    border-color: rgba(0,0,0,0.1) transparent;
+  }
+
+  // Arrow protruding outside of the tooltip.
+  &:after {
+    top: -10px;
     border-color: #fff transparent;
   }
 }

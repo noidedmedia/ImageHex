@@ -1,0 +1,10 @@
+# Notifications strings.
+
+nv:
+  notifications:
+    notifications:
+      notifications_header: "Things which ImageHex desires you to be notified of"
+      mark_all_read: "Mark all as read, indicating that you no longer need to see them"
+    notifications_list:
+      no_notifications_yet: "We have not found any notifications at the present time"
+      ago: "ago"

@@ -1,5 +1,9 @@
 <div id="sign-in-container">
-  <h3 class="sign-in-header"><%= t(".create_an_account") %></h3>
+
+  <div class="sign-in-header">
+    <img src="/logo/imagehex-color-with-black-text.svg">
+    <h4><%= t(".let's_get_started") %></h4>
+  </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
@@ -22,9 +26,8 @@
       </div>
     </div>
 
-    <div class="actions">
-      <%= f.submit t(".create_an_account") %>
-    </div>
+    <%= f.submit t(".create_an_account_submit"), class: "btn btn-green btn-large" %>
+
   <% end %>
 </div>
 

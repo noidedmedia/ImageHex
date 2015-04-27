@@ -6,7 +6,7 @@ module ApplicationHelper
   # to the thing being commented on with the id of the comment appended to the
   # URL as an anchor link.
   def comment_path(comment)
-    polymorphic_path(comment.commentable) + "##{comment.id}"
+    polymorphic_path(comment.commentable) + "##{comment.id}" if comment.commentable
   end
 
   ##

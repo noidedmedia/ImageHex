@@ -1,0 +1,16 @@
+# Shared strings.
+
+nv:
+  shared:
+    comments:
+      uploaded_by: "Uploaded by"
+      commented: "commented"
+      ago: "ago"
+      no_comments_yet: "No user has had the desire to make anything known on this page"
+      cancel: "Cancel"
+      submit: "Send data to the server for processing"
+    report_stub:
+      reason_for_report: "Reason for report:"
+      extra_information: "Extra information (optional):"
+      cancel: "Cancel"
+      report: "Report"
