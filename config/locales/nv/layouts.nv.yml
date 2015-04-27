@@ -3,6 +3,7 @@
 nv:
   layouts:
     application:
+      please_sign_in: "This action requires an account, please sign in."
       sign_in: "Sign in"
       create_an_account: "Create an account"
     header:

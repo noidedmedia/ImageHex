@@ -64,7 +64,7 @@ function signInDialog() {
     $("#modal-overlay").removeClass("active");
     $("#modal-overlay").unbind("click");
   });
-  $("#modal-dialog > p").html("This action requires an account, please sign in.");
+  // $("#modal-dialog > p").html("This action requires an account, please sign in.");
 }
 
 var ready = function() {
