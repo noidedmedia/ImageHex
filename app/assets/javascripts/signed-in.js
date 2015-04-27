@@ -59,7 +59,7 @@ var signedin = function() {
 function signInDialog() {
   $("body").addClass("modal-open");
   $("#modal-overlay").addClass("active");
-  $("#modal-overlay").bind("click", function() {
+  $("#modal-dialog").bind("clickoutside", function() {
     $("body").removeClass("modal-open");
     $("#modal-overlay").removeClass("active");
     $("#modal-overlay").unbind("click");
