@@ -38,6 +38,10 @@
   }
 }
 
+.btn-full-width {
+  width: 100%;
+}
+
 .btn-green {
   background-color: #5bb289;
 
@@ -46,8 +50,12 @@
   }
 }
 
-.btn-full-width {
-  width: 100%;
+.btn-red {
+  background-color: #cb2e32;
+
+  &:hover, &:focus {
+    background-color: darken(#cb2e32, 6%);
+  }
 }
 
 .btn-grey {

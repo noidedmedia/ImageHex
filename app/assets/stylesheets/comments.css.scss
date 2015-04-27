@@ -9,19 +9,18 @@
   position: relative;
   margin-bottom: 15px;
   box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+
+  hr {
+    border: 0;
+    border-top: 1px solid #c9c9c9;
+    width: calc(100% - 7px);
+    margin: 10px auto;
+  }
 }
 
 #upload-info {
   width: 100%;
-  margin-bottom: 15px;
-
-  p {
-    display: inline-block;
-    vertical-align: top;
-    font-size: 1.3rem;
-    color: #333;
-    padding-top: 4px;
-  }
+  margin-bottom: 20px;
 
   a {
     text-decoration: none;
@@ -34,8 +33,24 @@
   }
 }
 
+.image-description-container {
+  text-align: left;
+  display: inline-block;
+  width: calc(100% - 75px);
+  vertical-align: top;
+
+  p {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 1.3rem;
+    color: #333;
+    padding: 6px 0;
+  }
+}
+
 .comment {
   width: 100%;
+  display: -webkit-flex;
   display: flex;
   margin: 4px 0;
   padding: 5px 0;
@@ -65,7 +80,7 @@ a:target + .comment {
 
 .user-comment-avatar,
 .uploader-avatar {
-  margin: 2px 12px 2px 4px;
+  margin: 2px 8px 2px 4px;
   background-color: #c9c9c9;
   overflow: hidden;
   display: inline-block;
@@ -87,6 +102,7 @@ a:target + .comment {
   img {
     min-width: 40px;
     min-height: 40px;
+    width: 100%;
   }
 }
 
@@ -97,6 +113,7 @@ a:target + .comment {
   img {
     min-width: 50px;
     min-height: 50px;
+    width: 100%;
   }
 }
 
@@ -131,12 +148,15 @@ a:target + .comment {
 // New comment text area.
 .new-comment {
   width: 100%;
-  min-height: 50px;
+  height: 32px;
+  max-height: 32px;
   font-size: 1.2rem;
-  resize: vertical;
-  max-height: 400px;
+  resize: none;
   border: 1px solid #c9c9c9;
   background-color: #fff;
+  margin-top: 15px;
+  padding: 8px;
+  transition: 300ms border-color;
 
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -145,12 +165,31 @@ a:target + .comment {
     outline: transparent;
     border-color: #333;
   }
+
+  // When comment is invalid, "Submit" button is grey.
+  &:invalid + .new-comment-buttons input[type="submit"] {
+    color: #aaaab2;
+    cursor: default;
+  }
+
+  &:focus,
+  &:valid {
+    resize: vertical;
+    min-height: 80px;
+    max-height: 400px;
+
+    // Displays cancel/submit buttons only when the text area
+    // has text or is in-focus.
+    + .new-comment-buttons {
+      display: block;
+    }
+  }
 }
 
 // "Cancel" and "Submit" buttons for new comment box.
 .new-comment-buttons {
   text-align: right;
-  display: block;
+  display: none;
 
   input[type="submit"],
   button[type="reset"] {

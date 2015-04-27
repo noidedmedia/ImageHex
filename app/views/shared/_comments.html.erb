@@ -7,8 +7,14 @@
         <% end %>
       <% end %>
     </div>
-    <p><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+    <div class="image-description-container">
+      <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+      <p class="image-description">Nulla vitae elit libero, a pharetra augue. Vestibulum id ligula porta felis euismod semper. Maecenas sed diam eget risus varius blandit sit amet non magna.
+    </div>
   </div>
+
+  <hr>
+
   <% if subject.comments.empty? %>
     <p class="no-comments"><%= t(".no_comments_yet") %>
   <% else %>
@@ -47,7 +53,7 @@
   <%# New comment section, only appears for users who are signed-in. %>
   <% if user_signed_in? %>
     <%= form_tag(url, {class: "comment_form"}) do %>
-      <%= text_area(:comment, :body, class: 'new-comment') %>
+      <%= text_area(:comment, :body, class: 'new-comment', :required => true, placeholder: "Add a comment…") %>
 
       <div class="new-comment-buttons">
         <%= button_tag t(".cancel"), type: :reset %>
