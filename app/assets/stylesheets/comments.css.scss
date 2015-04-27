@@ -20,6 +20,7 @@
 
 #upload-info {
   width: 100%;
+  margin: 0;
   margin-bottom: 20px;
 
   a {
@@ -38,10 +39,9 @@
   display: inline-block;
   width: calc(100% - 75px);
   vertical-align: top;
+  transform: translateY(-4px);
 
   p {
-    display: inline-block;
-    vertical-align: top;
     font-size: 1.3rem;
     color: #333;
     padding: 6px 0;
@@ -80,7 +80,7 @@ a:target + .comment {
 
 .user-comment-avatar,
 .uploader-avatar {
-  margin: 2px 8px 2px 4px;
+  margin: 4px 8px 4px 4px;
   background-color: #c9c9c9;
   overflow: hidden;
   display: inline-block;
@@ -125,7 +125,8 @@ a:target + .comment {
 
 .user-comment-info {
   font-size: 1.2rem;
-  margin-bottom: 4px;
+  padding-top: 3px;
+  margin-bottom: 5px;
   display: block;
 
   a {
@@ -157,6 +158,7 @@ a:target + .comment {
   margin-top: 15px;
   padding: 8px;
   transition: 300ms border-color;
+  border-radius: 0;
 
   -moz-appearance: none;
   -webkit-appearance: none;
