@@ -42,8 +42,7 @@ Rails.application.routes.draw do
   resources :collections, except: [:index] do
     ##
     # OK we get non-REST here
-    # The :id is actually the ID of the image, not the collection_image model
-    resources :collection_images, only: [:create, :destroy] do
+    resources :images, only: [:create, :destroy], controller: :collection_images  do
     ##
     # An action which sees if an image already exists in the collection
     get "exists", on: :collection
@@ -51,6 +50,9 @@ Rails.application.routes.draw do
     resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"
+      delete "unsubscribe"
+      ##
+      # Refactor these out eventually
       post "add"
       delete "remove"
     end

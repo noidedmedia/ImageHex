@@ -157,9 +157,18 @@
   }
 }
 
-#collection-follow {
+#collection-follow,
+#collection-unfollow {
   width: 250px;
   height: 32px;
+
+  &.active {
+    display: block;
+  }
+
+  &.inactive {
+    display: none;
+  }
 
   @media all and (max-device-width: $mobile-width) {
     position: relative;

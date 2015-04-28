@@ -79,6 +79,15 @@ class User < ActiveRecord::Base
   # INSTANCE METHODS #
   ####################
   
+  ##
+  # See if the user is subscribed to a collection
+  # Returns true or false
+  # c:: the collection we are checking
+  def subscribed_to? c
+    # Coerce the subscription to a boolean
+    !! Subscription.where(user: self,
+                          collection: c).first
+  end
   def avatar_img
     avatar.f(:medium)
   end

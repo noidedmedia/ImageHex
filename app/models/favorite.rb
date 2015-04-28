@@ -20,6 +20,11 @@ class Favorite < Collection
   before_validation :fill_name, :fill_desc
 
   ##
+  # Hide our STI from the outside world
+  def self.model_name
+    Collection.model_name
+  end
+  ##
   # since this will only ever have 1 curator, we make a helpful
   # alias method
   def curator

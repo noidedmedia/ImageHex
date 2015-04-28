@@ -14,6 +14,9 @@
 class Creation < Collection
   before_validation :make_name
 
+  def self.model_name
+    Collection.model_name
+  end
   ##
   # Currently, this is an alias for curators.first. We use this as innate 
   # creations collections are the only type of creation collection. When 

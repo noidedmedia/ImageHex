@@ -42,7 +42,17 @@ RSpec.describe CollectionsController, :type => :controller do
       @user.confirm!
       sign_in @user
     end
-
+    describe "DELETE #unsubscribe" do
+      it "unsubscribes" do
+        c = FactoryGirl.create(:collection)
+        @user.subscribed_collections << c
+        expect(@user.subscribed_collections).to include(c)
+        expect{
+          delete(:unsubscribe, id: c)
+        }.to change{@user.subscribed_collections.count}.by(-1)
+        expect(@user.subscribed_collections.reload).to_not include(c)
+      end
+    end
     describe "DELETE #remove" do
       it "removes stuff" do
         image = FactoryGirl.create(:image)
