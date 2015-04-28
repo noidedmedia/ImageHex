@@ -1,5 +1,5 @@
-// When an AJAX request is sent successfully, the "favorited" class
-// is toggled on the element.
+// When an AJAX request is sent successfully, the "active" class
+// is toggled on both elements.
 function followCollection() {
   $("#collection-follow").parent().on("ajax:success", toggleCollectionFollowButtons);
   $("#collection-unfollow").parent().on("ajax:success", toggleCollectionFollowButtons);
