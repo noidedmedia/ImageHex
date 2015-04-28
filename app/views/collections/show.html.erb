@@ -9,7 +9,10 @@
     <% if current_user.try(:subscribed_to?, @collection) %>
       
       <%= form_tag(unsubscribe_collection_path(@collection.id), method: :delete, remote: true) do %>
-        <%= button_tag t(".unfollow"), id: "collection-unfollow", class: "btn btn-red active" %>
+        <%= button_tag id: "collection-unfollow", class: "btn active" do %>
+          <span class="button-text-following"> <%= t(".following") %> </span>
+          <span class="button-text-unfollow"> <%= t(".unfollow") %> </span>
+        <% end %>
       <% end %>
 
       <%= form_tag(subscribe_collection_path(@collection.id), remote: true) do %>
@@ -19,7 +22,10 @@
     <% else %>
       
       <%= form_tag(unsubscribe_collection_path(@collection.id), method: :delete, remote: true) do %>
-        <%= button_tag t(".unfollow"), id: "collection-unfollow", class: "btn btn-red inactive" %>
+        <%= button_tag id: "collection-unfollow", class: "btn inactive" do %>
+          <span class="button-text-following"> <%= t(".following") %> </span>
+          <span class="button-text-unfollow"> <%= t(".unfollow") %> </span>
+        <% end %>
       <% end %>
 
       <%= form_tag(subscribe_collection_path(@collection.id), remote: true) do %>

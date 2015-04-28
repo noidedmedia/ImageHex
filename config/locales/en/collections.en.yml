@@ -5,6 +5,7 @@ en:
     show:
       curated_by: "Curated by"
       follow: "Follow"
+      following: "Following"
       unfollow: "Unfollow"
     new:
       title: "Title"
