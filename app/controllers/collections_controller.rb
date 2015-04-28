@@ -1,8 +1,17 @@
 ##
 # A controller for actions relating to collections
 class CollectionsController < ApplicationController
-  before_filter :ensure_user, only: [:subscribe, :new, :create, :edit, :destroy, :update]
-
+  before_filter :ensure_user, only: [:subscribe, :new, :create, :edit, :destroy, :update, :unsubscribe]
+  ##
+  # Unsubscribe from a collection
+  # Member action
+  def unsubscribe
+    Subscription.where(collection_id: params[:id],
+                       user_id: current_user.id)
+      .first
+      .try(:destroy)
+    redirect_to Collection.find(params[:id])
+  end
   ##
   # Add the image with id in params[:image_id] to the collection with id in
   # params[:id].

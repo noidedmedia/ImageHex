@@ -51,6 +51,9 @@ Rails.application.routes.draw do
     resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"
+      delete "unsubscribe"
+      ##
+      # Refactor these out eventually
       post "add"
       delete "remove"
     end
