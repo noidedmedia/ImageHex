@@ -1,27 +1,32 @@
 // Icons
-$icon-delete: '\e800';
-$icon-info: '\e801';
-$icon-warning: '\e802';
-$icon-danger: '\e803';
-$icon-success: '\e80a';
-$icon-share: '\e804';
-$icon-report: '\e805';
-$icon-favorite: '\e813';
-$icon-favorited: '\e814';
-$icon-search: '\e808';
-$icon-add: '\e809';
-$icon-close: '\e80b';
-$icon-source: '\e80c';
-$icon-transcript: '\e80d';
-$icon-location: '\e80e';
+$icon-search: '\e800';
+$icon-favorite: '\e801';
+$icon-favorited: '\e802';
+$icon-add: '\e803';
+$icon-report: '\e804';
+$icon-share: '\e805';
+$icon-warning: '\e806';
+$icon-danger: '\e807';
+$icon-success: '\e808';
+$icon-info: '\e809';
+$icon-close: '\e80a';
+$icon-location: '\e80b';
+$icon-transcript: '\e80c';
+$icon-source: '\e80d';
+$icon-delete: '\e80e';
 $icon-dropdown: '\e80f';
-$icon-help: '\e810';
-$icon-history: '\e807';
-$icon-upload: '\e811';
-$icon-collection: '\e812';
-$icon-folder: '\e806';
+$icon-folder: '\e810';
+$icon-collection: '\e811';
+$icon-upload: '\e812';
+$icon-history: '\e813';
+$icon-help: '\e814';
 $icon-menu: '\e815';
 $icon-download: '\e816';
+$icon-facebook: '\e817';
+$icon-twitter: '\e818';
+$icon-google-plus: '\e819';
+$icon-tumblr: '\e81a';
+$icon-pinterest: '\e81b';
 
 $icon-placeholder: '\e80c';
 
@@ -42,6 +47,13 @@ $color-success: #5bb289;
 $color-info: #556db3;
 $color-warning: #efb63e;
 $color-danger: #cb2e32;
+
+// Other colors
+$color-facebook: #3b5998;
+$color-twitter: #55acee;
+$color-google-plus: #d13f2d;
+$color-tumblr: #35465c;
+$color-pinterest: #c92228;
 
 
 // Mixins
