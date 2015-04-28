@@ -8,8 +8,8 @@
 var signedin = function() {
   // If the body element doesn't have the "signed-in" class, the variable
   // is declared. Otherwise, nothing happens.
-  if ( $("body").hasClass("signed-in") == false ) {
-    var signedindiv = $("div").filter(function(index) {
+  if ( $("body").hasClass("signed-in") === false ) {
+    var signedindiv = $("div, button, form").filter(function(index) {
       // Returns all "div" elements with the data-signed-in attribute.
       return $(this).data("signed-in");
     });
@@ -22,7 +22,7 @@ var signedin = function() {
       // which is then utilized to prevent the button from being toggled by
       // its respective partner element. Following that, the signInDialog
       // function is called.
-      if ( $(_this).data("signed-in") == "showon" ) {
+      if ( $(_this).data("signed-in") === "showon" ) {
         $(_this).addClass("not-signed-in");
 
         var showontoggle = $( $(_this).data("showon") );
@@ -38,12 +38,20 @@ var signedin = function() {
       // be set to "ajax" and the following function will call the
       // signInDialog function and prevent the AJAX request from returning
       // a "true" value.
-      else if ( $(_this).data("signed-in") == "ajax" ) {
-        $(_this).on("click", function(e) {
-          e.preventDefault();
-          signInDialog();
-          return false;
-        });
+      else if ( $(_this).data("signed-in") === "ajax" ) {
+        if ( $(_this).is("div") ) {
+          $(_this).on("click", function(e) {
+            e.preventDefault();
+            signInDialog();
+            return false;
+          });
+        } else if ( $(_this).is("form") ) {
+          $(_this).children().on("click", function(e) {
+            e.preventDefault();
+            signInDialog();
+            return false;
+          });
+        }
       }
     });
   }
