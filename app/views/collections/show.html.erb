@@ -5,15 +5,28 @@
       <p class="collection-page-description"><%= @collection.description %>
       <p class="collection-page-curators"><%= t(".curated_by") %> <%= @collection.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
     </div>
+    
     <% if current_user.try(:subscribed_to?, @collection) %>
-      <%= form_tag(unsubscribe_collection_path(@collection.id), method: :delete) do %>
-        <%= button_tag "Unfollow", id: "collection-unfollow", class: "btn btn-red" %>
+      
+      <%= form_tag(unsubscribe_collection_path(@collection.id), method: :delete, remote: true) do %>
+        <%= button_tag t(".unfollow"), id: "collection-unfollow", class: "btn btn-red active" %>
       <% end %>
+
+      <%= form_tag(subscribe_collection_path(@collection.id), remote: true) do %>
+        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-green inactive" %>
+      <% end %>
+
     <% else %>
-    <%= form_tag(subscribe_collection_path(@collection.id)) do %>
-      <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-green" %>
+      
+      <%= form_tag(unsubscribe_collection_path(@collection.id), method: :delete, remote: true) do %>
+        <%= button_tag t(".unfollow"), id: "collection-unfollow", class: "btn btn-red inactive" %>
+      <% end %>
+
+      <%= form_tag(subscribe_collection_path(@collection.id), remote: true) do %>
+        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-green active" %>
+      <% end %>
+  
     <% end %>
-  <% end %>
   </div>
 
   <div id="collection-images-container">
