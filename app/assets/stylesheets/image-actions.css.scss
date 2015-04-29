@@ -338,7 +338,7 @@
    ============================================== */
 
 #img-action-share-tooltip {
-  width: 260px;
+  width: 275px;
   height: 100px;
 
   a {
@@ -362,10 +362,13 @@
 #share-tumblr,
 #share-pinterest {
   display: inline-block;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   position: relative;
-  margin: 0 4px;
+  margin: 0 2px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: box-shadow 400ms;
 
   a {
     display: block;
@@ -373,41 +376,95 @@
     height: 100%;
   }
 
-  &::before {
-    top: -3px;
-    left: -1px;
+  &:before {
     position: absolute;
     color: #333;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 3.6rem;
+    font-size: 3.2rem;
     pointer-events: none;
+  }
+
+  &:hover::before {
+    color: #fff;
   }
 }
 
-#share-facebook::before {
-  content: $icon-facebook;
-  color: $color-facebook;
+#share-facebook {
+  box-shadow: inset 0 0 0 1px $color-facebook;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-facebook;
+  }
+
+  &:before {
+    top: 6px;
+    left: 5px;
+    font-size: 3.8rem;
+    content: $icon-facebook;
+    color: $color-facebook;
+  }
 }
 
-#share-twitter::before {
-  content: $icon-twitter;
-  color: $color-twitter;
+#share-twitter {
+  box-shadow: inset 0 0 0 1px $color-twitter;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-twitter;
+  }
+
+  &:before {
+    top: 5px;
+    left: 7px;
+    font-size: 3.0rem;
+    color: $color-twitter;
+    content: $icon-twitter;
+  }
 }
 
-#share-google-plus::before {
-  content: $icon-google-plus;
-  color: $color-google-plus;
+#share-google-plus {
+  box-shadow: inset 0 0 0 1px $color-google-plus;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-google-plus;
+  }
+
+  &:before {
+    top: 4px;
+    left: 7px;
+    content: $icon-google-plus;
+    color: $color-google-plus;
+  }
 }
 
-#share-tumblr::before {
-  content: $icon-tumblr;
-  color: $color-tumblr;
+#share-tumblr {
+  box-shadow: inset 0 0 0 1px $color-tumblr;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-tumblr;
+  }
+
+  &:before {
+    top: 3px;
+    left: 5px;
+    content: $icon-tumblr;
+    color: $color-tumblr;
+  }
 }
 
-#share-pinterest::before {
-  content: $icon-pinterest;
-  color: $color-pinterest;
+#share-pinterest {
+  box-shadow: inset 0 0 0 1px $color-pinterest;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-pinterest;
+  }
+
+  &:before {
+    top: 4px;
+    left: 6px;
+    content: $icon-pinterest;
+    color: $color-pinterest;
+  }
 }
 
 
