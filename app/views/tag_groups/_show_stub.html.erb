@@ -11,7 +11,7 @@
 
     <ul class="generic-tag-list">
       <% tag_group.tags.alphabetic.all.each do |t| %>
-        <li class="generic-tag"><%= t.display_name %>
+        <li class="generic-tag"><%= link_to t.display_name, "/search?query[]=#{t.name}" %>
       <% end %>
     </ul>
   </div>
