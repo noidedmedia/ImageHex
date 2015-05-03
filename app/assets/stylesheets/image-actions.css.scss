@@ -532,6 +532,7 @@
   }
 
   .report-row {
+    display: -webkit-flex;
     display: flex;
     padding: 4px 0;
   }
