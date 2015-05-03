@@ -334,6 +334,141 @@
 
 
 /* ==============================================
+    Share
+   ============================================== */
+
+#img-action-share-tooltip {
+  width: 275px;
+  height: 100px;
+
+  a {
+    color: #333;
+  }
+
+  &:after {
+    top: 18px;
+  }
+}
+
+.share-icons {
+  width: 100%;
+  display: block;
+  padding: 0 10px;
+}
+
+#share-facebook,
+#share-twitter,
+#share-google-plus,
+#share-tumblr,
+#share-pinterest {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  margin: 0 2px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: box-shadow 400ms;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:before {
+    position: absolute;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 3.2rem;
+    pointer-events: none;
+  }
+
+  &:hover::before {
+    color: #fff;
+  }
+}
+
+#share-facebook {
+  box-shadow: inset 0 0 0 1px $color-facebook;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-facebook;
+  }
+
+  &:before {
+    top: 6px;
+    left: 5px;
+    font-size: 3.8rem;
+    content: $icon-facebook;
+    color: $color-facebook;
+  }
+}
+
+#share-twitter {
+  box-shadow: inset 0 0 0 1px $color-twitter;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-twitter;
+  }
+
+  &:before {
+    top: 5px;
+    left: 8px;
+    font-size: 3.0rem;
+    color: $color-twitter;
+    content: $icon-twitter;
+  }
+}
+
+#share-google-plus {
+  box-shadow: inset 0 0 0 1px $color-google-plus;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-google-plus;
+  }
+
+  &:before {
+    top: 4px;
+    left: 7px;
+    content: $icon-google-plus;
+    color: $color-google-plus;
+  }
+}
+
+#share-tumblr {
+  box-shadow: inset 0 0 0 1px $color-tumblr;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-tumblr;
+  }
+
+  &:before {
+    top: 3px;
+    left: 5px;
+    content: $icon-tumblr;
+    color: $color-tumblr;
+  }
+}
+
+#share-pinterest {
+  box-shadow: inset 0 0 0 1px $color-pinterest;
+
+  &:hover {
+    box-shadow: inset 0 0 0 22px $color-pinterest;
+  }
+
+  &:before {
+    top: 4px;
+    left: 6px;
+    content: $icon-pinterest;
+    color: $color-pinterest;
+  }
+}
+
+
+/* ==============================================
     Report
    ============================================== */
 
@@ -354,14 +489,42 @@
   padding: 12px;
 
   input[type=radio] {
-    height: 12px;
-    width: 12px;
+    height: 14px;
+    width: 14px;
+    border: 1px solid #aaaab2;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+
+    &:focus {
+      border: 1px solid #333;
+      outline: none;
+    }
+
+    &:checked {
+      border: 1px solid #333;
+
+      &:before {
+        content: $icon-circle;
+        color: #333;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 1px;
+        font-size: 0.7rem;
+      }
+    }
   }
 
   input[type=radio] + label {
     color: #555;
     font-size: 1.4rem;
     font-weight: 300;
+    margin-left: 3px;
+    padding-top: 1px;
+    cursor: pointer;
   }
 
   input[type=radio]:checked + label {
@@ -369,7 +532,8 @@
   }
 
   .report-row {
-    display: block;
+    display: -webkit-flex;
+    display: flex;
     padding: 4px 0;
   }
 
