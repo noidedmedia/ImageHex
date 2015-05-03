@@ -4,23 +4,23 @@
 @-webkit-keyframes alertAnimation {
   0% {
     display: block;
-    transform: none;
-      -webkit-transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   5% {
-    transform: translate3d(0, 40px, 0);
-      -webkit-transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
   }
 
   95% {
-    transform: translate3d(0, 40px, 0);
-      -webkit-transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
   }
 
   99% {
-    transform: none;
-      -webkit-transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   100% {
@@ -31,24 +31,24 @@
 @keyframes alertAnimation {
   0% {
     display: block;
-    transform: none;
-      -webkit-transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   8% {
-    transform: translate3d(0, 40px, 0);
-      -webkit-transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
   }
 
   92% {
-    transform: translate3d(0, 40px, 0);
-      -webkit-transform: translate3d(0, 40px, 0);
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
   }
 
   99% {
     display: block;
-    transform: none;
-      -webkit-transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
 
   100% {
@@ -84,9 +84,26 @@
     line-height: 20px;
   }
 
-  /* If there are multiple errors listen sequentially, this will change all but the first to lower-case so there aren't random capital letters in the middle of a sentence. */
+  > p:first-of-type::before {
+    font-size: 1.6rem;
+    margin-right: 8px;
+    top: 1px;
+    position: relative;
+  }
+
+  /* If there are multiple errors listed sequentially, this will change all but the first to lower-case so there aren't random capital letters in the middle of a sentence. */
   p:not(:first-of-type) {
     text-transform: lowercase;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    height: 50px;
+    padding: 14px 20px;
+    font-size: 1.6rem;
+
+    > p:first-of-type::before {
+      font-size: 1.8rem;
+    }
   }
 }
 
@@ -96,10 +113,6 @@
 
   > p:first-of-type::before {
     content: $icon-success;
-    font-size: 1.6rem;
-    margin-right: 8px;
-    top: 1px;
-    position: relative;
   }
 }
 
@@ -109,10 +122,6 @@
 
   > p:first-of-type::before {
     content: $icon-info;
-    font-size: 1.6rem;
-    margin-right: 8px;
-    top: 1px;
-    position: relative;
   }
 }
 
@@ -122,10 +131,6 @@
 
   > p:first-of-type::before {
     content: $icon-warning;
-    font-size: 1.6rem;
-    margin-right: 8px;
-    top: 1px;
-    position: relative;
   }
 }
 
@@ -135,9 +140,5 @@
 
   > p:first-of-type::before {
     content: $icon-danger;
-    font-size: 1.6rem;
-    margin-right: 8px;
-    top: 1px;
-    position: relative;
   }
 }
