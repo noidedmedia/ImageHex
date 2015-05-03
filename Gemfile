@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'aws-sdk', '< 2.0'
 gem 'devise'
