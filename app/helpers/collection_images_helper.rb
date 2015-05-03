@@ -1,0 +1,2 @@
+module CollectionImagesHelper
+end

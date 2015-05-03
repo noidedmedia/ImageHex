@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>ImageHex</title>
+  
+  <%# UTF-8 Character Set %>
+  <meta charset="utf-8">
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -37,13 +40,25 @@
   <%# Viewport meta tag %>
   <meta name="viewport" content="width=device-width, user-scalable=no">
 
-  <%# UTF-8 Character Set %>
-  <meta charset="utf-8">
+  <%# Makes the site capable of running as if it was an official app on Android and iOS. %>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
+  <%# Proper application name for "Add to Homescreen" %>
+  <meta name="application-name" content="ImageHex" />
+  <meta name="apple-mobile-web-app-title" content="ImageHex">
+
+  <%# Theme Color for Chrome on Android, etc. %>
+  <meta name="theme-color" content="#333333">
+
+  <%# WebApp Manifest for icons and things %>
+  <link rel="manifest" href="/manifest.json">
+
+  <%# Description for Google, etc. %>
   <meta name="description" content="ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet.">
 </head>
 
-<body>
+<body class="<% if user_signed_in? %>signed-in<% end %>">
   <%= render 'layouts/header' %>
   <% if notice %>
     <div class="alert alert-success"><p><%= notice %></p></div>
@@ -77,5 +92,21 @@
      }
   }
   </script>
+
+  <%# Modal dialog container, JavaScript can be used to inject text into the p element below. %>
+  <div id="modal-overlay">
+    <div id="modal-dialog">
+      <p><%= t(".please_sign_in") %>
+      <div class="button-container">
+        <div class="btn btn-green">
+          <%= link_to t(".create_an_account"), new_user_registration_path %>
+        </div>
+
+        <div class="btn btn-grey">
+          <%= link_to t(".sign_in"), new_user_session_path %>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

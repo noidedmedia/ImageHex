@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329204556) do
+ActiveRecord::Schema.define(version: 20150503185836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(version: 20150329204556) do
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "collection_images", ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
   add_index "collection_images", ["image_id"], name: "index_collection_images_on_image_id", using: :btree
+  add_index "collection_images", ["user_id"], name: "index_collection_images_on_user_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -50,8 +52,9 @@ ActiveRecord::Schema.define(version: 20150329204556) do
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "collection_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "level",         default: 0, null: false
   end
 
   add_index "curatorships", ["collection_id"], name: "index_curatorships_on_collection_id", using: :btree
@@ -80,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150329204556) do
     t.integer  "medium"
     t.boolean  "replies_to_inbox",             default: false
     t.jsonb    "exif"
+    t.text     "description"
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
@@ -178,6 +182,8 @@ ActiveRecord::Schema.define(version: 20150329204556) do
     t.integer  "role",                               default: 0
     t.string   "slug"
     t.integer  "avatar_id"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -186,10 +192,11 @@ ActiveRecord::Schema.define(version: 20150329204556) do
 
   add_foreign_key "collection_images", "collections"
   add_foreign_key "collection_images", "images", on_delete: :cascade
+  add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "users"
-  add_foreign_key "curatorships", "collections"
-  add_foreign_key "curatorships", "users"
+  add_foreign_key "curatorships", "collections", on_delete: :cascade
+  add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "images", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"

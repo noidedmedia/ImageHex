@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
-# the UserPagesHelper. For example:
+# the CollectionImagesHelper. For example:
 #
-# describe UserPagesHelper do
+# describe CollectionImagesHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       expect(helper.concat_strings("this","that")).to eq("this that")
 #     end
 #   end
 # end
-RSpec.describe UserPagesHelper, type: :helper do
+RSpec.describe CollectionImagesHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

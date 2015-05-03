@@ -33,7 +33,7 @@
     <%# Favorite/Favorited %>
     <%# Initial state determined automatically by Rails. %>
     <%# Switches between the two on successful contact with server (as determined via JavaScript). %>
-    <div class="image-actions-favorite-container">
+    <div class="image-actions-favorite-container" data-signed-in="ajax">
       <% if current_user && current_user.favorited?(@image) %>
         <div class="image-actions inactive" id="img-action-favorite">
           <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
@@ -42,7 +42,7 @@
           <% end %>
         </div>
 
-        <div class="image-actions active" id="img-action-favorited">
+        <div class="image-actions active" id="img-action-favorited" data-signed-in="ajax">
           <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
             <span class="icon icon-medium icon-favorited"></span>
             <p><%= t(".favorited") %></p>
@@ -51,14 +51,14 @@
 
       <% else %>
 
-        <div class="image-actions active" id="img-action-favorite">
+        <div class="image-actions active" id="img-action-favorite" data-signed-in="ajax">
           <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
             <span class="icon icon-medium icon-favorite"></span>
             <p><%= t(".favorite") %></p>
           <% end %>
         </div>
 
-        <div class="image-actions inactive" id="img-action-favorited">
+        <div class="image-actions inactive" id="img-action-favorited" data-signed-in="ajax">
           <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
             <span class="icon icon-medium icon-favorited"></span>
             <p><%= t(".favorited") %></p>
@@ -75,7 +75,7 @@
         <p><%= t(".add_to_collection") %>
       </div>
 
-      <div data-showon="#img-action-collection" class="image-actions-tooltip" id="img-action-collection-tooltip">
+      <div class="image-actions-tooltip" id="img-action-collection-tooltip" data-showon="#img-action-collection" data-signed-in="showon">
         <%= render 'collection_select' if current_user %>
       </div>
     </a>
@@ -88,6 +88,17 @@
       </div>
     </a>
 
+    <div class="image-actions-tooltip" id="img-action-share-tooltip" data-showon="#img-action-share" data-signed-in="showon">
+      <p>Share
+      <div class="share-icons">
+        <div id="share-facebook"><a href="#"></a></div>
+        <div id="share-twitter"><a href="#"></a></div>
+        <div id="share-google-plus"><a href="#"></a></div>
+        <div id="share-tumblr"><a href="#"></a></div>
+        <div id="share-pinterest"><a href="#"></a></div>
+      </div>
+    </div>
+
     <%# Report %>
     <a href="#">
       <div class="image-actions" id="img-action-report">
@@ -95,7 +106,7 @@
         <p><%= t(".report") %>
       </div>
 
-      <div data-showon="#img-action-report" class="image-actions-tooltip" id="img-action-report-tooltip">
+      <div class="image-actions-tooltip" id="img-action-report-tooltip" data-showon="#img-action-report" data-signed-in="showon">
         <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
       </div>
     </a>

@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :curatorship do
-    user nil
-collection nil
+    user
+    collection
+    level :admin
   end
 
 end

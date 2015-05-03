@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.2'
 
 gem 'aws-sdk', '< 2.0'
 gem 'devise'
+gem 'omniauth-twitter'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
@@ -10,7 +11,9 @@ gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-
+##
+# Use SDoc
+gem 'sdoc', require: false
 ##
 # Use markdown for user comments
 gem 'redcarpet'
@@ -33,6 +36,8 @@ gem 'unicorn'
 # Use paperclip to upload images
 gem 'paperclip'
 
+# Use pundit for authorization
+gem 'pundit'
 # Use postmark to send email
 gem 'postmark-rails'
 # Use jquery as the JavaScript library
@@ -43,8 +48,6 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
 
 ##
 # Change our data in a migration

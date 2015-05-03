@@ -1,3 +1,18 @@
+##
+# Groups together a bunch of images on a tag.
+#
+# Has 3 relations:
+# image:: The image this tag group is on
+# tags:: Via a has_many through: with tag_group_members, shows what tags
+#        are in this group.
+# tag_group_members:: Join table for a has_many through (tags <-> tag_groups)
+# TODO: Add a relation to connect a tag_group to the most recent user who
+# updated it.
+#
+# This model also has an attribute called "tag_group_string". It's a 
+# comma-seperated list of tags. This is the user's primary way of interacting
+# with the tags on ImageHex. If a tag in the list is non-existent on
+# saving the tag_group, it will be formated properly and created. Neat, huh?
 class TagGroup < ActiveRecord::Base
   #################
   # RELATIONSHIPS #
@@ -38,9 +53,8 @@ class TagGroup < ActiveRecord::Base
   ##
   # Converts a comma-seperated list of tags into the actual tags
   def save_tag_group_string
-    return unless self.tag_group_string && ! self.tag_group_string.empty?
-    tag_names = self.tag_group_string.split(",")
-    tag_names.map!(&:strip).map!(&:squish)
+    return unless tag_group_string && ! tag_group_string.empty?
+    tag_names = tag_group_string.split(",").map(&:strip).map(&:squish)
     formatted_tags = tag_names.map{|name| name.downcase.strip.squish}
     found_tags = formatted_tags.zip(tag_names).map do |names|
       ##
@@ -59,7 +73,7 @@ class TagGroup < ActiveRecord::Base
   end
 
   ##
-  # Makes a comma-sperated list of tags from actual tags
+  # Makes a comma-sperated list of tags from actual tags.
   def load_tag_group_string
     return unless self.tags.any?
     self.tag_group_string = self.tags.map(&:name).join(", ")

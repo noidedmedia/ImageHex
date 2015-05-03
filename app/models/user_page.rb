@@ -1,3 +1,7 @@
+##
+# UserPage is a bit of text describing a user. 
+# Each user has exactly one.
+# The text is stored in page.body and processed via Markdown.
 class UserPage < ActiveRecord::Base
   belongs_to :user
 

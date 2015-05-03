@@ -1,26 +1,28 @@
-<div id="image-gallery">
-  <% if @images %>
-    <% @images.each_with_index do |img, i| %>
-      <%# We serialize the query string to allow us to provide %>
-      <%# "next" and "prev" links on things. %>
-      <%= link_to image_tag(img.f :medium), image_path(img), {class: "image-list-member"} %>
-    <% end %> 
-  <% end %>
+<div id="image-show-stub">
+  <div id="image-gallery">
+    <% if @images %>
+      <% @images.each_with_index do |img, i| %>
+        <%# We serialize the query string to allow us to provide %>
+        <%# "next" and "prev" links on things. %>
+        <%= link_to image_tag(img.f :medium), image_path(img), {class: "image-list-member"} %>
+      <% end %> 
+    <% end %>
+  </div>
+  <%# There's a bug in a Jquery library we use that requires this monster %>
+  <%# sadly it MUST be done in the body or everything breaks. %>
+  <script>
+$("#image-gallery").justifiedGallery({
+rowHeight: 230,
+margins: 10,
+sizeRangeSuffixes : {
+lt100 : "_small",
+lt240 : "_small",
+lt320 : "_medium",
+lt500 : "_large",
+lt640 : "_large",
+lt1024 : "_huge"
+}
+});
+  </script>
+  <%= will_paginate @images if @images && !@images.empty? %>
 </div>
-<%# There's a bug in a Jquery library we use that requires this monster %>
-<%# sadly it MUST be done in the body or everything breaks. %>
-<script>
- $("#image-gallery").justifiedGallery({
-    rowHeight: 230,
-    margins: 10,
-    sizeRangeSuffixes : {
-      lt100 : "_small",
-      lt240 : "_small",
-      lt320 : "_medium",
-      lt500 : "_large",
-      lt640 : "_large",
-      lt1024 : "_huge"
-    }
-  });
-</script>
-<%= will_paginate @images if @images && !@images.empty? %>

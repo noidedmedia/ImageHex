@@ -28,20 +28,13 @@
  *
  * Sidebar for all user pages with the respective user's information.
  *
- * 1. Box shadow, "46px" used to move the box-shadow down 46px as
- *    not to have it run over the userpage tabs.
- * 2. Ensures that the sidebar will never be smaller than the user's
- *    browser window minus the height of the header and the footer.
  */
  
 #user-page-sidebar {
-  position: fixed;
-  box-shadow: 0 46px 5px 5px rgba(#000,.1); /* 1 */
-  background-color: #fff;
+  position: absolute;
   width: 330px;
-  min-height: calc(100vh - 200px); /* 2 */
-  height: 100%; /* 2 */
-  padding: 40px;
+  height: 100%;
+  padding: 63px 40px 40px; 
   z-index: 100;
   color: #333;
 
@@ -52,6 +45,7 @@
             flex-flow: row nowrap;
     height: auto;
     position: relative;
+    background-color: #fff;
     width: 100%;
     box-shadow: none;
     min-height: 0;
@@ -99,6 +93,7 @@
   font-size: 2.1rem;
   font-weight: 500;
   display: inline-block;
+  padding-bottom: 5px;
 
   @media all and (max-device-width: $mobile-width) {
     width: 100%;
@@ -133,24 +128,6 @@
   font-size: 1.4rem;
   margin-top: 75px;
   margin-left: calc(50vw - 150px);
-
-  input[type="submit"] {
-    width: 300px;
-    display: inline-block;
-    height: 30px;
-    font-size: 1.4rem;
-    border-radius: 3px;
-    border: none;
-    background-color: #5bb289;
-    color: #fff;
-    cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-
-    &:focus {
-      outline: transparent;
-    }
-  }
 }
 
 // Text field for editing the user's bio.
@@ -225,13 +202,14 @@
 #user-page-header-tabs {
   position: fixed;
   z-index: 100;
-  padding-left: 10px; /* 1 */
+  padding-left: 330px; /* 1 */
   background-color: #fff;
   margin-bottom: 10px;
   margin-top: 0;
+  left: 0;
   height: 40px;
   overflow: auto;
-  width: calc(100vw - 330px);
+  width: 100vw;
   text-overflow: clip;
   white-space: nowrap;
   box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
@@ -286,8 +264,6 @@
   margin-top: 40px;
   padding: 15px 20px;
   display: none;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
 
   &.current {
     display: -webkit-flex;
@@ -297,4 +273,15 @@
   @media all and (max-device-width: $mobile-width) {
     margin-top: 5px;
   }
+}
+
+#user-collections-container,
+#user-creations-container {
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+#user-uploads-container {
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
 }

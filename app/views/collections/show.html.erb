@@ -5,9 +5,33 @@
       <p class="collection-page-description"><%= @collection.description %>
       <p class="collection-page-curators"><%= t(".curated_by") %> <%= @collection.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
     </div>
+    
+    <% if current_user.try(:subscribed_to?, @collection) %>
+      
+      <%= form_tag(unsubscribe_collection_path(@collection.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+        <%= button_tag id: "collection-unfollow", class: "btn active" do %>
+          <span class="button-text-following"> <%= t(".following") %> </span>
+          <span class="button-text-unfollow"> <%= t(".unfollow") %> </span>
+        <% end %>
+      <% end %>
 
-    <%= form_tag(subscribe_collection_path(@collection.id)) do %>
-      <%= button_tag t(".follow"), class: "collection-follow" %>
+      <%= form_tag(subscribe_collection_path(@collection.id), "data-signed-in": "ajax", remote: true) do %>
+        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-green inactive" %>
+      <% end %>
+
+    <% else %>
+      
+      <%= form_tag(unsubscribe_collection_path(@collection.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+        <%= button_tag id: "collection-unfollow", class: "btn inactive" do %>
+          <span class="button-text-following"> <%= t(".following") %> </span>
+          <span class="button-text-unfollow"> <%= t(".unfollow") %> </span>
+        <% end %>
+      <% end %>
+
+      <%= form_tag(subscribe_collection_path(@collection.id), "data-signed-in": "ajax", remote: true) do %>
+        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-green active" %>
+      <% end %>
+  
     <% end %>
   </div>
 

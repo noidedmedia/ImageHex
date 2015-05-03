@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
-
+  
   resources :tags do
     collection do
       get "suggest"
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :tag_groups
     concerns :reportable, :commentable
   end
-  devise_for :users, path: "accounts"
+  devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show, :edit, :update] do
     ##
@@ -40,8 +40,19 @@ Rails.application.routes.draw do
     resources :collections, only: [:index]
   end
   resources :collections, except: [:index] do
+    ##
+    # OK we get non-REST here
+    resources :images, only: [:create, :destroy], controller: :collection_images  do
+    ##
+    # An action which sees if an image already exists in the collection
+    get "exists", on: :collection
+  end
+    resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"
+      delete "unsubscribe"
+      ##
+      # Refactor these out eventually
       post "add"
       delete "remove"
     end
@@ -76,7 +87,6 @@ Rails.application.routes.draw do
   #################
 
   root to: "frontpage#index"
-
 
   get '/about', to: "static_stuff#about"
 

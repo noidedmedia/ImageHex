@@ -6,5 +6,7 @@
 #  * Kawaii images
 #
 class Subjective < Collection
-
+  def self.model_name
+    Collection.model_name
+  end
 end

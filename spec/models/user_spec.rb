@@ -15,6 +15,18 @@ describe User do
       expect(u.avatar_img).to eq(i.f(:medium))
     end
   end
+  describe "curatorships" do
+    let(:u){FactoryGirl.create(:user)}
+    let(:c){FactoryGirl.create(:collection)}
+    it "gives back the curatorship" do
+      cur = Curatorship.create(user: u,
+                               collection: c)
+      expect(u.curatorship_for(c)).to eq(cur)
+    end
+    it "gives a null curatorship if no curatorship exists" do
+      expect(u.curatorship_for(c)).to eq(nil)
+    end
+  end
   describe "subscriptions" do
     let(:u){FactoryGirl.create(:user)}
     let(:c){FactoryGirl.create(:collection)}
@@ -37,7 +49,7 @@ describe User do
       i2 = FactoryGirl.create(:image)
       c2.images << i2
       u.subscribe! c2
-      expect(u.image_feed).to eq([i1, i2])
+      expect(u.image_feed).to eq([i2, i1])
     end
   end
   describe "creation" do

@@ -1,0 +1,33 @@
+# Layouts strings, mostly for the header and footer.
+
+en:
+  layouts:
+    application:
+      please_sign_in: "This action requires an account, please sign in."
+      sign_in: "Sign in"
+      create_an_account: "Create an account"
+    header:
+      home: "Home"
+      search: "Search"
+      search_suggestions_note: "Search for the tag you're looking for, suggestions will show up here."
+      sign_in: "Sign in"
+      create_an_account: "Create an account"
+      upload: "Upload"
+      profile: "Profile"
+      admin: "Admin"
+      settings: "Settings"
+      sign_out: "Sign out"
+    footer:
+      imagehex: "ImageHex"
+      imagehex_description: "ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet."
+      imagehex_copyright: "© 2015 #noided Media"
+      company: "Company"
+      about: "About"
+      people: "People"
+      blog: "Blog"
+      contact: "Contact"
+      community: "Community"
+      help: "Help"
+      press: "Press"
+      status: "Status"
+      api: "API"
