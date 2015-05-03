@@ -489,14 +489,42 @@
   padding: 12px;
 
   input[type=radio] {
-    height: 12px;
-    width: 12px;
+    height: 14px;
+    width: 14px;
+    border: 1px solid #aaaab2;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+
+    &:focus {
+      border: 1px solid #333;
+      outline: none;
+    }
+
+    &:checked {
+      border: 1px solid #333;
+
+      &:before {
+        content: $icon-circle;
+        color: #333;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 1px;
+        font-size: 0.7rem;
+      }
+    }
   }
 
   input[type=radio] + label {
     color: #555;
     font-size: 1.4rem;
     font-weight: 300;
+    margin-left: 3px;
+    padding-top: 1px;
+    cursor: pointer;
   }
 
   input[type=radio]:checked + label {
@@ -504,7 +532,7 @@
   }
 
   .report-row {
-    display: block;
+    display: flex;
     padding: 4px 0;
   }
 
