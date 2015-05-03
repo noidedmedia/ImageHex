@@ -69,7 +69,7 @@ class Image < ActiveRecord::Base
   validates :user, presence: :true
   validates :license, presence: true
   validates :medium, presence: true
-
+  validates :description, length:{ maximum: 2000}
   #################
   # CLASS METHODS #
   #################
