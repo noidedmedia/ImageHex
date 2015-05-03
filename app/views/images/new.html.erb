@@ -24,11 +24,16 @@
       <div class="select-container">
         <%= f.select :medium, options_for_select(Image.medium_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-media-select' } %>
       </div>
+
+      <div class="text-field-container">
+        <p><%= t(".description_optional") %> </p>
+        <%= text_area(:image, :description, id: 'image-description-field') %>
+      </div>
     </div>
 
     <div class="new-upload-container">
 
-      <!-- Add ":multiple => true" when we're ready for multi-image upload. -->
+      <%# Add ":multiple => true" when we're ready for multi-image upload. %>
       <%= f.file_field :f, id: "file-field" %>
 
       <div class="top-half">

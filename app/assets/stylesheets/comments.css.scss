@@ -21,7 +21,6 @@
 #upload-info {
   width: 100%;
   margin: 0;
-  margin-bottom: 20px;
 
   a {
     text-decoration: none;
@@ -44,7 +43,11 @@
   p {
     font-size: 1.3rem;
     color: #333;
-    padding: 6px 0;
+    padding: 2px 0 4px;
+    
+    &:first-of-type {
+      padding-top: 8px;
+    }
   }
 }
 
