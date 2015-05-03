@@ -26,7 +26,8 @@
       </div>
 
       <div class="text-field-container">
-        <%= f.text_field :description %>
+        <p><%= t(".description_optional") %> </p>
+        <%= text_area(:image, :description, id: 'image-description-field') %>
       </div>
     </div>
 

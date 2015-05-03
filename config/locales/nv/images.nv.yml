@@ -7,6 +7,7 @@ nv:
       drop_images_here_to_upload: "Use the cursor to move a file into this box and upload said file"
       or: "alternatively"
       click_here_to_choose: "Click here to open your operating system's file browser and select a file"
+      description_optional: "Description (optional):"
       submit: "Send the data to the server"
     image_page_sidebar:
       download: "Initiate a request to save the image to a storage device"
