@@ -12,7 +12,7 @@ class Tag < ActiveRecord::Base
   before_save :fix_name
   ##
   # SCOPES
-  scope :alphabetic, ->{ order('display_name ASC') }
+  scope :alphabetic, ->{ order('ASCII(display_name) ASC') }
   ##
   # ASSOCIATIONS:
   has_many :tag_group_members
