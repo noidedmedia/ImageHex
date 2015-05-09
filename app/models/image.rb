@@ -92,6 +92,7 @@ class Image < ActiveRecord::Base
       .joins("INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id")
       .where(subscriptions:{user_id: user.id})
       .order("collection_images.created_at DESC")
+      .uniq
   end
   ##
   # Search takes a query, and returns all images which match this query.
