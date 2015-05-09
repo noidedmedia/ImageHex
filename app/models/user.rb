@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   ###############
   validates :name, presence: true,
     uniqueness: {case_sensitive: false},
-    format: {with: /^\w+$/},
+    format: {with: /\A\w+\z/},
     length: {in: 2..25}
   validates :page_pref, inclusion: {:in => (1..100)}
   validates_associated :user_page
