@@ -5,6 +5,13 @@ RSpec.describe Comment, :type => :model do
     expect(FactoryGirl.build(:comment,
                              user: nil)).to_not be_valid
   end
+  it "should commit sudoku when subject is deleted" do
+    i = FactoryGirl.create(:image)
+    c = FactoryGirl.create(:comment, commentable: i)
+    expect(c.commentable).to eq(i)
+    i.destroy
+    expect(Comment.where(id: c).first).to eq(nil)
+  end
   it "should require the commentable to be set" do
     expect(FactoryGirl.build(:comment,
                              commentable: nil)).to_not be_valid
