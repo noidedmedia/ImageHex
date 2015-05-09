@@ -8,7 +8,7 @@ class Notification < ActiveRecord::Base
   # RELATIONS #
   #############
   belongs_to :user
-  belongs_to :subject, polymorphic: true, dependent: :destroy
+  belongs_to :subject, polymorphic: true
 
   ##
   # SCOPES
