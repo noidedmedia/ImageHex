@@ -26,7 +26,7 @@ RSpec.describe UsersController, :type => :controller do
       describe "updating user page" do
         it "allows updating" do
           put :update, id: @user.id, user: {page:{body:"test"}}
-          expect(@user.reload.user_page.body).to eq("test")
+          expect(@user.reload.user_page.reload.body).to eq("test")
         end
       end
       describe "updating avatar" do
