@@ -13,7 +13,7 @@ class Admin::ImagesController < Admin::AdminController
   # Delete an image for violating some of the almighty rules on ImageHex.
   # Redirects back to /admin/images so you can delete some more.
   def destroy
-    @image = Image.find(params[:id]).delete
+    @image = Image.find(params[:id]).destroy
     redirect_to "/admin/images"
   end
   ##
