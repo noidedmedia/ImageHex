@@ -9,13 +9,13 @@
     </div>
     <div class="image-description-container">
       <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
-      <p class="image-uploaded-on"><%= t(".uploaded_on") %> <%= @image.created_at.strftime("%B %d, %Y") %>
       <p class="image-description"><%= @image.description %>
     </div>
   </div>
 
   <hr>
 
+  <%# If there aren't any comments, "No comments yet" is shown. %>
   <% if subject.comments.empty? %>
     <p class="no-comments"><%= t(".no_comments_yet") %>
   <% else %>
