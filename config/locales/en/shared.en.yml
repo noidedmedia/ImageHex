@@ -4,7 +4,8 @@ en:
   shared:
     comments:
       uploaded_by: "Uploaded by"
-      uploaded_on: "Uploaded on"
+      no_description_provided: "No description provided."
+      edit: "Edit"
       commented: "commented"
       ago: "ago"
       no_comments_yet: "No comments yet."

@@ -9,7 +9,15 @@
     </div>
     <div class="image-description-container">
       <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
-      <p class="image-description"><%= @image.description %>
+      <% if @image.description? %>
+        <p class="image-description"><%= @image.description %>
+      <% elsif current_user && current_user.admin? || current_user == @image.user %>
+        <p class="image-description-none"><%= t(".no_description_provided") %>
+      <% end %>
+
+      <% if current_user && current_user.admin? || current_user == @image.user %>
+        <p class="image-information-edit"><%= link_to t(".edit"), edit_image_path(@image) %>
+      <% end %>
     </div>
   </div>
 
