@@ -38,7 +38,7 @@
           <%# Username, with link to user page, and "commented [time value] ago". %>
           <div class="user-comment-info">
             <%= link_to comment.user.name, comment.user %>
-            <%= " " + t(".commented") + " " + time_ago_in_words(comment.created_at) + " " + t(".ago") %>
+            <%= " " + t(".commented") + " " %> <span title="<%= comment.created_at %>"><%= time_ago_in_words(comment.created_at) + " " + t(".ago") %></span>
           </div>
 
           <%# Comment body, the text in the comment itself. %>
