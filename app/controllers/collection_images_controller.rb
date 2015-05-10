@@ -20,10 +20,6 @@ class CollectionImagesController < ApplicationController
     end
   end
 
-  def unauthorized
-    flash[:error] = "You are not authorized to do that"
-    redirect_to(request.referrer || root_path)
-  end
 
   def destroy
     img = Image.find(params[:id])

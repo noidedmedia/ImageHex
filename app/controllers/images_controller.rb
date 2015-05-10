@@ -3,6 +3,7 @@
 # As the name implies, this contorller handles all actions for images.
 class ImagesController < ApplicationController
   include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :unauthorized
   # Load the image via our id
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
@@ -147,7 +148,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end
 
-  def image_edit_params
+  def image_update_params
     params.require(:image)
       .permit(:license,
               :medium,
