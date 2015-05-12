@@ -1,7 +1,6 @@
-ImageHex
+ImageHex [![Codeship Status for connorshea/ImageHex](https://codeship.com/projects/3deaa030-bd7d-0132-9ea7-7a0ba2699df2/status?branch=develop)](https://codeship.com/projects/72579)
 ========
-
-[![Codeship Status for connorshea/ImageHex](https://codeship.com/projects/3deaa030-bd7d-0132-9ea7-7a0ba2699df2/status?branch=develop)](https://codeship.com/projects/72579)
+### ImageHex wants to be *the* place to buy, sell, search, and share your artwork.
 
 [View the Wiki for more information.](https://github.com/connorshea/ImageHex/wiki)
 
@@ -18,4 +17,4 @@ Some things to note:
    When we're ready to push up to Heroku, Anthony or Connor will merge 
    develop back into master and push it up.
 4. Set up the DB according to the config file.
-5. Use "rake documentation" to generate the RDoc documentation.
+5. Use `rake documentation` to generate the RDoc documentation.
