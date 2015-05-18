@@ -19,7 +19,7 @@ class Tag < ActiveRecord::Base
   # ASSOCIATIONS:
   has_many :tag_group_members
   has_many :tag_groups, through: :tag_group_members
-
+  has_many :images, through: :tag_groups
   validates :name, uniqueness: {case_sensative: false}
   ##
   # Suggest tags beginning with a string.

@@ -11,6 +11,10 @@ class TagsController < ApplicationController
     render json: suggestions
   end
 
+  def show
+    @tag = Tag.friendly.find(params[:id])
+    @images = @tag.images.paginate(page: page, per_page: per_page)
+  end
   def index
     @tags = Tag.all.paginate(page: page, per_page: per_page)
   end
