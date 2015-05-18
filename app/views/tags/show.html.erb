@@ -1,4 +1,5 @@
 <h1><%= @tag.display_name %></h1>
 <div class="tag-description"><%= @tag.description %></div>
+<%= link_to "edit", edit_tag_path(@tag) %>
 <%= render 'images/show_stub' %>
 
