@@ -8,6 +8,7 @@ nv:
       following: "Following"
       unfollow: "Unfollow"
     new:
+      new_collection_page_title: "New Collection"
       title: "Title"
       description: "Description"
       create_collection: "Create Collection"

@@ -15,4 +15,11 @@ module ApplicationHelper
   def current(path)
     "current" if current_page?(path)
   end
+
+  ##
+  # Used for page's HTML titles.
+  # http://stackoverflow.com/a/3841549
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
 end

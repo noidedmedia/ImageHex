@@ -3,12 +3,15 @@
 nv:
   images:
     new:
+      upload_page_title: "Upload"
       upload_image: "Create a new image on ImageHex"
       drop_images_here_to_upload: "Use the cursor to move a file into this box and upload said file"
       or: "alternatively"
       click_here_to_choose: "Click here to open your operating system's file browser and select a file"
       description_optional: "Description (optional):"
       submit: "Send the data to the server"
+    show:
+      image_page_title: "Image #%{id}"
     image_page_sidebar:
       download: "Initiate a request to save the image to a storage device"
       download_license_notice: "This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way."
@@ -40,6 +43,7 @@ nv:
     image_page_information:
       new_tag_group: "Create a new tag group on this image"
     search:
+      search_page_title: "Search"
       tag_group: "Tag group"
       add_a_tag_group: "Add a tag group"
       search: "Search"

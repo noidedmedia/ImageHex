@@ -2,6 +2,8 @@
 
 nv:
   notifications:
+    index:
+      notifications_title: "Notifications"
     notifications:
       notifications_header: "Things which ImageHex desires you to be notified of"
       mark_all_read: "Mark all as read, indicating that you no longer need to see them"
