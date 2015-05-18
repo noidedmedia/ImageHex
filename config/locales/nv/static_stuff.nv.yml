@@ -3,6 +3,12 @@
 nv:
   static_stuff:
     company_nav:
-      people: "People"
       about: "About"
+      people: "People"
+      contact: "Contact"
+    about:
+      about: "About"
+    people:
+      people: "People"
+    contact:
       contact: "Contact"

@@ -9,6 +9,7 @@ nv:
       user_page_bio_empty: "You haven't filled out your autobiographical text yet."
       edit: "(modify)"
     edit:
+      edit_page_title: "Settings"
       profile_picture_image_id: "Profile Picture Image Identification Number"
       user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
       images_per_page: "Numer of images which ImageHex should display on a page"

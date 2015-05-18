@@ -2,6 +2,8 @@
 
 en:
   notifications:
+    index:
+      notifications_title: "Notifications"
     notifications:
       notifications_header: "Notifications"
       mark_all_read: "Mark all as read"
