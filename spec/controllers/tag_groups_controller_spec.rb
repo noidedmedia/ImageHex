@@ -15,6 +15,13 @@ describe TagGroupsController do
           .to change{TagGroup.count}.by(1)
 
       end
+      it "makes a new tag group change" do
+        expect{
+          post :create, image_id: image, tag_group: {tag_group_string: "test"}
+        }.to change{TagGroupChange.count}.by(1)
+        expect(TagGroupChange.last.kind).to eq("created")
+        expect(TagGroupChange.last.user).to eq(@user)
+      end
     end
     describe 'get #new' do
       it "responds successfully" do

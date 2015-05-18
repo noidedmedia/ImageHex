@@ -22,6 +22,7 @@ class TagGroupsController < ApplicationController
   def create
     @tag_group = TagGroup.create(tag_group_params)
     if @tag_group.save
+      track @tag_group
       redirect_to @image
     else
       flash[:errors] = @tag_group.errors
