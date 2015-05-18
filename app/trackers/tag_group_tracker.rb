@@ -12,6 +12,11 @@ class TagGroupTracker < ApplicationTracker
 
   def update_after
     @new_tags = @record.reload.tags.pluck(:id)
+    TagGroupChange.create(tag_group: @record,
+                          user: @user,
+                          before: @old_tags,
+                          after: @new_tags,
+                          kind: :created)
   end
 
 end
