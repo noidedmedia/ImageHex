@@ -96,6 +96,25 @@
     text-transform: lowercase;
   }
 
+  #alert-close {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 55px;
+    cursor: pointer;
+
+    &:after {
+      content: $icon-close;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    @media all and (max-device-width: $mobile-width) {
+      top: 13px;
+      right: 30px;
+    }
+  }
+
   @media all and (max-device-width: $mobile-width) {
     height: 50px;
     padding: 13px 20px;

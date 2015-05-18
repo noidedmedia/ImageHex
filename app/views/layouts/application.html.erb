@@ -64,16 +64,25 @@
 <body class="<% if user_signed_in? %>signed-in<% end %>">
   <%= render 'layouts/header' %>
   <% if notice %>
-    <div class="alert alert-success"><p><%= notice %></p></div>
-  <% end %>
-  <% if info %>
-    <div class="alert alert-info"><p><%= info %></p></div>
-  <% end %>
-  <% if alert %>
-    <div class="alert alert-danger"><p><%= alert %></p></div>
-  <% end %>
-  <% if warning %>
-    <div class="alert alert-warning"><p><%= warning %></p></div>
+    <div class="alert alert-success">
+      <p><%= notice %></p>
+      <div id="alert-close"></div>
+    </div>
+  <% elsif info %>
+    <div class="alert alert-info">
+      <p><%= info %></p>
+      <div id="alert-close"></div>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-danger">
+      <p><%= alert %></p>
+      <div id="alert-close"></div>
+    </div>
+  <% elsif warning %>
+    <div class="alert alert-warning">
+      <p><%= warning %></p>
+      <div id="alert-close"></div>
+    </div>
   <% end %>
 
   <div id="masthead">
