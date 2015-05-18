@@ -40,7 +40,7 @@ class Tag < ActiveRecord::Base
   
   def display_description
     @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)
-    @@redcarpet.render(description).html_safe
+    @@redcarpet.render(description).html_safe if description
   end
 
   private
