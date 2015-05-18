@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%# Depending on whether or not the current page has a title defined in its view
+  controller, the HTML title element will be set either to "Page title - ImageHex"
+  or just "ImageHex". %>
   <title><%= content_for?(:title) ? content_for(:title) + " - ImageHex" : "ImageHex" %></title>
 
   <%# UTF-8 Character Set %>
   <meta charset="utf-8">
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script>

@@ -10,6 +10,8 @@ nv:
       click_here_to_choose: "Click here to open your operating system's file browser and select a file"
       description_optional: "Description (optional):"
       submit: "Send the data to the server"
+    show:
+      image_page_title: "Image #%{id}"
     image_page_sidebar:
       download: "Initiate a request to save the image to a storage device"
       download_license_notice: "This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way."
