@@ -11,6 +11,12 @@ gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+
+##
+# use TrainTrack to track changes
+# (we wrote this!)
+gem 'train_track'
+
 ##
 # Use SDoc
 gem 'sdoc', require: false
@@ -65,6 +71,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'binding_of_caller'
   gem 'reek'
   gem 'rails_best_practices'
   gem 'quiet_assets'

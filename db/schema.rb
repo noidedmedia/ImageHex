@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518192930) do
+ActiveRecord::Schema.define(version: 20150518203916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,19 @@ ActiveRecord::Schema.define(version: 20150518192930) do
   add_index "subscriptions", ["collection_id"], name: "index_subscriptions_on_collection_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
+  create_table "tag_group_changes", force: :cascade do |t|
+    t.integer  "tag_group_id"
+    t.integer  "user_id"
+    t.integer  "kind"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "before",       default: [],              array: true
+    t.integer  "after",        default: [],              array: true
+  end
+
+  add_index "tag_group_changes", ["tag_group_id"], name: "index_tag_group_changes_on_tag_group_id", using: :btree
+  add_index "tag_group_changes", ["user_id"], name: "index_tag_group_changes_on_user_id", using: :btree
+
   create_table "tag_group_members", force: :cascade do |t|
     t.integer  "tag_group_id"
     t.integer  "tag_id"
@@ -205,6 +218,8 @@ ActiveRecord::Schema.define(version: 20150518192930) do
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "tag_group_changes", "tag_groups", on_delete: :cascade
+  add_foreign_key "tag_group_changes", "users", on_delete: :nullify
   add_foreign_key "tag_groups", "images", on_delete: :cascade
   add_foreign_key "user_pages", "users"
   add_foreign_key "users", "images", column: "avatar_id", on_delete: :nullify

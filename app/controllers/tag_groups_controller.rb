@@ -4,6 +4,7 @@
 class TagGroupsController < ApplicationController
   before_filter :ensure_user, except: :show
   before_filter :get_image
+  include TrainTrack
   ##
   # Create a new TagGroup.
   # Sets:
@@ -41,7 +42,9 @@ class TagGroupsController < ApplicationController
   # On failure, renders the edit action again.
   def update
     @tag_group = TagGroup.find(params[:id])
+    track @tag_group
     if @tag_group.update(tag_group_params)
+      track @tag_group
       redirect_to @image
     else
       flash[:errors] = @tag_group.errors
