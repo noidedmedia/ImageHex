@@ -1,0 +1,7 @@
+<div id="tag-index-container">
+<% @tags.each do |tag| %>
+  <div class="tag-thing">
+    <div class="tag-name"><%= link_to tag.name, tag %></div>
+    <div class="tag-description"><%= tag.description %></div>
+  </div>
+<% end %>
