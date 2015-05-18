@@ -37,6 +37,12 @@ class Tag < ActiveRecord::Base
     finder = "#{n.gsub("%","").downcase.strip.squish}%"
     find_by_sql([query, finder]).map(&:name)
   end
+  
+  def display_description
+    @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)
+    @@redcarpet.render(description).html_safe
+  end
+
   private
   ##
   # Callback which formats the name.
@@ -44,5 +50,6 @@ class Tag < ActiveRecord::Base
     self.display_name ||= self.name.strip.squish
     self.name = self.name.strip.squish.downcase
   end
+
 
 end
