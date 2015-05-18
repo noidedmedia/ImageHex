@@ -7,6 +7,8 @@
 # and capital letters in the normal name. The display_name, which
 # is what should always be shown to the user, retains capital letters.
 class Tag < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   ##
   # CALLBACKS:
   before_save :fix_name
