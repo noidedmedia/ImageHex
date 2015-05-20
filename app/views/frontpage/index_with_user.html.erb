@@ -9,6 +9,10 @@
   <a href="/collections/new">Create a new collection</a>
   <br>
   <%= link_to 'Search', search_path %>
-
-  <%= render 'images/show_stub' %>
+  <% @images.each do |img| %>
+    <div class="frontpage-image-list-box">
+      <%= link_to img.collection_name, collection_path(img.collection_id), {class: "frontpage-image-list-title"} %>
+      <%= link_to image_tag(img.f :medium), image_path(img), {class: "frontpage-image-list-member"} %>
+    </div>
+  <% end %>
 </div>
