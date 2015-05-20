@@ -16,8 +16,6 @@ function addToCollection() {
   // Intercepts submission of the "Add to Collection" button press and does it remotely.
   $(".add-to-collection-form").submit(function(e) {   
     e.preventDefault();
-
-    var data = $(this).serialize();
     
     // For use in the AJAX request below.
     var _this = this;
@@ -26,7 +24,7 @@ function addToCollection() {
     $.ajax({
       type: "POST",
       url: this.action,
-      data: data,
+      data: $(this).serialize(),
       success: function() {
         // Hides the Collection Tooltip once the request has completed.
         $("#img-action-collection-tooltip").removeClass("active").addClass("inactive");
