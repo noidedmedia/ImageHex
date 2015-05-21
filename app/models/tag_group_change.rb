@@ -33,7 +33,7 @@ class TagGroupChange < ActiveRecord::Base
   # The tags after the edit was made.
   # Memorized, so you can call it many times in a row
   def after_tags
-    @_after_tags ||= Tag.where(id: before)
+    @_after_tags ||= Tag.where(id: after)
   end
 
   ## 
