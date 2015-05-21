@@ -38,6 +38,8 @@ class Tag < ActiveRecord::Base
     find_by_sql([query, finder]).map(&:name)
   end
   
+  ##
+  # Parsed markdown for the description
   def display_description
     @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)
     @@redcarpet.render(description).html_safe if description

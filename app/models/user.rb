@@ -89,10 +89,14 @@ class User < ActiveRecord::Base
     !! Subscription.where(user: self,
                           collection: c).first
   end
+  ##
+  # Quickly get a user avatar, pre-resized
   def avatar_img
     avatar.f(:medium)
   end
 
+  ##
+  # Get a user's avatar thumbnail, pre-resized
   def avatar_img_thumb
     avatar.f(:small)
   end
@@ -137,6 +141,10 @@ class User < ActiveRecord::Base
     collections.creations.first
   end
 
+  ##
+  # Get a user's curatorship on a collection, if it exists
+  #
+  # c:: the collection
   def curatorship_for(c)
     Curatorship.where(user: self, collection: c).first
   end
@@ -176,6 +184,8 @@ class User < ActiveRecord::Base
     Creation.create!(curators: [self])
   end
 
+  ##
+  # Class method to get a user from onmiauth
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
