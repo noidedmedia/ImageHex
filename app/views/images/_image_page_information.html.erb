@@ -1,6 +1,41 @@
 <div id="image-page-information">
 
-  <%= render "shared/comments", url: comment_image_path(@image), subject: @image %>
+  <div id="comment-container">
+    <div id="upload-info">
+      <div class="uploader-avatar">
+        <%= link_to @image.user do %>
+          <% if @image.user.avatar %>
+            <%= image_tag @image.user.avatar_img_thumb %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="image-description-container">
+        <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+        <p class="image-description"><%= @image.description %>
+      </div>
+    </div>
+
+    <hr>
+
+    <% if @image.comments.empty? %>
+      <p class="no-comments"><%= t(".no_comments_yet") %>
+    <% else %>
+      <%= render partial: "shared/comments", collection: comments %>
+    <% end %>
+
+    <%# New comment section, only appears for users who are signed-in. %>
+    <% if user_signed_in? %>
+      <%= form_tag(url, {class: "comment_form"}) do %>
+        <%= text_area(:comment, :body, class: 'new-comment', :required => true, placeholder: t(".add_a_comment")) %>
+
+        <div class="new-comment-buttons">
+          <%= button_tag t(".cancel"), type: :reset %>
+          <%= submit_tag t(".submit") %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
 
   <div id="new-group" data-showon="#add-tag-group-button">
     <%= form_for [@image, @image.tag_groups.build] do |f| %>
