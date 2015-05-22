@@ -3,6 +3,7 @@
 <head>
   <title>Page not found - ImageHex</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
   <style>
   body {
     box-sizing: border-box;
@@ -11,10 +12,13 @@
     text-align: center;
     font-family: "Helvetica Neue", Arial, sans-serif;
     margin: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    overflow-y: hidden;
   }
 
   h1 {
-    font-family: Lato, "Helvetica Neue", Arial, sans-serif;
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
     font-size: 36px;
     margin-top: 10px;
     margin-bottom: 0;
@@ -24,15 +28,31 @@
     font-size: 16px;
   }
 
+  .column-1 {
+    text-align: center;
+    display: block;
+    width: 50%;
+  }
+
+  .column-1 a {
+    display: inline-block;
+    margin-top: 30vh;
+  }
+
+  .column-2 {
+    text-align: left;
+    display: block;
+  }
+
   .error-404 {
-    margin-top: 15vh;
+    margin-top: 25vh;
     color: #777;
     font-size: 14px;
   }
 
   .subtitle {
     margin-top: 10px;
-    margin-bottom: 10vh;
+    margin-bottom: 30px;
   }
 
   .helpful-links a {
@@ -40,43 +60,162 @@
     color: #333;
     font-weight: 500;
     font-size: 15px;
-    text-transform: uppercase;
-    padding: 0 8px;
+    padding: 5px 0;
+    display: block;
   }
 
   .helpful-links a:hover {
     text-decoration: underline;
   }
 
-  img {
-    width: 60px;
-    height: 60px;
-    margin-top: 35vh;
-    opacity: 0.75;
+  .imagehex-logo {
+    background: url("logo/imagehex-color-with-no-text.svg") 0 / 100px no-repeat;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+
+  .imagehex {
+    height: 50px;
+    width: 300px;
+    font-size: 48px;
+    font-family: "Lato";
+    margin: auto;
+    -webkit-animation: hinge 6s linear 1s 1 forwards;
+            animation: hinge 6s linear 1s 1 forwards;
+    font-weight: 300;
+  }
+
+  .imagehex > span {
+    font-weight: 400;
   }
 
   @media all and (max-device-width: 750px) {
+    body {
+      margin: 35px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
     .error-404 {
       margin-top: 8vh;
     }
+
+    .imagehex {
+      display: none;
+      -webkit-animation: none;
+              animation: none;
+    }
+
+    .column-1 {
+      width: 100%;
+    }
+
+    .column-1 a {
+      margin-top: 20px;
+    }
   }
+
+  @-webkit-keyframes hinge {
+    0% {
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: rotate3d(0, 0, 1, 80deg);
+              transform: rotate3d(0, 0, 1, 80deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+      opacity: 1;
+    }
+
+    20%, 40%, 60%, 80% {
+      -webkit-transform: rotate3d(0, 0, 1, 60deg);
+              transform: rotate3d(0, 0, 1, 60deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    100% {
+      -webkit-transform: translate3d(0, 700px, 0);
+              transform: translate3d(0, 700px, 0);
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  @keyframes hinge {
+    0% {
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: rotate3d(0, 0, 1, 80deg);
+              transform: rotate3d(0, 0, 1, 80deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+      opacity: 1;
+    }
+
+    20%, 40%, 60%, 80% {
+      -webkit-transform: rotate3d(0, 0, 1, 60deg);
+              transform: rotate3d(0, 0, 1, 60deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    100% {
+      -webkit-transform: translate3d(0, 700px, 0);
+              transform: translate3d(0, 700px, 0);
+      opacity: 0;
+      display: none;
+    }
+  }
+
   </style>
 </head>
 
 <body>
 
-  <p class="error-404">Error 404: Page Not Found
+  <div class="column-1">
+    <a href="/"><div class="imagehex-logo"></div></a>
 
-  <h1>It has to be here somewhere...</h1>
-  <p class="subtitle">You may have mistyped the address or the page may have been moved.
-  
-  <div class="helpful-links">
-    <a href="/">Home</a>
-    <a href="/search">Search</a>
-    <a href="/help">Help</a>
+    <p class="imagehex">Image<span>Hex</span></p>
   </div>
 
-  <a href="/"><img src="logo/imagehex-grayscale-whitebg-with-no-text.svg"></a>
+  <div class="column-2">
+    <p class="error-404">Error 404: Page Not Found
+
+    <h1>It has to be here somewhere...</h1>
+    <p class="subtitle">You may have mistyped the address or the page may have been moved.
+    
+    <div class="helpful-links">
+      <a href="/">Home</a>
+      <a href="/search">Search</a>
+      <a href="/help">Help</a>
+    </div>
+  </div>
 
 </body>
 </html>
