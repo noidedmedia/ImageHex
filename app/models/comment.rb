@@ -19,6 +19,8 @@
 # notifications:: Notifications that reference this comment. Used for people 
 #                 who reply to a comment or iamge.
 class Comment < ActiveRecord::Base
+  
+  scope :for_display, ->{ includes(:user).sort("created_at DESC") }
   #############
   # RELATIONS #
   #############
