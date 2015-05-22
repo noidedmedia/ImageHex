@@ -25,7 +25,7 @@
 
     <%# New comment section, only appears for users who are signed-in. %>
     <% if user_signed_in? %>
-      <%= form_tag(comment_image_path(@image), {class: "comment_form"}) do %>
+      <%= form_tag(comment_image_path(@image), {class: "comment-form"}) do %>
         <%= text_area(:comment, :body, class: 'new-comment', :required => true, placeholder: t(".add_a_comment")) %>
 
         <div class="new-comment-buttons">
