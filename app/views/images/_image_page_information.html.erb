@@ -17,6 +17,7 @@
 
     <hr>
 
+    <%# Render the comments partial with @image.comments as the subject. %>
     <%= render "shared/comments", comments: @image.comments %>
 
     <%# New comment section, only appears for users who are signed-in. %>
