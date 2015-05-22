@@ -27,7 +27,7 @@ function notificationsDropdownGet() {
 
     $.ajax({
       type: "GET",
-      url: "/notifications/unread",
+      url: "/notifications",
       dataType: "json",
       success: function(result) {
         console.log(result);
