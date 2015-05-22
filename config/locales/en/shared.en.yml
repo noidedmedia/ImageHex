@@ -2,7 +2,7 @@
 
 en:
   shared:
-    comments:
+    comment:
       commented: "commented"
       ago: "ago"
     report_stub:
