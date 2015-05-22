@@ -71,6 +71,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rack-mini-profiler', require: false
   gem 'binding_of_caller'
   gem 'reek'
   gem 'rails_best_practices'
