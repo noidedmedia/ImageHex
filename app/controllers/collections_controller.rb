@@ -12,44 +12,7 @@ class CollectionsController < ApplicationController
       .try(:destroy)
     redirect_to Collection.find(params[:id])
   end
-  ##
-  # Add the image with id in params[:image_id] to the collection with id in
-  # params[:id].
-  # Requires log in. 
-  # If the user does not curate the collection, it puts a relevant error
-  # message in flash[:error] and redirects to the image.
-  # On success, it simply redirects to the image.
-  def add
-    c = Collection.find(params[:id])
-    ##
-    # If the current usn't doesn't curate this colletion, they cannot
-    # add images to it
-    if ! c.curated?(current_user)
-      flash[:error] = "You cannot add images to a collection you do not own."
-      redirect_to Image.find(params[:image_id]) and return
-    end
-    image = Image.find(params[:image_id])
-    c.images << image
-    redirect_to image
-  end
-  ##
-  # Remove the image with id in params[:image_id] from the collection in
-  # params[:id].
-  # Requires login.
-  # Only does anything if current_user has permissions to remove images
-  # from the collection.
-  # Always returns a JSON true or false, indicating success.
-  # TODO: refactor this, make it less bad.
-  def remove
-    col = Collection.find(params[:id])
-    image = Image.find(params[:image_id])
-    worked = false
-    if col && col.images.include?(image)
-      col.images.delete(image)
-      worked = true
-    end
-    render json: worked
-  end
+  
   ##
   # Show all the collections on the user in params[:user_id].
   # Sets the following variables:

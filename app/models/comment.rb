@@ -55,17 +55,12 @@ class Comment < ActiveRecord::Base
     if commentable.class == Image && commentable.replies_to_inbox
       n = Notification.create(user: commentable.user,
                               subject: subject,
-                              message: image_reply_message)
+                              kind: :uploaded_image_commented_on)
       n.save
     end
   end
 
-  ##
-  # The message to use when generating a notification for a reply on a user
-  # image.
-  def image_reply_message
-    I18n.t 'made_a_comment', username: "#{user.name}", commentable: "##{commentable.id}", scope: "activerecord.models.comment"
-  end
+  
   ##
   # Notify reply tells us to make a notification of a reply to
   # this comment. It's protected so only other comments can
@@ -73,17 +68,11 @@ class Comment < ActiveRecord::Base
   def notify_reply(other)
     n = Notification.create(user: user,
                             subject: self,
-                            message: reply_message(other))
+                            kind: :comment_replied_to)
     n.save
 
   end
 
-  ##
-  # Notification message just returns a string to use as the message
-  # in a notification
-  def reply_message(other)
-    I18n.t 'replied_to_your_comment', username: "#{other.user.name}", commentable_type: "#{commentable_type}", commentable: "##{commentable.id}", scope: "activerecord.models.comment"
-  end
 
   ##
   # You can reply to another comment 4chan-style, by typing
@@ -114,17 +103,9 @@ class Comment < ActiveRecord::Base
   # user:: the user to notify.
   def notify_mention(user)
     n = Notification.new(user: user,
-                     subject: self,
-                     message: mention_message(user))
+                         subject: self,
+                         kind: :mentioned)
     n.save!
-  end
-
-  ##
-  # The message to use on the notification when a user is mentioned
-  # in a comment.
-  # user:: the user being mentioned.
-  def mention_message(user)
-    I18n.t 'mentioned_you', username: "#{self.user.name}", scope: "activerecord.models.comment"
-  end
+  end  
 
 end
