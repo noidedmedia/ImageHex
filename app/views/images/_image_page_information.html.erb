@@ -20,7 +20,7 @@
     <% if @image.comments.empty? %>
       <p class="no-comments"><%= t(".no_comments_yet") %>
     <% else %>
-      <%= render partial: "shared/comments", collection: comments %>
+      <%= render partial: "shared/comment", collection: @image.comments %>
     <% end %>
 
     <%# New comment section, only appears for users who are signed-in. %>
