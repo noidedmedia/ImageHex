@@ -20,7 +20,7 @@
 #                 who reply to a comment or iamge.
 class Comment < ActiveRecord::Base
   
-  scope :for_display, ->{ includes(:user).sort("created_at DESC") }
+  scope :for_display, ->{ includes(:user).order("created_at DESC") }
   #############
   # RELATIONS #
   #############
