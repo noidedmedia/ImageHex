@@ -1,5 +1,5 @@
 <% if comments.empty? %>
-  <p class="no-comments"><% t(".no_comments_yet") %>
+  <p class="no-comments"><%= t(".no_comments_yet") %>
 <% else %>
   <%= render partial: "shared/comment", collection: comments.for_display %>
 <% end %>
