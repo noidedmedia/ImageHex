@@ -2,6 +2,8 @@
 
 en:
   shared:
+    comments:
+      no_comments_yet: "No comments yet."
     comment:
       commented: "commented"
       ago: "ago"

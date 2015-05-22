@@ -43,7 +43,6 @@ en:
     image_page_information:
       new_tag_group: "New Tag Group"
       uploaded_by: "Uploaded by"
-      no_comments_yet: "No comments yet."
       add_a_comment: "Add a comment..."
       cancel: "Cancel"
       submit: "Submit"

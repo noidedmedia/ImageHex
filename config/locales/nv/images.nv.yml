@@ -43,7 +43,6 @@ nv:
     image_page_information:
       new_tag_group: "Create a new tag group on this image"
       uploaded_by: "Uploaded by"
-      no_comments_yet: "No user has had the desire to make anything known on this page"
       add_a_comment: "Add a comment..."
       cancel: "Cancel"
       submit: "Send data to the server for processing"
