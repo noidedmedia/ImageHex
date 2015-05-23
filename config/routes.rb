@@ -21,14 +21,18 @@ Rails.application.routes.draw do
       get "suggest"
     end
   end
+  resources :tag_group_changes, only: [:show] do
 
+  end
   resources :images do
     member do
       post "favorite"
       post "created"
       delete "unfavorite"
     end
-    resources :tag_groups
+    resources :tag_groups do 
+      resources :changes, only: [:index], controller: :tag_group_changes
+    end
     concerns :reportable, :commentable
   end
   devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
