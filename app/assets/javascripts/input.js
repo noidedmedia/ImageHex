@@ -1,9 +1,10 @@
 function checkIfEmpty() {
   $("input, textarea").each(function() {
-    if ( $(this).val() == "" ) {
+    if ( $(this).val() === "" ) {
       $(this).siblings("label").addClass("input-empty");
       $(this).on("input", function() {
-        if ( $(this).val() == "" ) {
+        console.log("test");
+        if ( $(this).val() === "" ) {
           $(this).siblings("label").addClass("input-empty");
         } else {
           $(this).siblings("label").removeClass("input-empty");
