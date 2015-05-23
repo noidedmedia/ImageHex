@@ -1,0 +1,83 @@
+@import "scss-variables";
+
+.fields-page-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
+  width: 500px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 100px;
+  position: relative;
+
+  input[type="submit"] {
+    margin-top: 20px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100vw;
+    margin-top: 40px;
+  }
+}
+
+.field-container {
+  position: relative;
+  padding-top: 25px;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #aaaab2;
+  padding-bottom: 4px;
+  background-color: transparent;
+  font-size: 1.4rem;
+  transition: border 200ms ease;
+
+  &:focus {
+    outline: transparent;
+    border-bottom: 1px solid #333;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    margin-bottom: 20px;
+  }
+}
+
+.label {
+  font-weight: 500;
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  transform: translateY(calc(-100% - 5px));
+  position: absolute;
+  left: 1px;
+  transition: 300ms color -50ms, 200ms transform -50ms, 200ms font-size -50ms;
+  color: #333;
+  font-size: 1.1rem;
+
+  &.input-empty {
+    color: #aaaab2;
+    transform: translateY(1px);
+    text-align: left;
+    pointer-events: none;
+    font-size: 1.4rem;
+    font-weight: 400;
+    left: 4px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    text-align: left;
+    width: 90px;
+    padding-right: 5px;
+  }
+}

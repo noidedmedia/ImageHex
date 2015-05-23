@@ -131,7 +131,7 @@
   background-color: $color-success;
 
   > p:first-of-type::before {
-    content: $icon-success;
+    content: $icon-checkmark;
   }
 }
 
