@@ -5,6 +5,7 @@
   color: #aaaab2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: $font-stack;
 }
 
 // Home icon
@@ -53,6 +54,10 @@
 
 .icon-delete:before {
   content: $icon-delete;
+}
+
+.icon-checkmark:before {
+  content: $icon-checkmark;
 }
 
 .icon-small:before {

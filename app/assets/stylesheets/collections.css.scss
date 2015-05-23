@@ -185,7 +185,7 @@
 }
 
 #collection-unfollow {
-  background-color: #5bb289;
+  background-color: #aaaab2;
   transition: background-color 0ms;
 
   .button-text-following {
@@ -197,7 +197,7 @@
   }
 
   &:hover {
-    background-color: #cb2e32;
+    background-color: darken(#aaaab2,10%);
 
     .button-text-following {
       display: none;
