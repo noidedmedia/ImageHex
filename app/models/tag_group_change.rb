@@ -10,6 +10,8 @@
 # user:: the user who made the edit
 # tag_group:: the tag_group we're tracking changes on
 class TagGroupChange < ActiveRecord::Base
+  scope :for_display, ->{ order("created_at DESC") }
+  
   belongs_to :tag_group
   belongs_to :user
 
