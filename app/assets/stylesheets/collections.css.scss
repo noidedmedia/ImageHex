@@ -162,51 +162,6 @@
   width: 200px;
   height: 32px;
   right: 0;
-
-  &.active {
-    display: block;
-  }
-
-  &.inactive {
-    display: none;
-  }
-
-  span {
-    pointer-events: none;
-    cursor: pointer;
-  }
-
-  @media all and (max-device-width: $mobile-width) {
-    position: relative;
-    width: 100%;
-    height: 40px;
-    font-size: 1.8rem;
-  }
-}
-
-#collection-unfollow {
-  background-color: #aaaab2;
-  transition: background-color 0ms;
-
-  .button-text-following {
-    display: inline;
-  }
-
-  .button-text-unfollow {
-    display: none;
-  }
-
-  &:hover {
-    background-color: darken(#aaaab2,10%);
-
-    .button-text-following {
-      display: none;
-    }
-
-    .button-text-unfollow {
-      display: inline;
-    }
-  }
 }
 
 #collection-images-container {
