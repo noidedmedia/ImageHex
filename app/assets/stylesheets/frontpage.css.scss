@@ -30,11 +30,12 @@
     font-weight: normal;
     a{
       text-decoration: none;
+      font-weight: 400;
       color: black;
-      &:hover {
-        background-color: gray;
-      }
       padding: 5px;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   padding: 10px;

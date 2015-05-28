@@ -1,42 +1,16 @@
 <div class="tag-group-change">
-  <h1><%= link_to change.user.name, change.user %> changed:</h1>
-  <div class="tag-group-change-before">
-    <ul>
-      <% change.before_tags.each do |t| %>
-        <li><%= link_to t.name, t %></li>
-      <% end %>
-    </ul>
-  </div>
-  <h1>To</h1>
-  <div class="tag-group-change-after">
-    <ul>
-      <% change.after_tags.each do |t| %>
-        <li><%= link_to t.name, t %></li>
-      <% end %>
-    </ul>
-  </div>
-  <h1>Adding:</h1>
-  <div class="tag-group-change-added">
-    <ul>
-      <% change.added_tags.each do |t| %>
-        <li><%= link_to t.name, t %></li>
-      <% end %>
-    </ul>
-  </div>
-  <h1>Removing:</h1>
-  <div class="tag-group-change-removed">
-    <ul>
-      <% change.removed_tags.each do |t| %>
-        <li><%= link_to t.name, t %></li>
-      <% end %>
-    </ul>
-  </div>
-  <h1>Unchanging:</h1>
-  <div class="tag-group-changes-unchanged">
-    <ul>
-      <% change.unchanged_tags.each do |t| %>
-        <li><%= link_to t.name, t %></li>
-      <% end %>
-    </ul>
-  </div>
+  <h1><%= link_to change.user.name, change.user %></h1>
+  <h2><%= pretty_time change.created_at %></h2>
+  
+  <ul class="change-list">
+    <% change.unchanged_tags.each do |t| %>
+      <li class="unchanged-tag"><%= link_to t.display_name, t %></li>
+    <% end %>
+    <% change.removed_tags.each do |t| %>
+      <li class="removed-tag"><%= link_to t.display_name, t %></li>
+    <% end %>
+    <% change.added_tags.each do |t| %>
+      <li class="added-tag"><%= link_to t.display_name, t %></li>
+    <% end %>
+  </ul>
 </div>

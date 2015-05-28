@@ -1,2 +1,4 @@
-<h1>Changes on this group:</h1>
-<%= render partial: 'change', collection: @changes.for_display, as: :change %>
+<h1 id="tag-group-change-label">Changes on this group:</h1>
+<div id="tag-group-changes-container">
+  <%= render partial: 'change', collection: @changes.for_display, as: :change %>
+</div>

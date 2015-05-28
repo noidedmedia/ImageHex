@@ -1,5 +1,15 @@
 @import "scss-variables";
 
+.tag-group-change-icon{
+  text-decoration: none;
+  color: black;
+  float: right;
+  padding: 2px;
+  &:before {
+    content: $icon-history;
+  }
+  border-bottom: 1px solid #E4E4E4;
+}
 .generic-tag-group {
   width: 100%;
   max-width: 600px;
