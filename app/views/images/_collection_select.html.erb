@@ -1,8 +1,8 @@
 <div id="collection-add-list-container">
   <div id="collection-add-list-scrollbar">
     <% current_user.collections.each do |c| %>
-      <%= form_tag add_collection_path(c.id), class: "add-to-collection-form" do %>
-        <%= hidden_field_tag :image_id, @image.id %>
+      <%= form_tag collection_images_path(c.id), class: "add-to-collection-form" do %>
+        <%= hidden_field_tag "collection_image[image_id]", @image.id %>
         <%= submit_tag c.name, class: 'collection-add-list-item' %>
       <% end %>
     <% end %>

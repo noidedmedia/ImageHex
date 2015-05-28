@@ -18,4 +18,25 @@
   }
 }
 
+#frontpage-subscription-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.subscription-image{
+  width: auto;
+  display: inline-block;
+  h1{
+    font-weight: normal;
+    a{
+      text-decoration: none;
+      color: black;
+      &:hover {
+        background-color: gray;
+      }
+      padding: 5px;
+    }
+  }
+  padding: 10px;
+}
 
