@@ -22,6 +22,8 @@ gem 'train_track'
 ##
 # Use SDoc
 gem 'sdoc', require: false
+gem 'hanna-bootstrap'
+
 ##
 # Use markdown for user comments
 gem 'redcarpet'
