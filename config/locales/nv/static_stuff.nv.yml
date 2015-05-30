@@ -12,3 +12,6 @@ nv:
       people: "People"
     contact:
       contact: "Contact"
+    faq:
+      faq_title: "Questions Which Are Oftentimes Asked"
+      faq: "Frequently Asked Questions"
