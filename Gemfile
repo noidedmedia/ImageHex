@@ -15,14 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 
 
 ##
-# use TrainTrack to track changes
+# Use TrainTrack to track changes
 # (we wrote this!)
 gem 'train_track'
-
-##
-# Use SDoc
-gem 'sdoc', require: false
-gem 'hanna-bootstrap'
 
 ##
 # Use markdown for user comments
@@ -33,7 +28,8 @@ gem 'friendly_id', '~> 5.1.0'
 
 # Possessive gem makes a string possessive
 gem "possessive"
-# Monitor stuff with new relic
+
+# Monitor stuff with New Relic
 gem 'newrelic_rpm'
 
 # Use postgres
@@ -84,6 +80,11 @@ group :development do
   gem 'better_errors'
   gem 'annotate'
   gem 'bullet'
+
+  ##
+  # Use Hanna Bootstrap theme for RDoc documentation
+  # https://github.com/ngs/hanna-bootstrap
+  gem 'hanna-bootstrap'
 end
 group :test do
   # Continue to make tests good
