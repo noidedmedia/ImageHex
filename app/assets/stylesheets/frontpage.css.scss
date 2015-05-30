@@ -18,26 +18,28 @@
   }
 }
 
-#frontpage-subscription-container{
+#frontpage-subscription-container {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
 }
 
-.subscription-image{
+.subscription-image {
   width: auto;
   display: inline-block;
-  h1{
+  padding: 10px;
+
+  h1 {
     font-weight: normal;
-    a{
+
+    a {
       text-decoration: none;
       font-weight: 400;
       color: black;
       padding: 5px;
+      
       &:hover {
         text-decoration: underline;
       }
     }
   }
-  padding: 10px;
 }
-

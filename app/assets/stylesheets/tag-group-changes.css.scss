@@ -1,55 +1,61 @@
-#tag-group-changes-container{
+#tag-group-changes-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 
-#tag-group-change-label{
+#tag-group-change-label {
   font-size: 3em;
   font-weight: 500;
   padding: 5px;
 }
 
-.tag-group-change{
+.tag-group-change {
   padding: 10px;
-  h1{
+  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+  border-radius: 0 2px 2px;
+
+  h1 {
     font-size: 1.9em;
     font-weight: 500;
   }
-  h2{
+
+  h2 {
     font-size: 1.5em;
     font-weight: 500;
   }
-  a{
-    text-decoration: none;
-    color: black;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.1);
-  border-radius: 0px 2px 2px;
 
-}
-.change-list{
-  padding: 3px;
-  a{
+  a {
     text-decoration: none;
     color: black;
+
     &:hover {
       text-decoration: underline;
     }
   }
-  li{
+}
+
+.change-list {
+  padding: 3px;
+
+  a {
+    text-decoration: none;
+    color: black;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  li {
     font-size: 1.5em;
     border-bottom: 1px solid #AAA;
   }
 }
 
-.added-tag{
+.added-tag {
   background-color: #AAFFAA;
 }
 
-.removed-tag{
+.removed-tag {
   background-color: #FFAAAA;
 }
