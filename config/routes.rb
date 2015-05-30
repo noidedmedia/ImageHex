@@ -98,8 +98,11 @@ Rails.application.routes.draw do
 
   get '/contact', to: "static_stuff#contact"
 
+  get '/faq', to: "static_stuff#faq"
+
   get '/settings', to: 'users#edit'
 
   post '/settings', to: 'users#update'
+
   get '/search', to: "images#search"
 end

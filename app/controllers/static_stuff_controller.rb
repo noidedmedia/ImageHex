@@ -17,4 +17,7 @@ class StaticStuffController < ApplicationController
   # Contact page. How to talk to us.
   def contact
   end
+
+  def faq
+  end
 end

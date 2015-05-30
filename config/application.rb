@@ -2,6 +2,11 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+##
+# Add the Markdown Handler in '../lib/handlers/'.
+# For use on the About and FAQ pages.
+require_relative '../lib/handlers/markdown_handler.rb'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
