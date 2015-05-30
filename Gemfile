@@ -12,6 +12,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 
 
+
+
 ##
 # use TrainTrack to track changes
 # (we wrote this!)
@@ -71,6 +73,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry-rails'
   gem 'rack-mini-profiler', require: false
   gem 'binding_of_caller'
   gem 'reek'
