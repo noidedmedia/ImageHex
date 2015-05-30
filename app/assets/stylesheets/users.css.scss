@@ -8,8 +8,9 @@
 #user-page-container {
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+  -webkit-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  width: 100%;
   height: 100%;
 
   @media all and (max-device-width: $mobile-width) {
@@ -20,23 +21,29 @@
 
 
 /* ==============================================
-    User page sidebar
+    User Page Header
    ============================================== */
 
 /**
- * User page sidebar
+ * User page header
  *
- * Sidebar for all user pages with the respective user's information.
+ * Header for all user pages with the respective user's information.
  *
  */
  
-#user-page-sidebar {
-  position: absolute;
-  width: 330px;
-  height: 100%;
-  padding: 63px 40px 40px; 
+#user-page-header {
+  position: relative;
+  width: 100vw;
+  height: auto;
+  padding: 0;
   z-index: 100;
   color: #333;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
+  box-shadow: 8px 0 5px 5px rgba(#000,.1);
+  background-color: #fff;
 
   @media all and (max-device-width: $mobile-width) {
     display: -webkit-flex;
@@ -49,13 +56,21 @@
     width: 100%;
     box-shadow: none;
     min-height: 0;
-    padding: 20px;
     text-align: center;
   }
 }
 
 .user-page-information {
+  position: relative;
+  display: flex;
+  padding: 0 50px;
+  margin-top: 80px;
+  margin-bottom: 25px;
+}
+
+.user-page-text {
   display: inline-block;
+  padding-left: 15px;
 
   @media all and (max-device-width: $mobile-width) {
     display: block;
@@ -64,15 +79,16 @@
 }
 
 #user-page-profile-picture {
-  width: 250px;
-  height: 250px;
-  margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
   background-color: #c9c9c9;
   overflow: hidden;
+  border-radius: 3px;
+  pointer-events: none;
 
   img {
-    min-width: 250px;
-    min-height: 250px;
+    min-width: 100px;
+    min-height: 100px;
   }
 
   @media all and (max-device-width: $mobile-width) {
@@ -140,15 +156,10 @@
    ============================================== */
 
 #user-content-container {
-  margin-left: 330px; /* Width of the user sidebar. */
-  width: 100%;
+  width: 100vw;
 
   a {
     color: #fff;
-  }
-
-  @media all and (max-device-width: $mobile-width) {
-    margin-left: 0;
   }
 }
 
@@ -168,19 +179,21 @@
  */
 
 #user-page-header-tabs {
-  position: fixed;
+  position: relative;
   z-index: 100;
-  padding-left: 330px; /* 1 */
+  padding-left: 40px; /* 1 */
   background-color: #fff;
-  margin-bottom: 10px;
-  margin-top: 0;
+  margin: 0;
   left: 0;
   height: 40px;
   overflow: auto;
   width: 100vw;
   text-overflow: clip;
   white-space: nowrap;
-  box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
+
+  &.sticky {
+    box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
+  }
 
   @media all and (max-device-width: $mobile-width) {
     position: relative;
@@ -229,7 +242,6 @@
 #user-uploads-container,
 #user-collections-container,
 #user-creations-container {
-  margin-top: 40px;
   padding: 15px 20px;
   display: none;
 
