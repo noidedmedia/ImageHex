@@ -1,2 +1,8 @@
-<h1>Images#edit</h1>
-<p>Find me in app/views/images/edit.html.erb</p>
+<h1> Edit image </h1>
+
+<%= form_for @image do |f| %>
+  <%= f.select :license, options_for_select(Image.license_attributes_for_select) %>
+  <%= f.select :medium, options_for_select(Image.medium_attributes_for_select) %>
+  <%= f.text_area :description %>
+  <%= f.submit %>
+<% end %> 

@@ -2,6 +2,11 @@
 # The root application controller for Imagehex.
 # Any functionality we have to access from all controllers goes here.
 class ApplicationController < ActionController::Base
+  
+  def unauthorized
+    flash[:error] = "You aren't allowed to do that"
+    redirect_to (request.referer || root_path)
+  end
   # Adds different "flash[:type]" types.
   add_flash_types :warning, :info
   before_action :set_locale

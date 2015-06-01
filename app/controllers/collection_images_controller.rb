@@ -29,14 +29,6 @@ class CollectionImagesController < ApplicationController
     end
   end
 
-  ## 
-  # Display a warning that the user is not authorized to modify
-  # this collection
-  def unauthorized
-    flash[:error] = "You are not authorized to do that"
-    redirect_to(request.referrer || root_path)
-  end
-
   ##
   # Remove an image from a collection
   def destroy
