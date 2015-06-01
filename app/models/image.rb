@@ -28,6 +28,17 @@
 # license:: What license the image is under.
 # medium:: How the image was created
 class Image < ActiveRecord::Base
+
+  ##########
+  # SCOPES #
+  ##########
+
+  scope :without_nudity, ->{ where(nsfw_nudity: false) }
+  scope :without_gore, -> { where(nsfw_gore: false)}
+  scope :without_language, -> { where(nsfw_language: false)}
+  scope :without_sex, -> { where(nsfw_sexuality: false)}
+  scope :completely_safe, -> { without_nudity.without_gore.without_language.without_sex }
+  scope :mostly_safe, -> { without_nudity.without_gore.without_sex } 
   ################
   # ASSOCIATIONS #
   ################
@@ -64,12 +75,17 @@ class Image < ActiveRecord::Base
   ###############
   # VALIDATIONS #
   ###############
+  validates :nsfw_language, inclusion: {in: [true, false]}
+  validates :nsfw_gore, inclusion: {in: [true, false]}
+  validates :nsfw_sexuality, inclusion: {in: [true, false]}
+  validates :nsfw_nudity, inclusion: {in: [true, false]}
   validates_attachment_content_type :f, content_type: /\Aimage\/.*\Z/
   validates_attachment_presence :f   
   validates :user, presence: :true
   validates :license, presence: true
   validates :medium, presence: true
   validates :description, length:{ maximum: 2000}
+
   #################
   # CLASS METHODS #
   #################

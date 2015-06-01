@@ -3,6 +3,37 @@ require 'spec_helper'
 # To upload pictures
 include ActionDispatch::TestProcess
 describe Image do
+  describe "content validation" do
+    let(:sex){FactoryGirl.create(:image,
+                                 nsfw_sexuality: true)}
+    let(:nude){FactoryGirl.create(:image,
+                                  nsfw_nudity: true)}
+    let(:lang){FactoryGirl.create(:image, 
+                                  nsfw_language: true)}
+    let(:gore){FactoryGirl.create(:image,
+                                  nsfw_gore: true)}
+    let(:collec){Image.where(id: [sex, nude, lang, gore].map(&:id))}
+    describe "scopes" do
+      it "has a scope for without nudity" do
+        expect(collec.without_nudity).to contain_exactly(sex, gore, lang)
+      end
+      it "has a scope for without sexuality" do
+        expect(collec.without_sex).to contain_exactly(nude, lang, gore)
+      end
+      it "has a scope for without language" do
+        expect(collec.without_language).to contain_exactly(nude, gore, sex)
+      end
+      it "has a scope for without gore" do
+        expect(collec.without_gore).to contain_exactly(nude, lang, sex)
+      end
+      it "has a scope for completely safe" do
+        expect(collec.completely_safe.size).to eq(0)
+      end
+      it "has a scope that removes everything but language" do
+        expect(collec.mostly_safe).to eq([lang])
+      end
+    end
+  end
   # Images have many tag groups
   it {should have_many(:tag_groups)}
   # Images need to belong to a user
