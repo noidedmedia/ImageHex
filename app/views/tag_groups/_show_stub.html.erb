@@ -8,10 +8,10 @@
     <% if user_signed_in? %>
       <div class="edit-generic-tag-group"></div>
     <% end %>
-
+    <%= link_to "Changes", image_tag_group_changes_path(@image, tag_group), {class: "tag-group-change-icon"} %>
     <ul class="generic-tag-list">
       <% tag_group.tags.alphabetic.all.each do |t| %>
-        <li class="generic-tag"><%= link_to t.display_name, "/search?query[]=#{t.name}" %>
+        <li class="generic-tag"><%= link_to t.display_name, t %>
       <% end %>
     </ul>
   </div>

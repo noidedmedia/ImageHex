@@ -53,29 +53,8 @@ RSpec.describe CollectionsController, :type => :controller do
         expect(@user.subscribed_collections.reload).to_not include(c)
       end
     end
-    describe "DELETE #remove" do
-      it "removes stuff" do
-        image = FactoryGirl.create(:image)
-        @user.favorites.images << image
-        expect{
-          delete :remove, id: @user.favorites, image_id: image
-        }.to change{@user.favorites.images.count}.by(-1)
-      end
-    end
-    describe "post #add" do
-      let(:i){FactoryGirl.create(:image)}
-      let(:c){FactoryGirl.create(:collection, curators: [@user])}
-      it "adds the image to a collection" do
-        post :add, id: c.id, image_id: i
-        expect(c.images).to include(i)
-      end
-
-      it "changes the number of images in the collection" do
-        expect{
-          post :add, id: c.id, image_id: i
-        }.to change{c.images.count}.by(1)
-      end
-    end
+    
+    
 
     describe "post #subscribe" do
       let(:c){FactoryGirl.create(:collection)}

@@ -1,6 +1,9 @@
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
+  def pretty_time(t)
+    t.strftime("%l:%M %p %B %d, %Y")
+  end
   ##
   # This allows us to get a "link" to a comment, which is really just a link
   # to the thing being commented on with the id of the comment appended to the

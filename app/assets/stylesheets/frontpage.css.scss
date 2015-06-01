@@ -17,3 +17,29 @@
     padding-bottom: 15px;
   }
 }
+
+#frontpage-subscription-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.subscription-image {
+  width: auto;
+  display: inline-block;
+  padding: 10px;
+
+  h1 {
+    font-weight: normal;
+
+    a {
+      text-decoration: none;
+      font-weight: 400;
+      color: black;
+      padding: 5px;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503185836) do
+ActiveRecord::Schema.define(version: 20150522171712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,10 +92,10 @@ ActiveRecord::Schema.define(version: 20150503185836) do
     t.integer  "user_id"
     t.integer  "subject_id"
     t.string   "subject_type"
-    t.text     "message"
     t.boolean  "read",         default: false, null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.integer  "kind"
   end
 
   add_index "notifications", ["subject_type", "subject_id"], name: "index_notifications_on_subject_type_and_subject_id", using: :btree
@@ -125,6 +125,19 @@ ActiveRecord::Schema.define(version: 20150503185836) do
   add_index "subscriptions", ["collection_id"], name: "index_subscriptions_on_collection_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
+  create_table "tag_group_changes", force: :cascade do |t|
+    t.integer  "tag_group_id"
+    t.integer  "user_id"
+    t.integer  "kind"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "before",       default: [],              array: true
+    t.integer  "after",        default: [],              array: true
+  end
+
+  add_index "tag_group_changes", ["tag_group_id"], name: "index_tag_group_changes_on_tag_group_id", using: :btree
+  add_index "tag_group_changes", ["user_id"], name: "index_tag_group_changes_on_user_id", using: :btree
+
   create_table "tag_group_members", force: :cascade do |t|
     t.integer  "tag_group_id"
     t.integer  "tag_id"
@@ -148,7 +161,11 @@ ActiveRecord::Schema.define(version: 20150503185836) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "display_name"
+    t.text     "description"
+    t.string   "slug"
   end
+
+  add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
   create_table "user_pages", force: :cascade do |t|
     t.integer  "user_id"
@@ -201,6 +218,8 @@ ActiveRecord::Schema.define(version: 20150503185836) do
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "tag_group_changes", "tag_groups", on_delete: :cascade
+  add_foreign_key "tag_group_changes", "users", on_delete: :nullify
   add_foreign_key "tag_groups", "images", on_delete: :cascade
   add_foreign_key "user_pages", "users"
   add_foreign_key "users", "images", column: "avatar_id", on_delete: :nullify

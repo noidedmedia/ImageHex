@@ -11,9 +11,14 @@ gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+
+
+
 ##
-# Use SDoc
-gem 'sdoc', require: false
+# Use TrainTrack to track changes
+# (we wrote this!)
+gem 'train_track'
+
 ##
 # Use markdown for user comments
 gem 'redcarpet'
@@ -23,7 +28,8 @@ gem 'friendly_id', '~> 5.1.0'
 
 # Possessive gem makes a string possessive
 gem "possessive"
-# Monitor stuff with new relic
+
+# Monitor stuff with New Relic
 gem 'newrelic_rpm'
 
 # Use postgres
@@ -65,12 +71,20 @@ group :development, :test do
 end
 
 group :development do
+  gem 'pry-rails'
+  gem 'rack-mini-profiler', require: false
+  gem 'binding_of_caller'
   gem 'reek'
   gem 'rails_best_practices'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'annotate'
   gem 'bullet'
+
+  ##
+  # Use Hanna Bootstrap theme for RDoc documentation
+  # https://github.com/ngs/hanna-bootstrap
+  gem 'hanna-bootstrap'
 end
 group :test do
   # Continue to make tests good

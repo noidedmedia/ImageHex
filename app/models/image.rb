@@ -90,8 +90,10 @@ class Image < ActiveRecord::Base
     
     joins("INNER JOIN collection_images ON collection_images.image_id = images.id")
       .joins("INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id")
+      .joins("INNER JOIN collections ON collections.id = subscriptions.collection_id")
       .where(subscriptions:{user_id: user.id})
       .order("collection_images.created_at DESC")
+      .select("images.*, collections.name AS collection_name, collections.id AS collection_id")
   end
   ##
   # Search takes a query, and returns all images which match this query.

@@ -14,6 +14,8 @@
 class Creation < Collection
   before_validation :make_name
 
+  ##
+  # Force creations to act like normal collection_images for routes and such
   def self.model_name
     Collection.model_name
   end

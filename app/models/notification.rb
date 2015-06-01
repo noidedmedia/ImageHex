@@ -19,5 +19,8 @@ class Notification < ActiveRecord::Base
   ###############
   validates :user, presence: true
   validates :subject, presence: true
-  validates :message, presence: true
+  enum kind: [:uploaded_image_commented_on,
+              :subscribed_image_commented_on,
+              :comment_replied_to,
+              :mentioned]
 end

@@ -42,6 +42,10 @@ nv:
       view_edit_history: "View the various states the image has been in over time"
     image_page_information:
       new_tag_group: "Create a new tag group on this image"
+      uploaded_by: "Uploaded by"
+      add_a_comment: "Add a comment..."
+      cancel: "Cancel"
+      submit: "Send data to the server for processing"
     search:
       search_page_title: "Search"
       tag_group: "Tag group"

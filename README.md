@@ -19,3 +19,5 @@ Some things to note:
    develop back into master and push it up.
 4. Set up the DB according to the config file.
 5. Use "rake documentation" to generate the RDoc documentation.
+
+You can set the enviroment variable `PROFILE` to enable rack-mini-profiler.
