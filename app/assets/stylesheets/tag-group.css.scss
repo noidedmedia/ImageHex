@@ -2,13 +2,16 @@
 
 .tag-group-change-icon {
   text-decoration: none;
-  color: black;
-  float: right;
+  color: #333;
   padding: 2px;
-  border-bottom: 1px solid #E4E4E4;
+  text-decoration: none;
+  position: absolute;
+  top: 15px;
+  right: 45px;
 
   &:before {
     content: $icon-history;
+    font-size: 1.6rem;
   }
 }
 
@@ -59,7 +62,7 @@
   &:before {
     content: $icon-placeholder;
     display: inline-block;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
 }
 
