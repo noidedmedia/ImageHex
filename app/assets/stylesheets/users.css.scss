@@ -79,16 +79,16 @@
 }
 
 #user-page-profile-picture {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background-color: #c9c9c9;
   overflow: hidden;
   border-radius: 3px;
   pointer-events: none;
 
   img {
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 120px;
+    min-height: 120px;
   }
 
   @media all and (max-device-width: $mobile-width) {
@@ -119,6 +119,7 @@
 .user-page-bio {
   font-size: 1.4rem;
   display: block;
+  line-height: 24px;
 
   &.inactive {
     color: #aaaab2;
@@ -132,9 +133,25 @@
   text-decoration: none;
   transition: color 200ms;
   line-height: 24px;
+  display: none;
 
   &:hover {
     color: #333;
+  }
+}
+
+.user-page-website,
+.user-page-location {
+  font-size: 1.4rem;
+  line-height: 24px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
