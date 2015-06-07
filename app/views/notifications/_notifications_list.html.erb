@@ -1,23 +1,10 @@
-<%# If the notification count is greater than 0, notifications are rendered. %>
-<% if notifications.count > 0 %>
-  <% notifications.includes(:subject).order('created_at DESC').limit(8).each do |note| %>
-    <li class="notifications-list-item">
-      <%= link_to note.subject do %>
-        <%= t(".#{note.kind}", username: User.find(note.user_id).name ) %>
+<% notifications.includes(:subject).order('created_at DESC').each do |note| %>
+  <li class="notifications-list-item">
+    <%= link_to note.subject do %>
+      <%= t(".#{note.kind}", username: User.find(note.user_id).name ) %>
 
-        <%# "Time ago" for notification %>
-        <p class="notification-time-ago"><%= time_ago_in_words(note.created_at) + " " + t(".ago") %></p>
-      <% end %>
-    </li>
-  <% end %>
-
-  <% if notifications.count > 8 %>
-    <li class="view-more"><%= link_to t(".view_more"), notifications_path %></li>
-  <% end %>
-
-<%# If notification count is equivalent to (or below, although that should never happen) 0, a "No notifications yet!" message will be displayed. %>
-<% else %>
-  <div class="notifications-empty">
-    <%= t(".no_notifications_yet") %>
-  </div>
+      <%# "Time ago" for notification %>
+      <p class="notification-time-ago"><%= time_ago_in_words(note.created_at) + " " + t(".ago") %></p>
+    <% end %>
+  </li>
 <% end %>
