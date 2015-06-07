@@ -12,7 +12,7 @@
   <% end %>
 
   <% if notifications.count > 8 %>
-    <li class="view-more"><%= link_to t(".view_more"), notifications_path %></p>
+    <li class="view-more"><%= link_to t(".view_more"), notifications_path %></li>
   <% end %>
 
 <%# If notification count is equivalent to (or below, although that should never happen) 0, a "No notifications yet!" message will be displayed. %>
