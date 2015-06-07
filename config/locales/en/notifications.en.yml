@@ -14,3 +14,4 @@ en:
       comment_replied_to: "%{username} replied to your comment."
       ago: "ago"
       no_notifications_yet: "No notifications yet!"
+      view_more: "View more..."

@@ -14,3 +14,4 @@ nv:
       comment_replied_to: "%{username} replied to your comment."
       ago: "ago"
       no_notifications_yet: "We have not found any notifications at the present time"
+      view_more: "View more..."
