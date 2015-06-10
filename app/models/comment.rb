@@ -45,7 +45,7 @@ class Comment < ActiveRecord::Base
   # INSTANCE METHODS #
   ####################
   def html_body
-    @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)
+    @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true))
     @@redcarpet.render(body).html_safe
   end
   protected
