@@ -19,7 +19,16 @@
       <%= f.label :page_pref, t(".images_per_page"), class: "label input-empty", for: "page-pref-field" %>
       <%= f.number_field :page_pref, id: "page-pref-field", class: "input" %>
     </div>
-
+    <%= f.fields_for :content_pref, OpenStruct.new(@user.content_pref) do |fc|%>
+      <%= fc.label :nsfw_gore %>
+      <%= fc.check_box :nsfw_gore %>
+      <%= fc.label :nsfw_language %>
+      <%= fc.check_box :nsfw_language %>
+      <%= fc.label :nsfw_nudity %>
+      <%= fc.check_box :nsfw_nudity %>
+      <%= fc.label :nsfw_sexuality %>
+      <%= fc.check_box :nsfw_sexuality %>
+    <% end %>
     <%= f.submit t(".save_changes"), class: "btn btn-green btn-full-width" %>
   <% end %>
 </div>

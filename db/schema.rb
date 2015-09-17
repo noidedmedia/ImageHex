@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150601194342) do
+ActiveRecord::Schema.define(version: 20150917030432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artist_subscription", id: false, force: :cascade do |t|
+    t.integer "subscriber_id"
+    t.integer "artist_id"
+  end
 
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
@@ -171,6 +176,11 @@ ActiveRecord::Schema.define(version: 20150601194342) do
 
   add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
+  create_table "user_artist_test", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "image_id"
+  end
+
   create_table "user_pages", force: :cascade do |t|
     t.integer  "user_id"
     t.jsonb    "elsewhere"
@@ -205,6 +215,7 @@ ActiveRecord::Schema.define(version: 20150601194342) do
     t.integer  "avatar_id"
     t.string   "provider"
     t.string   "uid"
+    t.jsonb    "content_pref",                       default: {}, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
