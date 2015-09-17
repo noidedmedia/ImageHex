@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   # @collections:: Collections the user curates.
   def show
     @user = User.friendly.find(params[:id])
-    @images = @user.images.paginate(page: page, per_page: per_page)
+    @images = @user.images
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     @collections = @user.collections
   end
 

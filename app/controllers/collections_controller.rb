@@ -47,7 +47,9 @@ class CollectionsController < ApplicationController
   # @images:: Images in the collection
   def show
     @collection = Collection.find(params[:id])
-    @images = @collection.images.paginate(page: page, per_page: per_page)
+    @images = @collection.images
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     @curators = @collection.curators
   end
 

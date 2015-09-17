@@ -110,6 +110,7 @@ class Image < ActiveRecord::Base
       .where(subscriptions:{user_id: user.id})
       .order("collection_images.created_at DESC")
       .select("images.*, collections.name AS collection_name, collections.id AS collection_id")
+      .for_content(user.content_pref)
   end
 
   def self.with_all_tags(tags)
