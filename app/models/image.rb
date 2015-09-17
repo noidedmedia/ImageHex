@@ -111,48 +111,23 @@ class Image < ActiveRecord::Base
       .order("collection_images.created_at DESC")
       .select("images.*, collections.name AS collection_name, collections.id AS collection_id")
   end
-  ##
-  # Search takes a query, and returns all images which match this query.
-  # +q+:: array of groups to be searched for. Each group should be a comma-seperated list of tags.
-  # Example usage:
-  #   Image.search(["red hair, blue eyes", "brown hair, green eyes"])
-  #
+
+  def self.with_all_tags(tags)
+    subquery = joins(tag_groups: {tag_group_members: :tag})
+      .where(tags: {name: tags})
+      .group("images.id")
+      .having("COUNT(*) = ?", tags.length)
+      where(id: subquery)
+  end
+  
   def self.search(q)
-    return unless q
-    # This shit is messy
-    # You have been warned.
-
-    # First, properly format group names:
-    names = q.map{|x| x.split(",").map{|y| y.downcase.strip.squish}}
-    names.each{|x| x.reject!{|y| y  == ""}}
-    ##
-    # Now we have:
-    # [ [names for tags in a group], [names for another group]]
-    # We first do set division to find valid images
-    # Query is like this:
-    query = %q{
-    SELECT tag_groups.image_id AS "id"
-      FROM tag_groups
-        INNER JOIN tag_group_members
-          ON tag_groups.id = tag_group_members.tag_group_id
-        INNER JOIN tags
-          ON tags.id = tag_group_members.tag_id
-        WHERE tags.name IN (?)
-        GROUP BY tag_groups.id
-        HAVING COUNT(*) = ?
-    }
-    ids = names.map do |name|
-
-      # Query is above
-      # We have 2 values to insert: the tag names, and
-      # the number of tag names.
-
-      Image.find_by_sql([query, name, name.count]).map(&:id)
+    q.map! do |x| 
+      x.downcase.split(",").map! do |y|
+        y.strip.squish
+      end
+    end.inject(all) do |mem, obj|
+      mem.with_all_tags(obj)
     end
-    ##
-    # We use a fold to get common ids
-    common = ids.inject{|old, x| x & old}
-    where(id: common)
   end
 
   ##

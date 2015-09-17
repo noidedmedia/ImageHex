@@ -54,8 +54,9 @@ class ImagesController < ApplicationController
   # Find images via the Image#search method.
   # Query should be in params[:query].
   def search
-    @images = ImageSearcher.search(params[:query]) if params[:query]
-    @images = @images.paginate(page: page, per_page: per_page) if @images
+    @images = Image.search(params[:query])
+      .paginate(page: page, per_page: per_page)
+
     respond_to do |format|
       format.html
       format.json{render json: @images}
