@@ -17,11 +17,8 @@ RSpec.describe UsersController, :type => :controller do
         get :edit, id: @user.id
         expect(response).to be_success
       end
-      it "redirects if your user is wrong" do
-        get :edit, id: FactoryGirl.create(:user).id
-        expect(response).to redirect_to(edit_user_path(@user))
-      end
-    end
+
+   end
     describe "put #update" do
       describe "updating user page" do
         # this works when you test it manually
