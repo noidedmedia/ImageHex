@@ -13,6 +13,13 @@ describe Image do
     let(:gore){FactoryGirl.create(:image,
                                   nsfw_gore: true)}
     let(:collec){Image.where(id: [sex, nude, lang, gore].map(&:id))}
+    describe "content preference" do
+      let(:pref){ {"nsfw_gore" => true,
+        "nsfw_sexuality" => true} }
+      it "follows the content preference" do
+        expect(Image.for_content(pref)).to contain_exactly(gore, sex)
+      end
+    end
     describe "scopes" do
       it "has a scope for without nudity" do
         expect(collec.without_nudity).to contain_exactly(sex, gore, lang)

@@ -134,11 +134,8 @@ class Image < ActiveRecord::Base
   # Return all images by the number of reports.
   # Only returns the images which have at least 1 report.
   def self.by_reports
-    Image.include(:reports)
-      .joins(:reports)
-      .group(:id)
-      .having("COUNT(reports) > 0")
-      .order("COUNT(reports) DESC")
+    Image.includes(:reports).select{|x| x.reports.count > 0}
+      .sort{|x, y| x.reports.count <=> y.reports.count}
   end
 
   def self.for_content(content)

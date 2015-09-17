@@ -56,7 +56,7 @@ class ImagesController < ApplicationController
   def search
     @images = Image.search(params[:query])
       .paginate(page: page, per_page: per_page)
-
+      .for_content(content_pref)
     respond_to do |format|
       format.html
       format.json{render json: @images}
@@ -130,7 +130,10 @@ class ImagesController < ApplicationController
   # Sets the following varaibles:
   # @images:: the paginated list of images.
   def index
-    @images = Image.paginate(page: page, per_page: per_page).order('created_at DESC')
+    @images = Image
+      .paginate(page: page, per_page: per_page)
+      .order('created_at DESC')
+      .for_content(content_pref)
   end
 
   ##

@@ -62,6 +62,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :name
   end
 
+  DEFAULT_CONTENT = {
+    "nsfw_language" => true
+  }
+  def content_filter
+    return (parms["content_filter"] || current_user.try(:content_pref) or DEFAULT_CONTENT)
+  end
   ##
   # Set the locale. 
   # Locales are either in the URL, or the default (English).
