@@ -53,7 +53,7 @@ gem 'jbuilder', '~> 2.0'
 # Change our data in a migration
 gem 'migration_data'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+gem 'spring', '~> 1.3.6',      group: :development
 
 
 # Make tests good!
