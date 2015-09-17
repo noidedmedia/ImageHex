@@ -2,13 +2,10 @@
 <div id="home-container">
   <h2>ImageHex</h2>
 
-  <a href="/images/new">Upload an Image</a>
-  <br>
   <a href="/images">Images</a>
   <br>
   <a href="/collections/new">Create a new collection</a>
-  <br>
-  <%= link_to 'Search', search_path %>
+
   <div id="frontage-subscription-container">
     <% @images.each do |img| %>
       <div class="subscription-image">

@@ -9,6 +9,21 @@
 
   <%# Renders the "_notifications_list" partial. %>
   <ul>
-    
+    <%# If the notification count is greater than 0, notifications are rendered. %>
+    <% if current_user.notifications.count > 0 %>
+      <%= render "notifications/notifications_list", notifications: notifications %>
+
+      <% if current_user.notifications.count > 8 %>
+        <li class="view-more"><%= link_to t(".view_more"), notifications_path %></li>
+      <% end %>
+
+    <%# If notification count is equivalent to (or below, although that should never happen) 0, a "No notifications yet!" message will be displayed. %>
+    <% else %>
+
+      <div class="notifications-empty">
+        <%= t(".no_notifications_yet") %>
+      </div>
+
+    <% end %>
   </ul>
 </div>
