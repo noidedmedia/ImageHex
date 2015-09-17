@@ -133,11 +133,30 @@ class Image < ActiveRecord::Base
   ##
   # Return all images by the number of reports.
   # Only returns the images which have at least 1 report.
-  # TODO: rewrite this so it uses SQL and doesn't just load every freaking image into memory
   def self.by_reports
-    Image.includes(:reports).select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
+    Image.include(:reports)
+      .joins(:reports)
+      .group(:id)
+      .having("COUNT(reports) > 0")
+      .order("COUNT(reports) DESC")
   end
 
+  def self.for_content(content)
+    q = all
+    unless content["nsfw_nudity"]
+      q = q.without_nudity
+    end
+    unless content["nsfw_gore"]
+      q = q.without_gore
+    end
+    unless content["nsfw_language"]
+      q = q.without_language
+    end
+    unless content["nsfw_sexuality"]
+      q = q.without_sex
+    end
+    return q
+  end
   ##
   # Returns a localized list of all license options for use
   # with the select element on the Upload page.
