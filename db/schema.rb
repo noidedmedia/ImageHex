@@ -16,11 +16,6 @@ ActiveRecord::Schema.define(version: 20150917030432) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "artist_subscription", id: false, force: :cascade do |t|
-    t.integer "subscriber_id"
-    t.integer "artist_id"
-  end
-
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
     t.integer  "image_id"
@@ -176,11 +171,6 @@ ActiveRecord::Schema.define(version: 20150917030432) do
 
   add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
-  create_table "user_artist_test", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "image_id"
-  end
-
   create_table "user_pages", force: :cascade do |t|
     t.integer  "user_id"
     t.jsonb    "elsewhere"
@@ -225,6 +215,7 @@ ActiveRecord::Schema.define(version: 20150917030432) do
   add_foreign_key "collection_images", "collections"
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
+  add_foreign_key "comments", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
