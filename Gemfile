@@ -1,17 +1,20 @@
+ruby '2.2.3'
 source 'https://rubygems.org'
-ruby '2.2.2'
 
 gem 'aws-sdk', '< 2.0'
+
 gem 'devise'
+
 gem 'omniauth-twitter'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.4'
+
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
-
 
 
 ##
@@ -22,6 +25,7 @@ gem 'train_track'
 ##
 # Use markdown for user comments
 gem 'redcarpet'
+
 #
 # Use friendly IDs for nice URLs
 gem 'friendly_id', '~> 5.1.0'
@@ -34,11 +38,13 @@ gem 'newrelic_rpm'
 
 # Use postgres
 gem 'pg'
+
 # Use will-paginate for pagination
 gem 'will_paginate', "~> 3.0.6"
 
 # Use unicorn as the webserver
 gem 'unicorn'
+
 # Use paperclip to upload images
 gem 'paperclip'
 
@@ -59,7 +65,7 @@ gem 'jbuilder', '~> 2.0'
 # Change our data in a migration
 gem 'migration_data'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring', '~> 1.3.6',      group: :development
+gem 'spring',      group: :development
 
 
 # Make tests good!
