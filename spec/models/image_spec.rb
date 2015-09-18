@@ -3,6 +3,25 @@ require 'spec_helper'
 # To upload pictures
 include ActionDispatch::TestProcess
 describe Image do
+
+  describe "tag filtering" do
+    let(:unwanted_tag_a){FactoryGirl.create(:tag)}
+    let(:unwanted_tag_b){FactoryGirl.create(:tag)}
+    let(:unwanted_img){FactoryGirl.create(:image)}
+    let(:unwanted_group){FactoryGirl.create(:tag_group,
+                                            tags: [unwanted_tag_a,
+                                              unwanted_tag_b],
+                                              image: unwanted_img)}
+    let(:wanted_image){FactoryGirl.create(:image)}
+    it "filters given tags" do
+      expect(wanted_image.tag_groups.map(&:tags).flatten)
+      .to_not include(unwanted_tag_a)
+      expect(Image.all).to include(wanted_image, unwanted_img)
+      q = Image.all.without_tags([unwanted_tag_a.name,
+                                 unwanted_tag_b.name])
+      expect(q).to_not include(unwanted_img)
+    end
+  end
   describe "content validation" do
     let(:sex){FactoryGirl.create(:image,
                                  nsfw_sexuality: true)}
@@ -55,19 +74,19 @@ describe Image do
   it {should validate_attachment_presence(:f)}
   # Make sure the file is an image
   it {should validate_attachment_content_type(:f)
-      .allowing("image/png", "image/gif", "image/jpeg", "image/bmp")
-      .rejecting("text/plain", "text/xml", "audio/mp3")}
-  it "allows selection by reports" do
-    image = FactoryGirl.create(:image)
-    # We make a non-reported image for testing purposes
-    image2 = FactoryGirl.create(:image)
-    FactoryGirl.create(:report, reportable:  image)
-    expect(Image.by_reports).to eq([image])
-  end
+    .allowing("image/png", "image/gif", "image/jpeg", "image/bmp")
+    .rejecting("text/plain", "text/xml", "audio/mp3")}
+    it "allows selection by reports" do
+      image = FactoryGirl.create(:image)
+      # We make a non-reported image for testing purposes
+      image2 = FactoryGirl.create(:image)
+      FactoryGirl.create(:report, reportable:  image)
+      expect(Image.by_reports).to eq([image])
+    end
 
-  # Image in relation to collections
-  it {should have_many(:collection_images)}
-  it {should have_many(:collections).through(:collection_images)}
+    # Image in relation to collections
+    it {should have_many(:collection_images)}
+    it {should have_many(:collections).through(:collection_images)}
 
 end
 

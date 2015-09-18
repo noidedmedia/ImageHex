@@ -139,6 +139,12 @@ class Image < ActiveRecord::Base
       .sort{|x, y| x.reports.count <=> y.reports.count}
   end
 
+  def self.without_tags(tags)
+    subq = joins(tag_groups:  {tag_group_members: :tag})
+      .where.not(tags: {name: tags})
+    where(id: subq)
+  end
+
   def self.for_content(content)
     q = all
     unless content["nsfw_nudity"]
@@ -152,6 +158,9 @@ class Image < ActiveRecord::Base
     end
     unless content["nsfw_sexuality"]
       q = q.without_sex
+    end
+    if content["disallowed_tags"]
+      q = q.without_tags(content["disallowed_tags"])
     end
     return q
   end
