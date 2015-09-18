@@ -11,9 +11,6 @@
 
 .tag-group-change {
   padding: 10px;
-  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
-  border-radius: 0 2px 2px;
-
   h1 {
     font-size: 1.9em;
     font-weight: 500;
@@ -45,17 +42,21 @@
       text-decoration: underline;
     }
   }
-  
-  li {
-    font-size: 1.5em;
-    border-bottom: 1px solid #AAA;
-  }
+
 }
 
 .added-tag {
-  background-color: #AAFFAA;
+  &::before {
+    content: "+";
+    padding-right: 3px;
+  }
+  background-color: rgb(236, 255, 236);
 }
 
 .removed-tag {
-  background-color: #FFAAAA;
+  background-color: rgb(255, 236, 236);
+  &::before {
+    content: "-";
+    padding-right: 3px;
+  }
 }

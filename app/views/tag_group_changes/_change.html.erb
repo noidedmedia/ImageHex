@@ -1,6 +1,9 @@
 <div class="tag-group-change">
-  <h1><%= link_to change.user.name, change.user %></h1>
-  <h2><%= pretty_time change.created_at %></h2>
+  <div class="tag-group-change-description">
+    <%= link_to change.user.name, change.user %>
+    changed on
+    <%= pretty_time change.created_at %>
+  </div>
   
   <ul class="change-list">
     <% change.unchanged_tags.each do |t| %>
