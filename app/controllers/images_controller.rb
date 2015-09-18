@@ -168,7 +168,11 @@ class ImagesController < ApplicationController
               :license, 
               :medium, 
               :replies_to_inbox,
-              :description) # Attributes the user adds
+              :description,
+              :nsfw_gore,
+              :nsfw_nudity,
+              :nsfw_sexuality,
+              :nsfw_language) # stuff the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
 
