@@ -216,7 +216,6 @@ ActiveRecord::Schema.define(version: 20150917030432) do
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
-  add_foreign_key "comments", "users"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "images", "users"
