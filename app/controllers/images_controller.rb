@@ -59,7 +59,7 @@ class ImagesController < ApplicationController
       .for_content(content_pref)
     respond_to do |format|
       format.html
-      format.json{render json: @images}
+      format.json{render 'index'}
     end
   end
 
