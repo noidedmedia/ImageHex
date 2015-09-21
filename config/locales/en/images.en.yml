@@ -28,6 +28,7 @@ en:
       details: "Details"
       license: "License"
       medium: "Medium"
+      date_uploaded: "Uploaded"
       date_taken: "Date taken"
       dimensions: "Dimensions"
       file_name: "File name"

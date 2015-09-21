@@ -5,6 +5,9 @@ nv:
     comments:
       no_comments_yet: "No user has had the desire to make anything known on this page"
     comment:
+      uploaded_by: "Uploaded by"
+      no_description_provided: "No description provided."
+      edit: "Edit"
       commented: "commented"
       ago: "ago"
     report_stub:

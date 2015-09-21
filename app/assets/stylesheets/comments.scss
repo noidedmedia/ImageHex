@@ -48,6 +48,10 @@
     &:first-of-type {
       padding-top: 8px;
     }
+
+    &.image-description-none {
+      color: #777;
+    }
   }
 }
 
