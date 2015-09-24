@@ -27,6 +27,31 @@
         <%= f.select :medium, options_for_select(Image.medium_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-media-select' } %>
       </div>
 
+      <div class="checkbox-container">
+        <p class="field-header"><%= t(".content_rating") %></p>
+        <%= f.fields_for :content_rating do |fc| %>
+          <div class="checkbox-field">
+            <%= fc.check_box :nsfw_gore %>
+            <%= fc.label :nsfw_gore, t(".nsfw_gore") %>
+          </div>
+
+          <div class="checkbox-field">
+            <%= fc.check_box :nsfw_language %>
+            <%= fc.label :nsfw_language, t(".nsfw_language") %>
+          </div>
+
+          <div class="checkbox-field">
+            <%= fc.check_box :nsfw_nudity %>
+            <%= fc.label :nsfw_nudity, t(".nsfw_nudity") %>
+          </div>
+
+          <div class="checkbox-field">
+            <%= fc.check_box :nsfw_sexuality %>
+            <%= fc.label :nsfw_sexuality, t(".nsfw_sexuality") %>
+          </div>
+        <% end %>
+      </div>
+
       <div class="text-field-container">
         <p><%= t(".description_optional") %> </p>
         <%= text_area(:image, :description, id: 'image-description-field') %>
