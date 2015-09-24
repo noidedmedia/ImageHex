@@ -34,6 +34,11 @@ en:
       license: "License"
       medium: "Medium"
       content_rating: "Content rating"
+      content_ratings:
+        nsfw_gore: "Gore"
+        nsfw_sexuality: "Sexuality"
+        nsfw_language: "Language"
+        nsfw_nudity: "Nudity"
       date_taken: "Date taken"
       dimensions: "Dimensions"
       file_name: "File name"

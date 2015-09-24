@@ -37,20 +37,20 @@
             <tr class="table-row active" id="details-table-row-medium">
               <td class="column-one-cell"><%= t(".content_rating") %></td>
               <td class="column-two-cell">
-                <% if (@image.nsfw_gore?) %>
-                  <%= t("activerecord.attributes.content_ratings.nsfw_gore") %>
+                <% if @image.nsfw_gore? %>
+                  <%= t(".content_ratings.nsfw_gore") %>
                 <% end %>
 
-                <% if (@image.nsfw_language?) %>
-                  <%= t("activerecord.attributes.content_ratings.nsfw_language") %>
+                <% if @image.nsfw_language? %>
+                  <%= t(".content_ratings.nsfw_language") %>
                 <% end %>
 
-                <% if (@image.nsfw_sexuality?) %>
-                  <%= t("activerecord.attributes.content_ratings.nsfw_sexuality") %>
+                <% if @image.nsfw_sexuality? %>
+                  <%= t(".content_ratings.nsfw_sexuality") %>
                 <% end %>
 
-                <% if (@image.nsfw_nudity?) %>
-                  <%= t("activerecord.attributes.content_ratings.nsfw_nudity") %>
+                <% if @image.nsfw_nudity? %>
+                  <%= t(".content_ratings.nsfw_nudity") %>
                 <% end %>
               </td>
             </tr>
