@@ -5,9 +5,6 @@
 # Admins have power over the entire site and can do basically anything.
 # In order to prevent mishaps, you need direct database access to make a
 # user an admin.
-# 
-# User names must match the regex /w+/, so they only allow A-Z,a-z, and _. 
-# User names must be unique. "Aa" is considered the same name as "aA".
 #
 # == Relations
 # collections:: collections the user curates. See Collection for more
@@ -21,7 +18,6 @@
 #                 .unread gives all
 #                 unread notifications.
 #
-
 class User < ActiveRecord::Base
   # Use a friendly id to find by name
   extend FriendlyId
@@ -32,9 +28,9 @@ class User < ActiveRecord::Base
   # ASSOCIATIONS #
   ################
   has_one :user_page, autosave: true
-    # Accept nested attributes for the page
+  # Accept nested attributes for the page
   accepts_nested_attributes_for :user_page, update_only: true
- 
+
   ##
   # ID of the avatar is in avatar_id.
   belongs_to :avatar, class_name: "Image"
@@ -72,6 +68,8 @@ class User < ActiveRecord::Base
   before_create :make_page
   before_validation :resolve_page_body
   after_initialize :load_page_body
+
+  before_save :coerce_content_pref!
   ##############
   # ATTRIBUTES #
   ##############
@@ -79,7 +77,7 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-  
+
   ##
   # See if the user is subscribed to a collection
   # Returns true or false
@@ -151,6 +149,21 @@ class User < ActiveRecord::Base
   protected
 
   ##
+  # Rails passes the true and false values from checkboxes as "0" and "1"
+  # we here convert them into the proper "True" and "false"
+  def coerce_content_pref!
+    return unless content_pref
+    self.content_pref = self.content_pref.map do |k, v|
+      if k.start_with?("nsfw")
+        if v.is_a? String
+          [k, v == "0" ? false : true]
+        else
+          [k, v]
+        end
+      end
+    end.to_h
+  end
+  ##
   # Put the user's page body into page_body.
   # This makes it a bit easier, since you can just say
   #     user.page_body
@@ -193,5 +206,4 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
     end
   end
-
 end

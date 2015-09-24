@@ -146,6 +146,7 @@ class Image < ActiveRecord::Base
   end
 
   def self.for_content(content)
+    logger.debug("Finding images with content: #{content}")
     q = all
     unless content["nsfw_nudity"]
       q = q.without_nudity
