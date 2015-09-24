@@ -39,6 +39,7 @@ en:
         nsfw_sexuality: "Sexuality"
         nsfw_language: "Language"
         nsfw_nudity: "Nudity"
+        clean: "Clean"
       date_taken: "Date taken"
       dimensions: "Dimensions"
       file_name: "File name"

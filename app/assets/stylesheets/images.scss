@@ -240,6 +240,21 @@
   }
 }
 
+// Commas between each of the content rating list items (I know, I know...)
+#details-table-row-content-ratings {
+  ul li {
+    display: inline;
+    position: relative;
+    padding-right: 4px;
+
+    &:not(:last-of-type):after {
+      content: ", ";
+      position: absolute;
+      right: 3px;
+    }
+  }   
+}
+
 
 #edit-history-button {
   cursor: pointer;

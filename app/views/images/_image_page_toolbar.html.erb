@@ -34,24 +34,30 @@
               <td class="column-two-cell"><%= t("activerecord.attributes.mediums.#{@image.medium}") %></td>
             </tr>
 
-            <tr class="table-row active" id="details-table-row-medium">
+            <tr class="table-row active" id="details-table-row-content-ratings">
               <td class="column-one-cell"><%= t(".content_rating") %></td>
               <td class="column-two-cell">
-                <% if @image.nsfw_gore? %>
-                  <%= t(".content_ratings.nsfw_gore") %>
-                <% end %>
+                <ul>
+                  <% if @image.nsfw_gore? %>
+                    <li><%= t(".content_ratings.nsfw_gore") %>
+                  <% end %>
 
-                <% if @image.nsfw_language? %>
-                  <%= t(".content_ratings.nsfw_language") %>
-                <% end %>
+                  <% if @image.nsfw_language? %>
+                    <li><%= t(".content_ratings.nsfw_language") %>
+                  <% end %>
 
-                <% if @image.nsfw_sexuality? %>
-                  <%= t(".content_ratings.nsfw_sexuality") %>
-                <% end %>
+                  <% if @image.nsfw_sexuality? %>
+                    <li><%= t(".content_ratings.nsfw_sexuality") %>
+                  <% end %>
 
-                <% if @image.nsfw_nudity? %>
-                  <%= t(".content_ratings.nsfw_nudity") %>
-                <% end %>
+                  <% if @image.nsfw_nudity? %>
+                    <li><%= t(".content_ratings.nsfw_nudity") %>
+                  <% end %>
+
+                  <% if !@image.nsfw_gore? && !@image.nsfw_language? && !@image.nsfw_sexuality? && !@image.nsfw_nudity? %>
+                    <%= t(".content_ratings.clean") %>
+                  <% end %>
+                </ul>
               </td>
             </tr>
 
