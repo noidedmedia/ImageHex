@@ -20,6 +20,30 @@
       <%= f.number_field :page_pref, id: "page-pref-field", class: "input" %>
     </div>
 
-    <%= f.submit t(".save_changes"), class: "btn btn-green btn-full-width" %>
+    <div class="field-container">
+      <%= f.fields_for :content_pref, OpenStruct.new(@user.content_pref) do |fc| %>
+        <div class="checkbox-container">
+          <%= fc.check_box :nsfw_gore %>
+          <%= fc.label :nsfw_gore, t(".nsfw_gore") %>
+        </div>
+
+        <div class="checkbox-container">
+          <%= fc.check_box :nsfw_language %>
+          <%= fc.label :nsfw_language, t(".nsfw_language") %>
+        </div>
+
+        <div class="checkbox-container">
+          <%= fc.check_box :nsfw_nudity %>
+          <%= fc.label :nsfw_nudity, t(".nsfw_nudity") %>
+        </div>
+
+        <div class="checkbox-container">
+          <%= fc.check_box :nsfw_sexuality %>
+          <%= fc.label :nsfw_sexuality, t(".nsfw_sexuality") %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>
   <% end %>
 </div>

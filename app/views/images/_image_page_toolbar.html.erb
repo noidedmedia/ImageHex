@@ -37,15 +37,39 @@
               <td class="column-one-cell"><%= t(".medium") %></td>
               <td class="column-two-cell"><%= t("activerecord.attributes.mediums.#{@image.medium}") %></td>
             </tr>
-
             <%# Date the image was uploaded to ImageHex. %>
             <%# The span element is used to create a hovertext of the exact %>
             <%# time and date of upload. %>
             <tr class="table-row active" id="details-table-row-date-uploaded">
               <td class="column-one-cell"><%= t(".date_uploaded") %></td>
               <td class="column-two-cell"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span></td>
-            </tr>
 
+            <tr class="table-row active" id="details-table-row-content-ratings">
+              <td class="column-one-cell"><%= t(".content_rating") %></td>
+              <td class="column-two-cell">
+                <ul>
+                  <% if @image.nsfw_gore? %>
+                    <li><%= t(".content_ratings.nsfw_gore") %>
+                  <% end %>
+
+                  <% if @image.nsfw_language? %>
+                    <li><%= t(".content_ratings.nsfw_language") %>
+                  <% end %>
+
+                  <% if @image.nsfw_sexuality? %>
+                    <li><%= t(".content_ratings.nsfw_sexuality") %>
+                  <% end %>
+
+                  <% if @image.nsfw_nudity? %>
+                    <li><%= t(".content_ratings.nsfw_nudity") %>
+                  <% end %>
+
+                  <% if !@image.nsfw_gore? && !@image.nsfw_language? && !@image.nsfw_sexuality? && !@image.nsfw_nudity? %>
+                    <%= t(".content_ratings.clean") %>
+                  <% end %>
+                </ul>
+              </td>
+            </tr>
             <tr class="table-row inactive" id="details-table-row-date-taken">
               <td class="column-one-cell"><%= t(".date_taken") %></td>
               <td class="column-two-cell">-</td>

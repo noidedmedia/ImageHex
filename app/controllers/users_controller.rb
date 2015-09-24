@@ -2,6 +2,7 @@
 # Controller for things related to Users.
 # Uses friendly_id for ids.
 class UsersController < ApplicationController
+  include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
   ##
   # Show a user's profile, including their bio and collections.
@@ -13,7 +14,9 @@ class UsersController < ApplicationController
   # @collections:: Collections the user curates.
   def show
     @user = User.friendly.find(params[:id])
-    @images = @user.images.paginate(page: page, per_page: per_page)
+    @images = @user.images
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     @collections = @user.collections
   end
 
@@ -24,12 +27,9 @@ class UsersController < ApplicationController
   # Sets the following variables:
   # @user:: The user who is being edited. 
   def edit
-    if current_user != User.friendly.find(params[:id])
-      redirect_to edit_user_path(current_user) and return
-    else
-      @user = current_user
-      @user.user_page ||= UserPage.new
-    end
+    @user = params[:id] ? User.find(params[:id]) : current_user
+    authorize @user
+    @user.user_page ||= UserPage.new
   end
 
   ##
@@ -58,8 +58,14 @@ class UsersController < ApplicationController
   # user_page_attributes:: Should have a body attribute, which is the user's
   #                        Bio.
   def user_params
-    params.require(:user).permit(:page_pref,
-                                 :avatar_id,
-                                 user_page_attributes: [:body])
+    params
+    .require(:user)
+    .permit(:page_pref,
+             :avatar_id,
+             user_page_attributes: [:body],
+             content_pref: [:nsfw_language,
+                            :nsfw_gore,
+                            :nsfw_nudity,
+                            :nsfw_sexuality])
   end
 end

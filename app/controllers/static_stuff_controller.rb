@@ -8,6 +8,8 @@ class StaticStuffController < ApplicationController
   def about
   end
 
+  def rules
+  end
   ##
   # People page. Info on your co-workers, and yourself.
   def people

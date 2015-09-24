@@ -28,6 +28,17 @@
 # license:: What license the image is under.
 # medium:: How the image was created
 class Image < ActiveRecord::Base
+
+  ##########
+  # SCOPES #
+  ##########
+
+  scope :without_nudity, ->{ where(nsfw_nudity: false) }
+  scope :without_gore, -> { where(nsfw_gore: false)}
+  scope :without_language, -> { where(nsfw_language: false)}
+  scope :without_sex, -> { where(nsfw_sexuality: false)}
+  scope :completely_safe, -> { without_nudity.without_gore.without_language.without_sex }
+  scope :mostly_safe, -> { without_nudity.without_gore.without_sex } 
   ################
   # ASSOCIATIONS #
   ################
@@ -64,12 +75,17 @@ class Image < ActiveRecord::Base
   ###############
   # VALIDATIONS #
   ###############
+  validates :nsfw_language, inclusion: {in: [true, false]}
+  validates :nsfw_gore, inclusion: {in: [true, false]}
+  validates :nsfw_sexuality, inclusion: {in: [true, false]}
+  validates :nsfw_nudity, inclusion: {in: [true, false]}
   validates_attachment_content_type :f, content_type: /\Aimage\/.*\Z/
   validates_attachment_presence :f   
   validates :user, presence: :true
   validates :license, presence: true
   validates :medium, presence: true
   validates :description, length:{ maximum: 2000}
+
   #################
   # CLASS METHODS #
   #################
@@ -94,59 +110,60 @@ class Image < ActiveRecord::Base
       .where(subscriptions:{user_id: user.id})
       .order("collection_images.created_at DESC")
       .select("images.*, collections.name AS collection_name, collections.id AS collection_id")
+      .for_content(user.content_pref)
   end
-  ##
-  # Search takes a query, and returns all images which match this query.
-  # +q+:: array of groups to be searched for. Each group should be a comma-seperated list of tags.
-  # Example usage:
-  #   Image.search(["red hair, blue eyes", "brown hair, green eyes"])
-  #
+
+  def self.with_all_tags(tags)
+    subquery = joins(tag_groups: {tag_group_members: :tag})
+      .where(tags: {name: tags})
+      .group("images.id")
+      .having("COUNT(*) = ?", tags.length)
+      where(id: subquery)
+  end
+  
   def self.search(q)
-    return unless q
-    # This shit is messy
-    # You have been warned.
-
-    # First, properly format group names:
-    names = q.map{|x| x.split(",").map{|y| y.downcase.strip.squish}}
-    names.each{|x| x.reject!{|y| y  == ""}}
-    ##
-    # Now we have:
-    # [ [names for tags in a group], [names for another group]]
-    # We first do set division to find valid images
-    # Query is like this:
-    query = %q{
-    SELECT tag_groups.image_id AS "id"
-      FROM tag_groups
-        INNER JOIN tag_group_members
-          ON tag_groups.id = tag_group_members.tag_group_id
-        INNER JOIN tags
-          ON tags.id = tag_group_members.tag_id
-        WHERE tags.name IN (?)
-        GROUP BY tag_groups.id
-        HAVING COUNT(*) = ?
-    }
-    ids = names.map do |name|
-
-      # Query is above
-      # We have 2 values to insert: the tag names, and
-      # the number of tag names.
-
-      Image.find_by_sql([query, name, name.count]).map(&:id)
+    q.map! do |x| 
+      x.downcase.split(",").map! do |y|
+        y.strip.squish
+      end
+    end.inject(all) do |mem, obj|
+      mem.with_all_tags(obj)
     end
-    ##
-    # We use a fold to get common ids
-    common = ids.inject{|old, x| x & old}
-    where(id: common)
   end
 
   ##
   # Return all images by the number of reports.
   # Only returns the images which have at least 1 report.
-  # TODO: rewrite this so it uses SQL and doesn't just load every freaking image into memory
   def self.by_reports
-    Image.includes(:reports).select{|x| x.reports.count > 0}.sort{|x| x.reports.count}
+    Image.includes(:reports).select{|x| x.reports.count > 0}
+      .sort{|x, y| x.reports.count <=> y.reports.count}
   end
 
+  def self.without_tags(tags)
+    subq = joins(tag_groups:  {tag_group_members: :tag})
+      .where.not(tags: {name: tags})
+    where(id: subq)
+  end
+
+  def self.for_content(content)
+    q = all
+    unless content["nsfw_nudity"]
+      q = q.without_nudity
+    end
+    unless content["nsfw_gore"]
+      q = q.without_gore
+    end
+    unless content["nsfw_language"]
+      q = q.without_language
+    end
+    unless content["nsfw_sexuality"]
+      q = q.without_sex
+    end
+    if content["disallowed_tags"]
+      q = q.without_tags(content["disallowed_tags"])
+    end
+    return q
+  end
   ##
   # Returns a localized list of all license options for use
   # with the select element on the Upload page.

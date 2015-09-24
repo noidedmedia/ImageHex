@@ -54,8 +54,9 @@ class ImagesController < ApplicationController
   # Find images via the Image#search method.
   # Query should be in params[:query].
   def search
-    @images = ImageSearcher.search(params[:query]) if params[:query]
-    @images = @images.paginate(page: page, per_page: per_page) if @images
+    @images = Image.search(params[:query])
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     respond_to do |format|
       format.html
       format.json{render json: @images}
@@ -129,7 +130,10 @@ class ImagesController < ApplicationController
   # Sets the following varaibles:
   # @images:: the paginated list of images.
   def index
-    @images = Image.paginate(page: page, per_page: per_page).order('created_at DESC')
+    @images = Image
+      .paginate(page: page, per_page: per_page)
+      .order('created_at DESC')
+      .for_content(content_pref)
   end
 
   ##
@@ -164,7 +168,11 @@ class ImagesController < ApplicationController
               :license, 
               :medium, 
               :replies_to_inbox,
-              :description) # Attributes the user adds
+              :description,
+              :nsfw_gore,
+              :nsfw_nudity,
+              :nsfw_sexuality,
+              :nsfw_language) # stuff the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
 

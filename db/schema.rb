@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522171712) do
+ActiveRecord::Schema.define(version: 20150917030432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,10 @@ ActiveRecord::Schema.define(version: 20150522171712) do
     t.boolean  "replies_to_inbox",             default: false
     t.jsonb    "exif"
     t.text     "description"
+    t.boolean  "nsfw_language",                default: false, null: false
+    t.boolean  "nsfw_nudity",                  default: false, null: false
+    t.boolean  "nsfw_gore",                    default: false, null: false
+    t.boolean  "nsfw_sexuality",               default: false, null: false
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
@@ -201,6 +205,7 @@ ActiveRecord::Schema.define(version: 20150522171712) do
     t.integer  "avatar_id"
     t.string   "provider"
     t.string   "uid"
+    t.jsonb    "content_pref",                       default: {}, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -210,7 +215,6 @@ ActiveRecord::Schema.define(version: 20150522171712) do
   add_foreign_key "collection_images", "collections"
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
-  add_foreign_key "comments", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade

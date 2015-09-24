@@ -32,6 +32,32 @@
   }
 }
 
+.btn-minimal {
+  font-size: 1.4rem;
+  font-weight: 400;
+  display: block;
+  background-color: transparent;
+  border: 0;
+  color: #333;
+  appearance: none;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none;
+
+  a {
+    text-decoration: none;
+    display: block;
+    color: #333;
+  }
+
+  &:focus {
+    outline: transparent;
+  }
+}
+
 
 /* ==============================================
     Button sizes
@@ -53,6 +79,10 @@
   width: 100%;
 }
 
+.btn-right-aligned {
+  float: right;
+}
+
 
 /* ==============================================
     Button colors
@@ -64,6 +94,14 @@
 
   &:hover, &:focus {
     background-color: darken(#5bb289, 6%);
+  }
+}
+
+.btn-minimal-green {
+  color: #5bb289;
+  
+  &:hover, &:focus {
+    color: darken(#5bb289, 6%);
   }
 }
 

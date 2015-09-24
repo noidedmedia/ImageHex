@@ -89,9 +89,7 @@
       display: none;
     }
   }
-
 }
-
 
 #add-tag-group-button {
   cursor: pointer;
@@ -106,6 +104,7 @@
     -webkit-font-smoothing: antialiased;
   }
 }
+
 #new-group {
   width: 100%;
   max-width: 600px;
@@ -214,7 +213,7 @@
   .column-one-cell {
     text-align: right;
     font-weight: 500;
-    min-width: 60px;
+    min-width: 90px;
   }
 
   // Styling for cells in column two.
@@ -239,6 +238,21 @@
       display: table-row;
     }
   }
+}
+
+// Commas between each of the content rating list items (I know, I know...)
+#details-table-row-content-ratings {
+  ul li {
+    display: inline;
+    position: relative;
+    padding-right: 4px;
+
+    &:not(:last-of-type):after {
+      content: ", ";
+      position: absolute;
+      right: 3px;
+    }
+  }   
 }
 
 

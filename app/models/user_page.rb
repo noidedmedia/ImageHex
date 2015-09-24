@@ -12,7 +12,7 @@ class UserPage < ActiveRecord::Base
   ##
   # The HTML-safe string to display
   def display
-    @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)
+    @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true))
     @@redcarpet.render(body)
   end
 end
