@@ -1,0 +1,25 @@
+.pagination{
+  margin-left: 20px;
+  display: inline-block;
+  padding: 7px;
+  font-size: 14px;
+  color: #6d6d6d;
+  margin-bottom: 3px;
+  a{
+    text-decoration: none;
+    background-color: rgb(25,26,26);
+    color: white;
+    border: 1px solid rgb(122, 122, 122);
+    padding: 5px;
+    transition: 0.25s;
+    &:hover {
+      background-color: rgb(122, 122, 122);
+    }
+  }
+  .disabled, .current {
+    padding: 5px;
+    border: 1px solid rgb(122, 122, 122);
+    background-color: rgb(50, 50, 50);
+  }
+}
+

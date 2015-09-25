@@ -1,0 +1,84 @@
+@import "scss-variables";
+
+.tag-group-change-icon {
+  text-decoration: none;
+  color: #333;
+  padding: 2px;
+  text-decoration: none;
+  position: absolute;
+  top: 15px;
+  right: 45px;
+
+  &:before {
+    content: $icon-history;
+    font-size: 1.6rem;
+  }
+}
+
+.generic-tag-group {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  position: relative;
+  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+}
+
+.generic-tag {
+  font-size: 1.2rem;
+  padding: 15px 15px;
+  display: inline-block;
+  width: 100%;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.generic-tag-list {
+  > li {
+    &:first-of-type {
+      font-size: 1.8rem;
+      font-weight: 500;
+      height: 100px;
+    }
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #e4e4e4;
+    }
+  }
+}
+
+.edit-generic-tag-group {
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  &:before {
+    content: $icon-placeholder;
+    display: inline-block;
+    font-size: 1.9rem;
+  }
+}
+
+.tag-group-edit-box {
+  background-color: transparent;
+  width: 100%;
+  border: 0;
+  font-size: 1.2rem;
+  padding: 15px;
+  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+
+  &:focus {
+    outline: transparent;
+  }
+}

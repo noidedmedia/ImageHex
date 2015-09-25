@@ -3,6 +3,15 @@
 en:
   static_stuff:
     company_nav:
-      people: "People"
       about: "About"
+      people: "People"
       contact: "Contact"
+    about:
+      about: "About"
+    people:
+      people: "People"
+    contact:
+      contact: "Contact"
+    faq:
+      faq_title: "Frequently Asked Questions"
+      faq: "Frequently Asked Questions"

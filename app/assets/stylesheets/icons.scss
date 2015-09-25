@@ -1,0 +1,78 @@
+@import "scss-variables";
+
+.icon:before {
+  position: absolute;
+  color: #aaaab2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $font-stack;
+}
+
+// Home icon
+.icon-home:before {
+  content: $icon-placeholder;
+}
+
+// Search icon
+.icon-search:before {
+  content: $icon-search;
+}
+
+// Menu icon
+.icon-menu:before {
+  content: $icon-menu;
+}
+
+// Close icon
+.icon-close:before {
+  content: $icon-close;
+}
+
+.icon-download:before {
+  content: $icon-download;
+}
+
+.icon-favorite:before {
+  content: $icon-favorite;
+}
+
+.icon-favorited:before {
+  content: $icon-favorited;
+}
+
+.icon-add:before {
+  content: $icon-add;
+}
+
+.icon-share:before {
+  content: $icon-share;
+}
+
+.icon-report:before {
+  content: $icon-report;
+}
+
+.icon-delete:before {
+  content: $icon-delete;
+}
+
+.icon-checkmark:before {
+  content: $icon-checkmark;
+}
+
+.icon-small:before {
+  font-size: 1.8rem;
+}
+
+.icon-medium:before {
+  font-size: 3.2rem;
+}
+
+.icon-large:before {
+  font-size: 4.8rem;
+}
+
+.icon-huge:before {
+  font-size: 7.2rem;
+  @include translateX(-3.6rem); // Translate left half of the font-size to enable centering.
+}

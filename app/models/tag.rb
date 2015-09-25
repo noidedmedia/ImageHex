@@ -7,6 +7,8 @@
 # and capital letters in the normal name. The display_name, which
 # is what should always be shown to the user, retains capital letters.
 class Tag < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   ##
   # CALLBACKS:
   before_save :fix_name
@@ -17,7 +19,7 @@ class Tag < ActiveRecord::Base
   # ASSOCIATIONS:
   has_many :tag_group_members
   has_many :tag_groups, through: :tag_group_members
-
+  has_many :images, through: :tag_groups
   validates :name, uniqueness: {case_sensative: false}
   ##
   # Suggest tags beginning with a string.
@@ -35,6 +37,9 @@ class Tag < ActiveRecord::Base
     finder = "#{n.gsub("%","").downcase.strip.squish}%"
     find_by_sql([query, finder]).map(&:name)
   end
+  
+  
+
   private
   ##
   # Callback which formats the name.
@@ -42,5 +47,6 @@ class Tag < ActiveRecord::Base
     self.display_name ||= self.name.strip.squish
     self.name = self.name.strip.squish.downcase
   end
+
 
 end

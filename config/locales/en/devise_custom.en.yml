@@ -1,4 +1,4 @@
-# Custom devise strings not including in devise.en.yml.
+# Custom devise strings not included in devise.en.yml.
 
 en:
   devise:
@@ -9,12 +9,14 @@ en:
         resend_confirmation_instructions: "Resend confirmation instructions"
     passwords:
       new: 
+        forgot_your_password_title: "Forgot your password?"
         forgot_your_password?: "Forgot your password?"
         forgot_your_password: "Forgot your password?"
         email: "Email"
         reset_password: "Reset password"
     registrations:
       new:
+        create_an_account_title: "Create an account"
         let's_get_started: "Let's get started."
         create_an_account_submit: "Create account"
         email: "Email"
@@ -23,6 +25,7 @@ en:
         reenter_password: "Re-enter password"
     sessions:
       new:
+        sign_in_title: "Sign in"
         welcome_back: "Welcome back."
         sign_in: "Sign in"
         email: "Email"

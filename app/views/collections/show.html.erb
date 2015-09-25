@@ -1,40 +1,57 @@
+<%# HTML <title> element %>
+<%- title @collection.name %>
+
 <div id="collection-page-container">
   <div id="collection-page-header">
+
+    <%# Collection info %>
     <div id="collection-page-info-container">
+
+      <%# Collection title %>
       <p class="collection-page-title"><%= @collection.name %>
+
+      <%# Collection description %>
       <p class="collection-page-description"><%= @collection.description %>
+
+      <%# Collection curators %>
       <p class="collection-page-curators"><%= t(".curated_by") %> <%= @collection.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
+
     </div>
     
+    <%# If the user is already subscribed to, or "Following", a collection,
+    render the Unfollow button as active. If pressed, the Unfollow button is replaced
+    and by the Follow button. %>
     <% if current_user.try(:subscribed_to?, @collection) %>
       
       <%= form_tag(unsubscribe_collection_path(@collection.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
-        <%= button_tag id: "collection-unfollow", class: "btn active" do %>
-          <span class="button-text-following"> <%= t(".following") %> </span>
-          <span class="button-text-unfollow"> <%= t(".unfollow") %> </span>
+        <%= button_tag id: "collection-unfollow", class: "btn btn-unfollow active" do %>
+          <span class="btn-text-following"> <%= t(".following") %> </span>
+          <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
         <% end %>
       <% end %>
 
       <%= form_tag(subscribe_collection_path(@collection.id), "data-signed-in": "ajax", remote: true) do %>
-        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-green inactive" %>
+        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-follow inactive" %>
       <% end %>
 
+    <%# If the user isn't subscribed to the collection, do the opposite. %>
     <% else %>
       
       <%= form_tag(unsubscribe_collection_path(@collection.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
-        <%= button_tag id: "collection-unfollow", class: "btn inactive" do %>
-          <span class="button-text-following"> <%= t(".following") %> </span>
-          <span class="button-text-unfollow"> <%= t(".unfollow") %> </span>
+        <%= button_tag id: "collection-unfollow", class: "btn btn-unfollow inactive" do %>
+          <span class="btn-text-following"> <%= t(".following") %> </span>
+          <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
         <% end %>
       <% end %>
 
       <%= form_tag(subscribe_collection_path(@collection.id), "data-signed-in": "ajax", remote: true) do %>
-        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-green active" %>
+        <%= button_tag t(".follow"), id: "collection-follow", class: "btn btn-follow active" %>
       <% end %>
   
     <% end %>
   </div>
 
+  <%# Render collection's images  %>
   <div id="collection-images-container">
     <%= render 'images/show_stub' %>
   </div>

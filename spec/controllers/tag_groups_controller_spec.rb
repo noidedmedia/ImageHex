@@ -9,11 +9,39 @@ describe TagGroupsController do
       @user.confirm!
       sign_in @user
     end
+    describe "put #update" do
+      let(:group){FactoryGirl.create(:tag_group, image: image)}
+      it "properly updates" do
+        put(:update,
+            image_id: image,
+            id: group,
+            tag_group: {tag_group_string: "test, another, more"})
+        expect(group.reload.tags.pluck(:name)).to contain_exactly("test", "another", "more")
+      end
+      it "creates a new tag group change" do
+        old_tags = group.tags.pluck(:id)
+        expect{
+          put(:update,
+              image_id: image,
+              id: group,
+              tag_group: {tag_group_string: "test, another"})
+        }.to change{TagGroupChange.count}.by(1)
+        expect(TagGroupChange.last.tag_group).to eq(group)
+        expect(TagGroupChange.last.before).to match_array(old_tags)
+      end
+    end
     describe "post #create" do
       it "makes a new tag group" do
         expect{post :create, image_id: image, tag_group: {tag_group_string: "test, another, more"}}
           .to change{TagGroup.count}.by(1)
 
+      end
+      it "makes a new tag group change" do
+        expect{
+          post :create, image_id: image, tag_group: {tag_group_string: "test"}
+        }.to change{TagGroupChange.count}.by(1)
+        expect(TagGroupChange.last.kind).to eq("created")
+        expect(TagGroupChange.last.user).to eq(@user)
       end
     end
     describe 'get #new' do

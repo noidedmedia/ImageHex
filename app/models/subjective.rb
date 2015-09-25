@@ -6,6 +6,8 @@
 #  * Kawaii images
 #
 class Subjective < Collection
+  ##
+  # Made so this acts like a collection in dynamic routes and such
   def self.model_name
     Collection.model_name
   end

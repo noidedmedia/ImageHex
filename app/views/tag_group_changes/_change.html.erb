@@ -1,0 +1,19 @@
+<div class="tag-group-change">
+  <div class="tag-group-change-description">
+    <%= link_to change.user.name, change.user %>
+    changed on
+    <%= pretty_time change.created_at %>
+  </div>
+  
+  <ul class="change-list">
+    <% change.unchanged_tags.each do |t| %>
+      <li class="unchanged-tag"><%= link_to t.display_name, t %></li>
+    <% end %>
+    <% change.removed_tags.each do |t| %>
+      <li class="removed-tag"><%= link_to t.display_name, t %></li>
+    <% end %>
+    <% change.added_tags.each do |t| %>
+      <li class="added-tag"><%= link_to t.display_name, t %></li>
+    <% end %>
+  </ul>
+</div>

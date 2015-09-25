@@ -1,3 +1,5 @@
+<%- title t(".upload_page_title") %>
+
 <div id="upload-page-container">
   <h2><%= t(".upload_image") %></h2>
 
@@ -23,6 +25,29 @@
       <%# The Medium select input. %>
       <div class="select-container">
         <%= f.select :medium, options_for_select(Image.medium_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-media-select' } %>
+      </div>
+
+      <div class="checkbox-container">
+        <p class="field-header"><%= t(".content_rating") %></p>
+        <div class="checkbox-field">
+          <%= f.check_box :nsfw_gore %>
+          <%= f.label :nsfw_gore, t(".nsfw_gore") %>
+        </div>
+
+        <div class="checkbox-field">
+          <%= f.check_box :nsfw_language %>
+          <%= f.label :nsfw_language, t(".nsfw_language") %>
+        </div>
+
+        <div class="checkbox-field">
+          <%= f.check_box :nsfw_nudity %>
+          <%= f.label :nsfw_nudity, t(".nsfw_nudity") %>
+        </div>
+
+        <div class="checkbox-field">
+          <%= f.check_box :nsfw_sexuality %>
+          <%= f.label :nsfw_sexuality, t(".nsfw_sexuality") %>
+        </div>
       </div>
 
       <div class="text-field-container">
