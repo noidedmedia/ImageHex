@@ -22,7 +22,7 @@
 
     <%# Comment body, the text in the comment itself. %>
     <div class="comment-body">
-      <%= comment.html_body %>
+      <%= markdown_parse(comment.body) %>
     </div>
   </div>
   
