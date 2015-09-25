@@ -1,0 +1,284 @@
+@import "scss-variables";
+
+
+/* ==============================================
+    User page container
+   ============================================== */
+
+#user-page-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+
+  @media all and (max-device-width: $mobile-width) {
+    -webkit-flex-flow: column wrap;
+            flex-flow: column wrap;
+  }
+}
+
+
+/* ==============================================
+    User Page Header
+   ============================================== */
+
+/**
+ * User page header
+ *
+ * Header for all user pages with the respective user's information.
+ *
+ */
+ 
+#user-page-header {
+  position: relative;
+  width: 100vw;
+  height: auto;
+  padding: 0;
+  z-index: 100;
+  color: #333;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
+  box-shadow: 8px 0 5px 5px rgba(#000,.1);
+  background-color: #fff;
+
+  @media all and (max-device-width: $mobile-width) {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    height: auto;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: none;
+    min-height: 0;
+    text-align: center;
+  }
+}
+
+.user-page-information {
+  position: relative;
+  display: flex;
+  padding: 0 50px;
+  margin-top: 80px;
+  margin-bottom: 25px;
+}
+
+.user-page-text {
+  display: inline-block;
+  padding-left: 15px;
+
+  @media all and (max-device-width: $mobile-width) {
+    display: block;
+    text-align: left;
+  }
+}
+
+#user-page-profile-picture {
+  width: 120px;
+  height: 120px;
+  background-color: #c9c9c9;
+  overflow: hidden;
+  border-radius: 3px;
+  pointer-events: none;
+
+  img {
+    min-width: 120px;
+    min-height: 120px;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    margin-right: 10px;
+    width: 75px;
+    height: 75px;
+    flex-shrink: 0; // Ensures that the image isn't squished on mobile.
+    -webkit-flex-shrink: 0;
+
+    img {
+      min-width: 75px;
+      min-height: 75px;
+    }
+  }
+}
+
+.user-page-username {
+  font-size: 2.1rem;
+  font-weight: 500;
+  display: inline-block;
+  padding-bottom: 5px;
+
+  @media all and (max-device-width: $mobile-width) {
+    width: 100%;
+  }
+}
+
+.user-page-bio {
+  font-size: 1.4rem;
+  display: block;
+  line-height: 24px;
+
+  &.inactive {
+    color: #aaaab2;
+  }
+}
+
+.user-page-bio-edit {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #888;
+  text-decoration: none;
+  transition: color 200ms;
+  line-height: 24px;
+  display: none;
+
+  &:hover {
+    color: #333;
+  }
+}
+
+.user-page-website,
+.user-page-location {
+  font-size: 1.4rem;
+  line-height: 24px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#edit-user-container {
+  display: inline-block;
+  font-size: 1.4rem;
+  margin-top: 75px;
+  margin-left: calc(50vw - 150px);
+}
+
+// Text field for editing the user's bio.
+#user-bio-field {
+  resize: vertical;
+  max-height: 250px;
+}
+
+/* ==============================================
+    User page content (tabs and/or images)
+   ============================================== */
+
+#user-content-container {
+  width: 100vw;
+
+  a {
+    color: #fff;
+  }
+}
+
+
+/**
+ * User page header tabs
+ *
+ * Tabs for the user page (Uploads and Collections).
+ *
+ * 1. User page's header tabs begin 10px from the end of the user
+ *    sidebar.
+ * 2. Box shadow moved right 8 pixels ensure that it won't run
+ *    into the user sidebar.
+ * 3. z-index moved down one to prevent the box shadow from
+ *    showing up over the "sidebar" when the tabs and "sidebar"
+ *    are combined into one object for mobile devices.
+ */
+
+#user-page-header-tabs {
+  position: relative;
+  z-index: 100;
+  padding-left: 40px; /* 1 */
+  background-color: #fff;
+  margin: 0;
+  left: 0;
+  height: 40px;
+  overflow: auto;
+  width: 100vw;
+  text-overflow: clip;
+  white-space: nowrap;
+
+  &.sticky {
+    box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    position: relative;
+    z-index: 99; /* 3 */
+    text-align: center;
+    padding-left: 0;
+  }
+}
+
+.user-page-header-tab {
+  display: inline-block;
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 20px;
+  height: 40px;
+  padding: 11px 15px;
+  margin-right: 25px;
+  cursor: pointer;
+  color: #555;
+  text-align: center;
+
+  &.current {
+    font-weight: 500;
+    color: #333;
+
+    &:after {
+      content: '';
+      background-color: #17cd94;
+      width: calc(100% + 30px);
+      @include translate(-15px,6px);
+      height: 3px;
+      display: block;
+    }
+  }
+
+  &:first-of-type {
+    margin-left: 20px;
+  }
+}
+
+
+/* Containers for uploads and collections
+   ============================================== */
+
+#user-uploads-container,
+#user-collections-container,
+#user-creations-container {
+  padding: 15px 20px;
+  display: none;
+
+  &.current {
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  @media all and (max-device-width: $mobile-width) {
+    margin-top: 5px;
+  }
+}
+
+#user-collections-container,
+#user-creations-container {
+  -webkit-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+#user-uploads-container {
+  -webkit-flex-flow: column wrap;
+          flex-flow: column wrap;
+}

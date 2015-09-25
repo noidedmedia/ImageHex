@@ -2,6 +2,8 @@
 ##
 # As the name implies, this contorller handles all actions for images.
 class ImagesController < ApplicationController
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :unauthorized
   # Load the image via our id
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
@@ -53,7 +55,8 @@ class ImagesController < ApplicationController
   # Query should be in params[:query].
   def search
     @images = Image.search(params[:query])
-    @images = @images.paginate(page: page, per_page: per_page) if @images
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     respond_to do |format|
       format.html
       format.json{render json: @images}
@@ -102,14 +105,17 @@ class ImagesController < ApplicationController
 
   ##
   # Modify an uploaded image with a PUT.
-  # Currently does nothing.
   def update
+    authorize @image
+    @image.update(image_update_params)
+    redirect_to @image
   end
 
   ##
   # GET to acquire a page where you can edit an image.
   # Does nothing currently.
   def edit
+    authorize @image
   end
 
   ##
@@ -124,7 +130,10 @@ class ImagesController < ApplicationController
   # Sets the following varaibles:
   # @images:: the paginated list of images.
   def index
-    @images = Image.paginate(page: page, per_page: per_page).order('created_at DESC')
+    @images = Image
+      .paginate(page: page, per_page: per_page)
+      .order('created_at DESC')
+      .for_content(content_pref)
   end
 
   ##
@@ -143,6 +152,13 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
   end
 
+  def image_update_params
+    params.require(:image)
+      .permit(:license,
+              :medium,
+              :replies_to_inbox,
+              :description)
+  end
   ##
   # Protected parameters for the image.
   #
@@ -152,7 +168,11 @@ class ImagesController < ApplicationController
               :license, 
               :medium, 
               :replies_to_inbox,
-              :description) # Attributes the user adds
+              :description,
+              :nsfw_gore,
+              :nsfw_nudity,
+              :nsfw_sexuality,
+              :nsfw_language) # stuff the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
 

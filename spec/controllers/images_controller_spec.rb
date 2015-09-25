@@ -20,6 +20,23 @@ describe ImagesController do
         expect(response).to be_success
       end
     end
+    describe "POST #update" do
+      it "works when the user has made the image" do
+        i = FactoryGirl.create(:image, user: @user, description: "")
+        expect(i.description).to eq("")
+        post :update, id: i.id, image: {description: "test"}
+        expect(i.reload.description).to eq("test")
+      end
+      it "doesn't work when the user hasn't" do
+        u = FactoryGirl.create(:user)
+        i = FactoryGirl.create(:image, user: u, description: "")
+        expect(i.description).to eq("")
+        expect(i.user).to eq(u)
+        post :update, id: i.id, image:{description: "test"}
+        expect(i.reload.description).to_not eq("test")
+        expect(i.reload.description).to eq("")
+      end
+    end
     describe "POST #create" do
       context "with valid attributes" do
         let(:atrs){FactoryGirl.attributes_for(:image)}
@@ -56,7 +73,7 @@ describe ImagesController do
         expect(@user.creations.images).to include(i)
       end
     end
-   
+
   end
 
   context "when not logged in" do
@@ -72,8 +89,7 @@ describe ImagesController do
         expect(response).to be_success
       end
     end
-    describe "POST #edit" do
-    end
+
     describe "POST 'new'" do
       it "doesn't do anything" do
         @images = FactoryGirl.create(:image)

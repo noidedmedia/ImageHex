@@ -2,9 +2,16 @@
 
 en:
   notifications:
+    index:
+      notifications_title: "Notifications"
     notifications:
       notifications_header: "Notifications"
       mark_all_read: "Mark all as read"
-    notifications_list:
       no_notifications_yet: "No notifications yet!"
+      view_more: "View more..."
+    notifications_list:
+      mentioned: "%{username} mentioned you in a comment."
+      uploaded_image_commented_on: "%{username} commented on an image you uploaded."
+      subscribed_image_commented_on: "%{username} commented on an image you're subscribed to."
+      comment_replied_to: "%{username} replied to your comment."
       ago: "ago"

@@ -1,67 +1,221 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>Page not found - ImageHex</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
   <style>
   body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
+    box-sizing: border-box;
+    background-color: #efefef;
+    color: #333;
     text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
-
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    margin: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    overflow-y: hidden;
   }
 
   h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  p {
+    font-size: 16px;
   }
+
+  .column-1 {
+    text-align: center;
+    display: block;
+    width: 50%;
+  }
+
+  .column-1 a {
+    display: inline-block;
+    margin-top: 30vh;
+  }
+
+  .column-2 {
+    text-align: left;
+    display: block;
+  }
+
+  .error-404 {
+    margin-top: 25vh;
+    color: #777;
+    font-size: 14px;
+  }
+
+  .subtitle {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  .helpful-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 5px 0;
+    display: block;
+  }
+
+  .helpful-links a:hover {
+    text-decoration: underline;
+  }
+
+  .imagehex-logo {
+    background: url("logo/imagehex-color-with-no-text.svg") 0 / 100px no-repeat;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+
+  .imagehex {
+    height: 50px;
+    width: 300px;
+    font-size: 48px;
+    font-family: "Lato";
+    margin: auto;
+    -webkit-animation: hinge 6s linear 1s 1 forwards;
+            animation: hinge 6s linear 1s 1 forwards;
+    font-weight: 300;
+  }
+
+  .imagehex > span {
+    font-weight: 400;
+  }
+
+  @media all and (max-device-width: 750px) {
+    body {
+      margin: 35px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    .error-404 {
+      margin-top: 8vh;
+    }
+
+    .imagehex {
+      display: none;
+      -webkit-animation: none;
+              animation: none;
+    }
+
+    .column-1 {
+      width: 100%;
+    }
+
+    .column-1 a {
+      margin-top: 20px;
+    }
+  }
+
+  @-webkit-keyframes hinge {
+    0% {
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: rotate3d(0, 0, 1, 80deg);
+              transform: rotate3d(0, 0, 1, 80deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+      opacity: 1;
+    }
+
+    20%, 40%, 60%, 80% {
+      -webkit-transform: rotate3d(0, 0, 1, 60deg);
+              transform: rotate3d(0, 0, 1, 60deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    100% {
+      -webkit-transform: translate3d(0, 700px, 0);
+              transform: translate3d(0, 700px, 0);
+      opacity: 0;
+      display: none;
+    }
+  }
+
+  @keyframes hinge {
+    0% {
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+      -webkit-transform: rotate3d(0, 0, 1, 80deg);
+              transform: rotate3d(0, 0, 1, 80deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+      opacity: 1;
+    }
+
+    20%, 40%, 60%, 80% {
+      -webkit-transform: rotate3d(0, 0, 1, 60deg);
+              transform: rotate3d(0, 0, 1, 60deg);
+      -webkit-transform-origin: top left;
+              transform-origin: top left;
+      -webkit-animation-timing-function: ease-in-out;
+              animation-timing-function: ease-in-out;
+    }
+
+    100% {
+      -webkit-transform: translate3d(0, 700px, 0);
+              transform: translate3d(0, 700px, 0);
+      opacity: 0;
+      display: none;
+    }
+  }
+
   </style>
 </head>
 
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+
+  <div class="column-1">
+    <a href="/"><div class="imagehex-logo"></div></a>
+
+    <p class="imagehex">Image<span>Hex</span></p>
   </div>
+
+  <div class="column-2">
+    <p class="error-404">Error 404: Page Not Found
+
+    <h1>It has to be here somewhere...</h1>
+    <p class="subtitle">You may have mistyped the address or the page may have been moved.
+    
+    <div class="helpful-links">
+      <a href="/">Home</a>
+      <a href="/search">Search</a>
+      <a href="/help">Help</a>
+    </div>
+  </div>
+
 </body>
 </html>

@@ -1,0 +1,263 @@
+@import "scss-variables";
+
+#comment-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 10px;
+  position: relative;
+  margin-bottom: 15px;
+  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+
+  hr {
+    border: 0;
+    border-top: 1px solid #c9c9c9;
+    width: calc(100% - 7px);
+    margin: 10px auto;
+  }
+}
+
+#upload-info {
+  width: 100%;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.image-description-container {
+  text-align: left;
+  display: inline-block;
+  width: calc(100% - 75px);
+  vertical-align: top;
+  transform: translateY(-4px);
+
+  p {
+    font-size: 1.3rem;
+    color: #333;
+    padding: 2px 0 4px;
+    
+    &:first-of-type {
+      padding-top: 8px;
+    }
+
+    &.image-description-none {
+      color: #777;
+    }
+  }
+}
+
+.comment {
+  width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  margin: 4px 0;
+  padding: 5px 0;
+  position: relative;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+// Anchor links bring the user's browser window to that exact point,
+// where the top of the browser window is the location of the anchor.
+// This prevents the fixed header from blocking the comment.
+.comment + a {
+  top: 20px;
+  position: absolute;
+}
+
+// The "comment" element (profile picture, username, comment body, etc.) is
+// highlighted with a yellow background when an anchor directly above it is
+// targetted (e.g. because the comment was permalinked or someone recieved
+// a notification).
+a:target + .comment {
+  animation: commentTarget 3s linear 1 normal forwards;
+    -webkit-animation: commentTarget 3s linear 1 normal forwards;
+}
+
+.user-comment-avatar,
+.uploader-avatar {
+  margin: 4px 8px 4px 4px;
+  background-color: #c9c9c9;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 2px;
+
+  a {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
+
+.user-comment-avatar {
+  min-width: 40px;
+  min-height: 40px;
+  height: 40px;
+  width: 40px;
+
+  img {
+    min-width: 40px;
+    min-height: 40px;
+    width: 100%;
+  }
+}
+
+.uploader-avatar {
+  width: 50px;
+  height: 50px;
+
+  img {
+    min-width: 50px;
+    min-height: 50px;
+    width: 100%;
+  }
+}
+
+.comment-text {
+  text-align: left;
+  display: inline-block;
+  width: 100%;
+}
+
+.user-comment-info {
+  font-size: 1.2rem;
+  padding-top: 3px;
+  margin-bottom: 5px;
+  display: block;
+
+  a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Body text of a comment
+.comment-body {
+  font-size: 1.2rem;
+  display: block;
+}
+
+// New comment text area.
+.new-comment {
+  width: 100%;
+  height: 32px;
+  max-height: 32px;
+  font-size: 1.2rem;
+  resize: none;
+  border: 1px solid #c9c9c9;
+  background-color: #fff;
+  margin-top: 15px;
+  padding: 8px;
+  transition: 300ms border-color;
+  border-radius: 0;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: transparent;
+    border-color: #333;
+  }
+
+  // When comment is invalid, "Submit" button is grey.
+  &:invalid + .new-comment-buttons input[type="submit"] {
+    color: #aaaab2;
+    cursor: default;
+  }
+
+  &:focus,
+  &:valid {
+    resize: vertical;
+    min-height: 80px;
+    max-height: 400px;
+
+    // Displays cancel/submit buttons only when the text area
+    // has text or is in-focus.
+    + .new-comment-buttons {
+      display: block;
+    }
+  }
+}
+
+// "Cancel" and "Submit" buttons for new comment box.
+.new-comment-buttons {
+  text-align: right;
+  display: none;
+
+  input[type="submit"],
+  button[type="reset"] {
+    background-color: transparent;
+    border: 0;
+    font-size: 1.3rem;
+    margin-top: 8px;
+    padding: 4px;
+    cursor: pointer;
+    color: #333;
+
+    &:focus {
+      outline: transparent;
+    }
+  }
+
+  button[type="reset"] {
+    color: #aaaab2;
+    transition: color 300ms;
+    margin-right: 5px;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.no-comments {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 300;
+  padding: 35px 0;
+}
+
+@-webkit-keyframes commentTarget {
+  0% {
+    background-color: rgba(#ffe11a,.5);
+  }
+
+  40% {
+    background-color: rgba(#ffe11a,.5);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes commentTarget {
+  0% {
+    background-color: rgba(#ffe11a,.5);
+  }
+
+  40% {
+    background-color: rgba(#ffe11a,.5);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}

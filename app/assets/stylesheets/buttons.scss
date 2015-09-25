@@ -1,0 +1,203 @@
+@import "scss-variables";
+
+/* ==============================================
+   Generic button class
+   ============================================== */
+
+.btn {
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-align: center;
+  border-radius: 3px;
+  display: inline-block;
+  color: #fff;
+  transition: background-color 300ms;
+  appearance: none;
+  border: 0;
+  height: 32px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none;
+
+  a {
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: transparent;
+  }
+}
+
+.btn-minimal {
+  font-size: 1.4rem;
+  font-weight: 400;
+  display: block;
+  background-color: transparent;
+  border: 0;
+  color: #333;
+  appearance: none;
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none;
+
+  a {
+    text-decoration: none;
+    display: block;
+    color: #333;
+  }
+
+  &:focus {
+    outline: transparent;
+  }
+}
+
+
+/* ==============================================
+    Button sizes
+   ============================================== */
+
+// Larger button than default.
+.btn-large {
+  height: 40px;
+  width: 100%;
+
+  @media all and (max-device-width: $mobile-width) {
+    height: 50px;
+    font-size: 1.6rem;
+  }
+}
+
+// For full-width buttons, e.g. in a sidebar or other thin container.
+.btn-full-width {
+  width: 100%;
+}
+
+.btn-right-aligned {
+  float: right;
+}
+
+
+/* ==============================================
+    Button colors
+   ============================================== */
+
+// Green button, darkens on hover/focus.
+.btn-green {
+  background-color: #5bb289;
+
+  &:hover, &:focus {
+    background-color: darken(#5bb289, 6%);
+  }
+}
+
+.btn-minimal-green {
+  color: #5bb289;
+  
+  &:hover, &:focus {
+    color: darken(#5bb289, 6%);
+  }
+}
+
+// Red button, darkens on hover/focus.
+.btn-red {
+  background-color: #cb2e32;
+
+  &:hover, &:focus {
+    background-color: darken(#cb2e32, 6%);
+  }
+}
+
+// Grey button, darkens on hover/focus.
+.btn-grey {
+  background-color: #aaaab2;
+
+  &:hover, &:focus {
+    background-color: darken(#aaaab2, 10%);
+  }
+}
+
+
+/* ==============================================
+    Follow/Unfollow buttons
+   ============================================== */
+
+.btn-follow,
+.btn-unfollow {
+  width: 200px;
+  height: 32px;
+
+  // Show if active.
+  &.active {
+    display: block;
+  }
+
+  // Hide if inactive.
+  &.inactive {
+    display: none;
+  }
+
+  // <span> elements will not prevent the user from clicking the button.
+  span {
+    pointer-events: none;
+    cursor: pointer;
+  }
+
+  // Button will stretch to full width, become larger on mobile devices.
+  @media all and (max-device-width: $mobile-width) {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+}
+
+// Follow button
+.btn-follow {
+  // Follow button begins green.
+  background-color: #5bb289;
+
+  // Follow button darkens on hover.
+  &:hover, &:focus {
+    background-color: darken(#5bb289, 6%);
+  }
+}
+
+// Following/Unfollow button
+.btn-unfollow {
+  // Unfollow button is gray.
+  background-color: #aaaab2;
+  // Disables background-color transition inherited from btn class.
+  transition: background-color 0ms;
+
+  // By default, show "Following" text.
+  .btn-text-following {
+    display: inline;
+  }
+
+  // ...and hide "Unfollow" text.
+  .btn-text-unfollow {
+    display: none;
+  }
+
+  &:hover, &:focus {
+    // Darker gray on hover.
+    background-color: darken(#aaaab2,10%);
+
+    // On hover/focus, hide "Following" text.
+    .btn-text-following {
+      display: none;
+    }
+
+    // ...and show "Unfollow" text.
+    .btn-text-unfollow {
+      display: inline;
+    }
+  }
+}

@@ -10,10 +10,15 @@ class Curatorship < ActiveRecord::Base
   validates :level, presence: true
   enum level: [:worker, :mod, :admin]
 
+  ##
+  # Allow the curatorship to be created with a user_name
   attr_accessor :user_name
   before_save :resolve_user_name
 
   protected
+  ##
+  # Allow this to be created with a user_name
+  # Makes the interface just a little bit nicer
   def resolve_user_name
     user ||= User.friendly.find(user_name) if user_name
   end

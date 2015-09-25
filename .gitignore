@@ -26,3 +26,5 @@ git_stats/
 /doc
 #Ignore coverage files.
 /coverage/
+
+/spec/test_files/images/*

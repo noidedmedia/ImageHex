@@ -1,64 +1,7 @@
-<div id="comment-container">
-  <div id="upload-info">
-    <div class="uploader-avatar">
-      <%= link_to @image.user do %>
-        <% if @image.user.avatar %>
-          <%= image_tag @image.user.avatar_img_thumb %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="image-description-container">
-      <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
-      <p class="image-description"><%= @image.description %>
-    </div>
-  </div>
+<%# Generic comments partial for use with more than just image pages. %>
+<% if comments.empty? %>
+  <p class="no-comments"><%= t(".no_comments_yet") %>
+<% else %>
+  <%= render partial: "shared/comment", collection: comments.for_display %>
+<% end %>
 
-  <hr>
-
-  <% if subject.comments.empty? %>
-    <p class="no-comments"><%= t(".no_comments_yet") %>
-  <% else %>
-    <%# We manually include the user of the comment to prevent an N+1 %>
-    <% subject.comments.includes(:user).order('created_at ASC').each do |comment| %>
-      
-      <%# Anchor for comment links from Notifications. %>
-      <a name= <%= comment.id %> ></a>
-      <div class="comment" id="comment-<%= comment.id %>">
-        
-        <div class="user-comment-avatar">
-          <%= link_to comment.user do %>
-            <% if comment.user.avatar %>
-              <%= image_tag comment.user.avatar_img_thumb %>
-            <% end %>
-          <% end %>
-        </div>
-
-        <div class="comment-text">
-          <%# Username, with link to user page, and "commented [time value] ago". %>
-          <div class="user-comment-info">
-            <%= link_to comment.user.name, comment.user %>
-            <%= " " + t(".commented") + " " + time_ago_in_words(comment.created_at) + " " + t(".ago") %>
-          </div>
-
-          <%# Comment body, the text in the comment itself. %>
-          <div class="comment-body">
-            <%= comment.body %>
-          </div>
-        </div>
-
-      </div>
-    <% end %>
-  <% end %>
-
-  <%# New comment section, only appears for users who are signed-in. %>
-  <% if user_signed_in? %>
-    <%= form_tag(url, {class: "comment_form"}) do %>
-      <%= text_area(:comment, :body, class: 'new-comment', :required => true, placeholder: "Add a comment…") %>
-
-      <div class="new-comment-buttons">
-        <%= button_tag t(".cancel"), type: :reset %>
-        <%= submit_tag t(".submit") %>
-      </div>
-    <% end %>
-  <% end %>
-</div>

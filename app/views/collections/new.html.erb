@@ -1,22 +1,24 @@
+<%- title t(".new_collection_page_title") %>
+
 <%= flash[:error] %>
 
-<div class="new-collection-container">
+<div class="fields-page-container">
   <%= form_for @collection do |f| %>
     
-    <div class="new-collection-field">
-      <%= f.label :name, t(".title"), class: "label", for: "new-collection-title" %>
-      <%= f.text_field :name, id: "new-collection-title" %>
+    <div class="field-container">
+      <%= f.label :name, t(".title"), class: "label input-empty", for: "new-collection-title" %>
+      <%= f.text_field :name, id: "new-collection-title", class: "input", autocomplete: "off" %>
     </div>
 
-    <div class="new-collection-field">
-      <%= f.label :name, t(".description"), class: "label", for: "new-collection-description" %>
-      <%= f.text_area :description, id: "new-collection-description" %>
+    <div class="field-container">
+      <%= f.label :name, t(".description"), class: "label input-empty", for: "new-collection-description" %>
+      <%= f.text_area :description, id: "new-collection-description", class: "input", autocomplete: "off" %>
     </div>
 
     <%# You're going to be able to select the type of collections soon,
       for now we just use this %>
     <%= f.hidden_field :type, value: "Subjective" %>
     
-    <%= f.submit t(".create_collection"), id: "new-collection-submit", class: "btn btn-green" %>
+    <%= f.submit t(".create_collection"), id: "new-collection-submit", class: "btn btn-green btn-full-width" %>
   <% end %>
 </div>

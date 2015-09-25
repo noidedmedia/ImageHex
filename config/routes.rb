@@ -11,15 +11,19 @@ Rails.application.routes.draw do
   concern :commentable do
     post :comment, on: :member
   end
+
   ##################
   # RESTFUL ROUTES #
   ##################
-
   
   resources :tags do
     collection do
       get "suggest"
     end
+  end
+
+  resources :tag_group_changes, only: [:show] do
+
   end
 
   resources :images do
@@ -28,9 +32,14 @@ Rails.application.routes.draw do
       post "created"
       delete "unfavorite"
     end
-    resources :tag_groups
+
+    resources :tag_groups do 
+      resources :changes, only: [:index], controller: :tag_group_changes
+    end
+
     concerns :reportable, :commentable
   end
+
   devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show, :edit, :update] do
@@ -39,6 +48,7 @@ Rails.application.routes.draw do
     # Meanwhile, creation and modification of collections is its own thing.
     resources :collections, only: [:index]
   end
+
   resources :collections, except: [:index] do
     ##
     # OK we get non-REST here
@@ -47,7 +57,8 @@ Rails.application.routes.draw do
     # An action which sees if an image already exists in the collection
     get "exists", on: :collection
   end
-    resources :curatorships, except: [:index, :show]
+
+  resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"
       delete "unsubscribe"
@@ -63,6 +74,7 @@ Rails.application.routes.draw do
       get 'unread'
       post 'mark_all_read'
     end
+
     member do
       post 'read'
     end
@@ -89,13 +101,18 @@ Rails.application.routes.draw do
   root to: "frontpage#index"
 
   get '/about', to: "static_stuff#about"
+  get '/rules', to: "static_stuff#rules"
 
   get '/people', to: "static_stuff#people"
 
   get '/contact', to: "static_stuff#contact"
 
+  get '/faq', to: "static_stuff#faq"
+
   get '/settings', to: 'users#edit'
 
   post '/settings', to: 'users#update'
+
   get '/search', to: "images#search"
+  
 end

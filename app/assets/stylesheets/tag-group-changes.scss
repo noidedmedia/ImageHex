@@ -1,0 +1,62 @@
+#tag-group-changes-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#tag-group-change-label {
+  font-size: 3em;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.tag-group-change {
+  padding: 10px;
+  h1 {
+    font-size: 1.9em;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.change-list {
+  padding: 3px;
+
+  a {
+    text-decoration: none;
+    color: black;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}
+
+.added-tag {
+  &::before {
+    content: "+";
+    padding-right: 3px;
+  }
+  background-color: rgb(236, 255, 236);
+}
+
+.removed-tag {
+  background-color: rgb(255, 236, 236);
+  &::before {
+    content: "-";
+    padding-right: 3px;
+  }
+}

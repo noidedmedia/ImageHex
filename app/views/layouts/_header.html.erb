@@ -76,7 +76,7 @@
       <% end %>
 
         <div class="notifications-dropdown inactive">
-          <%= render "notifications/notifications", notifications: current_user.notifications %>
+          <%= render "notifications/notifications", notifications: current_user.notifications.limit(8) %>
         </div>
       </div>
 
@@ -96,7 +96,7 @@
           <% end %>
           
           <%# Settings %>
-          <li><%= link_to t(".settings"), edit_user_path(current_user) %>
+          <li><%= link_to t(".settings"), settings_path %>
           
           <%# Sign out %>
           <li><%= button_to t(".sign_out"), destroy_user_session_path, method: :delete %>

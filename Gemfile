@@ -1,83 +1,21 @@
+ruby '2.2.3'
 source 'https://rubygems.org'
-ruby '2.2.2'
 
 gem 'aws-sdk', '< 2.0'
+
 gem 'devise'
+
 gem 'omniauth-twitter'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.4'
+
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-##
-# Use SDoc
-gem 'sdoc', require: false
-##
-# Use markdown for user comments
-gem 'redcarpet'
-#
-# Use friendly IDs for nice URLs
-gem 'friendly_id', '~> 5.1.0'
-
-# Possessive gem makes a string possessive
-gem "possessive"
-# Monitor stuff with new relic
-gem 'newrelic_rpm'
-
-# Use postgres
-gem 'pg'
-# Use will-paginate for pagination
-gem 'will_paginate', "~> 3.0.6"
-
-# Use unicorn as the webserver
-gem 'unicorn'
-# Use paperclip to upload images
-gem 'paperclip'
-
-# Use pundit for authorization
-gem 'pundit'
-# Use postmark to send email
-gem 'postmark-rails'
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-# Fixes issues with JQuery and Turbolinks, read more: https://github.com/kossnocorp/jquery.turbolinks
-gem 'jquery-turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-
-##
-# Change our data in a migration
-gem 'migration_data'
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring', '~> 1.3.6',      group: :development
-
-
-# Make tests good!
-group :development, :test do
-  gem 'rspec-rails', '~> 3.1'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem "mailcatcher" # to confirm mails
-end
-
-group :development do
-  gem 'reek'
-  gem 'rails_best_practices'
-  gem 'quiet_assets'
-  gem 'better_errors'
-  gem 'annotate'
-  gem 'bullet'
-end
-group :test do
-  # Continue to make tests good
-  gem 'shoulda-matchers'
-  # See how much coverage our tests have
-  gem 'simplecov', '~> 0.9.0'
-end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -91,3 +29,94 @@ gem 'rails_12factor', group: :production
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+##
+# Use TrainTrack to track changes
+# (we wrote this!)
+gem 'train_track'
+
+##
+# Use markdown for user comments
+gem 'redcarpet'
+
+#
+# Use friendly IDs for nice URLs
+gem 'friendly_id', '~> 5.1.0'
+
+# Possessive gem makes a string possessive
+gem "possessive"
+
+# Monitor stuff with New Relic
+gem 'newrelic_rpm'
+
+# Use postgres
+gem 'pg'
+
+# Use will-paginate for pagination
+gem 'will_paginate', "~> 3.0.6"
+
+# Use unicorn as the webserver
+gem 'unicorn'
+
+# Use paperclip to upload images
+gem 'paperclip'
+
+# Use pundit for authorization
+gem 'pundit'
+
+# Use postmark to send email
+gem 'postmark-rails'
+
+# Use jQuery as the JavaScript library
+gem 'jquery-rails'
+
+# React for Rails
+gem 'react-rails'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
+# Fixes issues with JQuery and Turbolinks, read more: https://github.com/kossnocorp/jquery.turbolinks
+gem 'jquery-turbolinks'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'
+
+##
+# Change our data in a migration
+gem 'migration_data'
+
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+gem 'spring',      group: :development
+
+
+# Make tests good!
+group :development, :test do
+  gem 'rspec-rails', '~> 3.1'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem "mailcatcher" # to confirm mails
+end
+
+group :development do
+  gem 'pry-rails'
+  gem 'rack-mini-profiler', require: false
+  gem 'binding_of_caller'
+  gem 'reek'
+  gem 'rails_best_practices'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'annotate'
+  gem 'bullet'
+
+  ##
+  # Use Hanna Bootstrap theme for RDoc documentation
+  # https://github.com/ngs/hanna-bootstrap
+  gem 'hanna-bootstrap'
+end
+
+group :test do
+  # Continue to make tests good
+  gem 'shoulda-matchers'
+  # See how much coverage our tests have
+  gem 'simplecov', '~> 0.9.0'
+end
