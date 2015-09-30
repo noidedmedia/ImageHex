@@ -1,0 +1,8 @@
+# Frontpage strings.
+
+en:
+  frontpage:
+    index:
+      imagehex: "ImageHex"
+    index_with_user:
+      imagehex: "ImageHex"

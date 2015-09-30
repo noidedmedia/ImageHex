@@ -41,6 +41,16 @@
     top: 16px;
     left: 20px;
   }
+
+  #header-browse {
+    position: absolute;
+    left: 390px;
+    top: 0;
+
+    @media all and (max-device-width: $mobile-width) {
+      display: none;
+    }
+  }
 }
 
 .imagehex-header-logo {
