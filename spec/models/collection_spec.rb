@@ -11,8 +11,9 @@ describe Collection do
   it "should not allow duplicate images" do
     c = FactoryGirl.create(:collection)
     i = FactoryGirl.create(:image)
+    expect{
     c.images = [i, i]
-    expect(c.images).to_not eq([i, i])
+    }.to raise_error(ActiveRecord::RecordInvalid)
   end
   describe "subscriptions" do
     it "lists all subscribed users with the subscribers method" do

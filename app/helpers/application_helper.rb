@@ -1,6 +1,29 @@
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
+
+  def markdown_parse(str)
+    return unless str
+    options = {
+      filter_html: true,
+      hard_wrap: true,
+      link_attributes: {rel: "nofollow", target: "_blank"},
+      no_styles: true,
+      no_images: false,
+      with_toc_data: true,
+      no_intra_emphasis: true,
+      safe_links_only: true,
+      lax_spacing: true
+    }
+    extensions = {
+      autolink: true,
+      superscript: true
+    }
+    renderer = Redcarpet::Render::HTML.new(options)
+    markdown = Redcarpet::Markdown.new(renderer, extensions)
+    markdown.render(str).html_safe
+  end
+
   def pretty_time(t)
     t.strftime("%l:%M %p %B %d, %Y")
   end

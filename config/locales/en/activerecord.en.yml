@@ -31,3 +31,8 @@ en:
         digital_paint: "Digital paint"
         mixed_media: "Mixed media"
         three_dimensional_render: "Three Dimensional Render"
+      content_ratings:
+        nsfw_language: "NSFW Language"
+        nsfw_gore: "NSFW Gore"
+        nsfw_sexuality: "NSFW Sexuality"
+        nsfw_nudity: "NSFW Nudity"
