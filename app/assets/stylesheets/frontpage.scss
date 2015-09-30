@@ -24,10 +24,13 @@
 }
 
 #frontpage-logo {
-  margin: auto;
   width: 100%;
-  max-width: 400px;
-  pointer-events: none;
+
+  img {
+    margin: auto;
+    height: 75px;
+    pointer-events: none;
+  }
 }
 
 .subscription-image {
