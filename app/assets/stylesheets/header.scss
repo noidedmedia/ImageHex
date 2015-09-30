@@ -48,14 +48,20 @@
   height: 40px;
   position: absolute;
   top: 0;
-  background: url("/logo/imagehex-grayscale-blackbg-with-no-text.svg") 50% 50% / 85% 85% no-repeat;
+  background: url("/logo/imagehex-white.svg") 50% 50% / 75% 75% no-repeat;
+  opacity: 0.75;
+  transition: 200ms opacity;
+
+  &:hover {
+    opacity: 1;
+  }
 
   @media all and (max-device-width: $mobile-width) {
     width: 50px;
     height: 50px;
     top: -12px;
     left: 0;
-    background: url("/logo/imagehex-grayscale-blackbg-with-no-text.svg") 0% 0% / 85% 85% no-repeat;
+    background: url("/logo/imagehex-white.svg") 0% 0% / 75% 75% no-repeat;
   }
 }
 
