@@ -12,6 +12,10 @@ class FrontpageController < ApplicationController
       @images = current_user.image_feed.paginate(page: page, per_page: per_page)
       render "index_with_user"
     else
+      @images = Image
+        .paginate(page: page, per_page: per_page)
+        .order('created_at DESC')
+        .for_content(content_pref)
       render "index"
     end
   end

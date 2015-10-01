@@ -10,6 +10,7 @@ en:
       home: "Home"
       search: "Search"
       search_suggestions_note: "Search for the tag you're looking for, suggestions will show up here."
+      browse: "Browse"
       sign_in: "Sign in"
       create_an_account: "Create an account"
       upload: "Upload"
@@ -20,7 +21,7 @@ en:
     footer:
       imagehex: "ImageHex"
       imagehex_description: "ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet."
-      imagehex_copyright: "© 2015 #noided Media"
+      imagehex_copyright: "© 2015 Noided Media"
       company: "Company"
       about: "About"
       people: "People"

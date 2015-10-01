@@ -23,6 +23,16 @@
   flex-flow: row wrap;
 }
 
+#frontpage-logo {
+  width: 100%;
+
+  img {
+    margin: auto;
+    height: 75px;
+    pointer-events: none;
+  }
+}
+
 .subscription-image {
   width: auto;
   display: inline-block;

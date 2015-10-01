@@ -1,0 +1,8 @@
+# Frontpage strings.
+
+nv:
+  frontpage:
+    index:
+      imagehex: "ImageHex"
+    index_with_user:
+      imagehex: "ImageHex"
