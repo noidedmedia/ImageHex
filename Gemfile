@@ -28,7 +28,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'rails_12factor', group: :production
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+#
+gem 'sprockets-es6'
 ##
 # Use TrainTrack to track changes
 # (we wrote this!)
