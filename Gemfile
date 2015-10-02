@@ -75,7 +75,7 @@ gem 'pg'
 ##
 # https://github.com/mislav/will_paginate
 # Use will-paginate for pagination
-gem 'will_paginate', "~> 3.0.6"
+gem 'will_paginate', '~> 3.0.6'
 
 ##
 # http://unicorn.bogomips.org/
@@ -130,7 +130,7 @@ gem 'migration_data'
 ##
 # https://github.com/rails/spring
 # Spring speeds up development by keeping your application running in the background.
-gem 'spring',      group: :development
+gem 'spring', group: :development
 
 
 # Make tests good!
@@ -138,7 +138,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem "mailcatcher" # to confirm mails
+  gem 'mailcatcher' # to confirm mails
 end
 
 group :development do
