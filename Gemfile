@@ -8,6 +8,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 
 ##
+# https://github.com/aws/aws-sdk-ruby
 # Amazon Web Services SDK
 gem 'aws-sdk', '< 2.0'
 
@@ -28,6 +29,7 @@ gem 'omniauth-twitter'
 gem 'sass-rails'
 
 ##
+# https://github.com/lautis/uglifier
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -51,14 +53,17 @@ gem 'train_track'
 gem 'redcarpet'
 
 ##
+# https://github.com/norman/friendly_id
 # Use friendly IDs for nice URLs
 gem 'friendly_id', '~> 5.1.0'
 
 ##
+# https://github.com/bclubb/possessive
 # Possessive gem makes a string possessive
 gem "possessive"
 
 ##
+# https://github.com/newrelic/rpm
 # Monitor stuff with New Relic
 gem 'newrelic_rpm'
 
@@ -68,6 +73,7 @@ gem 'newrelic_rpm'
 gem 'pg'
 
 ##
+# https://github.com/mislav/will_paginate
 # Use will-paginate for pagination
 gem 'will_paginate', "~> 3.0.6"
 
@@ -87,10 +93,12 @@ gem 'paperclip'
 gem 'pundit'
 
 ##
+## https://github.com/wildbit/postmark-rails
 # Use Postmark to send email
 gem 'postmark-rails'
 
 ##
+# https://github.com/rails/jquery-rails
 # Use jQuery as the JavaScript library
 gem 'jquery-rails'
 
@@ -115,6 +123,7 @@ gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.0'
 
 ##
+# https://github.com/ka8725/migration_data
 # Change our data in a migration
 gem 'migration_data'
 
