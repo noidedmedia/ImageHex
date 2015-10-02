@@ -1,92 +1,126 @@
 ruby '2.2.3'
 source 'https://rubygems.org'
 
-gem 'aws-sdk', '< 2.0'
-
-gem 'devise'
-
-gem 'omniauth-twitter'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+##
+# http://rubyonrails.org/
+# Rails Guides: http://guides.rubyonrails.org/
+# Ruby on Rails, maybe you've heard of it?
 gem 'rails', '4.2.4'
 
+##
+# Amazon Web Services SDK
+gem 'aws-sdk', '< 2.0'
+
+##
+# https://github.com/plataformatec/devise
+# Devise is "a flexible authentication solution for Rails based on Warden".
+# Includes the bcrypt gem for securely storing passwords.
+gem 'devise'
+
+##
+# https://github.com/arunagw/omniauth-twitter
+# Support logging in with Twitter
+gem 'omniauth-twitter'
+
+##
+# https://github.com/rails/sass-rails
 # Use SCSS for stylesheets
 gem 'sass-rails'
 
+##
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
+##
+# https://github.com/heroku/rails_12factor
 gem 'rails_12factor', group: :production
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-#
+
+##
+# https://github.com/TannerRogalsky/sprockets-es6
+# A Sprockets transformer that converts ES6 code into vanilla ES5 with Babel JS.
 gem 'sprockets-es6'
+
 ##
 # Use TrainTrack to track changes
 # (we wrote this!)
 gem 'train_track'
 
 ##
+# https://github.com/vmg/redcarpet
 # Use markdown for user comments
 gem 'redcarpet'
 
-#
+##
 # Use friendly IDs for nice URLs
 gem 'friendly_id', '~> 5.1.0'
 
+##
 # Possessive gem makes a string possessive
 gem "possessive"
 
+##
 # Monitor stuff with New Relic
 gem 'newrelic_rpm'
 
-# Use postgres
+##
+# https://bitbucket.org/ged/ruby-pg/wiki/Home
+# Use Postgres
 gem 'pg'
 
+##
 # Use will-paginate for pagination
 gem 'will_paginate', "~> 3.0.6"
 
-# Use unicorn as the webserver
+##
+# http://unicorn.bogomips.org/
+# Use Unicorn as the webserver
 gem 'unicorn'
 
-# Use paperclip to upload images
+##
+# https://github.com/thoughtbot/paperclip
+# Use Paperclip to upload images
 gem 'paperclip'
 
-# Use pundit for authorization
+##
+# https://github.com/elabs/pundit
+# Use Pundit for authorization
 gem 'pundit'
 
-# Use postmark to send email
+##
+# Use Postmark to send email
 gem 'postmark-rails'
 
+##
 # Use jQuery as the JavaScript library
 gem 'jquery-rails'
 
-# React for Rails
+##
+# https://github.com/reactjs/react-rails
+# React.js for Rails
 gem 'react-rails'
 
+##
+# https://github.com/rails/turbolinks
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# Fixes issues with JQuery and Turbolinks, read more: https://github.com/kossnocorp/jquery.turbolinks
+##
+# https://github.com/kossnocorp/jquery.turbolinks
+# Fixes issues with JQuery and Turbolinks
 gem 'jquery-turbolinks'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+##
+# https://github.com/rails/jbuilder
+# Build JSON APIs with ease.
 gem 'jbuilder', '~> 2.0'
 
 ##
 # Change our data in a migration
 gem 'migration_data'
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+##
+# https://github.com/rails/spring
+# Spring speeds up development by keeping your application running in the background.
 gem 'spring',      group: :development
 
 
