@@ -14,7 +14,6 @@
 # with the tags on ImageHex. If a tag in the list is non-existent on
 # saving the tag_group, it will be formated properly and created. Neat, huh?
 class TagGroup < ActiveRecord::Base
-  default_scope { includes(:tags) }
   #################
   # RELATIONSHIPS #
   #################
@@ -37,7 +36,6 @@ class TagGroup < ActiveRecord::Base
   # CALLBACKS #
   #############
   before_validation :save_tag_group_string
-  after_initialize :load_tag_group_string
   #################
   # CLASS METHODS #
   #################
@@ -47,37 +45,30 @@ class TagGroup < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
+  def tag_group_string
+    self.tags.map(&:name).join(", ")
+  end
 
-
+  def tag_group_string=(str)
+    @tgs = str.split(",").map do |s|
+      s.downcase.strip.squish
+    end
+  end
 
   private
   ##
   # Converts a comma-seperated list of tags into the actual tags
   def save_tag_group_string
-    return unless tag_group_string && ! tag_group_string.empty?
-    tag_names = tag_group_string.split(",").map(&:strip).map(&:squish)
-    formatted_tags = tag_names.map{|name| name.downcase.strip.squish}
-    found_tags = formatted_tags.zip(tag_names).map do |names|
-      ##
-      # Names is currently an array of [formatted name, input name]
-      # so we do this:
-      if tag = Tag.where(name: names.first).first
+    return unless @tgs && ! @tgs.empty?
+    found = @tgs.map do |name|
+      if tag = Tag.where(name: name).first
         tag
       else
-        tag = Tag.create(name: names.first,
-                         display_name: names.last)
-        tag.save
-        tag
+        Tag.create(name: name,
+                   display_name: name)
       end
     end
-    self.tags = found_tags
-  end
-
-  ##
-  # Makes a comma-sperated list of tags from actual tags.
-  def load_tag_group_string
-    return unless self.tags.any?
-    self.tag_group_string = self.tags.map(&:name).join(", ")
+    self.tags = found
   end
 end
 

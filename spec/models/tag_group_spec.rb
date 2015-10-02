@@ -33,15 +33,5 @@ describe TagGroup do
       group.save
       expect(group.tags).to include(tag)
     end
-    it "properly foramts tags" do
-      image = FactoryGirl.create(:image)
-      group = TagGroup.new
-      group.image = image
-      group.tag_group_string = "tEst, BLACK"
-      # Gotta clear up tags with bad names to do this
-      group.save
-      expect(group.tags.map(&:name)).to eq(["test", "black"])
-      expect(group.tags.map(&:display_name)).to eq(["tEst", "BLACK"])
-    end
   end
 end
