@@ -184,7 +184,7 @@
   top: 38px;
   max-width: 400px;
   width: auto;
-  @include translateX(-50%);
+  @include translateX(-90%);
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 
   &:before, &:after {
@@ -192,7 +192,7 @@
     width: 0;
     height: 0;
     position: absolute;
-    left: calc(50% - 25px);
+    left: calc(90% - 25px);
     border-width: 0 10px 10px;
     border-style: solid;
   }
