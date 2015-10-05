@@ -47,6 +47,8 @@
 }
 
 .generic-tag-list {
+  display: inline-block;
+
   > li {
     &:first-of-type {
       font-size: 1.8rem;
