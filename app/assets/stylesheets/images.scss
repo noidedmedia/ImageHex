@@ -44,6 +44,18 @@
   }
 }
 
+#image-page-information {
+  -webkit-columns: 450px auto;
+  -moz-columns: 450px auto;
+       columns: 450px auto;
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  column-gap: 20px;
+  -webkit-column-fill: balance;
+     -moz-column-fill: balance;
+          column-fill: balance;
+}
+
 
 /* ==============================================
     Image page toolbar
@@ -108,7 +120,7 @@
 #new-group {
   width: 100%;
   max-width: 600px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
