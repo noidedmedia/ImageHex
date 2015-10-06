@@ -11,7 +11,8 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
   config.paperclip_defaults = {
-    path: "public/system/fs/:class/:id_:style.:extension"
+    path: "public/system/fs/:class/:id_:style.:extension",
+    url: "/system/fs/:class/:id_:style.:extension"
   }
   ## 
   # Hack to get images to work properly in development
