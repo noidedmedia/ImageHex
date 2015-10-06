@@ -17,6 +17,8 @@ en:
       submit: "Submit"
     show:
       image_page_title: "Image #%{id}"
+    index:
+      browse_images: "Browse images"
     image_page_sidebar:
       download: "Download"
       download_license_notice: "This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way."
