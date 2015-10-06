@@ -46,7 +46,7 @@
     </div>
 
       <ul id="user-page-header-tabs">
-        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @images.count) %>
+        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @uploads.count) %>
         <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations") %>
         <li data-tab="tab-3" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
       </ul>
@@ -57,7 +57,7 @@
   <div id="user-content-container">
 
     <div id="user-uploads-container" class="tab-content tc-tab-1 current">
-      <%= render 'images/show_stub' %>
+      <%= render 'images/show_stub', images: @uploads %>
     </div>
 
     <div id="user-creations-container" class="tab-content tc-tab-2">

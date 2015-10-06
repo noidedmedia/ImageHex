@@ -10,11 +10,11 @@ class UsersController < ApplicationController
   # 
   # Sets the following variables:
   # @user:: The user we're viewing.
-  # @images:: Images the user has uploaded.
+  # @uploads:: Images the user has uploaded.
   # @collections:: Collections the user curates.
   def show
     @user = User.friendly.find(params[:id])
-    @images = @user.images
+    @uploads = @user.images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
     @collections = @user.collections
