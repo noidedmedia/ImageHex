@@ -33,11 +33,11 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar,
     styles: {
-    original: "500x500>",
-    medium: "300x300>",
-    small: "200x200>",
-    tiny: "100x100>"
-  },
+      original: "500x500>#",
+      medium: "300x300>#",
+      small: "200x200>#",
+      tiny: "100x100>#"
+    },
     path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension")
 
 
