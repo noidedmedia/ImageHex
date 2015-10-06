@@ -48,7 +48,7 @@
       <ul id="user-page-header-tabs">
         <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @uploads.count) %>
         <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations") %>
-        <li data-tab="tab-3" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
+        <li data-tab="tab-3" class="user-page-header-tab"><%= t(".collections", count: @collections.subjective.count) %>
       </ul>
 
   </div>
@@ -65,7 +65,7 @@
     </div>
 
     <div id="user-collections-container" class="tab-content tc-tab-3">
-      <% @collections.each do |c| %>
+      <% @collections.subjective.each do |c| %>
         <%= render "collection_stub", c: c %>
       <% end %>
     </div>
