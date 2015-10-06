@@ -47,12 +47,11 @@ class Tag < ActiveRecord::Base
     if self.display_name.downcase != self.name.downcase then
       errors.add(:display_name, "must_change_case_only")
     end
+  end
   ##
   # Callback which formats the name.
   def fix_name
     self.display_name ||= self.name.strip.squish
     self.name = self.name.strip.squish.downcase
   end
-
-
 end
