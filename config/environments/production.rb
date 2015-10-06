@@ -16,7 +16,7 @@ Rails.application.configure do
 
     },
     # prevents a permanent redirect error on images:
-    url: ":s3_domain_url"
+    url: "http://i.imagehex.com"
   }
   # Settings specified here will take precedence over those in config/application.rb.
   #
