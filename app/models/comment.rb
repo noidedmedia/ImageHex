@@ -44,10 +44,6 @@ class Comment < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-  def html_body
-    @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true))
-    @@redcarpet.render(body).html_safe
-  end
   protected
 
   ##
@@ -56,7 +52,7 @@ class Comment < ActiveRecord::Base
   def notify_image
     if commentable.class == Image && commentable.replies_to_inbox
       n = Notification.create(user: commentable.user,
-                              subject: subject,
+                              subject: self,
                               kind: :uploaded_image_commented_on)
       n.save
     end
