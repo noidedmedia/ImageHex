@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     small: "200x200>",
     tiny: "100x100>"
   },
-    path: ($AVATAR_PATH ? $AVATAR_PATH : "/avatars/:id_:style.:extension")
+    path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension")
 
 
   validates_attachment_content_type :avatar, 
