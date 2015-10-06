@@ -9,31 +9,23 @@ class UserPage < ActiveRecord::Base
   # VALIDATIONS #
   ###############
   validates :user, presence: true
-  before_create :set_default_elsewhere
-  validate :elsewhere_is_valid
-
-  def set_default_elsewhere
-    self.elsewhere = []
-  end
-
-  def elsewhere_is_valid
-    unless elsewhere.is_a? Array
-      errors.add(:elsewhere, "must be an array")
-      return
-    end
-    elsewhere.each do |e|
-      unless e =~ /\A#{URI::regexp(['http', 'https'])}\z/
-        errors.add(:elsewhere, "must be full of valid URIs")
-      end
-      unless ALLOWED_ELSEWHERE.include URI.parse(e).host 
-        errors.add(:elsewhere, "a link is not suppored")
-      end
+  validate :elsewhere_has_valid_keys
+  def elsewhere_has_valid_keys
+    errors.add(:elsewhere, "must be a has") unless self.elsewhere.is_a? Hash
+    unless elsewhere.keys - ALLOWED_ELSEWHERE_KEYS == []
+      errors.add(:elsewhere, "Elsewhere has weird data")
     end
   end
 
-  ALLOWED_ELSEWHERE = ["twitter.com",
-    "tumblr.com",
-    "facebook.com",
-    "deviantart.com"]
+  ##
+  # Allowed keys for Elsewhere
+  #
+  ALLOWED_ELSEWHERE_KEYS = [
+    "tumblr",
+    "facebook",
+    "twitter",
+    "deviantart",
+    "personal_website"
+  ]
 
 end
