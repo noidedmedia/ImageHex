@@ -9,10 +9,6 @@ class NotificationsController < ApplicationController
   # Obtain a list of all notifications for the current_user
   def index
     @notifications = current_user.notifications
-    respond_to do |format|
-      format.html
-      format.json { render json: @notifications }
-    end
 
   end
 
