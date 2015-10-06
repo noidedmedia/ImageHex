@@ -18,7 +18,7 @@
         <%# User bio %>
         <% if !@user.user_page.blank? %>
           <div class="user-page-bio">
-            <%= markdown_parse @user.user_page %>
+            <%= markdown_parse @user.user_page.body %>
           </div>
 
         <% elsif current_user == @user %>
