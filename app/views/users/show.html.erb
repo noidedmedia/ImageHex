@@ -16,7 +16,7 @@
         <%# User's website goes here. %>
 
         <%# User bio %>
-        <% unless @user.user_page.blank? %>
+        <% if !@user.user_page.blank? %>
           <div class="user-page-bio">
             <%= markdown_parse @user.user_page %>
           </div>
