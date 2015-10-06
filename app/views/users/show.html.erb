@@ -16,9 +16,9 @@
         <%# User's website goes here. %>
 
         <%# User bio %>
-        <% if @user.user_page.display != "" %>
+        <% unless @user.user_page.blank? %>
           <div class="user-page-bio">
-            <%= @user.user_page.display.html_safe %>
+            <%= markdown_parse @user.user_page %>
           </div>
 
         <% elsif current_user == @user %>

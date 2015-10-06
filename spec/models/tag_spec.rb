@@ -27,9 +27,15 @@ describe Tag do
     end
   end
   describe "display names" do
-    it "keeps capitalization" do
-      name = "CAPitalizatAtion"
-      expect(FactoryGirl.create(:tag, name: name).display_name).to eq(name)
+    it "must change in case only" do
+      t = FactoryGirl.create(:tag, name: "yo")
+      t.display_name = "This is not right"
+      expect(t).to_not be_valid
+    end
+    it "allows changes in case" do
+      t = FactoryGirl.create(:tag, name: "yo")
+      t.display_name = "YO"
+      expect(t).to be_valid
     end
   end
   it{should have_many(:tag_groups).through(:tag_group_members)}

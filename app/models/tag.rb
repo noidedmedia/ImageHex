@@ -44,6 +44,7 @@ class Tag < ActiveRecord::Base
   private
 
   def name_and_display_name_equality
+    self.display_name ||= self.name.downcase 
     if self.display_name.downcase != self.name.downcase then
       errors.add(:display_name, "must_change_case_only")
     end
