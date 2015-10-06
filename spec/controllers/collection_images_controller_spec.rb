@@ -8,7 +8,7 @@ RSpec.describe CollectionImagesController, type: :controller do
   context "when logged in as a collection admin" do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      @user.confirm!
+      @user.confirm
       sign_in @user
     end
     let(:curatorship){FactoryGirl.create(:curatorship,

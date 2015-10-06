@@ -14,13 +14,15 @@ class Tag < ActiveRecord::Base
   before_save :fix_name
   ##
   # SCOPES
-  scope :alphabetic, ->{ order('ASCII(display_name) ASC') }
+  scope :by_importance, ->{ order(:importance) }
   ##
   # ASSOCIATIONS:
   has_many :tag_group_members
   has_many :tag_groups, through: :tag_group_members
   has_many :images, through: :tag_groups
   validates :name, uniqueness: {case_sensative: false}
+  validates :importance, inclusion: {in: (0..1)}
+  validate :name_and_display_name_equality
   ##
   # Suggest tags beginning with a string.
   # Tags are returned alphabetically.
@@ -38,15 +40,19 @@ class Tag < ActiveRecord::Base
     find_by_sql([query, finder]).map(&:name)
   end
   
-  
 
   private
+
+  def name_and_display_name_equality
+    self.display_name ||= self.name.downcase 
+    if self.display_name.downcase != self.name.downcase then
+      errors.add(:display_name, "must_change_case_only")
+    end
+  end
   ##
   # Callback which formats the name.
   def fix_name
     self.display_name ||= self.name.strip.squish
     self.name = self.name.strip.squish.downcase
   end
-
-
 end

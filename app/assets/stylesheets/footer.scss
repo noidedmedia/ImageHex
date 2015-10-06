@@ -66,28 +66,16 @@
   }
 }
 
-/* "ImageHex" text in the description column. */
-.footer-description-title {
-  color: $emph-text;
-  display: block;
-  font-size: 1.4rem;
-  font-weight: 500;
-  padding-bottom: 5px;
-
-  @media all and (max-device-width: $mobile-width) {
-    font-size: 1.6rem;
-  }
-}
-
 /* Body text in the description column. */
 .footer-description-body {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 400;
+  line-height: 1.5;
   padding-bottom: 10px;
 
   @media all and (max-device-width: $mobile-width) {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -96,23 +84,27 @@
   color: $emph-text;
   display: block;
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 400;
 
   @media all and (max-device-width: $mobile-width) {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 }
 
 /* Second and third columns in the footer, contain links to various sections. */
 .footer-links-column {
   height: 100%;
-  padding: 0 40px;
-  width: 25%;
+  padding: 0 50px;
+  width: auto;
 
   @media all and (max-device-width: $mobile-width) {
     height: auto;
     width: 100vw;
     padding: 0 25px;
+  }
+
+  @media all and (min-device-width: $mobile-width) {
+    margin-top: 20px;
   }
 }
 
@@ -125,16 +117,26 @@
 
   /* Styling for each respective list item. */
   li {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 400;
-    padding: 4px 0;
+    padding: 6px 0;
+  }
 
-    /* Special styling for the first list item in each list, as the first item is the list's "title" and should be emphasized. */
-    &:first-of-type {
-      color: $emph-text;
-      font-size: 1.3rem;
-      font-weight: 500;
-      padding: 0 0 4px;
+  // Only use columns on desktop.
+  @media all and (min-device-width: $mobile-width) {
+    display: inherit;
+    -webkit-columns: 100px 2;
+       -moz-columns: 100px 2;
+            columns: 100px 2;
+    -webkit-column-gap: 20px;
+       -moz-column-gap: 20px;
+            column-gap: 20px;
+    -webkit-column-fill: balance;
+       -moz-column-fill: balance;
+            column-fill: balance;
+
+    li {
+      -webkit-column-break-inside: avoid;
     }
   }
 
@@ -142,12 +144,8 @@
     padding-top: 25px;
 
     li {
-      font-size: 1.4rem;
-      padding: 8px 0;
-
-      &:first-of-type {
-        font-size: 1.5rem;
-      }
+      font-size: 1.6rem;
+      padding: 12px 0;
     }
   }
 }

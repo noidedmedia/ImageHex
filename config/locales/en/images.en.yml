@@ -17,6 +17,8 @@ en:
       submit: "Submit"
     show:
       image_page_title: "Image #%{id}"
+    index:
+      browse_images: "Browse images"
     image_page_sidebar:
       download: "Download"
       download_license_notice: "This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way."
@@ -54,7 +56,7 @@ en:
       flash: "Flash"
       view_edit_history: "View edit history"
     image_page_information:
-      new_tag_group: "New Tag Group"
+      new_tag_group: "New tag group"
       uploaded_by: "Uploaded by"
       add_a_comment: "Add a comment..."
       cancel: "Cancel"

@@ -16,9 +16,9 @@
         <%# User's website goes here. %>
 
         <%# User bio %>
-        <% if @user.user_page.display != "" %>
+        <% if !@user.user_page.blank? %>
           <div class="user-page-bio">
-            <%= @user.user_page.display.html_safe %>
+            <%= markdown_parse @user.user_page.body %>
           </div>
 
         <% elsif current_user == @user %>
@@ -27,9 +27,7 @@
           </div>
         <% end %>
 
-        <div class="user-page-website"><a href="//www.google.com">google.com</a></div>
-
-        <div class="user-page-location">Denver, Colorado</div>
+        <div class="user-page-website"></div>
 
         <%# Only show "edit" button if the page belongs to the current user. %>
         <% if current_user == @user %>
@@ -48,9 +46,9 @@
     </div>
 
       <ul id="user-page-header-tabs">
-        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads") %>
-        <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations") %>
-        <li data-tab="tab-3" class="user-page-header-tab"><%= t(".collections") %>
+        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @uploads.count) %>
+        <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations", count: @creations.count) %>
+        <li data-tab="tab-3" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
       </ul>
 
   </div>
@@ -59,16 +57,26 @@
   <div id="user-content-container">
 
     <div id="user-uploads-container" class="tab-content tc-tab-1 current">
-      <%= render 'images/show_stub' %>
+      <%= render 'images/show_stub', images: @uploads %>
     </div>
 
     <div id="user-creations-container" class="tab-content tc-tab-2">
-      <!-- Creations go here -->
+      <%= render 'images/show_stub', images: @creations %>
     </div>
 
     <div id="user-collections-container" class="tab-content tc-tab-3">
-      <% @collections.each do |c| %>
-        <%= render "collection_stub", c: c %>
+      <% if !@collections.empty? %>
+        <% @collections.each do |c| %>
+          <%= render "collection_stub", c: c %>
+        <% end %>
+      <% elsif @user == current_user %>
+        <p class="imagehex-empty-note">
+          <%= t(".you_dont_have_any_collections_yet") %>
+        </p>
+      <% else %>
+        <p class="imagehex-empty-note">
+          <%= t(".this_user_doesnt_have_any_collections_yet") %>
+        </p>
       <% end %>
     </div>
   

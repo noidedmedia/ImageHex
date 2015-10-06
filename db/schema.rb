@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917030432) do
+ActiveRecord::Schema.define(version: 20151006035026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,15 +167,16 @@ ActiveRecord::Schema.define(version: 20150917030432) do
     t.string   "display_name"
     t.text     "description"
     t.string   "slug"
+    t.integer  "importance",               default: 1, null: false
   end
 
   add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
   create_table "user_pages", force: :cascade do |t|
     t.integer  "user_id"
-    t.jsonb    "elsewhere"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.jsonb    "elsewhere",  default: {}, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.text     "body"
   end
 

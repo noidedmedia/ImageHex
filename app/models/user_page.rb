@@ -9,10 +9,23 @@ class UserPage < ActiveRecord::Base
   # VALIDATIONS #
   ###############
   validates :user, presence: true
-  ##
-  # The HTML-safe string to display
-  def display
-    @@redcarpet ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true))
-    @@redcarpet.render(body)
+  validate :elsewhere_has_valid_keys
+  def elsewhere_has_valid_keys
+    errors.add(:elsewhere, "must be a has") unless self.elsewhere.is_a? Hash
+    unless elsewhere.keys - ALLOWED_ELSEWHERE_KEYS == []
+      errors.add(:elsewhere, "Elsewhere has weird data")
+    end
   end
+
+  ##
+  # Allowed keys for Elsewhere
+  #
+  ALLOWED_ELSEWHERE_KEYS = [
+    "tumblr",
+    "facebook",
+    "twitter",
+    "deviantart",
+    "personal_website"
+  ]
+
 end

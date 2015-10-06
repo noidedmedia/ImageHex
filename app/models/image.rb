@@ -50,8 +50,7 @@ class Image < ActiveRecord::Base
       large: "500x500>",
       huge: "1000x1000>"},
     # Use suffixes for the path
-    
-      path: ($IMAGE_PATH ? $IMAGE_PATH : "public/system/fs/:class/:id_:style.:extension")
+      path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
   belongs_to :user
 
   before_post_process :downcase_extension
@@ -122,6 +121,8 @@ class Image < ActiveRecord::Base
   end
   
   def self.search(q)
+    # return nothing unless we have a query
+    return where("1 = 0") unless q
     q.map! do |x| 
       x.downcase.split(",").map! do |y|
         y.strip.squish

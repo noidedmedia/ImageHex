@@ -18,8 +18,11 @@
 .generic-tag-group {
   width: 100%;
   max-width: 600px;
-  display: block;
-  margin-bottom: 15px;
+  display: inline-block;
+  margin-bottom: 20px;
+  // Box-shadow cut off by columns bug in Blink/WebKit.
+  // This fixes it.
+  margin-right: 10px;
   background-color: #fff;
   border-radius: 2px;
   border-top-left-radius: 0;
@@ -44,6 +47,9 @@
 }
 
 .generic-tag-list {
+  display: inline-block;
+  width: 100%;
+
   > li {
     &:first-of-type {
       font-size: 1.8rem;

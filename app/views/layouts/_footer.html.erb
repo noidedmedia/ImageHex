@@ -8,25 +8,20 @@
       <p class="footer-description-copyright"><%= t(".imagehex_copyright") %>
     </div>
 
-    <%# "Company" footer column %>
+    <%# Footer columns %>
     <div class="footer-links-column">
       <ul class="footer-links-list">
-        <li><%= t(".company") %>
         <li><%= link_to t(".about"), about_path %>
         <li><%= link_to t(".people"), people_path %>
         <li><%= link_to t(".contact"), contact_path %>
-      </ul>
-    </div>
-    
-    <%# "Community" footer column %>
-    <div class="footer-links-column">
-      <ul class="footer-links-list">
-        <li><%= t(".community") %>
-        <li><a href="https://medium.com/imagehex-development-blog"><%= t(".blog") %></a>
+        <li><%= link_to t(".faq"), faq_path %>
+        <li><%= link_to t(".rules"), rules_path %>
         <li><a href="/help"><%= t(".help") %></a>
         <li><a href="/press"><%= t(".press") %></a>
-        <!-- <li><a href="/status"><%= t(".status") %></a> -->
-        <!-- <li><a href="/api"><%= t(".api") %></a> -->
+        <!-- <li><%# link_to t(".status"), status_path %> -->
+        <!-- <li><%# link_to t(".api"), api_path %> -->
+        <!-- <li><%# link_to t(".terms"), terms_path %> -->
+        <!-- <li><%# link_to t(".privacy"), privacy_path %> -->
       </ul>
     </div>
   </div>
