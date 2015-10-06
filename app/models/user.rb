@@ -31,12 +31,26 @@ class User < ActiveRecord::Base
   # Accept nested attributes for the page
   accepts_nested_attributes_for :user_page, update_only: true
 
-  ##
-  # ID of the avatar is in avatar_id.
-  belongs_to :avatar, class_name: "Image"
-  ##
-  # Join table: users -> collections
-  has_many :subscriptions
+  has_attached_file :avatar,
+    styles: {
+      original: "500x500>#",
+      medium: "300x300>#",
+      small: "200x200>#",
+      tiny: "100x100>#"
+    },
+    path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension")
+
+
+  validates_attachment_content_type :avatar, 
+    content_type: /\Aimage\/.*\Z/
+
+  validates_with AttachmentSizeValidator, 
+    attributes: :avatar,
+    less_than: 2.megabytes
+
+    ##
+    # Join table: users -> collections
+    has_many :subscriptions
   has_many :comments
   has_many :subscribed_collections,
     through: :subscriptions,
@@ -90,13 +104,13 @@ class User < ActiveRecord::Base
   ##
   # Quickly get a user avatar, pre-resized
   def avatar_img
-    avatar.f(:medium)
+    avatar.url(:medium)
   end
 
   ##
   # Get a user's avatar thumbnail, pre-resized
   def avatar_img_thumb
-    avatar.f(:small)
+    avatar.url(:tiny)
   end
 
   ##

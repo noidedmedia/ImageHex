@@ -3,8 +3,7 @@
   <%= form_for @user do |f| %>
 
     <div class="field-container">
-      <%= f.label :avatar_id, t(".profile_picture_image_id"), class: "label input-empty", for: "user-profile-picture-field" %>
-      <%= f.number_field :avatar_id, id: "user-profile-picture-field", class: "input" %>
+      <%= f.file_field :avatar %>
     </div>
 
     <div class="field-container">

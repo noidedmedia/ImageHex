@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006035026) do
+ActiveRecord::Schema.define(version: 20151006205509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20151006035026) do
     t.boolean  "nsfw_nudity",                  default: false, null: false
     t.boolean  "nsfw_gore",                    default: false, null: false
     t.boolean  "nsfw_sexuality",               default: false, null: false
+    t.integer  "f_file_size"
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
@@ -203,10 +204,13 @@ ActiveRecord::Schema.define(version: 20151006035026) do
     t.string   "unconfirmed_email",      limit: 255
     t.integer  "role",                               default: 0
     t.string   "slug"
-    t.integer  "avatar_id"
     t.string   "provider"
     t.string   "uid"
     t.jsonb    "content_pref",                       default: {}, null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -227,5 +231,4 @@ ActiveRecord::Schema.define(version: 20151006035026) do
   add_foreign_key "tag_group_changes", "users", on_delete: :nullify
   add_foreign_key "tag_groups", "images", on_delete: :cascade
   add_foreign_key "user_pages", "users"
-  add_foreign_key "users", "images", column: "avatar_id", on_delete: :nullify
 end
