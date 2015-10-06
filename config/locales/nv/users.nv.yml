@@ -3,9 +3,9 @@
 nv:
   users:
     show:
-      uploads: "Images which this user has added to out database"
-      creations: "Images which this user has caused to come into existance, by photographing or otherwise creating them"
-      collections: "The collections owned or administered by this user"
+      uploads: "Images which this user has added to out database (%{count})"
+      creations: "Images which this user has caused to come into existance, by photographing or otherwise creating them (%{count})"
+      collections: "The collections owned or administered by this user (%{count})"
       user_page_bio_empty: "You haven't filled out your autobiographical text yet."
       edit: "(modify)"
     edit:

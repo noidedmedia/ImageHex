@@ -1,14 +1,10 @@
-<div id="image-show-stub" data-page="<%= @images.try(:current_page) %>">
+<div id="image-show-stub" data-page="<%= images.try(:current_page) %>">
   <div id="image-gallery">
-    <% if @images %>
-      <% @images.each_with_index do |img, i| %>
+    <% if images %>
+      <% images.each_with_index do |img, i| %>
         <%= link_to image_tag(img.f :medium), image_path(img), {class: "image-list-member"} %>
       <% end %> 
     <% end %>
   </div>
-  <%# There's a bug in a Jquery library we use that requires this monster %>
-  <%# sadly it MUST be done in the body or everything breaks. %>
-  <script>
-  </script>
-  <%= will_paginate @images if @images && !@images.empty? %>
+  <%= will_paginate images if images && !images.empty? %>
 </div>

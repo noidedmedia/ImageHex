@@ -4,10 +4,12 @@ en:
   users:
     show:
       uploads: "Uploads (%{count})"
-      creations: "Creations"
+      creations: "Creations (%{count})"
       collections: "Collections (%{count})"
       user_page_bio_empty: "You haven't filled out a bio yet."
       edit: "(edit)"
+      this_user_doesnt_have_any_collections_yet: "This user doesn't have any collections yet."
+      you_dont_have_any_collections_yet: "You don't have any collections yet."
     edit:
       edit_page_title: "Settings"
       profile_picture_image_id: "Profile Picture Image ID"
