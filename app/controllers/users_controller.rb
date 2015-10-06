@@ -64,7 +64,7 @@ class UsersController < ApplicationController
     params
     .require(:user)
     .permit(:page_pref,
-             :avatar_id,
+             :avatar,
              user_page_attributes: [:body],
              content_pref: [:nsfw_language,
                             :nsfw_gore,
