@@ -17,7 +17,10 @@ class UsersController < ApplicationController
     @uploads = @user.images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
-    @collections = @user.collections
+    @creations = @user.collections.where(type: "Creation").first.images
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
+    @collections = @user.collections.subjective
   end
 
   ##
