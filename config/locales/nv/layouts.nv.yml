@@ -10,6 +10,7 @@ nv:
       home: "Page at the root of the URL"
       search: "Page where you can find many images"
       search_suggestions_note: "Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags"
+      browse: "Browse website for new content"
       sign_in: "Verify your identity"
       create_an_account: "Create an identity for yourself"
       upload: "Upload a new image on ImageHex"
@@ -31,3 +32,5 @@ nv:
       press: "Entities reporting information for the public good"
       status: "State of the website"
       api: "Application Programming Interface"
+      terms: "Terms"
+      privacy: "Privacy"
