@@ -11,8 +11,13 @@ nv:
     edit:
       edit_page_title: "Settings"
       profile_picture_image_id: "Profile Picture Image Identification Number"
-      user_bio: "Text, parsed with markdown, that will be associated with your identity as your biography"
-      images_per_page: "Numer of images which ImageHex should display on a page"
+      user_bio: "Text, parsed with Markdown, that will be associated with your identity as your biography"
+      images_per_page: "Number of images which ImageHex should display on a page"
+      show_content_labeled_as: "Show content labeled as:"
+      nsfw_sexuality: "NSFW Sexuality"
+      nsfw_gore: "NSFW Gore"
+      nsfw_language: "NSFW Language"
+      nsfw_nudity: "NSFW Nudity"
       save_changes: "Save changes"
     collection_stub:
       curated_by: "Curated by"

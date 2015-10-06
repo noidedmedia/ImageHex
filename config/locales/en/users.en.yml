@@ -13,6 +13,7 @@ en:
       profile_picture_image_id: "Profile Picture Image ID"
       user_bio: "User bio"
       images_per_page: "Images per page"
+      show_content_labeled_as: "Show content labeled as:"
       nsfw_sexuality: "NSFW Sexuality"
       nsfw_gore: "NSFW Gore"
       nsfw_language: "NSFW Language"
