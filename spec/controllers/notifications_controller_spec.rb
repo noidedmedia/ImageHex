@@ -5,7 +5,7 @@ RSpec.describe NotificationsController, type: :controller do
   context "when logged in" do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      @user.confirm!
+      @user.confirm
       sign_in @user
     end
     describe "post #mark_all_read" do

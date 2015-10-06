@@ -5,7 +5,7 @@ describe Admin::ImagesController do
   context "as admin" do
     before(:each) do
       @user = FactoryGirl.create(:user, role: :admin)
-      @user.confirm!
+      @user.confirm
       sign_in @user
     end
     describe "get #index" do

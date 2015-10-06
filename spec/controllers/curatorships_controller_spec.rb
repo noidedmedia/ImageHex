@@ -5,7 +5,7 @@ RSpec.describe CuratorshipsController, type: :controller do
   context "when logged in" do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      @user.confirm!
+      @user.confirm
       sign_in @user
     end
     let(:collection){FactoryGirl.create(:collection)}
