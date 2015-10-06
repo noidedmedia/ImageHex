@@ -3,9 +3,9 @@
 en:
   users:
     show:
-      uploads: "Uploads"
+      uploads: "Uploads (%{count})"
       creations: "Creations"
-      collections: "Collections"
+      collections: "Collections (%{count})"
       user_page_bio_empty: "You haven't filled out a bio yet."
       edit: "(edit)"
     edit:
