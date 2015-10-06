@@ -5,6 +5,6 @@
   <%= markdown_parse @tag.description %>
 </div>
 
-<%= link_to "edit", edit_tag_path(@tag) %>
+<%= link_to t(".edit"), edit_tag_path(@tag) %>
 
 <%= render 'images/show_stub' %>
