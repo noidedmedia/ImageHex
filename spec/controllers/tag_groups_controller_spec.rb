@@ -6,7 +6,7 @@ describe TagGroupsController do
     let(:image){FactoryGirl.create(:image)}
     before(:each) do
       @user = FactoryGirl.create(:user)
-      @user.confirm!
+      @user.confirm
       sign_in @user
     end
     describe "put #update" do

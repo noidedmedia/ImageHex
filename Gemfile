@@ -161,6 +161,7 @@ end
 group :test do
   # Continue to make tests good
   gem 'shoulda-matchers'
+  
   # See how much coverage our tests have
   gem 'simplecov', '~> 0.9.0'
 end

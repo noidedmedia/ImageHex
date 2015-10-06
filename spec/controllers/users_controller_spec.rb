@@ -5,7 +5,7 @@ RSpec.describe UsersController, :type => :controller do
   context "when logged in" do
     before(:each) do
       @user = FactoryGirl.create(:user)
-      @user.confirm!
+      @user.confirm
       sign_in @user
     end
     describe "get #edit" do

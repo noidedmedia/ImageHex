@@ -44,6 +44,18 @@
   }
 }
 
+#image-page-information {
+  -webkit-columns: 450px auto;
+  -moz-columns: 450px auto;
+       columns: 450px auto;
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  column-gap: 20px;
+  -webkit-column-fill: balance;
+     -moz-column-fill: balance;
+          column-fill: balance;
+}
+
 
 /* ==============================================
     Image page toolbar
@@ -108,7 +120,7 @@
 #new-group {
   width: 100%;
   max-width: 600px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
@@ -172,7 +184,7 @@
   top: 38px;
   max-width: 400px;
   width: auto;
-  @include translateX(-50%);
+  @include translateX(-90%);
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 
   &:before, &:after {
@@ -180,7 +192,7 @@
     width: 0;
     height: 0;
     position: absolute;
-    left: calc(50% - 25px);
+    left: calc(90% - 25px);
     border-width: 0 10px 10px;
     border-style: solid;
   }
