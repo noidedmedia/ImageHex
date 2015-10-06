@@ -21,6 +21,8 @@
     </div>
 
     <div class="field-container">
+      <p><%= t(".show_content_labeled_as") %></p>
+
       <%= f.fields_for :content_pref, OpenStruct.new(@user.content_pref) do |fc| %>
         <div class="checkbox-container">
           <%= fc.check_box :nsfw_gore %>

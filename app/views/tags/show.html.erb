@@ -1,5 +1,10 @@
-<h1><%= @tag.display_name %></h1>
-<div class="tag-description"><%= markdown_parse @tag.description %></div>
-<%= link_to "edit", edit_tag_path(@tag) %>
-<%= render 'images/show_stub' %>
+<%- title @tag.display_name %>
 
+<h1><%= @tag.display_name %></h1>
+<div class="tag-description">
+  <%= markdown_parse @tag.description %>
+</div>
+
+<%= link_to t(".edit"), edit_tag_path(@tag) %>
+
+<%= render 'images/show_stub' %>

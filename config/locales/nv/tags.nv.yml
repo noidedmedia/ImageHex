@@ -1,0 +1,11 @@
+# Tags strings.
+
+nv:
+  tags:
+    show:
+      edit: "Edit"
+    edit:
+      editing_tag: "Editing %{tag}"
+      display_name: "Display name"
+      description: "Description"
+      save_changes: "Save changes"
