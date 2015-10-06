@@ -100,19 +100,17 @@ Rails.application.routes.draw do
 
   root to: "frontpage#index"
 
-  get '/about', to: "static_stuff#about"
-  get '/rules', to: "static_stuff#rules"
+  get 'about', to: "static_stuff#about"
+  get 'people', to: "static_stuff#people"
+  get 'contact', to: "static_stuff#contact"
+  get 'rules', to: "static_stuff#rules"
+  get 'faq', to: "static_stuff#faq"
+  get 'help', to: "static_stuff#help"
+  get 'press', to: "static_stuff#press"
 
-  get '/people', to: "static_stuff#people"
+  get 'settings', to: 'users#edit'
+  post 'settings', to: 'users#update'
 
-  get '/contact', to: "static_stuff#contact"
-
-  get '/faq', to: "static_stuff#faq"
-
-  get '/settings', to: 'users#edit'
-
-  post '/settings', to: 'users#update'
-
-  get '/search', to: "images#search"
+  get 'search', to: "images#search"
   
 end
