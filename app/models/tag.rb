@@ -14,13 +14,14 @@ class Tag < ActiveRecord::Base
   before_save :fix_name
   ##
   # SCOPES
-  scope :alphabetic, ->{ order('ASCII(display_name) ASC') }
+  scope :by_importance, ->{ order(:importance) }
   ##
   # ASSOCIATIONS:
   has_many :tag_group_members
   has_many :tag_groups, through: :tag_group_members
   has_many :images, through: :tag_groups
   validates :name, uniqueness: {case_sensative: false}
+  validates :importance, inclusion: {in: (0..1)}
   ##
   # Suggest tags beginning with a string.
   # Tags are returned alphabetically.
@@ -37,7 +38,6 @@ class Tag < ActiveRecord::Base
     finder = "#{n.gsub("%","").downcase.strip.squish}%"
     find_by_sql([query, finder]).map(&:name)
   end
-  
   
 
   private

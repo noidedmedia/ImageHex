@@ -32,17 +32,6 @@ describe Tag do
       expect(FactoryGirl.create(:tag, name: name).display_name).to eq(name)
     end
   end
-  describe ".alphabetic" do
-    it "should select alphabetically" do
-      alpha = [FactoryGirl.create(:tag, name: "a"),
-               FactoryGirl.create(:tag, name: "b"),
-               FactoryGirl.create(:tag, name: "c")]
-      expect(Tag.all.alphabetic).to eq(alpha)
-      FactoryGirl.create(:tag, name: "aa")
-      expect(Tag.all.alphabetic).to eq(Tag.all.sort_by{|x| x.display_name})
-
-    end 
-  end
   it{should have_many(:tag_groups).through(:tag_group_members)}
   it{should have_many(:tag_group_members)}
 end

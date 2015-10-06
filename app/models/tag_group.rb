@@ -14,7 +14,7 @@
 # with the tags on ImageHex. If a tag in the list is non-existent on
 # saving the tag_group, it will be formated properly and created. Neat, huh?
 class TagGroup < ActiveRecord::Base
-  scope :for_display, ->{joins(:tags).includes(:tags).order("ASCII(tags.display_name) ASC")}
+  scope :for_display, ->{joins(:tags).includes(:tags).order("tags.importance ASC")}
   #################
   # RELATIONSHIPS #
   #################
