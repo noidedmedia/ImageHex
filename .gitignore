@@ -28,3 +28,5 @@ git_stats/
 /coverage/
 
 /spec/test_files/images/*
+
+.fontcustom-manifest.json
