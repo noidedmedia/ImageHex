@@ -113,6 +113,7 @@ class Image < ActiveRecord::Base
   end
 
   def self.with_all_tags(tags)
+    tags.reject!(&:blank?) # reject blank tags
     subquery = joins(tag_groups: {tag_group_members: :tag})
       .where(tags: {name: tags})
       .group("images.id")
@@ -128,6 +129,7 @@ class Image < ActiveRecord::Base
         y.strip.squish
       end
     end.inject(all) do |mem, obj|
+      mem if obj.blank?
       mem.with_all_tags(obj)
     end
   end
