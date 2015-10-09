@@ -57,3 +57,15 @@ Note: Replace `apt-get install` with your distro's equivalent package manager, t
 8. Run `rake db:setup` to set up the Postgres development server.
 9. If everything has gone right so far, you'll be able to start up a Rails server with `rails s`!
 10. Get working!
+
+
+### How do I generate the icon font after adding a new icon?
+
+Icon font auto-generation technique courtesy of Scott Nelson's post [here](http://thisbythem.com/blog/rails-custom-font-icons/).
+
+1. Assuming you have Homebrew installed on OS X, run `brew install fontforge ttfautohint` from the terminal.
+  * If you want to install the prerequisites to FontCustom using other means, you can see the installation instructions in the [FontCustom README](https://github.com/FontCustom/fontcustom/#installation).
+2. Add icons as `.svg` files to `app/assets/icons`.
+3. From the terminal, in the base ImageHex directory, run `rake icons:compile`.
+4. The new icon font should be generated and immediately useable, you can add the new icon to the site by using the auto-generated CSS classes. For example, if we take an SVG named `heart.svg`, the css class will be `icon-heart`.
+
