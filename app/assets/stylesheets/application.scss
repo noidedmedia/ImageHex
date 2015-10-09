@@ -23,18 +23,9 @@
   box-sizing: border-box;
 }
 
-/* Defines the icon font. */
-@font-face {
-  font-family: 'imagehexiconfont';
-  src: font-url('imagehexiconfont.eot');
-  src: font-url('imagehexiconfont.ttf') format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 /* Styles applicable to all pages. */
 html, body {
-  font: 400 10px 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
+  font: 400 10px $font-stack;
   background-color: #f0f0f0;
   margin: 0;
   overflow-x: hidden;
@@ -115,12 +106,12 @@ input[type="email"] {
 
 input,
 textarea {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
+  font-family: $font-stack;
 }
 
 /* Fix for WebKit input text style. */
 input, textarea, keygen, select, button {
-  font: 400 inherit 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexiconfont';
+  font: 400 inherit $font-stack;
 }
 
 // Fix Firefox's ugly default select styling.
