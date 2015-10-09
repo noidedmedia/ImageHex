@@ -4,10 +4,26 @@
   width: 150px;
   height: 150px;
   overflow: hidden;
+  position: relative;
+  margin-bottom: 10px;
 
   img {
     object-fit: cover;
     width: 150px;
     height: 150px;
+    pointer-events: none;
   }
+}
+
+#avatar-uploader {
+  position: absolute;
+  // Compensate for the 25px padding in the field-container element.
+  top: 25px;
+  left: 0;
+  display: inline;
+  width: 2px;
+  height: 2px;
+  padding: 75px;
+  opacity: 0;
+  cursor: pointer;
 }
