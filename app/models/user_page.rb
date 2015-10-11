@@ -10,6 +10,7 @@ class UserPage < ActiveRecord::Base
   ###############
   validates :user, presence: true
   validate :elsewhere_has_valid_keys
+
   def elsewhere_has_valid_keys
     unless self.elsewhere.is_a? Hash
       errors.add(:elsewhere, "must be a has") and return
@@ -21,7 +22,7 @@ class UserPage < ActiveRecord::Base
 
   ##
   # Allowed keys for Elsewhere
-  #
+  # 
   ALLOWED_ELSEWHERE_KEYS = [
     "tumblr",
     "facebook",
