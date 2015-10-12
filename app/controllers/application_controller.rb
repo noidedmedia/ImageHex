@@ -2,11 +2,6 @@
 # The root application controller for Imagehex.
 # Any functionality we have to access from all controllers goes here.
 class ApplicationController < ActionController::Base
-  
-  def unauthorized
-    flash[:error] = I18n.t(".notices.youre_not_allowed_to_do_that")
-    redirect_to (request.referer || root_path)
-  end
   # Adds different "flash[:type]" types.
   add_flash_types :warning, :info
   before_action :set_locale
@@ -14,6 +9,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  
+  def unauthorized
+    respond_to do |format|
+      format.html { redirect_to (request.referer || root_path), warning: I18n.t(".notices.youre_not_allowed_to_do_that") }
+    end
+  end
   
   protected
 
