@@ -20,8 +20,8 @@ class CollectionImagesController < ApplicationController
     authorize c
     if c.save
       respond_to do |format|
-        format.html{redirect_to(request.referrer || root_path)}
-        format.json{render json: {successful: true}}
+        format.html { redirect_to(request.referrer || root_path) }
+        format.json { render json: { successful: true } }
       end
     else
       flash[:warning] = c.errors.full_messages

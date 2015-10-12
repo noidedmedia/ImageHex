@@ -9,7 +9,8 @@ class FrontpageController < ApplicationController
   def index
     if current_user
       puts current_user.image_feed.class
-      @images = current_user.image_feed.paginate(page: page, per_page: per_page)
+      @images = current_user.image_feed
+        .paginate(page: page, per_page: per_page)
       render "index_with_user"
     else
       @images = Image

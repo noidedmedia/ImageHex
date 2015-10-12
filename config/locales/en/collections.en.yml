@@ -8,7 +8,7 @@ en:
       following: "Following"
       unfollow: "Unfollow"
     new:
-      new_collection_page_title: "New Collection"
+      new_collection_page_title: "New collection"
       title: "Title"
       description: "Description"
-      create_collection: "Create Collection"
+      create_collection: "Create collection"

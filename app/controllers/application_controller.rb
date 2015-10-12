@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   
   def unauthorized
-    flash[:error] = "You aren't allowed to do that"
+    flash[:error] = I18n.t(".notices.youre_not_allowed_to_do_that")
     redirect_to (request.referer || root_path)
   end
   # Adds different "flash[:type]" types.
@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  
   protected
+
   ##
   # Ensure that a user is logged in.
   # If one is not, redirect to a page where they can do that.
@@ -54,7 +56,7 @@ class ApplicationController < ActionController::Base
   # Add a query string for the Locale if needed. 
   def default_url_options(options = {})
     return options if I18n.locale == I18n.default_locale
-    { locale: I18n.locale}.merge options
+    { locale: I18n.locale }.merge options
   end
   ##
   # Allow devise to add a user's name on creation.
@@ -65,9 +67,11 @@ class ApplicationController < ActionController::Base
   DEFAULT_CONTENT = {
     "nsfw_language" => true
   }
+
   def content_pref
     return (params["content_filter"] || current_user.try(:content_pref) or DEFAULT_CONTENT)
   end
+
   ##
   # Set the locale. 
   # Locales are either in the URL, or the default (English).
