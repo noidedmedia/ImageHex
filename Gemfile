@@ -143,7 +143,6 @@ end
 
 group :development do
   gem 'pry-rails'
-  gem 'rack-mini-profiler', require: false
   gem 'binding_of_caller'
   gem 'reek'
   gem 'rails_best_practices'
