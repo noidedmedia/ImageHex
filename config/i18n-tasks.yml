@@ -56,6 +56,7 @@ search:
   ##   %w(*.jpg *.png *.gif *.svg *.ico *.eot *.otf *.ttf *.woff *.woff2 *.pdf *.css *.sass *.scss *.less *.yml *.json)
   exclude:
     - app/assets/images
+    - app/assets/icons
     - app/assets/fonts
 
   ## Alternatively, the only files or `File.fnmatch patterns` to search in `paths`:
@@ -72,9 +73,12 @@ search:
 
 ## Consider these keys used:
 ignore_unused:
+  # Ignore activerecord attributes not being used
   - 'activerecord.attributes.*'
-  - '{devise,kaminari,will_paginate}.*'
-  - 'simple_form.{yes,no}'
+  # Ignore devise and will_paginate keys
+  - '{devise,will_paginate}.*'
+  # Ignore defaults.yml not being used
+  - '{date,datetime,errors,helpers,number,support,time}.*'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
