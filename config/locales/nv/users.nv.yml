@@ -20,3 +20,5 @@ nv:
       edit: "(modify)"
       uploads: Images which this user has added to out database (%{count})
       user_page_bio_empty: You haven't filled out your autobiographical text yet.
+      this_user_doesnt_have_any_collections_yet: This user doesn't have any collections yet.
+      you_dont_have_any_collections_yet: You don't have any collections yet.

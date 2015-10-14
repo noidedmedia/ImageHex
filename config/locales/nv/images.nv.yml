@@ -17,7 +17,16 @@ nv:
       favorited: This image is currently in your favorites
       report: Alert the admins that this image is against the rules
       share: Send the link to somebody else
+    collection_select:
+      youre_not_the_curator_of_any_collections_yet: You're not the curator of any collections yet.
     image_page_toolbar:
+      content_rating: Content rating
+      content_ratings:
+        clean: Clean
+        nsfw_gore: Gore
+        nsfw_language: Language
+        nsfw_nudity: Nudity
+        nsfw_sexuality: Sexuality
       add_a_tag_group: Add a tag group to the database which will be associated with this image, also creating a record of what you added and removed to preserve the history of this image
       camera: Camera
       date_taken: Date taken
@@ -40,16 +49,22 @@ nv:
       browse_images: Browse images
     new:
       click_here_to_choose: Click here to open your operating system's file browser and select a file
-      description_optional: 'Description (optional):'
       drop_images_here_to_upload: Use the cursor to move a file into this box and upload said file
       or: alternatively
-      submit: Send the data to the server
       upload_image: Create a new image on ImageHex
+      content_rating: Content rating
+      nsfw_gore: NSFW Gore
+      nsfw_language: NSFW Language
+      nsfw_nudity: NSFW Nudity
+      nsfw_sexuality: NSFW Sexuality
       upload_page_title: Upload
+      description_optional: 'Description (optional):'
+      submit: Send the data to the server
     search:
       add_a_tag_group: Add a tag group
       search: Search
       search_page_title: Search
       tag_group: Tag group
+      your_search_didnt_bring_up_any_results: Your search didn't bring up any results.
     show:
       image_page_title: 'Image #%{id}'
