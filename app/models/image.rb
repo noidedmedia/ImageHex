@@ -78,8 +78,12 @@ class Image < ActiveRecord::Base
   validates :nsfw_gore, inclusion: {in: [true, false]}
   validates :nsfw_sexuality, inclusion: {in: [true, false]}
   validates :nsfw_nudity, inclusion: {in: [true, false]}
-  validates_attachment_content_type :f, content_type: /\Aimage\/.*\Z/
-  validates_attachment_presence :f   
+  validates_attachment :f,
+    content_type: { content_type: /\Aimage\/.*\Z/},
+    size: { in: 0..5.megabytes},
+    presence: true
+
+
   validates :user, presence: :true
   validates :license, presence: true
   validates :medium, presence: true

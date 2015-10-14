@@ -24,19 +24,35 @@ class User < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   enum role: [:normal, :admin]
+
   ################
   # ASSOCIATIONS #
   ################
   has_one :user_page, autosave: true
+
   # Accept nested attributes for the page
   accepts_nested_attributes_for :user_page, update_only: true
 
-  ##
-  # ID of the avatar is in avatar_id.
-  belongs_to :avatar, class_name: "Image"
-  ##
-  # Join table: users -> collections
-  has_many :subscriptions
+  has_attached_file :avatar,
+    styles: {
+      original: "500x500>#",
+      medium: "300x300>#",
+      small: "200x200>#",
+      tiny: "100x100>#"
+    },
+    path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension")
+
+
+  validates_attachment_content_type :avatar, 
+    content_type: /\Aimage\/.*\Z/
+
+  validates_with AttachmentSizeValidator, 
+    attributes: :avatar,
+    less_than: 2.megabytes
+
+    ##
+    # Join table: users -> collections
+    has_many :subscriptions
   has_many :comments
   has_many :subscribed_collections,
     through: :subscriptions,
@@ -61,6 +77,7 @@ class User < ActiveRecord::Base
     length: {in: 2..25}
   validates :page_pref, inclusion: {:in => (1..100)}
   validates_associated :user_page
+
   #############
   # CALLBACKS #
   #############
@@ -70,10 +87,12 @@ class User < ActiveRecord::Base
   after_initialize :load_page_body
 
   before_save :coerce_content_pref!
+
   ##############
   # ATTRIBUTES #
   ##############
   attr_accessor :page_body
+
   ####################
   # INSTANCE METHODS #
   ####################
@@ -90,13 +109,13 @@ class User < ActiveRecord::Base
   ##
   # Quickly get a user avatar, pre-resized
   def avatar_img
-    avatar.f(:medium)
+    avatar.url(:medium)
   end
 
   ##
   # Get a user's avatar thumbnail, pre-resized
   def avatar_img_thumb
-    avatar.f(:small)
+    avatar.url(:tiny)
   end
 
   ##
@@ -110,11 +129,13 @@ class User < ActiveRecord::Base
   def subscribe! c
     c.subscribers << self
   end
+
   ##
   # Convenience method to access the favorites collection for a user
   def favorites
     collections.favorites.first
   end
+  
   ##
   # Add an image to a user's favorites
   def favorite! i
@@ -163,6 +184,7 @@ class User < ActiveRecord::Base
       end
     end.to_h
   end
+
   ##
   # Put the user's page body into page_body.
   # This makes it a bit easier, since you can just say

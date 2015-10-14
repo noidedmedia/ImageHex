@@ -1,0 +1,26 @@
+# =============================================================================
+# Font Custom Configuration
+#   This file should live in the directory where you run `fontcustom compile`.
+#   For more info, visit <https://github.com/FontCustom/fontcustom>.
+# =============================================================================
+
+font_name: imagehexicons
+css_selector: .icon-{{glyph}}
+preprocessor_path: ""
+autowidth: false
+no_hash: true
+force: false
+debug: false
+quiet: false
+
+input:
+  vectors: app/assets/icons
+  templates: app/assets/icons/templates
+
+output:
+  fonts: app/assets/fonts
+  css: app/assets/stylesheets
+  _imagehexicons.scss: app/assets/stylesheets
+
+templates:
+  - _imagehexicons.scss

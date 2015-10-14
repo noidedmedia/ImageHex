@@ -1,4 +1,5 @@
 @import "scss-variables";
+@import "imagehexicons";
 
 /* Padding for images in image pages. */
 /* Adding properties to this can have unintended consequences effecting all images across the site. */
@@ -108,7 +109,7 @@
   display: inline-block;
 
   &:before {
-    content: $icon-add;
+    content: $icon-plus;
     position: absolute;
     display: inline-block;
     @include translate(-24px,-2px);

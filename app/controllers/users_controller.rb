@@ -43,11 +43,12 @@ class UsersController < ApplicationController
   # redirects to the edit page again.
   def update
     return unless current_user == User.friendly.find(params[:id])
-    if current_user.update(user_params)
-      redirect_to current_user
-    else
-      flash[:error] = current_user.errors.full_messages.join(",")
-      redirect_to edit_user_path(current_user)
+    respond_to do |format|
+      if current_user.update(user_params)
+        format.html { redirect_to current_user, notice: I18n.t(".notices.changes_have_been_saved") }
+      else
+        format.html { redirect_to edit_user_path(current_user), warning: current_user.errors.full_messages.join(",") }
+      end
     end
   end
 
@@ -55,16 +56,14 @@ class UsersController < ApplicationController
   ##
   # Parameters to update a user.
   # page_pref:: The amount of images per page.
-  # avatar_id:: The ID of the users's avatar. Getting refactored out at some 
-  #             point in order to allow users to add avatars that aren't
-  #             on ImageHex.
+  # avatar:: The user's avatar image. 
   # user_page_attributes:: Should have a body attribute, which is the user's
   #                        Bio.
   def user_params
     params
     .require(:user)
     .permit(:page_pref,
-             :avatar_id,
+             :avatar,
              user_page_attributes: [:body],
              content_pref: [:nsfw_language,
                             :nsfw_gore,

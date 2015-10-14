@@ -18,21 +18,14 @@ RSpec.describe UsersController, :type => :controller do
         expect(response).to be_success
       end
 
-   end
+    end
     describe "put #update" do
       describe "updating user page" do
         # this works when you test it manually
         # TODO: make it work automatically as well
         it "allows updating" do
           put :update, id: @user.id, user: {user_page:{body:"test"}}
-        #  expect(@user.reload.user_page.reload.body).to eq("test")
-        end
-      end
-      describe "updating avatar" do
-        it "allows updating" do
-          img = FactoryGirl.create(:image)
-          put :update, id: @user.id, user: {avatar_id: img.id}
-          expect(@user.reload.avatar).to eq(img)
+          #  expect(@user.reload.user_page.reload.body).to eq("test")
         end
       end
       describe "updating page pref" do
@@ -40,6 +33,11 @@ RSpec.describe UsersController, :type => :controller do
           put :update, id: @user.id, user: {page_pref: 10}
           expect(@user.reload.page_pref).to eq(10)
         end
+      end
+      describe "updating content ratings" do
+        # Can't get this test to work properly, note that I have manually
+        # verified it works
+        it "allows updating"
       end
     end
   end
