@@ -5,8 +5,6 @@ nv:
       ago: ago
       commented: commented
       edit: Edit
-      no_description_provided: No description provided.
-      uploaded_by: Uploaded by
     comments:
       no_comments_yet: No user has had the desire to make anything known on this page
     report_stub:

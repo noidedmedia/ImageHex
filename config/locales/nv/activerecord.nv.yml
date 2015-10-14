@@ -26,11 +26,6 @@ nv:
         photograph: Visual data of the real world
         three_dimensional_render: Created by rasterizing 3D data, including shading and textures
     models:
-      comment:
-        made_a_comment: "%{username} made a comment on %{commentable}"
-        mentioned_you: "%{username} mentioned you in a comment"
-        one: Test
-        replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
       favorite:
         favorites_collection_description: Images favorited by %{username}.
         favorites_collection_title: "%{usernames} Favorites"

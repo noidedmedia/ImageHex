@@ -5,8 +5,6 @@ en:
       ago: ago
       commented: commented
       edit: Edit
-      no_description_provided: No description provided.
-      uploaded_by: Uploaded by
     comments:
       no_comments_yet: No comments yet.
     report_stub:

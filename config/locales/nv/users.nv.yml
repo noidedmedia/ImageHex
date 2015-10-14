@@ -10,7 +10,6 @@ nv:
       nsfw_language: NSFW Language
       nsfw_nudity: NSFW Nudity
       nsfw_sexuality: NSFW Sexuality
-      profile_picture_image_id: Profile Picture Image Identification Number
       save_changes: Save changes
       show_content_labeled_as: 'Show content labeled as:'
       user_bio: Text, parsed with Markdown, that will be associated with your identity as your biography
