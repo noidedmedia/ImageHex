@@ -13,7 +13,7 @@
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <div class="sign-in-extras-row">
-    <%= t(".don't_have_an_account?") %>
+    <%= t(".dont_have_an_account") %>
     <%= link_to t(".create_an_account"), new_registration_path(resource_name) %>
   </div>
 <% end -%>
