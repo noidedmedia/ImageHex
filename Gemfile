@@ -8,6 +8,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 
 ##
+# https://bitbucket.org/ged/ruby-pg/wiki/Home
+# Use Postgres
+gem 'pg'
+
+##
 # https://github.com/aws/aws-sdk-ruby
 # Amazon Web Services SDK
 gem 'aws-sdk', '< 2.0'
@@ -24,6 +29,22 @@ gem 'devise'
 gem 'omniauth-twitter'
 
 ##
+# https://github.com/elabs/pundit
+# Use Pundit for authorization
+gem 'pundit'
+
+##
+# https://github.com/svenfuchs/i18n
+# Internationalization for Rails
+gem 'i18n'
+
+##
+# https://github.com/glebm/i18n-tasks
+# Manage translations and localizations
+# e.g. `i18n-tasks health` and `i18n-tasks add-missing`
+gem 'i18n-tasks'
+
+##
 # https://github.com/rails/sass-rails
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -32,10 +53,6 @@ gem 'sass-rails'
 # https://github.com/lautis/uglifier
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
-##
-# https://github.com/heroku/rails_12factor
-gem 'rails_12factor', group: :production
 
 ##
 # https://github.com/TannerRogalsky/sprockets-es6
@@ -49,33 +66,13 @@ gem 'train_track'
 
 ##
 # https://github.com/vmg/redcarpet
-# Use markdown for user comments
+# Use Markdown for user comments
 gem 'redcarpet'
-
-##
-# https://github.com/norman/friendly_id
-# Use friendly IDs for nice URLs
-gem 'friendly_id', '~> 5.1.0'
-
-##
-# https://github.com/bclubb/possessive
-# Possessive gem makes a string possessive
-gem "possessive"
 
 ##
 # https://github.com/newrelic/rpm
 # Monitor stuff with New Relic
 gem 'newrelic_rpm'
-
-##
-# https://bitbucket.org/ged/ruby-pg/wiki/Home
-# Use Postgres
-gem 'pg'
-
-##
-# https://github.com/mislav/will_paginate
-# Use will-paginate for pagination
-gem 'will_paginate', '~> 3.0.6'
 
 ##
 # http://unicorn.bogomips.org/
@@ -86,11 +83,6 @@ gem 'unicorn'
 # https://github.com/thoughtbot/paperclip
 # Use Paperclip to upload images
 gem 'paperclip'
-
-##
-# https://github.com/elabs/pundit
-# Use Pundit for authorization
-gem 'pundit'
 
 ##
 ## https://github.com/wildbit/postmark-rails
@@ -118,6 +110,21 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 ##
+# https://github.com/norman/friendly_id
+# Use friendly IDs for nice URLs
+gem 'friendly_id', '~> 5.1.0'
+
+##
+# https://github.com/bclubb/possessive
+# Possessive gem makes a string possessive
+gem 'possessive'
+
+##
+# https://github.com/mislav/will_paginate
+# Use will-paginate for pagination
+gem 'will_paginate', '~> 3.0.6'
+
+##
 # https://github.com/rails/jbuilder
 # Build JSON APIs with ease.
 gem 'jbuilder', '~> 2.0'
@@ -128,19 +135,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'migration_data'
 
 ##
-# https://github.com/rails/spring
-# Spring speeds up development by keeping your application running in the background.
-gem 'spring', group: :development
-
-
-# Make tests good!
-group :development, :test do
-  gem 'rspec-rails', '~> 3.1'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'mailcatcher' # to confirm mails
-end
-
+# Development-only gems
 group :development do
   gem 'pry-rails'
   gem 'binding_of_caller'
@@ -152,19 +147,57 @@ group :development do
   gem 'bullet'
 
   ##
-  # Use Hanna Bootstrap theme for RDoc documentation
+  # https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in the background.
+  gem 'spring'
+
+  ##
   # https://github.com/ngs/hanna-bootstrap
+  # Use Hanna Bootstrap theme for RDoc documentation
   gem 'hanna-bootstrap'
 
-  # FontCustom for generating the icon font.
-  # http://fontcustom.com/
+  ##
+  # http://fontcustom.com
+  # Use FontCustom for generating the icon font.
+  # See the README.md for more on how this works.
   gem 'fontcustom'
 end
 
+##
+# Development/test gems
+group :development, :test do
+  gem 'rspec-rails', '~> 3.1'
+
+  ##
+  # https://github.com/thoughtbot/factory_girl_rails
+  gem 'factory_girl_rails'
+  
+  ##
+  # https://github.com/stympy/faker
+  # Faker produces fake data for testing/development
+  gem 'faker'
+
+  ##
+  # https://github.com/sj26/mailcatcher
+  # Mailcatcher for confirming that mails work
+  # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session
+  gem 'mailcatcher'
+end
+
+##
+# Test-only gems
 group :test do
   # Continue to make tests good
   gem 'shoulda-matchers'
   
   # See how much coverage our tests have
   gem 'simplecov', '~> 0.9.0'
+end
+
+##
+# Production-only gems
+group :production do
+  ##
+  # https://github.com/heroku/rails_12factor
+  gem 'rails_12factor'
 end

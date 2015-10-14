@@ -75,12 +75,12 @@ class CollectionsController < ApplicationController
       c = Subjective.new(collection_params)
     end
     unless c
-      flash[:warning] = I18n.t(".notices.collection_type_not_specified_or_not_applicable")
+      flash[:warning] = I18n.t("notices.collection_type_not_specified_or_not_applicable")
       redirect_to action: "new" and return
     end
     respond_to do |format|
       if c.save
-        format.html { redirect_to collection_path(id: c.id), notice: I18n.t(".collecton_created_successfully") }
+        format.html { redirect_to collection_path(id: c.id), notice: I18n.t("notices.collection_created_successfully") }
       else
         format.html { redirect_to new_collection_path, warning: c.errors.full_messages.join(", ") }
       end

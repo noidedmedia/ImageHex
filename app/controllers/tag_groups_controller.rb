@@ -25,7 +25,7 @@ class TagGroupsController < ApplicationController
     respond_to do |format|
       if @tag_group.save
         track @tag_group
-        format.html { redirect_to @image, notice: I18n.t(".notices.tag_group_added") }
+        format.html { redirect_to @image, notice: I18n.t("notices.tag_group_added") }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
       end
@@ -50,7 +50,7 @@ class TagGroupsController < ApplicationController
     respond_to do |format|
       if @tag_group.update(tag_group_params)
         track @tag_group
-        format.html { redirect_to @image, notice: I18n.t(".notices.tag_group_updated") }
+        format.html { redirect_to @image, notice: I18n.t("notices.tag_group_updated") }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
       end
