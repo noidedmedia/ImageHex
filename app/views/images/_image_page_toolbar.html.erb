@@ -1,10 +1,12 @@
 <div id="image-page-toolbar">
-  <div class="left">
-    <%# Add a tag group %>
-    <div id="add-tag-group-button">
-      <%= t(".add_a_tag_group") %>
+  <% if current_user %>
+    <div class="left">
+      <%# Add a tag group %>
+      <div id="add-tag-group-button">
+        <%= t(".add_a_tag_group") %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="right">
     <%# Help %>
