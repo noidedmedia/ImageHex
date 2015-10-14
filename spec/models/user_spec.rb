@@ -9,12 +9,17 @@ describe User do
   # Has many images
   it {should have_many(:images)}
   describe "avatars" do
-    let(:i){FactoryGirl.create(:image)}
-    let(:u){FactoryGirl.create(:user, avatar: i)}
-    it "has a helper method" do
-      expect(u.avatar_img).to eq(i.f(:medium))
+    it "Should allow image avatars" do
+      u = FactoryGirl.create(:user)
+      u.avatar = Rack::Test::UploadedFile.new(Rails.root.join("spec", "fixtures", "files", "test.jpg"), "image/jpg")
+      expect(u).to be_valid
     end
-  end
+    it "does not allow evil js or other things" do
+      u = FactoryGirl.create(:user)
+      u.avatar = Rack::Test::UploadedFile.new(Rails.root.join("spec", "fixtures", "files", "evil.js"), "application/javascript")
+      expect(u).to_not be_valid
+    end
+  end 
   describe "curatorships" do
     let(:u){FactoryGirl.create(:user)}
     let(:c){FactoryGirl.create(:collection)}

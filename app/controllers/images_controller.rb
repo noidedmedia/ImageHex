@@ -8,16 +8,6 @@ class ImagesController < ApplicationController
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
   before_action :ensure_user, only: [:unfavorite, :favorite, :created, :new, :create, :update, :edit, :destroy, :report, :comment]
-  ##
-  # Remove an image from the current users' favorites.
-  # The image's id must be in params[:id]. The request must be a DELETE.
-  # The user must be logged in.
-  def unfavorite
-    col = current_user.favorites
-    image = Image.find(params[:id])
-    result = col.images.delete(image)
-    render json: result
-  end
 
   ##
   # Create a new comment on the image in params[:id]
@@ -26,13 +16,15 @@ class ImagesController < ApplicationController
   # User must be logged in.
   def comment
     @comment = Comment.new(comment_params)
-    if @comment.save
-      redirect_to @image
-    else
-      flash[:errors] = @comment.errors.full_messages
-      redirect_to @image
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @image, notice: I18n.t(".notices.your_comment_was_submitted_successfully") }
+      else
+        format.html { redirect_to @image, warning: @comment.errors.full_messages.join(', ') }
+      end
     end
   end
+
   ##
   # The current user adds the image to his "Created" collection,
   # which means he or she was involved in the creation of the image.
@@ -51,6 +43,17 @@ class ImagesController < ApplicationController
   end
 
   ##
+  # Remove an image from the current users' favorites.
+  # The image's id must be in params[:id]. The request must be a DELETE.
+  # The user must be logged in.
+  def unfavorite
+    col = current_user.favorites
+    image = Image.find(params[:id])
+    result = col.images.delete(image)
+    render json: result
+  end
+
+  ##
   # Find images via the Image#search method.
   # Query should be in params[:query].
   def search
@@ -59,7 +62,7 @@ class ImagesController < ApplicationController
       .for_content(content_pref)
     respond_to do |format|
       format.html
-      format.json{render 'index'}
+      format.json { render 'index' }
     end
   end
 
@@ -79,11 +82,13 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     @report = Report.new(report_params)
     @report.reportable = @image
-    if @report.save
-      redirect_to @image
-    else
-      flash[:error] = @report.errors.full_messages.join(", ")
-      redirect_to @image
+    
+    respond_to do |format|
+      if @report.save
+        format.html { redirect_to @image, notice: I18n.t(".notices.report_submitted_thank_you") }
+      else
+        format.html { redirect_to @image, warning: @report.errors.full_messages.join(", ") }
+      end
     end
   end
 
@@ -94,12 +99,14 @@ class ImagesController < ApplicationController
   # flash[:warning]
   def create
     @image = Image.new(image_params)
-    if @image.save
-      redirect_to @image
-    else
-      # If their image is incorrect, redirect_to the new page again.
-      flash[:warning] = @image.errors.full_messages.join(', ')
-      redirect_to action: :new
+    respond_to do |format|
+      if @image.save
+        format.html { redirect_to @image, notice: I18n.t(".notices.image_uploaded_successfully") }
+        format.json { render :show }
+      else
+        # If their image is incorrect, redirect_to the new page again.
+        format.html { redirect_to new_image_path, warning: @image.errors.full_messages.join(', ') }
+      end
     end
   end
 
@@ -159,6 +166,7 @@ class ImagesController < ApplicationController
               :replies_to_inbox,
               :description)
   end
+
   ##
   # Protected parameters for the image.
   #
@@ -175,7 +183,6 @@ class ImagesController < ApplicationController
               :nsfw_language) # stuff the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
-
 
   ##
   # Parameters for our report

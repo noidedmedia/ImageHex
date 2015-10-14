@@ -17,6 +17,8 @@ Rails.application.configure do
   ## 
   # Hack to get images to work properly in development
   $IMAGE_PATH = "public/system/fs/:class/:id_:style.:extension"
+  $AVATAR_PATH = "public/system/fs/:class/:id_:style.:extension"
+
   # Do not eager load code on boot.
   config.eager_load = false
 

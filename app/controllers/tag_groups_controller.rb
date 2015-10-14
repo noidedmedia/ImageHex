@@ -5,6 +5,7 @@ class TagGroupsController < ApplicationController
   before_filter :ensure_user, except: :show
   before_filter :get_image
   include TrainTrack
+  
   ##
   # Create a new TagGroup.
   # Sets:
@@ -21,12 +22,13 @@ class TagGroupsController < ApplicationController
   # TODO: make this redirect to the new action
   def create
     @tag_group = TagGroup.create(tag_group_params)
-    if @tag_group.save
-      track @tag_group
-      redirect_to @image
-    else
-      flash[:errors] = @tag_group.errors
-      render 'new'
+    respond_to do |format|
+      if @tag_group.save
+        track @tag_group
+        format.html { redirect_to @image, notice: I18n.t(".notices.tag_group_added") }
+      else
+        format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
+      end
     end
   end
 
@@ -40,18 +42,21 @@ class TagGroupsController < ApplicationController
   ##
   # PUT to update a TagGroup.
   # On success, redirects to the image.
-  # On failure, renders the edit action again.
+  # On failure, redirects to the image and displays errors.
   def update
     @tag_group = TagGroup.find(params[:id])
     track @tag_group
-    if @tag_group.update(tag_group_params)
-      track @tag_group
-      redirect_to @image
-    else
-      flash[:errors] = @tag_group.errors
-      render 'edit'
+
+    respond_to do |format|
+      if @tag_group.update(tag_group_params)
+        track @tag_group
+        format.html { redirect_to @image, notice: I18n.t(".notices.tag_group_updated") }
+      else
+        format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
+      end
     end
   end
+
   protected
   ##
   # Parameters to make a tag group.
@@ -62,6 +67,7 @@ class TagGroupsController < ApplicationController
       .permit(:tag_group_string)
       .merge(image_id: params[:image_id]) # Add in the image id automatically
   end
+
   ## 
   # Sets the image on every action.
   def get_image

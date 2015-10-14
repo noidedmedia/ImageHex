@@ -8,6 +8,26 @@
   font-family: $font-stack;
 }
 
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.icon {
+  font-family: "imagehexicons";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.4rem;
+  font-variant: normal;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  font-smoothing: antialiased;
+}
+
 // Home icon
 .icon-home:before {
   content: $icon-placeholder;
@@ -33,15 +53,15 @@
 }
 
 .icon-favorite:before {
-  content: $icon-favorite;
+  content: $icon-heart-outline;
 }
 
 .icon-favorited:before {
-  content: $icon-favorited;
+  content: $icon-heart-fill;
 }
 
 .icon-add:before {
-  content: $icon-add;
+  content: $icon-plus;
 }
 
 .icon-share:before {
@@ -49,11 +69,11 @@
 }
 
 .icon-report:before {
-  content: $icon-report;
+  content: $icon-flag;
 }
 
 .icon-delete:before {
-  content: $icon-delete;
+  content: $icon-trash;
 }
 
 .icon-checkmark:before {

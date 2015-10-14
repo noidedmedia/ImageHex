@@ -87,8 +87,7 @@
   pointer-events: none;
 
   img {
-    min-width: 120px;
-    min-height: 120px;
+    width: 100%;
   }
 
   @media all and (max-device-width: $mobile-width) {
@@ -99,8 +98,7 @@
     -webkit-flex-shrink: 0;
 
     img {
-      min-width: 75px;
-      min-height: 75px;
+      width: 100%;
     }
   }
 }

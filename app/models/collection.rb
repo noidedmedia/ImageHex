@@ -45,9 +45,10 @@ class Collection < ActiveRecord::Base
   scope :favorites, ->{ where(type: "Favorite") }
   scope :creations, ->{ where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
-  #####################
-  # INSTANCE  METHODS #
-  #####################
+
+  ####################
+  # INSTANCE METHODS #
+  ####################
 
   ##
   # Does a user curate this collection?

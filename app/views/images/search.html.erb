@@ -4,7 +4,7 @@
   <div class="page-search-full">
     <input type="search" class="page-search-input" name="query[]" placeholder=<%= t(".tag_group") %> autocomplete="off" />
     <ul class="page-suggestions">
-
+      
     </ul>
   </div>
 
@@ -12,4 +12,10 @@
   <input type="submit" id="page-submit-button" value=<%= t(".search") %>>
 </form>
 
-<%= render 'show_stub', images: @images %>
+<% if !@images.empty? %>
+  <%= render 'show_stub', images: @images %>
+<% else %>
+  <div class="imagehex-empty-note-container">
+    <p class="imagehex-empty-note"><%= t(".your_search_didnt_bring_up_any_results") %></p>
+  </div>
+<% end %>

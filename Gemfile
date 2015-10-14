@@ -143,7 +143,6 @@ end
 
 group :development do
   gem 'pry-rails'
-  gem 'rack-mini-profiler', require: false
   gem 'binding_of_caller'
   gem 'reek'
   gem 'rails_best_practices'
@@ -156,6 +155,10 @@ group :development do
   # Use Hanna Bootstrap theme for RDoc documentation
   # https://github.com/ngs/hanna-bootstrap
   gem 'hanna-bootstrap'
+
+  # FontCustom for generating the icon font.
+  # http://fontcustom.com/
+  gem 'fontcustom'
 end
 
 group :test do
