@@ -1,38 +1,37 @@
-# ActiveRecord strings.
-
+---
 en:
   activerecord:
-    models:
-      image: "Image"
-      comment:
-        one: "Test"
-        made_a_comment: "%{username} made a comment on %{commentable}"
-        replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
-        mentioned_you: "%{username} mentioned you in a comment"
-      favorite:
-        favorites_collection_title: "%{usernames} Favorites"
-        favorites_collection_description: "Images favorited by %{username}."
     attributes:
-      image:
-        f: "File"
-      licenses:
-        public_domain: "Public Domain"
-        all_rights_reserved: "All Rights Reserved"
-        cc_by: "CC-BY"
-        cc_by_sa: "CC-BY-SA"
-        cc_by_nd: "CC-BY-ND"
-        cc_by_nc: "CC-BY-NC"
-        cc_by_nd_sa: "CC-BY-ND-SA"
-        cc_by_nc_nd: "CC-BY-NC-ND"
-      mediums:
-        photograph: "Photograph"
-        pencil: "Pencil"
-        paint: "Paint"
-        digital_paint: "Digital paint"
-        mixed_media: "Mixed media"
-        three_dimensional_render: "Three Dimensional Render"
       content_ratings:
-        nsfw_language: "NSFW Language"
-        nsfw_gore: "NSFW Gore"
-        nsfw_sexuality: "NSFW Sexuality"
-        nsfw_nudity: "NSFW Nudity"
+        nsfw_gore: NSFW Gore
+        nsfw_language: NSFW Language
+        nsfw_nudity: NSFW Nudity
+        nsfw_sexuality: NSFW Sexuality
+      image:
+        f: File
+      licenses:
+        all_rights_reserved: All Rights Reserved
+        cc_by: CC-BY
+        cc_by_nc: CC-BY-NC
+        cc_by_nc_nd: CC-BY-NC-ND
+        cc_by_nd: CC-BY-ND
+        cc_by_nd_sa: CC-BY-ND-SA
+        cc_by_sa: CC-BY-SA
+        public_domain: Public Domain
+      mediums:
+        digital_paint: Digital paint
+        mixed_media: Mixed media
+        paint: Paint
+        pencil: Pencil
+        photograph: Photograph
+        three_dimensional_render: Three Dimensional Render
+    models:
+      comment:
+        made_a_comment: "%{username} made a comment on %{commentable}"
+        mentioned_you: "%{username} mentioned you in a comment"
+        one: Test
+        replied_to_your_comment: "%{username} replied to your comment on %{commentable_type} %{commentable}"
+      favorite:
+        favorites_collection_description: Images favorited by %{username}.
+        favorites_collection_title: "%{usernames} Favorites"
+      image: Image

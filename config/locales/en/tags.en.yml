@@ -1,11 +1,10 @@
-# Tags strings.
-
+---
 en:
   tags:
-    show:
-      edit: "Edit"
     edit:
-      editing_tag: "Editing %{tag}"
-      display_name: "Display name"
-      description: "Description"
-      save_changes: "Save changes"
+      description: Description
+      display_name: Display name
+      editing_tag: Editing %{tag}
+      save_changes: Save changes
+    show:
+      edit: Edit

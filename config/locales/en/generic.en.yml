@@ -1,13 +1,12 @@
-# Generic strings.
-
+---
 en:
   notices:
-    collection_type_not_specified_or_not_applicable: "Collection type not specified or not applicable."
-    youre_not_allowed_to_do_that: "You aren't allowed to do that."
-    image_uploaded_successfully: "Image uploaded successfully."
-    changes_have_been_saved: "Changes have been saved."
-    your_comment_was_submitted_successfully: "Your comment was submitted successfully."
-    tag_group_added: "Tag group added."
-    tag_group_updated: "Tag group updated."
-    report_submitted_thank_you: "Report submitted, thank you!"
-    collection_created_successfully: "Collection created successfully."
+    changes_have_been_saved: Changes have been saved.
+    collection_created_successfully: Collection created successfully.
+    collection_type_not_specified_or_not_applicable: Collection type not specified or not applicable.
+    image_uploaded_successfully: Image uploaded successfully.
+    report_submitted_thank_you: Report submitted, thank you!
+    tag_group_added: Tag group added.
+    tag_group_updated: Tag group updated.
+    your_comment_was_submitted_successfully: Your comment was submitted successfully.
+    youre_not_allowed_to_do_that: You aren't allowed to do that.

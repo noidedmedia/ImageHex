@@ -1,13 +1,13 @@
 <%- if controller_name != 'sessions' %>
   <div class="sign-in-extras-row">
-    <%= t(".already_have_an_account?") %>
+    <%= t(".already_have_an_account") %>
     <%= link_to t(".sign_in"), new_session_path(resource_name) %>
   </div>
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name == 'sessions' %>
   <div class="sign-in-extras-row">
-    <%= link_to t(".forgot_your_password?"), new_password_path(resource_name) %>
+    <%= link_to t(".forgot_your_password"), new_password_path(resource_name) %>
   </div>
 <% end -%>
 
@@ -21,13 +21,13 @@
 <%- if devise_mapping.confirmable? && controller_name == 'registrations' %>
 
   <div class="sign-in-extras-row">
-    <%= link_to t(".didn't_receive_confirmation"), new_confirmation_path(resource_name) %>
+    <%= link_to t(".didnt_receive_confirmation"), new_confirmation_path(resource_name) %>
   </div>
 <% end -%>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <div class="sign-in-extras-row">
-    <%= link_to t(".didn't_receive_unlock"), new_unlock_path(resource_name) %>
+    <%= link_to t(".didnt_receive_unlock"), new_unlock_path(resource_name) %>
   </div>
 <% end -%>
 
