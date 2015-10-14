@@ -151,6 +151,11 @@ class ImagesController < ApplicationController
   def show
     @groups = TagGroup.where(image: @image).includes(:tags)
   end
+
+  def collection_select
+    @user = User.friendly.find(params[:user_id])
+    @collections = @user.collections.subjective
+  end
   
   protected
   # Load the image with params[:id] into @image.

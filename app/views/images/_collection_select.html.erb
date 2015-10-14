@@ -1,10 +1,16 @@
 <div id="collection-add-list-container">
   <div id="collection-add-list-scrollbar">
-    <% current_user.collections.each do |c| %>
-      <%= form_tag collection_images_path(c.id), class: "add-to-collection-form" do %>
-        <%= hidden_field_tag "collection_image[image_id]", @image.id %>
-        <%= submit_tag c.name, class: 'collection-add-list-item' %>
+    <% if !@collections.blank? %>
+      <% @collections.each do |c| %>
+        <%= form_tag collection_images_path(c.id), class: "add-to-collection-form" do %>
+          <%= hidden_field_tag "collection_image[image_id]", @image.id %>
+          <%= submit_tag c.name, class: 'collection-add-list-item' %>
+        <% end %>
       <% end %>
+    <% else %>
+      <div class="imagehex-empty-note-container">
+        <p class="imagehex-empty-note"><%= t(".youre_not_the_curator_of_any_collections_yet") %></p>
+      </div>
     <% end %>
   </div>
 </div>

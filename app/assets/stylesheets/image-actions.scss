@@ -257,6 +257,16 @@
 #collection-add-list-container {
   overflow: hidden;
   border-radius: 3px;
+  min-height: 50px;
+
+  .imagehex-empty-note-container {
+    padding-top: 12px;
+    text-align: center;
+  }
+
+  .imagehex-empty-note {
+    font-size: 1.2rem;
+  }
 }
 
 #collection-add-list-scrollbar {
@@ -322,6 +332,7 @@
 #img-action-collection-tooltip {
   top: -10px;
   cursor: default;
+  width: 100%;
 
   &:after {
     top: 22px;

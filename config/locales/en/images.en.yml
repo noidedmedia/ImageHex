@@ -29,6 +29,8 @@ en:
       share: "Share"
       report: "Report"
       delete: "Delete"
+    collection_select:
+      youre_not_the_curator_of_any_collections_yet: "You're not the curator of any collections yet."
     image_page_toolbar:
       add_a_tag_group: "Add a tag group"
       help: "Help"
