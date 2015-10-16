@@ -1,6 +1,7 @@
 <div id="collection-add-list-container">
   <div id="collection-add-list-scrollbar">
-    <% if !@collections.blank? %>
+    <p class="tooltip-title"><%= t(".collections") %></p>
+    <% unless @collections.blank? %>
       <% @collections.each do |c| %>
         <%= form_tag collection_images_path(c.id), class: "add-to-collection-form" do %>
           <%= hidden_field_tag "collection_image[image_id]", @image.id %>

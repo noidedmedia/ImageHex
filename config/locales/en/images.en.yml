@@ -2,6 +2,7 @@
 en:
   images:
     collection_select:
+      collections: Collections
       youre_not_the_curator_of_any_collections_yet: You're not the curator of any collections yet.
     image_page_information:
       add_a_comment: Add a comment...

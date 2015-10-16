@@ -132,6 +132,16 @@
     line-height: 17px;
   }
 
+  .tooltip-title {
+    pointer-events: none;
+    padding: 10px 12px;
+    font-size: 1.2rem;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #333;
+    font-weight: 500;
+  }
+
   &.inactive {
     display: none;
   }
@@ -257,11 +267,11 @@
 #collection-add-list-container {
   overflow: hidden;
   border-radius: 3px;
-  min-height: 50px;
 
   .imagehex-empty-note-container {
     padding-top: 12px;
     text-align: center;
+    min-height: 50px;
   }
 
   .imagehex-empty-note {
@@ -307,16 +317,16 @@
 
 .collection-add-list-item {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 300;
   color: rgba(#333,0.8);
   border: none;
   border-radius: 0;
   -webkit-appearance: none;
-  height: 35px;
+  height: 40px;
   text-align: left;
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
 
@@ -330,12 +340,12 @@
 }
 
 #img-action-collection-tooltip {
-  top: -10px;
+  top: -7px;
   cursor: default;
   width: 100%;
 
   &:after {
-    top: 22px;
+    top: 20px;
   }
 
   @media all and (max-device-width: $mobile-width) {
@@ -350,7 +360,7 @@
 
 #img-action-share-tooltip {
   width: 275px;
-  height: 100px;
+  height: auto;
 
   a {
     color: #333;
@@ -364,7 +374,7 @@
 .share-icons {
   width: 100%;
   display: block;
-  padding: 0 10px;
+  padding: 0 10px 10px;
 }
 
 #share-facebook,
@@ -497,7 +507,8 @@
 }
 
 #report-form {
-  padding: 12px;
+  width: 100%;
+  padding: 0 12px;
 
   input[type=radio] {
     opacity: 0;
@@ -565,6 +576,7 @@
     resize: vertical;
     color: #333;
     font-size: 1.4rem;
+    padding: 5px;
 
     &:focus {
       outline: transparent;
@@ -575,6 +587,7 @@
   .report-buttons {
     text-align: right;
     display: block;
+    padding-bottom: 10px;
 
     input[type="submit"],
     button[type="reset"] {
