@@ -7,12 +7,10 @@
 .image-actions-sidebar {
   width: 20vw;
   background-color: #272727;
-  display: -webkit-flex;
   display: flex;
-  -webkit-align-items: flex-end;
-          align-items: flex-end;
+  align-items: flex-end;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100vw;
   }
 }
@@ -20,12 +18,9 @@
 .image-actions-container {
   width: 100%;
   height: auto;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-align-items: flex-end;
-          align-items: flex-end;
+  flex-flow: row wrap;
+  align-items: flex-end;
   padding-bottom: 15px;
   position: relative;
 
@@ -46,12 +41,12 @@
       color: rgba(#fff,1.0);
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       width: auto;
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding-bottom: 4px;
   }
 }
@@ -69,7 +64,7 @@
       color: rgba(#fff,1.0);
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       background-color: transparent;
     }
   }
@@ -78,7 +73,7 @@
   > span::before {
     color: rgba(#fff,0.8);
     font-size: 2.1rem;
-    @include translate(5px, -4px);
+    transform: translate(5px, -4px);
   }
 
   > a > p,
@@ -86,7 +81,7 @@
     padding-left: 40px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding: 10px;
     overflow: hidden;
     white-space: nowrap;
@@ -166,12 +161,11 @@
     right: -14px;
     border-width: 0 10px 10px;
     border-style: solid;
-    -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+    transform: rotate(90deg);
     border-color: #fff transparent;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100vw;
     // Height of the page minus the height of the header.
     height: calc(100vh - 50px);
@@ -186,11 +180,11 @@
   }
 }
 
-@media all and (max-device-width: $mobile-width) {
+@media all and (max-width: $mobile-width) {
   #img-action-favorited,
   #img-action-favorite {
     > a > span::before {
-      @include translate(5px, -1px);
+      transform: translate(5px, -1px);
     }
   }
 }
@@ -213,7 +207,7 @@
     top: 38px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     top: 50px;
   }
 }
@@ -232,7 +226,7 @@
     padding: 10px 20px;
     color: rgba(#fff,0.8);
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       padding: 10px 15px;
     }
   }
@@ -241,7 +235,7 @@
     color: rgba(#fff,1.0);
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 40px;
   }
 }
@@ -348,7 +342,7 @@
     top: 20px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     top: 50px;
   }
 }
@@ -501,7 +495,7 @@
     top: 213px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     top: 50px;
   }
 }
@@ -554,7 +548,6 @@
   }
 
   .report-row {
-    display: -webkit-flex;
     display: flex;
     padding: 4px 0;
   }

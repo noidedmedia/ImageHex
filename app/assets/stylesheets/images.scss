@@ -6,8 +6,7 @@
 .image {
   padding: 25px;
   text-align: center;
-  -webkit-flex-grow: 1;
-          flex-grow: 1;
+  flex-grow: 1;
 
   /* Width/height for the image element itself. */
   img {
@@ -15,7 +14,7 @@
     max-width: 75vw;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding: 0;
     margin: 0;
 
@@ -27,10 +26,8 @@
 }
 
 #image-page-top-container {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
+  flex-flow: row wrap;
   background-color: #444;
 }
 
@@ -40,7 +37,7 @@
   color: #333;
   position: relative;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding: 55px 20px 30px 20px;
   }
 }
@@ -74,7 +71,7 @@
   z-index: 40;
   box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
   }
 
@@ -99,7 +96,7 @@
 
     // Hides extra image-page-toolbar options for mobile users
     // This is a temporary fix.
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       display: none;
     }
   }
@@ -113,7 +110,7 @@
     content: $icon-plus;
     position: absolute;
     display: inline-block;
-    @include translate(-24px,-2px);
+    transform: translate(-24px,-2px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -157,7 +154,7 @@
     content: $icon-help;
     position: absolute;
     display: inline-block;
-    @include translate(-24px,-4px);
+    transform: translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -171,7 +168,7 @@
     content: $icon-info;
     position: absolute;
     display: inline-block;
-    @include translate(-24px,-4px);
+    transform: translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -186,7 +183,7 @@
   top: 38px;
   max-width: 400px;
   width: auto;
-  @include translateX(-90%);
+  transform: translateX(-90%);
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 
   &:before, &:after {
@@ -278,7 +275,7 @@
     content: $icon-history;
     position: absolute;
     display: inline-block;
-    @include translate(-24px,-4px);
+    transform: translate(-24px,-4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }

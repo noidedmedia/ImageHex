@@ -5,17 +5,15 @@
    ============================================== */
 
 .new-collection-container {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column wrap;
-          flex-flow: column wrap;
+  flex-flow: column wrap;
   width: 500px;
   padding: 10px;
   margin: auto;
   margin-top: 100px;
   position: relative;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100vw;
     margin-top: 40px;
   }
@@ -32,19 +30,15 @@
    ============================================== */
 
 #collection-page-container {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+  flex-flow: column nowrap;
   height: 100%;
 }
 
 #collection-page-header {
   position: relative;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+  flex-flow: row nowrap;
   box-shadow: 0 0 5px 5px rgba(#000,.1);
   background-color: #fff;
   width: 100%;
@@ -52,9 +46,8 @@
   padding: 20px 40px;
   z-index: 100;
 
-  @media all and (max-device-width: $mobile-width) {
-    -webkit-flex-flow: column wrap;
-            flex-flow: column wrap;
+  @media all and (max-width: $mobile-width) {
+    flex-flow: column wrap;
     position: relative;
     width: 100%;
     box-shadow: none;
@@ -68,7 +61,7 @@
   position: relative;
   width: calc(100% - 200px);
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100%;
 
     > p {
@@ -81,7 +74,7 @@
   font-size: 2.1rem;
   font-weight: 500;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     font-size: 2.4rem;
   }
 }
@@ -90,7 +83,7 @@
   font-size: 1.4rem;
   font-weight: 300;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     font-size: 1.6rem;
   }
 }
@@ -99,7 +92,7 @@
   font-size: 1.4rem;
   font-weight: 300;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     font-size: 1.6rem;
   }
 }
@@ -115,7 +108,7 @@
   margin: 10px 30px;
   width: calc(100% - 60px);
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100%;
     margin: 0;
   }
@@ -123,207 +116,70 @@
 
 
 /* ==============================================
-    Embedded Collections
+    Collection preview
    ============================================== */
 
 /**
- * Embedded collections styles
+ * Collected preview styles
  *
- * Container for embedded collections, e.g. on the user pages.
- *
- * 1. Margins are the same to ensure that the spacing between
- *    each collection will always be equidistant.
+ * Collection preview, e.g. on user pages.
  */
 
-.embed-collection-container {
+.collection-preview {
   background-color: #fff;
-  margin: 7px;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: column wrap;
-          flex-flow: column wrap;
+  border-radius: 3px;
+  margin: 8px;
   position: relative;
-  max-width: 500px;
-  max-height: 500px;
-  min-width: 350px;
-  min-height: 350px;
+  width: 24vw;
+  max-width: 400px;
+  height: auto;
   overflow: hidden;
+  box-shadow: 0 1px 0 rgba(0,0,0,.25);
+  border: 1px solid rgba(201, 201, 201,0.7);
+  transition: border 200ms, box-shadow 300ms;
 
-  @media all and (max-device-width: $mobile-width) {
-    margin: 7px 0;
-    width: calc(100vw - 40px);
-    height: calc(100vw - 40px);
-    max-width: 100vw;
-    max-height: 100vh;
-    min-width: 0;
-    min-height: 0;
-  }
-
-  @media all and (min-device-width: $laptop-width) and (max-device-width: $desktop-width) {
-    width: calc((100vw - 420px) / 2);
-    height: calc((100vw - 420px) / 2);
-  }
-
-  @media all and (min-device-width: $desktop-width) {
-    width: calc((100vw - 420px) / 3);
-    height: calc((100vw - 420px) / 3);
-  }
-
-  @media all and (min-device-width: $mobile-width) {
-    > a:hover {
-      .collection-information {
-        background: rgba(#000,0.4);
-      }
-
-      .collection-title::after {
-        transform: translate3d(0,0,0);
-          -webkit-transform: translate3d(0,0,0);
-      }
-
-      .collection-curators {
-        opacity: 1;
-        transform: translate3d(0,0,0);
-          -webkit-transform: translate3d(0,0,0);
-      }
-
-      .collection-description {
-        opacity: 0.8;
-        transform: translate3d(0,0,0);
-          -webkit-transform: translate3d(0,0,0);
-      }
-    }
-  }
-}
-
-
-/**
- * Embedded collection thumbnail
- *
- * Thumbnail image for an embedded/in-line collection.
- *
- * 1. Height/width of the thumbnail.
- * 2. Clips the thumbnail to 400px by 400px to ensure that it's square
- *    and fits in the given space.
- */
-
-.collection-thumbnail {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-
-  img {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    max-width: 180%;
-    max-height: 180%;
-  }
-}
-
-
-/**
- * Embedded collection information
- *
- * Title, curators, description etc.
- *
- * 1. A semi-transparent black to full transparency gradient that lies
- *    under the collection information and on top of the collection 
- *    thumbnail. This helps with contrast of the information text when
- *    an image is white or another very light color.
- */
-
-.collection-information {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  padding: 20px;
-  padding-top: 40px;
-  background: rgba(#000,0.2); /* 1 */
-  transition: background 400ms;
-  color: #fff;
-  -webkit-align-content: flex-start;
-          align-content: flex-start;
-  text-align: left;
-  overflow: hidden;
-
-  @media all and (max-device-width: $mobile-width) {
-    padding-top: 20px;
-    background: rgba(#000,0.4);
-  }
-}
-
-
-/* Name of the collection */
-.collection-title {
-  font-size: 2.1rem;
-  font-weight: 500;
-  padding-bottom: 3px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-
-  a {
+  > a {
+    display: block;
     text-decoration: none;
   }
 
-  @media all and (min-device-width: $mobile-width) {
-    &:after {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: #fff;
-      content: '';
-      transition: -webkit-transform 400ms;
-      transition: transform 400ms;
-      transform: translate3d(-100%,0,0);
-        -webkit-transform: translate3d(-100%,0,0);
-      backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
+  .collection-information {
+    color: #333;
+    padding: 10px 20px 15px;
+
+    .collection-title {
+      font-size: 1.6rem;
+      font-weight: 500;
+      padding: 4px 0;
+    }
+
+    .collection-description {
+      font-size: 1.4rem;
     }
   }
-}
 
-/* Curators with permission to curate the embedded collection. */
-.collection-curators {
-  font-size: 1.4rem;
-  font-weight: 300;
-  width: 100%;
-  padding: 5px 0;
+  .collection-thumbnail {
+    width: 100%;
+    height: 18vw;
+    overflow: hidden;
 
-  @media all and (min-device-width: $mobile-width) {
-    opacity: 0;
-    transition: opacity 400ms, -webkit-transform 400ms;
-    transition: opacity 400ms, transform 400ms;
-    transform: translate3d(0,25px,0);
-      -webkit-transform: translate3d(0,25px,0);
-  }
-}
-
-/* Description for the embedded collection. */
-.collection-description {
-  font-size: 1.4rem;
-  font-weight: 300;
-  width: 100%;
-  padding: 5px 0;
-
-  @media all and (min-device-width: $mobile-width) {
-    opacity: 0;
-    transition: opacity 400ms, -webkit-transform 400ms;
-    transition: opacity 400ms, transform 400ms;
-    transform: translate3d(0,25px,0);
-      -webkit-transform: translate3d(0,25px,0);
+    img {
+      object-fit: cover;
+      width: inherit;
+    }
   }
 
-  @media all and (max-device-width: $mobile-width) {
-    display: none;
+  &:hover {
+    border: 1px solid rgba(201, 201, 201,1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  @media all and (max-width: $mobile-width) {
+    width: 100%;
+    max-width: auto;
+
+    .collection-thumbnail {
+      height: 40vw;
+    }
   }
 }

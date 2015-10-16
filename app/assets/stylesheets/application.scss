@@ -32,12 +32,12 @@ html, body {
 
   /* Only apply "height: 100%" to desktop devices or else 
      weird things happen with mobile scrolling. */
-  @media all and (min-device-width: $mobile-width) {
+  @media all and (min-width: $mobile-width) {
     height: 100%;
   }
 
   /* Fix for iOS Safari messing with the text size. */
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     -webkit-text-size-adjust: none;
   }
 }

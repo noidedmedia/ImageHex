@@ -110,12 +110,12 @@
     top: 10px;
     cursor: pointer;
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       left: 15px;
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: none;
   }
 }
@@ -171,7 +171,7 @@
     background-color: #fff;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     height: 100%;
     max-height: 100%;
     width: 100vw;
@@ -195,7 +195,7 @@
     opacity: 1;
     transition: opacity 300ms ease-in-out 600ms; /* 2 */
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       margin-top: 40px;
     } 
   }
@@ -216,7 +216,7 @@
       opacity: 1;
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       padding-top: 75px;
 
       p {
@@ -240,7 +240,7 @@
 #close-mobile-search-icon {
   display: none; /* 1 */
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: inline-block;
     position: absolute;
     right: 45px;
@@ -257,10 +257,10 @@
   width: 50px;
 
   span::before {
-    @include translate(-35px,14px);
+    transform: translate(-35px,14px);
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: block;
   }
 }

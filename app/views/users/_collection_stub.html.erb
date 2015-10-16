@@ -1,22 +1,22 @@
-<figure class="embed-collection-container">
+<div class="collection-preview">
 
   <%= link_to collection_path(c) do %>
     <div class="collection-thumbnail">
       <% if c.images.count > 0 %>
         <%= image_tag c.images.first.f %>
+      <% else %>
+        <!-- Placeholder image -->
       <% end %>
     </div>
 
-    <figcaption class="collection-information">
+    <div class="collection-information">
       <p class="collection-title"><%= c.name %>
-
-      <p class="collection-curators"><%= t(".curated_by") %> <%= c.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
       
-      <% if c.description != '' %>
+      <% unless c.description.empty? %>
         <p class="collection-description"><%= c.description %>
       <% end %>
-    </figcaption>
+    </div>
 
   <% end %>
 
-</figure>
+</div>

@@ -6,10 +6,8 @@
    ============================================== */
 
 #faq-page-container {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column wrap;
-          flex-flow: column wrap;
+  flex-flow: column wrap;
   height: 100%;
   margin: 0;
   position: relative;
