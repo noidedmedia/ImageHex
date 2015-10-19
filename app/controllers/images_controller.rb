@@ -150,7 +150,7 @@ class ImagesController < ApplicationController
   # @groups:: Tag groups on the image. Should be refactored out at some point.
   def show
     @groups = TagGroup.where(image: @image).includes(:tags)
-    @collections = current_user.collections.subjective
+    @collections = current_user.try(:collections).try(:subjective)
   end
   
   protected
