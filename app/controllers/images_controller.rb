@@ -181,6 +181,7 @@ class ImagesController < ApplicationController
               :license, 
               :medium, 
               :replies_to_inbox,
+              :source,
               :description,
               :nsfw_gore,
               :nsfw_nudity,
