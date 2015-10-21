@@ -14,14 +14,16 @@ class UsersController < ApplicationController
       format.html
     end
   end
+
   def enable_twofactor
     @user = User.friendly.find(params[:id])
-    authorize(@user)
-    if @user.enable_twofactor
-      redirect_to @user
-    else
-      flash[:error] = @user.errors
-      redirect_to @user
+    authorize @user
+    respond_to do |format|
+      if @user.enable_twofactor
+        format.html { redirect_to @user }
+      else
+        format.html { redirect_to @user, error: @user.errors }
+      end
     end
   end
 
@@ -29,13 +31,15 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     authorize @user
     @user.otp_required_for_login = false
-    if @user.save
-      redirect_to @user
-    else
-      flash[:error] = @user.errors
-      redirect_to @user
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user }
+      else
+        format.html { redirect_to @user, error: @user.errors }
+      end
     end
   end
+
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]
