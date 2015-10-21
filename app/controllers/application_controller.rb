@@ -59,6 +59,7 @@ class ApplicationController < ActionController::Base
     return options if I18n.locale == I18n.default_locale
     { locale: I18n.locale }.merge options
   end
+  
   ##
   # Allow devise to add a user's name on creation.
   def configure_devise_permitted_parameters

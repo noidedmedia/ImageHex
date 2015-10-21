@@ -30,6 +30,10 @@ en:
         sign_in: Sign in
         sign_in_title: Sign in
         welcome_back: Welcome back.
+      two_factor:
+        two_factor_authentication: Two-Factor Authentication
+        authentication_code: Authentication Code
+        verify: Verify
     shared:
       links:
         already_have_an_account: Already have an account?

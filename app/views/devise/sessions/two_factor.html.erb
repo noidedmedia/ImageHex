@@ -1,0 +1,26 @@
+<%- t(".two_factor_authentication") %>
+
+<div id="sign-in-container">
+
+  <div class="sign-in-header">
+    <img src="/logo/imagehex-color-black-text.svg">
+    <h4><%= t(".welcome_back") %></h4>
+  </div>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+  
+  <div id="sign-in-fields">
+    <div class="field">
+      <%= f.label :otp_attempt, t(".authentication_code") %>
+      <%= f.text_field :otp_attempt, tabindex: 1 %>
+    </div>
+  </div>
+  
+  <%= f.hidden_field :id %>
+
+  <%= f.submit t(".verify"), class: "btn btn-green btn-large" %>
+<% end %>
+
+<div id="sign-in-extras-container">
+  <%= render "devise/shared/links" %>
+</div>
