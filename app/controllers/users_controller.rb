@@ -3,7 +3,39 @@
 # Uses friendly_id for ids.
 class UsersController < ApplicationController
   include Pundit
-  before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
+  before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor]
+
+  def twofactor_key
+    @user = User.friendly.find(params[:id])
+    authorize @user
+    respond_to do |format|
+      format.gif { render qrcode: @user.otp_secret }
+      format.png { render qrcode: @user.otp_secret } 
+      format.html
+    end
+  end
+  def enable_twofactor
+    @user = User.friendly.find(params[:id])
+    authorize(@user)
+    if @user.enable_twofactor
+      redirect_to @user
+    else
+      flash[:error] = @user.errors
+      redirect_to @user
+    end
+  end
+
+  def disable_twofactor
+    @user = User.friendly.find(params[:id])
+    authorize @user
+    @user.otp_required_for_login = false
+    if @user.save
+      redirect_to @user
+    else
+      flash[:error] = @user.errors
+      redirect_to @user
+    end
+  end
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]
@@ -15,11 +47,11 @@ class UsersController < ApplicationController
   def show
     @user = User.friendly.find(params[:id])
     @uploads = @user.images
-      .paginate(page: page, per_page: per_page)
-      .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
     @creations = @user.creations.images
-      .paginate(page: page, per_page: per_page)
-      .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
     @collections = @user.collections.subjective
   end
 
@@ -63,12 +95,12 @@ class UsersController < ApplicationController
     params
     .require(:user)
     .permit(:page_pref,
-             :avatar,
-             :otp_required_for_login,
-             user_page_attributes: [:body],
-             content_pref: [:nsfw_language,
-                            :nsfw_gore,
-                            :nsfw_nudity,
-                            :nsfw_sexuality])
+            :avatar,
+            :otp_required_for_login,
+            user_page_attributes: [:body],
+            content_pref: [:nsfw_language,
+              :nsfw_gore,
+              :nsfw_nudity,
+              :nsfw_sexuality])
   end
 end

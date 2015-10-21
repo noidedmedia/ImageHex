@@ -39,14 +39,57 @@ RSpec.describe UsersController, :type => :controller do
         # verified it works
         it "allows updating"
       end
-      describe "set 2factor" do
-        it "Allows you to set a 2-factor code" do
-          put :update, id: @user.id, user: {
-            otp_required_for_login: true
-          }
-          expect(@user.reload.otp_secret).to_not be_nil
-          expect(@user.reload.otp_required_for_login).to eq(true)
-        end
+    end
+    describe "PUT #enable_twofactor" do
+      it "enables 2factor" do
+        # Ensure it's not enabled at this point
+        @user.otp_required_for_login = false
+        @user.save
+        put :enable_twofactor, id: @user
+        expect(@user.reload.otp_required_for_login).to eq(true)
+        expect(@user.reload.otp_secret).to_not be_nil
+      end
+      it "doesn't work for other users" do
+        put :enable_twofactor, id: FactoryGirl.create(:user)
+        expect(response).to_not be_success
+      end
+
+    end
+    describe "PUT #disable_twofactor" do
+      it "disables 2factor" do
+        @user.enable_twofactor
+        put :disable_twofactor, id: @user
+        expect(@user.reload.otp_required_for_login).to eq(false)
+      end
+      it "does not work for other users" do
+        u = FactoryGirl.create(:user)
+        u.enable_twofactor
+        put :disable_twofactor, id: u
+        expect(response).to_not be_success
+      end
+    end
+    describe "GET #twofactor_key" do
+      it "responds with a QR gif" do
+        @user.enable_twofactor
+        get :twofactor_key, id: @user, format: :gif
+        expect(response).to be_success
+      end
+      it "responds with a QR png" do
+        @user.enable_twofactor
+        get :twofactor_key, id: @user, format: :gif
+        expect(response).to be_success
+      end
+      it "responds with normal html" do
+        @user.enable_twofactor
+        get :twofactor_key, id: @user
+        expect(response).to be_success
+      end
+      it "doesn't work for other users" do
+        @user.enable_twofactor
+        u = FactoryGirl.create(:user)
+        u.enable_twofactor
+        get :twofactor_key, id: u
+        expect(response).to_not be_success
       end
     end
   end

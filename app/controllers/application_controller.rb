@@ -9,11 +9,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
-  
+  rescue_from Pundit::NotAuthorizedError, with: :unauthorized
   def unauthorized
-    respond_to do |format|
-      format.html { redirect_to (request.referer || root_path), warning: I18n.t("notices.youre_not_allowed_to_do_that") }
-    end
+    render 'shared/401', status: :unauthorized
   end
   
   protected

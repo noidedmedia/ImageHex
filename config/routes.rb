@@ -47,6 +47,11 @@ Rails.application.routes.draw do
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.
     resources :collections, only: [:index]
+    member do
+      put 'enable_twofactor'
+      put 'disable_twofactor'
+      get 'twofactor_key'
+    end
   end
 
   resources :collections, except: [:index] do

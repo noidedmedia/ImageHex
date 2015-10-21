@@ -20,7 +20,7 @@
 #
 class User < ActiveRecord::Base
   devise :two_factor_authenticatable,
-         :otp_secret_encryption_key => ENV['TWO_FACTOR_KEY']
+    :otp_secret_encryption_key => ENV['TWO_FACTOR_KEY']
 
   # Use a friendly id to find by name
   extend FriendlyId
@@ -38,24 +38,24 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar,
     styles: {
-      original: "500x500>#",
-      medium: "300x300>#",
-      small: "200x200>#",
-      tiny: "100x100>#"
-    },
+    original: "500x500>#",
+    medium: "300x300>#",
+    small: "200x200>#",
+    tiny: "100x100>#"
+  },
     path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension")
 
 
   validates_attachment_content_type :avatar, 
     content_type: /\Aimage\/.*\Z/
 
-  validates_with AttachmentSizeValidator, 
+    validates_with AttachmentSizeValidator, 
     attributes: :avatar,
     less_than: 2.megabytes
 
-    ##
-    # Join table: users -> collections
-    has_many :subscriptions
+  ##
+  # Join table: users -> collections
+  has_many :subscriptions
   has_many :comments
   has_many :subscribed_collections,
     through: :subscriptions,
@@ -90,7 +90,6 @@ class User < ActiveRecord::Base
   after_initialize :load_page_body
 
   before_save :coerce_content_pref!
-  before_save :generate_otp_code_if_needed
 
   ##############
   # ATTRIBUTES #
@@ -101,6 +100,11 @@ class User < ActiveRecord::Base
   # INSTANCE METHODS #
   ####################
 
+  def enable_twofactor
+    self.otp_required_for_login = true
+    self.otp_secret = User.generate_otp_secret
+    self.save
+  end
   ##
   # See if the user is subscribed to a collection
   # Returns true or false
@@ -139,7 +143,7 @@ class User < ActiveRecord::Base
   def favorites
     collections.favorites.first
   end
-  
+
   ##
   # Add an image to a user's favorites
   def favorite! i
@@ -173,13 +177,7 @@ class User < ActiveRecord::Base
   end
   protected
 
-  def generate_otp_code_if_needed
-    unless self.otp_required_for_login_was == true
-      if self.otp_required_for_login
-        self.otp_secret = User.generate_otp_secret
-      end
-    end
-  end
+
   ##
   # Rails passes the true and false values from checkboxes as "0" and "1"
   # we here convert them into the proper "True" and "false"
