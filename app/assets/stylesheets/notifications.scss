@@ -160,7 +160,7 @@
   padding: 60px 0;
 }
 
-@media all and (max-device-width: $mobile-width) {
+@media all and (max-width: $mobile-width) {
   .header-notifications {
     position: absolute;
     left: 0;

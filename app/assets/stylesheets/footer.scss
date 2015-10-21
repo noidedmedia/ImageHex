@@ -15,17 +15,15 @@
   width: 100vw;
   z-index: 1000;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     height: auto;
   }
 }
 
 /* Footer div itself. */
 #footer {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
+  flex-flow: row wrap;
   height: 100%;
   margin: auto;
   min-width: 700px;
@@ -41,7 +39,7 @@
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     min-width: auto;
     width: 100%;
   }
@@ -61,7 +59,7 @@
   text-align: left;
   width: 50%;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100vw;
   }
 }
@@ -74,7 +72,7 @@
   line-height: 1.5;
   padding-bottom: 10px;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     font-size: 1.6rem;
   }
 }
@@ -86,7 +84,7 @@
   font-size: 1.2rem;
   font-weight: 400;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     font-size: 1.5rem;
   }
 }
@@ -97,13 +95,13 @@
   padding: 0 50px;
   width: auto;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     height: auto;
     width: 100vw;
     padding: 0 25px;
   }
 
-  @media all and (min-device-width: $mobile-width) {
+  @media all and (min-width: $mobile-width) {
     margin-top: 20px;
   }
 }
@@ -123,7 +121,7 @@
   }
 
   // Only use columns on desktop.
-  @media all and (min-device-width: $mobile-width) {
+  @media all and (min-width: $mobile-width) {
     display: inherit;
     -webkit-columns: 100px 2;
        -moz-columns: 100px 2;
@@ -140,7 +138,7 @@
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding-top: 25px;
 
     li {

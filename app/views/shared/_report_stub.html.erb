@@ -1,9 +1,9 @@
 <%# Pass in a reportable as a subject and this will make a form to %>
 <%# report that subject %>
 
+<p class="tooltip-title"><%= t(".report") %>
 <div id="report-form">
-  <%= form_tag(url) do %>
-    
+  <%= form_tag(url) do %>  
     <p><%= t(".reason_for_report") %>
 
     <% Report.severities.each do |k, v| %>
@@ -13,7 +13,7 @@
       </div>
     <% end %>
     
-    <p><%= t(".extra_information") %>
+    <p><%= t(".extra_information") %></p>
     <%= text_area_tag "report[message]" %>
 
     <div class="report-buttons">

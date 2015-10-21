@@ -16,15 +16,13 @@
   width: 100vw;
   z-index: 1000;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100vw;
     height: 50px;
     padding: 15px;
     background-color: #333;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-flow: row nowrap;
-            flex-flow: row nowrap;
+    flex-flow: row nowrap;
     position: fixed;
     z-index: 1001;
   }
@@ -37,7 +35,7 @@
   position: absolute;
   text-align: left;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     top: 16px;
     left: 20px;
   }
@@ -47,7 +45,7 @@
     left: 390px;
     top: 0;
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       display: none;
     }
   }
@@ -66,7 +64,7 @@
     opacity: 1;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 50px;
     height: 50px;
     top: -12px;
@@ -83,7 +81,7 @@
   text-align: right;
   height: 100%;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     position: absolute;
     right: 0;
     top: 50px;
@@ -94,13 +92,12 @@
     text-align: left;
     background-color: #222;
     z-index: 1000;
-    transition: -webkit-transform 300ms;
     transition: transform 300ms;
-    @include translateX(calc(100vw + 90px));
+    transform: translateX(calc(100vw + 90px));
     padding-top: 10px;
 
     &.active {
-      @include translateX(0);
+      transform: translateX(0);
     }
 
     .header-item {
@@ -152,7 +149,7 @@
     }
   }
   
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding: 15px 15px;
   }
 }
@@ -166,7 +163,7 @@
   width: 50px;
 
   span::before {
-    @include translate(-35px,14px);
+    transform: translate(-35px,14px);
 
     transition: color 300ms;
   }
@@ -177,7 +174,7 @@
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: block;
   }
 }
@@ -186,7 +183,7 @@
   display: none;
 }
 
-@media all and (max-device-width: $mobile-width) {
+@media all and (max-width: $mobile-width) {
   #header-home {
     padding: 0 15px;
   }

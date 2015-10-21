@@ -8,10 +8,8 @@
 #about-page-container,
 #people-page-container,
 #contact-page-container {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column wrap;
-          flex-flow: column wrap;
+  flex-flow: column wrap;
   height: 100%;
   margin: 0;
   position: relative;
@@ -34,7 +32,6 @@
   height: 40px;
   background-color: #fff;
   display: flex;
-  display: -webkit-flex;
   text-align: center;
   padding-top: 4px;
 
@@ -68,7 +65,7 @@
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);
-      @include translate(-15px,6px);
+      transform: translate(-15px,6px);
       height: 3px;
       display: block;
     }
@@ -102,10 +99,8 @@
 
 /* Staff list container. */
 #people-page-list-container {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
+  flex-flow: row wrap;
   width: 100%;
 }
 
@@ -114,7 +109,7 @@
   width: 200px;
   margin: 0 20px 20px 0;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     margin: 10px auto;
   }
 }

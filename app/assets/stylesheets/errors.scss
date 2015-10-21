@@ -1,54 +1,23 @@
 @import "scss-variables";
 
 /* The following animations are used to move the error dialog down below the header, keep it there for 90% of the duration of the animation, then hide it again. */
-@-webkit-keyframes alertAnimation {
-  0% {
-    display: block;
-    -webkit-transform: none;
-            transform: none;
-  }
-
-  5% {
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0);
-  }
-
-  95% {
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0);
-  }
-
-  99% {
-    -webkit-transform: none;
-            transform: none;
-  }
-
-  100% {
-    display: none;
-  }
-}
-
 @keyframes alertAnimation {
   0% {
     display: block;
-    -webkit-transform: none;
-            transform: none;
+    transform: none;
   }
 
   8% {
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
   }
 
   92% {
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
   }
 
   99% {
     display: block;
-    -webkit-transform: none;
-            transform: none;
+    transform: none;
   }
 
   100% {
@@ -59,9 +28,7 @@
 /* Generic alert container for all warnings/errors/successful actions. */
 .alert {
   animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
-    -webkit-animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
-  @include translateY(-40px);
-
+  transform: translateY(-40px);
   color: #fff;
   display: block;
   font-size: 1.4rem;
@@ -109,13 +76,13 @@
       color: #fff;
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       top: 13px;
       right: 30px;
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     height: 50px;
     padding: 13px 20px;
     font-size: 1.6rem;
