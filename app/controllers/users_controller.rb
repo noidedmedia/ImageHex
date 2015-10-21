@@ -64,6 +64,7 @@ class UsersController < ApplicationController
     .require(:user)
     .permit(:page_pref,
              :avatar,
+             :otp_required_for_login,
              user_page_attributes: [:body],
              content_pref: [:nsfw_language,
                             :nsfw_gore,

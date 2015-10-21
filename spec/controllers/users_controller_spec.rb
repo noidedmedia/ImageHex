@@ -39,6 +39,15 @@ RSpec.describe UsersController, :type => :controller do
         # verified it works
         it "allows updating"
       end
+      describe "set 2factor" do
+        it "Allows you to set a 2-factor code" do
+          put :update, id: @user.id, user: {
+            otp_required_for_login: true
+          }
+          expect(@user.reload.otp_secret).to_not be_nil
+          expect(@user.reload.otp_required_for_login).to eq(true)
+        end
+      end
     end
   end
 end

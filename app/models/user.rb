@@ -19,6 +19,9 @@
 #                 unread notifications.
 #
 class User < ActiveRecord::Base
+  devise :two_factor_authenticatable,
+         :otp_secret_encryption_key => ENV['TWO_FACTOR_KEY']
+
   # Use a friendly id to find by name
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -64,7 +67,7 @@ class User < ActiveRecord::Base
   has_many :collections, through: :curatorships
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
     :confirmable, :omniauthable, :omniauth_providers => [:twitter]
 
@@ -87,6 +90,7 @@ class User < ActiveRecord::Base
   after_initialize :load_page_body
 
   before_save :coerce_content_pref!
+  before_save :generate_otp_code_if_needed
 
   ##############
   # ATTRIBUTES #
@@ -169,6 +173,13 @@ class User < ActiveRecord::Base
   end
   protected
 
+  def generate_otp_code_if_needed
+    unless self.otp_required_for_login_was == true
+      if self.otp_required_for_login
+        self.otp_secret = User.generate_otp_secret
+      end
+    end
+  end
   ##
   # Rails passes the true and false values from checkboxes as "0" and "1"
   # we here convert them into the proper "True" and "false"

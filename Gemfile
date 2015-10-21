@@ -24,6 +24,20 @@ gem 'aws-sdk', '< 2.0'
 gem 'devise'
 
 ##
+# Use 2factor authentication
+gem 'devise-two-factor'
+
+##
+# Use to generate the QR codes for devisee-two-factor
+gem 'rqrcode-rails3'
+gem 'mini_magick'
+
+##
+# Use .env files for development secret keys
+# Our real key is set in production
+gem 'dotenv-rails', groups: [:dvelopment, :test]
+
+##
 # https://github.com/arunagw/omniauth-twitter
 # Support logging in with Twitter
 gem 'omniauth-twitter'
@@ -168,6 +182,7 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.1'
 
+  gem 'pry'
   ##
   # https://github.com/thoughtbot/factory_girl_rails
   gem 'factory_girl_rails'
