@@ -35,7 +35,7 @@ gem 'mini_magick'
 ##
 # Use .env files for development secret keys
 # Our real key is set in production
-gem 'dotenv-rails', groups: [:dvelopment, :test]
+gem 'dotenv-rails', groups: [:development, :test]
 
 ##
 # https://github.com/arunagw/omniauth-twitter

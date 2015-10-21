@@ -9,13 +9,17 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
-      format.gif { render qrcode: @user.otp_secret }
-      format.png { render qrcode: @user.otp_secret } 
+      format.gif { render qrcode: @user.otp_provisioning_uri(@user.email,
+     issuer: "ImageHex") }
+      format.png { render qrcode: @user.otp_provisioning_uri(@user.email,
+     issuer: "ImageHex") } 
       format.html
     end
   end
 
   def enable_twofactor
+    puts "Enablding twofactor I hope"
+
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
@@ -66,12 +70,12 @@ class UsersController < ApplicationController
   # Sets the following variables:
   # @user:: The user who is being edited. 
   def edit
-    @user = params[:id] ? User.find(params[:id]) : current_user
+    @user = User.friendly.find(params[:id])
     authorize @user
     @user.user_page ||= UserPage.new
   end
 
-  ##
+  #
   # Post to update the user in params[:id].
   # Ensures that current_user is the user in params[:id] beforehand.
   # 
