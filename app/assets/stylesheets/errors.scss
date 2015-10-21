@@ -94,7 +94,8 @@
 }
 
 /* Style for positive alerts. */
-.alert-success {
+.alert-success,
+.alert-notice {
   background-color: $color-success;
 
   > p:first-of-type::before {
