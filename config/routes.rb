@@ -40,7 +40,13 @@ Rails.application.routes.draw do
     concerns :reportable, :commentable
   end
 
-  devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, 
+    path: "accounts", 
+    controllers: { 
+      omniauth_callbacks: "users/omniauth_callbacks",
+      sessions: "users/sessions"
+    }
+
 
   resources :users, only: [:show, :edit, :update] do
     ##

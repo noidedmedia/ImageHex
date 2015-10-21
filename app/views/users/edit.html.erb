@@ -27,6 +27,15 @@
       <%= f.number_field :page_pref, id: "page-pref-field", class: "input" %>
     </div>
 
+    <% if @user.otp_required_for_login %>
+      <%= form_tag disable_twofactor_user(@user), method: :post do |f| %>
+        <%= f.submit "Disable 2Factor Authentication %>
+      <% end %>
+    <% else %>
+      <%= form_tag enable_twofactor_user(@user), method: :post, do |f| %>
+        <%= f.submit "Enable 2factor Authentication" %>
+      <% end %>
+    <% end %> 
     <div class="field-container">
       <p><%= t(".show_content_labeled_as") %></p>
 
