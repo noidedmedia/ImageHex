@@ -1,9 +1,14 @@
 @import "scss-variables";
 
 
+#twofactor-container{
+  width: 100%;
+  padding: 100px;
+}
 .twofactor-qr-code{
   height: auto;
   width: 300px;
+  margin: auto;
 }
 
 /* ==============================================

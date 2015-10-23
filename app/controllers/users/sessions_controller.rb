@@ -11,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     if params[:user][:otp_attempt]
       self.resource = User.find(params[:user][:id])
-      unless resource.valid_otp?(params[:user][:otp_attempt])
+      unless resource.validate_and_consume_otp!(params[:user][:otp_attempt])
         flash[:alert] = "Invalid Authentication Token"
         render :two_factor
       else
@@ -25,7 +25,7 @@ class Users::SessionsController < Devise::SessionsController
       set_flash_message(:notice, :signed_in) if is_flashing_format?
       sign_in(resource_name, resource)
       yield resource if block_given?
-      respond_with resource, location: after_sign_in_path_for(resource)
+      espond_with resource, location: after_sign_in_path_for(resource)
     end
   end
 

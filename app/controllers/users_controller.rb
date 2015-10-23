@@ -18,13 +18,11 @@ class UsersController < ApplicationController
   end
 
   def enable_twofactor
-    puts "Enablding twofactor I hope"
-
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
       if @user.enable_twofactor
-        format.html { redirect_to @user }
+        format.html { redirect_to twofactor_key_user_path(@user) }
       else
         format.html { redirect_to @user, error: @user.errors }
       end
