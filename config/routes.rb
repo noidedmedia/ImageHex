@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   ############
   # CONCERNS #
   ############
-
+  
+  
   concern :reportable do
     post "report", on: :member
   end
@@ -104,7 +105,7 @@ Rails.application.routes.draw do
   ########################
   # SINGLE ACTION ROUTES #
   ########################
-
+  get 'settings', to: "users#edit"
   #################
   # STATIC ROUTES #
   #################

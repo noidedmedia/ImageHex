@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   # Sets the following variables:
   # @user:: The user who is being edited. 
   def edit
-    @user = User.friendly.find(params[:id])
+    @user = params[:id] ? User.friendly.find(params[:id]) : current_user
     authorize @user
     @user.user_page ||= UserPage.new
   end
