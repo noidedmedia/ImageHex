@@ -41,12 +41,11 @@ RSpec.describe UsersController, :type => :controller do
       end
     end
     describe "PUT #enable_twofactor" do
-      it "enables 2factor" do
+      it "starts to enable 2factor" do
         # Ensure it's not enabled at this point
         @user.otp_required_for_login = false
         @user.save
         put :enable_twofactor, id: @user
-        expect(@user.reload.otp_required_for_login).to eq(true)
         expect(@user.reload.otp_secret).to_not be_nil
       end
       it "doesn't work for other users" do
@@ -68,28 +67,31 @@ RSpec.describe UsersController, :type => :controller do
         expect(response).to_not be_success
       end
     end
-    describe "GET #twofactor_key" do
-      it "responds with a QR gif" do
+    describe "GET verify_twofactor" do
+      it "only works if the user has twofactor enabled but unverified" do
+        @user.update(otp_required_for_login: false)
         @user.enable_twofactor
-        get :twofactor_key, id: @user, format: :gif
+        get :verify_twofactor, id: @user
         expect(response).to be_success
-      end
-      it "responds with a QR png" do
-        @user.enable_twofactor
-        get :twofactor_key, id: @user, format: :gif
-        expect(response).to be_success
-      end
-      it "responds with normal html" do
-        @user.enable_twofactor
-        get :twofactor_key, id: @user
-        expect(response).to be_success
-      end
-      it "doesn't work for other users" do
-        @user.enable_twofactor
-        u = FactoryGirl.create(:user)
-        u.enable_twofactor
-        get :twofactor_key, id: u
+        @user.otp_secret = nil
+        @user.save
+        get :verify_twofactor, id: @user
         expect(response).to_not be_success
+      end
+    end
+    describe "PUT confirm_twofactor" do
+      it "works with the right key" do
+        @user.enable_twofactor
+        put :confirm_twofactor, id: @user, otp_key: @user.otp_key
+        expect(response).to be_success
+        expect(@user.reload.otp_required_for_login).to eq(true)
+      end
+      it "doesn't work with the wrong key" do
+        @user.update(otp_required_for_login: false)
+        @user.enable_twofactor
+        put :confirm_twofactor, id: @user, otp_key: "123123123"
+        expect(response).to_not be_success
+        expect(@user.reload.otp_required_for_login).to eq(false)
       end
     end
   end

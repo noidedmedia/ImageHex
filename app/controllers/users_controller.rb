@@ -5,14 +5,32 @@ class UsersController < ApplicationController
   include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor]
 
-  def twofactor_key
+
+
+  def confirm_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
-      format.gif { render qrcode: @user.otp_provisioning_uri(@user.email,
-     issuer: "ImageHex") }
-      format.png { render qrcode: @user.otp_provisioning_uri(@user.email,
-     issuer: "ImageHex") } 
+      if @user.confirm_twofactor(params[:otp_key])
+        format.html{ redirect_to @user }
+      else
+        format.html { redirect_to twofactor_verify_user_path(@user)}
+      end
+    end
+  end
+
+  def verify_twofactor
+    @user = User.friendly.find(params[:id])
+    authorize @user
+    respond_to do |format|
+      format.gif do
+        render qrcode: @user.otp_provisioning_uri(@user.email,
+                                                  issuer: "ImageHex")
+      end
+      format.svg do 
+        render qrcode: @user.otp_provisioning_uri(@user.email,
+                                                  issuer: "ImageHex")
+      end
       format.html
     end
   end
@@ -22,7 +40,7 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
       if @user.enable_twofactor
-        format.html { redirect_to twofactor_key_user_path(@user) }
+        format.html { redirect_to twofactor_verify_user_path(@user) }
       else
         format.html { redirect_to @user, error: @user.errors }
       end

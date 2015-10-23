@@ -101,9 +101,18 @@ class User < ActiveRecord::Base
   ####################
 
   def enable_twofactor
-    self.otp_required_for_login = true
     self.otp_secret = User.generate_otp_secret
     self.save
+  end
+
+  def confirm_twofactor(key)
+    if key == self.validate_and_consume_otp!(key)
+      self.otp_required_for_login = true
+      self.two_factor_verified = true
+      self.save
+    else
+      return false
+    end
   end
   ##
   # See if the user is subscribed to a collection

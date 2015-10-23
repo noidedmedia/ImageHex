@@ -56,8 +56,9 @@ Rails.application.routes.draw do
     resources :collections, only: [:index]
     member do
       put 'enable_twofactor'
+      get 'verify_twofactor'
+      put 'confirm_twofactor'
       put 'disable_twofactor'
-      get 'twofactor_key'
     end
   end
 
