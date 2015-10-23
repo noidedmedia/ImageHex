@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
   end
 
   def confirm_twofactor(key)
-    if key == self.validate_and_consume_otp!(key)
+    if self.validate_and_consume_otp!(key)
       self.otp_required_for_login = true
       self.two_factor_verified = true
       self.save

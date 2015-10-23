@@ -68,13 +68,14 @@ RSpec.describe UsersController, :type => :controller do
       end
     end
     describe "GET verify_twofactor" do
-      it "only works if the user has twofactor enabled but unverified" do
-        @user.update(otp_required_for_login: false)
-        @user.enable_twofactor
+      it "only works if the user has twofactor enabled" do
+        @user.update(otp_required_for_login: false,
+                     otp_secret: nil)
         get :verify_twofactor, id: @user
-        expect(response).to be_success
-        @user.otp_secret = nil
-        @user.save
+        expect(response).to_not be_success
+      end
+      it "only works if the user hasn't verified"  do
+        @user.update(two_factor_verified: true)
         get :verify_twofactor, id: @user
         expect(response).to_not be_success
       end
@@ -82,9 +83,9 @@ RSpec.describe UsersController, :type => :controller do
     describe "PUT confirm_twofactor" do
       it "works with the right key" do
         @user.enable_twofactor
-        put :confirm_twofactor, id: @user, otp_key: @user.otp_key
-        expect(response).to be_success
+        put :confirm_twofactor, id: @user, otp_key: @user.current_otp
         expect(@user.reload.otp_required_for_login).to eq(true)
+        expect(@user.reload.two_factor_verified).to eq(true)
       end
       it "doesn't work with the wrong key" do
         @user.update(otp_required_for_login: false)

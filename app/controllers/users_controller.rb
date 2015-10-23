@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       if @user.confirm_twofactor(params[:otp_key])
         format.html{ redirect_to @user }
       else
-        format.html { redirect_to twofactor_verify_user_path(@user)}
+        format.html { redirect_to verify_twofactor_user_path(@user)}
       end
     end
   end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
       if @user.enable_twofactor
-        format.html { redirect_to twofactor_verify_user_path(@user) }
+        format.html { redirect_to verify_twofactor_user_path(@user) }
       else
         format.html { redirect_to @user, error: @user.errors }
       end

@@ -8,8 +8,12 @@ class UserPolicy < ApplicationPolicy
     same_user
   end
 
-  def twofactor_key?
-    same_user && @user.otp_secret
+  def confirm_twofactor?
+    same_user && @user.otp_secret && ! @user.two_factor_verified?
+  end
+
+  def verify_twofactor?
+    same_user && ! @user.two_factor_verified && @user.otp_secret
   end
   def enable_twofactor?
     same_user
