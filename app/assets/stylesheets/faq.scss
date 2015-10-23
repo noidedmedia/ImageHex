@@ -12,26 +12,30 @@
   margin: 0;
   position: relative;
   width: 100vw;
-  padding-bottom: 40px;
+  margin-bottom: 40px;
+  padding: 20px;
 
   h2 {
     text-align: center;
-    margin: 40px 0 20px;
+    margin: 40px 0 0;
     font-weight: 300;
   }
 }
 
 .faq-questions {
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   margin: auto;
 
   h3 {
-    margin-top: 20px;
+    margin-top: 40px;
+    font-size: 1.8rem;
     font-weight: 500;
   }
 
   p {
     padding-top: 6px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
   }
 }
