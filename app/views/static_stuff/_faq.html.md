@@ -14,14 +14,6 @@ None of our employees will ever have any reason to request either your password 
 Artists should never ask for your payment info, this is handled by ImageHex. If you get a message from an artist you've commissioned asking you to send them your credit card or other payment info, do not send it. Only input your payment info in this screen, this way Stripe is the only one to receive your private information, never ImageHex or any artist.
 
 
-### Are my messages secure?
-We encrypt all messages on our platform to prevent them from being accessed by bad actors, and normal message threads cannot ever be accessed by us.
-
-Conversations between a client and artist in a commission, however, can be accessed by us when one or both parties dispute the commission.
-
-If you discuss the commission, send payment info, or send the artwork itself outside of the relevant Commission thread in your Messages, we'll be unable to help in a dispute case.
-
-
 ### How is my artwork protected in a Commission?
 To prevent unjust disputes on the part of the client, artwork is watermarked and separated into pieces before being sent in a Commission thread. What this does is make it harder to simply download a work-in-progress piece and dispute the commission. While this is not a perfect solution, as clients can still screenshot the artwork to attempt to download it, they will not have the full resolution version, and will have a watermarked piece.
 
