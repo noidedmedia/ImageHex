@@ -1,0 +1,93 @@
+@import "scss-variables";
+
+
+/* ==============================================
+    Company pages container
+   ============================================== */
+   
+#about-page-container,
+#people-page-container,
+#contact-page-container {
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  width: 100vw;
+  padding-bottom: 40px;
+}
+
+
+/**
+ * Company pages navigation
+ *
+ * Navigational header for the company pages.
+ *
+ * 1. Horizontal padding for each of the navigational items.
+ * 2. Green underline for the current section title.
+ */
+ 
+#company-nav-container {
+  width: 100vw;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  text-align: center;
+  padding-top: 4px;
+
+  .company-nav {
+    width: 400px;
+    margin: auto;
+
+    a {
+      display: inline-block;
+      padding: 0 25px; /* 1 */
+    }
+  }
+
+  a {
+    color: #333;
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 0;
+    text-align: right;
+    text-decoration: none;
+  }
+
+  .current {
+    font-weight: 500;
+    color: #17cd94;
+
+    /* 2 */
+    &:after {
+      content: '';
+      background-color: #17cd94;
+      width: calc(100% + 30px);
+      transform: translate(-15px,6px);
+      height: 3px;
+      display: block;
+    }
+  }
+}
+
+/* Content container for Company pages. */
+.company-page-main-column {
+  display: block;
+  margin: auto;
+  max-width: 1000px;
+  margin-top: 25px;
+}
+
+/* Content for Company pages. */
+.company-page-content {
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 300;
+
+  p {
+    padding: 0 0 12px;
+  }
+}
+
