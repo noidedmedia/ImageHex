@@ -379,8 +379,9 @@
   margin: 0 2px;
   border-radius: 50%;
   overflow: hidden;
-  opacity: 0.6;
-  transition: opacity 250ms;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.0), 0 3px 1px -2px rgba(0, 0, 0, 0.0), 0 2px 5px 0 rgba(0, 0, 0, 0.0);
+  transition: background-color 250ms, box-shadow 250ms;
 
   a {
     display: block;
@@ -399,63 +400,74 @@
   }
 
   &:hover {
-    opacity: 1;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.35), 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.15);
   }
 }
 
 #share-facebook {
-  background-color: $color-facebook;
-
   &:before {
     top: 6px;
     left: 5px;
     content: $icon-facebook;
     font-size: 3.8rem;
   }
+
+  &:hover {
+    background-color: $color-facebook;
+  }
 }
 
 #share-twitter {
-  background-color: $color-twitter;
-
   &:before {
     top: 7px;
     left: 9px;
     content: $icon-twitter;
     font-size: 2.7rem;
   }
+
+  &:hover {
+    background-color: $color-twitter;
+  }
 }
 
 #share-google-plus {
-  background-color: $color-google-plus;
-
   &:before {
     top: 6px;
     left: 9px;
     content: $icon-google-plus;
     font-size: 2.8rem;
   }
+
+  &:hover {
+    background-color: $color-google-plus;
+  }
 }
 
 #share-tumblr {
-  background-color: $color-tumblr;
-
   &:before {
     top: 5px;
     left: 7px;
     content: $icon-tumblr;
     font-size: 2.8rem;
   }
+
+  &:hover {
+    background-color: $color-tumblr;
+  }
 }
 
 #share-pinterest {
-  background-color: $color-pinterest;
-
   &:before {
     top: 4px;
     left: 6px;
     content: $icon-pinterest;
   }
+  
+  &:hover {
+    background-color: $color-pinterest;
+  }
 }
+
 
 
 /* ==============================================
@@ -595,3 +607,4 @@
     background-color: rgba($color-danger, 0.8);
   }
 }
+

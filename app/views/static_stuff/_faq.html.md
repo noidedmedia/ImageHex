@@ -6,8 +6,8 @@ You have to enter your payment info to protect artists from spammers and people 
 We take abusive, hostile behavior seriously. If you find that another user acts hostilely towards you, you're able to block and report that user. You're also able to close your private messages to allow messages only from those you follow or explicitly begin a conversation with. Commissions are open either to everyone or no one, but you will not receive commission requests from blocked users, and blocked users cannot tell they've been blocked.
 
 
-### Someone claiming to be an ImageHex/Noided Media employee is asking for my password and/or credit card info
-None of our employees will ever have any reason to request either your password or credit card information. Report this user to us if you see this behavior occurring, and _never_ share your password or payment information with others.
+### Someone claiming to be an ImageHex/Noided Media employee is asking for my password and/or credit card info, what should I do?
+None of our employees will ever have any reason to request either your password or credit card information. Report the user to us if you see this behavior occurring, and _never_ share your password or payment information with others.
 
 
 ### An artist is asking me for my payment info
