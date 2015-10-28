@@ -1,0 +1,35 @@
+require 'rails_helper'
+
+describe CollectionPolicy do
+
+  let(:user) { User.new }
+
+  subject { described_class }
+
+  let(:collection){FactoryGirl.create(:collection)}
+  let(:user){FactoryGirl.create(:user)}
+  permissions :destroy? do
+    it "allows admins" do
+      FactoryGirl.create(:curatorship,
+                         user: user,
+                         collection: collection,
+                         level: :admin)
+      expect(subject).to permit(user, collection)
+    end
+    it "does not allow mods" do
+      FactoryGirl.create(:curatorship,
+                         user: user,
+                         collection: collection,
+                         level: :mod)
+      expect(subject).to_not permit(user, collection)
+    end
+
+    it "does not allow normal users" do
+      FactoryGirl.create(:curatorship,
+                         user: user,
+                         collection: collection,
+                         level: :worker)
+      expect(subject).to_not permit(user, collection)
+    end
+  end
+end
