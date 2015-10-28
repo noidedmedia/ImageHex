@@ -4,16 +4,29 @@ class CollectionPolicy < ApplicationPolicy
     @collection = collection
   end
 
+  def update?
+    admined? && non_innate?
+  end
   def destroy?
-    admined?
-
+    admined? && non_innate?
   end
 
   protected
+
+  def non_innate?
+    case @collection.type
+    when "Favroite"
+      false
+    when "Creation"
+      false
+    else
+      true
+    end
+  end
+
   def admined?
-    Curatorship.where(user: @user,
-                      collection: @collection)
-    .try(:first)
-    .try(:level) == "admin"
+    c = Curatorship.where(user: @user,
+                          collection: @collection)
+    c.try(:first).try(:level) == "admin"
   end
 end
