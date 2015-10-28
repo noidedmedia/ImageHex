@@ -42,6 +42,20 @@ RSpec.describe CollectionsController, :type => :controller do
       @user.confirm
       sign_in @user
     end
+    describe "PUT #update" do
+      let(:c){FactoryGirl.create(:collection)}
+      before :each do
+        Curatorship.create(collection: c,
+                           user: @user,
+                           level: :admin)
+      end
+                                
+      it "works" do
+        put :edit, id: c, collection: FactoryGirl.attributes_for(:collection)
+        expect(response).to be_success
+      end
+    end
+
     describe "DELETE #unsubscribe" do
       it "unsubscribes" do
         c = FactoryGirl.create(:collection)
@@ -86,20 +100,6 @@ RSpec.describe CollectionsController, :type => :controller do
       context "with invalid attributes" do
         it "doesn't make a new collection"
         it "renders the #new page with errors set"
-      end
-    end
-    describe "get #edit" do
-      it "doesn't update the title of innate collections"
-      it "renders the edit form"
-    end
-    describe "put #update" do
-      context "with valid attributes" do
-        it "updates the collection"
-        it "redirects to the collection page"
-      end
-      context "with invalid attributes" do
-        it "does not modify the collection"
-        it "renders the #edit page with errors set"
       end
     end
 

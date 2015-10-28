@@ -1,7 +1,9 @@
 ##
 # A controller for actions relating to collections
 class CollectionsController < ApplicationController
-  before_filter :ensure_user, only: [:subscribe, :new, :create, :edit, :destroy, :update, :unsubscribe]
+  before_filter :ensure_user, except: [:index, :show]
+
+  include Pundit
   ##
   # Unsubscribe from a collection
   # Member action
@@ -86,7 +88,28 @@ class CollectionsController < ApplicationController
       end
     end
   end
+  def edit
+    @collection = Collection.find(params[:id])
+  end
 
+  def update
+    @collection = Collection.find(params[:id])
+    authorize @collection
+    respond_to do |format|
+      if @collection.update(collection_params)
+        format.html {redirect_to @collection}
+        format.json {render :show}
+      else
+        format.html{render :edit, status: :unproccessible_entity}
+        format.json{render @collection.errors, status: :unprocessible_entity}
+      end
+    end
+  end
+  def destroy
+    @collection = Collection.find(params[:id])
+    authorize @collection
+    @collection.destroy
+  end
   protected
   ##
   # Parameters needed to create the collection.
