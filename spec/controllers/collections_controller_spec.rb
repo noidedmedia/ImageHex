@@ -6,7 +6,7 @@ RSpec.describe CollectionsController, :type => :controller do
     it "shows all a users collections" do
       user = FactoryGirl.create(:user)
       user.collections = [FactoryGirl.create(:collection),
-                          FactoryGirl.create(:collection)]
+        FactoryGirl.create(:collection)]
       get :index, user_id: user
       expect(assigns(:collections)).to match_array(user.collections)
     end
@@ -49,10 +49,24 @@ RSpec.describe CollectionsController, :type => :controller do
                            user: @user,
                            level: :admin)
       end
-                                
+
       it "works" do
         put :edit, id: c, collection: FactoryGirl.attributes_for(:collection)
         expect(response).to be_success
+      end
+    end
+
+    describe "DELETE #destroy" do
+      let(:c){FactoryGirl.create(:collection)}
+      before :each do 
+        Curatorship.create(collection: c,
+                           user: @user,
+                           level: :admin)
+      end
+      it "allows deletion" do
+        expect{
+          delete :destroy, id: c.id
+        }.to change{Collection.count}.by(-1)
       end
     end
 
@@ -67,8 +81,8 @@ RSpec.describe CollectionsController, :type => :controller do
         expect(@user.subscribed_collections.reload).to_not include(c)
       end
     end
-    
-    
+
+
 
     describe "post #subscribe" do
       let(:c){FactoryGirl.create(:collection)}
@@ -86,7 +100,7 @@ RSpec.describe CollectionsController, :type => :controller do
     describe "post #create" do
       context "with valid attributes" do
         let(:subjective_atrs){ {type: "Subjective",
-                                name: "My Kawaii Images"}}
+          name: "My Kawaii Images"}}
         it "makes a new collection of the proper type" do
           expect{
             post :create, collection: subjective_atrs

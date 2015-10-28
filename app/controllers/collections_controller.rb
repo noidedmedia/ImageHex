@@ -109,6 +109,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
     authorize @collection
     @collection.destroy
+    redirect_to root_path
   end
   protected
   ##
