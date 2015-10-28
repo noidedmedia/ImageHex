@@ -3,7 +3,7 @@
 
   <%# ImageHex description text %>
     <div class="footer-description-column">
-      <img src="/logo/imagehex-white-text.svg" alt="<%= t(".imagehex") %>">
+      <img src="/logo/imagehex-monochrome-white-text.svg" alt="<%= t(".imagehex") %>">
       <p class="footer-description-body"><%= t(".imagehex_description") %>
       <p class="footer-description-copyright"><%= t(".imagehex_copyright") %>
     </div>
@@ -16,8 +16,8 @@
         <li><%= link_to t(".contact"), contact_path %>
         <li><%= link_to t(".faq"), faq_path %>
         <li><%= link_to t(".rules"), rules_path %>
-        <li><a href="/help"><%= t(".help") %></a>
-        <li><a href="/press"><%= t(".press") %></a>
+        <li><%= link_to t(".help"), help_path %>
+        <li><%= link_to t(".press_kit"), press_path %>
         <!-- <li><%# link_to t(".status"), status_path %> -->
         <!-- <li><%# link_to t(".api"), api_path %> -->
         <!-- <li><%# link_to t(".terms"), terms_path %> -->
