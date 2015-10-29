@@ -112,8 +112,8 @@
     </a>
 
     <%# Delete %>
-    <%# Only accessible to users with admin privileges. %>
-    <% if current_user && current_user.admin? %>
+    <%# Only accessible to users with admin privileges or the uploader for the first 24 hours after uploading an image. %>
+    <% if policy(@image).destroy? %>
       <%= link_to admin_image_path(@image), method: :delete do %>
         <div class="image-actions" id="img-action-delete">
           <span class="icon icon-medium icon-delete"></span>
