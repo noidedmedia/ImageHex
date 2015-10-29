@@ -22,6 +22,8 @@ class ImagePolicy < ApplicationPolicy
     @user.try(:role) == 'admin'
   end
 
+  ##
+  # Image's creation date is some time within the last 24 hours
   def recently_made?
     @image.created_at > 1.day.ago
   end
