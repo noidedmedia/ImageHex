@@ -15,7 +15,7 @@ class CollectionPolicy < ApplicationPolicy
 
   def non_innate?
     case @collection.type
-    when "Favroite"
+    when "Favorite"
       false
     when "Creation"
       false
