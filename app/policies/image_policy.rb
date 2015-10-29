@@ -19,10 +19,10 @@ class ImagePolicy < ApplicationPolicy
   end
 
   def admin?
-    @user.try(:level) == 'admin'
+    @user.try(:role) == 'admin'
   end
 
   def recently_made?
-    @image.created_at < 1.day.ago
+    @image.created_at > 1.day.ago
   end
 end
