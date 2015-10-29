@@ -1,5 +1,5 @@
-function JustifyGallery(){
-  $("#image-gallery").justifiedGallery({
+function JustifyGallery() {
+  $(".image-gallery").justifiedGallery({
     rowHeight: 230,
     margins: 10,
     sizeRangeSuffixes : {
