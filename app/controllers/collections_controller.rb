@@ -88,6 +88,7 @@ class CollectionsController < ApplicationController
       end
     end
   end
+  
   def edit
     @collection = Collection.find(params[:id])
   end
@@ -97,20 +98,22 @@ class CollectionsController < ApplicationController
     authorize @collection
     respond_to do |format|
       if @collection.update(collection_params)
-        format.html {redirect_to @collection}
-        format.json {render :show}
+        format.html { redirect_to @collection }
+        format.json { render :show }
       else
-        format.html{render :edit, status: :unproccessible_entity}
-        format.json{render @collection.errors, status: :unprocessible_entity}
+        format.html { render :edit, status: :unproccessible_entity }
+        format.json { render @collection.errors, status: :unprocessible_entity }
       end
     end
   end
+  
   def destroy
     @collection = Collection.find(params[:id])
     authorize @collection
     @collection.destroy
     redirect_to root_path
   end
+
   protected
   ##
   # Parameters needed to create the collection.
