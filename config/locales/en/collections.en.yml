@@ -1,14 +1,13 @@
-# Collections strings.
-
+---
 en:
   collections:
-    show:
-      curated_by: "Curated by"
-      follow: "Follow"
-      following: "Following"
-      unfollow: "Unfollow"
     new:
-      new_collection_page_title: "New collection"
-      title: "Title"
-      description: "Description"
-      create_collection: "Create collection"
+      create_collection: Create collection
+      description: Description
+      new_collection_page_title: New collection
+      title: Title
+    show:
+      curated_by: Curated by
+      follow: Follow
+      following: Following
+      unfollow: Unfollow

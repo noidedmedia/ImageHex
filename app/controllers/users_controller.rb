@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     return unless current_user == User.friendly.find(params[:id])
     respond_to do |format|
       if current_user.update(user_params)
-        format.html { redirect_to current_user, notice: I18n.t(".notices.changes_have_been_saved") }
+        format.html { redirect_to current_user, notice: I18n.t("notices.changes_have_been_saved") }
       else
         format.html { redirect_to edit_user_path(current_user), warning: current_user.errors.full_messages.join(",") }
       end

@@ -18,7 +18,7 @@ class ImagesController < ApplicationController
     @comment = Comment.new(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @image, notice: I18n.t(".notices.your_comment_was_submitted_successfully") }
+        format.html { redirect_to @image, notice: I18n.t("notices.your_comment_was_submitted_successfully") }
       else
         format.html { redirect_to @image, warning: @comment.errors.full_messages.join(', ') }
       end
@@ -85,7 +85,7 @@ class ImagesController < ApplicationController
     
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @image, notice: I18n.t(".notices.report_submitted_thank_you") }
+        format.html { redirect_to @image, notice: I18n.t("notices.report_submitted_thank_you") }
       else
         format.html { redirect_to @image, warning: @report.errors.full_messages.join(", ") }
       end
@@ -101,7 +101,7 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: I18n.t(".notices.image_uploaded_successfully") }
+        format.html { redirect_to @image, notice: I18n.t("notices.image_uploaded_successfully") }
         format.json { render :show }
       else
         # If their image is incorrect, redirect_to the new page again.
@@ -150,6 +150,7 @@ class ImagesController < ApplicationController
   # @groups:: Tag groups on the image. Should be refactored out at some point.
   def show
     @groups = TagGroup.where(image: @image).includes(:tags)
+    @collections = current_user.try(:collections).try(:subjective)
   end
   
   protected

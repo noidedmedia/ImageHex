@@ -1,21 +1,21 @@
-# "static_stuff" strings.
-
+---
 en:
   static_stuff:
-    company_nav:
-      about: "About"
-      people: "People"
-      contact: "Contact"
     about:
-      about: "About"
-    people:
-      people: "People"
+      about: About
+    company_nav:
+      about: About
+      contact: Contact
+      people: People
     contact:
-      contact: "Contact"
+      contact: Contact
     faq:
-      faq_title: "Frequently Asked Questions"
-      faq: "Frequently Asked Questions"
-    press:
-      press: "Press"
+      faq: Frequently Asked Questions
     help:
-      help: "Help"
+      help: Help
+    people:
+      people: People
+    press:
+      press: Press
+    rules:
+      rules: Rules

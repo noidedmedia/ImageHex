@@ -1,43 +1,42 @@
-# Custom devise strings not included in devise.en.yml.
-
+---
 en:
   devise:
     confirmations:
       new:
-        email_confirmation: "Email confirmation"
-        email: "Email"
-        resend_confirmation_instructions: "Resend confirmation instructions"
+        email: Email
+        email_confirmation: Email confirmation
+        resend_confirmation_instructions: Resend confirmation instructions
     passwords:
-      new: 
-        forgot_your_password_title: "Forgot your password?"
-        forgot_your_password?: "Forgot your password?"
-        forgot_your_password: "Forgot your password?"
-        email: "Email"
-        reset_password: "Reset password"
+      new:
+        email: Email
+        forgot_your_password: Forgot your password?
+        forgot_your_password: Forgot your password?
+        forgot_your_password_title: Forgot your password?
+        reset_password: Reset password
     registrations:
       new:
-        create_an_account_title: "Create an account"
-        let's_get_started: "Let's get started."
-        create_an_account_submit: "Create account"
-        email: "Email"
-        username: "Username"
-        password: "Password (minimum 8 characters)"
-        reenter_password: "Re-enter password"
+        create_an_account_submit: Create account
+        create_an_account_title: Create an account
+        email: Email
+        lets_get_started: Let's get started.
+        password: Password (minimum 8 characters)
+        reenter_password: Re-enter password
+        username: Username
     sessions:
       new:
-        sign_in_title: "Sign in"
-        welcome_back: "Welcome back."
-        sign_in: "Sign in"
-        email: "Email"
-        password: "Password"
-        remember_me: "Remember me"
+        email: Email
+        password: Password
+        remember_me: Remember me
+        sign_in: Sign in
+        sign_in_title: Sign in
+        welcome_back: Welcome back.
     shared:
       links:
-        already_have_an_account?: "Already have an account?"
-        sign_in: "Sign in."
-        don't_have_an_account?: "Don't have an account?"
-        create_an_account: "Get started here."
-        forgot_your_password?: "Forgot your password?"
-        didn't_receive_confirmation: "Didn't receive confirmation instructions?"
-        didn't_receive_unlock: "Didn't receive unlock instructions?"
-        sign_in_with: "Sign in with %{provider}"
+        already_have_an_account: Already have an account?
+        create_an_account: Get started here.
+        didnt_receive_confirmation: Didn't receive confirmation instructions?
+        didnt_receive_unlock: Didn't receive unlock instructions?
+        dont_have_an_account: Don't have an account?
+        forgot_your_password: Forgot your password?
+        sign_in: Sign in.
+        sign_in_with: Sign in with %{provider}

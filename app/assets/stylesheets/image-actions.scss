@@ -7,12 +7,10 @@
 .image-actions-sidebar {
   width: 20vw;
   background-color: #272727;
-  display: -webkit-flex;
   display: flex;
-  -webkit-align-items: flex-end;
-          align-items: flex-end;
+  align-items: flex-end;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100vw;
   }
 }
@@ -20,12 +18,9 @@
 .image-actions-container {
   width: 100%;
   height: auto;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-align-items: flex-end;
-          align-items: flex-end;
+  flex-flow: row wrap;
+  align-items: flex-end;
   padding-bottom: 15px;
   position: relative;
 
@@ -46,12 +41,12 @@
       color: rgba(#fff,1.0);
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       width: auto;
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding-bottom: 4px;
   }
 }
@@ -69,7 +64,7 @@
       color: rgba(#fff,1.0);
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       background-color: transparent;
     }
   }
@@ -78,7 +73,7 @@
   > span::before {
     color: rgba(#fff,0.8);
     font-size: 2.1rem;
-    @include translate(5px, -4px);
+    transform: translate(5px, -4px);
   }
 
   > a > p,
@@ -86,7 +81,7 @@
     padding-left: 40px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     padding: 10px;
     overflow: hidden;
     white-space: nowrap;
@@ -132,6 +127,16 @@
     line-height: 17px;
   }
 
+  .tooltip-title {
+    pointer-events: none;
+    padding: 10px 12px;
+    font-size: 1.2rem;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #333;
+    font-weight: 500;
+  }
+
   &.inactive {
     display: none;
   }
@@ -156,12 +161,11 @@
     right: -14px;
     border-width: 0 10px 10px;
     border-style: solid;
-    -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+    transform: rotate(90deg);
     border-color: #fff transparent;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100vw;
     // Height of the page minus the height of the header.
     height: calc(100vh - 50px);
@@ -176,11 +180,11 @@
   }
 }
 
-@media all and (max-device-width: $mobile-width) {
+@media all and (max-width: $mobile-width) {
   #img-action-favorited,
   #img-action-favorite {
     > a > span::before {
-      @include translate(5px, -1px);
+      transform: translate(5px, -1px);
     }
   }
 }
@@ -203,7 +207,7 @@
     top: 38px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     top: 50px;
   }
 }
@@ -222,7 +226,7 @@
     padding: 10px 20px;
     color: rgba(#fff,0.8);
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       padding: 10px 15px;
     }
   }
@@ -231,7 +235,7 @@
     color: rgba(#fff,1.0);
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 40px;
   }
 }
@@ -257,6 +261,16 @@
 #collection-add-list-container {
   overflow: hidden;
   border-radius: 3px;
+
+  .imagehex-empty-note-container {
+    padding-top: 5px;
+    text-align: center;
+    min-height: 50px;
+  }
+
+  .imagehex-empty-note {
+    font-size: 1.2rem;
+  }
 }
 
 #collection-add-list-scrollbar {
@@ -297,16 +311,16 @@
 
 .collection-add-list-item {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 300;
   color: rgba(#333,0.8);
   border: none;
   border-radius: 0;
   -webkit-appearance: none;
-  height: 35px;
+  height: 40px;
   text-align: left;
   cursor: pointer;
-  padding-left: 10px;
+  padding-left: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
 
@@ -320,14 +334,15 @@
 }
 
 #img-action-collection-tooltip {
-  top: -10px;
+  top: -7px;
   cursor: default;
+  width: 100%;
 
   &:after {
-    top: 22px;
+    top: 20px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     top: 50px;
   }
 }
@@ -339,7 +354,7 @@
 
 #img-action-share-tooltip {
   width: 275px;
-  height: 100px;
+  height: auto;
 
   a {
     color: #333;
@@ -350,17 +365,13 @@
   }
 }
 
-.share-icons {
+.share-icons-container {
   width: 100%;
   display: block;
-  padding: 0 10px;
+  padding: 0 10px 10px;
 }
 
-#share-facebook,
-#share-twitter,
-#share-google-plus,
-#share-tumblr,
-#share-pinterest {
+.share-icon {
   display: inline-block;
   width: 44px;
   height: 44px;
@@ -368,104 +379,95 @@
   margin: 0 2px;
   border-radius: 50%;
   overflow: hidden;
-  transition: box-shadow 400ms;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.0), 0 3px 1px -2px rgba(0, 0, 0, 0.0), 0 2px 5px 0 rgba(0, 0, 0, 0.0);
+  transition: background-color 250ms, box-shadow 250ms;
 
   a {
     display: block;
     width: 100%;
     height: 100%;
+    border-radius: 50%;
   }
 
   &:before {
     position: absolute;
-    color: #333;
+    color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 3.2rem;
     pointer-events: none;
   }
 
-  &:hover::before {
-    color: #fff;
+  &:hover {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.35), 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 2px 5px 0 rgba(0, 0, 0, 0.15);
   }
 }
 
 #share-facebook {
-  box-shadow: inset 0 0 0 1px $color-facebook;
-
-  &:hover {
-    box-shadow: inset 0 0 0 22px $color-facebook;
-  }
-
   &:before {
     top: 6px;
     left: 5px;
-    font-size: 3.8rem;
     content: $icon-facebook;
-    color: $color-facebook;
+    font-size: 3.8rem;
+  }
+
+  &:hover {
+    background-color: $color-facebook;
   }
 }
 
 #share-twitter {
-  box-shadow: inset 0 0 0 1px $color-twitter;
-
-  &:hover {
-    box-shadow: inset 0 0 0 22px $color-twitter;
+  &:before {
+    top: 7px;
+    left: 9px;
+    content: $icon-twitter;
+    font-size: 2.7rem;
   }
 
-  &:before {
-    top: 5px;
-    left: 8px;
-    font-size: 3.0rem;
-    color: $color-twitter;
-    content: $icon-twitter;
+  &:hover {
+    background-color: $color-twitter;
   }
 }
 
 #share-google-plus {
-  box-shadow: inset 0 0 0 1px $color-google-plus;
-
-  &:hover {
-    box-shadow: inset 0 0 0 22px $color-google-plus;
+  &:before {
+    top: 6px;
+    left: 9px;
+    content: $icon-google-plus;
+    font-size: 2.8rem;
   }
 
-  &:before {
-    top: 4px;
-    left: 7px;
-    content: $icon-google-plus;
-    color: $color-google-plus;
+  &:hover {
+    background-color: $color-google-plus;
   }
 }
 
 #share-tumblr {
-  box-shadow: inset 0 0 0 1px $color-tumblr;
-
-  &:hover {
-    box-shadow: inset 0 0 0 22px $color-tumblr;
+  &:before {
+    top: 5px;
+    left: 7px;
+    content: $icon-tumblr;
+    font-size: 2.8rem;
   }
 
-  &:before {
-    top: 3px;
-    left: 5px;
-    content: $icon-tumblr;
-    color: $color-tumblr;
+  &:hover {
+    background-color: $color-tumblr;
   }
 }
 
 #share-pinterest {
-  box-shadow: inset 0 0 0 1px $color-pinterest;
-
-  &:hover {
-    box-shadow: inset 0 0 0 22px $color-pinterest;
-  }
-
   &:before {
     top: 4px;
     left: 6px;
     content: $icon-pinterest;
-    color: $color-pinterest;
+  }
+  
+  &:hover {
+    background-color: $color-pinterest;
   }
 }
+
 
 
 /* ==============================================
@@ -480,13 +482,14 @@
     top: 213px;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     top: 50px;
   }
 }
 
 #report-form {
-  padding: 12px;
+  width: 100%;
+  padding: 0 12px;
 
   input[type=radio] {
     opacity: 0;
@@ -532,7 +535,6 @@
   }
 
   .report-row {
-    display: -webkit-flex;
     display: flex;
     padding: 4px 0;
   }
@@ -554,6 +556,7 @@
     resize: vertical;
     color: #333;
     font-size: 1.4rem;
+    padding: 5px;
 
     &:focus {
       outline: transparent;
@@ -564,6 +567,7 @@
   .report-buttons {
     text-align: right;
     display: block;
+    padding-bottom: 10px;
 
     input[type="submit"],
     button[type="reset"] {
@@ -603,3 +607,4 @@
     background-color: rgba($color-danger, 0.8);
   }
 }
+

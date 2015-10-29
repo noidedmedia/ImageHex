@@ -1,8 +1,8 @@
-<header id="header-container">
+<header id="header-container" role="banner">
   <div id="header-left">
     <%# Home button %>
     <div class="header-item" id="header-home">
-      <%= link_to root_path do %>
+      <%= link_to root_path, title: t(".home") do %>
         <div class="imagehex-header-logo"></div>
       <% end %>
     </div>
@@ -27,9 +27,9 @@
 
   <%# Header search container %>
   <div id="header-search">
-    <form action="/search" method="get">
+    <form action="/search" method="get" role="search">
       <%# Search icon %>
-      <label for="header-search-input">
+      <label title="<%= t('.search') %>" for="header-search-input">
         <span class="icon icon-small icon-search"></span>
       </label>
 

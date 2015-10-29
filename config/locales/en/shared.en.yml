@@ -1,17 +1,14 @@
-# Shared strings.
-
+---
 en:
   shared:
-    comments:
-      no_comments_yet: "No comments yet."
     comment:
-      uploaded_by: "Uploaded by"
-      no_description_provided: "No description provided."
-      edit: "Edit"
-      commented: "commented"
-      ago: "ago"
+      ago: ago
+      commented: commented
+      edit: Edit
+    comments:
+      no_comments_yet: No comments yet.
     report_stub:
-      reason_for_report: "Reason for report:"
-      extra_information: "Extra information (optional):"
-      cancel: "Cancel"
-      report: "Report"
+      cancel: Cancel
+      extra_information: 'Extra information (optional):'
+      reason_for_report: 'Reason for report:'
+      report: Report

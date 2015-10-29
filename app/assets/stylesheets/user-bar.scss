@@ -96,7 +96,7 @@
   }
 }
 
-@media all and (max-device-width: $mobile-width) {
+@media all and (max-width: $mobile-width) {
   .user-bar {
     position: initial;
     width: auto;

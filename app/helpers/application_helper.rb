@@ -1,6 +1,9 @@
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
+  def comment_url comment
+    polymorphic_url(comment.commentable) + "#" + comment.id.to_s
+  end
 
   def markdown_parse(str)
     return unless str

@@ -1,23 +1,23 @@
-# Users strings.
-
+---
 nv:
   users:
-    show:
-      uploads: "Images which this user has added to out database (%{count})"
-      creations: "Images which this user has caused to come into existance, by photographing or otherwise creating them (%{count})"
-      collections: "The collections owned or administered by this user (%{count})"
-      user_page_bio_empty: "You haven't filled out your autobiographical text yet."
-      edit: "(modify)"
-    edit:
-      edit_page_title: "Settings"
-      profile_picture_image_id: "Profile Picture Image Identification Number"
-      user_bio: "Text, parsed with Markdown, that will be associated with your identity as your biography"
-      images_per_page: "Number of images which ImageHex should display on a page"
-      show_content_labeled_as: "Show content labeled as:"
-      nsfw_sexuality: "NSFW Sexuality"
-      nsfw_gore: "NSFW Gore"
-      nsfw_language: "NSFW Language"
-      nsfw_nudity: "NSFW Nudity"
-      save_changes: "Save changes"
     collection_stub:
-      curated_by: "Curated by"
+      curated_by: Curated by
+    edit:
+      edit_page_title: Settings
+      images_per_page: Number of images which ImageHex should display on a page
+      nsfw_gore: NSFW Gore
+      nsfw_language: NSFW Language
+      nsfw_nudity: NSFW Nudity
+      nsfw_sexuality: NSFW Sexuality
+      save_changes: Save changes
+      show_content_labeled_as: 'Show content labeled as:'
+      user_bio: Text, parsed with Markdown, that will be associated with your identity as your biography
+    show:
+      collections: The collections owned or administered by this user (%{count})
+      creations: Images which this user has caused to come into existance, by photographing or otherwise creating them (%{count})
+      edit: "(modify)"
+      this_user_doesnt_have_any_collections_yet: This user doesn't have any collections yet.
+      uploads: Images which this user has added to out database (%{count})
+      user_page_bio_empty: You haven't filled out your autobiographical text yet.
+      you_dont_have_any_collections_yet: You don't have any collections yet.

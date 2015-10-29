@@ -165,7 +165,7 @@
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     font-size: 1.4rem;
     margin-bottom: 12px;
   }

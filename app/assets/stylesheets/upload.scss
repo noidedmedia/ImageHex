@@ -11,12 +11,9 @@
   text-align: center;
 
   form {
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-flow: row wrap;
-            flex-flow: row wrap;
-    -webkit-justify-content: center;
-            justify-content: center;
+    flex-flow: row wrap;
+    justify-content: center;
   }
 
   input[type="submit"] {
@@ -32,7 +29,7 @@
       display: block;
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       width: 90vw;
     }
   }
@@ -91,7 +88,7 @@
       top: calc(50% - 9px);
       height: 20px;
       padding: 0 8px;
-      @include translateX(-50%);
+      transform: translateX(-50%);
       font-size: 1.4rem;
       font-weight: 500;
       color: #8e8e8e;
@@ -133,7 +130,7 @@
         position: absolute;
         display: inline-block;
         color: #8e8e8e;
-        @include translate(-60px,20px);
+        transform: translate(-60px,20px);
         font-size: 12.0rem;
       }
     }
