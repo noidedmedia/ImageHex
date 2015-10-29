@@ -5,10 +5,24 @@ class ImagePolicy < ApplicationPolicy
   end
 
   def edit?
-    @user.try(:level) == 'admin' || @image.user == @user
+    update?
   end
   def update?
-    @user.try(:level) == 'admin' || @image.user == @user
+    admin? || @image.user == @user
+  end
+  def destroy?
+    admin? || (owned? && recently_made?)
   end
 
+  def owned?
+    @image.user == @user
+  end
+
+  def admin?
+    @user.try(:level) == 'admin'
+  end
+
+  def recently_made?
+    @image.created_at < 1.day.ago
+  end
 end
