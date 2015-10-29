@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
   # Load the image via our id
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
-  before_action :ensure_user, only: [:unfavorite, :favorite, :created, :new, :create, :update, :edit, :destroy, :report, :comment]
+  before_action :ensure_user, except: [:index, :show, :search]
 
   ##
   # Create a new comment on the image in params[:id]
@@ -129,6 +129,10 @@ class ImagesController < ApplicationController
   # DELETE to remove an image.
   # Does nothing currently.
   def destroy
+    @image = Image.find(params[:id])
+    authorize @image
+    @image.destroy
+    redirect_to action: :index
   end
 
   ##
