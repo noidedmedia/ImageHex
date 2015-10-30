@@ -31,9 +31,3 @@ class Tag{
   }
 }
 
-$(() => {
-  console.log("Suggesting...");
-  Tag.withPrefix("h", (s) => {
-    console.log(s);
-  });
-});

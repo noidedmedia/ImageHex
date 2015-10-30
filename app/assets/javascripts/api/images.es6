@@ -49,15 +49,3 @@ class Image{
     Image.find(this.id, callback);
   }
 }
-
-$(function(){
-  Image.find(2, (img) => {
-    var tag = img.tag_groups[0].tags[0];
-    var imgs = tag.images();
-    imgs.iteratePageImages((i) => {
-      i.getFullData((d) => {
-        console.log(d);
-      });
-    })
-  });
-});
