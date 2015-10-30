@@ -3,7 +3,7 @@
   <%= link_to collection_path(c) do %>
     <div class="collection-thumbnail">
       <% if c.images.for_content(@content).count > 0 %>
-        <%= image_tag c.images.for_content(@content).first %>
+        <%= image_tag c.images.for_content(@content).first.f(:medium) %>
       <% else %>
         <!-- Placeholder image -->
       <% end %>
