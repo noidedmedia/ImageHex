@@ -2,8 +2,8 @@
 
   <%= link_to collection_path(c) do %>
     <div class="collection-thumbnail">
-      <% if c.images.count > 0 %>
-        <%= image_tag c.images.first.f %>
+      <% if c.images.for_content(@content).count > 0 %>
+        <%= image_tag c.images.for_content(@content).first %>
       <% else %>
         <!-- Placeholder image -->
       <% end %>

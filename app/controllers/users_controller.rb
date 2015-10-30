@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @creations = @user.creations.images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
+    # this is a hack, fix please 
+    @content = content_pref
     @collections = @user.collections.subjective
   end
 
