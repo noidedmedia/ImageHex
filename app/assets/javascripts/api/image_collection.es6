@@ -46,11 +46,10 @@ class ImageCollection{
   }
 
   getPageData(callback){
-    console.log("Page is ",this.pageURL())
     $.getJSON(this.pageURL(), (data) => {
       var d;
       if(this.prefix){
-        d = data.prefix;
+        d = data[this.prefix];
       }
       else{
         d = data;

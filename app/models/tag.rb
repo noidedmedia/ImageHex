@@ -31,13 +31,13 @@ class Tag < ActiveRecord::Base
   #   Tag.suggest("ha") => ["hack", "halloween"]
   def self.suggest(n)
     query = %q{
-    SELECT tags.name FROM tags
+    SELECT tags.* FROM tags
     WHERE tags.name LIKE ?
-    ORDER BY display_name ASC
+    ORDER BY importance ASC
     LIMIT 10
     }
     finder = "#{n.gsub("%","").downcase.strip.squish}%"
-    find_by_sql([query, finder]).map(&:name)
+    find_by_sql([query, finder])
   end
   
 

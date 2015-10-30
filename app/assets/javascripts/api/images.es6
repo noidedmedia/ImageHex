@@ -22,13 +22,42 @@ class Image{
   static allImages(){
     return new ImageCollection("/images");
   }
+  /**
+   * Get a fully filled out version of this Image.
+   * If this image already has all data, returns `this`
+   * Otherwise returns a new image with all the data
+   */
+  getFullData(callback){
+    if(this.hasFullData()){
+      callback(this);
+    }
+    else{
+      Image.find(this.id, callback);
+    }
+  }
+  /**
+   * See if this image has full data, IE tags and groups
+   * If it doesn't you can use getFullData to get the full data
+   */
+  hasFullData(){
+    return !! this.tag_groups;
+  }
+  /**
+   * Get a new version of this image from the site.
+   */
+  refresh(callback){
+    Image.find(this.id, callback);
+  }
 }
 
 $(function(){
-  var a = Image.allImages();
-  console.log(a);
-  a.iteratePageImages((img) => {
-    console.log(img);
+  Image.find(2, (img) => {
+    var tag = img.tag_groups[0].tags[0];
+    var imgs = tag.images();
+    imgs.iteratePageImages((i) => {
+      i.getFullData((d) => {
+        console.log(d);
+      });
+    })
   });
 });
-
