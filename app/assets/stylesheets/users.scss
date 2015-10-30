@@ -260,11 +260,11 @@
   }
 }
 
-#user-collections-container,
-#user-creations-container {
+#user-collections-container {
   flex-flow: row wrap;
 }
 
-#user-uploads-container {
+#user-uploads-container,
+#user-creations-container {
   flex-flow: column wrap;
 }
