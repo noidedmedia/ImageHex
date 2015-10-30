@@ -18,8 +18,11 @@ class Tag{
    * @param{Function} callback called with the array of tags
    */
   static withPrefix(prefix, callback){
-    $.getJSON("/tags/suggest/"+ $.param({name: prefix}), (d) => {
-      a = [];
+    var uri = "/tags/suggest/?"+ $.param({name: prefix});
+    console.log("Suggesting with URI:",uri);
+    $.getJSON(uri, (d) => {
+      console.log("Got from suggestion",d);
+      var a = [];
       for(var t of d){
         a.push(new Tag(t));
       }
@@ -27,3 +30,10 @@ class Tag{
     });
   }
 }
+
+$(() => {
+  console.log("Suggesting...");
+  Tag.withPrefix("h", (s) => {
+    console.log(s);
+  });
+});
