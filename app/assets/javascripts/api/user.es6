@@ -25,11 +25,4 @@ class User{
   }
 }
 
-$(() => {
-  User.find(2, (u) => {
-    console.log(u);
-    for(var c of u.collections){
-      console.log(c);
-    }
-  });
-});
+
