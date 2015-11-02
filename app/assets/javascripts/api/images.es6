@@ -28,7 +28,7 @@ class Image{
    * @param{Function} callback the function to call with the image object
    */
   static find(id, callback){
-    $.getJSON("/images/" + id, (data) => {
+    NM.getJSON("/images/" + id, (data) => {
       callback(new Image(data));
     });
   }

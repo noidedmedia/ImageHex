@@ -46,7 +46,7 @@ class ImageCollection{
   }
 
   getPageData(callback){
-    $.getJSON(this.pageURL(), (data) => {
+    NM.getJSON(this.pageURL(), (data) => {
       var d;
       if(this.prefix){
         d = data[this.prefix];

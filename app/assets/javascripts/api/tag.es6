@@ -16,7 +16,7 @@ class Tag{
    * @param{Function} callback the callback to call with the Tag
    */
   static find(id, callback){
-    $.getJSON("/tags/" + id, (t) => {
+    NM.getJSON("/tags/" + id, (t) => {
       callback(new Tag(t));
     });
   }

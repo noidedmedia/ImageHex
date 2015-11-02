@@ -12,7 +12,7 @@ class Collection{
    * @param{Function} callback the callback called with the Collection
    */
   static find(id, callback){
-    $.getJSON("/collections/" + id, (json) => {
+    NM.getJSON("/collections/" + id, (json) => {
       callback(new Collection(json));
     });
   }

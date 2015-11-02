@@ -7,22 +7,20 @@ class User{
           this.collections.push(new Collection(collection));
         }
       }
-      else if(prop == "favorites"){
-        this.favorites = new Collection(json.favorites);
-      }
-      else if(prop == "creations"){
-        this.creations = new Collection(json.creations);
-      }
       else{
         this[prop] = json[prop];
       }
     }
   }
   static find(id, callback){
-    $.getJSON("/users/" + id, (c) => {
-      callback(new User(c));
+    NM.getJSON("/users/" + id, (j) => {
+      callback(new User(j));
     });
   }
 }
 
-
+$(() => {
+  User.find(2, (u) => {
+    console.log(u);
+  });
+});
