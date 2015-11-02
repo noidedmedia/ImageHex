@@ -1,4 +1,5 @@
 json.extract! @user, :name, :id, :created_at
+json.avatar_url @user.avatar? ? @user.avatar(:medium) : nil
 json.uploads do
   json.partial! "images/list", images: @uploads
 end
