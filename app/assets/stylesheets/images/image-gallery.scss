@@ -1,0 +1,37 @@
+@import "scss-variables";
+@import "imagehexicons";
+
+.image-gallery {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  padding: 15px;
+  justify-content: flex-start;
+}
+
+.image-gallery-item {
+  margin: 4px;
+  height: 250px;
+  overflow: hidden;
+  width: auto;
+  max-width: 300px;
+  flex: 3 1 250px;
+
+  a {
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    img {
+      object-fit: cover;
+      width: auto;
+      min-height: 100%;
+      min-width: 100%;
+    }
+  }
+
+  @media all and (max-width: $mobile-width) {
+    flex: 3 1 40vw;
+    max-width: 50%;
+  }
+}

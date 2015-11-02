@@ -248,7 +248,7 @@
 #user-uploads-container,
 #user-collections-container,
 #user-creations-container {
-  padding: 15px 20px;
+  padding: 10px;
   display: none;
 
   &.current {
@@ -262,6 +262,8 @@
 
 #user-collections-container {
   flex-flow: row wrap;
+  align-items: inherit;
+  justify-content: flex-start;
 }
 
 #user-uploads-container,
