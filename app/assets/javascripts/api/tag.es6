@@ -4,9 +4,17 @@ class Tag{
       this[prop] = json[prop];
     }
   }
+  /**
+   * Get an ImageCollection representing all images with this tag.
+   */
   images(){
     return new ImageCollection('/tags/' + this.id, 'images');
   }
+  /**
+   * Find a tag by an ID or a slug.
+   * @param{(number|string)} id the id or slug of the tag
+   * @param{Function} callback the callback to call with the Tag
+   */
   static find(id, callback){
     $.getJSON("/tags/" + id, (t) => {
       callback(new Tag(t));
@@ -30,4 +38,3 @@ class Tag{
     });
   }
 }
-
