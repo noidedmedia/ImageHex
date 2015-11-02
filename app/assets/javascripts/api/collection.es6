@@ -23,4 +23,17 @@ class Collection{
   images(){
     return new ImageCollection("/collections/" + this.id, "images");
   }
+  /**
+   * Calls `callback` with the full version of this collection
+   * Will call `callback` with `this` as the argument if this is already
+   * a fully-formed collection.
+   */
+  getFull(callback){
+    if('curators' in this){
+      callback(this);
+    }
+    else{
+      Collection.find(this.id, callback);
+    }
+  }
 }
