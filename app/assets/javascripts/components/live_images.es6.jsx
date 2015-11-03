@@ -124,7 +124,7 @@ class LiveImage extends React.Component{
 class LiveTagGroup extends React.Component{
   render(){
     var tags = this.props.group.tags.map((tag) => {
-      return <li>{tag.name}</li>;
+      return <TagComponent key={tag.id} tag={tag} />;
     });
     return <div>
       Tag Group:

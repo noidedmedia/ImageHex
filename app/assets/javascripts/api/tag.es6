@@ -4,6 +4,15 @@ class Tag{
       this[prop] = json[prop];
     }
   }
+
+  getFullData(callback){
+    if("description" in this){
+      callback(this);
+    }
+    else{
+      Tag.find(this.id, callback)
+    }
+  }
   /**
    * Get an ImageCollection representing all images with this tag.
    */

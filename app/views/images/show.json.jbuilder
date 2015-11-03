@@ -14,7 +14,7 @@ json.content_type @image.f_content_type
 json.file_url @image.f.url
 json.tag_groups @groups do |group|
   json.tags(group.tags) do |tag|
-    json.extract! tag, :name, :id
+    json.extract! tag, :name, :id, :display_name
     json.url url_for(tag)
   end
   json.id group.id
