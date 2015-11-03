@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get "/@:id" => 'users#show'
   ############
   # CONCERNS #
   ############
