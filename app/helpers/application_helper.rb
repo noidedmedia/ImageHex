@@ -1,6 +1,10 @@
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
+
+  def user_path user
+    "/@" + user.slug.to_s
+  end
   def comment_url comment
     polymorphic_url(comment.commentable) + "#" + comment.id.to_s
   end
