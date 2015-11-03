@@ -13,9 +13,18 @@ class LiveImages extends React.Component{
         return <LiveImage img={img} key={img.id} />;
       });
       return <div id="live-images">
+        <button onClick={this.refresh.bind(this)}>Refresh</button>
         {images}
       </div>;
     }
+  }
+  refresh(){
+    this.state.collection.getPageImages( (imgs) => {
+      this.setState({
+        loaded: true,
+        images: img
+      });
+    });
   }
   doLoad(){
     var collection = Image.allImages();
