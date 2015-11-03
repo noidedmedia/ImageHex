@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get "/@:id" => 'users#show'
+  patch "/@:id" => "users#update"
+  delete "/@:id" => "users#destroy"
   ############
   # CONCERNS #
   ############

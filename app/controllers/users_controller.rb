@@ -47,7 +47,8 @@ class UsersController < ApplicationController
   # If the user cannot be updated, it puts the errors in flash[:error] and 
   # redirects to the edit page again.
   def update
-    return unless current_user == User.friendly.find(params[:id])
+    @user = User.friendly.find(params[:id])
+    authorize @user
     respond_to do |format|
       if current_user.update(user_params)
         format.html { redirect_to current_user, notice: I18n.t("notices.changes_have_been_saved") }
