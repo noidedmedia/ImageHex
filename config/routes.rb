@@ -90,6 +90,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :images, only: [:index, :destroy] do
       post "absolve", on: :member
+      collection do
+        get 'live'
+      end
     end
   end
 

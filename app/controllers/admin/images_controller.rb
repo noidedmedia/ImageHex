@@ -1,6 +1,9 @@
 ##
 # Administrative actions relating to images. 
 class Admin::ImagesController < Admin::AdminController
+  def live
+
+  end
   ##
   # Show all images that have been reported.
   # Sets the following variables:
