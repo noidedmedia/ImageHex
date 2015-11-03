@@ -46,6 +46,11 @@ Rails.application.routes.draw do
   devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show, :edit, :update] do
+    member do
+      get 'favorites'
+      get 'creations'
+    end
+
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.

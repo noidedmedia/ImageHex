@@ -12,6 +12,23 @@ class User{
       }
     }
   }
+  hasFullData(){
+    return "description" in this;
+  }
+  getFullData(callback){
+    if(this.hasFullData()){
+      callback(this)
+    }
+    else{
+      User.find(this.id, callback);
+    }
+  }
+  favorites(){
+    return new ImageCollection("/users/" + this.id + " /favorites", "images");
+  }
+  creations(){
+    return new ImageCollection("/users/" + this.id + "/creations", "images");
+  }
   static find(id, callback){
     NM.getJSON("/users/" + id, (j) => {
       callback(new User(j));
@@ -19,8 +36,4 @@ class User{
   }
 }
 
-$(() => {
-  User.find(2, (u) => {
-    console.log(u);
-  });
-});
+

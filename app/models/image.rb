@@ -89,6 +89,16 @@ class Image < ActiveRecord::Base
   validates :medium, presence: true
   validates :description, length:{ maximum: 2000}
 
+  ####################
+  # INSTANCE METHODS #
+  ####################
+
+  def creators
+    User
+      .joins(collections: :images)
+      .references(:images)
+      .where(images: {id: self.id}, collections: {type: "Creation"})
+  end
   #################
   # CLASS METHODS #
   #################

@@ -16,6 +16,12 @@ class Image{
           this.tag_groups.push(new TagGroup(group));
         }
       }
+      else if(prop == "creators"){
+        this.creators = [];
+        for(var creator of json.creators){
+          this.creators.push(new User(creator));
+        }
+      }
       else{
         this[prop] = json[prop];
       }

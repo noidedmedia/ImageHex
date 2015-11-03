@@ -4,6 +4,25 @@
 class UsersController < ApplicationController
   include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
+
+  def favorites
+    @user = User.friendly.find(params[:id])
+    @collection = @user.favorites
+    @images = @collection.images
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+    render 'collections/show'
+  end
+
+  def creations
+    @user = User.friendly.find(params[:id])
+    @collection = @user.creations
+    @images = @collection.images
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+    render 'collections/show'
+  end
+
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]
