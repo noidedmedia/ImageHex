@@ -16,11 +16,6 @@ ActiveRecord::Schema.define(version: 20151104173453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "artist_subscription", id: false, force: :cascade do |t|
-    t.integer "subscriber_id"
-    t.integer "artist_id"
-  end
-
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
     t.integer  "image_id"
@@ -53,17 +48,6 @@ ActiveRecord::Schema.define(version: 20151104173453) do
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
-  create_table "commission_products", force: :cascade do |t|
-    t.decimal  "price",       precision: 15, scale: 2, null: false
-    t.integer  "user_id"
-    t.text     "title",                                null: false
-    t.text     "description",                          null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-  end
-
-  add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree
 
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
@@ -145,17 +129,6 @@ ActiveRecord::Schema.define(version: 20151104173453) do
   add_index "subscriptions", ["collection_id"], name: "index_subscriptions_on_collection_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
-  create_table "tag_changes", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.text     "description"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "tag_changes", ["tag_id"], name: "index_tag_changes_on_tag_id", using: :btree
-  add_index "tag_changes", ["user_id"], name: "index_tag_changes_on_user_id", using: :btree
-
   create_table "tag_group_changes", force: :cascade do |t|
     t.integer  "tag_group_id"
     t.integer  "user_id"
@@ -199,11 +172,6 @@ ActiveRecord::Schema.define(version: 20151104173453) do
 
   add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
-  create_table "user_artist_test", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "image_id"
-  end
-
   create_table "user_pages", force: :cascade do |t|
     t.integer  "user_id"
     t.jsonb    "elsewhere",  default: {}, null: false
@@ -215,12 +183,12 @@ ActiveRecord::Schema.define(version: 20151104173453) do
   add_index "user_pages", ["user_id"], name: "index_user_pages_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                     limit: 255, default: "",    null: false
-    t.string   "encrypted_password",        limit: 255, default: "",    null: false
+    t.string   "email",                     limit: 255, default: "", null: false
+    t.string   "encrypted_password",        limit: 255, default: "", null: false
     t.string   "reset_password_token",      limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         default: 0,     null: false
+    t.integer  "sign_in_count",                         default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",        limit: 255
@@ -237,7 +205,7 @@ ActiveRecord::Schema.define(version: 20151104173453) do
     t.string   "slug"
     t.string   "provider"
     t.string   "uid"
-    t.jsonb    "content_pref",                          default: {},    null: false
+    t.jsonb    "content_pref",                          default: {}, null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -247,7 +215,6 @@ ActiveRecord::Schema.define(version: 20151104173453) do
     t.string   "encrypted_otp_secret_salt"
     t.integer  "consumed_timestep"
     t.boolean  "otp_required_for_login"
-    t.boolean  "two_factor_verified",                   default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
