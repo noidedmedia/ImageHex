@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   has_many :subscribed_collections,
     through: :subscriptions,
     source: :collection
-
+  has_many :image_reports
   has_many :notifications
   has_many :images
   has_many :curatorships

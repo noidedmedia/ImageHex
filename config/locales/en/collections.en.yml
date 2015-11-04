@@ -1,14 +1,14 @@
 ---
 en:
   collections:
+    edit:
+      edit_collection: Edit collection
     form:
       create_collection: Create collection
       description: Description
       title: Title
     new:
       new_collection: New collection
-    edit:
-      edit_collection: Edit collection
     show:
       curated_by: Curated by
       follow: Follow

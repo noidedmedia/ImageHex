@@ -4,7 +4,6 @@ en:
     comment:
       ago: ago
       commented: commented
-      edit: Edit
     comments:
       no_comments_yet: No comments yet.
     report_stub:

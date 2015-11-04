@@ -245,11 +245,10 @@
 /* Containers for uploads and collections
    ============================================== */
 
-#user-uploads-container,
-#user-collections-container,
-#user-creations-container {
-  padding: 15px 20px;
+.user-content {
+  padding: 10px;
   display: none;
+  flex-flow: column wrap;
 
   &.current {
     display: flex;
@@ -262,9 +261,6 @@
 
 #user-collections-container {
   flex-flow: row wrap;
-}
-
-#user-uploads-container,
-#user-creations-container {
-  flex-flow: column wrap;
+  align-items: inherit;
+  justify-content: flex-start;
 }

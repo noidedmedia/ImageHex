@@ -4,6 +4,25 @@
 class UsersController < ApplicationController
   include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
+
+  def favorites
+    @user = User.friendly.find(params[:id])
+    @collection = @user.favorites
+    @images = @collection.images
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+    render 'collections/show'
+  end
+
+  def creations
+    @user = User.friendly.find(params[:id])
+    @collection = @user.creations
+    @images = @collection.images
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+    render 'collections/show'
+  end
+
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]
@@ -47,7 +66,8 @@ class UsersController < ApplicationController
   # If the user cannot be updated, it puts the errors in flash[:error] and 
   # redirects to the edit page again.
   def update
-    return unless current_user == User.friendly.find(params[:id])
+    @user = User.friendly.find(params[:id])
+    authorize @user
     respond_to do |format|
       if current_user.update(user_params)
         format.html { redirect_to current_user, notice: I18n.t("notices.changes_have_been_saved") }

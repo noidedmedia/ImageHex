@@ -1,6 +1,5 @@
 ##
 # A single-action controller used for tag suggestion.
-# TODO: Allow users to modify information about tags in this controller.
 class TagsController < ApplicationController
   before_filter :ensure_user, only: [:edit, :update]
   ##
@@ -16,7 +15,9 @@ class TagsController < ApplicationController
   # Show a page with info about the tags
   def show
     @tag = Tag.friendly.find(params[:id])
-    @images = @tag.images.paginate(page: page, per_page: per_page)
+    @images = @tag.images
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
   end
 
   ##

@@ -1,8 +1,6 @@
 ---
 en:
   users:
-    collection_stub:
-      curated_by: Curated by
     edit:
       edit_page_title: Settings
       images_per_page: Images per page
@@ -17,6 +15,7 @@ en:
       collections: Collections (%{count})
       creations: Creations (%{count})
       edit: "(edit)"
+      favorites: Favorites (%{count})
       this_user_doesnt_have_any_collections_yet: This user doesn't have any collections yet.
       uploads: Uploads (%{count})
       user_page_bio_empty: You haven't filled out a bio yet.

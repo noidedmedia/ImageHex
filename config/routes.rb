@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get "/@:id" => 'users#show'
+  patch "/@:id" => "users#update"
+  delete "/@:id" => "users#destroy"
   ############
   # CONCERNS #
   ############
@@ -43,6 +46,11 @@ Rails.application.routes.draw do
   devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users, only: [:show, :edit, :update] do
+    member do
+      get 'favorites'
+      get 'creations'
+    end
+
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.
@@ -87,6 +95,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :images, only: [:index, :destroy] do
       post "absolve", on: :member
+      collection do
+        get 'live'
+      end
     end
   end
 

@@ -4,10 +4,9 @@ class UserPolicy < ApplicationPolicy
     @user = user
   end
 
-  def edit?
+  def update?
     same_user
   end
-
   protected
   def same_user
     @validate == @user

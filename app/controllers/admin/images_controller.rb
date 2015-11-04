@@ -1,6 +1,9 @@
 ##
 # Administrative actions relating to images. 
 class Admin::ImagesController < Admin::AdminController
+  def live
+
+  end
   ##
   # Show all images that have been reported.
   # Sets the following variables:
@@ -21,7 +24,7 @@ class Admin::ImagesController < Admin::AdminController
   # Used if people are reporting stuff they shouldn't.
   def absolve
     @image = Image.find(params[:id])
-    @image.reports.map(&:delete)
+    @image.image_reports.update_all(active: false)
     redirect_to "/admin/images"
   end
 

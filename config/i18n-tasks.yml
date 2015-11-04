@@ -9,18 +9,15 @@ internal_locale: en
 
 # Read and write translations.
 data:
-
+  # Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
+  router: pattern_router
   # Locale files or `File.find` patterns where translations are read from:
   read:
-    - config/locales/**/*.%{locale}.yml
-
-  # Locale files to write new keys to, based on a list of key pattern => file rules. Matched from top to bottom:
-  # `i18n-tasks normalize -p` will force move the keys according to these rules
+    - 'config/locales/%{locale}/*.yml'
   write:
-    - config/locales/%{locale}/*.%{locale}.yml
-
-  ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
-  # router: convervative_router
+    - ['{date,datetime,errors,helpers,number,support,time}.*', 'config/locales/%{locale}/defaults.%{locale}.yml']
+    - ['{notices}.*', 'config/locales/%{locale}/generic.%{locale}.yml']
+    - ['{:}.*', 'config/locales/%{locale}/\1.%{locale}.yml']
 
   yaml:
     write:
@@ -85,5 +82,5 @@ ignore_unused:
 #     - common.brand
 
 ## Ignore these keys completely:
-# ignore:
-#  - kaminari.*
+ignore:
+  - '{date,datetime,errors,helpers,number,support,time}.*'

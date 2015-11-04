@@ -163,8 +163,8 @@
   width: 50px;
 
   span::before {
-    transform: translate(-35px,14px);
-
+    // Center icon within the tap target
+    transform: translate(11px,14px);
     transition: color 300ms;
   }
 

@@ -48,7 +48,8 @@
       <ul id="user-page-header-tabs">
         <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @uploads.count) %>
         <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations", count: @creations.count) %>
-        <li data-tab="tab-3" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
+        <li data-tab="tab-3" class="user-page-header-tab"><%= t(".favorites", count: @favorites.count) %>
+        <li data-tab="tab-4" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
       </ul>
 
   </div>
@@ -56,15 +57,19 @@
 
   <div id="user-content-container">
 
-    <div id="user-uploads-container" class="tab-content tc-tab-1 current">
+    <div id="user-uploads-container" class="user-content tab-content tc-tab-1 current">
       <%= render 'images/show_stub', images: @uploads %>
     </div>
 
-    <div id="user-creations-container" class="tab-content tc-tab-2">
+    <div id="user-creations-container" class="user-content tab-content tc-tab-2">
       <%= render 'images/show_stub', images: @creations %>
     </div>
 
-    <div id="user-collections-container" class="tab-content tc-tab-3">
+    <div id="user-favorites-container" class="user-content tab-content tc-tab-3">
+      <%= render 'images/show_stub', images: @favorites %>
+    </div>
+
+    <div id="user-collections-container" class="user-content tab-content tc-tab-4">
       <% if !@collections.empty? %>
         <% @collections.each do |c| %>
           <%= render "collection_stub", c: c %>

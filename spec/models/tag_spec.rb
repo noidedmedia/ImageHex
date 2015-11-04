@@ -22,8 +22,8 @@ describe Tag do
       FactoryGirl.create(:tag, name: "bob")
       FactoryGirl.create(:tag, name: "billy")
       FactoryGirl.create(:tag, name: "asdf")
-      expect(Tag.suggest("b")).to contain_exactly("bob", "billy")
-      expect(Tag.suggest("b")).to_not include("asdf")
+      expect(Tag.suggest("b").map(&:name)).to contain_exactly("bob", "billy")
+      expect(Tag.suggest("b").map(&:name)).to_not include("asdf")
     end
   end
   describe "display names" do
