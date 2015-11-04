@@ -15,7 +15,7 @@ data:
   read:
     - 'config/locales/%{locale}/*.yml'
   write:
-    - ['{:}', 'config/locales/%{locale}/\1.%{locale}.yml']
+    - ['{:}.*', 'config/locales/%{locale}/\1.%{locale}.yml']
 
   yaml:
     write:
@@ -80,5 +80,5 @@ ignore_unused:
 #     - common.brand
 
 ## Ignore these keys completely:
-# ignore:
-#  - kaminari.*
+ignore:
+  - '{date,datetime,errors,helpers,number,support,time}.*'
