@@ -6,10 +6,10 @@
   <%= form_tag(url) do %>  
     <p><%= t(".reason_for_report") %>
 
-    <% Report.severities.each do |k, v| %>
+    <% ImageReport.reasons.each do |k, v| %>
       <div class="report-row">
-        <%= radio_button_tag("report[severity]", k) %>
-        <%= label "report[severity]", k, k.humanize %>
+        <%= radio_button_tag("report[reason]", k) %>
+        <%= label "report[reason]", k, k.humanize %>
       </div>
     <% end %>
     
