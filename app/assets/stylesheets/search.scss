@@ -257,7 +257,8 @@
   width: 50px;
 
   span::before {
-    transform: translate(-35px,14px);
+    // Center icon within the tap target
+    transform: translate(8px,14px);
   }
 
   @media all and (max-width: $mobile-width) {
