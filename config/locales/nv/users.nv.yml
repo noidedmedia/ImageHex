@@ -1,8 +1,6 @@
 ---
 nv:
   users:
-    collection_stub:
-      curated_by: Curated by
     edit:
       edit_page_title: Settings
       images_per_page: Number of images which ImageHex should display on a page

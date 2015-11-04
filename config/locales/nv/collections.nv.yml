@@ -1,11 +1,6 @@
 ---
 nv:
   collections:
-    new:
-      create_collection: Create Collection
-      description: Description
-      new_collection_page_title: New Collection
-      title: Title
     show:
       curated_by: Curated by
       follow: Follow
