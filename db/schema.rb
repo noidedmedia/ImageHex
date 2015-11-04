@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006205509) do
+ActiveRecord::Schema.define(version: 20151104173453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artist_subscription", id: false, force: :cascade do |t|
+    t.integer "subscriber_id"
+    t.integer "artist_id"
+  end
 
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
@@ -49,6 +54,17 @@ ActiveRecord::Schema.define(version: 20151006205509) do
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "commission_products", force: :cascade do |t|
+    t.decimal  "price",       precision: 15, scale: 2, null: false
+    t.integer  "user_id"
+    t.text     "title",                                null: false
+    t.text     "description",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree
+
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "collection_id"
@@ -72,6 +88,19 @@ ActiveRecord::Schema.define(version: 20151006205509) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "image_reports", force: :cascade do |t|
+    t.integer  "image_id"
+    t.integer  "user_id"
+    t.integer  "reason"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.text     "message"
+    t.boolean  "active",     default: true, null: false
+  end
+
+  add_index "image_reports", ["image_id"], name: "index_image_reports_on_image_id", using: :btree
+  add_index "image_reports", ["user_id"], name: "index_image_reports_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "user_id"
@@ -106,20 +135,6 @@ ActiveRecord::Schema.define(version: 20151006205509) do
   add_index "notifications", ["subject_type", "subject_id"], name: "index_notifications_on_subject_type_and_subject_id", using: :btree
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
-  create_table "reports", force: :cascade do |t|
-    t.integer  "severity"
-    t.string   "message",         limit: 255
-    t.integer  "reportable_id"
-    t.string   "reportable_type", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
-  add_index "reports", ["reportable_id"], name: "index_reports_on_reportable_id", using: :btree
-  add_index "reports", ["reportable_type"], name: "index_reports_on_reportable_type", using: :btree
-  add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
-
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "collection_id"
@@ -129,6 +144,17 @@ ActiveRecord::Schema.define(version: 20151006205509) do
 
   add_index "subscriptions", ["collection_id"], name: "index_subscriptions_on_collection_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
+  create_table "tag_changes", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "tag_changes", ["tag_id"], name: "index_tag_changes_on_tag_id", using: :btree
+  add_index "tag_changes", ["user_id"], name: "index_tag_changes_on_user_id", using: :btree
 
   create_table "tag_group_changes", force: :cascade do |t|
     t.integer  "tag_group_id"
@@ -173,6 +199,11 @@ ActiveRecord::Schema.define(version: 20151006205509) do
 
   add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
+  create_table "user_artist_test", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "image_id"
+  end
+
   create_table "user_pages", force: :cascade do |t|
     t.integer  "user_id"
     t.jsonb    "elsewhere",  default: {}, null: false
@@ -184,33 +215,39 @@ ActiveRecord::Schema.define(version: 20151006205509) do
   add_index "user_pages", ["user_id"], name: "index_user_pages_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                     limit: 255, default: "",    null: false
+    t.string   "encrypted_password",        limit: 255, default: "",    null: false
+    t.string   "reset_password_token",      limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",                         default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip",        limit: 255
+    t.string   "last_sign_in_ip",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                   limit: 255
-    t.integer  "page_pref",                          default: 20
-    t.string   "confirmation_token",     limit: 255
+    t.string   "name",                      limit: 255
+    t.integer  "page_pref",                             default: 20
+    t.string   "confirmation_token",        limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",      limit: 255
-    t.integer  "role",                               default: 0
+    t.string   "unconfirmed_email",         limit: 255
+    t.integer  "role",                                  default: 0
     t.string   "slug"
     t.string   "provider"
     t.string   "uid"
-    t.jsonb    "content_pref",                       default: {}, null: false
+    t.jsonb    "content_pref",                          default: {},    null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "encrypted_otp_secret"
+    t.string   "encrypted_otp_secret_iv"
+    t.string   "encrypted_otp_secret_salt"
+    t.integer  "consumed_timestep"
+    t.boolean  "otp_required_for_login"
+    t.boolean  "two_factor_verified",                   default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -223,6 +260,8 @@ ActiveRecord::Schema.define(version: 20151006205509) do
   add_foreign_key "comments", "users"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
+  add_foreign_key "image_reports", "images", on_delete: :cascade
+  add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"

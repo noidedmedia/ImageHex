@@ -55,7 +55,7 @@ class Image < ActiveRecord::Base
 
   before_post_process :downcase_extension
   has_many :tag_groups, -> {includes :tags}, dependent: :delete_all
-  has_many :reports, as: :reportable, dependent: :delete_all
+  has_many :image_reports
   has_many :notifications, as: :subject, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :collection_images, dependent: :destroy
@@ -152,8 +152,10 @@ class Image < ActiveRecord::Base
   # Return all images by the number of reports.
   # Only returns the images which have at least 1 report.
   def self.by_reports
-    Image.includes(:reports).select{|x| x.reports.count > 0}
-      .sort{|x, y| x.reports.count <=> y.reports.count}
+    joins(:image_reports)
+      .references(:image_reports)
+      .where(image_reports: {active: true})
+      .group(:id).order("COUNT(image_reports)")
   end
 
   def self.without_tags(tags)

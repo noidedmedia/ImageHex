@@ -80,9 +80,7 @@ class ImagesController < ApplicationController
   # Image should be in params[:id]. User must be logged in.
   def report
     @image = Image.find(params[:id])
-    @report = Report.new(report_params)
-    @report.reportable = @image
-    
+    @report = ImageReport.new(report_params)
     respond_to do |format|
       if @report.save
         format.html { redirect_to @image, notice: I18n.t("notices.report_submitted_thank_you") }
@@ -193,8 +191,9 @@ class ImagesController < ApplicationController
   # Parameters for our report
   def report_params
     params.require(:report)
-      .permit(:severity, :message)
+      .permit(:reason, :message)
       .merge(user_id: current_user.id)
+      .merge(image_id: params[:id])
   end
 
   ##
