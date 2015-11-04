@@ -15,3 +15,7 @@ nv:
       help: Help
     people:
       people: People
+    press:
+      press_kit: Press Kit
+    rules:
+      rules: Rules

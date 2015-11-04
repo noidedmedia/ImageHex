@@ -4,6 +4,7 @@ nv:
     comment:
       ago: ago
       commented: commented
+      edit: Edit
     comments:
       no_comments_yet: No user has had the desire to make anything known on this page
     report_stub:

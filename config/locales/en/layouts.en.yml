@@ -3,9 +3,9 @@ en:
   layouts:
     application:
       create_an_account: Create an account
+      imagehex_meta_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
       please_sign_in: This action requires an account, please sign in.
       sign_in: Sign in
-      imagehex_meta_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
     footer:
       about: About
       api: API
@@ -13,7 +13,7 @@ en:
       faq: FAQ
       help: Help
       imagehex: ImageHex
-      imagehex_copyright: © 2015 Noided Media
+      imagehex_copyright: "© 2015 Noided Media"
       imagehex_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
       people: People
       press_kit: Press Kit
