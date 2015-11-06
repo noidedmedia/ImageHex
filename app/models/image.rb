@@ -129,7 +129,7 @@ class Image < ActiveRecord::Base
   def self.with_all_tags(tags)
     tags.reject!(&:blank?) # reject blank tags
     subquery = joins(tag_groups: {tag_group_members: :tag})
-      .where(tags: {name: tags})
+      .where(tags: {id: tags})
       .group("images.id")
       .having("COUNT(*) = ?", tags.length)
       where(id: subquery)
@@ -137,15 +137,13 @@ class Image < ActiveRecord::Base
   
   def self.search(q)
     # return nothing unless we have a query
-    return where("1 = 0") unless q
-    q.map! do |x| 
-      x.downcase.split(",").map! do |y|
-        y.strip.squish
-      end
-    end.inject(all) do |mem, obj|
-      mem if obj.blank?
-      mem.with_all_tags(obj)
+    return where("1 = 0") unless q.is_a? SearchQuery
+    query = all
+    q.each_group_tag_ids do |group|
+      query = query.with_all_tags(group)
     end
+
+    query
   end
 
   ##

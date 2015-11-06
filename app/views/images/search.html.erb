@@ -1,6 +1,6 @@
 <%- title t(".search_page_title") %>
 
-<%= react_component("SearchBar") %>
+<%= react_component("SearchPage", @query.to_page_h)  %>
 
 <% if !@images.empty? %>
   <%= render 'show_stub', images: @images %>
