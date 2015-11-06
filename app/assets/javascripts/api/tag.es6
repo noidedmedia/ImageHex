@@ -36,9 +36,7 @@ class Tag{
    */
   static withPrefix(prefix, callback){
     var uri = "/tags/suggest/?"+ $.param({name: prefix});
-    console.log("Suggesting with URI:",uri);
     $.getJSON(uri, (d) => {
-      console.log("Got from suggestion",d);
       var a = [];
       for(var t of d){
         a.push(new Tag(t));

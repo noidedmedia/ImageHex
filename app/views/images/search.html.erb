@@ -1,16 +1,6 @@
 <%- title t(".search_page_title") %>
 
-<form action="/search" method="get" id="body-search">
-  <div class="page-search-full">
-    <input type="search" class="page-search-input" name="query[]" placeholder=<%= t(".tag_group") %> autocomplete="off" />
-    <ul class="page-suggestions">
-      
-    </ul>
-  </div>
-
-  <button id="add-group-button"><%= t(".add_a_tag_group") %></button>
-  <input type="submit" id="page-submit-button" value=<%= t(".search") %>>
-</form>
+<%= react_component("SearchBar") %>
 
 <% if !@images.empty? %>
   <%= render 'show_stub', images: @images %>
