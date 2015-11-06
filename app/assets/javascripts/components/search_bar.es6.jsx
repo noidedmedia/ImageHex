@@ -2,7 +2,8 @@ class SearchBar extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      tagGroups: []
+      tagGroups: [new EtherealTagGroup()],
+      focusedGroup: 0
     };
   }
   render(){

@@ -45,7 +45,7 @@ class TagGroupEditor extends React.Component{
   componentDidUpdate(){
     if(this.props.autofocus){
       console.log("Focusing a Tag Group");
-      React.findDOMNode(this.refs.groupInput).focus();
+      ReactDOM.findDOMNode(this.refs.groupInput).focus();
     }
     else{
       console.log("Not focusing this tag group");
@@ -86,13 +86,32 @@ class TagGroupEditor extends React.Component{
       }
     }
     // User types an enter key or a comma, try to add the current tag
-    else if(event.keyCode == 13 || event.keyCode == 188){
+    else if(event.keyCode == 13){
+      // this is where things get a bit complicated
+      // if we have are pressing shift...
+      if(event.shiftKey){
+        // ...and a non-blank box, add the active suggestion
+        if(event.target.value !== ""){
+          this.addActive();
+        }
+        // And always submit
+        this.props.submit();
+      }
+      // Now, if we aren't pressing the shift key, just add the active tag
+      else{
+        this.addActive();
+      }
+    }
+    else if(event.keyCode == 188){
       this.addActive();
     }
     // down arrow
     else if(event.keyCode == 40){
+      // Don't move to a suggestion we don't have
         var newSuggestion = Math.min(this.state.suggestions.length - 1,
           this.state.activeSuggestion + 1);
+        // don't jump around inside the text box
+        event.preventDefault();
         console.log("Changing active selection to",newSuggestion);
         this.setState({
           activeSuggestion: newSuggestion
@@ -100,6 +119,10 @@ class TagGroupEditor extends React.Component{
     }
     // up arrow
     else if(event.keyCode == 38){
+      // by default up takes you to the start of the text box
+      // stop that from happening
+      event.preventDefault();
+      // Don't move to a suggestion we don't have
       var newSuggestion = Math.max(0,
         this.state.activeSuggestion - 1);
       this.setState({
@@ -111,10 +134,16 @@ class TagGroupEditor extends React.Component{
       lastKeyWasBackspace: false
     });
   }
+
+  // Probbly should be called "addActiveSuggestion"
   addActive(){
-    if(this.state.activeSuggestion){
+    if(this.state.activeSuggestion !== undefined){
       var tag = this.state.suggestions[this.state.activeSuggestion];
-      return this.onTagAdd(tag);
+      this.onTagAdd(tag);
+      this.setState({
+        suggestions: [],
+        hasSuggestions: false
+      });
     }
     else{
       // TODO: Handle this error ;-;
@@ -183,7 +212,7 @@ class TagSuggestion extends React.Component{
     return <div 
       className={className}
       onClick={this.click.bind(this) }>
-      Suggestion: {this.props.tag.name}
+      Suggestion: {this.props.tag.display_name}
     </div>;
   }
   click(){
@@ -198,7 +227,7 @@ class TagBox extends React.Component{
   }
   render(){
     return <div>
-      {this.props.tag.name}
+      {this.props.tag.display_name}
       <div className="tag-box-remove-tag"
         onClick={this.removeSelf.bind(this)}>
         Remove
