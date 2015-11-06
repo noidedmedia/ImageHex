@@ -1,5 +1,10 @@
 @import "scss-variables";
 
+.tag-group-tag-suggestion{
+  &.active{
+    background-color: #00CC00;
+  }
+}
 /* search.html styling */
 #body-search {
   margin: auto;

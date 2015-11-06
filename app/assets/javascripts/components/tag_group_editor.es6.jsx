@@ -2,7 +2,8 @@ class TagGroupEditor extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      inputValue: ""
+      inputValue: "",
+      activeSuggestion: undefined
     };
   }
 
@@ -12,9 +13,11 @@ class TagGroupEditor extends React.Component{
     });
     var suggestions;
     if(this.state.hasSuggestions){
-      suggestions = this.state.suggestions.map((sug) => {
+      suggestions = this.state.suggestions.map((sug, index) => {
         return <li>
-          <TagSuggestion tag={sug} onAdd={this.onTagAdd.bind(this)} />
+          <TagSuggestion tag={sug}
+            isActive={index == this.state.activeSuggestion} 
+            onAdd={this.onTagAdd.bind(this)} />
         </li>;
       });
     }
@@ -79,56 +82,48 @@ class TagGroupEditor extends React.Component{
         this.setState({
           lastKeyWasBackspace: true
         });
+        return;
       }
     }
     // User types an enter key or a comma, try to add the current tag
     else if(event.keyCode == 13 || event.keyCode == 188){
-      console.log("Trying to add tag",event.target.value);
-      Tag.withPrefix(event.target.value, (tags) => {
-        if(tags.length > 0){
-          this.props.onTagAdd(tags[0]);
-          this.setState({
-            hasSuggestions: false,
-            inputValue: "",
-            hasBlankInput: true,
-            lastKeyWasBackspace: false
-          });
-        }
-        else{
-          // TODO: Handle this error
-          console.log("Attempted to enter an invalid tag");
-        }
+      this.addActive();
+    }
+    // down arrow
+    else if(event.keyCode == 40){
+        var newSuggestion = Math.min(this.state.suggestions.length - 1,
+          this.state.activeSuggestion + 1);
+        console.log("Changing active selection to",newSuggestion);
+        this.setState({
+          activeSuggestion: newSuggestion
+        });
+    }
+    // up arrow
+    else if(event.keyCode == 38){
+      var newSuggestion = Math.max(0,
+        this.state.activeSuggestion - 1);
+      this.setState({
+        activeSuggestion: newSuggestion
       });
     }
+    // The last key wasn't a backspace
+    this.setState({
+      lastKeyWasBackspace: false
+    });
+  }
+  addActive(){
+    if(this.state.activeSuggestion){
+      var tag = this.state.suggestions[this.state.activeSuggestion];
+      return this.onTagAdd(tag);
+    }
     else{
-      // The last key wasn't a backspace
-      this.setState({
-        lastKeyWasBackspace: false
-      });
+      // TODO: Handle this error ;-;
     }
   }
   onInputChange(event){
     let value = event.target.value;
     if(event.target.value !== ""){
-      Tag.withPrefix(event.target.value, (tags) => {
-        if(tags.length > 0){
-          // due to react, we have to handle the input's value ourselves
-          this.setState({
-            hasBlankInput: false,
-            hasSuggestions: true,
-            suggestions: tags,
-            inputValue: value
-          });
-        }
-        else{
-          this.setState({
-            hasSuggestions: false,
-            hasBlankInput: false,
-            suggestions: [],
-            inputValue: value
-          });
-        }
-      });
+      this.fetchSuggestions(event.target.value);
     }
     else{
       this.setState({
@@ -139,6 +134,40 @@ class TagGroupEditor extends React.Component{
       });
     }
   }
+  fetchSuggestions(value){
+    Tag.withPrefix(value, (tags) => {
+      if(tags.length > 0){
+        /**
+         * We have to set the input value ourselves due to the input
+         * being a managed react component.
+         *
+         * We also set the `active` suggestion to 0. This may result in weird
+         * behavior if the user hits the down arrow key to change the active
+         * suggestion, then types another character. However, if the user is 
+         * hitting the down arrow to change their active selection, it stands
+         * to reason that they will just hit "enter" to select that and not
+         * keep typing. After all, why switch the active suggestion if you need
+         * to keep typing? If it becomes a problem we can fix it, but for
+         * right now this should work.
+         */
+        this.setState({
+          hasBlankInput: false,
+          hasSuggestions: true,
+          suggestions: tags,
+          inputValue: value,
+          activeSuggestion: 0
+        });
+      }
+      else{
+        this.setState({
+          hasSuggestions: false,
+          hasBlankInput: false,
+          suggestions: [],
+          inputValue: value
+        });
+      }
+    });
+  }
 }
 
 class TagSuggestion extends React.Component{
@@ -147,7 +176,13 @@ class TagSuggestion extends React.Component{
     this.state = {};
   }
   render(){
-    return <div onClick={this.click.bind(this)}>
+    var className = "tag-group-tag-suggestion"
+    if(this.props.isActive){
+      className += " active";
+    }
+    return <div 
+      className={className}
+      onClick={this.click.bind(this) }>
       Suggestion: {this.props.tag.name}
     </div>;
   }
