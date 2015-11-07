@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :tag_group do |f|
     image
     after(:build) do |tg|
-      tg.tags << FactoryGirl.create(:tag)
+      tg.tag_ids = [FactoryGirl.create(:tag).id]
     end
   end
 end

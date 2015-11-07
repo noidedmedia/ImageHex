@@ -11,12 +11,14 @@ describe TagGroupsController do
     end
     describe "put #update" do
       let(:group){FactoryGirl.create(:tag_group, image: image)}
+      let(:tag1){FactoryGirl.create(:tag)}
+      let(:tag2){FactoryGirl.create(:tag)}
       it "properly updates" do
         put(:update,
             image_id: image,
             id: group,
-            tag_group: {tag_group_string: "test, another, more"})
-        expect(group.reload.tags.pluck(:name)).to contain_exactly("test", "another", "more")
+            tag_group: {tag_ids: [tag1.id, tag2.id]})
+        expect(group.tags.reload).to contain_exactly(tag1, tag2)
       end
       it "creates a new tag group change" do
         old_tags = group.tags.pluck(:id)
@@ -24,21 +26,26 @@ describe TagGroupsController do
           put(:update,
               image_id: image,
               id: group,
-              tag_group: {tag_group_string: "test, another"})
+              tag_group: {tag_ids: [tag1.id, tag2.id]})
         }.to change{TagGroupChange.count}.by(1)
         expect(TagGroupChange.last.tag_group).to eq(group)
         expect(TagGroupChange.last.before).to match_array(old_tags)
       end
     end
     describe "post #create" do
+      let(:tag1){FactoryGirl.create(:tag)}
+      let(:tag2){FactoryGirl.create(:tag)}
       it "makes a new tag group" do
-        expect{post :create, image_id: image, tag_group: {tag_group_string: "test, another, more"}}
+        expect{post :create, 
+          image_id: image, 
+          tag_group: {tag_ids: [tag1.id, tag2.id]}}
           .to change{TagGroup.count}.by(1)
-
       end
       it "makes a new tag group change" do
         expect{
-          post :create, image_id: image, tag_group: {tag_group_string: "test"}
+          post :create, 
+          image_id: image,
+          tag_group: {tag_ids: [tag1.id, tag2.id]}
         }.to change{TagGroupChange.count}.by(1)
         expect(TagGroupChange.last.kind).to eq("created")
         expect(TagGroupChange.last.user).to eq(@user)
