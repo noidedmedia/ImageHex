@@ -73,4 +73,11 @@ class Image{
   refresh(callback){
     Image.find(this.id, callback);
   }
+  groupWithId(id){
+    for(var group of this.tag_groups){
+      if(group.id == id){
+        return group;
+      }
+    }
+  }
 }

@@ -64,7 +64,7 @@ class TagGroupsController < ApplicationController
   # We add the image_id automatically from the path.
   def tag_group_params
     params.require(:tag_group)
-      .permit(:tag_group_string)
+      .permit(tag_ids: [])
       .merge(image_id: params[:image_id]) # Add in the image id automatically
   end
 
