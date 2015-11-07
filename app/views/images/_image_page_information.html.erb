@@ -33,10 +33,6 @@
     <% end %>
 
   </div>
-
-  <div id="new-group" data-showon="#add-tag-group-button">
-    <div>Not implemented right now, whoops</div>
-  </div>
   <% @image.tag_groups.for_display.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>

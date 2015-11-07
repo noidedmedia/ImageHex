@@ -2,7 +2,8 @@
   <% if current_user %>
     <div class="left">
       <%# Add a tag group %>
-      <div id="add-tag-group-button">
+      <div id="add-tag-group-button"
+        data-image_id="<%= @image.id %>">
         <%= t(".add_a_tag_group") %>
       </div>
     </div>

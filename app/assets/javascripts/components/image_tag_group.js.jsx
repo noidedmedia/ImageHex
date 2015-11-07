@@ -48,18 +48,36 @@ class ImageTagGroup extends React.Component{
         }
       };
       NM.putJSON(url, data, function(){
-        console.log("Woo, we did it, yay");
+        console.log("Successfully edited.");
+        window.location.reload();
       });
     }
     // new tag group
-    // case isn't handled yet...
     else{
-
+      var tag_ids = this.state.group.tags.map((t) => t.id);
+      var data = {
+        tag_group: {
+          tag_ids: tag_ids
+        }
+      };
+      var url = "/images/" + this.props.imageId + "/tag_groups";
+      NM.postJSON(url, data, function(){
+        console.log("That should have created another tag group");
+        window.location.reload();
+      });
     }
   }
 }
 
 document.addEventListener("DOMContentLoaded", function(){
+  var newButton = document.getElementById("add-tag-group-button");
+  newButton.addEventListener("click", function(){
+    console.log("Adding a new tag group");
+    ReactDOM.render(<ImageTagGroup 
+      isNew={true}
+      imageId={this.dataset.image_id}
+    />, this.parentElement);
+  });
   var elements = document.getElementsByClassName("edit-generic-tag-group");
   for(var element of elements){
     element.addEventListener("click", function(){

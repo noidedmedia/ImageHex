@@ -26,8 +26,10 @@ class TagGroupsController < ApplicationController
       if @tag_group.save
         track @tag_group
         format.html { redirect_to @image, notice: I18n.t("notices.tag_group_added") }
+        format.json { render 'show' }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
+        format.json { render json: @tag_group.errors, status: :unproccessible_entity} 
       end
     end
   end
@@ -51,8 +53,10 @@ class TagGroupsController < ApplicationController
       if @tag_group.update(tag_group_params)
         track @tag_group
         format.html { redirect_to @image, notice: I18n.t("notices.tag_group_updated") }
+        format.json { render 'show' }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
+        format.json { render json: @tag_group.errors, status: :unproccessible_entity } 
       end
     end
   end

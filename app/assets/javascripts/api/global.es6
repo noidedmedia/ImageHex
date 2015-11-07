@@ -7,21 +7,38 @@ NM.getJSON = function(url, callback){
   .go();
 };
 
-NM.putJSON = function(url, data, callback, error){
-  var metas = document.getElementsByTagName('meta');
+NM.getCSRFToken = function(){
+var metas = document.getElementsByTagName('meta');
   var token;
   for(var meta of metas){
     if(meta.getAttribute("name") == "csrf-token"){
-      token = meta.getAttribute("content");
+      return meta.getAttribute("content");
     }
   }
-  data.authenticity_token = token;
+}
+NM.putJSON = function(url, data, callback, error){
+  
+  data.authenticity_token = NM.getCSRFToken();
   aja()
   .method('put')
   .url(url)
   .header("Content-Type", "application/json")
+  .header("Accept", "application/json")
   .body(data)
   .on('200', callback)
   .on('40*', error)
   .go();
+}
+
+NM.postJSON = function(url, data, callback, error){
+  data.authenticity_token = NM.getCSRFToken();
+  aja()
+    .method("post")
+    .url(url)
+    .header("Content-Type", "application/json")
+    .header("Accept", "application/json")
+    .body(data)
+    .on("200", callback)
+    .on("40*",error)
+    .go();
 }
