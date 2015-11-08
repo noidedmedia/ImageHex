@@ -48,4 +48,4 @@ var ready = function() {
   }
 };
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);

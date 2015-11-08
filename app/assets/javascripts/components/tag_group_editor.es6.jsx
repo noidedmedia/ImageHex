@@ -112,7 +112,7 @@ class TagGroupEditor extends React.Component{
           this.state.activeSuggestion + 1);
         // don't jump around inside the text box
         event.preventDefault();
-        console.log("Changing active selection to",newSuggestion);
+        console.log("Changing active selection to", newSuggestion);
         this.setState({
           activeSuggestion: newSuggestion
         });
@@ -205,7 +205,7 @@ class TagSuggestion extends React.Component{
     this.state = {};
   }
   render(){
-    var className = "tag-group-tag-suggestion"
+    var className = "tag-group-tag-suggestion";
     if(this.props.isActive){
       className += " active";
     }

@@ -1,14 +1,15 @@
 // Function adds a confirmation dialog to the "Delete" button on images.
 function deleteButtonAlert() {
-  $("#img-action-delete").on("click", function() {
+  document.querySelector("#img-action-delete").addEventListener("click", function() {
     return confirm("Delete this image?");
   });
 }
 
 // If the "Cancel" button is pressed in the Report tooltip, the tooltip will be closed.
 function cancelReportButton() {
-  $("#report-cancel-button").on("click", function() {
-    $("#img-action-report-tooltip").toggleClass('active').toggleClass('inactive');
+  document.querySelector("#report-cancel-button").addEventListener("click", function() {
+    document.querySelector("#img-action-report-tooltip").classList.toggle('active');
+    document.querySelector("#img-action-report-tooltip").classList.toggle('inactive');
   });
 }
 
@@ -26,20 +27,28 @@ function addToCollection() {
       url: this.action,
       data: $(this).serialize(),
       success: function() {
-        // Hides the Collection Tooltip once the request has completed.
-        $("#img-action-collection-tooltip").removeClass("active").addClass("inactive");
+        var tooltip = document.querySelector("#img-action-collection-tooltip");
 
-        // Use this once the Collection List function checks to see if the image
-        // is already a member of each collection.
-        // $(_this).addClass("check");
+        // Hides the Collection Tooltip once the request has completed.
+        tooltip.classList.remove("active")
+        tooltip.classList.add("inactive");
       }
     });
   });
 }
 
-// Functions run when the document is "ready".
-$(document).ready(function() {
-  deleteButtonAlert();
-  cancelReportButton();
-  addToCollection();
-});
+var ready = function() {
+  if (document.querySelector("#image-action-delete")) {
+    deleteButtonAlert();
+  }
+
+  if (document.querySelector("#report-cancel-button")) {
+    cancelReportButton();
+  }
+  
+  if (document.querySelector(".add-to-collection-form")) {
+    addToCollection();
+  }
+};
+
+document.addEventListener('page:change', ready);

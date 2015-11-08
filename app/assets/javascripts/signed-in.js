@@ -79,4 +79,4 @@ var ready = function() {
   signedin();
 };
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);
