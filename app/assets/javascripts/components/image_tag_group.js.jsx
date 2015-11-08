@@ -81,7 +81,8 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
   var elements = document.getElementsByClassName("edit-generic-tag-group");
-  for(var element of elements){
+  for(var e in elements){
+    var element = elements[e];
     element.addEventListener("click", function(){
       Image.find(this.dataset.image_id, (img) => {
         console.log("Found an image");
