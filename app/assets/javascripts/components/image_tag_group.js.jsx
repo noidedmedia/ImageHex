@@ -23,7 +23,7 @@ class ImageTagGroup extends React.Component{
       <button onClick={this.submit.bind(this)}>
         Submit
       </button>
-  </div>;
+    </div>;
   }
   addTag(tag){
     var group = this.state.group;
@@ -71,13 +71,15 @@ class ImageTagGroup extends React.Component{
 
 document.addEventListener("DOMContentLoaded", function(){
   var newButton = document.getElementById("add-tag-group-button");
-  newButton.addEventListener("click", function(){
-    console.log("Adding a new tag group");
-    ReactDOM.render(<ImageTagGroup 
-      isNew={true}
-      imageId={this.dataset.image_id}
-    />, this.parentElement);
-  });
+  if(newButton){
+    newButton.addEventListener("click", function(){
+      console.log("Adding a new tag group");
+      ReactDOM.render(<ImageTagGroup 
+        isNew={true}
+        imageId={this.dataset.image_id}
+      />, this.parentElement);
+    });
+  }
   var elements = document.getElementsByClassName("edit-generic-tag-group");
   for(var element of elements){
     element.addEventListener("click", function(){
