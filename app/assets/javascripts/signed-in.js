@@ -66,7 +66,7 @@ var signedin = function() {
 // Sign In or Create Account pages.
 function signInDialog() {
   document.getElementsByTagName('body')[0].classList.add("modal-open");
-  $("#modal-overlay").addClass("active");
+  document.querySelector("#modal-overlay").classList.add("active");
   $("#modal-dialog").bind("clickoutside", function() {
     document.getElementsByTagName('body')[0].classList.remove("modal-open");
     document.querySelector("#modal-overlay").classList.remove("active");
