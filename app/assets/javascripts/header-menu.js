@@ -1,6 +1,6 @@
 function headerMenu() {
   document.querySelector('#mobile-menu-icon').addEventListener('click', function() {
-    $('body').bind('touchmove', function(e) {
+    document.getElementsByTagName('body')[0].addEventListener('touchmove', function(e) {
       e.preventDefault();
     });
     
@@ -10,7 +10,7 @@ function headerMenu() {
 
     if (document.querySelector('#mobile-menu-icon').classList.contains('active')) {
       document.querySelector('#mobile-menu-icon').addEventListener('click', function() {
-        $('#mobile-menu-overlay').unbind('click');
+        document.querySelector('#mobile-menu-overlay').removeEventListener('click');
       });
     }
 
@@ -19,9 +19,9 @@ function headerMenu() {
 }
 
 function clickOverlay() {
-  $('#mobile-menu-overlay').bind('click', function() {
+  document.querySelector('#mobile-menu-overlay').addEventListener('click', function() {
     headerMenuClose();
-    $('#mobile-menu-overlay').unbind('click');
+    document.querySelector('#mobile-menu-overlay').removeEventListener('click');
   });
 }
 
@@ -30,7 +30,7 @@ function headerMenuClose() {
   document.querySelector('#header-right').classList.remove('active');
   document.querySelector('#mobile-menu-icon').classList.remove('active');
   document.querySelector('#mobile-menu-overlay').classList.remove('active');
-  $('body').unbind('touchmove');
+  document.getElementsByTagName('body')[0].removeEventListener('touchmove');
 }
 
 var ready = function() {
