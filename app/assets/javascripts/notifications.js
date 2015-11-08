@@ -1,28 +1,31 @@
 function notificationsDropdownDisplay() {
-  $(".notifications-dropdown").toggleClass("active").toggleClass("inactive");
-  $(".header-notifications").toggleClass("active");
+  document.querySelector(".notifications-dropdown").classList.toggle("active");
+  document.querySelector(".notifications-dropdown").classList.toggle("inactive");
+  document.querySelector(".header-notifications").classList.toggle("active");
 
-  $(".header-notifications").bind("clickoutside", function() {
-    $(".notifications-dropdown").removeClass("active").addClass("inactive");
-    $(".header-notifications").removeClass("active");
+  document.querySelector(".notifications-dropdown").addEventListener("focusout", function(e) {
+    document.querySelector(".notifications-dropdown").classList.remove("active")
+    document.querySelector(".notifications-dropdown").classList.add("inactive");
+    document.querySelector(".header-notifications").classList.remove("active");
 
-    $('.header-notifications').unbind("clickoutside");
+    document.querySelector('.header-notifications').removeEventListener("focusout");
   });
 }
 
 function markAllRead() {
-  $(".mark-all-read").on("click", function() {
-    $(".notifications-unread-count a").html("0");
-    $(".header-notifications").removeClass("unread");
+  document.querySelector(".mark-all-read").addEventListener("click", function() {
+    document.querySelector(".notifications-unread-count a").textContent = "0";
+    document.querySelector(".header-notifications").classList.remove("unread");
 
-    $(".notifications-dropdown").removeClass("active").addClass("inactive");
-    $(".header-notifications").removeClass("active");
-    $('.header-notifications').unbind("clickoutside");
+    document.querySelector(".notifications-dropdown").classList.remove("active");
+    document.querySelector(".notifications-dropdown").classList.add("inactive");
+    document.querySelector(".header-notifications").classList.remove("active");
+    document.querySelector('.header-notifications').removeEventListener("focusout");
   });
 }
 
 function notificationsDropdownGet() {
-  $(".notifications-unread-count a").on("click", function(e) {
+  document.querySelector(".notifications-unread-count a").addEventListener("click", function(e) {
     e.preventDefault();
 
     $.ajax({
