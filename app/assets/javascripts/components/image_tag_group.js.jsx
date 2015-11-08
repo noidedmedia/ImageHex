@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
   var elements = document.getElementsByClassName("edit-generic-tag-group");
-  for(var e in elements){
+  for(var e = 0; e < elements.length; e++){
     var element = elements[e];
     element.addEventListener("click", function(){
       Image.find(this.dataset.image_id, (img) => {
