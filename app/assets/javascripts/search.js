@@ -93,7 +93,8 @@ var ready = function() {
     addSearchBox(toaddcount);
     toaddcount = toaddcount + 1;
   });
-  var windowwidth = $(window).width();
+  
+  var windowwidth = window.innerWidth;
 
   // Only run if the browser window size implies a mobile device.
   if (windowwidth <= 700) {

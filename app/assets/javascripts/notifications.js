@@ -39,7 +39,7 @@ function notificationsDropdownGet() {
 
 var ready = function() {
 
-  var windowwidth = $(window).width();
+  var windowwidth = window.innerWidth;
 
   // Only run if the browser window doesn't imply a mobile device.
   if (windowwidth > '750') {

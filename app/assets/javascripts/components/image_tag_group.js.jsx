@@ -3,7 +3,7 @@ class ImageTagGroup extends React.Component{
     super(props);
     if(this.props.isNew){
       var group = new EtherealTagGroup();
-      this.state = {group: group}
+      this.state = {group: group};
     }
     else{
       this.state = {group: this.props.group};
@@ -40,7 +40,7 @@ class ImageTagGroup extends React.Component{
       var url = "/images/" + this.props.group.image_id + "/tag_groups/";
       url += this.state.group.id;
       delete this.state.group["image"];
-      console.log("putting to url", url)
+      console.log("putting to url", url);
       var tag_ids = this.state.group.tags.map((t) => t.id);
       var data = {
         tag_group: {
