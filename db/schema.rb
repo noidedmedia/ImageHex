@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104173453) do
+ActiveRecord::Schema.define(version: 20151110231257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,33 @@ ActiveRecord::Schema.define(version: 20151104173453) do
   end
 
   add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree
+
+  create_table "conversation_messages", force: :cascade do |t|
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "conversation_messages", ["conversation_id"], name: "index_conversation_messages_on_conversation_id", using: :btree
+  add_index "conversation_messages", ["user_id"], name: "index_conversation_messages_on_user_id", using: :btree
+
+  create_table "conversation_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "conversation_users", ["conversation_id"], name: "index_conversation_users_on_conversation_id", using: :btree
+  add_index "conversation_users", ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
+
+  create_table "conversations", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
@@ -258,6 +285,10 @@ ActiveRecord::Schema.define(version: 20151104173453) do
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "conversation_messages", "conversations", on_delete: :cascade
+  add_foreign_key "conversation_messages", "users", on_delete: :cascade
+  add_foreign_key "conversation_users", "conversations", on_delete: :cascade
+  add_foreign_key "conversation_users", "users", on_delete: :cascade
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "image_reports", "images", on_delete: :cascade
