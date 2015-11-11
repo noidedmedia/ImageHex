@@ -14,7 +14,7 @@ class Conversation < ActiveRecord::Base
     end
   end
   def save_user_ids
-    self.users = User.where(id: user_ids)
+    self.users = User.where(id: user_ids) unless self.users.count > 0 
   end
 
 end
