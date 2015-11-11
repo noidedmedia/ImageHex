@@ -45,7 +45,7 @@ var ready = function() {
   var windowwidth = window.innerWidth;
 
   // Only run if the browser window doesn't imply a mobile device.
-  if (windowwidth > '750') {
+  if (windowwidth > '750' && document.getElementsByTagName('body')[0].classList.contains('signed-in')) {
     notificationsDropdownGet();
     markAllRead();
   }

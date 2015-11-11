@@ -1,6 +1,6 @@
 // Function adds a confirmation dialog to the "Delete" button on images.
 function deleteButtonAlert() {
-  document.querySelector("#img-action-delete").addEventListener("click", function() {
+  $("#img-action-delete").on("click", function(e) {
     return confirm("Delete this image?");
   });
 }
@@ -38,9 +38,7 @@ function addToCollection() {
 }
 
 var ready = function() {
-  if (document.querySelector("#image-action-delete")) {
-    deleteButtonAlert();
-  }
+  deleteButtonAlert();
 
   if (document.querySelector("#report-cancel-button")) {
     cancelReportButton();
