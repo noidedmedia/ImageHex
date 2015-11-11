@@ -8,6 +8,10 @@ class ConversationPolicy < ApplicationPolicy
     in_conversation? 
   end
 
+  def create?
+    @conv.user_ids.include?(@user.id)
+  end
+
   def update?
     in_conversation?
   end

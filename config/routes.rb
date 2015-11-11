@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
   
+  resources :conversations
   resources :tags do
     collection do
       get "suggest"

@@ -12,6 +12,17 @@ describe ConversationPolicy do
   end
 
   subject { described_class }
+
+  permissions :create? do
+    it "works if you are in the conversation" do
+      c = Conversation.new(user_ids: [usera.id, userb.id])
+      expect(subject).to permit(usera, c)
+    end
+    it "works if you aren't in this conversation" do
+      c = Conversation.new(user_ids: [usera.id, userb.id])
+      expect(subject).to_not permit(userc, c)
+    end
+  end
   permissions :show? do
     it { should permit(usera, conv) }
     it { should permit(userb, conv) }
