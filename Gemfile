@@ -13,6 +13,9 @@ gem 'rails', '4.2.4'
 gem 'pg'
 
 ##
+# Faster JSON rendering
+gem 'yajl-ruby'
+##
 # https://github.com/aws/aws-sdk-ruby
 # Amazon Web Services SDK
 gem 'aws-sdk', '< 2.0'
