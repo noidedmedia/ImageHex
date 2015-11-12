@@ -76,7 +76,6 @@ function addSearchBox(toaddcount) {
 
 var ready = function() {
   headerSearch();
-  
 
   if (document.querySelector(".page-search-full")) {
     // We have to set this up here since the first search box is
