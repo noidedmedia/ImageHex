@@ -51,11 +51,7 @@ function headerSearch() {
 
       // Checks to make sure the "header-search" div doesn't already have an "active" class.
       if (!headersearch.classList.contains('active')) {
-        // Variable for moving up one in the HTML hierarchy.
-        var parentform = headersearchinput.parent('form');
-
-        // Moves up another level to the header-search div.
-        parentform.parent('#header-search').toggleClass('active');
+        document.querySelector('#header-search').classList.toggle('active');
       }
     });
   }
