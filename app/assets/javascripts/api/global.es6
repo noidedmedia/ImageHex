@@ -10,7 +10,8 @@ NM.getJSON = function(url, callback){
 NM.getCSRFToken = function(){
 var metas = document.getElementsByTagName('meta');
   var token;
-  for(var meta of metas){
+  for(var m = 0; m < metas.length; m++){
+    var meta = metas[m];
     if(meta.getAttribute("name") == "csrf-token"){
       return meta.getAttribute("content");
     }

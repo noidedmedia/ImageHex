@@ -73,6 +73,7 @@ class ImageTagGroup extends React.Component {
 }
 
 document.addEventListener("page:change", function() {
+  console.log("Event fires");
   var newButton = document.getElementById("add-tag-group-button");
   if (newButton) {
     newButton.addEventListener("click", function() {
