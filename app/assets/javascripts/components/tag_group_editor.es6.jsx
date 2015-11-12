@@ -1,5 +1,5 @@
-class TagGroupEditor extends React.Component{
-  constructor(props){
+class TagGroupEditor extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       inputValue: "",
@@ -7,7 +7,7 @@ class TagGroupEditor extends React.Component{
     };
   }
 
-  render(){
+  render() {
     var tags = this.props.tags.map((tag) => {
       return <TagBox tag={tag} 
         onRemove={this.props.onTagRemove} 
@@ -15,7 +15,7 @@ class TagGroupEditor extends React.Component{
         />;
     });
     var suggestions;
-    if(this.state.hasSuggestions){
+    if (this.state.hasSuggestions) {
       suggestions = this.state.suggestions.map((sug, index) => {
         return <li>
           <TagSuggestion tag={sug}
@@ -24,7 +24,7 @@ class TagGroupEditor extends React.Component{
         </li>;
       });
     }
-    else{
+    else {
       suggestions = <li className="no-suggestions"> 
         No Suggestions Found.
       </li>;
@@ -45,16 +45,17 @@ class TagGroupEditor extends React.Component{
       </ul>
     </div>;
   }
-  componentDidUpdate(){
-    if(this.props.autofocus){
+
+  componentDidUpdate() {
+    if (this.props.autofocus) {
       console.log("Focusing a Tag Group");
       ReactDOM.findDOMNode(this.refs.groupInput).focus();
-    }
-    else{
+    } else {
       console.log("Not focusing this tag group");
     }
   }
-  onTagAdd(tag){
+
+  onTagAdd(tag) {
     this.props.onTagAdd(tag);
     this.setState({
       hasSuggestions: false,
@@ -62,16 +63,17 @@ class TagGroupEditor extends React.Component{
       hasBlankInput: true
     });
   }
+
   // Watch for a backspace in a blank box, which automatically fills the box
   // with the value of the last tag.
-  onKeyUp(event){
+  onKeyUp(event) {
     // Input is currently blank, but that may be because we deleted the last
     // character in the box
-    if(this.state.hasBlankInput && event.keyCode == 8){
+    if (this.state.hasBlankInput && event.keyCode == 8) {
       // if it as blank and the key we pressed before this was also a backspace
       // we have pressed backspace in a blank box and thus should go to the
       // previous tag
-      if(this.state.lastKeyWasBackspace){
+      if (this.state.lastKeyWasBackspace) {
         let lastTag = this.props.tags[this.props.tags.length - 1];
         this.props.onTagRemove(lastTag);
         this.setState({
@@ -81,7 +83,7 @@ class TagGroupEditor extends React.Component{
       }
       // Tf the last key wasn't a backspace, this backspace made the box blank.
       // That means that the next backspace should go to the previous tag.
-      else{
+      else {
         this.setState({
           lastKeyWasBackspace: true
         });
@@ -89,27 +91,27 @@ class TagGroupEditor extends React.Component{
       }
     }
     // User types an enter key or a comma, try to add the current tag
-    else if(event.keyCode == 13){
+    else if (event.keyCode == 13) {
       // this is where things get a bit complicated
       // if we have are pressing shift...
-      if(event.shiftKey){
+      if (event.shiftKey) {
         // ...and a non-blank box, add the active suggestion
-        if(event.target.value !== ""){
+        if (event.target.value !== "") {
           this.addActive();
         }
         // And always submit
         this.props.submit();
       }
       // Now, if we aren't pressing the shift key, just add the active tag
-      else{
+      else {
         this.addActive();
       }
     }
-    else if(event.keyCode == 188){
+    else if (event.keyCode == 188) {
       this.addActive();
     }
     // down arrow
-    else if(event.keyCode == 40){
+    else if (event.keyCode == 40) {
       // Don't move to a suggestion we don't have
         var newSuggestion = Math.min(this.state.suggestions.length - 1,
           this.state.activeSuggestion + 1);
@@ -121,7 +123,7 @@ class TagGroupEditor extends React.Component{
         });
     }
     // up arrow
-    else if(event.keyCode == 38){
+    else if (event.keyCode == 38) {
       // by default up takes you to the start of the text box
       // stop that from happening
       event.preventDefault();
@@ -139,25 +141,24 @@ class TagGroupEditor extends React.Component{
   }
 
   // Probbly should be called "addActiveSuggestion"
-  addActive(){
-    if(this.state.activeSuggestion !== undefined){
+  addActive() {
+    if (this.state.activeSuggestion !== undefined) {
       var tag = this.state.suggestions[this.state.activeSuggestion];
       this.onTagAdd(tag);
       this.setState({
         suggestions: [],
         hasSuggestions: false
       });
-    }
-    else{
+    } else {
       // TODO: Handle this error ;-;
     }
   }
-  onInputChange(event){
+
+  onInputChange(event){ 
     let value = event.target.value;
-    if(event.target.value !== ""){
+    if (event.target.value !== "") {
       this.fetchSuggestions(event.target.value);
-    }
-    else{
+    } else {
       this.setState({
         hasBlankInput: true,
         hasSuggestions: false,
@@ -166,9 +167,10 @@ class TagGroupEditor extends React.Component{
       });
     }
   }
-  fetchSuggestions(value){
+
+  fetchSuggestions(value) {
     Tag.withPrefix(value, (tags) => {
-      if(tags.length > 0){
+      if (tags.length > 0) {
         /**
          * We have to set the input value ourselves due to the input
          * being a managed react component.
@@ -190,7 +192,7 @@ class TagGroupEditor extends React.Component{
           activeSuggestion: 0
         });
       }
-      else{
+      else {
         this.setState({
           hasSuggestions: false,
           hasBlankInput: false,
@@ -202,14 +204,15 @@ class TagGroupEditor extends React.Component{
   }
 }
 
-class TagSuggestion extends React.Component{
-  constructor(props){
+class TagSuggestion extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {};
   }
-  render(){
+
+  render() {
     var className = "tag-group-tag-suggestion";
-    if(this.props.isActive){
+    if (this.props.isActive) {
       className += " active";
     }
     return <div 
@@ -218,17 +221,19 @@ class TagSuggestion extends React.Component{
       Suggestion: {this.props.tag.display_name}
     </div>;
   }
-  click(){
+
+  click() {
     this.props.onAdd(this.props.tag);
   }
 }
 
-class TagBox extends React.Component{
-  constructor(props){
+class TagBox extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {};
   }
-  render(){
+
+  render() {
     return <div>
       {this.props.tag.display_name}
       <div className="tag-box-remove-tag"
@@ -237,7 +242,8 @@ class TagBox extends React.Component{
       </div>
     </div>;
   }
-  removeSelf(){
+
+  removeSelf() {
     this.props.onRemove(this.props.tag);
   }
 }

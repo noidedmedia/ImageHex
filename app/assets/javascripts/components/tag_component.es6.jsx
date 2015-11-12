@@ -1,11 +1,11 @@
-class TagComponent extends React.Component{
-  constructor(){
+class TagComponent extends React.Component {
+  constructor() {
     super();
     this.state = {
       moreInfo: false
     };
   }
-  render(){
+  render() {
     if(this.state.moreInfo){
       return <li className="image-tag-with-info">
         <div className="tag-name">
@@ -15,8 +15,7 @@ class TagComponent extends React.Component{
           {this.state.tag.description}
         </div>
       </li>;
-    }
-    else{
+    } else {
       return <li className="image-tag" onClick={this.fetchInfo.bind(this)}>
         <div className="tag-name">
           {this.props.tag.display_name}
@@ -24,7 +23,7 @@ class TagComponent extends React.Component{
       </li>
     }
   }
-  fetchInfo(){
+  fetchInfo() {
     this.props.tag.getFullData((tag) => {
       this.setState({
         moreInfo: true,

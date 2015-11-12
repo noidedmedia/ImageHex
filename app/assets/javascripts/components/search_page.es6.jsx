@@ -1,25 +1,25 @@
-class SearchPage extends React.Component{
-  constructor(props){
+class SearchPage extends React.Component {
+  constructor(props) {
     super(props);
-    console.log("Got props:",props);
+    console.log("Got props:", props);
     this.state = {
       tagGroups: this.findInitialGroups(),
       focusedGroup: 0
     };
   }
 
-  findInitialGroups(){
-    if(this.props.query && this.props.query.tag_groups){
+  findInitialGroups() {
+    if (this.props.query && this.props.query.tag_groups) {
       return this.props.query.tag_groups.map((g) => {
         return new EtherealTagGroup(g);
       });
     }
-    else{
+    else {
       return [new EtherealTagGroup()];
     }
   }
 
-  render(){
+  render() {
     console.log("Focused group:",this.state.focusedGroup);
     let tags = this.state.tagGroups.map((group, index) => {
       console.log("Is group #",index," the foused group? ",index == this.state.focusedGroup);
@@ -43,7 +43,7 @@ class SearchPage extends React.Component{
     </div>
   }
 
-  onSubmit(){
+  onSubmit() {
     var query = {};
     query.tag_groups = this.state.tagGroups.map((group) => {
       var tags = group.tags.map((tag) => {
@@ -59,13 +59,15 @@ class SearchPage extends React.Component{
     console.log("Query is", query);
     window.location.href = "/search?query=" + JSON.stringify(query);
   }
-  addGroup(){
+
+  addGroup() {
     this.setState({
       tagGrops: this.state.tagGroups.push(new EtherealTagGroup()),
       focusedGroup: this.state.tagGroups.size - 1
     })
   }
-  removeTagFromGroup(groupIndex, tag){
+
+  removeTagFromGroup(groupIndex, tag) {
     var newArray = this.state.tagGroups;
     newArray[groupIndex].removeTag(tag);
     this.setState({
@@ -73,7 +75,8 @@ class SearchPage extends React.Component{
       focusedGroup: groupIndex
     });
   }
-  addTagToGroup(groupIndex, tag){
+
+  addTagToGroup(groupIndex, tag) {
     var newArray = this.state.tagGroups;
     newArray[groupIndex].addTag(tag);
     this.setState({

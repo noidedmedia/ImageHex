@@ -1,15 +1,15 @@
-class ImageTagGroup extends React.Component{
-  constructor(props){
+class ImageTagGroup extends React.Component {
+  constructor(props) {
     super(props);
-    if(this.props.isNew){
+    if (this.props.isNew) {
       var group = new EtherealTagGroup();
       this.state = {group: group};
-    }
-    else{
+    } else {
       this.state = {group: this.props.group};
     }
   }
-  render(){
+
+  render() {
     return <div>
       <TagGroupEditor
         key={0}
@@ -25,18 +25,21 @@ class ImageTagGroup extends React.Component{
       </button>
     </div>;
   }
-  addTag(tag){
+
+  addTag(tag) {
     var group = this.state.group;
     group.addTag(tag);
     this.setState({group: group});
   }
-  removeTag(tag){
+
+  removeTag(tag) {
     var group = this.state.group;
     group.removeTag(tag);
     this.setState({group: group});
   }
-  submit(){
-    if(this.state.group.id){
+
+  submit() {
+    if (this.state.group.id) {
       var url = "/images/" + this.props.group.image_id + "/tag_groups/";
       url += this.state.group.id;
       delete this.state.group["image"];
@@ -53,7 +56,7 @@ class ImageTagGroup extends React.Component{
       });
     }
     // new tag group
-    else{
+    else {
       var tag_ids = this.state.group.tags.map((t) => t.id);
       var data = {
         tag_group: {
@@ -69,10 +72,10 @@ class ImageTagGroup extends React.Component{
   }
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("page:change", function() {
   var newButton = document.getElementById("add-tag-group-button");
-  if(newButton){
-    newButton.addEventListener("click", function(){
+  if (newButton) {
+    newButton.addEventListener("click", function() {
       console.log("Adding a new tag group");
       ReactDOM.render(<ImageTagGroup 
         isNew={true}
@@ -81,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
   var elements = document.getElementsByClassName("edit-generic-tag-group");
-  for(var e = 0; e < elements.length; e++){
+  for (var e = 0; e < elements.length; e++) {
     var element = elements[e];
-    element.addEventListener("click", function(){
+    element.addEventListener("click", function() {
       Image.find(this.dataset.image_id, (img) => {
         console.log("Found an image");
         var group = img.groupWithId(this.dataset.group_id);
