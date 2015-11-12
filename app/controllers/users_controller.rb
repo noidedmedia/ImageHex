@@ -5,6 +5,11 @@ class UsersController < ApplicationController
   include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
 
+  ##
+  # A collection of images favorited by a given user.
+  # @user:: The user in question.
+  # @collection:: The favorites collection for this user.
+  # @images:: Images favorited by this user.
   def favorites
     @user = User.friendly.find(params[:id])
     @collection = @user.favorites
@@ -14,6 +19,11 @@ class UsersController < ApplicationController
     render 'collections/show'
   end
 
+  ##
+  # A collection of images credited to a given user.
+  # @user:: The user in question.
+  # @collection:: The creations collection for this user.
+  # @images:: Images credited to this user.
   def creations
     @user = User.friendly.find(params[:id])
     @collection = @user.creations
@@ -65,6 +75,7 @@ class UsersController < ApplicationController
   # 
   # If the user cannot be updated, it puts the errors in flash[:error] and 
   # redirects to the edit page again.
+  # @user:: The user who is being updated. 
   def update
     @user = User.friendly.find(params[:id])
     authorize @user
