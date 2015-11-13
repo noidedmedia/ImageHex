@@ -9,7 +9,12 @@ class ConversationPolicy < ApplicationPolicy
   end
 
   def create?
-    @conv.user_ids.include?(@user.id)
+    return false unless @conv.user_ids
+    if @conv.user_ids[0].is_a? String
+      @conv.user_ids.include? @user.id.to_s
+    else
+      @conv.user_ids.include? @user.id
+    end
   end
 
   def update?
