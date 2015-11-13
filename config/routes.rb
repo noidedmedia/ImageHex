@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
   
-  resources :conversations
+  resources :conversations do
+    resources :messages, only: [:create, :show, :index]
+  end
   resources :tags do
     collection do
       get "suggest"

@@ -1,7 +1,7 @@
 class Conversation < ActiveRecord::Base
   has_many :conversation_users
   has_many :users, through: :conversation_users
-
+  has_many :messages
   validate :has_two_or_more_users
   attr_accessor :user_ids
   before_validation :save_user_ids, on: :create
