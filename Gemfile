@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5'
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
