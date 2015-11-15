@@ -27,6 +27,23 @@ class TagsController < ApplicationController
     @tags = Tag.all.paginate(page: page, per_page: per_page)
   end
 
+  def new
+    @tag = Tag.new
+  end
+
+  def create
+    @tag = Tag.new(tag_params)
+    respond_to do |format|
+      if @tag.save
+        format.html { redirect_to @tag }
+        format.json { render 'show' }
+      else
+        format.html { render 'edit' }
+        format.json { render json: @tag.errors, status: :unproccessible_entity}
+      end
+    end
+
+  end
   ##
   # Edit this tag's description
   # We really should admin-restrict this at some point

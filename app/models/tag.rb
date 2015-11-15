@@ -11,7 +11,7 @@ class Tag < ActiveRecord::Base
   friendly_id :name, use: :slugged
   ##
   # CALLBACKS:
-  before_save :fix_name
+  before_validation :fix_name, on: :create
   ##
   # SCOPES
   scope :by_importance, ->{ order(:importance) }
@@ -53,6 +53,7 @@ class Tag < ActiveRecord::Base
   # Callback which formats the name.
   def fix_name
     self.display_name ||= self.name.strip.squish
+    self.name ||= self.display_name
     self.name = self.name.strip.squish.downcase
   end
 end

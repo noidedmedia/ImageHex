@@ -46,6 +46,13 @@ class Collection < ActiveRecord::Base
   scope :creations, ->{ where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
 
+  def self.without_image(i)
+    where.not(id: i.collections)
+  end
+
+  def self.with_image(i)
+    where(id: i.collections)
+  end
   ####################
   # INSTANCE METHODS #
   ####################

@@ -1,7 +1,7 @@
 ---
 en:
   tags:
-    edit:
+    form:
       description: Description
       display_name: Display name
       editing_tag: Editing %{tag}

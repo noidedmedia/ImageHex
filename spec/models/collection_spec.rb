@@ -2,12 +2,29 @@ require 'spec_helper'
 
 describe Collection do
 
+  describe "scopes" do
+   let(:i){ FactoryGirl.create(:image)}
+   let(:c1){FactoryGirl.create(:collection)}
+   let(:c2){FactoryGirl.create(:collection)}
+    it "has a scope for collections without a given image" do
+      c1.images << i
+      c2
+      expect(Collection.without_image(i)).to_not include(c1)
+    end
+    it "has a score for collections with a given image" do
+      c1.images << i
+      c2
+      expect(Collection.with_image(i)).to eq([c1])
+    end
+  end
   it {should have_many(:collection_images)}
   ##
   # Due to what I believe to be a bug in shoulda_mathcers, this test
   # will not work. I have verified with manual testing that a collection
   # does, indeed, have many collectiosn through collection_images.
   # it {should have_many(:images).through(:collection_images)}
+  
+
   it "should not allow duplicate images" do
     c = FactoryGirl.create(:collection)
     i = FactoryGirl.create(:image)
