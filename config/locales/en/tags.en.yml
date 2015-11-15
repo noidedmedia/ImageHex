@@ -1,10 +1,11 @@
 ---
 en:
   tags:
+    edit:
+      editing_tag: Editing %{tag}
     form:
       description: Description
       display_name: Display name
-      editing_tag: Editing %{tag}
       save_changes: Save changes
     show:
       edit: Edit
