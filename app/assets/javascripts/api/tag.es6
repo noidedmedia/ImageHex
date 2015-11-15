@@ -5,6 +5,15 @@ class Tag{
     }
   }
 
+  static create(props, callback){
+    var c = (tag) => {
+      console.log("Create gave us a new tag");
+      callback(new Tag(tag));
+    }
+    NM.postJSON("/tags/",
+                props,
+                c);
+  }
   getFullData(callback){
     if("description" in this){
       callback(this);

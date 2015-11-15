@@ -21,6 +21,17 @@
   }
 }
 
+.inline-tag-creation {
+  background-color: white;
+  padding: 10px;
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+  span {
+    display: block;
+  }
+}
 #tag-description{
   padding: 5px;
   width: 50%;

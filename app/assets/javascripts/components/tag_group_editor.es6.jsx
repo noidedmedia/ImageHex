@@ -3,16 +3,18 @@ class TagGroupEditor extends React.Component {
     super(props);
     this.state = {
       inputValue: "",
-      activeSuggestion: undefined
+      activeSuggestion: undefined,
+      hasBlankInput: true
     };
   }
 
   render() {
+    console.log("State is",this.state);
     var tags = this.props.tags.map((tag) => {
       return <TagBox tag={tag} 
         onRemove={this.props.onTagRemove} 
         key={tag.id}
-        />;
+      />;
     });
     var suggestions;
     if (this.state.hasSuggestions) {
@@ -24,18 +26,23 @@ class TagGroupEditor extends React.Component {
         </li>;
       });
     }
+    else if(!this.state.hasBlankInput && this.props.allowTagCreation){
+      suggestions = <InlineTagCreator onAdd={this.onTagAdd.bind(this)}
+        tagName={this.state.inputValue} />;
+    }
     else {
-      suggestions = <li className="no-suggestions"> 
-        No Suggestions Found.
+      suggestions = <li className="no-suggestions-found">
+        Found no suggestions.
       </li>;
     }
+
     return <div className="tag-group-editor">
       <ul className="tag-group-editor-tags">
         {tags}
       </ul>
       <input type="text" 
         name="suggestions" 
-        onInput={this.onInputChange.bind(this)}
+        onChange={this.onInputChange.bind(this)}
         onKeyUp={this.onKeyUp.bind(this)}
         value={this.state.inputValue}
         ref="groupInput"
@@ -60,7 +67,7 @@ class TagGroupEditor extends React.Component {
     this.setState({
       hasSuggestions: false,
       inputValue: "",
-      hasBlankInput: true
+      hasBlankInput: true,
     });
   }
 
@@ -80,6 +87,7 @@ class TagGroupEditor extends React.Component {
           hasBlankInput: false,
           inputValue: lastTag.name
         });
+        return;
       }
       // Tf the last key wasn't a backspace, this backspace made the box blank.
       // That means that the next backspace should go to the previous tag.
@@ -113,14 +121,14 @@ class TagGroupEditor extends React.Component {
     // down arrow
     else if (event.keyCode == 40) {
       // Don't move to a suggestion we don't have
-        var newSuggestion = Math.min(this.state.suggestions.length - 1,
-          this.state.activeSuggestion + 1);
-        // don't jump around inside the text box
-        event.preventDefault();
-        console.log("Changing active selection to", newSuggestion);
-        this.setState({
-          activeSuggestion: newSuggestion
-        });
+      var newSuggestion = Math.min(this.state.suggestions.length - 1,
+                                   this.state.activeSuggestion + 1);
+      // don't jump around inside the text box
+      event.preventDefault();
+      console.log("Changing active selection to", newSuggestion);
+      this.setState({
+        activeSuggestion: newSuggestion
+      });
     }
     // up arrow
     else if (event.keyCode == 38) {
@@ -129,7 +137,7 @@ class TagGroupEditor extends React.Component {
       event.preventDefault();
       // Don't move to a suggestion we don't have
       var newSuggestion = Math.max(0,
-        this.state.activeSuggestion - 1);
+                                   this.state.activeSuggestion - 1);
       this.setState({
         activeSuggestion: newSuggestion
       });

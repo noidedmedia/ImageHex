@@ -19,6 +19,7 @@ class ImageTagGroup extends React.Component {
         onTagRemove={this.removeTag.bind(this)}
         autofocus={true}
         onSubmit={this.submit.bind(this)}
+        allowTagCreation={true}
       />
       <button onClick={this.submit.bind(this)}>
         Submit
