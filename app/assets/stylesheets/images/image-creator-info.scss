@@ -1,0 +1,46 @@
+#image-creator-info {
+  margin: 4px 8px 4px 4px;
+}
+
+#image-source-link {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+  display: block;
+  border-bottom: 1px solid #C9C9C9;
+  padding-bottom: 6px;
+}
+
+.image-creator-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:last-of-type {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #C9C9C9;
+
+  }
+}
+
+
+#image-creator-list-label {
+  font-size: 1.5rem;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.creator-avatar {
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
+}
+
+.creator-name {
+  font-size: 1.6rem;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}

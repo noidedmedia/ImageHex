@@ -1,0 +1,27 @@
+<div id="image-creator-info">
+  <% if @image.source %>
+    <%= link_to "Source", @image.source, {id: "image-source-link"} %>
+  <% elsif @image.creators.blank? %>
+    <span id="image-source-link">No source provided.</span>
+  <% end %>
+  <% unless @image.creators.blank? %>
+    <div id="image-creator-list-container">
+      <span id="image-creator-list-label">
+        Created by:
+      </span>
+      <ul id="image-creator-list">
+        <% @image.creators.each do |c| %>
+          <li class="image-creator-item">
+          <a href="<%= user_path c %>">
+            <%= image_tag c.avatar_img_thumb, {class: "creator-avatar"} %> 
+          </a>
+          <div class="creator-name">
+            <%= link_to c.name, c %>
+          </div>
+          </li>
+
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
