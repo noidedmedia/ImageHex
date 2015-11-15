@@ -49,7 +49,14 @@
           <%= f.label :nsfw_sexuality, t(".nsfw_sexuality") %>
         </div>
       </div>
-
+      <div class="text-field-contianer">
+        <p><%= t('.source_optional') %><p>
+        <%= f.url_field :source %> 
+      </div>
+      <div class="checkbox-field">
+        <%= f.check_box :created_by_uploader %>
+        <%= f.label :created_by_uploader, t(".i_made_this") %>
+      </div>
       <div class="text-field-container">
         <p><%= t(".description_optional") %> </p>
         <%= text_area(:image, :description, id: 'image-description-field') %>

@@ -57,6 +57,8 @@ en:
       nsfw_language: NSFW Language
       nsfw_nudity: NSFW Nudity
       nsfw_sexuality: NSFW Sexuality
+      source_optional: "Source (Optional but recommended)"
+      i_made_this: "I Made This"
       or: or
       submit: Submit
       upload_image: Upload an image
