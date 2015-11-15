@@ -29,6 +29,18 @@
 # medium:: How the image was created
 class Image < ActiveRecord::Base
 
+  ##############
+  # ATTRIBUTES #
+  ##############
+  attr_accessor :created_by_uploader
+
+  #############
+  # CALLBACKS #
+  #############
+
+  after_create :add_uploader_creation
+
+
   ##########
   # SCOPES #
   ##########
@@ -202,6 +214,18 @@ class Image < ActiveRecord::Base
   def self.medium_attributes_for_select
     media.map do |medium, k|
       [I18n.t("activerecord.attributes.mediums.#{medium}"), medium]
+    end
+  end
+
+  protected
+  def add_uploader_creation
+    # This is gross beecause of how form params work
+    if created_by_uploader.is_a? TrueClass
+      self.user.creations.images << self
+    elsif created_by_uploader.is_a? String
+      if ['true', '1'].include?(created_by_uploader)
+        self.user.creations.images << self
+      end
     end
   end
 

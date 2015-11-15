@@ -22,6 +22,25 @@ describe Image do
       expect(q).to_not include(unwanted_img)
     end
   end
+
+  it "adds to the users creations if set" do
+    i = FactoryGirl.build(:image)
+    u = i.user
+    i.created_by_uploader = true
+    expect{
+      i.save
+    }.to change{u.creations.images.count}.by(1)
+  end
+
+  it "does not add to users creations if not set" do
+    i = FactoryGirl.build(:image)
+    u = i.user
+    i.created_by_uploader = false
+    expect{
+      i.save
+    }.to_not change{u.creations.images}
+  end
+
   describe "content validation" do
     let(:sex){FactoryGirl.create(:image,
                                  nsfw_sexuality: true)}

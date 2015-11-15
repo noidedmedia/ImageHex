@@ -195,7 +195,8 @@ class ImagesController < ApplicationController
               :nsfw_gore,
               :nsfw_nudity,
               :nsfw_sexuality,
-              :nsfw_language) # stuff the user adds
+              :nsfw_language,
+              :created_by_uploader) # stuff the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
 
