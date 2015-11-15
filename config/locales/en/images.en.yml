@@ -10,6 +10,11 @@ en:
       new_tag_group: New tag group
       submit: Submit
       uploaded_by: Uploaded by
+      source: "Source:"
+    image_page_creator_info:
+      creators:
+        one: Creator
+        other: Creators
     image_page_sidebar:
       add_to_collection: Add to Collection
       agree_and_download: Agree and Download

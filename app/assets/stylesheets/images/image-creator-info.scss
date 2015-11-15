@@ -1,5 +1,5 @@
 #image-creator-info {
-  margin: 4px 0 4px 0;
+  padding: 4px 0;
 
   p {
     font-size: 1.3rem;
@@ -8,6 +8,8 @@
 
 .image-source-link {
   display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .image-creator-item {
@@ -15,18 +17,13 @@
   flex-flow: row wrap;
 
   &:last-of-type {
-    padding-bottom: 6px;
+    padding-bottom: 3px;
   }
 }
 
-#image-creator-list-label {
-  margin: 6px 0 10px;
-  display: block;
-}
-
 .creator-avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 
   img {
     width: 100%;

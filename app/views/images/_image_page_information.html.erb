@@ -1,6 +1,7 @@
 <div id="image-page-information">
 
   <div id="comment-container">
+
     <div id="upload-info">
       <div class="uploader-avatar">
         <%= link_to @image.user do %>
@@ -17,14 +18,14 @@
           <p class="image-description"><%= @image.description %>
         <% end %>
 
-        <% if @image.source %>
-          <p class="image-source-link"><%= link_to "Source", @image.source, { id: "image-source-link" } %></p>
-        <% elsif @image.creators.blank? %>
-          <p class="image-source-link">No source provided.</p>
+        <% if @image.source && !@image.source.blank? %>
+          <p class="image-source-link"><%= t(".source") %> <%= link_to @image.source, @image.source %></p>
         <% end %>
       </div>
 
-      <%= render 'image_page_creator_info' %>
+      <% unless @image.creators.blank? %>
+        <%= render 'image_page_creator_info' %>
+      <% end %>
     </div>
 
     <hr>
