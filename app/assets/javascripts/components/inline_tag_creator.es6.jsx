@@ -50,6 +50,7 @@ class InlineTagCreator extends React.Component {
     });
   }
   startCreation(){
+    this.props.hideSubmit();
     this.setState({
       performingCreate: true
     });

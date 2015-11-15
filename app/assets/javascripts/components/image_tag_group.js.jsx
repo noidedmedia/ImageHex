@@ -3,13 +3,28 @@ class ImageTagGroup extends React.Component {
     super(props);
     if (this.props.isNew) {
       var group = new EtherealTagGroup();
-      this.state = {group: group};
+      this.state = {
+        group: group,
+        showSubmit: true
+      };
     } else {
-      this.state = {group: this.props.group};
+      this.state = {
+        group: this.props.group,
+        showSubmit: true
+      };
     }
   }
 
   render() {
+    var submit;
+    if(this.state.showSubmit){
+      submit =  <button onClick={this.submit.bind(this)}>
+        Submit
+      </button>;
+    }
+    else{
+      submit = <div></div>;
+    }
     return <div>
       <TagGroupEditor
         key={0}
@@ -20,23 +35,40 @@ class ImageTagGroup extends React.Component {
         autofocus={true}
         onSubmit={this.submit.bind(this)}
         allowTagCreation={true}
+        hideSubmit={this.hideSubmit.bind(this)}
+        showSubmit={this.showSubmit.bind(this)}
       />
-      <button onClick={this.submit.bind(this)}>
-        Submit
-      </button>
+      {submit}
     </div>;
+  }
+
+  hideSubmit(){
+    this.setState({
+      showSubmit: false
+    });
+  }
+  showSubmit(){
+    this.setState({
+      showSubmit: true
+    });
   }
 
   addTag(tag) {
     var group = this.state.group;
     group.addTag(tag);
-    this.setState({group: group});
+    this.setState({
+      group: group,
+      showSubmit: true
+    });
   }
 
   removeTag(tag) {
     var group = this.state.group;
     group.removeTag(tag);
-    this.setState({group: group});
+    this.setState({
+      group: group,
+      showSubmit: true
+    });
   }
 
   submit() {

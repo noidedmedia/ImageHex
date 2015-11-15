@@ -27,7 +27,9 @@ class TagGroupEditor extends React.Component {
       });
     }
     else if(!this.state.hasBlankInput && this.props.allowTagCreation){
-      suggestions = <InlineTagCreator onAdd={this.onTagAdd.bind(this)}
+      suggestions = <InlineTagCreator 
+        hideSubmit={this.props.hideSubmit}
+        onAdd={this.onTagAdd.bind(this)}
         tagName={this.state.inputValue} />;
     }
     else {
@@ -35,7 +37,6 @@ class TagGroupEditor extends React.Component {
         Found no suggestions.
       </li>;
     }
-
     return <div className="tag-group-editor">
       <ul className="tag-group-editor-tags">
         {tags}
@@ -67,9 +68,10 @@ class TagGroupEditor extends React.Component {
     this.setState({
       hasSuggestions: false,
       inputValue: "",
-      hasBlankInput: true,
+      hasBlankInput: true
     });
   }
+
 
   // Watch for a backspace in a blank box, which automatically fills the box
   // with the value of the last tag.
