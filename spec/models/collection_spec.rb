@@ -16,6 +16,17 @@ describe Collection do
       c2
       expect(Collection.with_image(i)).to eq([c1])
     end
+    it "has a scope that selects if a collection contains an image" do
+      c1.images << i
+      c2
+      Collection.with_image_inclusion(i).each do |c|
+        if c.id == c1.id
+          expect(c.contains_image).to eq(true)
+        else
+          expect(c.contains_image).to eq(false)
+        end
+      end
+    end
   end
   it {should have_many(:collection_images)}
   ##
