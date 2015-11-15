@@ -1,7 +1,6 @@
 <div id="image-page-information">
 
   <div id="comment-container">
-    <%= render 'image_page_creator_info' %>
     <div id="upload-info">
       <div class="uploader-avatar">
         <%= link_to @image.user do %>
@@ -11,9 +10,21 @@
         <% end %>
       </div>
       <div class="image-description-container">
-        <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
-        <p class="image-description"><%= @image.description %>
+        <p class="image-uploader"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+        <p class="image-upload-date"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span>
+
+        <% unless @image.description.blank? %>
+          <p class="image-description"><%= @image.description %>
+        <% end %>
+
+        <% if @image.source %>
+          <p class="image-source-link"><%= link_to "Source", @image.source, { id: "image-source-link" } %></p>
+        <% elsif @image.creators.blank? %>
+          <p class="image-source-link">No source provided.</p>
+        <% end %>
       </div>
+
+      <%= render 'image_page_creator_info' %>
     </div>
 
     <hr>
@@ -34,6 +45,7 @@
     <% end %>
 
   </div>
+
   <% @image.tag_groups.for_display.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>

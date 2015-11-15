@@ -37,6 +37,17 @@
   }
 }
 
+.image-upload-date {
+  position: absolute;
+  text-align: right;
+  top: 8px;
+  right: 0;
+
+  span {
+    color: #aaaab2;
+  }
+}
+
 .image-description-container {
   text-align: left;
   display: inline-block;
@@ -88,7 +99,8 @@ a:target + .comment {
 }
 
 .user-comment-avatar,
-.uploader-avatar {
+.uploader-avatar,
+.creator-avatar {
   margin: 4px 8px 4px 4px;
   background-color: #c9c9c9;
   overflow: hidden;
