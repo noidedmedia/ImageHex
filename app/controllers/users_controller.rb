@@ -66,7 +66,6 @@ class UsersController < ApplicationController
   def edit
     @user = params[:id] ? User.find(params[:id]) : current_user
     authorize @user
-    @user.user_page ||= UserPage.new
   end
 
   ##
@@ -100,7 +99,7 @@ class UsersController < ApplicationController
     .require(:user)
     .permit(:page_pref,
              :avatar,
-             user_page_attributes: [:body],
+             :description,
              content_pref: [:nsfw_language,
                             :nsfw_gore,
                             :nsfw_nudity,

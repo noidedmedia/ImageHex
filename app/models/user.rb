@@ -25,21 +25,14 @@ class User < ActiveRecord::Base
 
   enum role: [:normal, :admin]
 
-  ################
-  # ASSOCIATIONS #
-  ################
-  has_one :user_page, autosave: true
-
-  # Accept nested attributes for the page
-  accepts_nested_attributes_for :user_page, update_only: true
 
   has_attached_file :avatar,
     styles: {
-      original: "500x500>#",
-      medium: "300x300>#",
-      small: "200x200>#",
-      tiny: "100x100>#"
-    },
+    original: "500x500>#",
+    medium: "300x300>#",
+    small: "200x200>#",
+    tiny: "100x100>#"
+  },
     path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension"),
     default_url: "default-avatar.svg"
 
@@ -47,13 +40,13 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, 
     content_type: /\Aimage\/.*\Z/
 
-  validates_with AttachmentSizeValidator, 
+    validates_with AttachmentSizeValidator, 
     attributes: :avatar,
     less_than: 2.megabytes
 
-    ##
-    # Join table: users -> collections
-    has_many :subscriptions
+  ##
+  # Join table: users -> collections
+  has_many :subscriptions
   has_many :comments
   has_many :subscribed_collections,
     through: :subscriptions,
@@ -77,22 +70,13 @@ class User < ActiveRecord::Base
     format: {with: /\A([[:alpha:]]|\w)+\z/ },
     length: {in: 2..25}
   validates :page_pref, inclusion: {:in => (1..100)}
-  validates_associated :user_page
 
   #############
   # CALLBACKS #
   #############
   after_create :make_collections
-  before_create :make_page
-  before_validation :resolve_page_body
-  after_initialize :load_page_body
 
   before_save :coerce_content_pref!
-
-  ##############
-  # ATTRIBUTES #
-  ##############
-  attr_accessor :page_body
 
   ####################
   # INSTANCE METHODS #
@@ -136,7 +120,7 @@ class User < ActiveRecord::Base
   def favorites
     collections.favorites.first
   end
-  
+
   ##
   # Add an image to a user's favorites
   def favorite! i
@@ -186,32 +170,7 @@ class User < ActiveRecord::Base
     end.to_h
   end
 
-  ##
-  # Put the user's page body into page_body.
-  # This makes it a bit easier, since you can just say
-  #     user.page_body
-  # As opposed to
-  #     user.page.body
-  #
-  # Ok, it's not that much easier, but still.
-  def load_page_body
-    page_body = self.user_page.body if self.user_page
-  end
 
-  ##
-  # Create a page with a message indicating that the user hasn't set up their
-  # page on user creation.
-  def make_page
-    build_user_page(body: "")
-  end
-
-  ##
-  # Callback used to save the page_body in page.body on creation.
-  def resolve_page_body
-    return unless page_body
-    user_page.body = page_body
-    user_page.save
-  end
   ##
   # All users have to have a Favorite collection and a Created collection.
   # This method makes both of those collections in a callback on user creation.

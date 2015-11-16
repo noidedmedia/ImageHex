@@ -14,11 +14,8 @@
     </div>
 
     <div class="field-container">
-      <%= f.fields_for :user_page do |pf| %>
-        <%= pf.label :body, t(".user_bio"), class: "label input-empty", for: "user-bio-field" %>
-        <%= pf.text_area :body, autocomplete: false, id: "user-bio-field", class: "input" %>
-        <%= pf.hidden_field :id %>
-      <% end %>
+        <%= f.label :description, t(".user_bio"), class: "label input-empty", for: "user-bio-field" %>
+        <%= f.text_area :description, autocomplete: false, id: "user-bio-field", class: "input" %>
     </div>
 
     <div class="field-container">
