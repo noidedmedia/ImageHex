@@ -8,6 +8,10 @@ class Curatorship < ActiveRecord::Base
   validates :user, presence: true
   validates :collection, presence: true
   validates :level, presence: true
+
+  ##
+  # Note that this is manually set in a callback on Collection
+  # DO NOT MODIFY THIS WITHOUT ALSO MODIFYING THAT CALLBACK
   enum level: [:worker, :mod, :admin]
 
   ##

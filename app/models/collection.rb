@@ -83,7 +83,7 @@ class Collection < ActiveRecord::Base
   protected
   def make_admins
     curatorships.update_all({
-      level: 3
+      level: 2
     })
   end
 end
