@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   def unauthorized
     respond_to do |format|
       format.html { redirect_to (request.referer || root_path), warning: I18n.t("notices.youre_not_allowed_to_do_that") }
+      format.json { render json: {success: false} } 
     end
   end
   

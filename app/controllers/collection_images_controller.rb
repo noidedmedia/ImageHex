@@ -36,11 +36,19 @@ class CollectionImagesController < ApplicationController
     col = Collection.find(params[:collection_id])
     c = CollectionImage.where(image: img,
                               collection: col).first
-    redirect_to Collection.find(params[:collection_id]) and return unless c
+    unless c
+      respond_to do |format|
+        format.json { render json: {success: false}}
+        format.html { redirect_to col }
+      end
+      return 
+    end
     authorize c
     c.destroy
-
-    redirect_to col
+    respond_to do |format|
+      format.json { render json: {success: true}}
+      format.html { redirect_to col } 
+    end
   end
 
   protected

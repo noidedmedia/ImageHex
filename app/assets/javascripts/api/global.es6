@@ -7,6 +7,17 @@ NM.getJSON = function(url, callback){
   .go();
 };
 
+NM.deleteJSON = function(url, success, failure){
+  aja()
+  .url(url)
+  .method("delete")
+  .header("Accept", "application/json")
+  .header("X-CSRF-TOKEN", NM.getCSRFToken())
+  .on('success', success)
+  .on('failure', failure)
+  .go();
+}
+
 NM.getCSRFToken = function(){
 var metas = document.getElementsByTagName('meta');
   var token;

@@ -38,6 +38,7 @@ class Collection < ActiveRecord::Base
   ###############
   validates :name, presence: true
 
+  after_create :make_admins
   ##########
   # SCOPES #
   ##########
@@ -77,5 +78,12 @@ class Collection < ActiveRecord::Base
   #   collection.curate?(User.last) #=> false
   def curated?(u)
     self.curators.include?(u)
+  end
+
+  protected
+  def make_admins
+    curatorships.update_all({
+      level: 3
+    })
   end
 end

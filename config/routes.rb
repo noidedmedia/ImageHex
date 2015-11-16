@@ -58,6 +58,7 @@ Rails.application.routes.draw do
   end
 
   resources :collections, except: [:index] do
+    get :mine, on: :collection
     ##
     # OK we get non-REST here
     resources :images, only: [:create, :destroy], controller: :collection_images  do
