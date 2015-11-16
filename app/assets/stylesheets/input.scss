@@ -93,6 +93,7 @@
   input[type=checkbox] {
     display: inline-block;
     -webkit-appearance: none;
+    -moz-appearance: none;
     border: 1px solid #aaaab2;
     border-radius: 2px;
     height: 22px;
@@ -115,6 +116,7 @@
 
     &:focus {
       outline: transparent;
+      border-color: #333;
     }
 
     &:checked:after {

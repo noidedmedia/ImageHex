@@ -55,14 +55,14 @@ en:
     new:
       click_here_to_choose: Click here to choose a file
       content_rating: Content rating
-      description_optional: 'Description (optional):'
+      description_optional: Description (optional)
       drop_images_here_to_upload: Drop images here to upload
       nsfw_gore: NSFW Gore
       nsfw_language: NSFW Language
       nsfw_nudity: NSFW Nudity
       nsfw_sexuality: NSFW Sexuality
-      source_optional: "Source (Optional but recommended)"
-      i_made_this: "I Made This"
+      source_recommended: Source (recommended)
+      i_made_this: I made this
       or: or
       submit: Submit
       upload_image: Upload an image
