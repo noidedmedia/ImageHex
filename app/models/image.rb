@@ -140,11 +140,12 @@ class Image < ActiveRecord::Base
 
   def self.with_all_tags(tags)
     tags.reject!(&:blank?) # reject blank tags
-    subquery = joins(tag_groups: {tag_group_members: :tag})
+    ## Clear previous scope to construct a subquery
+    sq = Image.unscoped.joins(tag_groups: {tag_group_members: :tag})
       .where(tags: {id: tags})
       .group("images.id")
       .having("COUNT(*) >= ?", tags.length)
-      where(id: subquery)
+    return self.where(id: sq)
   end
   
   def self.search(q)
@@ -154,7 +155,6 @@ class Image < ActiveRecord::Base
     q.each_group_tag_ids do |group|
       query = query.with_all_tags(group)
     end
-
     query
   end
 
