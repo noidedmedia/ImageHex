@@ -1,13 +1,13 @@
 class InlineTagCreator extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       name: props.tagName
     }
   }
 
-  render(){
-    if(this.state.performingCreate){
+  render() {
+    if (this.state.performingCreate) {
       return <div className="inline-tag-creation">
         <h1>Creating a new Tag</h1>
         <p>
@@ -27,8 +27,7 @@ class InlineTagCreator extends React.Component {
           Submit
         </button>
       </div>;
-    }
-    else {
+    } else {
       return <div>
         Could not find any tags with that name.
         <span onClick={this.startCreation.bind(this)}>
@@ -38,33 +37,35 @@ class InlineTagCreator extends React.Component {
     }
   }
 
-  handleNameChange(e){
+  handleNameChange(e) {
     this.setState({
       name: e.target.value
     });
   }
 
-  handleDescriptionChange(e){
+  handleDescriptionChange(e) {
     this.setState({
       description: e.target.value
     });
   }
-  startCreation(){
+
+  startCreation() {
     this.props.hideSubmit();
     this.setState({
       performingCreate: true
     });
   }
-  componentWillReceiveProps(props){
-    if(props.tagName){
+
+  componentWillReceiveProps(props) {
+    if (props.tagName) {
       this.setState({
         name: props.tagName
       });
     }
   }
 
-  submit(){
-    if(! this.state.hasSubmitted){
+  submit() {
+    if (! this.state.hasSubmitted) {
       var cb = (tag) => {
         console.log("Callback called in inline tag group creator");
         this.props.onAdd(tag);

@@ -1,11 +1,12 @@
 class CollectionAdder extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       collections: props.collections
     };
   }
-  render(){
+
+  render() {
     var c = this.state.collections.map((c) => {
       return <CollectionAdderItem 
         collection={c}
@@ -19,32 +20,34 @@ class CollectionAdder extends React.Component {
 }
 
 class CollectionAdderItem extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       collection: props.collection
     };
   }
-  render(){
-    if(this.state.collection.contains_image){
+
+  render() {
+    if (this.state.collection.contains_image) {
       return <li className={"collection-list-item contains-image"}>
-        <h3>{this.state.collection.name}</h3>
-        <button onClick={this.removeImage.bind(this)}>
+        <p>{this.state.collection.name}</p>
+        <div onClick={this.removeImage.bind(this)}>
           Remove
-        </button>
+        </div>
       </li>;
     }
     else {
       return <li className={"collection-list-item"}>
-        <h3>{this.state.collection.name}</h3>
-        <button onClick={this.addImage.bind(this)}>
+        <p>{this.state.collection.name}</p>
+        <div onClick={this.addImage.bind(this)}>
           Add
-        </button>
+        </div>
       </li>;
     }
   }
-  addImage(){
-    if(! this.state.performingAction){
+
+  addImage() {
+    if (! this.state.performingAction) {
       this.state.collection.addImageWithId(this.props.image_id, (c) => {
         var c = this.state.collection
         c.contains_image = true
@@ -58,8 +61,9 @@ class CollectionAdderItem extends React.Component {
       });
     }
   }
-  removeImage(){
-    if(! this.state.performingAction){
+
+  removeImage() {
+    if (! this.state.performingAction) {
       this.state.collection.removeImageWithId(this.props.image_id, (c) => {
         var collection = this.state.collection
         collection.contains_image = false
@@ -75,19 +79,18 @@ class CollectionAdderItem extends React.Component {
   }
 }
 
-document.addEventListener("page:change", function(e){
+document.addEventListener("page:change", function(e) {
   var d = document.getElementById("img-action-collection");
   console.log("event handler fires");
-  if(d){
-    d.addEventListener("click", function(e){
+  if (d) {
+    d.addEventListener("click", function(e) {
       console.log("Clicked!");
       console.log(this.dataset);
       Collection.inspectForImage(this.dataset.imageId, (c) => {
         var filtered = c.filter((q) => {
-          if(q.type == "Creation" || q.type == "Favorite"){
+          if (q.type == "Creation" || q.type == "Favorite") {
             return false;
-          }
-          else {
+          } else {
             return true;
           }
         });

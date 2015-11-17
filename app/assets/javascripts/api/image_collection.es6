@@ -1,69 +1,71 @@
 /**
  * Represents a collection of multiple images
  */
-class ImageCollection{
+class ImageCollection {
   /**
    * Create a new collection from the URL
    * @param{String} url the url to look for
    * @param{String} prefix the optoinal prefix to find in the JSON given by url
    */
-  constructor(url, prefix){
+  constructor(url, prefix) {
     this.url = url;
     this.current_page = 1;
     this.prefix = prefix;
   }
-  iteratePageImages(callback){
+  
+  iteratePageImages(callback) {
     this.getPageImages((i) => {
       i.forEach(callback);
     });
   }
+
   /**
    * Increment this ImageCollection's page value
    * Returns `this` if there is a next page, and `undefined` otherwise
    */
-  nextPage(){
-    if(this.hasNextPage()){
+  nextPage() {
+    if (this.hasNextPage()) {
       this.page = this.page + 1;
       return this;
-    }
-    else{
+    } else {
       return undefined;
     }
   }
 
-  hasNextPage(){
+  hasNextPage() {
     return !!(this.total_pages && ! this.page + 1  > this.total_pages);
   }
 
-  getPageImages(callback){
+  getPageImages(callback) {
     this.getPageData((d) => {
       var imgs = [];
-      for(var img of d.images){
+      for (var img of d.images) {
         imgs.push(new Image(img));
       }
       callback(imgs);
     });
   }
 
-  getPageData(callback){
+  getPageData(callback) {
     NM.getJSON(this.pageURL(), (data) => {
       var d;
-      if(this.prefix){
+      if (this.prefix) {
         d = data[this.prefix];
-      }
-      else{
+      } else {
         d = data;
       }
       this.total_pages = d.total_pages;
       callback(d);
     });
   }
-  pageQueryParams(){
+  
+  pageQueryParams() {
     return $.param({
       page: this.current_page
     });
   }
-  pageURL(){
+
+  pageURL() {
     return this.url + "?" + this.pageQueryParams();
   }
 }
