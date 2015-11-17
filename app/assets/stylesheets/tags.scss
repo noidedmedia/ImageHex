@@ -29,9 +29,10 @@
   }
   ul {
     display: flex;
-    flex-direction: row-wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     padding: 5px;
-    width: 50%;
+    width: 25%;
   }
 }
 
@@ -60,5 +61,5 @@
 }
 #tag-description{
   padding: 5px;
-  width: 50%;
+  width: 25%;
 }
