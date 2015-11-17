@@ -41,6 +41,23 @@ class Tag < ActiveRecord::Base
   end
   
 
+  ####################
+  # INSTANCE METHODS #
+  ####################
+
+  ## 
+  # Neighbors provides a list of tags that are commonly used
+  # with this tag.
+  def neighbors
+    Tag.joins(:tag_group_members)
+      .where(tag_group_members: {tag_group_id: self.tag_groups})
+      .group(:id)
+      .order("COUNT(*) DESC")
+      .limit(10)
+      .offset(1)
+      .select("tags.*, COUNT(*) AS count")
+  end
+
   private
 
   def name_and_display_name_equality
