@@ -29,19 +29,15 @@ class CollectionAdderItem extends React.Component {
 
   render() {
     if (this.state.collection.contains_image) {
-      return <li className={"collection-list-item contains-image"}>
+      return <li className={"collection-add-list-item contains-image"}>
+        <div className={"icon icon-close"} onClick={this.removeImage.bind(this)}></div>
         <p>{this.state.collection.name}</p>
-        <div onClick={this.removeImage.bind(this)}>
-          Remove
-        </div>
       </li>;
     }
     else {
-      return <li className={"collection-list-item"}>
+      return <li className={"collection-add-list-item"}>
+        <div className={"icon icon-add"} onClick={this.addImage.bind(this)}></div>
         <p>{this.state.collection.name}</p>
-        <div onClick={this.addImage.bind(this)}>
-          Add
-        </div>
       </li>;
     }
   }
@@ -95,7 +91,7 @@ document.addEventListener("page:change", function(e) {
           }
         });
         ReactDOM.render(<CollectionAdder collections={filtered}
-          image_id={this.dataset.imageId} />, this.parentElement);
+          image_id={this.dataset.imageId} />, document.getElementById("img-action-collection-tooltip"));
       });
     });
   }
