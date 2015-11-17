@@ -13,12 +13,37 @@
     font-weight: 500;
     margin-right: 10px;
   }
-  a{
+  
+}
+#tag-edit-link {
+  text-decoration: none;
+  padding: 2px 5px 2px 5px;
+  border: 1px solid #aaa;
+  color: black;
+}
+
+#tag-neighbors {
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  ul {
+    display: flex;
+    flex-direction: row-wrap;
+    padding: 5px;
+    width: 50%;
+  }
+}
+
+.tag-neighbor-item {
+  a {
     text-decoration: none;
-    padding: 2px 5px 2px 5px;
-    border: 1px solid #aaa;
     color: black;
   }
+  display: block;
+  margin: 2px 3px 0px 3px;
+  padding: 2px 3px 2px 3px;
+  border: 1px solid #aaa;
 }
 
 .inline-tag-creation {

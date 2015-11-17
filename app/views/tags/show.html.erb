@@ -3,10 +3,30 @@
 <div id="tag-information">
   <header>
   <h1><%= @tag.display_name %></h1>
-  <%= link_to t(".edit"), edit_tag_path(@tag) %>
+  <%= link_to t(".edit"), edit_tag_path(@tag), id: "tag-edit-link" %>
   </header> 
   <div id="tag-description">
     <%= markdown_parse @tag.description %>
   </div>
-</div>
-<%= render 'images/show_stub', images: @images %>
+  <% unless @neighbors.blank? %>
+    <div id="tag-neighbors">
+      <h3> Neighboring Tags </h3>
+      <ul>
+        <% @neighbors.each do |n| %>
+          <li class="tag-neighbor-item">
+
+          <%= link_to n do %>
+            <span class="tag-neighbor-name">
+              <%= n.display_name %>
+            </span>
+            <span class="tag-neighbor-count">
+              (<%= n.count %>)
+            </span>
+
+          <% end %>
+          </li>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'images/show_stub', images: @images %>
