@@ -143,7 +143,7 @@ class Image < ActiveRecord::Base
     subquery = joins(tag_groups: {tag_group_members: :tag})
       .where(tags: {id: tags})
       .group("images.id")
-      .having("COUNT(*) = ?", tags.length)
+      .having("COUNT(*) >= ?", tags.length)
       where(id: subquery)
   end
   
