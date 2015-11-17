@@ -51,10 +51,9 @@ class Tag < ActiveRecord::Base
   def neighbors
     Tag.joins(:tag_group_members)
       .where(tag_group_members: {tag_group_id: self.tag_groups})
+      .where.not(id: self)
       .group(:id)
       .order("COUNT(*) DESC")
-      .limit(8)
-      .offset(1)
       .select("tags.*, COUNT(*) AS count")
   end
 

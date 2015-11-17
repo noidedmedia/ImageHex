@@ -15,7 +15,7 @@ class TagsController < ApplicationController
   # Show a page with info about the tags
   def show
     @tag = Tag.friendly.find(params[:id])
-    @neighbors = @tag.neighbors
+    @neighbors = @tag.neighbors.limit(10)
     @images = @tag.images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
