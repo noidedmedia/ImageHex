@@ -38,6 +38,7 @@ class Collection < ActiveRecord::Base
   ###############
   validates :name, presence: true
 
+  after_create :make_admins
   ##########
   # SCOPES #
   ##########
@@ -46,6 +47,25 @@ class Collection < ActiveRecord::Base
   scope :creations, ->{ where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
 
+  def self.with_image_inclusion(i)
+    ##
+    # Using string interpolation is SQL is scary
+    # However, we force it ot be an integer first, so it's less so
+    select(%{
+      collections.*, (collections.id IN
+        (SELECT collections.id FROM collections
+        INNER JOIN collection_images
+          ON collection_images.collection_id = collections.id
+        WHERE collection_images.image_id = #{i.id.to_i.to_s}))
+        AS contains_image})
+  end
+  def self.without_image(i)
+    where.not(id: i.collections)
+  end
+
+  def self.with_image(i)
+    where(id: i.collections)
+  end
   ####################
   # INSTANCE METHODS #
   ####################
@@ -58,5 +78,12 @@ class Collection < ActiveRecord::Base
   #   collection.curate?(User.last) #=> false
   def curated?(u)
     self.curators.include?(u)
+  end
+
+  protected
+  def make_admins
+    curatorships.update_all({
+      level: 2
+    })
   end
 end

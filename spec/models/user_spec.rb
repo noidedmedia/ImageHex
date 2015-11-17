@@ -64,11 +64,6 @@ describe User do
       expect(u.collections.favorites.size).to eq(1)
       expect(u.collections.creations.size).to eq(1)
     end
-    it "gives the user a user_page" do
-      expect{FactoryGirl.create(:user)}.to change{UserPage.count}.by(1)
-      u = FactoryGirl.create(:user)
-      expect(u.user_page).to_not eq(nil)
-    end
   end
 
   describe "favoriting" do

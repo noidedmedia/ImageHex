@@ -130,4 +130,4 @@ var ready = function() {
   $("#header-search-input").on("input", searchSuggestion(hlist, htoggle));
 }
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);

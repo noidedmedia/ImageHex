@@ -9,9 +9,6 @@ class CollectionImagesController < ApplicationController
   include Pundit
 
   ##
-  # Display an error when teh user is unauthorized
-  rescue_from Pundit::NotAuthorizedError, with: :unauthorized
-  ##
   # Make a new collection_image
   # This adds an image to a collection
   # Use collection_image_params
@@ -36,11 +33,19 @@ class CollectionImagesController < ApplicationController
     col = Collection.find(params[:collection_id])
     c = CollectionImage.where(image: img,
                               collection: col).first
-    redirect_to Collection.find(params[:collection_id]) and return unless c
+    unless c
+      respond_to do |format|
+        format.json { render json: {success: false}, status: :not_found }
+        format.html { redirect_to col }
+      end
+      return 
+    end
     authorize c
-    c.destroy
-
-    redirect_to col
+    c.destroy!
+    respond_to do |format|
+      format.json { render json: {success: true}}
+      format.html { redirect_to col } 
+    end
   end
 
   protected

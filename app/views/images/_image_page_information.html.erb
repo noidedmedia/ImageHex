@@ -1,18 +1,35 @@
 <div id="image-page-information">
 
   <div id="comment-container">
+
     <div id="upload-info">
-      <div class="uploader-avatar">
-        <%= link_to @image.user do %>
-          <% if @image.user.avatar %>
-            <%= image_tag @image.user.avatar_img_thumb %>
-          <% end %>
-        <% end %>
-      </div>
       <div class="image-description-container">
-        <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
-        <p class="image-description"><%= @image.description %>
+        <div class="uploader-avatar">
+          <%= link_to @image.user do %>
+            <% if @image.user.avatar %>
+              <%= image_tag @image.user.avatar_img_thumb %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="uploader-information">
+          <div class="image-uploader-container">
+            <p class="image-uploader"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+            <p class="image-upload-date"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span>
+          </div>
+
+          <% unless @image.description.blank? %>
+            <p class="image-description"><%= @image.description %>
+          <% end %>
+
+          <% if @image.source && !@image.source.blank? %>
+            <p class="image-source-link"><%= t(".source") %> <%= link_to @image.source, @image.source %></p>
+          <% end %>
+        </div>
       </div>
+
+      <% unless @image.creators.blank? %>
+        <%= render 'image_page_creator_info' %>
+      <% end %>
     </div>
 
     <hr>
@@ -34,11 +51,6 @@
 
   </div>
 
-  <div id="new-group" data-showon="#add-tag-group-button">
-    <%= form_for [@image, @image.tag_groups.build] do |f| %>
-      <%= f.text_field :tag_group_string, placeholder: t(".new_tag_group") %>
-    <% end %>
-  </div>
   <% @image.tag_groups.for_display.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>

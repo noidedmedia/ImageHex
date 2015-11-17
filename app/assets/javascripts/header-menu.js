@@ -1,16 +1,16 @@
 function headerMenu() {
-  $('#mobile-menu-icon').on('click', function() {
-    $('body').bind('touchmove', function(e) {
+  document.querySelector('#mobile-menu-icon').addEventListener('click', function() {
+    document.getElementsByTagName('body')[0].addEventListener('touchmove', function(e) {
       e.preventDefault();
     });
     
-    $('#header-right').toggleClass('active');
-    $('#mobile-menu-icon').toggleClass('active');
-    $('#mobile-menu-overlay').toggleClass('active');
+    document.querySelector('#header-right').classList.toggle('active');
+    document.querySelector('#mobile-menu-icon').classList.toggle('active');
+    document.querySelector('#mobile-menu-overlay').classList.toggle('active');
 
-    if( $('#mobile-menu-icon').hasClass('active') ) {
-      $('#mobile-menu-icon').on('click', function() {
-        $('#mobile-menu-overlay').unbind('click');
+    if (document.querySelector('#mobile-menu-icon').classList.contains('active')) {
+      document.querySelector('#mobile-menu-icon').addEventListener('click', function() {
+        document.querySelector('#mobile-menu-overlay').removeEventListener('click');
       });
     }
 
@@ -19,27 +19,27 @@ function headerMenu() {
 }
 
 function clickOverlay() {
-  $('#mobile-menu-overlay').bind('click', function() {
+  document.querySelector('#mobile-menu-overlay').addEventListener('click', function() {
     headerMenuClose();
-    $('#mobile-menu-overlay').unbind('click');
+    document.querySelector('#mobile-menu-overlay').removeEventListener('click');
   });
 }
 
 // This function binds clicking outside of the dropdown to closing the dropdown.
 function headerMenuClose() {
-  $('#header-right').removeClass('active');
-  $('#mobile-menu-icon').removeClass('active');
-  $('#mobile-menu-overlay').removeClass('active');
-  $('body').unbind('touchmove');
+  document.querySelector('#header-right').classList.remove('active');
+  document.querySelector('#mobile-menu-icon').classList.remove('active');
+  document.querySelector('#mobile-menu-overlay').classList.remove('active');
+  document.getElementsByTagName('body')[0].removeEventListener('touchmove');
 }
 
-// Function runs when the document is "ready".
-$(document).ready(function() {
-
-  var windowwidth = $(window).width();
+var ready = function() {
+  var windowwidth = window.innerWidth;
 
   // Only run if the browser window implies a mobile device.
   if (windowwidth < '750') {
     headerMenu();
   }
-});
+};
+
+document.addEventListener('page:change', ready);

@@ -10,6 +10,11 @@ en:
       new_tag_group: New tag group
       submit: Submit
       uploaded_by: Uploaded by
+      source: "Source:"
+    image_page_creator_info:
+      creators:
+        one: Creator
+        other: Creators
     image_page_sidebar:
       add_to_collection: Add to Collection
       agree_and_download: Agree and Download
@@ -31,7 +36,6 @@ en:
         nsfw_nudity: Nudity
         nsfw_sexuality: Sexuality
       date_taken: Date taken
-      date_uploaded: Uploaded
       details: Details
       dimensions: Dimensions
       exposure: Exposure
@@ -51,12 +55,14 @@ en:
     new:
       click_here_to_choose: Click here to choose a file
       content_rating: Content rating
-      description_optional: 'Description (optional):'
+      description_optional: Description (optional)
       drop_images_here_to_upload: Drop images here to upload
       nsfw_gore: NSFW Gore
       nsfw_language: NSFW Language
       nsfw_nudity: NSFW Nudity
       nsfw_sexuality: NSFW Sexuality
+      source_recommended: Source (recommended)
+      i_made_this: I made this
       or: or
       submit: Submit
       upload_image: Upload an image

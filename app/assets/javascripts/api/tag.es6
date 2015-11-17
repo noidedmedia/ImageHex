@@ -5,6 +5,15 @@ class Tag{
     }
   }
 
+  static create(props, callback){
+    var c = (tag) => {
+      console.log("Create gave us a new tag");
+      callback(new Tag(tag));
+    }
+    NM.postJSON("/tags/",
+                props,
+                c);
+  }
   getFullData(callback){
     if("description" in this){
       callback(this);
@@ -36,9 +45,7 @@ class Tag{
    */
   static withPrefix(prefix, callback){
     var uri = "/tags/suggest/?"+ $.param({name: prefix});
-    console.log("Suggesting with URI:",uri);
     $.getJSON(uri, (d) => {
-      console.log("Got from suggestion",d);
       var a = [];
       for(var t of d){
         a.push(new Tag(t));

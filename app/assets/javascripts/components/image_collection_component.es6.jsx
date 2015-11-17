@@ -1,5 +1,5 @@
-class ImageCollectionComponent extends React.Component{
-  constructor(props){
+class ImageCollectionComponent extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       loaded: false
@@ -7,11 +7,11 @@ class ImageCollectionComponent extends React.Component{
     console.log(this.props);
     this.doLoad();
   }
-  render(){
-    if(! this.state.loaded){
+
+  render() {
+    if (! this.state.loaded) {
       return <progress></progress>;
-    }
-    else{
+    } else {
       console.log("Got images",this.state.images);
       var images = this.state.images.map((img) => {
         return <ImageComponent img={img} key={img.id} />;
@@ -22,7 +22,8 @@ class ImageCollectionComponent extends React.Component{
       </div>;
     }
   }
-  refresh(){
+
+  refresh() {
     this.props.collection.getPageImages( (imgs) => {
       this.setState({
         loaded: true,
@@ -30,8 +31,9 @@ class ImageCollectionComponent extends React.Component{
       });
     });
   }
-  doLoad(){
-    console.log("Getting images from collection",this.props.collection);
+
+  doLoad() {
+    console.log("Getting images from collection", this.props.collection);
     this.props.collection.getPageImages( (imgs) => {
       this.setState({
         loaded: true,

@@ -1,43 +1,42 @@
 function headerSearch() {
-  var headersearch = $("#header-search");
-  var headersearchinput = $("#header-search-input");
-  var windowwidth = $(window).width();
+  var headersearch = document.querySelector("#header-search");
+  var headersearchinput = document.querySelector("#header-search-input");
+  var windowwidth = window.innerWidth;
 
   // Only run if the browser window size doesn't imply a mobile device.
   if (windowwidth >= 700) {
     // Runs the function when the header-search input is the focused element.
-    headersearchinput.on('focus', function() {
+    headersearchinput.addEventListener('focus', function() {
       
       // Checks to make sure the "header-search" div doesn't already have an "active" class.
-      if (!headersearch.hasClass('active')) {
-        headersearch.addClass('active');
+      if (!headersearch.classList.contains('active')) {
+        headersearch.classList.add('active');
       }
 
       // Binds any click outside the headersearch div to removing the "active" class
       // and therefore hidings the header's search dropdown.
-      headersearch.bind('clickoutside', function(event) {
+      headersearch.addEventListener('clickoutside', function(event) {
         // The following sets the max-height of the element to the
         // height of the element itself, because CSS transitions won't
         // work if the height is set to auto. So this is the 
         // work-around.
         var searchheight = headersearch.outerHeight();
 
-        $(headersearch).css('max-height', searchheight);
-        $(headersearch).css('max-height', 40);
-        headersearch.removeClass('active');
+        headersearch.style = 'max-height: ' + searchheight;
+        headersearch.style = 'max-height: 40px;';
+        headersearch.classList.remove('active');
 
         // Unbinds the function so it can only happen once.
-        $(headersearch).unbind('clickoutside');
+        headersearch.removeEventListener('clickoutside');
       });
     });
 
-    headersearch.on('transitionend', function(e) {
-      if ($(e.target).is(headersearch)) {
-
-        if (headersearch.hasClass('active')) {
-          headersearch.css('max-height', 240);
+    headersearch.addEventListener('transitionend', function(e) {
+      if (e.target == headersearch) {
+        if (headersearch.classList.contains('active')) {
+          headersearch.style = "max-height: 240px;";
         } else {
-          headersearch.removeAttr('style');
+          headersearch.removeAttribute('style');
         }
       }
     });
@@ -45,29 +44,25 @@ function headerSearch() {
 
   // Only run if the browser window size implies a mobile device.
   if (windowwidth <= 700) {
-    $('#mobile-search-icon').on('click', function() {
-      $('body').bind('touchmove', function(e) {
+    document.querySelector('#mobile-search-icon').addEventListener('click', function() {
+      document.getElementsByTagName('body')[0].addEventListener('touchmove', function(e) {
         e.preventDefault();
       });
 
       // Checks to make sure the "header-search" div doesn't already have an "active" class.
-      if (!headersearch.hasClass('active')) {
-        // Variable for moving up one in the HTML hierarchy.
-        var parentform = headersearchinput.parent('form');
-
-        // Moves up another level to the header-search div.
-        parentform.parent('#header-search').toggleClass('active');
+      if (!headersearch.classList.contains('active')) {
+        document.querySelector('#header-search').classList.toggle('active');
       }
     });
   }
 }
 
 function closeHeaderSearchMobile() {
-  var headersearch = $("#header-search");
+  var headersearch = document.querySelector("#header-search");
 
-  $("#close-mobile-search-icon").click(function() {
-    $(headersearch).removeClass('active');
-    $('body').unbind('touchmove');
+  document.querySelector("#close-mobile-search-icon").addEventListener('click', function() {
+    headersearch.classList.remove('active');
+    document.getElementsByTagName('body')[0].removeEventListener('touchmove');
   });
 }
 
@@ -81,19 +76,26 @@ function addSearchBox(toaddcount) {
 
 var ready = function() {
   headerSearch();
-  // We have to set this up here since the first search box is
-  // already on the page when we start the search
-  var firstSearch = $(".page-search-full");
-  var firstBox = firstSearch.find("input");
-  var firstList = firstSearch.find("ul");
-  firstBox.on("input", searchSuggestion(firstList, null));
-  var toaddcount = 0;
-  $("#add-group-button").on("click", function(event) {
-    event.preventDefault();
-    addSearchBox(toaddcount);
-    toaddcount = toaddcount + 1;
-  });
-  var windowwidth = $(window).width();
+
+  if (document.querySelector(".page-search-full")) {
+    // We have to set this up here since the first search box is
+    // already on the page when we start the search
+    var firstSearch = document.querySelector(".page-search-full");
+    var firstBox = firstSearch.closest("input");
+    var firstList = firstSearch.closest("ul");
+    firstBox.addEventListener("input", searchSuggestion(firstList, null));
+  }
+
+  if (document.querySelector("#add-group-button")) {
+    var toaddcount = 0;
+    document.querySelector("#add-group-button").addEventListener("click", function(e) {
+      e.preventDefault();
+      addSearchBox(toaddcount);
+      toaddcount = toaddcount + 1;
+    });
+  }
+  
+  var windowwidth = window.innerWidth;
 
   // Only run if the browser window size implies a mobile device.
   if (windowwidth <= 700) {
@@ -101,4 +103,4 @@ var ready = function() {
   }
 };
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);

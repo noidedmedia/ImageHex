@@ -20,11 +20,22 @@
     width: calc(100% - 7px);
     margin: 10px auto;
   }
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    font-size: 1.3rem;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    color: #aaaab2;
+  }
 }
 
 #upload-info {
   width: 100%;
   margin: 0;
+  position: relative;
 
   a {
     text-decoration: none;
@@ -39,23 +50,56 @@
 
 .image-description-container {
   text-align: left;
-  display: inline-block;
-  width: calc(100% - 75px);
-  vertical-align: top;
-  transform: translateY(-4px);
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  padding: 0 4px;
 
   p {
     font-size: 1.3rem;
     color: #333;
     padding: 2px 0 4px;
-    
-    &:first-of-type {
-      padding-top: 8px;
-    }
 
     &.image-description-none {
       color: #777;
     }
+  }
+}
+
+.uploader-information {
+  width: 100%;
+}
+
+.uploader-avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.image-uploader-container {
+  width: 100%;
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: space-between;
+}
+
+.image-uploader {
+  display: inline-block;
+  text-align: left;
+}
+
+.image-upload-date {
+  float: right;
+  text-align: right;
+  display: inline-block;
+
+  span {
+    color: #aaaab2;
   }
 }
 
@@ -88,7 +132,8 @@ a:target + .comment {
 }
 
 .user-comment-avatar,
-.uploader-avatar {
+.uploader-avatar,
+.creator-avatar {
   margin: 4px 8px 4px 4px;
   background-color: #c9c9c9;
   overflow: hidden;
@@ -111,17 +156,6 @@ a:target + .comment {
   img {
     min-width: 40px;
     min-height: 40px;
-    width: 100%;
-  }
-}
-
-.uploader-avatar {
-  width: 50px;
-  height: 50px;
-
-  img {
-    min-width: 50px;
-    min-height: 50px;
     width: 100%;
   }
 }

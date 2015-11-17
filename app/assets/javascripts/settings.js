@@ -2,7 +2,6 @@ function avatarUploader() {
   $("#avatar-uploader").on("change", avatarUploaderPreview);
 }
 
-
 function avatarUploaderPreview(event) {
   var files = event.target.files || (event.originalEvent.dataTransfer && event.originalEvent.dataTransfer.files);
 
@@ -24,4 +23,4 @@ var ready = function() {
   avatarUploader();
 };
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);

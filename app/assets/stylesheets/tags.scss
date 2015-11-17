@@ -1,1 +1,38 @@
 @import "scss-variables";
+
+#tag-information{
+  position: relative;
+  padding: 19px;
+  header {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+  }
+  h1{
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin-right: 10px;
+  }
+  a{
+    text-decoration: none;
+    padding: 2px 5px 2px 5px;
+    border: 1px solid #aaa;
+    color: black;
+  }
+}
+
+.inline-tag-creation {
+  background-color: white;
+  padding: 10px;
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+  span {
+    display: block;
+  }
+}
+#tag-description{
+  padding: 5px;
+  width: 50%;
+}

@@ -3,7 +3,6 @@
 /* ==============================================
     General
    ============================================== */
-
 .image-actions-sidebar {
   width: 20vw;
   background-color: #272727;
@@ -307,6 +306,10 @@
       background-color: darken(#fff,5%);
     }
   }
+}
+
+#image-collection-list {
+  display: block;
 }
 
 .collection-add-list-item {

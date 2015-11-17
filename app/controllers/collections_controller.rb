@@ -10,11 +10,20 @@ class CollectionsController < ApplicationController
   def unsubscribe
     Subscription.where(collection_id: params[:id],
                        user_id: current_user.id)
-      .first
-      .try(:destroy)
+    .first
+    .try(:destroy)
     redirect_to Collection.find(params[:id])
   end
-  
+
+  def mine
+    @collections = if t = params[:inspect_image]
+                     img = Image.find(t)
+                     current_user.collections.with_image_inclusion(img)
+                   else
+                     current_user.collections
+                   end
+    render 'index'
+  end 
   ##
   # Show all the collections on the user in params[:user_id].
   # Sets the following variables:
@@ -22,7 +31,12 @@ class CollectionsController < ApplicationController
   # @collections:: The collections owned by the user.
   def index
     @user = User.friendly.find(params[:user_id])
-    @collections = @user.collections
+    @collections = if i = params[:inspect_image]
+                     img = Image.find(i)
+                     @user.collections.with_image_inclusion(img)
+                   else
+                     @user.collections
+                   end
   end
 
   ##
@@ -50,8 +64,8 @@ class CollectionsController < ApplicationController
   def show
     @collection = Collection.find(params[:id])
     @images = @collection.images
-      .paginate(page: page, per_page: per_page)
-      .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
     @curators = @collection.curators
   end
 
@@ -88,7 +102,7 @@ class CollectionsController < ApplicationController
       end
     end
   end
-  
+
   def edit
     @collection = Collection.find(params[:id])
   end
@@ -106,7 +120,7 @@ class CollectionsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @collection = Collection.find(params[:id])
     authorize @collection
@@ -123,7 +137,7 @@ class CollectionsController < ApplicationController
   # description:: A short bit of info describing this collection.
   def collection_params
     params.require(:collection)
-      .permit(:type, :name, :description)
-      .merge(curators: [current_user])
+    .permit(:type, :name, :description)
+    .merge(curators: [current_user])
   end
 end
