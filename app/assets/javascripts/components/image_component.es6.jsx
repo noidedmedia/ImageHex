@@ -1,17 +1,17 @@
-class ImageComponent extends React.Component{
-  constructor(props){
+class ImageComponent extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       useBigImage: false
     };
   }
-  render(){
+
+  render() {
     var image;
-    if(this.state.useBigImage){
+    if (this.state.useBigImage) {
       image = <img src={this.props.img.full_url} 
         onClick={this.toggleBigImage.bind(this)} />;
-    }
-    else{
+    } else {
       image = <img src={this.props.img.medium_thumbnail} 
         onClick={this.toggleBigImage.bind(this)} />;
     }
@@ -21,8 +21,9 @@ class ImageComponent extends React.Component{
       {this.moreInfo()}
     </div>;
   }
-  moreInfo(){
-    if(this.state.hasMoreInfo){
+
+  moreInfo() {
+    if (this.state.hasMoreInfo) {
       var tagGroups = this.state.imgInfo.tag_groups.map((group) => {
 
         return <li key={group.id}>
@@ -46,14 +47,14 @@ class ImageComponent extends React.Component{
         </ul>
       </div>
     </div>
-    }
-    else{
+    } else {
       return <div onClick={this.fetchMoreInfo.bind(this)}>
         Get More Information
       </div>;
     }
   }
-  fetchMoreInfo(){
+
+  fetchMoreInfo() {
     this.props.img.getFullData((img) => {
       this.setState({
         imgInfo: img,
@@ -61,22 +62,23 @@ class ImageComponent extends React.Component{
       });
     });
   }
-  toggleBigImage(event){
+
+  toggleBigImage(event) {
     console.log("Toggling big image");
     console.log(this);
-    if(this.state.useBigImage){
+    if (this.state.useBigImage) {
       this.setState({
         useBigImage: false
       });
-    }
-    else{
+    } else {
       this.setState({
         useBigImage: true
       });
     }
   }
-  contentRatings(){
-    if(this.props.showContentRatings){
+  
+  contentRatings() {
+    if (this.props.showContentRatings) {
       return <ul className="live-image-content-ratings">
         <li className={this.props.img.nsfw_gore ? "" : "hidden"}>
           NSFW Gore
@@ -91,8 +93,7 @@ class ImageComponent extends React.Component{
           NSFW Sexuality
         </li>
       </ul>
-    }
-    else{
+    } else {
       return <div />;
     }
   }
