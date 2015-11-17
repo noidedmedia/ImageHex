@@ -29,14 +29,14 @@ class CollectionAdderItem extends React.Component {
 
   render() {
     if (this.state.collection.contains_image) {
-      return <li className={"collection-add-list-item contains-image"}>
-        <div className={"icon icon-close"} onClick={this.removeImage.bind(this)}></div>
+      return <li className={"collection-add-list-item contains-image"} onClick={this.removeImage.bind(this)}>
+        <div className={"icon icon-close"}></div>
         <p>{this.state.collection.name}</p>
       </li>;
     }
     else {
-      return <li className={"collection-add-list-item"}>
-        <div className={"icon icon-add"} onClick={this.addImage.bind(this)}></div>
+      return <li className={"collection-add-list-item"} onClick={this.addImage.bind(this)}>
+        <div className={"icon icon-add"}></div>
         <p>{this.state.collection.name}</p>
       </li>;
     }
