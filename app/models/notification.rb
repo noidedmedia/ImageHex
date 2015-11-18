@@ -8,8 +8,6 @@ class Notification < ActiveRecord::Base
   # RELATIONS #
   #############
   belongs_to :user
-  belongs_to :subject, polymorphic: true
-
   ##
   # SCOPES
   scope :unread, ->{where(read: false)}
@@ -20,7 +18,21 @@ class Notification < ActiveRecord::Base
   validates :user, presence: true
   validates :subject, presence: true
   enum kind: [:uploaded_image_commented_on,
-              :subscribed_image_commented_on,
-              :comment_replied_to,
-              :mentioned]
+    :subscribed_image_commented_on,
+    :comment_replied_to,
+    :mentioned]
+
+  def subject=(sub)
+    to_write = nil
+    case sub
+    when Comment
+      to_write = {
+        user_name: sub.user.name,
+        type: :comment,
+        commentable_type: sub.commentable_type,
+        commentable_id: sub.commentable_id
+      }
+    end
+    write_attribute(:subject, to_write)
+  end
 end
