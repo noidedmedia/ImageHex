@@ -1,27 +1,27 @@
 class NotificationList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       notifications: props.notifications
     };
   }
-  render(){
+  render() {
     var notifications = this.state.notifications.map((n) => {
       return <NotificationItem {...n} key={n.id} />;
     });
     return <div className={"notifications-container"}>
       <div className={"notifications-header"}>
         <h3>Notifications</h3>
+        <a className={"mark-all-read"} onClick={this.markRead.bind(this)}>
+          Mark all read
+        </a>
       </div>
-      <a onClick={this.markRead.bind(this)}>
-        Mark all read
-      </a>
       <ul>
         {notifications}
       </ul>
     </div>;
   }
-  markRead(){
+  markRead() {
     console.log("Trying to read notifications");
     NM.postJSON("/notifications/mark_all_read", {}, () => {
       this.setState({
@@ -36,33 +36,33 @@ class NotificationItem extends React.Component {
     super(props);
     this.state = {};
   }
-  render(){
+  render() {
     return <li className={"notifications-list-item"}>
       <a href={this.link()}>
         {this.message()}
       </a>
     </li>
   }
-  link(){
-    if(this.props.subject.type == "comment"){
-      if(this.props.subject.commentable_type == "Image"){
+  link() {
+    if (this.props.subject.type == "comment") {
+      if (this.props.subject.commentable_type == "Image") {
         return "/images/" + this.props.subject.commentable_id;
       }
     }
   }
-  message(){
+  message() {
     var kind = this.props["kind"];
-    if(kind == "uploaded_image_commented_on"){
+    if (kind == "uploaded_image_commented_on") {
       return <div>
         {this.props.subject.user_name} commented on your image
       </div>;
     }
-    if(kind == "comment_replied_to"){
+    if (kind == "comment_replied_to") {
       return <div>
         {this.props.subject.user_name} replied to your comment
       </div>;
     }
-    if(kind == "mentioned"){
+    if (kind == "mentioned") {
       return <div>
         {this.props.subject.user_name} mentioned you in a comment
       </div>;
@@ -75,10 +75,10 @@ class NotificationItem extends React.Component {
   }
 }
 
-document.addEventListener("page:change", function(){
+document.addEventListener("page:change", function() {
   console.log("Notification works");
   var d = document.getElementsByClassName("notifications-unread-count")[0];
-  if(d){
+  if (d) {
     d.addEventListener("click", function(event){
       event.preventDefault();
       console.log("Clicked");
