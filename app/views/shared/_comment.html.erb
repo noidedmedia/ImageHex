@@ -3,7 +3,8 @@
 <%# Anchor for comment links from Notifications. %>
 <a name= <%= comment.id %> ></a>
 
-<div class="comment" id="comment-<%= comment.id %>">
+<div class="comment" 
+  id="comment-<%= comment.id %>">
   
   <div class="user-comment-avatar">
     <%= link_to comment.user do %>
@@ -16,7 +17,10 @@
   <div class="comment-text">
     <%# Username, with link to user page, and "commented [time value] ago". %>
     <div class="user-comment-info">
-      <%= link_to comment.user.name, comment.user %>
+      <a class="comment-username"
+        data-user-name="<%= comment.user.name %>">
+        <%= comment.user.name %>
+      </a>
       <%= " " + t(".commented") + " " + time_ago_in_words(comment.created_at) + " " + t(".ago") %>
     </div>
 
