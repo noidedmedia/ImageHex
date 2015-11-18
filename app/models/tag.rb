@@ -44,7 +44,17 @@ class Tag < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
+  
 
+  def often_seen_with
+    g = self.tag_groups
+    Tag.joins(tag_group_members: :tag_group)
+      .where(tag_groups: {image_id: g.select(:image_id)})
+      .where.not(tag_groups: {id: g.select(:id)})
+      .group(:id)
+      .order("COUNT(*) DESC")
+      .select("tags.*, COUNT(*) AS count")
+  end
   ## 
   # Neighbors provides a list of tags that are commonly used
   # with this tag.
