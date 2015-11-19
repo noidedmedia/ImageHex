@@ -5,6 +5,15 @@ module ApplicationHelper
   def user_path user
     "/@" + user.slug.to_s
   end
+
+  def notification_path note
+    if note[:type] == :comment
+      if note[:commentable_type] == :image
+        "/images/" + note[:commentable_id]
+      end
+    end
+  end
+
   def comment_url comment
     polymorphic_url(comment.commentable) + "#" + comment.id.to_s
   end

@@ -121,6 +121,7 @@
       position: absolute;
       right: 0;
       top: 4px;
+      cursor: pointer;
     }
   }
 }
@@ -148,6 +149,10 @@
 
   .notification-time-ago {
     color: #aaaab2;
+  }
+  &.read {
+    background-color: #aaa;
+    color: #fff;
   }
 }
 
