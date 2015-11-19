@@ -17,6 +17,31 @@ class HeaderSearch extends React.Component {
       />
     </div>;
   }
+  addtag(tag){
+    this.state.tagGroup.add(tag)
+    this.setState({
+      tagGroup: this.state.tagGroup
+    });
+  }
+  removeTag(tag){
+    this.state.tagGroup.removeTag(tag);
+    this.setState({
+      tagGroup: this.state.tagGroup
+    });
+  }
+  submit(){
+    var query = {};
+    var tags = this.state.tagGroup.tags.map((tag) => {
+      return {
+        id: tag.id,
+        display_name: tag.display_name
+      }
+    });
+    query.tag_groups = [{
+      tags: tags
+    }];
+    window.location.href = "/search?query=" + JSON.stringify(query);
+  }
 }
 
 document.addEventListener('page:load', function(){
