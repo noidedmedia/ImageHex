@@ -11,7 +11,7 @@ class NotificationList extends React.Component {
     });
     return <div className={"notifications-container"}>
       <div className={"notifications-header"}>
-        <h3>Notifications</h3>
+        <h3><a href="/notifications">Notifications</a></h3>
         <a className={"mark-all-read"} onClick={this.markRead.bind(this)}>
           Mark all read
         </a>
@@ -24,8 +24,11 @@ class NotificationList extends React.Component {
   markRead() {
     console.log("Trying to read notifications");
     NM.postJSON("/notifications/mark_all_read", {}, () => {
-      this.setState({
-        notifications: []
+      NM.getJSON("/notifications/", (n) => {
+        console.log("Got new notifications");
+        this.setState({
+          notifications: n
+        });
       });
     });
   }
@@ -37,7 +40,11 @@ class NotificationItem extends React.Component {
     this.state = {};
   }
   render() {
-    return <li className={"notifications-list-item"}>
+    className = "notifications-list-item";
+    if(this.props.read){
+      className += " read";
+    }
+    return <li className={className}>
       <a href={this.link()}>
         {this.message()}
       </a>
@@ -52,19 +59,21 @@ class NotificationItem extends React.Component {
   }
   message() {
     var kind = this.props["kind"];
+    console.log("Props:",this.props);
+    var username = this.props.subject.user_name;
     if (kind == "uploaded_image_commented_on") {
       return <div>
-        {this.props.subject.user_name} commented on your image
+        {username} commented on your image
       </div>;
     }
     if (kind == "comment_replied_to") {
       return <div>
-        {this.props.subject.user_name} replied to your comment
+        {username} replied to your comment
       </div>;
     }
     if (kind == "mentioned") {
       return <div>
-        {this.props.subject.user_name} mentioned you in a comment
+        {username} mentioned you in a comment
       </div>;
     }
     else {
@@ -82,7 +91,7 @@ document.addEventListener("page:change", function() {
     d.addEventListener("click", function(event){
       event.preventDefault();
       console.log("Clicked");
-      NM.getJSON("/notifications/unread", (json) => {
+      NM.getJSON("/notifications/", (json) => {
         var d = document.getElementsByClassName("notifications-dropdown")[0];
         d.className = "notifications-dropdown active";
         ReactDOM.render(<NotificationList notifications={json} />,
