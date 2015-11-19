@@ -32,7 +32,7 @@ class NotificationList extends React.Component {
 }
 
 class NotificationItem extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {};
   }
