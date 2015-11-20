@@ -4,6 +4,10 @@ class ImagePolicy < ApplicationPolicy
     @image = image
   end
 
+  def created?
+    @image.allow_new_creators
+  end
+
   def edit?
     update?
   end

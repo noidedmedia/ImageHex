@@ -32,6 +32,7 @@ class ImagesController < ApplicationController
   # Image must be in params[:id]. User must be logged in.
   # @image:: Image being created.
   def created
+    authorize @image
     current_user.created! @image
     redirect_to(@image)
   end

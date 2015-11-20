@@ -9,6 +9,7 @@ FactoryGirl.define do
     nsfw_sexuality false
     nsfw_language false
     source {Faker::Internet.url}
+    allow_new_creators true
   end
 
 end

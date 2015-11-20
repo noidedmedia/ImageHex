@@ -2,6 +2,16 @@ require 'spec_helper'
 
 describe ImagePolicy do
   subject {described_class}
+  permissions :created? do
+    it "depends on the field in the DB" do
+      i = FactoryGirl.create(:image,
+                             allow_new_creators: false)
+      u = FactoryGirl.create(:user)
+      expect(subject).to_not permit(u, i)
+      i.update(allow_new_creators: true)
+      expect(subject).to permit(u, i)
+    end
+  end
   permissions :destroy? do
     it "allows admins" do
       i = FactoryGirl.create(:image)

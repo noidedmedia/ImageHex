@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120193917) do
+ActiveRecord::Schema.define(version: 20151120203030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,19 +100,20 @@ ActiveRecord::Schema.define(version: 20151120193917) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "f_file_name",      limit: 255
-    t.string   "f_content_type",   limit: 255
+    t.string   "f_file_name",        limit: 255
+    t.string   "f_content_type",     limit: 255
     t.integer  "license"
     t.integer  "medium"
-    t.boolean  "replies_to_inbox",             default: true,  null: false
+    t.boolean  "replies_to_inbox",               default: true,  null: false
     t.jsonb    "exif"
     t.text     "description"
-    t.boolean  "nsfw_language",                default: false, null: false
-    t.boolean  "nsfw_nudity",                  default: false, null: false
-    t.boolean  "nsfw_gore",                    default: false, null: false
-    t.boolean  "nsfw_sexuality",               default: false, null: false
+    t.boolean  "nsfw_language",                  default: false, null: false
+    t.boolean  "nsfw_nudity",                    default: false, null: false
+    t.boolean  "nsfw_gore",                      default: false, null: false
+    t.boolean  "nsfw_sexuality",                 default: false, null: false
     t.integer  "f_file_size"
     t.string   "source"
+    t.boolean  "allow_new_creators",             default: false, null: false
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
