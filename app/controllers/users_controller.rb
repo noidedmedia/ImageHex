@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     @uploads = @user.images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
-    @creations = @user.creations.images
+    @creations = @user.creations
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
     @favorites = @user.favorites.images
