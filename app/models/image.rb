@@ -57,12 +57,12 @@ class Image < ActiveRecord::Base
   has_attached_file :f,
     # Steal Flickr's suffixes
     :styles => {
-      small: "140x140>",
-      medium: "300x300>",
-      large: "500x500>",
-      huge: "1000x1000>"},
+    small: "140x140>",
+    medium: "300x300>",
+    large: "500x500>",
+    huge: "1000x1000>"},
     # Use suffixes for the path
-      path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
+    path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
   belongs_to :user
 
   before_post_process :downcase_extension
@@ -106,14 +106,14 @@ class Image < ActiveRecord::Base
 
   def creators
     User
-      .joins(collections: :images)
-      .references(:images)
-      .where(images: {id: self.id}, collections: {type: "Creation"})
+    .joins(collections: :images)
+    .references(:images)
+    .where(images: {id: self.id}, collections: {type: "Creation"})
   end
   #################
   # CLASS METHODS #
   #################
-  
+
   ##
   # Find all images a user is subscribed to. 
   # user:: The user we're finding the subscription for
@@ -127,13 +127,8 @@ class Image < ActiveRecord::Base
     # INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id
     # WHERE subscriptions.user_id = ?
     # ORDER BY collection_images.created_at DESC
-    
-    joins("INNER JOIN collection_images ON collection_images.image_id = images.id")
-      .joins("INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id")
-      .joins("INNER JOIN collections ON collections.id = subscriptions.collection_id")
-      .where(subscriptions:{user_id: user.id})
-      .order("collection_images.created_at DESC")
-      .select("images.*, collections.name AS collection_name, collections.id AS collection_id")
+    SubscriptionQuery.new(user).result
+      .order("sort_created_at DESC")
       .for_content(user.content_pref)
   end
 
@@ -141,12 +136,12 @@ class Image < ActiveRecord::Base
     tags.reject!(&:blank?) # reject blank tags
     ## Clear previous scope to construct a subquery
     sq = Image.unscoped.joins(tag_groups: {tag_group_members: :tag})
-      .where(tags: {id: tags})
-      .group("images.id")
-      .having("COUNT(*) >= ?", tags.length)
+    .where(tags: {id: tags})
+    .group("images.id")
+    .having("COUNT(*) >= ?", tags.length)
     return self.where(id: sq)
   end
-  
+
   def self.search(q)
     # return nothing unless we have a query
     return where("1 = 0") unless q.is_a? SearchQuery
@@ -162,14 +157,14 @@ class Image < ActiveRecord::Base
   # Only returns the images which have at least 1 report.
   def self.by_reports
     joins(:image_reports)
-      .references(:image_reports)
-      .where(image_reports: {active: true})
-      .group(:id).order("COUNT(image_reports)")
+    .references(:image_reports)
+    .where(image_reports: {active: true})
+    .group(:id).order("COUNT(image_reports)")
   end
 
   def self.without_tags(tags)
     subq = joins(tag_groups:  {tag_group_members: :tag})
-      .where.not(tags: {name: tags})
+    .where.not(tags: {name: tags})
     where(id: subq)
   end
 
@@ -220,10 +215,10 @@ class Image < ActiveRecord::Base
   def add_uploader_creation
     # This is gross beecause of how form params work
     if created_by_uploader.is_a? TrueClass
-      self.user.creations.images << self
+      self.user.creations << self
     elsif created_by_uploader.is_a? String
       if ['true', '1'].include?(created_by_uploader)
-        self.user.creations.images << self
+        self.user.creations << self
       end
     end
   end

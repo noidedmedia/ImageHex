@@ -29,7 +29,8 @@ describe Image do
     i.created_by_uploader = true
     expect{
       i.save
-    }.to change{u.creations.images.count}.by(1)
+    }.to change{u.creations.count}.by(1)
+    expect(u.creations).to include(i)
   end
 
   it "does not add to users creations if not set" do
@@ -38,7 +39,7 @@ describe Image do
     i.created_by_uploader = false
     expect{
       i.save
-    }.to_not change{u.creations.images}
+    }.to_not change{u.creations.count}
   end
 
   describe "content validation" do

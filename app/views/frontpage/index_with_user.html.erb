@@ -9,7 +9,7 @@
     <% @images.each do |img| %>
       <div class="subscription-image">
         <h1>
-          <%= link_to img.collection_name, collection_path(img.collection_id) %>
+          <%= link_to img.reason, frontpage_reason_path(img) %>
         </h1>
       <%= link_to image_tag(img.f :medium), image_path(img), {class: "frontpage-image-list-member"} %>
     </div>

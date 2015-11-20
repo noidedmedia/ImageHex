@@ -58,11 +58,10 @@ describe User do
     end
   end
   describe "creation" do
-    it "gives the user a favorites and created collection" do
-      expect{FactoryGirl.create(:user)}.to change{Collection.count}.by(2)
+    it "gives the user a favorites collection" do
+      expect{FactoryGirl.create(:user)}.to change{Collection.count}.by(1)
       u = FactoryGirl.create(:user)
       expect(u.collections.favorites.size).to eq(1)
-      expect(u.collections.creations.size).to eq(1)
     end
   end
 
@@ -80,7 +79,7 @@ describe User do
     let(:i){FactoryGirl.create(:image)}
     it "adds an image to creations" do
       u.created!(i)
-      expect(u.creations.images).to eq([i])
+      expect(u.creations).to eq([i])
     end
 
   end

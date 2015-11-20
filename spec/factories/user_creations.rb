@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user_creation do
     user
-    image
+    creation { FactoryGirl.create(:image) } 
   end
 
 end
