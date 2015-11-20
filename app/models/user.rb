@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :curatorships
   has_many :collections, through: :curatorships
+  has_many :user_creations
+  has_many :creations, through: :user_creations
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -137,12 +139,6 @@ class User < ActiveRecord::Base
   # Add an image to a user's creationed collection.
   def created! i
     creations.images << i
-  end
-
-  ##
-  # Convenience method ot access the creations collection for a user
-  def creations
-    collections.creations.first
   end
 
   ##

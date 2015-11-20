@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118211117) do
+ActiveRecord::Schema.define(version: 20151120184748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,16 @@ ActiveRecord::Schema.define(version: 20151118211117) do
 
   add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
+  create_table "user_creations", force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "creation_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "user_creations", ["creation_id"], name: "index_user_creations_on_creation_id", using: :btree
+  add_index "user_creations", ["user_id"], name: "index_user_creations_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                     limit: 255, default: "", null: false
     t.string   "encrypted_password",        limit: 255, default: "", null: false
@@ -226,4 +236,6 @@ ActiveRecord::Schema.define(version: 20151118211117) do
   add_foreign_key "tag_group_changes", "tag_groups", on_delete: :cascade
   add_foreign_key "tag_group_changes", "users", on_delete: :nullify
   add_foreign_key "tag_groups", "images", on_delete: :cascade
+  add_foreign_key "user_creations", "images", column: "creation_id", on_delete: :cascade
+  add_foreign_key "user_creations", "users", on_delete: :cascade
 end
