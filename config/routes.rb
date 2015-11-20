@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get "/@:id" => 'users#show'
   patch "/@:id" => "users#update"
   delete "/@:id" => "users#destroy"
+  post "/@:id/subscribe" => "users#subscribe"
+  delete "/@:id/unsubscribe" => "users#unsubscribe"
   ############
   # CONCERNS #
   ############
@@ -49,6 +51,8 @@ Rails.application.routes.draw do
     member do
       get 'favorites'
       get 'creations'
+      post 'subscribe'
+      delete 'unsubscribe'
     end
 
     ##

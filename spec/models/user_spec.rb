@@ -35,10 +35,34 @@ describe User do
   describe "subscriptions" do
     let(:u){FactoryGirl.create(:user)}
     let(:c){FactoryGirl.create(:collection)}
-    it "has a method to subscribe" do
-      u.subscribe!(c)
-      expect(u.subscribed_collections).to eq([c])
-      expect(c.subscribers).to eq([u])
+    describe ".subscribe!" do
+      it "works with collections" do
+        u.subscribe!(c)
+        expect(u.subscribed_collections).to eq([c])
+        expect(c.subscribers).to eq([u])
+      end
+      it "works with users" do
+        u2 = FactoryGirl.create(:user)
+        u.subscribe! u2
+        # a fan of bono apparently
+        expect(u.subscribed_artists).to eq([u2])
+        expect(u2.subscribers).to eq([u])
+      end
+    end
+    describe ".unsubscribe!" do
+      it "works with collections" do
+        u.subscribe! c
+        expect(u.subscribed_collections).to include(c)
+        u.unsubscribe! c
+        expect(u.subscribed_collections).to_not include(c)
+      end
+      it "works with users" do
+        u2 = FactoryGirl.create(:user)
+        u.subscribe! u2
+        expect(u.subscribed_artists).to include(u2)
+        u.unsubscribe! u2
+        expect(u.subscribed_artists).to_not include(u2)
+      end
     end
     it "has many subscribed collections" do
       c2 = FactoryGirl.create(:collection)

@@ -8,6 +8,26 @@ RSpec.describe UsersController, :type => :controller do
       @user.confirm
       sign_in @user
     end
+    describe "post #subscribe" do
+      it "creates a subscription" do
+        u = FactoryGirl.create(:user)
+        expect{
+          post :subscribe, id: u.id
+        }.to change{ArtistSubscription.count}.by(1)
+        expect(@user.subscribed_artists).to include(u)
+      end
+    end
+    describe "delete #unsubscribe" do
+      it "creates a subscription" do
+        u = FactoryGirl.create(:user)
+        @user.subscribe! u
+        expect(@user.subscribed_artists).to include(u)
+        expect{
+          delete :unsubscribe, id: u.id
+        }.to change{ArtistSubscription.count}.by(-1)
+        expect(@user.subscribed_artists).to_not include(u)
+      end
+    end
     describe "get #edit" do
       it "sets the user variable" do
         get :edit, id: @user.id

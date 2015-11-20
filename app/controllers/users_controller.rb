@@ -33,6 +33,23 @@ class UsersController < ApplicationController
     render 'collections/show'
   end
 
+  def subscribe
+    @user = User.friendly.find(params[:id])
+    current_user.subscribe! @user
+    respond_to do |format|
+      format.json { render json: {success: true}}
+      format.html { redirect_to @user }
+    end
+  end
+
+  def unsubscribe
+    @user = User.friendly.find(params[:id])
+    current_user.unsubscribe! @user
+    respond_to do |format|
+      format.json { render json: {success: true}}
+      format.html { redirect_to @user } 
+    end
+  end
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]

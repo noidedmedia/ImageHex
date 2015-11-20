@@ -111,9 +111,7 @@ class User < ActiveRecord::Base
   # Returns true or false
   # c:: the collection we are checking
   def subscribed_to? c
-    # Coerce the subscription to a boolean
-    !! Subscription.where(user: self,
-                          collection: c).first
+    c.subscribers.include? self
   end
   ##
   # Quickly get a user avatar, pre-resized
@@ -137,6 +135,10 @@ class User < ActiveRecord::Base
   # c:: the collection to add.
   def subscribe! c
     c.subscribers << self
+  end
+
+  def unsubscribe! c
+    c.subscribers.destroy(self)
   end
 
   ##
