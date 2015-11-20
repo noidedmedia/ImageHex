@@ -138,7 +138,7 @@ class User < ActiveRecord::Base
   ##
   # Add an image to a user's creationed collection.
   def created! i
-    creations.images << i
+
   end
 
   ##
@@ -172,7 +172,6 @@ class User < ActiveRecord::Base
   # This method makes both of those collections in a callback on user creation.
   def make_collections
     Favorite.create!(curators: [self])
-    Creation.create!(curators: [self])
   end
 
   ##

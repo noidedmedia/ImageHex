@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120184748) do
+ActiveRecord::Schema.define(version: 20151120193917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artist_subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "artist_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "artist_subscriptions", ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
+  add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
 
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
@@ -221,6 +231,8 @@ ActiveRecord::Schema.define(version: 20151120184748) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
+  add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
+  add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
   add_foreign_key "collection_images", "collections"
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
