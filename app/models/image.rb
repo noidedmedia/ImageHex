@@ -70,7 +70,11 @@ class Image < ActiveRecord::Base
   has_many :image_reports
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :collection_images, dependent: :destroy
-
+  has_many :user_creations,
+    foreign_key: :creation_id
+  has_many :creators,
+    through: :user_creations,
+    source: :user
   has_many :collections, through: :collection_images
   #########
   # ENUMS #
@@ -100,16 +104,6 @@ class Image < ActiveRecord::Base
   validates :medium, presence: true
   validates :description, length:{ maximum: 2000}
 
-  ####################
-  # INSTANCE METHODS #
-  ####################
-
-  def creators
-    User
-    .joins(collections: :images)
-    .references(:images)
-    .where(images: {id: self.id}, collections: {type: "Creation"})
-  end
   #################
   # CLASS METHODS #
   #################
