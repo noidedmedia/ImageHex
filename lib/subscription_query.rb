@@ -5,7 +5,7 @@ class SubscriptionQuery
 
   def result
     union = find_collections
-      .union(find_artist_subscriptions)
+      .union(:all, find_artist_subscriptions)
     Image.from(images.create_table_alias(union, :images))
   end
 
