@@ -1,11 +1,11 @@
 class HeaderSearch extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       tagGroup: new EtherealTagGroup()
     };
   }
-  render(){
+  render() {
     return <div>
       <TagGroupEditor
         key={1}
@@ -14,22 +14,22 @@ class HeaderSearch extends React.Component {
         onTagAdd={this.addTag.bind(this)}
         autofocus={true}
         onSubmit={this.submit.bind(this)}
-      />
+      />x
     </div>;
   }
-  addtag(tag){
+  addTag(tag) {
     this.state.tagGroup.add(tag)
     this.setState({
       tagGroup: this.state.tagGroup
     });
   }
-  removeTag(tag){
-    this.state.tagGroup.removeTag(tag);
+  removeTag(tag) {
+    this.state.tagGroup.remove(tag);
     this.setState({
       tagGroup: this.state.tagGroup
     });
   }
-  submit(){
+  submit() {
     var query = {};
     var tags = this.state.tagGroup.tags.map((tag) => {
       return {
@@ -44,7 +44,7 @@ class HeaderSearch extends React.Component {
   }
 }
 
-document.addEventListener('page:load', function(){
+document.addEventListener('page:ready', function() {
   console.log("Header Search Event Fires");
 
 });
