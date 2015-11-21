@@ -227,8 +227,8 @@ class TagSuggestion extends React.Component {
     }
     return <div 
       className={className}
-      onClick={this.click.bind(this) }>
-      Suggestion: {this.props.tag.display_name}
+      onClick={this.click.bind(this)}>
+      {this.props.tag.display_name}
     </div>;
   }
 
@@ -244,13 +244,13 @@ class TagBox extends React.Component {
   }
 
   render() {
-    return <div>
+    return <li className="tag-box-added-tag">
       {this.props.tag.display_name}
       <div className="tag-box-remove-tag"
         onClick={this.removeSelf.bind(this)}>
         Remove
       </div>
-    </div>;
+    </li>;
   }
 
   removeSelf() {

@@ -25,7 +25,11 @@ class ImageTagGroup extends React.Component {
     else{
       submit = <div></div>;
     }
-    return <div>
+    var className = "image-group-editor";
+    if(! this.state.group.id ){
+      className += " new-group";
+    }
+    return <div className={className}>
       <TagGroupEditor
         key={0}
         tags={this.state.group.tags}

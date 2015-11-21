@@ -1,11 +1,35 @@
 @import "scss-variables";
 
-.tag-group-tag-suggestion {
-  &.active {
-    background-color: #00cc00;
+.search {
+  padding: 10px;
+}
+
+.search-tag-groups {
+  display: flex;
+  flex-flow: row wrap;
+  .tag-group-editor {
+    margin: 4px;
+    padding: 4px;
+    border: 1px solid #777;
+    width: 300px;
   }
 }
 
+.search-controls {
+  button {
+    padding: 3px;
+    margin: 5px;
+    background-color: #5BB289;
+    border: 0px none;
+    cursor: pointer;
+    -moz-appearence: none;
+    border-radius: 3px;
+    color: #FFF;
+    &:hover {
+      background-color: #4CA27A;
+    }
+  }
+}
 /* search.html styling */
 #body-search {
   margin: auto;
