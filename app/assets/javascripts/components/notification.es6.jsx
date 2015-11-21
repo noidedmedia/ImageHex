@@ -26,6 +26,9 @@ class NotificationList extends React.Component {
     NM.postJSON("/notifications/mark_all_read", {}, () => {
       NM.getJSON("/notifications/", (n) => {
         console.log("Got new notifications");
+        document.querySelector(".header-notifications").classList.remove("unread", "active");
+        document.querySelector(".notifications-dropdown").classList.remove("active");
+        document.querySelector(".notifications-unread-count > a").innerHTML = "0";
         this.setState({
           notifications: n
         });
@@ -41,12 +44,15 @@ class NotificationItem extends React.Component {
   }
   render() {
     className = "notifications-list-item";
-    if(this.props.read){
+    if (this.props.read) {
       className += " read";
+    } else {
+      className += " unread";
     }
     return <li className={className}>
       <a href={this.link()}>
         {this.message()}
+        {this.timeStamp()}
       </a>
     </li>
   }
@@ -62,25 +68,28 @@ class NotificationItem extends React.Component {
     console.log("Props:",this.props);
     var username = this.props.subject.user_name;
     if (kind == "uploaded_image_commented_on") {
-      return <div>
+      return <p className="notification-message">
         {username} commented on your image
-      </div>;
+      </p>;
     }
     if (kind == "comment_replied_to") {
-      return <div>
+      return <p className="notification-message">
         {username} replied to your comment
-      </div>;
+      </p>;
     }
     if (kind == "mentioned") {
-      return <div>
+      return <p className="notification-message">
         {username} mentioned you in a comment
-      </div>;
+      </p>;
     }
     else {
-      return <div>
+      return <p className="notification-message">
         Something in our javascript has gone horribly wrong.
-      </div>;
+      </p>;
     }
+  }
+  timeStamp() {
+    return <p className="notification-time-ago">3 minutes ago</p>
   }
 }
 
@@ -88,14 +97,14 @@ document.addEventListener("page:change", function() {
   console.log("Notification works");
   var d = document.getElementsByClassName("notifications-unread-count")[0];
   if (d) {
-    d.addEventListener("click", function(event){
+    d.addEventListener("click", function(event) {
       event.preventDefault();
+      document.querySelector(".header-notifications").classList.toggle("active");
       console.log("Clicked");
       NM.getJSON("/notifications/", (json) => {
-        var d = document.getElementsByClassName("notifications-dropdown")[0];
-        d.className = "notifications-dropdown active";
+        document.querySelector(".notifications-dropdown").classList.toggle("active");
         ReactDOM.render(<NotificationList notifications={json} />,
-            d);
+            document.querySelector(".notifications-dropdown"));
       });
     });
   }

@@ -7,15 +7,19 @@ class CollectionAdder extends React.Component {
   }
 
   render() {
-    var c = this.state.collections.map((c) => {
-      return <CollectionAdderItem 
-        collection={c}
-        key={c.id}
-        image_id={this.props.image_id} />;
-    });
-    return <ul id={"image-collection-list"}>
-      {c}
-    </ul>;
+    if (this.state.collections.length > 0) {
+      var c = this.state.collections.map((c) => {
+        return <CollectionAdderItem 
+          collection={c}
+          key={c.id}
+          image_id={this.props.image_id} />;
+      });
+      return <ul id={"image-collection-list"}>
+        {c}
+      </ul>;
+    } else {
+      return <p className={"imagehex-empty-note"}>You're not the curator of any collections yet.</p>;
+    }
   }
 }
 
