@@ -1,0 +1,15 @@
+<li class="creator-list-item">
+<h2><%= link_to creator.name, creator %></h2>
+<div class="creator-description">
+  <%= markdown_parse creator.description %>
+</div>
+<ul class="creator-images">
+  <% creator.creations.limit(5).each do |i| %>
+    <li>
+    <%= link_to i do %>
+      <%= image_tag i.f(:medium) %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+</li>

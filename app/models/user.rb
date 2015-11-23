@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   has_many :curatorships
   has_many :collections, through: :curatorships
   has_many :user_creations
-  has_many :creations, through: :user_creations
+  has_many :creations, -> { order(created_at: :desc)},  through: :user_creations
 
   # ArtistSubscriber is a join table of User to User.
   # This is, as you imagine, kind of annoying to deal with.
@@ -109,9 +109,9 @@ class User < ActiveRecord::Base
 
   def self.popular_creators
     joins(creations: :collection_images)
-    .group("users.id, images.id")
+    .group("users.id")
     .where("collection_images.created_at > CURRENT_DATE - INTERVAL '14 days'")
-    .order("COUNT(collection_images)")
+    .order("COUNT(collection_images) DESC")
   end
   ####################
   # INSTANCE METHODS #
