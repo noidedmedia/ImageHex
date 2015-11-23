@@ -13,7 +13,7 @@ class NotificationList extends React.Component {
       });
     } else {
       notifications = <div className="notifications-empty">
-        No notifications yet.
+        No notifications yet!
       </div>;
     }
     return <div className={"notifications-container"}>
