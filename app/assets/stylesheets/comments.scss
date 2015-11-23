@@ -59,6 +59,8 @@
     font-size: 1.3rem;
     color: #333;
     padding: 2px 0 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     &.image-description-none {
       color: #777;
@@ -68,6 +70,7 @@
 
 .uploader-information {
   width: 100%;
+  overflow: hidden;
 }
 
 .uploader-avatar {
