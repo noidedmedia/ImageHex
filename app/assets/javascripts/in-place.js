@@ -22,6 +22,7 @@ var showon = function() {
     // value.
     var toggle = $( $(_this).data("showon") );
     $(toggle).on("click", function() {
+      $(toggle).toggleClass("active");
       $(_this).toggleClass('active').toggleClass('inactive');
 
       // If the element being pressed is an "image-action" (or is the child of 

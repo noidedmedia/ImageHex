@@ -54,8 +54,17 @@
     <% if user_signed_in? %>
 
       <%# Upload %>
-      <div class="header-item">
-        <%= link_to t(".upload"), new_image_path %>
+      <div class="header-item" id="header-create">
+        <div id="header-create-button">
+          <i class="icon icon-add"></i>
+        </div>
+
+        <div class="create-dropdown inactive" data-showon="#header-create">
+          <ul>
+            <li><%= link_to t(".upload"), new_image_path %>
+            <li><%= link_to t(".new_collection"), new_collection_path %>
+          </ul>
+        </div>
       </div>
 
       <%# Displays the number of unread notifications %>
