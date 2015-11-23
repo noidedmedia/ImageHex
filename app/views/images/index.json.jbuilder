@@ -1,1 +1,1 @@
-json.partial! "list", images: @images
+json.partial! "images/list", images: @images

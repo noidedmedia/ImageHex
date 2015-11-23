@@ -113,6 +113,7 @@ Rails.application.routes.draw do
 
   scope "browse/" do
     get 'creators', to: 'browse#creators'
+    get 'images', to: 'browse#images'
   end
   ########################
   # SINGLE ACTION ROUTES #
