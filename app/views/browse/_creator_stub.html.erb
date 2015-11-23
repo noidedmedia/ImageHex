@@ -1,13 +1,18 @@
-<li class="creator-list-item">
-<h2><%= link_to creator.name, creator %></h2>
+<li class="creators-list-item">
+<div class="creator-header">
+  <%= image_tag creator.avatar(:tiny) %>
+  <div class="creator-name">
+    <%= link_to creator.name, creator %>
+  </div>
+</div>
 <div class="creator-description">
   <%= markdown_parse creator.description %>
 </div>
 <ul class="creator-images">
-  <% creator.creations.limit(5).each do |i| %>
-    <li>
+  <% creator.creations.take(5).each do |i| %>
+    <li class="creator-images-item">
     <%= link_to i do %>
-      <%= image_tag i.f(:medium) %>
+      <%= image_tag i.f(:small) %>
     <% end %>
     </li>
   <% end %>
