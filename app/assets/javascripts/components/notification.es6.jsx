@@ -6,9 +6,16 @@ class NotificationList extends React.Component {
     };
   }
   render() {
-    var notifications = this.state.notifications.map((n) => {
-      return <NotificationItem {...n} key={n.id} />;
-    });
+    var notifications;
+    if (this.state.notifications.length > 0) {
+      notifications = this.state.notifications.map((n) => {
+        return <NotificationItem {...n} key={n.id} />;
+      });
+    } else {
+      notifications = <div className="notifications-empty">
+        No notifications yet!
+      </div>;
+    }
     return <div className={"notifications-container"}>
       <div className={"notifications-header"}>
         <h3><a href="/notifications">Notifications</a></h3>

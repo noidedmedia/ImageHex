@@ -15,7 +15,7 @@ function avatarUploaderPreview(event) {
       window.URL.revokeObjectURL(this.src);
     };
 
-    $("#avatar-uploader-thumbnail-container").html(img);
+    $("#avatar-uploader-thumbnail").html(img);
   }
 }
 
