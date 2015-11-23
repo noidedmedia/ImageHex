@@ -10,7 +10,7 @@ describe Image do
         i2 = FactoryGirl.create(:image)
         u = FactoryGirl.create(:user)
         u.favorites.images << i2
-        expect(Image.by_popularity).to eq([i2])
+        expect(Image.by_popularity).to eq([i2, i1])
       end
     end
   end

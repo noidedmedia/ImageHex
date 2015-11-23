@@ -109,8 +109,12 @@ class Image < ActiveRecord::Base
   #################
 
   def self.by_popularity(interval = 2.weeks.ago..Time.now)
-    joins(:collection_images)
-      .where(collection_images: {created_at: interval})
+    imgs = Image.arel_table
+    cimgs = CollectionImage.arel_table
+    j = imgs.join(cimgs, Arel::Nodes::OuterJoin)
+      .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
+      .join_sources
+    res = joins(j)
       .group("images.id")
       .order("COUNT (collection_images) DESC")
   end
