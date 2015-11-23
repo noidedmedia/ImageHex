@@ -31,12 +31,14 @@
 #header-left {
   display: inline-block;
   left: 50px;
+  height: $header-height;
   position: absolute;
   text-align: left;
 
   @media all and (max-width: $mobile-width) {
     position: relative;
     left: 30px;
+    height: $header-height-mobile;
   }
 
   #header-home {
@@ -50,7 +52,7 @@
 
     .imagehex-header-logo {
       width: 160px;
-      height: 40px;
+      height: $header-height;
       position: absolute;
       top: 0;
       background: asset-url("logo/imagehex-monochrome-white-text.svg") 50% 50% / 110% 110% no-repeat;
@@ -63,14 +65,14 @@
 
       @media all and (min-width: $mobile-width) and (max-width: 1000px) {
         width: 40px;
-        height: 40px;
+        height: $header-height;
         top: 0;
         background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
       }
 
       @media all and (max-width: $mobile-width) {
         width: 50px;
-        height: 50px;
+        height: $header-height-mobile;
         top: 0;
         background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
       }
@@ -174,7 +176,7 @@
   height: 100%;
   margin-right: 4px;
   width: 38px;
-  height: 40px;
+  height: $header-height;
   padding: 12px 12px;
 
   i::before {
@@ -235,7 +237,7 @@
 
 #mobile-menu-icon {
   display: none;
-  height: 50px;
+  height: $header-height-mobile;
   position: absolute;
   right: 10px;
   top: 0;
