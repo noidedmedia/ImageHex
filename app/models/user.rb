@@ -102,6 +102,17 @@ class User < ActiveRecord::Base
 
   before_save :coerce_content_pref!
 
+
+  #################
+  # CLASS METHODS #
+  #################
+
+  def self.popular_creators
+    joins(creations: :collection_images)
+    .group("users.id, images.id")
+    .where("collection_images.created_at > CURRENT_DATE - INTERVAL '14 days'")
+    .order("COUNT(collection_images)")
+  end
   ####################
   # INSTANCE METHODS #
   ####################

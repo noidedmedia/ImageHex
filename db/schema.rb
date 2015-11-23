@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120203030) do
+ActiveRecord::Schema.define(version: 20151123210653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20151120203030) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "artist_subscriptions", ["artist_id", "user_id"], name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
   add_index "artist_subscriptions", ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
   add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
 
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20151120203030) do
     t.integer  "user_id"
   end
 
+  add_index "collection_images", ["collection_id", "image_id"], name: "index_collection_images_on_collection_id_and_image_id", unique: true, using: :btree
   add_index "collection_images", ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
   add_index "collection_images", ["image_id"], name: "index_collection_images_on_image_id", using: :btree
   add_index "collection_images", ["user_id"], name: "index_collection_images_on_user_id", using: :btree
@@ -159,6 +161,7 @@ ActiveRecord::Schema.define(version: 20151120203030) do
     t.datetime "updated_at"
   end
 
+  add_index "tag_group_members", ["tag_group_id", "tag_id"], name: "index_tag_group_members_on_tag_group_id_and_tag_id", unique: true, using: :btree
   add_index "tag_group_members", ["tag_group_id"], name: "index_tag_group_members_on_tag_group_id", using: :btree
   add_index "tag_group_members", ["tag_id"], name: "index_tag_group_members_on_tag_id", using: :btree
 
@@ -190,6 +193,7 @@ ActiveRecord::Schema.define(version: 20151120203030) do
   end
 
   add_index "user_creations", ["creation_id"], name: "index_user_creations_on_creation_id", using: :btree
+  add_index "user_creations", ["user_id", "creation_id"], name: "index_user_creations_on_user_id_and_creation_id", unique: true, using: :btree
   add_index "user_creations", ["user_id"], name: "index_user_creations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

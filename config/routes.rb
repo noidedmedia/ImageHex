@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
   
+  
   resources :tags do
     collection do
       get "suggest"
@@ -106,6 +107,13 @@ Rails.application.routes.draw do
     end
   end
 
+  #################
+  # BROWSE ROUTES #
+  #################
+
+  scope "browse/" do
+    get 'creators', to: 'browse#creators'
+  end
   ########################
   # SINGLE ACTION ROUTES #
   ########################
