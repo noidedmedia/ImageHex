@@ -5,6 +5,12 @@ class UsersController < ApplicationController
   include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
 
+  def index
+    @users = get_user_index
+      .preload(:creations)
+      .merge(Image.for_content(content_pref))
+      .paginate(page: page, per_page: per_page)
+  end
   ##
   # A collection of images favorited by a given user.
   # @user:: The user in question.
@@ -105,6 +111,15 @@ class UsersController < ApplicationController
   end
 
   protected
+
+  def get_user_index
+    case params[:order]
+    when 'popular'
+      User.popular_creators
+    else
+      User.recent_creators
+    end
+  end
   ##
   # Parameters to update a user.
   # page_pref:: The amount of images per page.

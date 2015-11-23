@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:show, :edit, :update, :index] do
     member do
       get 'favorites'
       get 'creations'
@@ -111,10 +111,6 @@ Rails.application.routes.draw do
   # BROWSE ROUTES #
   #################
 
-  scope "browse/" do
-    get 'creators', to: 'browse#creators'
-    get 'images', to: 'browse#images'
-  end
   ########################
   # SINGLE ACTION ROUTES #
   ########################

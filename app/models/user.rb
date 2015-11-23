@@ -107,11 +107,17 @@ class User < ActiveRecord::Base
   # CLASS METHODS #
   #################
 
-  def self.popular_creators
+  def self.popular_creators(interval = 14.days.ago..Time.now)
     joins(creations: :collection_images)
     .group("users.id")
-    .where("collection_images.created_at > CURRENT_DATE - INTERVAL '14 days'")
+    .where(collection_images: {created_at: interval})
     .order("COUNT(collection_images) DESC")
+  end
+
+  def self.recent_creators
+    joins(:creations)
+      .group("users.id")
+      .order("MAX(user_creations.created_at) DESC")
   end
   ####################
   # INSTANCE METHODS #

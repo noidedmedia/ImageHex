@@ -1,6 +1,6 @@
 <h1>Creators</h1>
 
 <ul class="creators-list">
-  <%= render partial: "creator_stub", collection: @creators, as: :creator %>
+  <%= render partial: "user_stub", collection: @users, as: :creator %>
 </ul>
 <%= will_paginate @creators %>
