@@ -108,6 +108,12 @@ class Image < ActiveRecord::Base
   # CLASS METHODS #
   #################
 
+  def self.by_popularity(interval = 2.weeks.ago..Time.now)
+    joins(:collection_images)
+      .where(collection_images: {created_at: interval})
+      .group("images.id")
+      .order("COUNT (collection_images) DESC")
+  end
   ##
   # Find all images a user is subscribed to. 
   # user:: The user we're finding the subscription for
