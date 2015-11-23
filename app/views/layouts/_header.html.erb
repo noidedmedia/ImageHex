@@ -7,6 +7,31 @@
       <% end %>
     </div>
 
+    <%# Header search container %>
+    <div id="header-search">
+      <form action="/search" method="get" role="search">
+        <%# Search icon %>
+        <label title="<%= t('.search') %>" for="header-search-input">
+          <span class="icon icon-small icon-search"></span>
+        </label>
+
+        <%# Search input %>
+        <input type="search" id="header-search-input" name="query[]" placeholder=<%= t(".search") %> required="" autocomplete="off" />
+
+        <span class="icon icon-small icon-close" id="close-mobile-search-icon"></span>
+
+      </form>
+
+      <div id="header-search-suggestions">
+        <ul id="header-search-suggestions-fillable"></ul>
+
+        <div id="header-search-suggestions-empty" class="active">
+          <span class="icon icon-huge icon-search"></span>
+          <p><%= t(".search_suggestions_note") %>
+        </div>
+      </div>
+    </div>
+
     <div class="header-item" id="header-browse">
       <%= link_to t(".browse"), images_path %>
     </div>
@@ -24,31 +49,6 @@
 
   <%# Semi-transparent black overlay used to hide background content when the mobile sidebar is opened. This is controlled by JavaScript. %>
   <div id="mobile-menu-overlay"></div>
-
-  <%# Header search container %>
-  <div id="header-search">
-    <form action="/search" method="get" role="search">
-      <%# Search icon %>
-      <label title="<%= t('.search') %>" for="header-search-input">
-        <span class="icon icon-small icon-search"></span>
-      </label>
-
-      <%# Search input %>
-      <input type="search" id="header-search-input" name="query[]" placeholder=<%= t(".search") %> required="" autocomplete="off" />
-
-      <span class="icon icon-small icon-close" id="close-mobile-search-icon"></span>
-
-    </form>
-
-    <div id="header-search-suggestions">
-      <ul id="header-search-suggestions-fillable"></ul>
-
-      <div id="header-search-suggestions-empty" class="active">
-        <span class="icon icon-huge icon-search"></span>
-        <p><%= t(".search_suggestions_note") %>
-      </div>
-    </div>
-  </div>
 
   <div id="header-right">
     <% if user_signed_in? %>

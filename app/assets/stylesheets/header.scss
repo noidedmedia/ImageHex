@@ -19,7 +19,6 @@
   @media all and (max-width: $mobile-width) {
     width: 100vw;
     height: 50px;
-    padding: 15px;
     background-color: #333;
     display: flex;
     flex-flow: row nowrap;
@@ -31,45 +30,60 @@
 /* Items aligned to the left side of the header. */
 #header-left {
   display: inline-block;
-  left: 40px;
+  left: 50px;
   position: absolute;
   text-align: left;
 
   @media all and (max-width: $mobile-width) {
-    top: 16px;
-    left: 20px;
+    position: relative;
+    left: 30px;
+  }
+
+  #header-home {
+    padding: 12px 0;
+    margin-right: 15px;
+    width: 160px;
+
+    @media all and (max-width: 1000px) {
+      width: 50px;
+    }
+
+    .imagehex-header-logo {
+      width: 160px;
+      height: 40px;
+      position: absolute;
+      top: 0;
+      background: asset-url("logo/imagehex-monochrome-white-text.svg") 50% 50% / 110% 110% no-repeat;
+      opacity: 0.75;
+      transition: 200ms opacity;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      @media all and (min-width: $mobile-width) and (max-width: 1000px) {
+        width: 40px;
+        height: 40px;
+        top: 0;
+        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+      }
+
+      @media all and (max-width: $mobile-width) {
+        width: 50px;
+        height: 50px;
+        top: 0;
+        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+      }
+    }
   }
 
   #header-browse {
-    position: absolute;
-    left: 390px;
-    top: 0;
+    position: relative;
 
-    @media all and (max-width: $mobile-width) {
+    // Prevent elements hitting each other.
+    @media all and (max-width: 1000px) {
       display: none;
     }
-  }
-}
-
-.imagehex-header-logo {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 0;
-  background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
-  opacity: 0.75;
-  transition: 200ms opacity;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  @media all and (max-width: $mobile-width) {
-    width: 50px;
-    height: 50px;
-    top: -10px;
-    left: 0;
-    background: asset-url("logo/imagehex-monochrome-white.svg") 0% 0% / 75% 75% no-repeat;
   }
 }
 
@@ -154,7 +168,7 @@
   }
 }
 
-#header-create {
+#header-create.header-item {
   display: inline-block;
   cursor: pointer;
   height: 100%;
