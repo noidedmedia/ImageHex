@@ -186,6 +186,20 @@ a:target + .comment {
   }
 }
 
+.comment-reply {
+  right: 0;
+  top: 9px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.75;
+  transition: opacity 200ms;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 // Body text of a comment
 .comment-body {
   font-size: 1.2rem;

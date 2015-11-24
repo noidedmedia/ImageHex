@@ -96,7 +96,7 @@ class NotificationItem extends React.Component {
     }
   }
   timeStamp() {
-    return <p className="notification-time-ago">3 minutes ago</p>
+    return <p className="notification-time-ago">{this.props.time_ago_in_words} ago</p>
   }
 }
 

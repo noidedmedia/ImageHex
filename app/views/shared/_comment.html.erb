@@ -17,12 +17,10 @@
   <div class="comment-text">
     <%# Username, with link to user page, and "commented [time value] ago". %>
     <div class="user-comment-info">
-      <a class="comment-username"
-        data-user-name="<%= comment.user.name %>">
-        <%= comment.user.name %>
-      </a>
+      <%= link_to comment.user.name, user_path(comment.user), class: "comment-username" %>
       <%= " " + t(".commented") + " " + time_ago_in_words(comment.created_at) + " " + t(".ago") %>
     </div>
+    <p class="comment-reply" data-user-name="<%= comment.user.name %>"><%= t(".reply") %></p>
 
     <%# Comment body, the text in the comment itself. %>
     <div class="comment-body">
