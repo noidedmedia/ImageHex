@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
   render() {
     console.log("Focused group:",this.state.focusedGroup);
     let tags = this.state.tagGroups.map((group, index) => {
-      console.log("Is group #",index," the foused group? ",index == this.state.focusedGroup);
+      console.log("Is group #",index," the focused group? ",index == this.state.focusedGroup);
       return <TagGroupEditor 
         key={index}
         group={group} 

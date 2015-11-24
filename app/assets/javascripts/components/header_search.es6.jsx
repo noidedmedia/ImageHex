@@ -18,7 +18,7 @@ class HeaderSearch extends React.Component {
     </div>;
   }
   addTag(tag) {
-    this.state.tagGroup.add(tag)
+    this.state.tagGroup.add(tag);
     this.setState({
       tagGroup: this.state.tagGroup
     });
@@ -44,7 +44,12 @@ class HeaderSearch extends React.Component {
   }
 }
 
-document.addEventListener('page:ready', function() {
-  console.log("Header Search Event Fires");
+document.addEventListener('page:change', function() {
+  document.getElementById("header-search-input").addEventListener("focus", function(e) {
+    document.getElementById("header-search").classList.toggle("active");
+  });
 
+  document.getElementById("header-search-input").addEventListener("blur", function(e) {
+    document.getElementById("header-search").classList.toggle("active");
+  });
 });
