@@ -33,8 +33,7 @@ class Collection < ActiveRecord::Base
   # Collections are useless without images.
   # Collections also do not need duplicates, thus the uniq specifier
   has_many :images, 
-    ->{uniq
-        .joins(:collection_images)
+    ->{joins(:collection_images)
         .order("collection_images.created_at DESC")}, 
     through: :collection_images
   ###############
