@@ -1,4 +1,18 @@
-<% @collections.each do |collection| %>
-  <%= collection.name %>
-  <%= collection.description %>
-<% end %>
+<h1>Collections</h1>
+<ul id="collections-list">
+  <% @collections.each do |c| %>
+    <li class="collections-list-item">
+    <h1><%= link_to c.name, c %></h1>
+    <ul class="collection-images-list">
+      <li class="collection-images-list-item">
+      <% c.images.take(3).each do |img| %>
+        <%= link_to img do %>
+          <%= image_tag img.f(:small) %>
+        <% end %>
+      <% end %>
+      </li>
+    </ul>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate @collections %>

@@ -1,9 +1,45 @@
 @import "scss-variables";
 
+
+#collections-list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 10px;
+}
+
+.collections-list-item {
+  display: flex;
+  flex-direction: column;
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+}
+
+.collection-images-list {
+  display: flex;
+  flew-flow: row nowrap;
+  align-items: center;
+}
+
+.collection-images-list-item { 
+  a {
+    img {
+      object-fit: fill;
+      object-position: 50% 0px;
+    }
+  }
+  margin: 4px;
+  width: auto;
+  flex: 3 1 100px;
+  overflow: hidden;
+}
 /* ==============================================
     "New collection" page
    ============================================== */
-
 .new-collection-container {
   display: flex;
   flex-flow: column wrap;

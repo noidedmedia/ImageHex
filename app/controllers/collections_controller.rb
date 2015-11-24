@@ -24,19 +24,10 @@ class CollectionsController < ApplicationController
                    end
     render 'index'
   end 
-  ##
-  # Show all the collections on the user in params[:user_id].
-  # Sets the following variables:
-  # @user:: The user who owns the collections
-  # @collections:: The collections owned by the user.
   def index
-    @user = User.friendly.find(params[:user_id])
-    @collections = if i = params[:inspect_image]
-                     img = Image.find(i)
-                     @user.collections.with_image_inclusion(img)
-                   else
-                     @user.collections
-                   end
+    @collections = find_index_collections
+      .paginate(page: page, per_page: per_page)
+      .includes(:images)
   end
 
   ##
@@ -129,6 +120,16 @@ class CollectionsController < ApplicationController
   end
 
   protected
+
+  def find_index_collections
+    case params['order']
+    when "popular"
+      Collection.by_popularity
+    else
+      Collection.all.order(created_at: :desc)
+    end
+  end
+
   ##
   # Parameters needed to create the collection.
   # type:: What type of collection it is. Currently, only "Subjective" is

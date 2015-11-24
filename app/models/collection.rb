@@ -47,6 +47,13 @@ class Collection < ActiveRecord::Base
   scope :creations, ->{ where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
 
+  def self.by_popularity(interval = 2.weeks.ago..Time.now)
+    joins(:subscriptions)
+      .where(subscriptions: {created_at: interval})
+      .group("collections.id")
+      .order("COUNT(subscriptions) DESC")
+  end
+
   def self.with_image_inclusion(i)
     ##
     # Using string interpolation is SQL is scary

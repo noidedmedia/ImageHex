@@ -55,14 +55,9 @@ Rails.application.routes.draw do
       post 'subscribe'
       delete 'unsubscribe'
     end
-
-    ##
-    # This is done so it's easier to see a users collections.
-    # Meanwhile, creation and modification of collections is its own thing.
-    resources :collections, only: [:index]
   end
 
-  resources :collections, except: [:index] do
+  resources :collections do
     get :mine, on: :collection
     ##
     # OK we get non-REST here

@@ -3,13 +3,7 @@ require 'rails_helper'
 RSpec.describe CollectionsController, :type => :controller do
   include Devise::TestHelpers
   describe "get #index" do
-    it "shows all a users collections" do
-      user = FactoryGirl.create(:user)
-      user.collections = [FactoryGirl.create(:collection),
-        FactoryGirl.create(:collection)]
-      get :index, user_id: user
-      expect(assigns(:collections)).to match_array(user.collections)
-    end
+    
     it "renders the index page" do
       user = FactoryGirl.create(:user)
       user.collections << [FactoryGirl.create(:collection)]
