@@ -5,7 +5,7 @@
       <% if c.images.for_content(@content).count > 0 %>
         <%= image_tag c.images.for_content(@content).first.f(:medium) %>
       <% else %>
-        <!-- Placeholder image -->
+        <%= image_tag "empty-collection.svg" %>
       <% end %>
     </div>
 
