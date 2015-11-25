@@ -1,7 +1,9 @@
-<h1>Creators</h1>
+<%- title t(".browse_creators") %>
+
+<%= render partial: "shared/browse_tabs" %>
 
 <ul class="creators-list">
-  <%= render partial: "user_stub", collection: @users, as: :creator %>
+  <%= render partial: "users/show_stub", collection: @users, as: :creator %>
 </ul>
 
 <%= will_paginate @creators %>

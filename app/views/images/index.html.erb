@@ -1,12 +1,6 @@
 <%- title t(".browse_images") %>
 
-<div>
-  <ul>
-    <li><%= link_to "Images", images_path %>
-    <li><%= link_to "Collections", collections_path %>
-    <li><%= link_to "Creators", users_path %>
-  </ul>
-</div>
+<%= render partial: "shared/browse_tabs" %>
 
 <div id="image-list-container">
   <%= render 'images/show_stub', images: @images %>

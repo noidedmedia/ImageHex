@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       .merge(Image.for_content(content_pref))
       .paginate(page: page, per_page: per_page)
   end
+  
   ##
   # A collection of images favorited by a given user.
   # @user:: The user in question.

@@ -1,18 +1,9 @@
-<h1>Collections</h1>
-<ul id="collections-list">
-  <% @collections.each do |c| %>
-    <li class="collections-list-item">
-    <h1><%= link_to c.name, c %></h1>
-    <ul class="collection-images-list">
-      <li class="collection-images-list-item">
-      <% c.images.take(3).each do |img| %>
-        <%= link_to img do %>
-          <%= image_tag img.f(:small) %>
-        <% end %>
-      <% end %>
-      </li>
-    </ul>
-    </li>
-  <% end %>
-</ul>
+<%- title t(".browse_collections") %>
+
+<%= render partial: "shared/browse_tabs" %>
+
+<div class="collections-list-container">
+  <%= render partial: "collections/show_stub", collection: @collections, as: :c %>
+</div>
+
 <%= will_paginate @collections %>

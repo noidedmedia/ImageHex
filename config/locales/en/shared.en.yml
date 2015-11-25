@@ -12,3 +12,7 @@ en:
       extra_information: 'Extra information (optional):'
       reason_for_report: 'Reason for report:'
       report: Report
+    browse_tabs:
+      images: Images
+      collections: Collections
+      creators: Creators

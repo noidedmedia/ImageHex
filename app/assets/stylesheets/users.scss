@@ -248,7 +248,6 @@
 .user-content {
   padding: 10px;
   display: none;
-  flex-flow: column wrap;
 
   &.current {
     display: flex;
@@ -257,10 +256,4 @@
   @media all and (max-width: $mobile-width) {
     margin-top: 5px;
   }
-}
-
-#user-collections-container {
-  flex-flow: row wrap;
-  align-items: inherit;
-  justify-content: flex-start;
 }

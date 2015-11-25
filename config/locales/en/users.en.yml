@@ -1,6 +1,8 @@
 ---
 en:
   users:
+    index:
+      browse_creators: Browse creators
     edit:
       edit_page_title: Settings
       images_per_page: Images per page

@@ -23,11 +23,14 @@ class CollectionsController < ApplicationController
                      current_user.collections
                    end
     render 'index'
-  end 
+  end
+
   def index
     @collections = find_index_collections
       .paginate(page: page, per_page: per_page)
       .includes(:images)
+    # FIXME: This is a hack.
+    @content = content_pref
   end
 
   ##
