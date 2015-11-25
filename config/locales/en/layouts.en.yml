@@ -27,6 +27,7 @@ en:
       browse: Browse
       create_an_account: Create an account
       home: Home
+      new_collection: New collection
       profile: Profile
       search: Search
       search_suggestions_note: Search for the tag you're looking for, suggestions will show up here.
@@ -34,4 +35,3 @@ en:
       sign_in: Sign in
       sign_out: Sign out
       upload: Upload
-      new_collection: New collection

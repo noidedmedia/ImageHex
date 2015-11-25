@@ -1,6 +1,10 @@
 ---
 en:
   shared:
+    browse_tabs:
+      collections: Collections
+      creators: Creators
+      images: Images
     comment:
       ago: ago
       commented: commented
@@ -12,7 +16,3 @@ en:
       extra_information: 'Extra information (optional):'
       reason_for_report: 'Reason for report:'
       report: Report
-    browse_tabs:
-      images: Images
-      collections: Collections
-      creators: Creators

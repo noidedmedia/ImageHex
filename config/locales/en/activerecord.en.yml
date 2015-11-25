@@ -29,4 +29,3 @@ en:
       favorite:
         favorites_collection_description: Images favorited by %{username}.
         favorites_collection_title: "%{usernames} Favorites"
-      image: Image

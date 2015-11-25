@@ -1,14 +1,14 @@
 ---
 en:
   collections:
-    index:
-      browse_collections: Browse collections
     edit:
       edit_collection: Edit collection
     form:
       create_collection: Create collection
       description: Description
       title: Title
+    index:
+      browse_collections: Browse collections
     new:
       new_collection: New collection
     show:
