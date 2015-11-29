@@ -56,6 +56,30 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :curatorships
   has_many :collections, through: :curatorships
+  has_many :user_creations
+  has_many :creations, -> { order(created_at: :desc)},  through: :user_creations
+
+  # ArtistSubscriber is a join table of User to User.
+  # This is, as you imagine, kind of annoying to deal with.
+  # So we split it up into two relationships
+  # This is the first. It's the artists this user is subscribed to.
+  has_many :artist_subscriptions, foreign_key: :user_id
+  # and here we have the actual users
+  has_many :subscribed_artists, 
+    through: :artist_subscriptions,
+    source: :artist
+
+  # now we have the artists subscribers.
+  # this has many is for when the user is in the role of artist
+  has_many :artist_subscribers,
+    class_name: :ArtistSubscription,
+    foreign_key: :artist_id
+
+  # and here's a list of the users that are subscribed to us
+  has_many :subscribers,
+    through: :artist_subscribers,
+    source: :user
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -78,6 +102,23 @@ class User < ActiveRecord::Base
 
   before_save :coerce_content_pref!
 
+
+  #################
+  # CLASS METHODS #
+  #################
+
+  def self.popular_creators(interval = 14.days.ago..Time.now)
+    joins(creations: :collection_images)
+    .group("users.id")
+    .where(collection_images: {created_at: interval})
+    .order("COUNT(collection_images) DESC")
+  end
+
+  def self.recent_creators
+    joins(:creations)
+      .group("users.id")
+      .order("MAX(user_creations.created_at) DESC")
+  end
   ####################
   # INSTANCE METHODS #
   ####################
@@ -87,9 +128,7 @@ class User < ActiveRecord::Base
   # Returns true or false
   # c:: the collection we are checking
   def subscribed_to? c
-    # Coerce the subscription to a boolean
-    !! Subscription.where(user: self,
-                          collection: c).first
+    c.subscribers.include? self
   end
   ##
   # Quickly get a user avatar, pre-resized
@@ -115,6 +154,10 @@ class User < ActiveRecord::Base
     c.subscribers << self
   end
 
+  def unsubscribe! c
+    c.subscribers.destroy(self)
+  end
+
   ##
   # Convenience method to access the favorites collection for a user
   def favorites
@@ -136,13 +179,7 @@ class User < ActiveRecord::Base
   ##
   # Add an image to a user's creationed collection.
   def created! i
-    creations.images << i
-  end
-
-  ##
-  # Convenience method ot access the creations collection for a user
-  def creations
-    collections.creations.first
+    creations << i 
   end
 
   ##
@@ -176,7 +213,6 @@ class User < ActiveRecord::Base
   # This method makes both of those collections in a callback on user creation.
   def make_collections
     Favorite.create!(curators: [self])
-    Creation.create!(curators: [self])
   end
 
   ##

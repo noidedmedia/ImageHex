@@ -1,12 +1,38 @@
 @import "scss-variables";
 
-.tag-group-tag-suggestion {
-  &.active {
-    background-color: #00cc00;
+.search {
+  padding: 10px;
+}
+
+.search-tag-groups {
+  display: flex;
+  flex-flow: row wrap;
+
+  .tag-group-editor {
+    margin: 4px;
+    padding: 4px;
+    border: 1px solid #777;
+    width: 300px;
   }
 }
 
-/* search.html styling */
+.search-controls {
+  button {
+    padding: 3px;
+    margin: 5px;
+    background-color: #5BB289;
+    border: 0px none;
+    cursor: pointer;
+    -moz-appearence: none;
+    border-radius: 3px;
+    color: #FFF;
+
+    &:hover {
+      background-color: #4CA27A;
+    }
+  }
+}
+
 #body-search {
   margin: auto;
   display: flex;
@@ -75,12 +101,10 @@
  */
 
 #header-search {
-  display: block;
-  position: absolute;
+  display: inline-block;
+  position: relative;
   width: 300px;
   max-height: 40px;
-  top: 0;
-  left: 125px;
   background-color: #fff;
   transition: max-height 300ms ease-in-out; /* 1 */
 
@@ -181,6 +205,7 @@
     height: 100%;
     max-height: 100%;
     width: 100vw;
+    top: 0;
     left: 0;
     transition: max-height 300ms ease-in-out, width 300ms ease-in-out;
     display: block;

@@ -32,7 +32,10 @@ class Collection < ActiveRecord::Base
   has_many :collection_images
   # Collections are useless without images.
   # Collections also do not need duplicates, thus the uniq specifier
-  has_many :images, ->{uniq}, through: :collection_images
+  has_many :images, 
+    ->{joins(:collection_images)
+        .order("collection_images.created_at DESC")}, 
+    through: :collection_images
   ###############
   # VALIDATIONS #
   ###############
@@ -46,6 +49,13 @@ class Collection < ActiveRecord::Base
   scope :favorites, ->{ where(type: "Favorite") }
   scope :creations, ->{ where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
+
+  def self.by_popularity(interval = 2.weeks.ago..Time.now)
+    joins(:subscriptions)
+      .where(subscriptions: {created_at: interval})
+      .group("collections.id")
+      .order("COUNT(subscriptions) DESC")
+  end
 
   def self.with_image_inclusion(i)
     ##

@@ -1,4 +1,9 @@
-<% @collections.each do |collection| %>
-  <%= collection.name %>
-  <%= collection.description %>
-<% end %>
+<%- title t(".browse_collections") %>
+
+<%= render partial: "shared/browse_tabs" %>
+
+<div class="collections-list-container">
+  <%= render partial: "collections/show_stub", collection: @collections, as: :c %>
+</div>
+
+<%= will_paginate @collections %>

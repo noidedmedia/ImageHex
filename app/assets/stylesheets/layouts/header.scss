@@ -6,7 +6,7 @@
   color: #fff;
   display: block;
   font-weight: 300;
-  height: 40px;
+  height: $header-height;
   left: 0;
   margin: 0;
   padding: 0;
@@ -18,8 +18,7 @@
 
   @media all and (max-width: $mobile-width) {
     width: 100vw;
-    height: 50px;
-    padding: 15px;
+    height: $header-height-mobile;
     background-color: #333;
     display: flex;
     flex-flow: row nowrap;
@@ -31,52 +30,69 @@
 /* Items aligned to the left side of the header. */
 #header-left {
   display: inline-block;
-  left: 40px;
+  left: 50px;
+  height: $header-height;
   position: absolute;
   text-align: left;
 
   @media all and (max-width: $mobile-width) {
-    top: 16px;
-    left: 20px;
+    position: relative;
+    left: 30px;
+    height: $header-height-mobile;
+  }
+
+  #header-home {
+    padding: 12px 0;
+    margin-right: 15px;
+    width: 160px;
+
+    @media all and (max-width: 1000px) {
+      width: 50px;
+    }
+
+    .imagehex-header-logo {
+      width: 160px;
+      height: $header-height;
+      position: absolute;
+      top: 0;
+      background: asset-url("logo/imagehex-monochrome-white-text.svg") 50% 50% / 110% 110% no-repeat;
+      opacity: 0.75;
+      transition: 200ms opacity;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      @media all and (min-width: $mobile-width) and (max-width: 1000px) {
+        width: 40px;
+        height: $header-height;
+        top: 0;
+        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+      }
+
+      @media all and (max-width: $mobile-width) {
+        width: 50px;
+        height: $header-height-mobile;
+        top: 0;
+        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+      }
+    }
   }
 
   #header-browse {
-    position: absolute;
-    left: 390px;
-    top: 0;
+    position: relative;
 
-    @media all and (max-width: $mobile-width) {
+    // Prevent elements hitting each other.
+    @media all and (max-width: 1000px) {
       display: none;
     }
-  }
-}
-
-.imagehex-header-logo {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  top: 0;
-  background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
-  opacity: 0.75;
-  transition: 200ms opacity;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  @media all and (max-width: $mobile-width) {
-    width: 50px;
-    height: 50px;
-    top: -10px;
-    left: 0;
-    background: asset-url("logo/imagehex-monochrome-white.svg") 0% 0% / 75% 75% no-repeat;
   }
 }
 
 /* Items aligned to the right side of the header. */
 #header-right {
   display: inline-block;
-  position: absolute;
+  position: relative;
   right: 40px;
   text-align: right;
   height: 100%;
@@ -154,9 +170,74 @@
   }
 }
 
+#header-create.header-item {
+  display: inline-block;
+  cursor: pointer;
+  height: 100%;
+  margin-right: 4px;
+  width: 38px;
+  height: $header-height;
+  padding: 12px 12px;
+
+  i::before {
+    // Firefox hack to get the "+" icon to center within the header-create div.
+    -moz-transform: translateX(-13px);
+  }
+
+  &.active {
+    background-color: #fff;
+    
+    i, i::before {
+      color: #333;
+    }
+  }
+
+  @media all and (max-width: $mobile-width) {
+    display: none;
+  }
+}
+
+#header-create-button {
+  display: block;
+}
+
+.create-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.05);
+  text-align: left;
+
+  li {
+    display: block;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #333;
+
+    // Ensure padding on the right side of the list items.
+    padding: 10px 50px 10px 10px;
+
+    &:hover {
+      color: #333;
+      background-color: darken(#fff, 5%);
+    }
+  }
+
+  &.inactive {
+    display: none;
+  }
+}
+
 #mobile-menu-icon {
   display: none;
-  height: 50px;
+  height: $header-height-mobile;
   position: absolute;
   right: 10px;
   top: 0;

@@ -59,6 +59,8 @@
     font-size: 1.3rem;
     color: #333;
     padding: 2px 0 4px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     &.image-description-none {
       color: #777;
@@ -68,6 +70,7 @@
 
 .uploader-information {
   width: 100%;
+  overflow: hidden;
 }
 
 .uploader-avatar {
@@ -180,6 +183,20 @@ a:target + .comment {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.comment-reply {
+  right: 0;
+  top: 9px;
+  position: absolute;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.75;
+  transition: opacity 200ms;
+
+  &:hover {
+    opacity: 1;
   }
 }
 

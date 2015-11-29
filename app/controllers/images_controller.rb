@@ -32,6 +32,7 @@ class ImagesController < ApplicationController
   # Image must be in params[:id]. User must be logged in.
   # @image:: Image being created.
   def created
+    authorize @image
     current_user.created! @image
     redirect_to(@image)
   end
@@ -150,9 +151,8 @@ class ImagesController < ApplicationController
   # Sets the following varaibles:
   # @images:: the paginated list of images.
   def index
-    @images = Image
+    @images = get_index_collection
       .paginate(page: page, per_page: per_page)
-      .order('created_at DESC')
       .for_content(content_pref)
   end
 
@@ -167,6 +167,15 @@ class ImagesController < ApplicationController
   end
   
   protected
+  # Returns the right image collection, pased on params[:order]
+  def get_index_collection
+    case params[:order]
+    when 'popularity'
+      Image.by_popularity
+    else
+      Image.order('created_at DESC')
+    end
+  end
   # Load the image with params[:id] into @image.
   # should be refactored out.
   def load_image

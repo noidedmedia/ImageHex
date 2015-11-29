@@ -1,9 +1,14 @@
 ---
 en:
   shared:
+    browse_tabs:
+      collections: Collections
+      creators: Creators
+      images: Images
     comment:
       ago: ago
       commented: commented
+      reply: Reply
     comments:
       no_comments_yet: No comments yet.
     report_stub:

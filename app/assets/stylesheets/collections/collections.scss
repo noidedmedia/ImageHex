@@ -119,12 +119,20 @@
     Collection preview
    ============================================== */
 
+.collections-list-container {
+  display: flex;
+  padding: 15px;
+  flex-flow: row wrap;
+  align-items: inherit;
+  justify-content: flex-start;
+}
+
 /**
  * Collected preview styles
  *
  * Collection preview, e.g. on user pages.
  */
-
+ 
 .collection-preview {
   background-color: #fff;
   border-radius: 3px;

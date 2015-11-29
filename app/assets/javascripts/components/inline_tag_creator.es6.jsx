@@ -9,7 +9,6 @@ class InlineTagCreator extends React.Component {
   render() {
     if (this.state.performingCreate) {
       return <div className="inline-tag-creation">
-        <h1>Creating a new Tag</h1>
         <p>
           <span>Name:</span>
           <input type="text"
@@ -28,8 +27,8 @@ class InlineTagCreator extends React.Component {
         </button>
       </div>;
     } else {
-      return <div>
-        Could not find any tags with that name.
+      return <div className="tag-creation inactive">
+        Could not find any tags with that name. 
         <span onClick={this.startCreation.bind(this)}>
           Create one?
         </span>

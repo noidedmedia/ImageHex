@@ -2,6 +2,15 @@
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
 
+  def frontpage_reason_path img
+    return "" unless id = img.try(:reason_id)
+    case img.try(:reason_type)
+    when "user"
+      "/users/" + id.to_s
+    when "collection"
+      "/collections/" + id.to_s
+    end
+  end
   def user_path user
     "/@" + user.slug.to_s
   end

@@ -4,17 +4,16 @@ en:
     collection_select:
       collections: Collections
       youre_not_the_curator_of_any_collections_yet: You're not the curator of any collections yet.
-    image_page_information:
-      add_a_comment: Add a comment...
-      cancel: Cancel
-      new_tag_group: New tag group
-      submit: Submit
-      uploaded_by: Uploaded by
-      source: "Source:"
     image_page_creator_info:
       creators:
         one: Creator
         other: Creators
+    image_page_information:
+      add_a_comment: Add a comment...
+      cancel: Cancel
+      source: 'Source:'
+      submit: Submit
+      uploaded_by: Uploaded by
     image_page_sidebar:
       add_to_collection: Add to Collection
       agree_and_download: Agree and Download
@@ -57,21 +56,18 @@ en:
       content_rating: Content rating
       description_optional: Description (optional)
       drop_images_here_to_upload: Drop images here to upload
+      i_made_this: I made this
       nsfw_gore: NSFW Gore
       nsfw_language: NSFW Language
       nsfw_nudity: NSFW Nudity
       nsfw_sexuality: NSFW Sexuality
-      source_recommended: Source (recommended)
-      i_made_this: I made this
       or: or
+      source_recommended: Source (recommended)
       submit: Submit
       upload_image: Upload an image
       upload_page_title: Upload
     search:
-      add_a_tag_group: Add a tag group
-      search: Search
       search_page_title: Search
-      tag_group: Tag group
       your_search_didnt_bring_up_any_results: Your search didn't bring up any results.
     show:
       image_page_title: 'Image #%{id}'

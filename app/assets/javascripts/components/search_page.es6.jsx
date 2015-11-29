@@ -22,7 +22,7 @@ class SearchPage extends React.Component {
   render() {
     console.log("Focused group:",this.state.focusedGroup);
     let tags = this.state.tagGroups.map((group, index) => {
-      console.log("Is group #",index," the foused group? ",index == this.state.focusedGroup);
+      console.log("Is group #",index," the focused group? ",index == this.state.focusedGroup);
       return <TagGroupEditor 
         key={index}
         group={group} 
@@ -38,8 +38,16 @@ class SearchPage extends React.Component {
       <li className="search-tag-groups">
         {tags}
       </li>
-      <button onClick={this.addGroup.bind(this)}>Add a Group</button>
-      <button onClick={this.onSubmit.bind(this)}>Submit</button>
+      <div className="search-controls">
+        <button onClick={this.addGroup.bind(this)}
+          className="add-group-button">
+          Add a Group
+        </button>
+        <button onClick={this.onSubmit.bind(this)}
+          className="submit-button">
+          Submit
+        </button>
+      </div>
     </div>
   }
 

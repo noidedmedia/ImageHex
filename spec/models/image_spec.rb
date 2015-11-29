@@ -3,7 +3,17 @@ require 'spec_helper'
 # To upload pictures
 include ActionDispatch::TestProcess
 describe Image do
-
+  describe "builtin ordering" do
+    describe ".by_popularity" do
+      it "measures based on how many collections" do
+        i1 = FactoryGirl.create(:image)
+        i2 = FactoryGirl.create(:image)
+        u = FactoryGirl.create(:user)
+        u.favorites.images << i2
+        expect(Image.by_popularity).to eq([i2, i1])
+      end
+    end
+  end
   describe "tag filtering" do
     let(:unwanted_tag_a){FactoryGirl.create(:tag)}
     let(:unwanted_tag_b){FactoryGirl.create(:tag)}
@@ -29,7 +39,8 @@ describe Image do
     i.created_by_uploader = true
     expect{
       i.save
-    }.to change{u.creations.images.count}.by(1)
+    }.to change{u.creations.count}.by(1)
+    expect(u.creations).to include(i)
   end
 
   it "does not add to users creations if not set" do
@@ -38,7 +49,7 @@ describe Image do
     i.created_by_uploader = false
     expect{
       i.save
-    }.to_not change{u.creations.images}
+    }.to_not change{u.creations.count}
   end
 
   describe "content validation" do

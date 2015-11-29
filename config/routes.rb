@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get "/@:id" => 'users#show'
   patch "/@:id" => "users#update"
   delete "/@:id" => "users#destroy"
+  post "/@:id/subscribe" => "users#subscribe"
+  delete "/@:id/unsubscribe" => "users#unsubscribe"
   ############
   # CONCERNS #
   ############
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   ##################
   # RESTFUL ROUTES #
   ##################
+  
   
   resources :tags do
     collection do
@@ -45,19 +48,16 @@ Rails.application.routes.draw do
 
   devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:show, :edit, :update, :index] do
     member do
       get 'favorites'
       get 'creations'
+      post 'subscribe'
+      delete 'unsubscribe'
     end
-
-    ##
-    # This is done so it's easier to see a users collections.
-    # Meanwhile, creation and modification of collections is its own thing.
-    resources :collections, only: [:index]
   end
 
-  resources :collections, except: [:index] do
+  resources :collections do
     get :mine, on: :collection
     ##
     # OK we get non-REST here
@@ -101,6 +101,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  #################
+  # BROWSE ROUTES #
+  #################
 
   ########################
   # SINGLE ACTION ROUTES #

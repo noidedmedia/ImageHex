@@ -12,7 +12,7 @@ function shareButtons() {
   document.querySelector("#share-tumblr > a").setAttribute("href", tumblr + currenturl);
   document.querySelector("#share-pinterest > a").setAttribute("href", pinterest + currenturl);
 
-  var shareArray = ["#share-facebook > a", "#share-twitter > a", "#share-google-plus > a", "#share-tumblr > a", "#share-pinterest > a" ];
+  var shareArray = ["#share-facebook > a", "#share-twitter > a", "#share-google-plus > a", "#share-tumblr > a", "#share-pinterest > a"];
   
   for (var i = 0; i < shareArray.length; i++) {
     document.querySelector(shareArray[i]).addEventListener("click", function(e) {

@@ -7,6 +7,8 @@ en:
       create_collection: Create collection
       description: Description
       title: Title
+    index:
+      browse_collections: Browse collections
     new:
       new_collection: New collection
     show:

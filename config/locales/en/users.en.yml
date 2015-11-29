@@ -11,6 +11,8 @@ en:
       save_changes: Save changes
       show_content_labeled_as: 'Show content labeled as:'
       user_bio: User bio
+    index:
+      browse_creators: Browse creators
     show:
       collections: Collections (%{count})
       creations: Creations (%{count})

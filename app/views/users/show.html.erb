@@ -69,11 +69,9 @@
       <%= render 'images/show_stub', images: @favorites %>
     </div>
 
-    <div id="user-collections-container" class="user-content tab-content tc-tab-4">
+    <div class="user-content tab-content tc-tab-4 collections-list-container">
       <% if !@collections.empty? %>
-        <% @collections.each do |c| %>
-          <%= render "collection_stub", c: c %>
-        <% end %>
+        <%= render partial: "collections/show_stub", collection: @collections, as: :c %>
       <% elsif @user == current_user %>
         <p class="imagehex-empty-note">
           <%= t(".you_dont_have_any_collections_yet") %>
