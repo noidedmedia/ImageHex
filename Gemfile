@@ -8,6 +8,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 
 ##
+# API Documentation
+gem 'apipony'
+##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
 # Use Postgres
 gem 'pg'
