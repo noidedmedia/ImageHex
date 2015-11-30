@@ -30,6 +30,7 @@ Apipony::Documentation.define do
     per_page: 20,
     total_pages: 100
   }
+
   section 'Collections' do
     endpoint 'get', '/collections' do |e|
       e.description = %{
@@ -59,13 +60,14 @@ Apipony::Documentation.define do
           description: "Cool stuff made by cool guys.",
           images: images_collection,
           curators: [
-            {name: "Anthony", id: 1, slug: "anthony"},
-            {name: "Connor", id: 2, slug: "connor"}
+            { name: "Anthony", id: 1, slug: "anthony" },
+            { name: "Connor", id: 2, slug: "connor" }
           ]
         }
       end
     end
   end
+
   section 'Images' do
     endpoint 'get', '/images' do |e|
       e.description = %{
@@ -94,8 +96,8 @@ Apipony::Documentation.define do
           {
             tag_groups: {
               tags: [
-                {id: 1},
-                {id: 2}
+                { id: 1 },
+                { id: 2 }
               ]
             }
           }
