@@ -37,7 +37,7 @@
             <% section.endpoints.each do |endpoint| %>
               <div class="endpoint" id="<%= endpoint.id %>">
                 <h3>
-                  <span class="method <%= endpoint.method %>"><%= endpoint.method %></span> <%= link_to endpoint.url, endpoint.url %>
+                  <span class="method <%= endpoint.method %>"><%= endpoint.method %></span><%= endpoint.url %>
                 </h3>
 
                 <% if endpoint.description %>
