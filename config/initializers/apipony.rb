@@ -36,7 +36,11 @@ Apipony::Documentation.define do
         Get a list of collections.
       }
       request_with do
-        param :order, example: "popularity", required: false, type: :string
+        param :order, 
+          example: "popularity", 
+          required: false, 
+          type: :string,
+          description: "What order to sort the images in."
       end
       response_with 200 do
         set :body, [

@@ -9,8 +9,7 @@ gem 'rails', '4.2.5'
 
 ##
 # API Documentation
-gem 'apipony', :git => 'https://github.com/noidedmedia/apipony.git', :branch => 'styles-changes'
-
+gem 'apipony', :git => 'https://github.com/noidedmedia/apipony.git'
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
 # Use Postgres
