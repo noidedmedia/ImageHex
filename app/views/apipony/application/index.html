@@ -32,7 +32,7 @@
 
       <div class="col-9">
         <% @documentation.sections.each do |section| %>
-          <section>
+          <div class="section">
             <h2><%= section.title %></h2>
             <% section.endpoints.each do |endpoint| %>
               <div class="endpoint" id="<%= endpoint.id %>">
@@ -81,9 +81,7 @@
                       <% if endpoint.request.headers %>
                         <div class="panel">
                           <div class="title">Headers</div>
-                          <pre class="code">
-                            <%= JSON.pretty_generate(endpoint.request.headers) %>
-                          </pre>
+                          <pre class="code"><%= JSON.pretty_generate(endpoint.request.headers) %></pre>
                         </div>
                       <% end %>
                     </div>
@@ -96,18 +94,14 @@
                       <% if endpoint.response.body %>
                         <div class="panel">
                           <div class="title">Body</div>
-                          <pre class="code">
-                            <%= JSON.pretty_generate(endpoint.response.body) %>
-                          </pre>
+                          <pre class="code"><%= JSON.pretty_generate(endpoint.response.body) %></pre>
                         </div>
                       <% end %>
 
                       <% if endpoint.response.headers %>
                         <div class="panel">
                           <div class="title">Body</div>
-                          <pre class="code">
-                            <%= JSON.pretty_generate(endpoint.response.body) %>
-                          </pre>
+                          <pre class="code"><%= JSON.pretty_generate(endpoint.response.body) %></pre>
                         </div>
                       <% end %>
                     </div>
@@ -115,7 +109,7 @@
                 <% end %>
               </div>
             <% end %>
-          </section>
+          </div>
         <% end %>
       </div>
     </div>
