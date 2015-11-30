@@ -6,7 +6,7 @@ class TagComponent extends React.Component {
     };
   }
   render() {
-    if(this.state.moreInfo){
+    if (this.state.moreInfo) {
       return <li className="image-tag-with-info">
         <div className="tag-name">
           {this.state.tag.display_name}

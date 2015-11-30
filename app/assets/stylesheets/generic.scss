@@ -28,7 +28,7 @@
 
     a {
       display: inline-block;
-      padding: 0 25px; /* 1 */
+      padding: 0 25px;
     }
   }
 
@@ -47,7 +47,6 @@
     font-weight: 500;
     color: #17cd94;
 
-    /* 2 */
     &:after {
       content: '';
       background-color: #17cd94;

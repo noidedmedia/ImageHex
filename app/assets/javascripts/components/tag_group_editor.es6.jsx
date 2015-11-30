@@ -10,6 +10,7 @@ class TagGroupEditor extends React.Component {
 
   render() {
     console.log("State is",this.state);
+    console.log(this.props.tags);
     var tags = this.props.tags.map((tag) => {
       return <TagBox tag={tag} 
         onRemove={this.props.onTagRemove} 
@@ -19,14 +20,17 @@ class TagGroupEditor extends React.Component {
     var suggestions;
     if (this.state.hasSuggestions) {
       suggestions = this.state.suggestions.map((sug, index) => {
+        
         return <li>
-          <TagSuggestion tag={sug}
+          <TagSuggestion
+            key={"tag-" + sug.id}
+            tag={sug}
             isActive={index == this.state.activeSuggestion} 
             onAdd={this.onTagAdd.bind(this)} />
         </li>;
       });
     }
-    else if(!this.state.hasBlankInput && this.props.allowTagCreation){
+    else if (!this.state.hasBlankInput && this.props.allowTagCreation) {
       suggestions = <InlineTagCreator 
         hideSubmit={this.props.hideSubmit}
         onAdd={this.onTagAdd.bind(this)}
@@ -150,7 +154,7 @@ class TagGroupEditor extends React.Component {
     });
   }
 
-  // Probbly should be called "addActiveSuggestion"
+  // Probably should be called "addActiveSuggestion"
   addActive() {
     if (this.state.activeSuggestion !== undefined) {
       var tag = this.state.suggestions[this.state.activeSuggestion];

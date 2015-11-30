@@ -45,7 +45,7 @@ class SearchPage extends React.Component {
         </button>
         <button onClick={this.onSubmit.bind(this)}
           className="submit-button">
-          Submit
+          Search
         </button>
       </div>
     </div>

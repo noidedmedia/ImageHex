@@ -14,7 +14,7 @@ class HeaderSearch extends React.Component {
         onTagAdd={this.addTag.bind(this)}
         autofocus={true}
         onSubmit={this.submit.bind(this)}
-      />x
+      />
     </div>;
   }
   addTag(tag) {
