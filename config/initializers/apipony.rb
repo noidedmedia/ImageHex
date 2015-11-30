@@ -1,9 +1,11 @@
 require 'json'
+
 Apipony::Documentation.define do
   config do |c|
-    c.title = 'API Documentation'
+    c.title = 'ImageHex API Documentation'
     c.base_url = '/'
   end
+
   images_collection =  {
     images: [
       {
@@ -75,12 +77,14 @@ Apipony::Documentation.define do
         set :body, images_collection
       end
     end
+
     endpoint 'get', '/search' do |e|
       e.description = %{
         Find images by searching for things.
         The JSON in the query parameter is extremely ugly, and will
         most likely be replaced as soon as possible. 
       }
+      
       request_with do
         query = JSON.dump(
           {
@@ -94,14 +98,15 @@ Apipony::Documentation.define do
         )
         param :query, type: :json, example: query, required: false
       end
+
       response_with 200 do
         set :body, images_collection
       end
     end
+
     endpoint "get", "/images/:id" do |e|
-      e.description = %{
-        Get information about a given image.
-      }
+      e.description = "Get information about a given image."
+
       response_with 200 do
         set :body, {
           id: 1,
