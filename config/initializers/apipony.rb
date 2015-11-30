@@ -28,7 +28,38 @@ Apipony::Documentation.define do
     per_page: 20,
     total_pages: 100
   }
-
+  section 'Collections' do
+    endpoint 'get', '/collections' do |e|
+      e.description = %{
+        Get a list of collections.
+      }
+      request_with do
+        param :order, example: "popularity", required: false, type: :string
+      end
+      response_with 200 do
+        set :body, [
+          {id: 4, name: "Cool Images", type: "Subjective"},
+          {id: 2, name: "Images of Dragons", type: "Subjective"}
+        ]
+      end
+    end
+    endpoint 'get', '/collections/:id' do |e|
+      e.description = "Info about a collection"
+      response_with 200 do
+        set :body, {
+          name: "Cool Images",
+          id: 4,
+          type: "Subjective",
+          description: "Cool stuff made by cool guys.",
+          images: images_collection,
+          curators: [
+            {name: "Anthony", id: 1, slug: "anthony"},
+            {name: "Connor", id: 2, slug: "connor"}
+          ]
+        }
+      end
+    end
+  end
   section 'Images' do
     endpoint 'get', '/images' do |e|
       e.description = %{
