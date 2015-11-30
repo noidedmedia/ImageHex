@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/noidedmedia/apipony.git
+  revision: fb4d3e34dd92ad9a0deb17eca2fafe9f50364acf
+  specs:
+    apipony (0.0.4)
+      haml-rails (~> 0.9.0)
+      jquery-rails (~> 4.0.4)
+      rails (~> 4.2.4)
+      sass (~> 3.4.19)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,11 +53,6 @@ GEM
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
-    apipony (0.0.4)
-      haml-rails (~> 0.9.0)
-      jquery-rails (~> 4.0.4)
-      rails (~> 4.2.4)
-      sass (~> 3.4.19)
     arel (6.0.3)
     ast (2.1.0)
     aws-sdk (1.66.0)
@@ -424,7 +429,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  apipony
+  apipony!
   aws-sdk (< 2.0)
   better_errors
   binding_of_caller

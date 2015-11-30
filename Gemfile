@@ -9,7 +9,8 @@ gem 'rails', '4.2.5'
 
 ##
 # API Documentation
-gem 'apipony'
+gem 'apipony', :git => 'https://github.com/noidedmedia/apipony.git'
+
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
 # Use Postgres
@@ -18,6 +19,7 @@ gem 'pg'
 ##
 # Faster JSON rendering
 gem 'yajl-ruby'
+
 ##
 # https://github.com/aws/aws-sdk-ruby
 # Amazon Web Services SDK
