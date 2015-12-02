@@ -7,16 +7,19 @@ Apipony::Documentation.define do
   end
 
   subtype :collection_stub do
-    attribute :name, type: :string,
+    attribute :name,
+      type: :string,
       example: "Test's Favorites"
-    attribute :id, type: :integer,
+    attribute :id,
+      type: :integer,
       example: 20
     attribute :type, type: :enum do
       choice :Subjective
       choice :Favorite
     end
-    attribute :url, type: :url,
-      example: "/collections.4.json"
+    attribute :url,
+      type: :url,
+      example: "/collections/4.json"
   end
 
   subtype :user_stub do
