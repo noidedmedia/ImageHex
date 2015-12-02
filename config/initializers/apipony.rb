@@ -34,7 +34,7 @@ Apipony::Documentation.define do
       user page at /@:slug.}
     attribute :avatar_path,
       type: :url,
-      description: "A URL for the user's avatar",
+      description: "The user's avatar.",
       example: "https://i.imagehex.com/default-avatar.svg"
   end
 
@@ -78,7 +78,7 @@ Apipony::Documentation.define do
     attribute :url,
       type: :url,
       description: "This image's page.",
-      example: "https://www.imagehex.com/images/3"
+      example: "https://www.imagehex.com/images/1"
     attribute :original_size,
       type: :url,
       description: "The original, full-size version of this image.",
