@@ -33,7 +33,7 @@ Apipony::Documentation.define do
       description: %{The slug for this users's name. You can then access their
       user page at /@:slug.}
     attribute :avatar_path,
-      type: :string,
+      type: :url,
       description: "A URL for the user's avatar",
       example: "https://i.imagehex.com/default-avatar.svg"
   end
@@ -76,12 +76,13 @@ Apipony::Documentation.define do
     end
 
     attribute :url,
-      type: :string,
-      description: "The URL for this image",
+      type: :url,
+      description: "This image's page.",
       example: "https://www.imagehex.com/images/3"
     attribute :original_size,
       type: :url,
-      example: "https://i.imaghex.com/1_original.png"
+      description: "The original, full-size version of this image.",
+      example: "https://i.imagehex.com/1_original.png"
     attribute :nsfw_gore,
       type: :boolean,
       example: true
