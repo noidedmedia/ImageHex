@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/noidedmedia/apipony.git
-  revision: 82dec1614040ec571a3179ce7568c297f4ec3972
+  revision: 8a89ba620e2bbb04c93f55f111ee54e4ba3cf750
   specs:
     apipony (0.0.7)
       jquery-rails (~> 4.0.4)
@@ -377,7 +377,7 @@ GEM
     tilt (2.0.1)
     timers (4.0.4)
       hitimes
-    tins (1.7.0)
+    tins (1.8.0)
     train_track (0.3.0)
       activesupport (>= 4.0.0)
     turbolinks (2.5.3)
