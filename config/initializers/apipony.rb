@@ -5,6 +5,19 @@ Apipony::Documentation.define do
     c.title = 'ImageHex API Documentation'
     c.base_url = '/'
   end
+  subtype :collection_stub do
+    attribute :name, type: :string,
+      example: "Test's Favorites"
+    attribute :id, type: :integer,
+      example: 20
+    attribute :type, type: :enum do
+      choice :Subjective
+      choice :Favorite
+    end
+    attribute :url, type: :url,
+      example: "/collections.4.json"
+  end
+
   subtype :user_stub do
     attribute :name, type: :string,
       example: "tony",
@@ -18,7 +31,7 @@ Apipony::Documentation.define do
       description: "A URL for the user's avatar",
       example: "http://i.imagehex.com/default-avatar.svg"
   end
-  
+
   subtype :image_stub do
     attribute :id, type: :integer, example: 1
     attribute :description, type: :string, example: "An image"
@@ -97,7 +110,7 @@ Apipony::Documentation.define do
         attribute :nsfw_sexuality, type: :boolean, example: false
         attribute :content_type, type: :string, example: "image/jpeg",
           description: "The MIME type of the image"
-        attribute :file_url, type: :string,
+        attribute :file_url, type: :url,
           example: "https://i.imagehex.com/1_original.png"
         attribute :creators, type: :user_stub, array: true,
           description: "A list of users who created this image"
@@ -109,7 +122,7 @@ Apipony::Documentation.define do
               example: 10
             attribute :display_name, type: :string,
               example: "Dragon"
-            attribute :url, type: :string,
+            attribute :url, type: :url,
               example: "/tags/1"
           end
           attribute :id, type: :integer, example: 1
@@ -188,7 +201,27 @@ Apipony::Documentation.define do
           choice :Favorite,
             description: "Images a user has favorited"
         end
-        attribute :images, type: :image_list
+        attribute :images, type: :image_collection
+      end
+    end
+  end
+  section "Users" do
+    endpoint "get", "/users/:id" do |e|
+      response_with 200 do
+        attribute :creations, type: :image_collection
+        attribute :name, type: :string,
+          example: "Tony"
+        attribute :id, type: :integer,
+          example: 10
+        attribute :created_at, type: :date,
+          example: "2015-11-21T19:00:38.391Z"
+        attribute :uploads, type: :image_collection
+        attribute :creations, type: :image_collection
+        attribute :favorites, type: :collection_stub
+        attribute :collections, array: true, type: :collection_stub,
+          description: "A list of collections this user curates"
+        attribute :bio, type: :string,
+          description: "I do art"
       end
     end
   end
