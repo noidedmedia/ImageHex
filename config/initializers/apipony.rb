@@ -5,149 +5,190 @@ Apipony::Documentation.define do
     c.title = 'ImageHex API Documentation'
     c.base_url = '/'
   end
-
-  images_collection =  {
-    images: [
-      {
-        id: 1,
-        description: "An example API image",
-        user_id: 10,
-        created_at: "2015-11-24T06:08:57.212Z",
-        updated_at: "2015-11-24T06:08:57.212Z",
-        license: "public_domain",
-        medium: "photograph",
-        url: "http://www.imagehex.com/images/1/",
-        medium_thumbnail: "http://i.imagehex.com/1_medium.png",
-        large_thumbnail: "http://i.imagehex.com/1_large.png",
-        original_size: "http://i.imagehex.com/1_original.png",
-        nsfw_gore: false,
-        nsfw_nudity: false,
-        nsfw_language: true,
-        nsfw_sexuality: false
-      }
-    ],
-    current_page: 1,
-    per_page: 20,
-    total_pages: 100
-  }
-
-  section 'Collections' do
-    endpoint 'get', '/collections' do |e|
-      e.description = %{
-        Get a list of collections.
-      }
-      request_with do
-        param :order, 
-          example: "popularity", 
-          required: false, 
-          type: :string,
-          description: "What order to sort the images in."
-      end
-      response_with 200 do
-        set :body, [
-          {id: 4, name: "Cool Images", type: "Subjective"},
-          {id: 2, name: "Images of Dragons", type: "Subjective"}
-        ]
-      end
+  subtype :user_stub do
+    attribute :name, type: :string,
+      example: "tony",
+      description: "This user's name"
+    attribute :id, type: :integer, example: 10
+    attribute :slug, type: :string,
+      example: "test",
+      description: %{The slug for this users's name. You can then access their
+      user page at /@:slug}
+    attribute :avatar_path, type: :string,
+      description: "A URL for the user's avatar",
+      example: "http://i.imagehex.com/default-avatar.svg"
+  end
+  
+  subtype :image_stub do
+    attribute :id, type: :integer, example: 1
+    attribute :description, type: :string, example: "An image"
+    attribute :user_id, type: :integer,
+      description: "The uploader ID",
+      example: 10
+    attribute :created_at, type: :date,
+      example: "2015-11-21T19:01:27.751Z"
+    attribute :updated_at, type: :date,
+      example: "2015-11-21T19:01:27.751Z"
+    attribute :license, type: :enum do
+      choice :public_domain
+      choice :all_rights_reserved
+      choice :cc_by
+      choice :cc_by_sa
+      choice :cc_by_nd
+      choice :cc_by_nc
+      choice :cc_by_nd_sa
+      choice :cc_by_nc_nd
     end
-    endpoint 'get', '/collections/:id' do |e|
-      e.description = "Info about a collection"
+    attribute :medium, type: :enum do
+      choice :photograph
+      choice :pencil
+      choice :paint
+      choice :digital_paint
+      choice :mixed_media
+      choice :three_dimensional_render
+    end
+    attribute :url, type: :string,
+      description: "The URL for this image",
+      example: "https://www.imagehex.com/images/3"
+    attribute :original_size, type: :url,
+      example: "https://i.imaghex.com/1_original.png"
+    attribute :nsfw_gore, type: :boolean, example: true
+    attribute :nsfw_language, type: :boolean, example: true
+    attribute :nsfw_nudity, type: :boolean, example: true
+    attribute :nsfw_sexuality, type: :boolean, example: true
+  end
+  subtype :image_collection do
+    attribute :current_page, type: :integer,
+      example: 1
+    attribute :per_page, type: :integer,
+      example: 20
+    attribute :total_pages, type: :integer,
+      example: 1
+    attribute :images, type: :image_stub, array: true
+  end
+  section "Images" do
+    endpoint "get", "/images" do
+      request_with do
+        param :page
+        param :per_page
+      end
       response_with 200 do
-        set :body, {
-          name: "Cool Images",
-          id: 4,
-          type: "Subjective",
-          description: "Cool stuff made by cool guys.",
-          images: images_collection,
-          curators: [
-            { name: "Anthony", id: 1, slug: "anthony" },
-            { name: "Connor", id: 2, slug: "connor" }
-          ]
-        }
+        attribute :images, array: true, type: :image_stub
+        attribute :current_page, type: :integer, example: 1
+        attribute :per_page, type: :integer, example: 20
+        attribute :total_pages, type: :integer, example: 1
+      end 
+    end
+    endpoint "get", "/images/:id" do
+      request_with do
+        param :id, type: :integer
+      end
+      response_with 200 do
+        attribute :id, type: :integer, example: 1
+        attribute :user_id, type: :integer, example: 1,
+          description: "The uploader's id"
+        attribute :created_at, type: :date, example: "2015-11-21T19:01:27.751Z"
+        attribute :updated_at, type: :date, example: "2015-11-21T19:01:27.751Z"
+        attribute :description, type: :string,
+          example: "An image"
+        attribute :nsfw_gore, type: :boolean, example: false
+        attribute :nsfw_nudity, type: :boolean, example: false
+        attribute :nsfw_language, type: :boolean, example: false
+        attribute :nsfw_sexuality, type: :boolean, example: false
+        attribute :content_type, type: :string, example: "image/jpeg",
+          description: "The MIME type of the image"
+        attribute :file_url, type: :string,
+          example: "https://i.imagehex.com/1_original.png"
+        attribute :creators, type: :user_stub, array: true,
+          description: "A list of users who created this image"
+        attribute :tag_groups, array: true do 
+          attribute :tags, array: true do
+            attribute :name, type: :string,
+              example: :dragon
+            attribute :id, type: :integer,
+              example: 10
+            attribute :display_name, type: :string,
+              example: "Dragon"
+            attribute :url, type: :string,
+              example: "/tags/1"
+          end
+          attribute :id, type: :integer, example: 1
+        end
       end
     end
   end
-
-  section 'Images' do
-    endpoint 'get', '/images' do |e|
+  section "Tags" do
+    endpoint "get", "/tags/suggest" do |e|
       e.description = %{
-        Obtain a paginated list of all images.
+        Get a list of tags given a fragment of a name.
       }
-
       request_with do
-        param :page, example: "2", required: false, type: :number
-        param :per_page, example: "20", required: false, type: :number
+        param :name, description: "The name fragment to suggest",
+          required: true
       end
 
-      response_with 200 do
-        set :body, images_collection
+      response_with 200, array: true do
+        attribute :id, type: :integer,
+          example: 10
+        attribute :name, type: :string,
+          example: :dragon
+        attribute :display_name, type: :string,
+          example: "Dragon"
+        attribute :importance, type: :integer,
+          example: 4,
+          description: "How important this tag is when sorting"
       end
     end
-
-    endpoint 'get', '/search' do |e|
-      e.description = %{
-        Find images by searching for things.
-        The JSON in the query parameter is extremely ugly, and will
-        most likely be replaced as soon as possible. 
-      }
-      
+    endpoint "get", "/tags/:id" do |e|
       request_with do
-        query = JSON.dump(
-          {
-            tag_groups: {
-              tags: [
-                { id: 1 },
-                { id: 2 }
-              ]
-            }
-          }
-        )
-        param :query, type: :json, example: query, required: false
+        param :id, type: :integer,
+          required: true
       end
-
       response_with 200 do
-        set :body, images_collection
+        attribute :name, type: :string,
+          example: :dragon
+        attribute :description, type: :string,
+          example: "A fire-breathing lizard with wings."
+        attribute :display_name, type: :string,
+          example: "Dragon"
+        attribute :images, type: :image_collection
       end
     end
-
-    endpoint "get", "/images/:id" do |e|
-      e.description = "Get information about a given image."
+  end
+  section "Collections" do 
+    endpoint "get", "/collections" do |e|
+      response_with 200 do
+        attribute :id, type: :integer,
+          example: 1
+        attribute :name, type: :string,
+          example: "Undertale Images"
+        attribute :type, type: :enum do
+          choice :Favorite,
+            description: "A collection of a user's favorite images"
+          choice :Subjective,
+            description: "A collection based on some subjective quantity."
+        end
+      end
+    end
+    endpoint "get", "/collections/:id" do |e|
+      request_with do
+        param :id, type: :integer, required: true
+      end
 
       response_with 200 do
-        set :body, {
-          id: 1,
-          user_id: 2,
-          created_at: "2015-11-21T19:01:27.751Z",
-          updated_at: "2015-11-21T19:01:27.751Z",
-          description: "An example API test image",
-          license: "public_domain",
-          medium: "photograph",
-          nsfw_gore: false,
-          nsfw_nudity: false,
-          nsfw_sexuality: false,
-          nsfw_language: false,
-          content_type: "image/png",
-          file_url: "https://i.imagehex.com/1_original.jpg",
-          creators: [
-            { 
-              id: 1, 
-              name: "Anthony", 
-              slug: "anthony",
-              avatar_path: "default-avatar.svg"
-            }
-          ],
-          tag_groups: [
-            id: 1,
-            tags: [
-              {
-                name: "anthony super",
-                id: 10,
-                display_name: "Anthony Super",
-                url: "/tags/10"
-              }
-            ]
-          ]
-        }
+        attribute :name, type: :string,
+          example: "Red Letter Media Gifs"
+        attribute :id, type: :integer,
+          example: 4
+        attribute :description, type: :string,
+          example: "These Hack Frauds make for great reactions!"
+        attribute :type, type: :enum do
+          choice :Subjective,
+            description: "Images based on some subjective quality"
+          choice :Favorite,
+            description: "Images a user has favorited"
+        end
+        attribute :images, type: :image_list
       end
     end
   end

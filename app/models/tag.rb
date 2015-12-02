@@ -31,7 +31,7 @@ class Tag < ActiveRecord::Base
   #   Tag.suggest("ha") => ["hack", "halloween"]
   def self.suggest(n)
     query = %q{
-    SELECT tags.* FROM tags
+    SELECT tags.name, tags.id, tags.display_name, tags.importance  FROM tags
     WHERE tags.name LIKE ?
     ORDER BY importance ASC
     LIMIT 10

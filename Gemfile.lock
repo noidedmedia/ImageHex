@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/noidedmedia/apipony.git
-  revision: 6f173dc2e148fe9b6a1697871ceffe58a726f33b
+  revision: 82dec1614040ec571a3179ce7568c297f4ec3972
   specs:
-    apipony (0.0.5)
+    apipony (0.0.7)
       jquery-rails (~> 4.0.4)
       rails (~> 4.2.4)
       sass (~> 3.4.19)
