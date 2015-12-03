@@ -9,20 +9,27 @@ Apipony::Documentation.define do
     attribute :name, type: :string,
       example: "Test's Favorites"
     attribute :id, type: :integer,
-      example: 20
+      example: 20,
+      description: "The ID of this collection"
     attribute :type, type: :enum do
-      choice :Subjective
-      choice :Favorite
+      choice :Subjective,
+        description: "A collection based on some subjective quantity"
+      choice :Favorite,
+        description: "A collection of a user's favorite images"
     end
     attribute :url, type: :url,
-      example: "/collections.4.json"
+      example: "/collections.4.json",
+      description: "A URL to access more information about this collection"
   end
 
   subtype :user_stub do
     attribute :name, type: :string,
       example: "tony",
       description: "This user's name"
-    attribute :id, type: :integer, example: 10
+    attribute :id, 
+      type: :integer, 
+      example: 10,
+      description: "The id of the user"
     attribute :slug, type: :string,
       example: "test",
       description: %{The slug for this users's name. You can then access their
@@ -33,15 +40,23 @@ Apipony::Documentation.define do
   end
 
   subtype :image_stub do
-    attribute :id, type: :integer, example: 1
-    attribute :description, type: :string, example: "An image"
+    attribute :id, 
+      type: :integer, 
+      example: 1,
+      description: "The ID of this image"
+    attribute :description, 
+      type: :string, 
+      example: "An image",
+      description: "A user-set description of this image"
     attribute :user_id, type: :integer,
-      description: "The uploader ID",
+      description: "The id of the uploader",
       example: 10
     attribute :created_at, type: :date,
-      example: "2015-11-21T19:01:27.751Z"
+      example: "2015-11-21T19:01:27.751Z",
+      description: "The time this image was created"
     attribute :updated_at, type: :date,
-      example: "2015-11-21T19:01:27.751Z"
+      example: "2015-11-21T19:01:27.751Z",
+      description: "The last time this image was updated"
     attribute :license, type: :enum do
       choice :public_domain
       choice :all_rights_reserved
@@ -64,46 +79,92 @@ Apipony::Documentation.define do
       description: "The URL for this image",
       example: "https://www.imagehex.com/images/3"
     attribute :original_size, type: :url,
-      example: "https://i.imaghex.com/1_original.png"
-    attribute :nsfw_gore, type: :boolean, example: true
-    attribute :nsfw_language, type: :boolean, example: true
-    attribute :nsfw_nudity, type: :boolean, example: true
-    attribute :nsfw_sexuality, type: :boolean, example: true
+      example: "https://i.imaghex.com/1_original.png",
+      description: "A link to the original version of this image"
+    attribute :nsfw_gore, type: :boolean, example: true,
+      description: "Whether or not this image is marked as NSFW due to gore"
+    attribute :nsfw_language, type: :boolean, example: true,
+      description: "Whether or not this image is marked as NSFW due to langauge"
+    attribute :nsfw_nudity, type: :boolean, example: true,
+      description: %{
+      Whether or not this image is marked as NSFW due to nudity
+    }
+    attribute :nsfw_sexuality, type: :boolean, example: true,
+      description: %{
+      Whether or not this image is marked as NSFW due to a depiction of
+      sexuality
+    }
   end
   subtype :image_collection do
     attribute :current_page, type: :integer,
-      example: 1
+      example: 1,
+      description: "What page this image collection is currently on"
     attribute :per_page, type: :integer,
-      example: 20
+      example: 20,
+      description: "How many images are in each page of this collection"
     attribute :total_pages, type: :integer,
-      example: 1
-    attribute :images, type: :image_stub, array: true
+      example: 1,
+      description: "The total number of pages in this collection"
+    attribute :images, type: :image_stub, array: true,
+      description: "A list of images in this collection"
   end
   section "Images" do
     endpoint "get", "/images" do
       request_with do
-        param :page
-        param :per_page
+        param :page,
+          description: "What page of the list of images to get. Default 0.",
+          required: false
+        param :per_page,
+          description: %{
+            How many images you want on each page. If a user is logged in,
+            this will default to their page preference. Otherwise, it will
+            be the server's default (20)
+          },
+          required: false
       end
       response_with 200 do
-        attribute :images, array: true, type: :image_stub
-        attribute :current_page, type: :integer, example: 1
-        attribute :per_page, type: :integer, example: 20
-        attribute :total_pages, type: :integer, example: 1
+        attribute :images, array: true, type: :image_stub,
+          description: "The list of images"
+        attribute :current_page, type: :integer, example: 1,
+          description: %{The current page of the images. Same as what you
+          passed in the query parameter.}
+        attribute :per_page, type: :integer, example: 20,
+          description: %{
+          How many images are on each page. Same as what you passed in the
+          query parameter. If you did not pass a number, it will return
+          the server default (if no user is logged in), or the user's preference
+          (if a user is logged in)
+        }
+        attribute :total_pages, type: :integer, example: 1,
+          description: %{
+          How many pages of images (that fit the current user's content
+          preference) there are.
+        }
       end 
     end
     endpoint "get", "/images/:id" do
       request_with do
-        param :id, type: :integer
+        param :id, type: :integer,
+          description: "ID of the image to find"
       end
       response_with 200 do
-        attribute :id, type: :integer, example: 1
+        attribute :id, type: :integer, example: 1,
+          description: "The id of this image. Same as in the query param."
         attribute :user_id, type: :integer, example: 1,
           description: "The uploader's id"
-        attribute :created_at, type: :date, example: "2015-11-21T19:01:27.751Z"
-        attribute :updated_at, type: :date, example: "2015-11-21T19:01:27.751Z"
+        attribute :created_at, type: :date, example: "2015-11-21T19:01:27.751Z",
+          description: "When the image was added to ImageHex"
+        attribute :updated_at, type: :date, example: "2015-11-21T19:01:27.751Z",
+          description: %{
+          When the image was last updated. Note that updating tag groups, adding
+          comments, or adding uploaders does not modify this timestamp.
+        }
         attribute :description, type: :string,
-          example: "An image"
+          example: "An image",
+          description: %{
+          A user-set description for this image. The user will expect this
+          to render any markdown formatting to the proper display format.
+          }
         attribute :nsfw_gore, type: :boolean, example: false
         attribute :nsfw_nudity, type: :boolean, example: false
         attribute :nsfw_language, type: :boolean, example: false
@@ -111,17 +172,20 @@ Apipony::Documentation.define do
         attribute :content_type, type: :string, example: "image/jpeg",
           description: "The MIME type of the image"
         attribute :file_url, type: :url,
-          example: "https://i.imagehex.com/1_original.png"
+          example: "https://i.imagehex.com/1_original.png",
+          description: "A link to the original version of this image"
         attribute :creators, type: :user_stub, array: true,
           description: "A list of users who created this image"
-        attribute :tag_groups, array: true do 
-          attribute :tags, array: true do
+        attribute :tag_groups, array: true,
+         description: %{A list of tag groups on the image} do 
+          attribute :tags, array: true,
+            description: %{A list of tags within this group} do
             attribute :name, type: :string,
-              example: :dragon
+              example: :dragon,
+              description: "This tag's name. Note that the display_name should
+              be shown to the user, as it will have proper capitalization."
             attribute :id, type: :integer,
               example: 10
-            attribute :display_name, type: :string,
-              example: "Dragon"
             attribute :url, type: :url,
               example: "/tags/1"
           end
