@@ -5,8 +5,10 @@ Apipony::Documentation.define do
     c.title = 'ImageHex API Documentation'
     c.base_url = '/'
   end
+
   subtype :collection_stub do
-    attribute :name, type: :string,
+    attribute :name,
+      type: :string,
       example: "Test's Favorites"
     attribute :id, type: :integer,
       example: 20,
@@ -20,23 +22,38 @@ Apipony::Documentation.define do
     attribute :url, type: :url,
       example: "/collections.4.json",
       description: "A URL to access more information about this collection"
+    attribute :id,
+      type: :integer,
+      example: 20
+    attribute :type, type: :enum do
+      choice :Favorite,
+        description: "A collection of a user's favorite images."
+      choice :Subjective,
+        description: "A collection based on some subjective quantity."
+    end
+    attribute :url,
+      type: :url,
+      example: "/collections/4.json"
   end
 
   subtype :user_stub do
-    attribute :name, type: :string,
+    attribute :name,
+      type: :string,
       example: "tony",
       description: "This user's name"
     attribute :id, 
       type: :integer, 
       example: 10,
       description: "The id of the user"
-    attribute :slug, type: :string,
-      example: "test",
+    attribute :slug,
+      type: :string,
       description: %{The slug for this users's name. You can then access their
-      user page at /@:slug}
-    attribute :avatar_path, type: :string,
-      description: "A URL for the user's avatar",
-      example: "http://i.imagehex.com/default-avatar.svg"
+      user page at `/@:slug`.},
+      example: "test"
+    attribute :avatar_path,
+      type: :url,
+      description: "The user's avatar.",
+      example: "https://i.imagehex.com/default-avatar.svg"
   end
 
   subtype :image_stub do
@@ -57,7 +74,9 @@ Apipony::Documentation.define do
     attribute :updated_at, type: :date,
       example: "2015-11-21T19:01:27.751Z",
       description: "The last time this image was updated"
-    attribute :license, type: :enum do
+
+    attribute :license, description: "The type of copyright license under which the image has been made available.", type: :enum do
+
       choice :public_domain
       choice :all_rights_reserved
       choice :cc_by
@@ -67,7 +86,8 @@ Apipony::Documentation.define do
       choice :cc_by_nd_sa
       choice :cc_by_nc_nd
     end
-    attribute :medium, type: :enum do
+
+    attribute :medium, description: "The medium within which the image was made.", type: :enum do
       choice :photograph
       choice :pencil
       choice :paint
@@ -75,6 +95,7 @@ Apipony::Documentation.define do
       choice :mixed_media
       choice :three_dimensional_render
     end
+
     attribute :url, type: :string,
       description: "The URL for this image",
       example: "https://www.imagehex.com/images/3"
@@ -95,6 +116,7 @@ Apipony::Documentation.define do
       sexuality
     }
   end
+
   subtype :image_collection do
     attribute :current_page, type: :integer,
       example: 1,
@@ -108,6 +130,7 @@ Apipony::Documentation.define do
     attribute :images, type: :image_stub, array: true,
       description: "A list of images in this collection"
   end
+
   section "Images" do
     endpoint "get", "/images" do
       request_with do
@@ -119,9 +142,10 @@ Apipony::Documentation.define do
             How many images you want on each page. If a user is logged in,
             this will default to their page preference. Otherwise, it will
             be the server's default (20)
-          },
-          required: false
+        },
+        required: false
       end
+
       response_with 200 do
         attribute :images, array: true, type: :image_stub,
           description: "The list of images"
@@ -142,12 +166,15 @@ Apipony::Documentation.define do
         }
       end 
     end
+
     endpoint "get", "/images/:id" do
       request_with do
         param :id, type: :integer,
           description: "ID of the image to find"
       end
+
       response_with 200 do
+
         attribute :id, type: :integer, example: 1,
           description: "The id of this image. Same as in the query param."
         attribute :user_id, type: :integer, example: 1,
@@ -164,7 +191,7 @@ Apipony::Documentation.define do
           description: %{
           A user-set description for this image. The user will expect this
           to render any markdown formatting to the proper display format.
-          }
+        }
         attribute :nsfw_gore, type: :boolean, example: false
         attribute :nsfw_nudity, type: :boolean, example: false
         attribute :nsfw_language, type: :boolean, example: false
@@ -177,7 +204,7 @@ Apipony::Documentation.define do
         attribute :creators, type: :user_stub, array: true,
           description: "A list of users who created this image"
         attribute :tag_groups, array: true,
-         description: %{A list of tag groups on the image} do 
+          description: %{A list of tag groups on the image} do 
           attribute :tags, array: true,
             description: %{A list of tags within this group} do
             attribute :name, type: :string,
@@ -186,78 +213,114 @@ Apipony::Documentation.define do
               be shown to the user, as it will have proper capitalization."
             attribute :id, type: :integer,
               example: 10
-            attribute :url, type: :url,
-              example: "/tags/1"
+            attribute :url, type: :url, example: "/tags/1"
+            end
+          attribute :id,
+            type: :integer,
+            example: 1
           end
-          attribute :id, type: :integer, example: 1
-        end
       end
     end
   end
+
   section "Tags" do
     endpoint "get", "/tags/suggest" do |e|
       e.description = %{
         Get a list of tags given a fragment of a name.
       }
+
       request_with do
-        param :name, description: "The name fragment to suggest",
-          required: true
+        param :name,
+          required: true,
+          description: "The name fragment to suggest"
       end
 
       response_with 200, array: true do
-        attribute :id, type: :integer,
+        attribute :id,
+          type: :integer,
+          description: "The tag ID.",
           example: 10
-        attribute :name, type: :string,
+        attribute :name,
+          type: :string,
+          description: "The tag's name.",
           example: :dragon
-        attribute :display_name, type: :string,
+        attribute :display_name,
+          type: :string,
+          description: "The tag's display name.",
           example: "Dragon"
-        attribute :importance, type: :integer,
-          example: 4,
-          description: "How important this tag is when sorting"
+        attribute :importance,
+          type: :integer,
+          description: "The importance of the tag for sorting purposes.",
+          example: 4
       end
     end
+
     endpoint "get", "/tags/:id" do |e|
       request_with do
-        param :id, type: :integer,
-          required: true
+        param :id,
+          type: :integer,
+          required: true,
+          description: "The tag ID."
       end
+
       response_with 200 do
-        attribute :name, type: :string,
+        attribute :name,
+          type: :string,
+          description: "The tag's name.",
           example: :dragon
-        attribute :description, type: :string,
+        attribute :description,
+          type: :string,
+          description: "The tag's description.",
           example: "A fire-breathing lizard with wings."
-        attribute :display_name, type: :string,
+        attribute :display_name,
+          type: :string,
+          description: "The tag's display name.",
           example: "Dragon"
-        attribute :images, type: :image_collection
+        attribute :images,
+          type: :image_collection,
+          description: "A list of the images associated with the tag."
       end
     end
   end
+
   section "Collections" do 
     endpoint "get", "/collections" do |e|
       response_with 200 do
-        attribute :id, type: :integer,
+        attribute :id,
+          type: :integer,
+          description: "The collection ID.",
           example: 1
-        attribute :name, type: :string,
+        attribute :name,
+          type: :string,
+          description: "The collection's name",
           example: "Undertale Images"
         attribute :type, type: :enum do
           choice :Favorite,
-            description: "A collection of a user's favorite images"
+            description: "A collection of a user's favorite images."
           choice :Subjective,
             description: "A collection based on some subjective quantity."
         end
       end
     end
+
     endpoint "get", "/collections/:id" do |e|
       request_with do
-        param :id, type: :integer, required: true
+        param :id,
+          type: :integer,
+          description: "The collection ID.",
+          required: true
       end
 
       response_with 200 do
         attribute :name, type: :string,
-          example: "Red Letter Media Gifs"
-        attribute :id, type: :integer,
+          example: "Red Letter Media GIFs"
+        attribute :id,
+          type: :integer,
+          description: "The collection ID.",
           example: 4
-        attribute :description, type: :string,
+        attribute :description,
+          type: :string,
+          description: "The collection's description.",
           example: "These Hack Frauds make for great reactions!"
         attribute :type, type: :enum do
           choice :Subjective,
@@ -265,27 +328,45 @@ Apipony::Documentation.define do
           choice :Favorite,
             description: "Images a user has favorited"
         end
-        attribute :images, type: :image_collection
+        attribute :images,
+          type: :image_collection,
+          description: "A list of images in the collection."
       end
     end
   end
+
   section "Users" do
     endpoint "get", "/users/:id" do |e|
       response_with 200 do
-        attribute :creations, type: :image_collection
-        attribute :name, type: :string,
-          example: "Tony"
-        attribute :id, type: :integer,
+        attribute :name,
+          type: :string,
+          description: "The user's username.",
+          example: "tony"
+        attribute :id,
+          type: :integer,
+          description: "The user ID.",
           example: 10
-        attribute :created_at, type: :date,
+        attribute :created_at,
+          type: :date,
+          description: "The Unix time stamp at which the user's account was created.",
           example: "2015-11-21T19:00:38.391Z"
-        attribute :uploads, type: :image_collection
-        attribute :creations, type: :image_collection
-        attribute :favorites, type: :collection_stub
-        attribute :collections, array: true, type: :collection_stub,
-          description: "A list of collections this user curates"
-        attribute :bio, type: :string,
-          description: "I do art"
+        attribute :uploads,
+          type: :image_collection,
+          description: "A list of the images uploaded by the user."
+        attribute :creations,
+          type: :image_collection,
+          description: "A list of the images the user has been given credit for."
+        attribute :favorites,
+          type: :collection_stub,
+          description: "A list of the images favorited by the user."
+        attribute :collections,
+          array: true,
+          type: :collection_stub,
+          description: "A list of collections the user curates."
+        attribute :bio,
+          type: :string,
+          description: "The user's description.",
+          example: "I do art."
       end
     end
   end
