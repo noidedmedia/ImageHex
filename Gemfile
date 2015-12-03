@@ -9,7 +9,8 @@ gem 'rails', '4.2.5'
 
 ##
 # API Documentation
-gem 'apipony', :git => 'https://github.com/noidedmedia/apipony.git'
+gem 'apipony', git: 'https://github.com/noidedmedia/apipony.git'
+
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
 # Use Postgres
@@ -31,9 +32,9 @@ gem 'aws-sdk', '< 2.0'
 gem 'devise'
 
 ##
-# https://github.com/arunagw/omniauth-twitter
-# Support logging in with Twitter
-gem 'omniauth-twitter'
+# https://github.com/intridea/omniauth
+# Omniauth for logging in with different services.
+gem 'omniauth'
 
 ##
 # https://github.com/elabs/pundit
@@ -194,11 +195,15 @@ end
 ##
 # Test-only gems
 group :test do
+  ##
+  # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good
   gem 'shoulda-matchers'
   
+  ##
+  # https://github.com/colszowka/simplecov
   # See how much coverage our tests have
-  gem 'simplecov', '~> 0.9.0'
+  gem 'simplecov'
 end
 
 ##
