@@ -135,7 +135,7 @@ gem 'will_paginate', '~> 3.0.6'
 ##
 # https://github.com/rails/jbuilder
 # Build JSON APIs with ease.
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 
 ##
 # https://github.com/ka8725/migration_data
@@ -174,7 +174,7 @@ end
 ##
 # Development/test gems
 group :development, :test do
-  gem 'rspec-rails', '~> 3.1'
+  gem 'rspec-rails'
 
   ##
   # https://github.com/thoughtbot/factory_girl_rails
