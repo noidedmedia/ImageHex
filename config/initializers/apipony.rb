@@ -14,7 +14,7 @@ Apipony::Documentation.define do
       type: :integer,
       example: 20
     attribute :type, type: :enum do
-      choice :Favorite
+      choice :Favorite,
         description: "A collection of a user's favorite images."
       choice :Subjective,
         description: "A collection based on some subjective quantity."
@@ -35,8 +35,8 @@ Apipony::Documentation.define do
     attribute :slug,
       type: :string,
       description: %{The slug for this users's name. You can then access their
-      user page at `/@:slug`.}
-      example: "test",
+      user page at `/@:slug`.},
+      example: "test"
     attribute :avatar_path,
       type: :url,
       description: "The user's avatar.",
