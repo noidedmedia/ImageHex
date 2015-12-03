@@ -204,7 +204,6 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
-    newrelic_rpm (3.14.0.305)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     omniauth (1.2.2)
@@ -428,7 +427,6 @@ DEPENDENCIES
   jquery-turbolinks
   mailcatcher
   migration_data
-  newrelic_rpm
   omniauth
   paperclip
   pg
