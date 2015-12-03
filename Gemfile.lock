@@ -419,7 +419,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fontcustom
-  friendly_id (~> 5.1.0)
+  friendly_id
   hanna-bootstrap
   i18n
   i18n-tasks
@@ -451,9 +451,9 @@ DEPENDENCIES
   sprockets-es6
   train_track
   turbolinks
-  uglifier (>= 1.3.0)
+  uglifier
   unicorn
-  will_paginate (~> 3.0.6)
+  will_paginate
   yajl-ruby
 
 BUNDLED WITH

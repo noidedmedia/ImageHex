@@ -8,6 +8,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 
 ##
+# https://github.com/droptheplot/apipony
 # API Documentation
 gem 'apipony', git: 'https://github.com/noidedmedia/apipony.git'
 
@@ -17,6 +18,7 @@ gem 'apipony', git: 'https://github.com/noidedmedia/apipony.git'
 gem 'pg'
 
 ##
+# https://github.com/brianmario/yajl-ruby
 # Faster JSON rendering
 gem 'yajl-ruby'
 
@@ -60,7 +62,7 @@ gem 'sass-rails'
 ##
 # https://github.com/lautis/uglifier
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 ##
 # https://github.com/TannerRogalsky/sprockets-es6
@@ -120,7 +122,7 @@ gem 'jquery-turbolinks'
 ##
 # https://github.com/norman/friendly_id
 # Use friendly IDs for nice URLs
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id'
 
 ##
 # https://github.com/bclubb/possessive
@@ -130,7 +132,7 @@ gem 'possessive'
 ##
 # https://github.com/mislav/will_paginate
 # Use will-paginate for pagination
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate'
 
 ##
 # https://github.com/rails/jbuilder
@@ -141,6 +143,7 @@ gem 'jbuilder'
 # https://github.com/ka8725/migration_data
 # Change our data in a migration
 gem 'migration_data'
+
 
 ##
 # Development-only gems
@@ -161,7 +164,7 @@ group :development do
 
   ##
   # https://github.com/ngs/hanna-bootstrap
-  # Use Hanna Bootstrap theme for RDoc documentation
+  # Use Hanna Bootstrap theme for RDoc documentation.
   gem 'hanna-bootstrap'
 
   ##
@@ -174,10 +177,14 @@ end
 ##
 # Development/test gems
 group :development, :test do
+  ##
+  # https://github.com/rspec/rspec-rails
+  # A testing framework for Rails.
   gem 'rspec-rails'
 
   ##
   # https://github.com/thoughtbot/factory_girl_rails
+  # A library for setting up Ruby objects as test data.
   gem 'factory_girl_rails'
   
   ##
