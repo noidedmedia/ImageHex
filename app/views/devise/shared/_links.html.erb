@@ -19,7 +19,6 @@
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name == 'registrations' %>
-
   <div class="sign-in-extras-row">
     <%= link_to t(".didnt_receive_confirmation"), new_confirmation_path(resource_name) %>
   </div>
