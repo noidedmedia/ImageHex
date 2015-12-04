@@ -2,6 +2,7 @@
   "name": "ImageHex",
   "description": "An artwork network",
   "scripts": {
+    "postdeploy": "rake db:migrate"
   },
   "env": {
     "AWS_ACCESS_KEY_ID": {
