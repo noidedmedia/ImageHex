@@ -26,18 +26,6 @@ describe Tag do
       expect(Tag.suggest("b").map(&:name)).to_not include("asdf")
     end
   end
-  describe "display names" do
-    it "must change in case only" do
-      t = FactoryGirl.create(:tag, name: "yo")
-      t.display_name = "This is not right"
-      expect(t).to_not be_valid
-    end
-    it "allows changes in case" do
-      t = FactoryGirl.create(:tag, name: "yo")
-      t.display_name = "YO"
-      expect(t).to be_valid
-    end
-  end
   it{should have_many(:tag_groups).through(:tag_group_members)}
   it{should have_many(:tag_group_members)}
 end
