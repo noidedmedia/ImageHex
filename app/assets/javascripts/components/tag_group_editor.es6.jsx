@@ -203,7 +203,6 @@ class TagGroupEditor extends React.Component {
           hasBlankInput: false,
           hasSuggestions: true,
           suggestions: tags,
-          inputValue: value,
           activeSuggestion: 0
         });
       }
