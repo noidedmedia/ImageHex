@@ -4,6 +4,13 @@ RSpec.describe Comment, :type => :model do
     expect(FactoryGirl.build(:comment,
                              user: nil)).to_not be_valid
   end
+  it "should touch images" do
+    i = FactoryGirl.create(:image)
+    expect{
+      FactoryGirl.create(:comment,
+                         commentable: i)
+    }.to change{i.updated_at}
+  end
   it "should commit sudoku when subject is deleted" do
     i = FactoryGirl.create(:image)
     c = FactoryGirl.create(:comment, commentable: i)
