@@ -1,37 +1,37 @@
 <div id="image-page-information">
 
   <div id="comment-container">
-
-    <div id="upload-info">
-      <div class="image-description-container">
-        <div class="uploader-avatar">
-          <%= link_to @image.user do %>
-            <% if @image.user.avatar %>
-              <%= image_tag @image.user.avatar_img_thumb %>
+    <% cache ["upload-info", @image] do %>
+      <div id="upload-info">
+        <div class="image-description-container">
+          <div class="uploader-avatar">
+            <%= link_to @image.user do %>
+              <% if @image.user.avatar %>
+                <%= image_tag @image.user.avatar_img_thumb %>
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-        <div class="uploader-information">
-          <div class="image-uploader-container">
-            <p class="image-uploader"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
-            <p class="image-upload-date"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span>
           </div>
+          <div class="uploader-information">
+            <div class="image-uploader-container">
+              <p class="image-uploader"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+              <p class="image-upload-date"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span>
+            </div>
 
-          <% unless @image.description.blank? %>
-            <p class="image-description"><%= @image.description %>
-          <% end %>
+            <% unless @image.description.blank? %>
+              <p class="image-description"><%= @image.description %>
+            <% end %>
 
-          <% if @image.source && !@image.source.blank? %>
-            <p class="image-source-link"><%= t(".source") %> <%= link_to @image.source, @image.source %></p>
-          <% end %>
+            <% if @image.source && !@image.source.blank? %>
+              <p class="image-source-link"><%= t(".source") %> <%= link_to @image.source, @image.source %></p>
+            <% end %>
+          </div>
         </div>
+
+        <% unless @image.creators.blank? %>
+          <%= render 'image_page_creator_info' %>
+        <% end %>
       </div>
-
-      <% unless @image.creators.blank? %>
-        <%= render 'image_page_creator_info' %>
-      <% end %>
-    </div>
-
+    <% end %> 
     <hr>
 
     <%# Render the comments partial with @image.comments as the subject. %>
