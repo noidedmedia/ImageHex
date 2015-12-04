@@ -1,6 +1,7 @@
 ruby '2.2.3'
 source 'https://rubygems.org'
 
+gem 'dalli'
 ##
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
