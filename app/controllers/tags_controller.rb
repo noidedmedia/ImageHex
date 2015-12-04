@@ -1,6 +1,7 @@
 ##
 # A single-action controller used for tag suggestion.
 class TagsController < ApplicationController
+  include TrainTrack
   before_filter :ensure_user, only: [:edit, :update]
   ##
   # Given a partial tag name in "params['name']", suggests ten possible
@@ -40,6 +41,7 @@ class TagsController < ApplicationController
     @tag = Tag.new(tag_params)
     respond_to do |format|
       if @tag.save
+        track @tag
         format.html { redirect_to @tag }
         format.json { render 'show' }
       else
@@ -61,7 +63,9 @@ class TagsController < ApplicationController
   # Should be admin-restricted at some point
   def update
     tag = Tag.friendly.find(params[:id])
+    track tag
     if tag.update(tag_params)
+      track tag
       redirect_to tag
     else
       flash[:warning] = tags.errors.full_messages
