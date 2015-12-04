@@ -17,7 +17,7 @@ class Tag < ActiveRecord::Base
   # ASSOCIATIONS:
   has_many :tag_group_members
   has_many :tag_groups, through: :tag_group_members
-  has_many :images, ->{order(created_at: :desc)} through: :tag_groups
+  has_many :images, ->{order(created_at: :desc)}, through: :tag_groups
   validates :name, uniqueness: {case_sensative: false}
   validates :importance, inclusion: {in: (0..1)}
   ##
