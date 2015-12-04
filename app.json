@@ -13,9 +13,6 @@
     "LANG": {
       "required": true
     },
-    "NEW_RELIC_APP_NAME": {
-      "required": true
-    },
     "RACK_ENV": {
       "required": true
     },
