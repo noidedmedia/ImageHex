@@ -21,7 +21,6 @@ class TagGroupEditor extends React.Component {
     var suggestions;
     if (this.state.hasSuggestions) {
       suggestions = this.state.suggestions.map((sug, index) => {
-        
         return <li>
           <TagSuggestion
             key={"tag-" + sug.id}
@@ -37,10 +36,13 @@ class TagGroupEditor extends React.Component {
         onAdd={this.onTagAdd.bind(this)}
         tagName={this.state.inputValue} />;
     }
-    else {
+    else if(this.state.showSuggestions){
       suggestions = <li className="no-suggestions-found">
         Found no suggestions.
       </li>;
+    }
+    else{
+      suggestions = <div></div>;
     }
     var removalButton;
     if(this.props.allowRemoval){
@@ -83,6 +85,7 @@ class TagGroupEditor extends React.Component {
     this.props.onTagAdd(tag);
     this.setState({
       hasSuggestions: false,
+      showSuggestions: false,
       inputValue: "",
       hasBlankInput: true
     });
@@ -173,7 +176,8 @@ class TagGroupEditor extends React.Component {
       this.onTagAdd(tag);
       this.setState({
         suggestions: [],
-        hasSuggestions: false
+        hasSuggestions: false,
+        showSuggestions: false,
       });
     } else {
       // TODO: Handle this error ;-;
@@ -191,6 +195,7 @@ class TagGroupEditor extends React.Component {
       this.setState({
         hasBlankInput: true,
         hasSuggestions: false,
+        showSuggestions: false,
         suggestions: [],
         inputValue: ""
       });
@@ -221,6 +226,7 @@ class TagGroupEditor extends React.Component {
         this.setState({
           hasBlankInput: false,
           hasSuggestions: true,
+          showSuggestions: true,
           suggestions: ntags,
           activeSuggestion: 0
         });
@@ -228,6 +234,7 @@ class TagGroupEditor extends React.Component {
       else {
         this.setState({
           hasSuggestions: false,
+          showSuggestions: true,
           hasBlankInput: false,
         });
       }
