@@ -27,6 +27,7 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = find_index_collections
+      .subjective
       .paginate(page: page, per_page: per_page)
       .includes(:images)
     # FIXME: This is a hack.
