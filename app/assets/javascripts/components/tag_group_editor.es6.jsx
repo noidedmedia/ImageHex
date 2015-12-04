@@ -173,6 +173,9 @@ class TagGroupEditor extends React.Component {
     let value = event.target.value;
     if (event.target.value !== "") {
       this.fetchSuggestions(event.target.value);
+      this.setState({
+        inputValue: event.target.value
+      });
     } else {
       this.setState({
         hasBlankInput: true,
@@ -210,8 +213,6 @@ class TagGroupEditor extends React.Component {
         this.setState({
           hasSuggestions: false,
           hasBlankInput: false,
-          suggestions: [],
-          inputValue: value
         });
       }
     });
