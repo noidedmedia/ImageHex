@@ -10,6 +10,7 @@ class TagGroupEditor extends React.Component {
 
   render() {
     console.log("State is",this.state);
+    console.log("Props",this.props);
     var tags = this.props.tags.map((tag) => {
       return <TagBox tag={tag} 
         onRemove={this.props.onTagRemove} 
