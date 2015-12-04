@@ -105,6 +105,7 @@ GEM
     concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
     daemons (1.2.3)
+    dalli (2.7.4)
     debug_inspector (0.0.2)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -414,6 +415,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bullet
+  dalli
   devise
   factory_girl_rails
   faker
