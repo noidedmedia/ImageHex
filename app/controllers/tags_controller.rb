@@ -7,8 +7,12 @@ class TagsController < ApplicationController
   # completed tags in alphabetical order.
   # Renders a JSON data type.
   def suggest
-    suggestions = Tag.suggest(params["name"].downcase)
-    render json: suggestions
+    if params["name"] then
+      suggestions = Tag.suggest(params["name"].downcase)
+      render json: suggestions
+    else
+      render status: 422, body: nil
+    end
   end
   
   ##
@@ -74,6 +78,6 @@ class TagsController < ApplicationController
   #         description
   def tag_params
     params.require(:tag).permit(:description,
-                                :display_name)
+                                :name)
   end
 end

@@ -9,7 +9,7 @@ class TagComponent extends React.Component {
     if (this.state.moreInfo) {
       return <li className="image-tag-with-info">
         <div className="tag-name">
-          {this.state.tag.display_name}
+          {this.state.tag.name}
         </div>
         <div className="tag-descriptiaon">
           {this.state.tag.description}
@@ -18,7 +18,7 @@ class TagComponent extends React.Component {
     } else {
       return <li className="image-tag" onClick={this.fetchInfo.bind(this)}>
         <div className="tag-name">
-          {this.props.tag.display_name}
+          {this.props.tag.name}
         </div>
       </li>
     }

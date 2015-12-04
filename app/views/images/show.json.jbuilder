@@ -15,7 +15,7 @@ json.file_url @image.f.url
 json.creators @image.creators, partial: "users/stub", as: :user
 json.tag_groups @groups do |group|
   json.tags(group.tags) do |tag|
-    json.extract! tag, :name, :id, :display_name
+    json.extract! tag, :name, :id
     json.url url_for(tag)
   end
   json.id group.id

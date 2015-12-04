@@ -70,7 +70,7 @@ class InlineTagCreator extends React.Component {
         this.props.onAdd(tag);
       };
       Tag.create({
-        display_name: this.state.name,
+        name: this.state.name,
         description: this.state.description
       }, cb);
       this.setState({

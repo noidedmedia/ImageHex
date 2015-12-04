@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
-    :confirmable, :omniauthable, :omniauth_providers => [:twitter]
+    :confirmable, :omniauthable
 
   ###############
   # VALIDATIONS #

@@ -4,8 +4,6 @@
 #
 # Tags are formatted before saving to remove excess spaces ("do  thing" becomes
 # "do thing"), trailing and leading whitespace " do thing " becomes "do thing"),
-# and capital letters in the normal name. The display_name, which
-# is what should always be shown to the user, retains capital letters.
 class Tag < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -22,7 +20,6 @@ class Tag < ActiveRecord::Base
   has_many :images, through: :tag_groups
   validates :name, uniqueness: {case_sensative: false}
   validates :importance, inclusion: {in: (0..1)}
-  validate :name_and_display_name_equality
   ##
   # Suggest tags beginning with a string.
   # Tags are returned alphabetically.
@@ -31,7 +28,7 @@ class Tag < ActiveRecord::Base
   #   Tag.suggest("ha") => ["hack", "halloween"]
   def self.suggest(n)
     query = %q{
-    SELECT tags.* FROM tags
+    SELECT tags.name, tags.id, tags.importance  FROM tags
     WHERE tags.name LIKE ?
     ORDER BY importance ASC
     LIMIT 10
@@ -69,17 +66,9 @@ class Tag < ActiveRecord::Base
 
   private
 
-  def name_and_display_name_equality
-    self.display_name ||= self.name.downcase 
-    if self.display_name.downcase != self.name.downcase then
-      errors.add(:display_name, "must_change_case_only")
-    end
-  end
   ##
   # Callback which formats the name.
   def fix_name
-    self.display_name ||= self.name.strip.squish
-    self.name ||= self.display_name
-    self.name = self.name.strip.squish.downcase
+    self.name = self.name.strip.squish
   end
 end

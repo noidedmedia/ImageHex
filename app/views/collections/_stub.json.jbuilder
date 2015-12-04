@@ -1,3 +1,3 @@
-json.extract! collection, :name, :id, :type
-json.url polymorphic_path(collection, format: :json)
+json.extract! c, :name, :id, :type
+json.url polymorphic_path(c, format: :json)
 

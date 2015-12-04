@@ -57,7 +57,7 @@ class SearchPage extends React.Component {
       var tags = group.tags.map((tag) => {
         return {
           id: tag.id,
-          display_name: tag.display_name
+          name: tag.name
         };
       });
       return {

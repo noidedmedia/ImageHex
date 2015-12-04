@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151123210653) do
+ActiveRecord::Schema.define(version: 20151203204546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "citext"
 
   create_table "artist_subscriptions", force: :cascade do |t|
     t.integer  "user_id"
@@ -174,15 +175,15 @@ ActiveRecord::Schema.define(version: 20151123210653) do
   add_index "tag_groups", ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name",         limit: 255
+    t.citext   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "display_name"
     t.text     "description"
     t.string   "slug"
-    t.integer  "importance",               default: 1, null: false
+    t.integer  "importance",  default: 1, null: false
   end
 
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
   add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
   create_table "user_creations", force: :cascade do |t|
