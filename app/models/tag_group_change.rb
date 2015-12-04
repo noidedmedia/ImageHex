@@ -1,4 +1,3 @@
-require 'pry'
 ##
 # This class tracks changes to a tag_group. 
 #
