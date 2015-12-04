@@ -1,4 +1,4 @@
-json.extract! @tag, :name, :description, :id, :display_name
+json.extract! @tag, :name, :description, :id
 if @images.blank?
   json.images []
 else

@@ -4,8 +4,6 @@
 #
 # Tags are formatted before saving to remove excess spaces ("do  thing" becomes
 # "do thing"), trailing and leading whitespace " do thing " becomes "do thing"),
-# and capital letters in the normal name. The display_name, which
-# is what should always be shown to the user, retains capital letters.
 class Tag < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged

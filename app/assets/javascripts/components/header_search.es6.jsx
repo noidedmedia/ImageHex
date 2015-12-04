@@ -34,7 +34,7 @@ class HeaderSearch extends React.Component {
     var tags = this.state.tagGroup.tags.map((tag) => {
       return {
         id: tag.id,
-        display_name: tag.display_name
+        name: tag.name
       }
     });
     query.tag_groups = [{

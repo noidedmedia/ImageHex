@@ -1,6 +1,6 @@
 <div id="tag-index-container">
 <% @tags.each do |tag| %>
   <div class="tag-thing">
-    <div class="tag-name"><%= link_to tag.display_name, tag %></div>
+    <div class="tag-name"><%= link_to tag.name, tag %></div>
   </div>
 <% end %>
