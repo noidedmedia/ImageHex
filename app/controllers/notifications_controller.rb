@@ -23,6 +23,7 @@ class NotificationsController < ApplicationController
   # Returns a JSON response indicating success.
   def read
     n = current_user.notifications.where(id: params[:id]).first
+    raise ActiveRecord::RecordNotFound unless n
     n.read = true
     worked = n.save
     render json: (worked ? worked : notifications.errors.full_messages)

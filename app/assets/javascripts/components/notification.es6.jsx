@@ -47,21 +47,31 @@ class NotificationList extends React.Component {
 class NotificationItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      read: this.props.read
+    };
   }
   render() {
     className = "notifications-list-item";
-    if (this.props.read) {
+    if (this.state.read) {
       className += " read";
     } else {
       className += " unread";
     }
-    return <li className={className}>
+    var handler = this.state.read ? function(){} : this.readSelf.bind(this);
+    return <li className={className} onClick={handler}>
       <a href={this.link()}>
         {this.message()}
         {this.timeStamp()}
       </a>
     </li>
+  }
+  readSelf(){
+    NM.postJSON("/notifications/" + this.props.id + "/read", 
+                {}, 
+                (test) => {
+                  this.setState({read: true});
+                });
   }
   link() {
     if (this.props.subject.type == "comment") {
@@ -72,7 +82,6 @@ class NotificationItem extends React.Component {
   }
   message() {
     var kind = this.props["kind"];
-    console.log("Props:",this.props);
     var username = this.props.subject.user_name;
     if (kind == "uploaded_image_commented_on") {
       return <p className="notification-message">
