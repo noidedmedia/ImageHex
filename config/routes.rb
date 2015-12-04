@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Apipony::Engine => '/apidoc'
+  mount Apipony::Engine => '/api/documentation'
 
   get "/@:id" => 'users#show'
   patch "/@:id" => "users#update"

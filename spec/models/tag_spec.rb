@@ -1,6 +1,21 @@
 require 'spec_helper'
 
 describe Tag do
+  describe "creation" do
+    it "requires unique names" do
+      t = FactoryGirl.create(:tag, name: "test")
+      expect{
+        FactoryGirl.create(:tag, name: "test")
+      }.to raise_error ActiveRecord::RecordInvalid
+    end
+    it "is case insensitive with name uniqueness" do
+      t = FactoryGirl.create(:tag, name: "test")
+      expect{
+        FactoryGirl.create(:tag, name: "TEST")
+      }.to raise_error ActiveRecord::RecordInvalid
+    end
+  end
+
   describe "name conversion" do
     it "fixes double-spacing" do
       tag = FactoryGirl.create(:tag, name: "two  spaces")
