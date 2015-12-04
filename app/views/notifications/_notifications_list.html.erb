@@ -1,10 +1,10 @@
-<% notifications.includes(:subject).order('created_at DESC').each do |note| %>
+<% notifications.order('created_at DESC').each do |note| %>
   <li class="notifications-list-item">
-    <%= link_to note.subject do %>
-      <%= t(".#{note.kind}", username: User.find(note.user_id).name ) %>
+  <a href="<%= notification_path(note) %>">
+    <%= t(".#{note.kind}", username: note.subject[:user_name] ) %>
 
-      <%# "Time ago" for notification %>
-      <p class="notification-time-ago"><%= time_ago_in_words(note.created_at) + " " + t(".ago") %></p>
-    <% end %>
-  </li>
+    <%# "Time ago" for notification %>
+    <p class="notification-time-ago"><%= time_ago_in_words(note.created_at) + " " + t(".ago") %></p>
+    </li>
+  </a>
 <% end %>

@@ -1,6 +1,6 @@
 @import "scss-variables";
 
-#avatar-uploader-thumbnail-container {
+#avatar-uploader-container {
   width: 150px;
   height: 150px;
   overflow: hidden;
@@ -17,13 +17,11 @@
 
 #avatar-uploader {
   position: absolute;
-  // Compensate for the 25px padding in the field-container element.
-  top: 25px;
   left: 0;
-  display: inline;
-  width: 2px;
-  height: 2px;
-  padding: 75px;
+  // 150px of padding to push the button itself out of the avatar container.
+  // This prevents a bug in WebKit where the default cursor is always shown
+  // when hovering over the button element of the file field.
+  padding: 150px;
   opacity: 0;
   cursor: pointer;
 }

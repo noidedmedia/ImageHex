@@ -1,3 +1,15 @@
-// Place all the styles related to the admin/images controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.live-image-content-ratings{
+
+  .hidden{
+    display: none;
+  }
+}
+.live-image{
+  flex-grow: 1;
+}
+#live-images{
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

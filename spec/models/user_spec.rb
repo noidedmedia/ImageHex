@@ -35,10 +35,34 @@ describe User do
   describe "subscriptions" do
     let(:u){FactoryGirl.create(:user)}
     let(:c){FactoryGirl.create(:collection)}
-    it "has a method to subscribe" do
-      u.subscribe!(c)
-      expect(u.subscribed_collections).to eq([c])
-      expect(c.subscribers).to eq([u])
+    describe ".subscribe!" do
+      it "works with collections" do
+        u.subscribe!(c)
+        expect(u.subscribed_collections).to eq([c])
+        expect(c.subscribers).to eq([u])
+      end
+      it "works with users" do
+        u2 = FactoryGirl.create(:user)
+        u.subscribe! u2
+        # a fan of bono apparently
+        expect(u.subscribed_artists).to eq([u2])
+        expect(u2.subscribers).to eq([u])
+      end
+    end
+    describe ".unsubscribe!" do
+      it "works with collections" do
+        u.subscribe! c
+        expect(u.subscribed_collections).to include(c)
+        u.unsubscribe! c
+        expect(u.subscribed_collections).to_not include(c)
+      end
+      it "works with users" do
+        u2 = FactoryGirl.create(:user)
+        u.subscribe! u2
+        expect(u.subscribed_artists).to include(u2)
+        u.unsubscribe! u2
+        expect(u.subscribed_artists).to_not include(u2)
+      end
     end
     it "has many subscribed collections" do
       c2 = FactoryGirl.create(:collection)
@@ -58,16 +82,10 @@ describe User do
     end
   end
   describe "creation" do
-    it "gives the user a favorites and created collection" do
-      expect{FactoryGirl.create(:user)}.to change{Collection.count}.by(2)
+    it "gives the user a favorites collection" do
+      expect{FactoryGirl.create(:user)}.to change{Collection.count}.by(1)
       u = FactoryGirl.create(:user)
       expect(u.collections.favorites.size).to eq(1)
-      expect(u.collections.creations.size).to eq(1)
-    end
-    it "gives the user a user_page" do
-      expect{FactoryGirl.create(:user)}.to change{UserPage.count}.by(1)
-      u = FactoryGirl.create(:user)
-      expect(u.user_page).to_not eq(nil)
     end
   end
 
@@ -85,7 +103,7 @@ describe User do
     let(:i){FactoryGirl.create(:image)}
     it "adds an image to creations" do
       u.created!(i)
-      expect(u.creations.images).to eq([i])
+      expect(u.creations).to eq([i])
     end
 
   end

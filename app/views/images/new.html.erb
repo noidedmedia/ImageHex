@@ -51,8 +51,20 @@
       </div>
 
       <div class="text-field-container">
-        <p><%= t(".description_optional") %> </p>
-        <%= text_area(:image, :description, id: 'image-description-field') %>
+        <p class="field-header"><%= t(".source_recommended") %><p>
+        <%= f.url_field :source, class: "field" %> 
+      </div>
+
+      <div class="checkbox-container">
+        <div class="checkbox-field">
+          <%= f.check_box :created_by_uploader %>
+          <%= f.label :created_by_uploader, t(".i_made_this") %>
+        </div>
+      </div>
+
+      <div class="text-field-container">
+        <p class="field-header"><%= t(".description_optional") %></p>
+        <%= text_area(:image, :description, class: "field", id: "image-description-field") %>
       </div>
     </div>
 

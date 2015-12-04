@@ -26,7 +26,6 @@ class Comment < ActiveRecord::Base
   #############
   belongs_to :commentable, polymorphic: true
   belongs_to :user
-  has_many :notifications, as: :subject, dependent: :destroy
   ###############
   # VALIDATIONS #
   ###############
@@ -93,7 +92,7 @@ class Comment < ActiveRecord::Base
     names = body.scan(/@\w+/)
       .map{|m| m.gsub("@", "")}
     users = User.where(name: names)
-    users.each{|u| notify_mention(u)}
+    users.each{|u| notify_mention(u) unless u == self.user}
   end
 
   ##

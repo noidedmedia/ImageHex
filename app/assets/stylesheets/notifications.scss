@@ -86,6 +86,7 @@
 .notifications-dropdown > .notifications-container {
   width: calc(100% - 20px);
   padding-top: 15px;
+  margin: auto;
 }
 
 .notifications-container {
@@ -93,6 +94,7 @@
   max-width: 600px;
   margin: auto;
   padding-top: 100px;
+  margin-bottom: 50px;
 
   a {
     color: #aaaab2;
@@ -108,11 +110,12 @@
     border-bottom: 1px solid #aaaab2;
     position: relative;
 
-    h3 {
+    h3 a {
       font-size: 1.8rem;
       font-weight: 500;
       padding: 0 0 6px 10px;
       display: inline-block;
+      color: #333;
     }
 
     .mark-all-read {
@@ -120,7 +123,8 @@
       display: inline-block;
       position: absolute;
       right: 0;
-      top: 4px;
+      top: 8px;
+      cursor: pointer;
     }
   }
 }
@@ -132,6 +136,7 @@
 
   &.unread {
     background-color: #fff;
+    border-left: 6px solid #d21849;
   }
 
   > a {
@@ -160,7 +165,7 @@
   padding: 60px 0;
 }
 
-@media all and (max-device-width: $mobile-width) {
+@media all and (max-width: $mobile-width) {
   .header-notifications {
     position: absolute;
     left: 0;

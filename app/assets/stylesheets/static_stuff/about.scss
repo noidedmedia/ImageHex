@@ -1,0 +1,52 @@
+@import "scss-variables";
+
+
+/* ==============================================
+    About page
+   ============================================== */
+
+#about-page-container {
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  width: 100vw;
+  margin-bottom: 40px;
+  padding: 20px;
+
+  img {
+    width: 400px;
+    max-width: 100%;
+    margin: auto;
+    margin-bottom: 20px;
+    display: block;
+    pointer-events: none;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 40px 0 0;
+    font-weight: 300;
+  }
+
+  p {
+    padding-top: 6px;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+}
+
+#about-page-description {
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 300;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+
+  p {
+    padding: 0 0 12px;
+  }
+}
+

@@ -1,14 +1,18 @@
-# Collections strings.
-
+---
 nv:
   collections:
-    show:
-      curated_by: "Curated by"
-      follow: "Follow"
-      following: "Following"
-      unfollow: "Unfollow"
+    edit:
+      edit_collection: Edit collection
+    form:
+      create_collection: Create collection
+      description: Description
+      title: Title
+    index:
+      browse_collections: Browse collections
     new:
-      new_collection_page_title: "New Collection"
-      title: "Title"
-      description: "Description"
-      create_collection: "Create Collection"
+      new_collection: New collection
+    show:
+      curated_by: Curated by
+      follow: Follow
+      following: Following
+      unfollow: Unfollow

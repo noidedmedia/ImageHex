@@ -6,16 +6,13 @@
    ============================================== */
 
 #user-page-container {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+  flex-flow: column nowrap;
   width: 100%;
   height: 100%;
 
-  @media all and (max-device-width: $mobile-width) {
-    -webkit-flex-flow: column wrap;
-            flex-flow: column wrap;
+  @media all and (max-width: $mobile-width) {
+    flex-flow: column wrap;
   }
 }
 
@@ -38,18 +35,14 @@
   padding: 0;
   z-index: 100;
   color: #333;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
+  flex-flow: row wrap;
   box-shadow: 8px 0 5px 5px rgba(#000,.1);
   background-color: #fff;
 
-  @media all and (max-device-width: $mobile-width) {
-    display: -webkit-flex;
+  @media all and (max-width: $mobile-width) {
     display: flex;
-    -webkit-flex-flow: row nowrap;
-            flex-flow: row nowrap;
+    flex-flow: row wrap;
     height: auto;
     position: relative;
     background-color: #fff;
@@ -72,7 +65,7 @@
   display: inline-block;
   padding-left: 15px;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: block;
     text-align: left;
   }
@@ -90,12 +83,11 @@
     width: 100%;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     margin-right: 10px;
     width: 75px;
     height: 75px;
     flex-shrink: 0; // Ensures that the image isn't squished on mobile.
-    -webkit-flex-shrink: 0;
 
     img {
       width: 100%;
@@ -109,7 +101,7 @@
   display: inline-block;
   padding-bottom: 5px;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     width: 100%;
   }
 }
@@ -209,7 +201,7 @@
     box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     position: relative;
     z-index: 99; /* 3 */
     text-align: center;
@@ -238,7 +230,7 @@
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);
-      @include translate(-15px,6px);
+      transform: translate(-15px,6px);
       height: 3px;
       display: block;
     }
@@ -253,29 +245,15 @@
 /* Containers for uploads and collections
    ============================================== */
 
-#user-uploads-container,
-#user-collections-container,
-#user-creations-container {
-  padding: 15px 20px;
+.user-content {
+  padding: 10px;
   display: none;
 
   &.current {
-    display: -webkit-flex;
     display: flex;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     margin-top: 5px;
   }
-}
-
-#user-collections-container,
-#user-creations-container {
-  -webkit-flex-flow: row wrap;
-          flex-flow: row wrap;
-}
-
-#user-uploads-container {
-  -webkit-flex-flow: column wrap;
-          flex-flow: column wrap;
 }

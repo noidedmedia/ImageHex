@@ -1,69 +1,73 @@
-# Images strings.
-
+---
 en:
   images:
-    new:
-      upload_page_title: "Upload"
-      upload_image: "Upload an image"
-      drop_images_here_to_upload: "Drop images here to upload"
-      or: "or"
-      click_here_to_choose: "Click here to choose a file"
-      content_rating: "Content rating"
-      nsfw_gore: "NSFW Gore"
-      nsfw_sexuality: "NSFW Sexuality"
-      nsfw_language: "NSFW Language"
-      nsfw_nudity: "NSFW Nudity"
-      description_optional: "Description (optional):"
-      submit: "Submit"
-    show:
-      image_page_title: "Image #%{id}"
-    index:
-      browse_images: "Browse images"
-    image_page_sidebar:
-      download: "Download"
-      download_license_notice: "This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way."
-      agree_and_download: "Agree and Download"
-      favorite: "Favorite"
-      favorited: "Favorited"
-      add_to_collection: "Add to Collection"
-      share: "Share"
-      report: "Report"
-      delete: "Delete"
-    image_page_toolbar:
-      add_a_tag_group: "Add a tag group"
-      help: "Help"
-      details: "Details"
-      license: "License"
-      medium: "Medium"
-      date_uploaded: "Uploaded"
-      content_rating: "Content rating"
-      content_ratings:
-        nsfw_gore: "Gore"
-        nsfw_sexuality: "Sexuality"
-        nsfw_language: "Language"
-        nsfw_nudity: "Nudity"
-        clean: "Clean"
-      date_taken: "Date taken"
-      dimensions: "Dimensions"
-      file_name: "File name"
-      file_size: "File size"
-      camera: "Camera"
-      lens: "Lens"
-      focal_length: "Focal Length"
-      exposure: "Exposure"
-      f_number: "F Number"
-      iso: "ISO"
-      flash: "Flash"
-      view_edit_history: "View edit history"
+    collection_select:
+      collections: Collections
+      youre_not_the_curator_of_any_collections_yet: You're not the curator of any collections yet.
+    image_page_creator_info:
+      creators:
+        one: Creator
+        other: Creators
     image_page_information:
-      new_tag_group: "New tag group"
-      uploaded_by: "Uploaded by"
-      add_a_comment: "Add a comment..."
-      cancel: "Cancel"
-      submit: "Submit"
+      add_a_comment: Add a comment...
+      cancel: Cancel
+      source: 'Source:'
+      submit: Submit
+      uploaded_by: Uploaded by
+    image_page_sidebar:
+      add_to_collection: Add to Collection
+      agree_and_download: Agree and Download
+      delete: Delete
+      download: Download
+      download_license_notice: This image has been made available under the %{license} license. You must credit the creator of this image when using it in any way.
+      favorite: Favorite
+      favorited: Favorited
+      report: Report
+      share: Share
+    image_page_toolbar:
+      add_a_tag_group: Add a tag group
+      camera: Camera
+      content_rating: Content rating
+      content_ratings:
+        clean: Clean
+        nsfw_gore: Gore
+        nsfw_language: Language
+        nsfw_nudity: Nudity
+        nsfw_sexuality: Sexuality
+      date_taken: Date taken
+      details: Details
+      dimensions: Dimensions
+      exposure: Exposure
+      f_number: F Number
+      file_name: File name
+      file_size: File size
+      flash: Flash
+      focal_length: Focal Length
+      help: Help
+      iso: ISO
+      lens: Lens
+      license: License
+      medium: Medium
+      view_edit_history: View edit history
+    index:
+      browse_images: Browse images
+    new:
+      click_here_to_choose: Click here to choose a file
+      content_rating: Content rating
+      description_optional: Description (optional)
+      drop_images_here_to_upload: Drop images here to upload
+      i_made_this: I made this
+      nsfw_gore: NSFW Gore
+      nsfw_language: NSFW Language
+      nsfw_nudity: NSFW Nudity
+      nsfw_sexuality: NSFW Sexuality
+      or: or
+      source_recommended: Source (recommended)
+      submit: Submit
+      upload_image: Upload an image
+      upload_page_title: Upload
     search:
-      search_page_title: "Search"
-      tag_group: "Tag group"
-      add_a_tag_group: "Add a tag group"
-      search: "Search"
-      your_search_didnt_bring_up_any_results: "Your search didn't bring up any results."
+      search_page_title: Search
+      your_search_didnt_bring_up_any_results: Your search didn't bring up any results.
+    show:
+      image_page_title: 'Image #%{id}'

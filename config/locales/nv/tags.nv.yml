@@ -1,11 +1,11 @@
-# Tags strings.
-
+---
 nv:
   tags:
-    show:
-      edit: "Edit"
     edit:
-      editing_tag: "Editing %{tag}"
-      display_name: "Display name"
-      description: "Description"
-      save_changes: "Save changes"
+      editing_tag: Editing %{tag}
+    form:
+      description: Description
+      display_name: Display name
+      save_changes: Save changes
+    show:
+      edit: Edit

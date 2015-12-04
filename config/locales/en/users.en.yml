@@ -1,25 +1,24 @@
-# Users strings.
-
+---
 en:
   users:
-    show:
-      uploads: "Uploads (%{count})"
-      creations: "Creations (%{count})"
-      collections: "Collections (%{count})"
-      user_page_bio_empty: "You haven't filled out a bio yet."
-      edit: "(edit)"
-      this_user_doesnt_have_any_collections_yet: "This user doesn't have any collections yet."
-      you_dont_have_any_collections_yet: "You don't have any collections yet."
     edit:
-      edit_page_title: "Settings"
-      profile_picture_image_id: "Profile Picture Image ID"
-      user_bio: "User bio"
-      images_per_page: "Images per page"
-      show_content_labeled_as: "Show content labeled as:"
-      nsfw_sexuality: "NSFW Sexuality"
-      nsfw_gore: "NSFW Gore"
-      nsfw_language: "NSFW Language"
-      nsfw_nudity: "NSFW Nudity"
-      save_changes: "Save changes"
-    collection_stub:
-      curated_by: "Curated by"
+      edit_page_title: Settings
+      images_per_page: Images per page
+      nsfw_gore: NSFW Gore
+      nsfw_language: NSFW Language
+      nsfw_nudity: NSFW Nudity
+      nsfw_sexuality: NSFW Sexuality
+      save_changes: Save changes
+      show_content_labeled_as: 'Show content labeled as:'
+      user_bio: User bio
+    index:
+      browse_creators: Browse creators
+    show:
+      collections: Collections (%{count})
+      creations: Creations (%{count})
+      edit: "(edit)"
+      favorites: Favorites (%{count})
+      this_user_doesnt_have_any_collections_yet: This user doesn't have any collections yet.
+      uploads: Uploads (%{count})
+      user_page_bio_empty: You haven't filled out a bio yet.
+      you_dont_have_any_collections_yet: You don't have any collections yet.
