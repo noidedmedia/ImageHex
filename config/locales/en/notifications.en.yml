@@ -1,17 +1,16 @@
-# Notifications strings
-
+---
 en:
   notifications:
     index:
-      notifications_title: "Notifications"
+      notifications_title: Notifications
     notifications:
-      notifications_header: "Notifications"
-      mark_all_read: "Mark all as read"
-      no_notifications_yet: "No notifications yet!"
-      view_more: "View more..."
+      mark_all_read: Mark all as read
+      no_notifications_yet: No notifications yet!
+      notifications_header: Notifications
+      view_more: View more...
     notifications_list:
-      mentioned: "%{username} mentioned you in a comment."
-      uploaded_image_commented_on: "%{username} commented on an image you uploaded."
-      subscribed_image_commented_on: "%{username} commented on an image you're subscribed to."
+      ago: ago
       comment_replied_to: "%{username} replied to your comment."
-      ago: "ago"
+      mentioned: "%{username} mentioned you in a comment."
+      subscribed_image_commented_on: "%{username} commented on an image you're subscribed to."
+      uploaded_image_commented_on: "%{username} commented on an image you uploaded."

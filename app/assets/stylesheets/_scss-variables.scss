@@ -28,23 +28,6 @@ $color-google-plus: #d13f2d;
 $color-tumblr: #35465c;
 $color-pinterest: #c92228;
 
-
-// Mixins
-// Mixins can be used as follows:
-// @include translateX(10px);
-
-@mixin translateX($value) {
-  -webkit-transform: translateX($value);
-          transform: translateX($value);
-}
-
-@mixin translateY($value) {
-  -webkit-transform: translateY($value);
-          transform: translateY($value);
-}
-
-@mixin translate($value1,$value2) {
-  -webkit-transform: translate($value1,$value2);
-          transform: translate($value1,$value2);
-}
-
+// Header height
+$header-height: 40px;
+$header-height-mobile: 50px;

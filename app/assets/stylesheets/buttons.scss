@@ -68,7 +68,7 @@
   height: 40px;
   width: 100%;
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     height: 50px;
     font-size: 1.6rem;
   }
@@ -150,7 +150,7 @@
   }
 
   // Button will stretch to full width, become larger on mobile devices.
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     position: relative;
     width: 100%;
     height: 40px;

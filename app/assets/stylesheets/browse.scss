@@ -1,0 +1,52 @@
+.creators-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.creator-images {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+}
+
+.creator-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  div {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+
+.creators-list-item {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #aaa;
+  border-radius: 1px;
+  max-width: 500px;
+}
+
+.creator-images-item {
+  a {
+    img {
+      object-fit: cover;
+      object-position: 50% 0px;
+    }
+  }
+  margin: 4px;
+  height: 70px;
+  width: auto;
+  flex: 3 1 100px;
+  overflow: hidden;
+}

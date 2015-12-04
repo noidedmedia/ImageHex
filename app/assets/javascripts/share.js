@@ -6,22 +6,28 @@ function shareButtons() {
   var tumblr = "https://www.tumblr.com/share/link?url=";
   var pinterest = "https://pinterest.com/pin/create/button/?url=";
 
-  $("#share-facebook > a").attr("href", facebook + currenturl);
-  $("#share-twitter > a").attr("href", twitter + currenturl);
-  $("#share-google-plus > a").attr("href", googleplus + currenturl);
-  $("#share-tumblr > a").attr("href", tumblr + currenturl);
-  $("#share-pinterest > a").attr("href", pinterest + currenturl);
+  document.querySelector("#share-facebook > a").setAttribute("href", facebook + currenturl);
+  document.querySelector("#share-twitter > a").setAttribute("href", twitter + currenturl);
+  document.querySelector("#share-google-plus > a").setAttribute("href", googleplus + currenturl);
+  document.querySelector("#share-tumblr > a").setAttribute("href", tumblr + currenturl);
+  document.querySelector("#share-pinterest > a").setAttribute("href", pinterest + currenturl);
 
-  $("#share-facebook > a, #share-twitter > a, #share-google-plus > a, #share-tumblr > a, #share-pinterest > a").on("click", function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    window.open(this.href, 'newwindow', 'width=600, height=500');
-    return false;
-  });
+  var shareArray = ["#share-facebook > a", "#share-twitter > a", "#share-google-plus > a", "#share-tumblr > a", "#share-pinterest > a"];
+  
+  for (var i = 0; i < shareArray.length; i++) {
+    document.querySelector(shareArray[i]).addEventListener("click", function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(this.href, "_blank", "width=500,height=400,resizable");
+      return false;
+    });
+  }
 }
 
 var ready = function() {
-  shareButtons();
+  if (document.querySelector("#img-action-share")) {
+    shareButtons();
+  }
 };
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);

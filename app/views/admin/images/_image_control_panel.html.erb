@@ -1,6 +1,6 @@
 <%= image_tag i.f :medium %>
-<% i.reports.each do |i| %>
-  <%= i.severity %>
+<% i.image_reports.each do |i| %>
+  <%= i.reason %>
   <%= i.message %>
 <% end %>
   <%= button_to "Delete Image", admin_image_path(i), method: :delete %>

@@ -25,9 +25,11 @@ class TagGroupsController < ApplicationController
     respond_to do |format|
       if @tag_group.save
         track @tag_group
-        format.html { redirect_to @image, notice: I18n.t(".notices.tag_group_added") }
+        format.html { redirect_to @image, notice: I18n.t("notices.tag_group_added") }
+        format.json { render 'show' }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
+        format.json { render json: @tag_group.errors, status: :unproccessible_entity} 
       end
     end
   end
@@ -50,9 +52,11 @@ class TagGroupsController < ApplicationController
     respond_to do |format|
       if @tag_group.update(tag_group_params)
         track @tag_group
-        format.html { redirect_to @image, notice: I18n.t(".notices.tag_group_updated") }
+        format.html { redirect_to @image, notice: I18n.t("notices.tag_group_updated") }
+        format.json { render 'show' }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
+        format.json { render json: @tag_group.errors, status: :unproccessible_entity } 
       end
     end
   end
@@ -64,7 +68,7 @@ class TagGroupsController < ApplicationController
   # We add the image_id automatically from the path.
   def tag_group_params
     params.require(:tag_group)
-      .permit(:tag_group_string)
+      .permit(tag_ids: [])
       .merge(image_id: params[:image_id]) # Add in the image id automatically
   end
 

@@ -1,10 +1,32 @@
-<%- title @tag.display_name %>
+<%- title @tag.name %>
 
-<h1><%= @tag.display_name %></h1>
-<div class="tag-description">
-  <%= markdown_parse @tag.description %>
-</div>
+<div id="tag-information">
+  <header>
+  <h1><%= @tag.name %></h1>
+  <%= link_to t(".edit"), edit_tag_path(@tag), id: "tag-edit-link" %>
+  </header> 
+  <div id="tag-description">
+    <%= markdown_parse @tag.description %>
+  </div>
+  <% unless @neighbors.blank? %>
+    <div id="tag-neighbors">
+      <h3> Related Tags </h3>
+      <ul>
+        <% @neighbors.each do |n| %>
+          <li class="tag-neighbor-item">
 
-<%= link_to t(".edit"), edit_tag_path(@tag) %>
+          <%= link_to n do %>
+            <span class="tag-neighbor-name">
+              <%= n.name %>
+            </span>
+            <span class="tag-neighbor-count">
+              (<%= n.count %>)
+            </span>
 
-<%= render 'images/show_stub', images: @images %>
+          <% end %>
+          </li>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'images/show_stub', images: @images %>

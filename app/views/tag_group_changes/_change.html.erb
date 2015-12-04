@@ -7,13 +7,13 @@
   
   <ul class="change-list">
     <% change.unchanged_tags.each do |t| %>
-      <li class="unchanged-tag"><%= link_to t.display_name, t %></li>
+      <li class="unchanged-tag"><%= link_to t.name, t %></li>
     <% end %>
     <% change.removed_tags.each do |t| %>
-      <li class="removed-tag"><%= link_to t.display_name, t %></li>
+      <li class="removed-tag"><%= link_to t.name, t %></li>
     <% end %>
     <% change.added_tags.each do |t| %>
-      <li class="added-tag"><%= link_to t.display_name, t %></li>
+      <li class="added-tag"><%= link_to t.name, t %></li>
     <% end %>
   </ul>
 </div>

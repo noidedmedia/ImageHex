@@ -1,0 +1,290 @@
+@import "scss-variables";
+
+/* Container for the header item, always fixed to the top of the screen. */
+#header-container {
+  background-color: #333;
+  color: #fff;
+  display: block;
+  font-weight: 300;
+  height: $header-height;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  text-align: right;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
+
+  @media all and (max-width: $mobile-width) {
+    width: 100vw;
+    height: $header-height-mobile;
+    background-color: #333;
+    display: flex;
+    flex-flow: row nowrap;
+    position: fixed;
+    z-index: 1001;
+  }
+}
+
+/* Items aligned to the left side of the header. */
+#header-left {
+  display: inline-block;
+  left: 50px;
+  height: $header-height;
+  position: absolute;
+  text-align: left;
+
+  @media all and (max-width: $mobile-width) {
+    position: relative;
+    left: 30px;
+    height: $header-height-mobile;
+  }
+
+  #header-home {
+    padding: 12px 0;
+    margin-right: 15px;
+    width: 160px;
+
+    @media all and (max-width: 1000px) {
+      width: 50px;
+    }
+
+    .imagehex-header-logo {
+      width: 160px;
+      height: $header-height;
+      position: absolute;
+      top: 0;
+      background: asset-url("logo/imagehex-monochrome-white-text.svg") 50% 50% / 110% 110% no-repeat;
+      opacity: 0.75;
+      transition: 200ms opacity;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      @media all and (min-width: $mobile-width) and (max-width: 1000px) {
+        width: 40px;
+        height: $header-height;
+        top: 0;
+        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+      }
+
+      @media all and (max-width: $mobile-width) {
+        width: 50px;
+        height: $header-height-mobile;
+        top: 0;
+        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+      }
+    }
+  }
+
+  #header-browse {
+    position: relative;
+
+    // Prevent elements hitting each other.
+    @media all and (max-width: 1000px) {
+      display: none;
+    }
+  }
+}
+
+/* Items aligned to the right side of the header. */
+#header-right {
+  display: inline-block;
+  position: relative;
+  right: 40px;
+  text-align: right;
+  height: 100%;
+
+  @media all and (max-width: $mobile-width) {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: calc(100vw - 90px);
+    max-width: 250px;
+    height: calc(100vh - 50px);
+    display: block;
+    text-align: left;
+    background-color: #222;
+    z-index: 1000;
+    transition: transform 300ms;
+    transform: translateX(calc(100vw + 90px));
+    padding-top: 10px;
+
+    &.active {
+      transform: translateX(0);
+    }
+
+    .header-item {
+      width: 100%;
+      display: block;
+      padding: 0;
+      font-size: 1.8rem;
+
+      a {
+        width: 100%;
+        display: block;
+        height: 100%;
+        padding: 12px 25px;
+      }
+    }
+
+    #username {
+      position: absolute;
+      bottom: 0;
+      left: 30px;
+      padding: 12px 20px;
+    }
+  }
+}
+
+/* Header items, e.g. "Sign out", "Upload", etc. */
+.header-item {
+  color: #aaaab2;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 12px 15px 0;
+  transition: color 300ms ease-in-out;
+  vertical-align: top;
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  a {
+    color: #aaaab2;
+    text-decoration: none;
+    transition: color 300ms ease-in-out;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+  
+  @media all and (max-width: $mobile-width) {
+    padding: 15px 15px;
+  }
+}
+
+#header-create.header-item {
+  display: inline-block;
+  cursor: pointer;
+  height: 100%;
+  margin-right: 4px;
+  width: 38px;
+  height: $header-height;
+  padding: 12px 12px;
+
+  i::before {
+    // Firefox hack to get the "+" icon to center within the header-create div.
+    -moz-transform: translateX(-13px);
+  }
+
+  &.active {
+    background-color: #fff;
+    
+    i, i::before {
+      color: #333;
+    }
+  }
+
+  @media all and (max-width: $mobile-width) {
+    display: none;
+  }
+}
+
+#header-create-button {
+  display: block;
+}
+
+.create-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.05);
+  text-align: left;
+
+  li {
+    display: block;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: #333;
+
+    // Ensure padding on the right side of the list items.
+    padding: 10px 50px 10px 10px;
+
+    &:hover {
+      color: #333;
+      background-color: darken(#fff, 5%);
+    }
+  }
+
+  &.inactive {
+    display: none;
+  }
+}
+
+#mobile-menu-icon {
+  display: none;
+  height: $header-height-mobile;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 50px;
+
+  span::before {
+    // Center icon within the tap target
+    transform: translate(11px,14px);
+    transition: color 300ms;
+  }
+
+  &.active {
+    span::before {
+      color: #fff;
+    }
+  }
+
+  @media all and (max-width: $mobile-width) {
+    display: block;
+  }
+}
+
+#mobile-menu-overlay {
+  display: none;
+}
+
+@media all and (max-width: $mobile-width) {
+  #header-home {
+    padding: 0 15px;
+  }
+
+  #mobile-menu-overlay {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    position: fixed;
+    display: block;
+    top: 50px;
+    left: 0;
+    pointer-events: none;
+    background-color: rgba(#333,0);
+    z-index: 999;
+    transition: background-color 300ms 0;
+
+    &.active {
+      background-color: rgba(#333,0.4);
+      pointer-events: auto;
+      transition: background-color 300ms 300ms;
+    }
+  }
+}

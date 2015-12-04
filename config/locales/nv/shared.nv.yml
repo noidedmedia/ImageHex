@@ -1,17 +1,18 @@
-# Shared strings.
-
+---
 nv:
   shared:
-    comments:
-      no_comments_yet: "No user has had the desire to make anything known on this page"
+    browse_tabs:
+      collections: Collections
+      creators: Creators
+      images: Images
     comment:
-      uploaded_by: "Uploaded by"
-      no_description_provided: "No description provided."
-      edit: "Edit"
-      commented: "commented"
-      ago: "ago"
+      ago: ago
+      commented: commented
+      reply: Reply
+    comments:
+      no_comments_yet: No user has had the desire to make anything known on this page
     report_stub:
-      reason_for_report: "Reason for report:"
-      extra_information: "Extra information (optional):"
-      cancel: "Cancel"
-      report: "Report"
+      cancel: Cancel
+      extra_information: 'Extra information (optional):'
+      reason_for_report: 'Reason for report:'
+      report: Report

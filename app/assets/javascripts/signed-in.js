@@ -8,7 +8,7 @@
 var signedin = function() {
   // If the body element doesn't have the "signed-in" class, the variable
   // is declared. Otherwise, nothing happens.
-  if ( $("body").hasClass("signed-in") === false ) {
+  if (!document.getElementsByTagName('body')[0].classList.contains("signed-in")) {
     var signedindiv = $("div, button, form").filter(function(index) {
       // Returns all "div" elements with the data-signed-in attribute.
       return $(this).data("signed-in");
@@ -65,18 +65,17 @@ var signedin = function() {
 // complete that action" without signing in, and directs them to either the
 // Sign In or Create Account pages.
 function signInDialog() {
-  $("body").addClass("modal-open");
-  $("#modal-overlay").addClass("active");
+  document.getElementsByTagName('body')[0].classList.add("modal-open");
+  document.querySelector("#modal-overlay").classList.add("active");
   $("#modal-dialog").bind("clickoutside", function() {
-    $("body").removeClass("modal-open");
-    $("#modal-overlay").removeClass("active");
+    document.getElementsByTagName('body')[0].classList.remove("modal-open");
+    document.querySelector("#modal-overlay").classList.remove("active");
     $("#modal-overlay").unbind("click");
   });
-  // $("#modal-dialog > p").html("This action requires an account, please sign in.");
 }
 
 var ready = function() {
   signedin();
 };
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);

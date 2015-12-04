@@ -71,7 +71,7 @@ Devise.setup do |config|
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
   # Does not affect registerable.
-  # config.paranoid = true
+  config.paranoid = true
 
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
@@ -229,11 +229,6 @@ Devise.setup do |config|
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
-
-  # ==> OmniAuth
-  # Add a new OmniAuth provider. Check the wiki for more information on setting
-  # up on your models and hooks.
-  config.omniauth :twitter, '0P0Dyq7XnPk6BDnwBOnskqAZ3', 'OzK7NhXBr1cp5xrCQWzNnD89NVjdVjQI0Gq2bj47MtSaVLuEdw'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

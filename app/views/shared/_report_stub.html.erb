@@ -1,19 +1,19 @@
 <%# Pass in a reportable as a subject and this will make a form to %>
 <%# report that subject %>
 
+<p class="tooltip-title"><%= t(".report") %>
 <div id="report-form">
-  <%= form_tag(url) do %>
-    
+  <%= form_tag(url) do %>  
     <p><%= t(".reason_for_report") %>
 
-    <% Report.severities.each do |k, v| %>
+    <% ImageReport.reasons.each do |k, v| %>
       <div class="report-row">
-        <%= radio_button_tag("report[severity]", k) %>
-        <%= label "report[severity]", k, k.humanize %>
+        <%= radio_button_tag("report[reason]", k) %>
+        <%= label "report[reason]", k, k.humanize %>
       </div>
     <% end %>
     
-    <p><%= t(".extra_information") %>
+    <p><%= t(".extra_information") %></p>
     <%= text_area_tag "report[message]" %>
 
     <div class="report-buttons">

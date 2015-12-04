@@ -1,38 +1,37 @@
-# Layouts strings.
-
+---
 nv:
   layouts:
     application:
-      please_sign_in: "This action requires an account, please sign in."
-      sign_in: "Sign in"
-      create_an_account: "Create an account"
-    header:
-      home: "Page at the root of the URL"
-      search: "Page where you can find many images"
-      search_suggestions_note: "Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags"
-      browse: "Browse website for new content"
-      sign_in: "Verify your identity"
-      create_an_account: "Create an identity for yourself"
-      upload: "Upload a new image on ImageHex"
-      profile: "Text, set by users, designed to give one a small amount of information about that user"
-      admin: "A user who can do whatever they wish"
-      settings: "A group of values that describe how ImageHex works"
-      sign_out: "Dissassociate this computer with an identity on ImageHex"
+      create_an_account: Create an account
+      imagehex_meta_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
+      please_sign_in: This action requires an account, please sign in.
+      sign_in: Sign in
     footer:
-      imagehex: "ImageHex"
-      imagehex_description: "ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet."
-      imagehex_copyright: "Copyrighted during the present year to the company titled #noided Media"
-      company: "Tax Entity Comprised of Multiple People"
-      about: "Further Information about ImageHex"
-      people: "The Workers of ImageHex"
-      blog: "A series of articles pertaining to ImageHex"
-      contact: "A list of ways to contact us"
-      community: "The collective entity of the users of ImageHex"
-      rules: "Rules"
-      faq: "FAQ"
-      help: "Assistance"
-      press: "Entities reporting information for the public good"
-      status: "State of the website"
-      api: "Application Programming Interface"
-      terms: "Terms"
-      privacy: "Privacy"
+      about: Further Information about ImageHex
+      api: Application Programming Interface
+      contact: A list of ways to contact us
+      faq: FAQ
+      help: Assistance
+      imagehex: ImageHex
+      imagehex_copyright: 'Copyrighted during the present year to the company titled #noided Media'
+      imagehex_description: ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet.
+      people: The Workers of ImageHex
+      press_kit: Press Kit
+      privacy: Privacy
+      rules: Rules
+      status: State of the website
+      terms: Terms
+      twitter: Twitter
+    header:
+      admin: A user who can do whatever they wish
+      browse: Browse website for new content
+      create_an_account: Create an identity for yourself
+      home: Page at the root of the URL
+      new_collection: New collection
+      profile: Text, set by users, designed to give one a small amount of information about that user
+      search: Page where you can find many images
+      search_suggestions_note: Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags
+      settings: A group of values that describe how ImageHex works
+      sign_in: Verify your identity
+      sign_out: Dissassociate this computer with an identity on ImageHex
+      upload: Upload a new image on ImageHex

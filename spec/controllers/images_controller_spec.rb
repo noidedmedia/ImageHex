@@ -66,11 +66,11 @@ describe ImagesController do
       it "makes a new creation for a user" do
         expect{
           post :created, id: i
-        }.to change{@user.creations.images.count}.by(1)
+        }.to change{@user.creations.count}.by(1)
       end
       it "adds the image to the user's creation" do
         post :created, id: i
-        expect(@user.creations.images).to include(i)
+        expect(@user.creations).to include(i)
       end
     end
 

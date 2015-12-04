@@ -1,38 +1,38 @@
-# Layouts strings, mostly for the header and footer.
-
+---
 en:
   layouts:
     application:
-      please_sign_in: "This action requires an account, please sign in."
-      sign_in: "Sign in"
-      create_an_account: "Create an account"
-    header:
-      home: "Home"
-      search: "Search"
-      search_suggestions_note: "Search for the tag you're looking for, suggestions will show up here."
-      browse: "Browse"
-      sign_in: "Sign in"
-      create_an_account: "Create an account"
-      upload: "Upload"
-      profile: "Profile"
-      admin: "Admin"
-      settings: "Settings"
-      sign_out: "Sign out"
+      create_an_account: Create an account
+      imagehex_meta_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
+      please_sign_in: This action requires an account, please sign in.
+      sign_in: Sign in
     footer:
-      imagehex: "ImageHex"
-      imagehex_description: "ImageHex is a place to search, share, and commission artwork. We endeavour to be the best directory of images on the internet."
+      about: About
+      api: API
+      contact: Contact
+      faq: FAQ
+      help: Help
+      imagehex: ImageHex
       imagehex_copyright: "© 2015 Noided Media"
-      company: "Company"
-      about: "About"
-      people: "People"
-      blog: "Blog"
-      contact: "Contact"
-      community: "Community"
-      rules: "Rules"
-      faq: "FAQ"
-      help: "Help"
-      press: "Press"
-      status: "Status"
-      api: "API"
-      terms: "Terms"
-      privacy: "Privacy"
+      imagehex_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
+      people: People
+      press_kit: Press Kit
+      privacy: Privacy
+      rules: Rules
+      status: Status
+      terms: Terms
+      twitter: Twitter
+    header:
+      admin: Admin
+      browse: Browse
+      create_an_account: Create an account
+      home: Home
+      new_collection: New collection
+      profile: Profile
+      settings: Settings
+      sign_in: Sign in
+      sign_out: Sign out
+      upload: Upload
+    header_search:
+      search: Search
+      search_suggestions_note: Search for the tag you're looking for, suggestions will show up here.

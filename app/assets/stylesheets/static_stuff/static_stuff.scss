@@ -1,0 +1,74 @@
+@import "scss-variables";
+
+.imagehex-static-page-container {
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  width: 100vw;
+  margin-bottom: 40px;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    margin: 40px 0 0;
+    font-weight: 300;
+  }
+}
+
+.imagehex-static-text {
+  display: flex;
+  flex-flow: column wrap;
+  margin: auto;
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 40px;
+  padding: 20px 0;
+
+  h2 {
+    text-align: left;
+    margin: 45px 0 0;
+    font-weight: 500;
+    font-size: 2.4rem;
+  }
+
+  h3 {
+    margin-top: 30px;
+    font-size: 2.0rem;
+    font-weight: 500;
+  }
+
+  h4 {
+    margin-top: 20px;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  p {
+    padding-top: 6px;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+
+  a {
+    color: #333;
+  }
+
+  .bold {
+    font-weight: 500;
+  }
+
+  ul {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    padding-top: 15px;
+    padding-left: 30px;
+
+    li {
+      padding: 4px 0;
+      display: list-item;
+    }
+  }
+}

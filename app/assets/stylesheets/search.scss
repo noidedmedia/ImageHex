@@ -1,6 +1,38 @@
 @import "scss-variables";
 
-/* search.html styling */
+.search {
+  padding: 10px;
+}
+
+.search-tag-groups {
+  display: flex;
+  flex-flow: row wrap;
+
+  .tag-group-editor {
+    margin: 4px;
+    padding: 4px;
+    border: 1px solid #777;
+    width: 300px;
+  }
+}
+
+.search-controls {
+  button {
+    padding: 3px;
+    margin: 5px;
+    background-color: #5BB289;
+    border: 0px none;
+    cursor: pointer;
+    -moz-appearence: none;
+    border-radius: 3px;
+    color: #FFF;
+
+    &:hover {
+      background-color: #4CA27A;
+    }
+  }
+}
+
 #body-search {
   margin: auto;
   display: flex;
@@ -69,12 +101,10 @@
  */
 
 #header-search {
-  display: block;
-  position: absolute;
+  display: inline-block;
+  position: relative;
   width: 300px;
   max-height: 40px;
-  top: 0;
-  left: 125px;
   background-color: #fff;
   transition: max-height 300ms ease-in-out; /* 1 */
 
@@ -110,12 +140,12 @@
     top: 10px;
     cursor: pointer;
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       left: 15px;
     }
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: none;
   }
 }
@@ -171,10 +201,11 @@
     background-color: #fff;
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     height: 100%;
     max-height: 100%;
     width: 100vw;
+    top: 0;
     left: 0;
     transition: max-height 300ms ease-in-out, width 300ms ease-in-out;
     display: block;
@@ -195,7 +226,7 @@
     opacity: 1;
     transition: opacity 300ms ease-in-out 600ms; /* 2 */
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       margin-top: 40px;
     } 
   }
@@ -216,7 +247,7 @@
       opacity: 1;
     }
 
-    @media all and (max-device-width: $mobile-width) {
+    @media all and (max-width: $mobile-width) {
       padding-top: 75px;
 
       p {
@@ -240,7 +271,7 @@
 #close-mobile-search-icon {
   display: none; /* 1 */
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: inline-block;
     position: absolute;
     right: 45px;
@@ -257,10 +288,11 @@
   width: 50px;
 
   span::before {
-    @include translate(-35px,14px);
+    // Center icon within the tap target
+    transform: translate(8px,14px);
   }
 
-  @media all and (max-device-width: $mobile-width) {
+  @media all and (max-width: $mobile-width) {
     display: block;
   }
 }

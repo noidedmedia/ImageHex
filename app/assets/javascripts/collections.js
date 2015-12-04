@@ -14,4 +14,4 @@ var ready = function() {
   followCollection();
 };
 
-$(document).ready(ready);
+document.addEventListener('page:change', ready);

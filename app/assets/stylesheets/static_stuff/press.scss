@@ -1,0 +1,77 @@
+@import "scss-variables";
+
+.press-kit-section-container {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10px 0 25px;
+  justify-content: space-between;
+
+  @media all and (max-width: $mobile-width) {
+    flex-flow: row wrap;
+  }
+
+  .logo-wordmark-container {
+    display: block;
+
+    .logo-image-container {
+      display: block;
+      padding: 20px;
+      margin: 5px 0;
+      border: 1px solid #aaaab2;
+      background-color: #fff;
+
+      &.dark-background {
+        border: 1px solid #333;
+        background-color: #333;
+      }
+
+      img {
+        display: inline-block;
+        object-fit: contain;
+        pointer-events: none;
+      }
+    }
+
+    p {
+      font-weight: 400;
+      text-align: center;
+      width: 100%;
+      display: inline-block;
+    }
+
+    .title {
+      font-size: 1.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+    }
+
+    .download-options {
+      font-size: 1.4rem;
+      padding-top: 12px;
+
+      a {
+        color: #333;
+        font-weight: 500;
+      }
+    }
+
+    @media all and (max-width: $mobile-width) {
+      width: 100%;
+      padding-bottom: 20px;
+    }
+  }
+
+  // On desktop, determine width depending on which `*-column` CSS class
+  // has been applied to the `press-kit-section-container`.
+  @media all and (min-width: $mobile-width) {
+    &.two-column .logo-wordmark-container {
+      width: calc(50% - 8px);
+    }
+
+    &.three-column .logo-wordmark-container {
+      width: calc(33% - 8px);
+    }
+  }
+}

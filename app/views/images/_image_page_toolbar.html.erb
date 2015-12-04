@@ -1,10 +1,13 @@
 <div id="image-page-toolbar">
-  <div class="left">
-    <%# Add a tag group %>
-    <div id="add-tag-group-button">
-      <%= t(".add_a_tag_group") %>
+  <% if current_user %>
+    <div class="left">
+      <%# Add a tag group %>
+      <div id="add-tag-group-button"
+        data-image_id="<%= @image.id %>">
+        <%= t(".add_a_tag_group") %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="right">
     <%# Help %>
@@ -39,12 +42,6 @@
               <td class="column-one-cell"><%= t(".medium") %></td>
               <td class="column-two-cell"><%= t("activerecord.attributes.mediums.#{@image.medium}") %></td>
             </tr>
-            <%# Date the image was uploaded to ImageHex. %>
-            <%# The span element is used to create a hovertext of the exact %>
-            <%# time and date of upload. %>
-            <tr class="table-row active" id="details-table-row-date-uploaded">
-              <td class="column-one-cell"><%= t(".date_uploaded") %></td>
-              <td class="column-two-cell"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span></td>
 
             <tr class="table-row active" id="details-table-row-content-ratings">
               <td class="column-one-cell"><%= t(".content_rating") %></td>

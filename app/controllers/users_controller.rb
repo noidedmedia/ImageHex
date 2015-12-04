@@ -4,6 +4,59 @@
 class UsersController < ApplicationController
   include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy]
+
+  def index
+    @users = get_user_index
+      .preload(:creations)
+      .merge(Image.for_content(content_pref))
+      .paginate(page: page, per_page: per_page)
+  end
+  
+  ##
+  # A collection of images favorited by a given user.
+  # @user:: The user in question.
+  # @collection:: The favorites collection for this user.
+  # @images:: Images favorited by this user.
+  def favorites
+    @user = User.friendly.find(params[:id])
+    @collection = @user.favorites
+    @images = @collection.images
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+    render 'collections/show'
+  end
+
+  ##
+  # A collection of images credited to a given user.
+  # @user:: The user in question.
+  # @collection:: The creations collection for this user.
+  # @images:: Images credited to this user.
+  def creations
+    @user = User.friendly.find(params[:id])
+    @collection = @user.creations
+    @images = @collection.images
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+    render 'collections/show'
+  end
+
+  def subscribe
+    @user = User.friendly.find(params[:id])
+    current_user.subscribe! @user
+    respond_to do |format|
+      format.json { render json: {success: true}}
+      format.html { redirect_to @user }
+    end
+  end
+
+  def unsubscribe
+    @user = User.friendly.find(params[:id])
+    current_user.unsubscribe! @user
+    respond_to do |format|
+      format.json { render json: {success: true}}
+      format.html { redirect_to @user } 
+    end
+  end
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]
@@ -17,9 +70,14 @@ class UsersController < ApplicationController
     @uploads = @user.images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
-    @creations = @user.creations.images
+    @creations = @user.creations
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
+    @favorites = @user.favorites.images
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
+    # this is a hack, fix please 
+    @content = content_pref
     @collections = @user.collections.subjective
   end
 
@@ -32,7 +90,6 @@ class UsersController < ApplicationController
   def edit
     @user = params[:id] ? User.find(params[:id]) : current_user
     authorize @user
-    @user.user_page ||= UserPage.new
   end
 
   ##
@@ -41,11 +98,13 @@ class UsersController < ApplicationController
   # 
   # If the user cannot be updated, it puts the errors in flash[:error] and 
   # redirects to the edit page again.
+  # @user:: The user who is being updated. 
   def update
-    return unless current_user == User.friendly.find(params[:id])
+    @user = User.friendly.find(params[:id])
+    authorize @user
     respond_to do |format|
       if current_user.update(user_params)
-        format.html { redirect_to current_user, notice: I18n.t(".notices.changes_have_been_saved") }
+        format.html { redirect_to current_user, notice: I18n.t("notices.changes_have_been_saved") }
       else
         format.html { redirect_to edit_user_path(current_user), warning: current_user.errors.full_messages.join(",") }
       end
@@ -53,6 +112,15 @@ class UsersController < ApplicationController
   end
 
   protected
+
+  def get_user_index
+    case params[:order]
+    when 'popular'
+      User.popular_creators
+    else
+      User.recent_creators
+    end
+  end
   ##
   # Parameters to update a user.
   # page_pref:: The amount of images per page.
@@ -64,7 +132,7 @@ class UsersController < ApplicationController
     .require(:user)
     .permit(:page_pref,
              :avatar,
-             user_page_attributes: [:body],
+             :description,
              content_pref: [:nsfw_language,
                             :nsfw_gore,
                             :nsfw_nudity,
