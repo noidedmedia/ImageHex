@@ -42,7 +42,18 @@ class TagGroupEditor extends React.Component {
         Found no suggestions.
       </li>;
     }
+    var removalButton;
+    if(this.props.allowRemoval){
+      removalButton = <div className="remove-tag-group"
+        onClick={this.props.onRemove}>
+        Remove
+      </div>
+    }
+    else{
+      removalButton = <div></div>;
+    }
     return <div className="tag-group-editor">
+      {removalButton}
       <ul className="tag-group-editor-tags">
         {tags}
       </ul>
