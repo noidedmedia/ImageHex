@@ -65,6 +65,7 @@ class ImagesController < ApplicationController
   def search
     @query = SearchQuery.new(params[:query])
     @images = Image.search(@query)
+      .order(updated_at: :desc)
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
     respond_to do |format|
