@@ -27,6 +27,7 @@ class CollectionsController < ApplicationController
 
   def index
     @collections = find_index_collections
+      .subjective
       .paginate(page: page, per_page: per_page)
       .includes(:images)
     # FIXME: This is a hack.
@@ -126,10 +127,10 @@ class CollectionsController < ApplicationController
 
   def find_index_collections
     case params['order']
-    when "popular"
-      Collection.by_popularity
+    when "created_at"
+      Collection.order(created_at: :desc)
     else
-      Collection.all.order(created_at: :desc)
+      Collection.by_popularity
     end
   end
 

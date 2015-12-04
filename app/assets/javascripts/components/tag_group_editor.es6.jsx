@@ -21,7 +21,6 @@ class TagGroupEditor extends React.Component {
     var suggestions;
     if (this.state.hasSuggestions) {
       suggestions = this.state.suggestions.map((sug, index) => {
-        
         return <li>
           <TagSuggestion
             key={"tag-" + sug.id}
@@ -37,12 +36,26 @@ class TagGroupEditor extends React.Component {
         onAdd={this.onTagAdd.bind(this)}
         tagName={this.state.inputValue} />;
     }
-    else {
+    else if(this.state.showSuggestions){
       suggestions = <li className="no-suggestions-found">
         Found no suggestions.
       </li>;
     }
+    else{
+      suggestions = <div></div>;
+    }
+    var removalButton;
+    if(this.props.allowRemoval){
+      removalButton = <div className="remove-tag-group"
+        onClick={this.props.onRemove}>
+        Remove
+      </div>
+    }
+    else{
+      removalButton = <div></div>;
+    }
     return <div className="tag-group-editor">
+      {removalButton}
       <ul className="tag-group-editor-tags">
         {tags}
       </ul>
@@ -72,6 +85,7 @@ class TagGroupEditor extends React.Component {
     this.props.onTagAdd(tag);
     this.setState({
       hasSuggestions: false,
+      showSuggestions: false,
       inputValue: "",
       hasBlankInput: true
     });
@@ -162,7 +176,8 @@ class TagGroupEditor extends React.Component {
       this.onTagAdd(tag);
       this.setState({
         suggestions: [],
-        hasSuggestions: false
+        hasSuggestions: false,
+        showSuggestions: false,
       });
     } else {
       // TODO: Handle this error ;-;
@@ -180,6 +195,7 @@ class TagGroupEditor extends React.Component {
       this.setState({
         hasBlankInput: true,
         hasSuggestions: false,
+        showSuggestions: false,
         suggestions: [],
         inputValue: ""
       });
@@ -189,10 +205,15 @@ class TagGroupEditor extends React.Component {
   fetchSuggestions(value) {
     Tag.withPrefix(value, (tags) => {
       if (tags.length > 0) {
+        var ntags = tags.filter( (tag) => {
+          for(var i = 0; i < this.props.tags.length; i++){
+            if(tags[i].id === tag.id){
+              return false;
+            }
+          }
+          return true;
+        });
         /**
-         * We have to set the input value ourselves due to the input
-         * being a managed react component.
-         *
          * We also set the `active` suggestion to 0. This may result in weird
          * behavior if the user hits the down arrow key to change the active
          * suggestion, then types another character. However, if the user is 
@@ -205,13 +226,15 @@ class TagGroupEditor extends React.Component {
         this.setState({
           hasBlankInput: false,
           hasSuggestions: true,
-          suggestions: tags,
+          showSuggestions: true,
+          suggestions: ntags,
           activeSuggestion: 0
         });
       }
       else {
         this.setState({
           hasSuggestions: false,
+          showSuggestions: true,
           hasBlankInput: false,
         });
       }

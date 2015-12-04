@@ -1,6 +1,7 @@
 <%- title @tag.name %>
 
 <div id="tag-information">
+  <% cache @tag, expires_in: 4.hours do %> 
   <header>
   <h1><%= @tag.name %></h1>
   <%= link_to t(".edit"), edit_tag_path(@tag), id: "tag-edit-link" %>
@@ -29,4 +30,5 @@
       </div>
     <% end %>
   </div>
+<% end %>
   <%= render 'images/show_stub', images: @images %>

@@ -22,7 +22,6 @@ class SearchPage extends React.Component {
   render() {
     console.log("Focused group:",this.state.focusedGroup);
     let tags = this.state.tagGroups.map((group, index) => {
-      console.log("Is group #",index," the focused group? ",index == this.state.focusedGroup);
       return <TagGroupEditor 
         key={index}
         group={group} 
@@ -31,6 +30,8 @@ class SearchPage extends React.Component {
         onTagAdd={this.addTagToGroup.bind(this, index)}
         autofocus={index == this.state.focusedGroup}
         onSubmit={this.onSubmit.bind(this)}
+        allowRemoval={index !== 0}
+        onRemove={this.removeTagGroup.bind(this, index)}
       />;
     });
     return <div className="search">
@@ -50,7 +51,12 @@ class SearchPage extends React.Component {
       </div>
     </div>
   }
-
+  removeTagGroup(index){
+    this.state.tagGroups.splice(index, 1);
+    this.setState({
+      tagGroups: this.state.tagGroups
+    });
+  }
   onSubmit() {
     var query = {};
     query.tag_groups = this.state.tagGroups.map((group) => {
