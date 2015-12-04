@@ -31,7 +31,6 @@
     "postmark",
     "papertrail",
     "heroku-postgresql",
-    "memcachier",
-    "heroku-redis"
+    "memcachier"
   ]
 }
