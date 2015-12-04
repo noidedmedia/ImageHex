@@ -189,10 +189,15 @@ class TagGroupEditor extends React.Component {
   fetchSuggestions(value) {
     Tag.withPrefix(value, (tags) => {
       if (tags.length > 0) {
+        var ntags = tags.filter( (tag) => {
+          for(var i = 0; i < this.props.tags.length; i++){
+            if(tags[i].id === tag.id){
+              return false;
+            }
+          }
+          return true;
+        });
         /**
-         * We have to set the input value ourselves due to the input
-         * being a managed react component.
-         *
          * We also set the `active` suggestion to 0. This may result in weird
          * behavior if the user hits the down arrow key to change the active
          * suggestion, then types another character. However, if the user is 
@@ -205,7 +210,7 @@ class TagGroupEditor extends React.Component {
         this.setState({
           hasBlankInput: false,
           hasSuggestions: true,
-          suggestions: tags,
+          suggestions: ntags,
           activeSuggestion: 0
         });
       }
