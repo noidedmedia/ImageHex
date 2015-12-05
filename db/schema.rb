@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203204546) do
+ActiveRecord::Schema.define(version: 20151204212436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,17 @@ ActiveRecord::Schema.define(version: 20151203204546) do
   add_index "subscriptions", ["collection_id"], name: "index_subscriptions_on_collection_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
+  create_table "tag_changes", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.text     "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+  end
+
+  add_index "tag_changes", ["tag_id"], name: "index_tag_changes_on_tag_id", using: :btree
+
   create_table "tag_group_changes", force: :cascade do |t|
     t.integer  "tag_group_id"
     t.integer  "user_id"
@@ -231,6 +242,7 @@ ActiveRecord::Schema.define(version: 20151203204546) do
     t.integer  "consumed_timestep"
     t.boolean  "otp_required_for_login"
     t.text     "description",                           default: "", null: false
+    t.jsonb    "elsewhere"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -251,6 +263,8 @@ ActiveRecord::Schema.define(version: 20151203204546) do
   add_foreign_key "notifications", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "tag_changes", "tags", on_delete: :cascade
+  add_foreign_key "tag_changes", "users", on_delete: :cascade
   add_foreign_key "tag_group_changes", "tag_groups", on_delete: :cascade
   add_foreign_key "tag_group_changes", "users", on_delete: :nullify
   add_foreign_key "tag_groups", "images", on_delete: :cascade
