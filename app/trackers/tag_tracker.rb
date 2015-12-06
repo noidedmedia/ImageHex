@@ -16,6 +16,7 @@ class TagTracker < ApplicationTracker
     TagChange.create(tag: @record,
                      user: @user,
                      description: @record.description,
+                     importance: @record.importance,
                      name: @record.name)
   end
 end
