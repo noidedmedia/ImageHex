@@ -21,7 +21,7 @@
             <% end %>
 
             <% if @image.source && !@image.source.blank? %>
-              <p class="image-source-link"><%= t(".source") %> <%= link_to @image.source, @image.source %></p>
+              <p class="image-source-link"><%= t(".source") %> <%= link_to URI.parse(@image.source).host, @image.source %></p>
             <% end %>
           </div>
         </div>
