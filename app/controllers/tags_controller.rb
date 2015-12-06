@@ -68,7 +68,7 @@ class TagsController < ApplicationController
       track tag
       redirect_to tag
     else
-      flash[:warning] = tags.errors.full_messages
+      flash[:warning] = tag.errors.full_messages
       redirect_to action: :edit
     end
 
