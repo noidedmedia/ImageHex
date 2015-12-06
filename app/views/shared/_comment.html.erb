@@ -1,16 +1,11 @@
 <%# Collection partial for a comment %> 
 
 <%# Anchor for comment links from Notifications. %>
-<a name= <%= comment.id %> ></a>
-
-<div class="comment" 
-  id="comment-<%= comment.id %>">
+<div class="comment" id="comment-<%= comment.id %>">
   
   <div class="user-comment-avatar">
     <%= link_to comment.user do %>
-      <% if comment.user.avatar %>
-        <%= image_tag comment.user.avatar_img_thumb %>
-      <% end %>
+      <%= image_tag comment.user.avatar_img_thumb %>
     <% end %>
   </div>
 
