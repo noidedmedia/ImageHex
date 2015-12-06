@@ -15,6 +15,10 @@
 
 .tag-group-tag-suggestion {
   padding: 2px;
+  // vertically centering text is hard in CSS ;-;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
   &.active {
     background-color: #7CBA5B;
   }
@@ -23,6 +27,7 @@
 .tag-box-added-tag {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   justify-content: space-between;
   &:not(:last-of-type) {
     border-bottom: 1px solid #E4E4E4;

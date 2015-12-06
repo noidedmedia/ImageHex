@@ -6,25 +6,26 @@ class HeaderSearch extends React.Component {
     };
   }
   render() {
-    return <div>
+    return <div id="header-search-react">
       <TagGroupEditor
         key={1}
         group={this.state.tagGroup}
+        tags={this.state.tagGroup.tags}
         onTagRemove={this.removeTag.bind(this)}
         onTagAdd={this.addTag.bind(this)}
         autofocus={true}
-        onSubmit={this.submit.bind(this)}
+        submit={this.submit.bind(this)}
       />
     </div>;
   }
   addTag(tag) {
-    this.state.tagGroup.add(tag);
+    this.state.tagGroup.addTag(tag);
     this.setState({
       tagGroup: this.state.tagGroup
     });
   }
   removeTag(tag) {
-    this.state.tagGroup.remove(tag);
+    this.state.tagGroup.removeTag(tag);
     this.setState({
       tagGroup: this.state.tagGroup
     });
@@ -45,11 +46,8 @@ class HeaderSearch extends React.Component {
 }
 
 document.addEventListener('page:change', function() {
-  document.getElementById("header-search-input").addEventListener("focus", function(e) {
-    document.getElementById("header-search").classList.toggle("active");
-  });
-
-  document.getElementById("header-search-input").addEventListener("blur", function(e) {
-    document.getElementById("header-search").classList.toggle("active");
-  });
+  var hs = document.getElementById("header-search");
+  console.log("header search container:",hs);
+  ReactDOM.render(<HeaderSearch />,
+               hs);
 });
