@@ -1,5 +1,5 @@
 <%- title t(".press_kit") %>
-
+<% cache "press", expires_in: 1.day do %> 
 <div class="imagehex-static-page-container">
   
   <h2><%= t(".press_kit") %></h2>
@@ -9,3 +9,4 @@
   </div>
 
 </div>
+<% end %>

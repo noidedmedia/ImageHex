@@ -1,5 +1,5 @@
 <%- title t(".about") %>
-
+<% cache "about", expires_in: 1.day do %>
 <%= render "static_stuff/company_nav" %>
 
 <div id="about-page-container">
@@ -21,3 +21,4 @@
     </div>
   </div>
 </div>
+<% end %>

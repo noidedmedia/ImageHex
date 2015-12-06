@@ -177,6 +177,7 @@ class ImagesController < ApplicationController
       Image.order('created_at DESC')
     end
   end
+  
   # Load the image with params[:id] into @image.
   # should be refactored out.
   def load_image

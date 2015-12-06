@@ -1,14 +1,14 @@
 <div class="creators-list-item">
-  <%= link_to creator do %>
-    <div class="creator-list-item-header">
+  <div class="creator-list-item-header">
+    <%= link_to creator do %>
       <%= image_tag creator.avatar(:tiny) %>
+    <% end %>
 
-      <div class="creator-list-item-info">
-        <p><%= creator.name %></p>
-        <p><%= markdown_parse creator.description %></p>
-      </div>
+    <div class="creator-list-item-info">
+      <p><%= link_to creator.name, creator %></p>
+      <p><%= markdown_parse creator.description %></p>
     </div>
-  <% end %>
+  </div>
 
   <div class="creator-images-gallery">
     <% creator.creations.take(4).each do |i| %>

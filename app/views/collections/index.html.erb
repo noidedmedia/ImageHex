@@ -3,7 +3,7 @@
 <%= render partial: "shared/browse_tabs" %>
 
 <div class="collections-list-container">
-  <%= render partial: "collections/show_stub", collection: @collections, as: :c %>
+  <%= render partial: "collections/show_stub", collection: @collections, as: :collection %>
 </div>
 
 <%= will_paginate @collections %>

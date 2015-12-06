@@ -112,11 +112,11 @@ class Image < ActiveRecord::Base
     imgs = Image.arel_table
     cimgs = CollectionImage.arel_table
     j = imgs.join(cimgs, Arel::Nodes::OuterJoin)
-      .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
-      .join_sources
+    .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
+    .join_sources
     res = joins(j)
-      .group("images.id")
-      .order("COUNT (collection_images) DESC")
+    .group("images.id")
+    .order("COUNT (collection_images) DESC")
   end
   ##
   # Find all images a user is subscribed to. 
@@ -132,8 +132,8 @@ class Image < ActiveRecord::Base
     # WHERE subscriptions.user_id = ?
     # ORDER BY collection_images.created_at DESC
     SubscriptionQuery.new(user).result
-      .order("sort_created_at DESC")
-      .for_content(user.content_pref)
+    .order("sort_created_at DESC")
+    .for_content(user.content_pref)
   end
 
   def self.with_all_tags(tags)
@@ -215,6 +215,17 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def source_display
+    URI.parse(source_link).host
+  end
+
+  def source_link
+    if self.source.start_with?("http://", "https://")
+      self.source
+    else
+      "//#{self.source}"
+    end
+  end
   protected
   def add_uploader_creation
     # This is gross beecause of how form params work
