@@ -9,9 +9,6 @@ class TagGroupEditor extends React.Component {
   }
 
   render() {
-    console.log("State is",this.state);
-    console.log(this.props.tags);
-    console.log("Props",this.props);
     var tags = this.props.tags.map((tag) => {
       return <TagBox tag={tag} 
         onRemove={this.props.onTagRemove} 
@@ -20,6 +17,7 @@ class TagGroupEditor extends React.Component {
     });
     var suggestions;
     if (this.state.hasSuggestions) {
+      console.log("Rendering suggestions",this.state.suggestions);
       suggestions = this.state.suggestions.map((sug, index) => {
         return <li>
           <TagSuggestion
@@ -31,17 +29,20 @@ class TagGroupEditor extends React.Component {
       });
     }
     else if (!this.state.hasBlankInput && this.props.allowTagCreation) {
+      console.log("Rendering an inline tag creator");
       suggestions = <InlineTagCreator 
         hideSubmit={this.props.hideSubmit}
         onAdd={this.onTagAdd.bind(this)}
         tagName={this.state.inputValue} />;
     }
     else if(this.state.showSuggestions){
+      console.log("No suggestions found, informing the user...");
       suggestions = <li className="no-suggestions-found">
         Found no suggestions.
       </li>;
     }
     else{
+      console.log("No suggestions to show and no reason to tell the user");
       suggestions = <div></div>;
     }
     var removalButton;
@@ -62,7 +63,7 @@ class TagGroupEditor extends React.Component {
       <input type="text" 
         name="suggestions" 
         onChange={this.onInputChange.bind(this)}
-        onKeyUp={this.onKeyUp.bind(this)}
+        onKeyDown={this.onKeyUp.bind(this)}
         value={this.state.inputValue}
         ref="groupInput"
       />
@@ -74,10 +75,8 @@ class TagGroupEditor extends React.Component {
 
   componentDidUpdate() {
     if (this.props.autofocus) {
-      console.log("Focusing a Tag Group");
       ReactDOM.findDOMNode(this.refs.groupInput).focus();
     } else {
-      console.log("Not focusing this tag group");
     }
   }
 
@@ -122,16 +121,16 @@ class TagGroupEditor extends React.Component {
     // User types an enter key or a comma, try to add the current tag
     else if (event.keyCode == 13) {
       // this is where things get a bit complicated
-      // if we have are pressing shift...
-      if (event.shiftKey) {
-        // ...and a non-blank box, add the active suggestion
+      // if we have are pressing shift, or hitting enter in a blank box...
+      if (event.shiftKey || event.target.value === "") {
+        // Add the current suggestion if we have it
         if (event.target.value !== "") {
           this.addActive();
         }
         // And always submit
         this.props.submit();
       }
-      // Now, if we aren't pressing the shift key, just add the active tag
+      // Now, if we aren't pressing the shift key... 
       else {
         this.addActive();
       }
@@ -148,7 +147,8 @@ class TagGroupEditor extends React.Component {
       event.preventDefault();
       console.log("Changing active selection to", newSuggestion);
       this.setState({
-        activeSuggestion: newSuggestion
+        activeSuggestion: newSuggestion,
+        lastKeyWasBackspace: false
       });
     }
     // up arrow
@@ -160,13 +160,12 @@ class TagGroupEditor extends React.Component {
       var newSuggestion = Math.max(0,
                                    this.state.activeSuggestion - 1);
       this.setState({
-        activeSuggestion: newSuggestion
+        activeSuggestion: newSuggestion,
+        lastKeyWasBackspace: false
       });
     }
     // The last key wasn't a backspace
-    this.setState({
-      lastKeyWasBackspace: false
-    });
+   
   }
 
   // Probably should be called "addActiveSuggestion"
@@ -178,6 +177,7 @@ class TagGroupEditor extends React.Component {
         suggestions: [],
         hasSuggestions: false,
         showSuggestions: false,
+        lastKeyWasBackspace: false
       });
     } else {
       // TODO: Handle this error ;-;
@@ -207,7 +207,10 @@ class TagGroupEditor extends React.Component {
       if (tags.length > 0) {
         var ntags = tags.filter( (tag) => {
           for(var i = 0; i < this.props.tags.length; i++){
-            if(tags[i].id === tag.id){
+            if(this.props.tags[i].id === tag.id){
+              console.log("Tag named " + tag.name + " already in list");
+              console.log(tags);
+              console.log("Removing it from the suggestion list");
               return false;
             }
           }
