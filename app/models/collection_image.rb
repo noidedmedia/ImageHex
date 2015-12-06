@@ -5,7 +5,7 @@
 #
 class CollectionImage < ActiveRecord::Base
   belongs_to :image
-  belongs_to :collection
+  belongs_to :collection, touch: true
   belongs_to :user
   validates :image_id, uniqueness: { scope: :collection_id }
 end

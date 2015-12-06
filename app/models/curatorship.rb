@@ -3,8 +3,8 @@
 # collections they curate.
 # It also includes a level of curatorship for permissions purposes.
 class Curatorship < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :collection
+  belongs_to :user, touch: true
+  belongs_to :collection, touch: true
   validates :user, presence: true
   validates :collection, presence: true
   validates :level, presence: true
