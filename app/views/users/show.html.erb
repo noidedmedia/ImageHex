@@ -1,49 +1,49 @@
 <%- title @user.name %>
 
 <div id="user-page-container">
-  <div id="user-page-header">
+  <% cache_unless current_user, @user do %>
+    <div id="user-page-header">
+      <div class="user-page-information">
+        <div id="user-page-profile-picture">
+          <% if @user.avatar %>
+            <%= image_tag @user.avatar_img %>
+          <% end %>
+        </div>
 
-    <div class="user-page-information">
-      <div id="user-page-profile-picture">
-        <% if @user.avatar %>
-          <%= image_tag @user.avatar_img %>
-        <% end %>
+        <div class="user-page-text">
+          <div class="user-page-username"><%= @user.name %></div>
+
+          <%# User's website goes here. %>
+
+          <%# User bio %>
+          <% if ! @user.description.blank? %>
+            <div class="user-page-bio">
+              <%= markdown_parse @user.description %>
+            </div>
+
+          <% elsif current_user == @user %>
+            <div class="user-page-bio inactive">
+              <%= t(".user_page_bio_empty") %>
+            </div>
+          <% end %>
+
+          <div class="user-page-website"></div>
+
+          <%# Only show "edit" button if the page belongs to the current user. %>
+          <% if current_user == @user %>
+            <div class="user-page-bio-edit">
+              <%= link_to t(".edit"), edit_user_path %>
+            </div>
+          <% end %>
+
+          <%# Only show "follow" if the page does not belong to the current user. %>
+          <% if current_user != @user %>
+            <div class="user-page-follow">
+              <%# <%= link_to t(".follow"), follow_user_path %>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-      <div class="user-page-text">
-        <div class="user-page-username"><%= @user.name %></div>
-
-        <%# User's website goes here. %>
-
-        <%# User bio %>
-        <% if ! @user.description.blank? %>
-          <div class="user-page-bio">
-            <%= markdown_parse @user.description %>
-          </div>
-
-        <% elsif current_user == @user %>
-          <div class="user-page-bio inactive">
-            <%= t(".user_page_bio_empty") %>
-          </div>
-        <% end %>
-
-        <div class="user-page-website"></div>
-
-        <%# Only show "edit" button if the page belongs to the current user. %>
-        <% if current_user == @user %>
-          <div class="user-page-bio-edit">
-            <%= link_to t(".edit"), edit_user_path %>
-          </div>
-        <% end %>
-
-        <%# Only show "follow" if the page does not belong to the current user. %>
-        <% if current_user != @user %>
-          <div class="user-page-follow">
-            <%# <%= link_to t(".follow"), follow_user_path %>
-          </div>
-        <% end %>
-      </div>
-    </div>
 
       <ul id="user-page-header-tabs">
         <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @uploads.count) %>
@@ -52,9 +52,8 @@
         <li data-tab="tab-4" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
       </ul>
 
-  </div>
-
-
+    </div>
+  <% end %> 
   <div id="user-content-container">
 
     <div id="user-uploads-container" class="user-content tab-content tc-tab-1 current">
@@ -74,14 +73,14 @@
         <%= render partial: "collections/show_stub", collection: @collections, as: :c %>
       <% elsif @user == current_user %>
         <p class="imagehex-empty-note">
-          <%= t(".you_dont_have_any_collections_yet") %>
+        <%= t(".you_dont_have_any_collections_yet") %>
         </p>
       <% else %>
         <p class="imagehex-empty-note">
-          <%= t(".this_user_doesnt_have_any_collections_yet") %>
+        <%= t(".this_user_doesnt_have_any_collections_yet") %>
         </p>
       <% end %>
     </div>
-  
+
   </div>
 </div>
