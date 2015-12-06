@@ -113,7 +113,8 @@
 }
 
 /* Style for less severe errors. */
-.alert-warning {
+.alert-warning,
+.alert-alert {
   background-color: $color-warning;
 
   > p:first-of-type::before {
