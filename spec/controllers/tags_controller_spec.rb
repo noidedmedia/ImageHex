@@ -22,6 +22,12 @@ RSpec.describe TagsController, type: :controller do
         put :update, id: tag, tag: {description: "test"}
         expect(tag.reload.description).to eq("test")
       end
+      it "makes a new tracker" do
+        expect{
+          put :update, id: tag, tag: {description: "test"}
+        }.to change{TagChange.count}.by(1)
+        expect(TagChange.last.tag.id).to eq(tag.id)
+      end
     end
   end
 end
