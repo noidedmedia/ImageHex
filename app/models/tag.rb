@@ -19,7 +19,7 @@ class Tag < ActiveRecord::Base
   has_many :tag_groups, through: :tag_group_members
   has_many :images, ->{order(created_at: :desc)}, through: :tag_groups
   validates :name, uniqueness: {case_sensative: false}
-  validates :importance, inclusion: {in: (0..1)}
+  validates :importance, inclusion: {in: (0..5)}
   ##
   # Suggest tags beginning with a string.
   # Tags are returned alphabetically.
