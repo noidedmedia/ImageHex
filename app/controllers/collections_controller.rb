@@ -4,6 +4,7 @@ class CollectionsController < ApplicationController
   before_filter :ensure_user, except: [:index, :show]
 
   include Pundit
+  
   ##
   # Unsubscribe from a collection
   # Member action

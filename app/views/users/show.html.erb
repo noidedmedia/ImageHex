@@ -70,7 +70,7 @@
 
     <div class="user-content tab-content tc-tab-4 collections-list-container">
       <% if !@collections.empty? %>
-        <%= render partial: "collections/show_stub", collection: @collections, as: :c %>
+        <%= render partial: "collections/show_stub", collection: @collections, as: :collection %>
       <% elsif @user == current_user %>
         <p class="imagehex-empty-note">
         <%= t(".you_dont_have_any_collections_yet") %>

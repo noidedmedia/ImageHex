@@ -1,19 +1,19 @@
 <div class="collection-preview">
 
-  <%= link_to collection_path(c) do %>
+  <%= link_to collection_path(collection) do %>
     <div class="collection-thumbnail">
-      <% if c.images.for_content(@content).count > 0 %>
-        <%= image_tag c.images.for_content(@content).first.f(:medium) %>
+      <% if collection.images.for_content(@content).count > 0 %>
+        <%= image_tag collection.images.for_content(@content).first.f(:medium) %>
       <% else %>
         <%= image_tag "empty-collection.svg" %>
       <% end %>
     </div>
 
     <div class="collection-information">
-      <p class="collection-title"><%= c.name %>
+      <p class="collection-title"><%= collection.name %>
       
-      <% unless c.description.empty? %>
-        <p class="collection-description"><%= c.description %>
+      <% unless collection.description.empty? %>
+        <p class="collection-description"><%= collection.description %>
       <% end %>
     </div>
 
