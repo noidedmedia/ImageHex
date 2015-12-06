@@ -19,13 +19,11 @@ class TagGroupEditor extends React.Component {
     if (this.state.hasSuggestions) {
       console.log("Rendering suggestions",this.state.suggestions);
       suggestions = this.state.suggestions.map((sug, index) => {
-        return <li>
-          <TagSuggestion
-            key={"tag-" + sug.id}
-            tag={sug}
-            isActive={index == this.state.activeSuggestion} 
-            onAdd={this.onTagAdd.bind(this)} />
-        </li>;
+        return <TagSuggestion
+          key={"tag-" + sug.id}
+          tag={sug}
+          isActive={index == this.state.activeSuggestion} 
+          onAdd={this.onTagAdd.bind(this)} />
       });
     }
     else if (!this.state.hasBlankInput && this.props.allowTagCreation) {
@@ -43,7 +41,7 @@ class TagGroupEditor extends React.Component {
     }
     else{
       console.log("No suggestions to show and no reason to tell the user");
-      suggestions = <div></div>;
+      suggestions = "";
     }
     var removalButton;
     if(this.props.allowRemoval){
@@ -165,7 +163,7 @@ class TagGroupEditor extends React.Component {
       });
     }
     // The last key wasn't a backspace
-   
+
   }
 
   // Probably should be called "addActiveSuggestion"
@@ -256,11 +254,11 @@ class TagSuggestion extends React.Component {
     if (this.props.isActive) {
       className += " active";
     }
-    return <div 
+    return <li
       className={className}
       onClick={this.click.bind(this)}>
-      {this.props.tag.name}
-    </div>;
+      <span>{this.props.tag.name}</span>
+    </li>;
   }
 
   click() {
