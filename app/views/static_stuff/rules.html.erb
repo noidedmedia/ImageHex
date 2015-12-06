@@ -1,7 +1,7 @@
 <%- title t(".rules") %>
-
+<% cache "rules", expires_in: 1.day do %>
 <div class="imagehex-static-page-container">
-  
+
   <h2><%= t(".rules") %></h2>
 
   <div class="imagehex-static-text">
@@ -9,3 +9,4 @@
   </div>
 
 </div>
+<% end %>
