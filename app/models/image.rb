@@ -223,7 +223,7 @@ class Image < ActiveRecord::Base
     if self.source.start_with?("http://", "https://")
       self.source
     else
-      "http://#{self.source}"
+      "//#{self.source}"
     end
   end
   protected
