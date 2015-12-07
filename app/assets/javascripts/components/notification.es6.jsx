@@ -85,10 +85,16 @@ class NotificationItem extends React.Component {
         return url;
       }
     }
+    else if (this.props.subject.type == "user") {
+      return "/users/" + this.props.subject.id;
+    }
   }
   message() {
     var kind = this.props["kind"];
     var username = this.props.subject.user_name;
+    if(! username) {
+      username = this.props.subject.name;
+    }
     if (kind == "uploaded_image_commented_on") {
       return <p className="notification-message">
         {username} commented on your image
@@ -102,6 +108,11 @@ class NotificationItem extends React.Component {
     if (kind == "mentioned") {
       return <p className="notification-message">
         {username} mentioned you in a comment
+      </p>;
+    }
+    if (kind == "new_subscriber") {
+      return <p className="notification-message">
+        {username} subscribed to you!
       </p>;
     }
     else {

@@ -20,7 +20,8 @@ class Notification < ActiveRecord::Base
   enum kind: [:uploaded_image_commented_on,
     :subscribed_image_commented_on,
     :comment_replied_to,
-    :mentioned]
+    :mentioned,
+    :new_subscriber]
 
   def subject=(sub)
     to_write = nil
@@ -31,6 +32,12 @@ class Notification < ActiveRecord::Base
         type: :comment,
         commentable_type: sub.commentable_type,
         commentable_id: sub.commentable_id
+      }
+    when User
+      to_write = {
+        name: sub.name,
+        id: sub.id,
+        type: :user
       }
     end
     write_attribute(:subject, to_write)
