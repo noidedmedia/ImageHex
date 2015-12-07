@@ -12,7 +12,7 @@ class Tag < ActiveRecord::Base
   before_validation :fix_name, on: :create
   ##
   # SCOPES
-  scope :by_importance, ->{ order(:importance) }
+  scope :by_importance, ->{ order(importance: :desc) }
   ##
   # ASSOCIATIONS:
   has_many :tag_group_members

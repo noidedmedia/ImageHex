@@ -70,13 +70,19 @@ class NotificationItem extends React.Component {
     NM.postJSON("/notifications/" + this.props.id + "/read", 
                 {}, 
                 (test) => {
-                  this.setState({read: true});
+                  this.visitLink();
                 });
+  }
+  visitLink(){
+    this.link();
+    Turbolinks.visit(this.link());
   }
   link() {
     if (this.props.subject.type == "comment") {
       if (this.props.subject.commentable_type == "Image") {
-        return "/images/" + this.props.subject.commentable_id;
+        var url = "/images/" + this.props.subject.commentable_id;
+        url += "#comment-" + this.props.id;
+        return url;
       }
     }
   }
