@@ -19,7 +19,7 @@ class TagGroup < ActiveRecord::Base
   # RELATIONSHIPS #
   #################
   belongs_to :image
-  has_many :tags, through: :tag_group_members
+  has_many :tags, ->{by_importance},  through: :tag_group_members
   has_many :tag_group_members
   has_many :tag_group_changes
   ###############
