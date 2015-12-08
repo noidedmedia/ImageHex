@@ -77,4 +77,51 @@
       display: list-item;
     }
   }
+
+  input[type="text"] {
+    height: 36px;
+    -webkit-appearance: none;
+    background-color: #fff;
+    box-shadow: none;
+    border: 1px solid #aaaab2;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    padding: 10px;
+
+    &:focus {
+      outline: none;
+      border-color: #0099e5;
+    }
+  }
+
+  input[type="submit"] {
+    height: 36px;
+    -webkit-appearance: none;
+    border: 1px solid #aaaab2;
+    border-radius: 4px;
+    background-color: #fff;
+    margin: 0 0 0 5px;
+    font-size: 1.4rem;
+    padding: 0;
+
+    &:focus {
+      outline: none;
+      border-color: #0099e5;
+    }
+  }
+}
+
+.newsletter-sign-up {
+  display: flex;
+  flex: row nowrap;
+  max-width: 400px;
+  margin-top: 8px;
+
+  input[type="text"] {
+    flex: 5 5 300px;
+  }
+
+  input[type="submit"] {
+    flex: 0 0 100px;
+  }
 }
