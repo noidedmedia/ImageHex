@@ -221,12 +221,6 @@ GEM
       ast (>= 1.1, < 3.0)
     pg (0.18.4)
     possessive (1.0.1)
-    postmark (1.7.0)
-      json
-      rake
-    postmark-rails (0.12.0)
-      actionmailer (>= 3.0.0)
-      postmark (~> 1.7.0)
     private_attr (1.1.0)
     procto (0.0.2)
     pry (0.10.3)
@@ -433,7 +427,6 @@ DEPENDENCIES
   paperclip
   pg
   possessive
-  postmark-rails
   pry-rails
   pundit
   quiet_assets
