@@ -1,7 +1,7 @@
 <div class="imagehex-static-page-container">
 
   <h2>Commissions</h2>
-  <h3>Coming Soon to ImageHex</h3>
+  <h3>Coming Soon</h3>
 
   <article class="imagehex-static-text">
     <section id="commissions-intro">
@@ -22,6 +22,7 @@
     <section id="info-start">
       <h2>What ImageHex offers</h2>
       <p>ImageHex is going to make commissioning or selling art a painless, intuitive experience. We will make the exchange of art safer, simpler, and faster for all involved.</p>
+
       <section>
         <h3>Guaranteed Payments</h3>
         <p>ImageHex makes the artist system safer by providing <em>escrow</em>.
@@ -50,7 +51,7 @@
             <li>All the information about an artist's commissions is in one place, making it easy to compare prices.</li>
             </li>Your followers are automatically notified when you start accepting commissions, letting you leverage your audience.</li>
             <li>Your commissions appear on the open marketplace, providing you more exposure.</li>
-            <li>Artists can chose to reject commissions, letting them filter clients independtly.</li>
+            <li>Artists can chose to reject commissions, letting them filter clients independently.</li>
           </ul>
       </section>
 
@@ -67,5 +68,13 @@
         </ul>
       </section>
     </section>
+
+    
+    <p>Sign up for our newsletter</p>
+    
+    <p><%# form_for @newsletter do |f| %>
+      <%= text_field_tag placeholder: "sarah@example.com" %>
+      <%= submit_tag "Sign up" %>
+    <%# end %>
   </article>
 </div>
