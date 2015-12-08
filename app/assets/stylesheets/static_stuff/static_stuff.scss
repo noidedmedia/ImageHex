@@ -10,9 +10,15 @@
   margin-bottom: 40px;
   padding: 20px;
 
-  h2 {
+  > h2 {
     text-align: center;
     margin: 40px 0 0;
+    font-weight: 400;
+  }
+
+  > h3 {
+    text-align: center;
+    margin: 5px 0 0;
     font-weight: 300;
   }
 }
@@ -47,7 +53,7 @@
   }
 
   p {
-    padding-top: 6px;
+    padding-top: 10px;
     font-size: 1.6rem;
     line-height: 2.2rem;
   }
