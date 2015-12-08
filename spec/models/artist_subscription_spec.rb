@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ArtistSubscription, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "notifies the artist" do
+    u = FactoryGirl.create(:user)
+    expect{
+      c = FactoryGirl.create(:artist_subscription,
+                             artist: u)
+    }.to change{u.notifications.count}.by(1)
+    expect(u.notifications.last.kind).to eq("new_subscriber")
+  end
 end
