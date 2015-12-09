@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
     format: {with: /\A([[:alpha:]]|\w)+\z/ },
     length: {in: 2..25}
   validates :page_pref, inclusion: {:in => (1..100)}
-
+  validate :elsewhere_is_not_evil
   #############
   # CALLBACKS #
   #############
@@ -215,6 +215,26 @@ class User < ActiveRecord::Base
     Favorite.create!(curators: [self])
   end
 
+  def elsewhere_is_not_evil
+    if elsewhere == nil
+      return
+    end
+    if !self.elsewhere.is_a? Array
+      errors.add(:elsewhere, "is malformed, suggesting weird scripting")
+    else
+      self.elsewhere.each do |e|
+        unless e.is_a? String
+          errors.add(:elsewhere, "contains non-string values")
+          next
+        end
+        begin
+          URI.parse(e)
+        rescue URI::InvalidURIError => e
+          errors.add(:elsewhere, "Contains an invalid URL")
+        end
+      end
+    end
+  end
   ##
   # Class method to get a user from onmiauth
   def self.from_omniauth(auth)

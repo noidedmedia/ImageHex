@@ -105,6 +105,20 @@ describe User do
       u.created!(i)
       expect(u.creations).to eq([i])
     end
-
+  end
+  describe "elsehwere" do
+    let(:u){FactoryGirl.create(:user)}
+    it "allows nil keys" do
+      u.elsewhere = nil
+      expect(u).to be_valid
+    end
+    it "allows URIs" do
+      u.elsewhere = ["test.tumblr.com"]
+      expect(u).to be_valid
+    end
+    it "breaks on bad URIs" do
+      u.elsewhere = ["http://javascript:evil('test')"]
+      expect(u).to_not be_valid
+    end
   end
 end

@@ -2,6 +2,7 @@
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
 
+  include SanitizeUrl
   def frontpage_reason_path img
     return "" unless id = img.try(:reason_id)
     case img.try(:reason_type)

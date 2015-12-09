@@ -7,11 +7,11 @@ class UsersController < ApplicationController
 
   def index
     @users = get_user_index
-      .preload(:creations)
-      .merge(Image.for_content(content_pref))
-      .paginate(page: page, per_page: per_page)
+    .preload(:creations)
+    .merge(Image.for_content(content_pref))
+    .paginate(page: page, per_page: per_page)
   end
-  
+
   ##
   # A collection of images favorited by a given user.
   # @user:: The user in question.
@@ -21,8 +21,8 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @collection = @user.favorites
     @images = @collection.images
-      .for_content(content_pref)
-      .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
     render 'collections/show'
   end
 
@@ -35,8 +35,8 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @collection = @user.creations
     @images = @collection.images
-      .for_content(content_pref)
-      .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
     render 'collections/show'
   end
 
@@ -68,14 +68,14 @@ class UsersController < ApplicationController
   def show
     @user = User.friendly.find(params[:id])
     @uploads = @user.images
-      .paginate(page: page, per_page: per_page)
-      .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
     @creations = @user.creations
-      .paginate(page: page, per_page: per_page)
-      .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
     @favorites = @user.favorites.images
-      .paginate(page: page, per_page: per_page)
-      .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
     # this is a hack, fix please 
     @content = content_pref
     @collections = @user.collections.subjective
@@ -131,11 +131,12 @@ class UsersController < ApplicationController
     params
     .require(:user)
     .permit(:page_pref,
-             :avatar,
-             :description,
-             content_pref: [:nsfw_language,
-                            :nsfw_gore,
-                            :nsfw_nudity,
-                            :nsfw_sexuality])
+            :avatar,
+            :description,
+            content_pref: [:nsfw_language,
+              :nsfw_gore,
+              :nsfw_nudity,
+              :nsfw_sexuality],
+              elsewhere: [])
   end
 end

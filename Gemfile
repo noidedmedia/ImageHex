@@ -35,6 +35,9 @@ gem 'omniauth'
 gem 'pundit'
 
 ##
+# This gem is old, but it does what we need it to
+gem 'sanitize-url'
+##
 # https://github.com/svenfuchs/i18n
 # Internationalization for Rails.
 gem 'i18n'

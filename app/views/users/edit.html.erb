@@ -49,6 +49,7 @@
         </div>
       <% end %>
     </div>
+    <%= react_component("ElsewhereEditor", current: @user.elsewhere) %>
 
     <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>
   <% end %>

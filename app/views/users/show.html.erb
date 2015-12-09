@@ -27,7 +27,11 @@
             </div>
           <% end %>
 
-          <div class="user-page-website"></div>
+          <div class="user-page-website">
+            <% @user.elsewhere.each do |e| %>
+              <%= link_to URI.parse(e).hostname, sanitize_url(e, schemes: ['http', 'https']) %>
+            <% end %>
+          </div>
 
           <%# Only show "edit" button if the page belongs to the current user. %>
           <% if current_user == @user %>
