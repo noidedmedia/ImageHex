@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206192853) do
+ActiveRecord::Schema.define(version: 20151210015832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20151206192853) do
     t.boolean  "otp_required_for_login"
     t.text     "description",                           default: "", null: false
     t.jsonb    "elsewhere"
+    t.string   "display_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
