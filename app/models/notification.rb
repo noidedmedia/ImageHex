@@ -7,7 +7,7 @@ class Notification < ActiveRecord::Base
   #############
   # RELATIONS #
   #############
-  belongs_to :user
+  belongs_to :user, touch: true
   ##
   # SCOPES
   scope :unread, ->{where(read: false)}

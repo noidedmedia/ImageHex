@@ -1,3 +1,4 @@
+<% cache ["header", current_user || "no-user"] do %>
 <header id="header-container" role="banner">
   <div id="header-left">
 
@@ -109,4 +110,5 @@
 
     <% end %>
   </div>
-</header>
+  </header>
+<% end %>

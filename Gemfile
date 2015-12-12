@@ -81,10 +81,7 @@ gem 'unicorn'
 # Use Paperclip to upload images.
 gem 'paperclip'
 
-##
-## https://github.com/wildbit/postmark-rails
-# Use Postmark to send email.
-gem 'postmark-rails'
+
 
 ##
 # https://github.com/rails/jquery-rails

@@ -13,7 +13,7 @@ en:
       faq: FAQ
       help: Help
       imagehex: ImageHex
-      imagehex_copyright: "© 2015 Noided Media"
+      imagehex_copyright: "© %{year} Noided Media"
       imagehex_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
       people: People
       press_kit: Press Kit
