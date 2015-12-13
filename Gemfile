@@ -81,8 +81,6 @@ gem 'unicorn'
 # Use Paperclip to upload images.
 gem 'paperclip'
 
-
-
 ##
 # https://github.com/rails/jquery-rails
 # Use jQuery as the JavaScript library.
@@ -152,6 +150,10 @@ group :development do
   gem 'better_errors'
   gem 'annotate'
   gem 'bullet'
+
+  ##
+  # https://github.com/presidentbeef/brakeman
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
   gem 'brakeman'
 
   ##
