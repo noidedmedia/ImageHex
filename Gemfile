@@ -152,6 +152,7 @@ group :development do
   gem 'better_errors'
   gem 'annotate'
   gem 'bullet'
+  gem 'brakeman'
 
   ##
   # https://github.com/rails/spring
@@ -182,7 +183,7 @@ group :development, :test do
   # https://github.com/thoughtbot/factory_girl_rails
   # A library for setting up Ruby objects as test data.
   gem 'factory_girl_rails'
-  
+
   ##
   # https://github.com/stympy/faker
   # Faker produces fake data for testing/development.
@@ -202,7 +203,7 @@ group :test do
   # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good
   gem 'shoulda-matchers'
-  
+
   ##
   # https://github.com/colszowka/simplecov
   # See how much coverage our tests have
