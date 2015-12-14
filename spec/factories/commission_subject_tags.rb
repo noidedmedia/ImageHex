@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :commission_subject_tag do
-    tag nil
-commission_subject nil
+    tag 
+commission_subject 
   end
 
 end

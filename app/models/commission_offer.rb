@@ -1,8 +1,10 @@
 class CommissionOffer < ActiveRecord::Base
   belongs_to :commission_product
   belongs_to :user
-  has_many :subjects, class_name: "CommissionSubject"
-  has_many :backgrounds, class_name: "CommissionBackground"
+  has_many :subjects, class_name: "CommissionSubject",
+    inverse_of: :commission_offer
+  has_many :backgrounds, class_name: "CommissionBackground",
+    inverse_of: :commission_offer
   accepts_nested_attributes_for :subjects
   accepts_nested_attributes_for :backgrounds
 
