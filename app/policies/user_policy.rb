@@ -24,6 +24,10 @@ class UserPolicy < ApplicationPolicy
     same_user
   end
 
+  def backup_twofactor?
+    same_user && @user.otp_secret
+  end
+
   protected
   
   def same_user

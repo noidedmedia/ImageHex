@@ -3,7 +3,7 @@
 # Uses friendly_id for ids.
 class UsersController < ApplicationController
   include Pundit
-  before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor]
+  before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor, :verify_twofactor]
 
 
   def confirm_twofactor
@@ -34,6 +34,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def backup_twofactor
+    @user = User.friendly.find(params[:id])
+    authorize @user
+    @codes = @user.otp_backup_codes
+  end
+
   def enable_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
@@ -58,7 +64,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
 
   def index
     @users = get_user_index
@@ -177,12 +182,12 @@ class UsersController < ApplicationController
       User.recent_creators
     end
   end
+
   ##
   # Parameters to update a user.
   # page_pref:: The amount of images per page.
   # avatar:: The user's avatar image. 
-  # user_page_attributes:: Should have a body attribute, which is the user's
-  #                        Bio.
+  # description:: The user's description.
   def user_params
     params
     .require(:user)
