@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :commission_product do
-    user nil
-name "MyString"
-description "MyText"
-base_price 1
+    user
+    name "Sketch"
+    description "EZ Product, EZ Life"
+    base_price 500
   end
 
 end
