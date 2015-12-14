@@ -35,6 +35,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   protected
+  
   def two_factor_enabled?
     @user = User.find_by(email: params[:user][:email])
     unless params[:user][:otp_attempt].present?

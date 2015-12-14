@@ -31,8 +31,8 @@ en:
         sign_in_title: Sign in
         welcome_back: Welcome back.
       two_factor:
-        two_factor_authentication: Two-Factor Authentication
-        authentication_code: Authentication Code
+        two_factor_authentication: Two-factor authentication
+        authentication_code: Authentication code
         verify: Verify
     shared:
       links:
@@ -44,3 +44,5 @@ en:
         forgot_your_password: Forgot your password?
         sign_in: Sign in.
         sign_in_with: Sign in with %{provider}
+        dont_have_your_phone: Don’t have your phone?
+        enter_a_two_factor_recovery_code: Enter a two-factor recovery code

@@ -57,8 +57,6 @@ en:
       update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.
       updated: Your account has been updated successfully.
     sessions:
-      two_factor:
-        welcome_back: Welcome Back.
       already_signed_out: Signed out successfully.
       new:
         email: Email
