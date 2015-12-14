@@ -30,10 +30,7 @@ class Collection < ActiveRecord::Base
   has_many :curators, through: :curatorships, source: :user
   # Join table: Collection -> Images
   has_many :collection_images
-  has_many :images, 
-    ->{
-    order("collection_images.created_at DESC")
-  },
+  has_many :images,
   through: :collection_images
   ###############
   # VALIDATIONS #
