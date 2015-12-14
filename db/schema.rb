@@ -306,6 +306,7 @@ ActiveRecord::Schema.define(version: 20151214221437) do
     t.text     "description",                           default: "",    null: false
     t.jsonb    "elsewhere"
     t.boolean  "two_factor_verified",                   default: false, null: false
+    t.string   "otp_backup_codes",                                                   array: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

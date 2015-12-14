@@ -25,11 +25,12 @@ gem 'aws-sdk', '< 2.0'
 gem 'devise'
 
 ##
-# Use 2factor authentication
+# https://github.com/tinfoil/devise-two-factor
+# Two-factor authentication for devise
 gem 'devise-two-factor'
 
 ##
-# Use to generate the QR codes for devisee-two-factor
+# Use to generate the QR codes for devise-two-factor
 gem 'rqrcode-rails3'
 
 gem 'mini_magick'

@@ -15,6 +15,7 @@ class UserPolicy < ApplicationPolicy
   def verify_twofactor?
     same_user && ! @user.two_factor_verified && @user.otp_secret
   end
+  
   def enable_twofactor?
     same_user
   end
@@ -22,7 +23,13 @@ class UserPolicy < ApplicationPolicy
   def disable_twofactor?
     same_user
   end
+
+  def backup_twofactor?
+    same_user && @user.otp_secret
+  end
+
   protected
+  
   def same_user
     @validate == @user
   end

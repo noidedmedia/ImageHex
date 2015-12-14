@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     member do
       put 'enable_twofactor'
       get 'verify_twofactor'
+      get 'backup_twofactor'
       put 'confirm_twofactor'
       put 'disable_twofactor'
       get 'favorites'
@@ -124,6 +125,7 @@ Rails.application.routes.draw do
   # SINGLE ACTION ROUTES #
   ########################
   get 'settings', to: "users#edit"
+  
   #################
   # STATIC ROUTES #
   #################

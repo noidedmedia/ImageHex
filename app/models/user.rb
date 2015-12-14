@@ -19,9 +19,6 @@
 #                 unread notifications.
 #
 class User < ActiveRecord::Base
-  devise :two_factor_authenticatable,
-    :otp_secret_encryption_key => ENV['TWO_FACTOR_KEY']
-
   # Use a friendly id to find by name
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -31,11 +28,11 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar,
     styles: {
-    original: "500x500>#",
-    medium: "300x300>#",
-    small: "200x200>#",
-    tiny: "100x100>#"
-  },
+      original: "500x500>#",
+      medium: "300x300>#",
+      small: "200x200>#",
+      tiny: "100x100>#"
+    },
     path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension"),
     default_url: "default-avatar.svg"
 
@@ -89,6 +86,17 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable,
     :confirmable
 
+  # Two-factor Authenticatable
+  devise :two_factor_authenticatable,
+    otp_secret_encryption_key: ENV['TWO_FACTOR_KEY']
+  
+  # Two-factor Backupable
+  # Generates 5 backup codes of length 16 characters for the user.
+  # For use if/when the user loses access to their two-factor device.
+  devise :two_factor_backupable,
+    otp_backup_code_length: 16,
+    otp_number_of_backup_codes: 5
+
   ###############
   # VALIDATIONS #
   ###############
@@ -122,12 +130,14 @@ class User < ActiveRecord::Base
       .group("users.id")
       .order("MAX(user_creations.created_at) DESC")
   end
+
   ####################
   # INSTANCE METHODS #
   ####################
 
   def enable_twofactor
     self.otp_secret = User.generate_otp_secret
+    self.otp_backup_codes = User.generate_otp_backup_codes
     self.save
   end
 
@@ -140,6 +150,7 @@ class User < ActiveRecord::Base
       return false
     end
   end
+
   ##
   # See if the user is subscribed to a collection
   # Returns true or false
@@ -147,6 +158,7 @@ class User < ActiveRecord::Base
   def subscribed_to? c
     c.subscribers.include? self
   end
+
   ##
   # Quickly get a user avatar, pre-resized
   def avatar_img
@@ -164,6 +176,7 @@ class User < ActiveRecord::Base
   def image_feed
     Image.feed_for(self)
   end
+
   ##
   # Add a collection to the user's subscriptions.
   # c:: the collection to add.

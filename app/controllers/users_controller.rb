@@ -3,8 +3,7 @@
 # Uses friendly_id for ids.
 class UsersController < ApplicationController
   include Pundit
-  before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor]
-
+  before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor, :verify_twofactor]
 
 
   def confirm_twofactor
@@ -12,9 +11,9 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
       if @user.confirm_twofactor(params[:otp_key])
-        format.html{ redirect_to @user }
+        format.html { redirect_to @user }
       else
-        format.html { redirect_to verify_twofactor_user_path(@user)}
+        format.html { redirect_to verify_twofactor_user_path(@user) }
       end
     end
   end
@@ -33,6 +32,12 @@ class UsersController < ApplicationController
       end
       format.html
     end
+  end
+
+  def backup_twofactor
+    @user = User.friendly.find(params[:id])
+    authorize @user
+    @codes = @user.otp_backup_codes
   end
 
   def enable_twofactor
@@ -59,7 +64,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
 
   def index
     @users = get_user_index
@@ -100,7 +104,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     current_user.subscribe! @user
     respond_to do |format|
-      format.json { render json: {success: true}}
+      format.json { render json: { success: true }}
       format.html { redirect_to @user }
     end
   end
@@ -109,10 +113,11 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     current_user.unsubscribe! @user
     respond_to do |format|
-      format.json { render json: {success: true}}
+      format.json { render json: { success: true }}
       format.html { redirect_to @user } 
     end
   end
+
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]
@@ -132,6 +137,7 @@ class UsersController < ApplicationController
     @favorites = @user.favorites.images
     .paginate(page: page, per_page: per_page)
     .for_content(content_pref)
+    @collections = @user.collections.subjective
     # this is a hack, fix please 
     @content = content_pref
   end
@@ -176,12 +182,12 @@ class UsersController < ApplicationController
       User.recent_creators
     end
   end
+
   ##
   # Parameters to update a user.
   # page_pref:: The amount of images per page.
   # avatar:: The user's avatar image. 
-  # user_page_attributes:: Should have a body attribute, which is the user's
-  #                        Bio.
+  # description:: The user's description.
   def user_params
     params
     .require(:user)

@@ -55,14 +55,14 @@
   <% end %>
 
 
-    <% if @user.otp_required_for_login %>
-      <%= form_tag disable_twofactor_user_path(@user), method: :put do %>
-        <%= button_tag "Disable 2FA" %>
+  <% if @user.otp_required_for_login %>
+    <%= form_tag disable_twofactor_user_path(@user), method: :put do %>
+      <%= button_tag "Disable 2FA" %>
     <% end %>
-    <%= link_to "See your 2FA Key", twofactor_key_user_path(@user) %>
+    <%= link_to "See your 2FA Key", backup_twofactor_user_path(@user) %>
   <% else %>
     <%= form_tag enable_twofactor_user_path(@user), method: :put do %>
       <%= button_tag "Enable 2FA" %>
     <% end %>
-    <% end %> 
+  <% end %>
 </div>
