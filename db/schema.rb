@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214201646) do
+ActiveRecord::Schema.define(version: 20151214214410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 20151214201646) do
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "commission_backgrounds", force: :cascade do |t|
+    t.integer  "commission_offer_id", null: false
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "commission_backgrounds", ["commission_offer_id"], name: "index_commission_backgrounds_on_commission_offer_id", using: :btree
+
   create_table "commission_offers", force: :cascade do |t|
     t.integer  "commission_product_id", null: false
     t.integer  "user_id",               null: false
@@ -86,12 +95,31 @@ ActiveRecord::Schema.define(version: 20151214201646) do
     t.datetime "updated_at",                          null: false
     t.integer  "included_subjects",   default: 0,     null: false
     t.boolean  "includes_background", default: false, null: false
-    t.integer  "subject_price",       default: 500,   null: false
+    t.integer  "subject_price"
     t.integer  "background_price"
     t.integer  "maximum_subjects"
   end
 
   add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree
+
+  create_table "commission_subject_tags", force: :cascade do |t|
+    t.integer  "tag_id",                null: false
+    t.integer  "commission_subject_id", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "commission_subject_tags", ["commission_subject_id"], name: "index_commission_subject_tags_on_commission_subject_id", using: :btree
+  add_index "commission_subject_tags", ["tag_id"], name: "index_commission_subject_tags_on_tag_id", using: :btree
+
+  create_table "commission_subjects", force: :cascade do |t|
+    t.integer  "commission_offer_id", null: false
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "commission_subjects", ["commission_offer_id"], name: "index_commission_subjects_on_commission_offer_id", using: :btree
 
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
@@ -288,9 +316,13 @@ ActiveRecord::Schema.define(version: 20151214201646) do
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "commission_backgrounds", "commission_offers"
   add_foreign_key "commission_offers", "commission_products"
   add_foreign_key "commission_offers", "users"
   add_foreign_key "commission_products", "users", on_delete: :cascade
+  add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
+  add_foreign_key "commission_subject_tags", "tags", on_delete: :cascade
+  add_foreign_key "commission_subjects", "commission_offers"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "image_reports", "images", on_delete: :cascade

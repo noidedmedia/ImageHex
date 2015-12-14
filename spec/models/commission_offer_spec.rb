@@ -2,17 +2,86 @@ require 'rails_helper'
 
 RSpec.describe CommissionOffer, type: :model do
   describe "validation" do
+    it "breaks with subjects over the maximum" do
+      c = FactoryGirl.create(:commission_product,
+                             maximum_subjects: 3)
+      subj  = {description: "A description"}
+      expect{
+        FactoryGirl.build(:commission_offer,
+                          commission_product: c,
+                          subjects_attributes: (1..100).map{subj}).save!
+      }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+    context "with limited subjects" do
+      let(:product){
+        FactoryGirl.create(:commission_product,
+                           subject_price: 0,
+                           included_subjects: 3)
+      }
+      let(:subj){ {description: "test"} }
+      it "can be under the limit" do
+        expect(FactoryGirl.build(:commission_offer,
+                                 commission_product: product,
+                                 subjects_attributes: [subj])).to be_valid
+      end
+      it "cannot be over the limit" do
+        o = FactoryGirl.build(:commission_offer,
+                              commission_product: product,
+                              subjects_attributes: 10.times.map{subj})
+        expect(o.subjects.size).to be > product.included_subjects
+        expect(o).to_not be_valid
+      end
+    end
     it "requires a user" do
       expect{
         FactoryGirl.create(:commission_offer,
                            user: nil)
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      }.to raise_error(ActiveRecord::RecordInvalid)
     end
     it "requires a commission product" do
       expect{
         FactoryGirl.create(:commission_offer,
                            commission_product: nil)
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
+  describe "creation" do
+    let(:subject_price){300}
+    let(:base_price){500}
+    context "with one subject but a paid background" do
+      let(:background_price){400}
+      let(:product){
+        FactoryGirl.create(:commission_product,
+                           base_price: base_price,
+                           included_subjects: 1,
+                           includes_background: false,
+                           background_price: background_price,
+                           subject_price: subject_price,
+                           maximum_subjects: 4)
+      }
+      let(:subject_attrs){
+        {description: "This is a subject"}
+      }
+      it "does not charge for the included subject" do
+        f = FactoryGirl.create(:commission_offer,
+                               commission_product: product,
+                               subjects_attributes: [subject_attrs])
+        expect(f.total_price).to eq(base_price)
+      end
+      it "does charge for extra subjects" do
+        f = FactoryGirl.create(:commission_offer,
+                               commission_product: product,
+                               subjects_attributes: [subject_attrs,
+                                 subject_attrs])
+        expect(f.total_price).to eq(base_price + subject_price)
+      end
+      it "charges for a background" do
+        f = FactoryGirl.create(:commission_offer,
+                               commission_product: product,
+                               subjects_attributes: [subject_attrs],
+                               backgrounds_attributes: [{description: "test"}])
+        expect(f.total_price).to eq(base_price + background_price)
+      end
     end
   end
 end

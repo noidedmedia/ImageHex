@@ -12,7 +12,7 @@ RSpec.describe CommissionProduct, type: :model do
       expect{
         FactoryGirl.create(:commission_product,
                            user: nil)
-      }.to raise_error(ActiveRecord::StatementInvalid)
+      }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end

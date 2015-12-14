@@ -4,6 +4,7 @@ FactoryGirl.define do
     name "Sketch"
     description "EZ Product, EZ Life"
     base_price 500
+    subject_price 500
   end
 
 end
