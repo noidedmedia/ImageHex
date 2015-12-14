@@ -30,7 +30,7 @@ class CollectionsController < ApplicationController
     @collections = find_index_collections
       .subjective
       .paginate(page: page, per_page: per_page)
-      .includes(:images)
+      .preload(:images)
     # FIXME: This is a hack.
     @content = content_pref
   end
