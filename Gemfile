@@ -1,11 +1,12 @@
 ruby '2.2.3'
 source 'https://rubygems.org'
 
+gem 'dalli'
 ##
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5'
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
@@ -30,6 +31,7 @@ gem 'devise-two-factor'
 ##
 # Use to generate the QR codes for devisee-two-factor
 gem 'rqrcode-rails3'
+
 gem 'mini_magick'
 
 ##
@@ -38,18 +40,13 @@ gem 'mini_magick'
 gem 'dotenv-rails', groups: [:development, :test]
 
 ##
-# https://github.com/arunagw/omniauth-twitter
-# Support logging in with Twitter
-gem 'omniauth-twitter'
-
-##
 # https://github.com/elabs/pundit
-# Use Pundit for authorization
+# Use Pundit for authorization.
 gem 'pundit'
 
 ##
 # https://github.com/svenfuchs/i18n
-# Internationalization for Rails
+# Internationalization for Rails.
 gem 'i18n'
 
 ##
@@ -66,7 +63,7 @@ gem 'sass-rails'
 ##
 # https://github.com/lautis/uglifier
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 ##
 # https://github.com/TannerRogalsky/sprockets-es6
@@ -74,38 +71,29 @@ gem 'uglifier', '>= 1.3.0'
 gem 'sprockets-es6'
 
 ##
+# https://github.com/AnthonySuper/train_track
 # Use TrainTrack to track changes
-# (we wrote this!)
+# NOIDED: We wrote this!
 gem 'train_track'
 
 ##
 # https://github.com/vmg/redcarpet
-# Use Markdown for user comments
+# Markdown parsing.
 gem 'redcarpet'
 
 ##
-# https://github.com/newrelic/rpm
-# Monitor stuff with New Relic
-gem 'newrelic_rpm'
-
-##
 # http://unicorn.bogomips.org/
-# Use Unicorn as the webserver
+# Use Unicorn as the webserver.
 gem 'unicorn'
 
 ##
 # https://github.com/thoughtbot/paperclip
-# Use Paperclip to upload images
+# Use Paperclip to upload images.
 gem 'paperclip'
 
 ##
-## https://github.com/wildbit/postmark-rails
-# Use Postmark to send email
-gem 'postmark-rails'
-
-##
 # https://github.com/rails/jquery-rails
-# Use jQuery as the JavaScript library
+# Use jQuery as the JavaScript library.
 gem 'jquery-rails'
 
 ##
@@ -115,38 +103,51 @@ gem 'react-rails'
 
 ##
 # https://github.com/rails/turbolinks
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster.
+# Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
 ##
 # https://github.com/kossnocorp/jquery.turbolinks
-# Fixes issues with JQuery and Turbolinks
+# Fixes issues with JQuery and Turbolinks.
 gem 'jquery-turbolinks'
 
 ##
 # https://github.com/norman/friendly_id
-# Use friendly IDs for nice URLs
-gem 'friendly_id', '~> 5.1.0'
+# Use friendly IDs for nice URLs.
+gem 'friendly_id'
 
 ##
 # https://github.com/bclubb/possessive
-# Possessive gem makes a string possessive
+# Possessive gem makes a string possessive.
 gem 'possessive'
 
 ##
 # https://github.com/mislav/will_paginate
-# Use will-paginate for pagination
-gem 'will_paginate', '~> 3.0.6'
+# Pagination.
+gem 'will_paginate'
 
 ##
 # https://github.com/rails/jbuilder
 # Build JSON APIs with ease.
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
+
+##
+# https://github.com/brianmario/yajl-ruby
+# Faster JSON rendering.
+gem 'yajl-ruby'
 
 ##
 # https://github.com/ka8725/migration_data
 # Change our data in a migration
 gem 'migration_data'
+
+##
+# https://github.com/droptheplot/apipony
+# API Documentation
+# NOIDED: We wrote part of this!
+gem 'apipony', git: 'https://github.com/noidedmedia/apipony.git'
+
 
 ##
 # Development-only gems
@@ -161,13 +162,18 @@ group :development do
   gem 'bullet'
 
   ##
+  # https://github.com/presidentbeef/brakeman
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
+  gem 'brakeman'
+
+  ##
   # https://github.com/rails/spring
   # Spring speeds up development by keeping your application running in the background.
   gem 'spring'
 
   ##
   # https://github.com/ngs/hanna-bootstrap
-  # Use Hanna Bootstrap theme for RDoc documentation
+  # Use Hanna Bootstrap theme for RDoc documentation.
   gem 'hanna-bootstrap'
 
   ##
@@ -180,33 +186,41 @@ end
 ##
 # Development/test gems
 group :development, :test do
-  gem 'rspec-rails', '~> 3.1'
+  ##
+  # https://github.com/rspec/rspec-rails
+  # A testing framework for Rails.
+  gem 'rspec-rails'
 
   gem 'pry'
   ##
   # https://github.com/thoughtbot/factory_girl_rails
+  # A library for setting up Ruby objects as test data.
   gem 'factory_girl_rails'
-  
+
   ##
   # https://github.com/stympy/faker
-  # Faker produces fake data for testing/development
+  # Faker produces fake data for testing/development.
   gem 'faker'
 
   ##
   # https://github.com/sj26/mailcatcher
-  # Mailcatcher for confirming that mails work
-  # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session
+  # Mailcatcher for confirming that mails work.
+  # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
   gem 'mailcatcher'
 end
 
 ##
 # Test-only gems
 group :test do
+  ##
+  # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good
   gem 'shoulda-matchers'
-  
+
+  ##
+  # https://github.com/colszowka/simplecov
   # See how much coverage our tests have
-  gem 'simplecov', '~> 0.9.0'
+  gem 'simplecov'
 end
 
 ##

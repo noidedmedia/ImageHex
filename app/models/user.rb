@@ -28,13 +28,6 @@ class User < ActiveRecord::Base
 
   enum role: [:normal, :admin]
 
-  ################
-  # ASSOCIATIONS #
-  ################
-  has_one :user_page, autosave: true
-
-  # Accept nested attributes for the page
-  accepts_nested_attributes_for :user_page, update_only: true
 
   has_attached_file :avatar,
     styles: {
@@ -43,7 +36,8 @@ class User < ActiveRecord::Base
     small: "200x200>#",
     tiny: "100x100>#"
   },
-    path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension")
+    path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension"),
+    default_url: "default-avatar.svg"
 
 
   validates_attachment_content_type :avatar, 
@@ -60,16 +54,40 @@ class User < ActiveRecord::Base
   has_many :subscribed_collections,
     through: :subscriptions,
     source: :collection
-
+  has_many :image_reports
   has_many :notifications
   has_many :images
   has_many :curatorships
   has_many :collections, through: :curatorships
+  has_many :user_creations
+  has_many :creations, -> { order(created_at: :desc)},  through: :user_creations
+
+  # ArtistSubscriber is a join table of User to User.
+  # This is, as you imagine, kind of annoying to deal with.
+  # So we split it up into two relationships
+  # This is the first. It's the artists this user is subscribed to.
+  has_many :artist_subscriptions, foreign_key: :user_id
+  # and here we have the actual users
+  has_many :subscribed_artists, 
+    through: :artist_subscriptions,
+    source: :artist
+
+  # now we have the artists subscribers.
+  # this has many is for when the user is in the role of artist
+  has_many :artist_subscribers,
+    class_name: :ArtistSubscription,
+    foreign_key: :artist_id
+
+  # and here's a list of the users that are subscribed to us
+  has_many :subscribers,
+    through: :artist_subscribers,
+    source: :user
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
-    :confirmable, :omniauthable, :omniauth_providers => [:twitter]
+    :confirmable
 
   ###############
   # VALIDATIONS #
@@ -79,23 +97,31 @@ class User < ActiveRecord::Base
     format: {with: /\A([[:alpha:]]|\w)+\z/ },
     length: {in: 2..25}
   validates :page_pref, inclusion: {:in => (1..100)}
-  validates_associated :user_page
 
   #############
   # CALLBACKS #
   #############
   after_create :make_collections
-  before_create :make_page
-  before_validation :resolve_page_body
-  after_initialize :load_page_body
 
   before_save :coerce_content_pref!
 
-  ##############
-  # ATTRIBUTES #
-  ##############
-  attr_accessor :page_body
 
+  #################
+  # CLASS METHODS #
+  #################
+
+  def self.popular_creators(interval = 14.days.ago..Time.now)
+    joins(creations: :collection_images)
+    .group("users.id")
+    .where(collection_images: {created_at: interval})
+    .order("COUNT(collection_images) DESC")
+  end
+
+  def self.recent_creators
+    joins(:creations)
+      .group("users.id")
+      .order("MAX(user_creations.created_at) DESC")
+  end
   ####################
   # INSTANCE METHODS #
   ####################
@@ -119,9 +145,7 @@ class User < ActiveRecord::Base
   # Returns true or false
   # c:: the collection we are checking
   def subscribed_to? c
-    # Coerce the subscription to a boolean
-    !! Subscription.where(user: self,
-                          collection: c).first
+    c.subscribers.include? self
   end
   ##
   # Quickly get a user avatar, pre-resized
@@ -147,6 +171,10 @@ class User < ActiveRecord::Base
     c.subscribers << self
   end
 
+  def unsubscribe! c
+    c.subscribers.destroy(self)
+  end
+
   ##
   # Convenience method to access the favorites collection for a user
   def favorites
@@ -168,13 +196,7 @@ class User < ActiveRecord::Base
   ##
   # Add an image to a user's creationed collection.
   def created! i
-    creations.images << i
-  end
-
-  ##
-  # Convenience method ot access the creations collection for a user
-  def creations
-    collections.creations.first
+    creations << i 
   end
 
   ##
@@ -203,38 +225,12 @@ class User < ActiveRecord::Base
     end.to_h
   end
 
-  ##
-  # Put the user's page body into page_body.
-  # This makes it a bit easier, since you can just say
-  #     user.page_body
-  # As opposed to
-  #     user.page.body
-  #
-  # Ok, it's not that much easier, but still.
-  def load_page_body
-    page_body = self.user_page.body if self.user_page
-  end
 
-  ##
-  # Create a page with a message indicating that the user hasn't set up their
-  # page on user creation.
-  def make_page
-    build_user_page(body: "")
-  end
-
-  ##
-  # Callback used to save the page_body in page.body on creation.
-  def resolve_page_body
-    return unless page_body
-    user_page.body = page_body
-    user_page.save
-  end
   ##
   # All users have to have a Favorite collection and a Created collection.
   # This method makes both of those collections in a callback on user creation.
   def make_collections
     Favorite.create!(curators: [self])
-    Creation.create!(curators: [self])
   end
 
   ##

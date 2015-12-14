@@ -11,7 +11,7 @@ describe Admin::ImagesController do
     describe "get #index" do
       it "creates a list of reported images" do
         reported = FactoryGirl.create(:image)
-        FactoryGirl.create(:report, reportable: reported)
+        FactoryGirl.create(:image_report, image: reported)
         not_reported = FactoryGirl.create(:image)
         get :index
         expect(assigns(:images)).to eq([reported])
@@ -24,8 +24,8 @@ describe Admin::ImagesController do
     describe "post #absolve" do
       it "removes all reports on the image" do
         image = FactoryGirl.create(:image)
-        FactoryGirl.create(:report, reportable: image)
-        expect{post :absolve, id: image}.to change{image.reports.count}.from(1).to(0)
+        FactoryGirl.create(:image_report, image: image)
+        expect{post :absolve, id: image}.to change{image.image_reports.active.count}.from(1).to(0)
       end
     end
     describe "post #destroy" do

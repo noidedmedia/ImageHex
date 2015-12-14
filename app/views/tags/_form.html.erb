@@ -1,0 +1,20 @@
+
+
+<div class="fields-page-container">
+  <%= form_for @tag do |f| %>
+    <div class="field-container">
+      <%= f.label :name, t(".name"), class: "label input-empty", for: "display-name-field" %>
+      <%= f.text_field :name, id: "display-name-field", class: "input" %>
+    </div>
+    <div class="field-container">
+      <%= f.label :importance, class: "lavel input-empty", for: "importance-field" %>
+      <%= f.number_field :importance, id: "importance-field", class: "input" %>
+    </div>
+    <div class="field-container">
+      <%= f.label :description, t(".description"), class: "label input-empty", for: "description-text-area" %>
+      <%= f.text_area :description, id: "description-text-area", class: "input" %>
+    </div>
+
+    <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>
+  <% end %>
+</div>

@@ -1,5 +1,7 @@
 <%- title t(".browse_images") %>
 
+<%= render partial: "shared/browse_tabs" %>
+
 <div id="image-list-container">
-  <%= render 'show_stub', images: @images %>
+  <%= render 'images/show_stub', images: @images %>
 </div>

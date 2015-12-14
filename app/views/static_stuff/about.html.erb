@@ -1,10 +1,11 @@
 <%- title t(".about") %>
-<div id="about-page-container">
-  <%= render "static_stuff/company_nav" %>
+<% cache "about", expires_in: 1.day do %>
+<%= render "static_stuff/company_nav" %>
 
+<div id="about-page-container">
   <div class="company-page-main-column">
     <div id="about-page-logo">
-      <img src="logo/imagehex-color-black-text.svg">
+      <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %>>
     </div>
 
     <div id="about-page-description">
@@ -20,3 +21,4 @@
     </div>
   </div>
 </div>
+<% end %>

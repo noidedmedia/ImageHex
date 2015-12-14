@@ -1,10 +1,14 @@
 ---
 nv:
   shared:
+    browse_tabs:
+      collections: Collections
+      creators: Creators
+      images: Images
     comment:
       ago: ago
       commented: commented
-      edit: Edit
+      reply: Reply
     comments:
       no_comments_yet: No user has had the desire to make anything known on this page
     report_stub:

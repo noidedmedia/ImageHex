@@ -1,26 +1,38 @@
 ##
 # A controller for actions relating to collections
 class CollectionsController < ApplicationController
-  before_filter :ensure_user, only: [:subscribe, :new, :create, :edit, :destroy, :update, :unsubscribe]
+  before_filter :ensure_user, except: [:index, :show]
+
+  include Pundit
+  
   ##
   # Unsubscribe from a collection
   # Member action
   def unsubscribe
     Subscription.where(collection_id: params[:id],
                        user_id: current_user.id)
-      .first
-      .try(:destroy)
+    .first
+    .try(:destroy)
     redirect_to Collection.find(params[:id])
   end
-  
-  ##
-  # Show all the collections on the user in params[:user_id].
-  # Sets the following variables:
-  # @user:: The user who owns the collections
-  # @collections:: The collections owned by the user.
+
+  def mine
+    @collections = if t = params[:inspect_image]
+                     img = Image.find(t)
+                     current_user.collections.with_image_inclusion(img)
+                   else
+                     current_user.collections
+                   end
+    render 'index'
+  end
+
   def index
-    @user = User.friendly.find(params[:user_id])
-    @collections = @user.collections
+    @collections = find_index_collections
+      .subjective
+      .paginate(page: page, per_page: per_page)
+      .includes(:images)
+    # FIXME: This is a hack.
+    @content = content_pref
   end
 
   ##
@@ -48,8 +60,8 @@ class CollectionsController < ApplicationController
   def show
     @collection = Collection.find(params[:id])
     @images = @collection.images
-      .paginate(page: page, per_page: per_page)
-      .for_content(content_pref)
+    .paginate(page: page, per_page: per_page)
+    .for_content(content_pref)
     @curators = @collection.curators
   end
 
@@ -87,7 +99,42 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def edit
+    @collection = Collection.find(params[:id])
+  end
+
+  def update
+    @collection = Collection.find(params[:id])
+    authorize @collection
+    respond_to do |format|
+      if @collection.update(collection_params)
+        format.html { redirect_to @collection }
+        format.json { render :show }
+      else
+        format.html { render :edit, status: :unproccessible_entity }
+        format.json { render @collection.errors, status: :unprocessible_entity }
+      end
+    end
+  end
+
+  def destroy
+    @collection = Collection.find(params[:id])
+    authorize @collection
+    @collection.destroy
+    redirect_to root_path
+  end
+
   protected
+
+  def find_index_collections
+    case params['order']
+    when "created_at"
+      Collection.order(created_at: :desc)
+    else
+      Collection.by_popularity
+    end
+  end
+
   ##
   # Parameters needed to create the collection.
   # type:: What type of collection it is. Currently, only "Subjective" is
@@ -96,7 +143,7 @@ class CollectionsController < ApplicationController
   # description:: A short bit of info describing this collection.
   def collection_params
     params.require(:collection)
-      .permit(:type, :name, :description)
-      .merge(curators: [current_user])
+    .permit(:type, :name, :description)
+    .merge(curators: [current_user])
   end
 end

@@ -14,12 +14,12 @@
 # with the tags on ImageHex. If a tag in the list is non-existent on
 # saving the tag_group, it will be formated properly and created. Neat, huh?
 class TagGroup < ActiveRecord::Base
-  scope :for_display, ->{joins(:tags).includes(:tags).order("tags.importance ASC")}
+  scope :for_display, ->{joins(:tags).includes(:tags).order("tags.importance DESC")}
   #################
   # RELATIONSHIPS #
   #################
   belongs_to :image
-  has_many :tags, through: :tag_group_members
+  has_many :tags, ->{by_importance},  through: :tag_group_members
   has_many :tag_group_members
   has_many :tag_group_changes
   ###############
@@ -31,12 +31,12 @@ class TagGroup < ActiveRecord::Base
   ##############
   # ATTRIBUTES #
   ##############
-  attr_accessor :tag_group_string
+  attr_accessor :tag_ids
 
   #############
   # CALLBACKS #
   #############
-  before_validation :save_tag_group_string
+  before_validation :save_tag_ids
   #################
   # CLASS METHODS #
   #################
@@ -46,30 +46,12 @@ class TagGroup < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-  def tag_group_string
-    self.tags.map(&:name).join(", ")
-  end
-
-  def tag_group_string=(str)
-    @tgs = str.split(",").map do |s|
-      s.downcase.strip.squish
-    end
-  end
 
   private
   ##
   # Converts a comma-seperated list of tags into the actual tags
-  def save_tag_group_string
-    return unless @tgs && ! @tgs.empty?
-    found = @tgs.map do |name|
-      if tag = Tag.where(name: name).first
-        tag
-      else
-        Tag.create(name: name,
-                   display_name: name)
-      end
-    end
-    self.tags = found
+  def save_tag_ids
+    self.tags = Tag.where(id: tag_ids)
   end
 end
 

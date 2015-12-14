@@ -255,10 +255,8 @@
 /* Containers for uploads and collections
    ============================================== */
 
-#user-uploads-container,
-#user-collections-container,
-#user-creations-container {
-  padding: 15px 20px;
+.user-content {
+  padding: 10px;
   display: none;
 
   &.current {
@@ -268,13 +266,4 @@
   @media all and (max-width: $mobile-width) {
     margin-top: 5px;
   }
-}
-
-#user-collections-container,
-#user-creations-container {
-  flex-flow: row wrap;
-}
-
-#user-uploads-container {
-  flex-flow: column wrap;
 }

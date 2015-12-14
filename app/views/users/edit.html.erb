@@ -4,22 +4,20 @@
   <%= form_for @user do |f| %>
 
     <div class="field-container">
-      <div id="avatar-uploader-thumbnail-container">
+      <div id="avatar-uploader-container">
         <%= f.file_field :avatar, id: "avatar-uploader" %>
         
-        <% if @user.avatar %>
-          <%= image_tag @user.avatar_img %>
-        <% end %>
+        <div id="avatar-uploader-thumbnail">
+          <% if @user.avatar %>
+            <%= image_tag @user.avatar_img %>
+          <% end %>
+        </div>
       </div>
-
     </div>
 
     <div class="field-container">
-      <%= f.fields_for :user_page do |pf| %>
-        <%= pf.label :body, t(".user_bio"), class: "label input-empty", for: "user-bio-field" %>
-        <%= pf.text_area :body, autocomplete: false, id: "user-bio-field", class: "input" %>
-        <%= pf.hidden_field :id %>
-      <% end %>
+        <%= f.label :description, t(".user_bio"), class: "label input-empty", for: "user-bio-field" %>
+        <%= f.text_area :description, autocomplete: false, id: "user-bio-field", class: "input" %>
     </div>
 
     <div class="field-container">

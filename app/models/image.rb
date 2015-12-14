@@ -29,6 +29,18 @@
 # medium:: How the image was created
 class Image < ActiveRecord::Base
 
+  ##############
+  # ATTRIBUTES #
+  ##############
+  attr_accessor :created_by_uploader
+
+  #############
+  # CALLBACKS #
+  #############
+
+  after_create :add_uploader_creation
+
+
   ##########
   # SCOPES #
   ##########
@@ -45,21 +57,24 @@ class Image < ActiveRecord::Base
   has_attached_file :f,
     # Steal Flickr's suffixes
     :styles => {
-      small: "140x140>",
-      medium: "300x300>",
-      large: "500x500>",
-      huge: "1000x1000>"},
+    small: "140x140>",
+    medium: "300x300>",
+    large: "500x500>",
+    huge: "1000x1000>"},
     # Use suffixes for the path
-      path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
+    path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
   belongs_to :user
 
   before_post_process :downcase_extension
   has_many :tag_groups, -> {includes :tags}, dependent: :delete_all
-  has_many :reports, as: :reportable, dependent: :delete_all
-  has_many :notifications, as: :subject, dependent: :destroy
+  has_many :image_reports
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :collection_images, dependent: :destroy
-
+  has_many :user_creations,
+    foreign_key: :creation_id
+  has_many :creators,
+    through: :user_creations,
+    source: :user
   has_many :collections, through: :collection_images
   #########
   # ENUMS #
@@ -80,7 +95,6 @@ class Image < ActiveRecord::Base
   validates :nsfw_nudity, inclusion: {in: [true, false]}
   validates_attachment :f,
     content_type: { content_type: /\Aimage\/.*\Z/},
-    size: { in: 0..5.megabytes},
     presence: true
 
 
@@ -89,10 +103,21 @@ class Image < ActiveRecord::Base
   validates :medium, presence: true
   validates :description, length:{ maximum: 2000}
 
+  validate :is_within_allowed_size
   #################
   # CLASS METHODS #
   #################
-  
+
+  def self.by_popularity(interval = 2.weeks.ago..Time.now)
+    imgs = Image.arel_table
+    cimgs = CollectionImage.arel_table
+    j = imgs.join(cimgs, Arel::Nodes::OuterJoin)
+    .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
+    .join_sources
+    res = joins(j)
+    .group("images.id")
+    .order("COUNT (collection_images) DESC")
+  end
   ##
   # Find all images a user is subscribed to. 
   # user:: The user we're finding the subscription for
@@ -106,49 +131,44 @@ class Image < ActiveRecord::Base
     # INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id
     # WHERE subscriptions.user_id = ?
     # ORDER BY collection_images.created_at DESC
-    
-    joins("INNER JOIN collection_images ON collection_images.image_id = images.id")
-      .joins("INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id")
-      .joins("INNER JOIN collections ON collections.id = subscriptions.collection_id")
-      .where(subscriptions:{user_id: user.id})
-      .order("collection_images.created_at DESC")
-      .select("images.*, collections.name AS collection_name, collections.id AS collection_id")
-      .for_content(user.content_pref)
+    SubscriptionQuery.new(user).result
+    .order("sort_created_at DESC")
+    .for_content(user.content_pref)
   end
 
   def self.with_all_tags(tags)
     tags.reject!(&:blank?) # reject blank tags
-    subquery = joins(tag_groups: {tag_group_members: :tag})
-      .where(tags: {name: tags})
-      .group("images.id")
-      .having("COUNT(*) = ?", tags.length)
-      where(id: subquery)
+    ## Clear previous scope to construct a subquery
+    sq = Image.unscoped.joins(tag_groups: {tag_group_members: :tag})
+    .where(tags: {id: tags})
+    .group("images.id")
+    .having("COUNT(*) >= ?", tags.length)
+    return self.where(id: sq)
   end
-  
+
   def self.search(q)
     # return nothing unless we have a query
-    return where("1 = 0") unless q
-    q.map! do |x| 
-      x.downcase.split(",").map! do |y|
-        y.strip.squish
-      end
-    end.inject(all) do |mem, obj|
-      mem if obj.blank?
-      mem.with_all_tags(obj)
+    return where("1 = 0") unless q.is_a? SearchQuery
+    query = all
+    q.each_group_tag_ids do |group|
+      query = query.with_all_tags(group)
     end
+    query
   end
 
   ##
   # Return all images by the number of reports.
   # Only returns the images which have at least 1 report.
   def self.by_reports
-    Image.includes(:reports).select{|x| x.reports.count > 0}
-      .sort{|x, y| x.reports.count <=> y.reports.count}
+    joins(:image_reports)
+    .references(:image_reports)
+    .where(image_reports: {active: true})
+    .group(:id).order("COUNT(image_reports)")
   end
 
   def self.without_tags(tags)
     subq = joins(tag_groups:  {tag_group_members: :tag})
-      .where.not(tags: {name: tags})
+    .where.not(tags: {name: tags})
     where(id: subq)
   end
 
@@ -195,6 +215,29 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def source_display
+    URI.parse(source_link).host
+  end
+
+  def source_link
+    if self.source.start_with?("http://", "https://")
+      self.source
+    else
+      "//#{self.source}"
+    end
+  end
+  protected
+  def add_uploader_creation
+    # This is gross beecause of how form params work
+    if created_by_uploader.is_a? TrueClass
+      self.user.creations << self
+    elsif created_by_uploader.is_a? String
+      if ['true', '1'].include?(created_by_uploader)
+        self.user.creations << self
+      end
+    end
+  end
+
   ##
   # When an image is uploaded, the extension (.jpg, .png, etc.) is forced
   # to become downcase. This is to ensure that the "Download" button will
@@ -204,5 +247,11 @@ class Image < ActiveRecord::Base
     ext = File.extname(f_file_name).downcase
     base = File.basename(f_file_name, File.extname(f_file_name)).downcase
     self.f.instance_write :file_name, "#{base}#{ext}"
+  end
+
+  def is_within_allowed_size
+    unless (0..5.megabytes).include?(self.f_file_size)
+      errors.add(:f, I18n.t("image_file_too_large"))
+    end
   end
 end

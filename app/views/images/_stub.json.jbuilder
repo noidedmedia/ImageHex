@@ -4,9 +4,8 @@ json.extract! image, :id, :description,
   :updated_at,
   :license,
   :medium
-json.url images_url(image, format: :json)
-json.medium_thumbnail image.f.url(:medium)
-json.large_thumbnail image.f.url(:large)
+json.url image_url(image)
+json.original_size image.f.url(:original)
 json.nsfw_gore image.nsfw_gore
 json.nsfw_language image.nsfw_language
 json.nsfw_nudity image.nsfw_nudity

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  mount Apipony::Engine => '/api/documentation'
 
+  get "/@:id" => 'users#show'
+  patch "/@:id" => "users#update"
+  delete "/@:id" => "users#destroy"
+  post "/@:id/subscribe" => "users#subscribe"
+  delete "/@:id/unsubscribe" => "users#unsubscribe"
   ############
   # CONCERNS #
   ############
@@ -16,6 +22,7 @@ Rails.application.routes.draw do
   ##################
   # RESTFUL ROUTES #
   ##################
+  
   
   resources :tags do
     collection do
@@ -44,25 +51,28 @@ Rails.application.routes.draw do
   devise_for :users, 
     path: "accounts", 
     controllers: { 
-      omniauth_callbacks: "users/omniauth_callbacks",
       sessions: "users/sessions"
     }
 
 
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:show, :edit, :update, :index] do
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.
-    resources :collections, only: [:index]
     member do
       put 'enable_twofactor'
       get 'verify_twofactor'
       put 'confirm_twofactor'
       put 'disable_twofactor'
+      get 'favorites'
+      get 'creations'
+      get 'subscribe'
+      get 'unsubscribe'
     end
   end
 
-  resources :collections, except: [:index] do
+  resources :collections do
+    get :mine, on: :collection
     ##
     # OK we get non-REST here
     resources :images, only: [:create, :destroy], controller: :collection_images  do
@@ -100,8 +110,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :images, only: [:index, :destroy] do
       post "absolve", on: :member
+      collection do
+        get 'live'
+      end
     end
   end
+
+  #################
+  # BROWSE ROUTES #
+  #################
 
   ########################
   # SINGLE ACTION ROUTES #

@@ -16,7 +16,10 @@ function checkIfEmpty() {
   });
 }
 
-// Functions run when the document is "ready".
-$(document).ready(function() {
+
+var ready = function() {
   checkIfEmpty();
-});
+};
+
+document.addEventListener('page:change', ready);
+

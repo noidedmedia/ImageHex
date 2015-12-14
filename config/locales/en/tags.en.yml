@@ -2,9 +2,11 @@
 en:
   tags:
     edit:
-      description: Description
-      display_name: Display name
       editing_tag: Editing %{tag}
+    form:
+      description: Description
+      name: Name
       save_changes: Save changes
     show:
       edit: Edit
+      related_tags: Related tags

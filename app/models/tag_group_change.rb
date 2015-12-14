@@ -60,7 +60,7 @@ class TagGroupChange < ActiveRecord::Base
   # A method which reverts this edit, restoring the tag_group to the
   # `before` state.
   def revert!
-    tag_group.tags = before_tags
+    tag_group.tag_ids = before
     tag_group.save!
   end
 end

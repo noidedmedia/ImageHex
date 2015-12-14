@@ -3,6 +3,7 @@ en:
   layouts:
     application:
       create_an_account: Create an account
+      imagehex_meta_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
       please_sign_in: This action requires an account, please sign in.
       sign_in: Sign in
     footer:
@@ -12,23 +13,26 @@ en:
       faq: FAQ
       help: Help
       imagehex: ImageHex
-      imagehex_copyright: "© 2015 Noided Media"
-      imagehex_description: ImageHex is a place to search, share, and commission artwork. We endeavour to be the best directory of images on the internet.
+      imagehex_copyright: "© %{year} Noided Media"
+      imagehex_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
       people: People
-      press: Press
+      press_kit: Press Kit
       privacy: Privacy
       rules: Rules
       status: Status
       terms: Terms
+      twitter: Twitter
     header:
       admin: Admin
       browse: Browse
       create_an_account: Create an account
       home: Home
+      new_collection: New collection
       profile: Profile
-      search: Search
-      search_suggestions_note: Search for the tag you're looking for, suggestions will show up here.
       settings: Settings
       sign_in: Sign in
       sign_out: Sign out
       upload: Upload
+    header_search:
+      search: Search
+      search_suggestions_note: Search for the tag you're looking for, suggestions will show up here.

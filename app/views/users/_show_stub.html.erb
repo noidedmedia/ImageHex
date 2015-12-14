@@ -1,0 +1,22 @@
+<div class="creators-list-item">
+  <div class="creator-list-item-header">
+    <%= link_to creator do %>
+      <%= image_tag creator.avatar(:tiny) %>
+    <% end %>
+
+    <div class="creator-list-item-info">
+      <p><%= link_to creator.name, creator %></p>
+      <p><%= markdown_parse creator.description %></p>
+    </div>
+  </div>
+
+  <div class="creator-images-gallery">
+    <% creator.creations.take(4).each do |i| %>
+      <li class="creator-images-gallery-item">
+        <%= link_to i do %>
+          <%= image_tag i.f(:small) %>
+        <% end %>
+      </li>
+    <% end %>
+  </div>
+</div>

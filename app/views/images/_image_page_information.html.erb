@@ -1,24 +1,45 @@
 <div id="image-page-information">
+  <% cache [@image, "comments"] do %>
+    <div id="comment-container">
+      <div id="upload-info">
+        <div class="image-description-container">
+          <div class="uploader-avatar">
+            <%= link_to @image.user do %>
+              <% if @image.user.avatar %>
+                <%= image_tag @image.user.avatar_img_thumb %>
+              <% end %>
+            <% end %>
+          </div>
 
-  <div id="comment-container">
-    <div id="upload-info">
-      <div class="uploader-avatar">
-        <%= link_to @image.user do %>
-          <% if @image.user.avatar %>
-            <%= image_tag @image.user.avatar_img_thumb %>
-          <% end %>
+          <div class="uploader-information">
+            <div class="image-uploader-container">
+              <p class="image-uploader"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+              <p class="image-upload-date"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span>
+            </div>
+
+            <% unless @image.description.blank? %>
+              <p class="image-description"><%= @image.description %>
+            <% end %>
+
+            <% if @image.source && !@image.source.blank? %>
+              <p class="image-source-link">
+                <%= t(".source") %> 
+                <%= link_to @image.source_display, @image.source_link %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+
+        <% unless @image.creators.blank? %>
+          <%= render 'image_page_creator_info' %>
         <% end %>
       </div>
-      <div class="image-description-container">
-        <p class="image-uploaded-by"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
-        <p class="image-description"><%= @image.description %>
-      </div>
-    </div>
 
-    <hr>
+      <hr>
 
-    <%# Render the comments partial with @image.comments as the subject. %>
-    <%= render "shared/comments", comments: @image.comments %>
+      <%# Render the comments partial with @image.comments as the subject. %>
+      <%= render "shared/comments", comments: @image.comments %>
+    <% end %> 
 
     <%# New comment section, only appears for users who are signed-in. %>
     <% if user_signed_in? %>
@@ -34,11 +55,6 @@
 
   </div>
 
-  <div id="new-group" data-showon="#add-tag-group-button">
-    <%= form_for [@image, @image.tag_groups.build] do |f| %>
-      <%= f.text_field :tag_group_string, placeholder: t(".new_tag_group") %>
-    <% end %>
-  </div>
   <% @image.tag_groups.for_display.each do |group| %>
     <%= render "tag_groups/show_stub", tag_group: group %>
   <% end %>

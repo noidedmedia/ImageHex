@@ -1,0 +1,17 @@
+<hr>
+
+<div id="image-creator-info">
+  <div id="image-creator-list-container">
+    <h3><%= t(".creators", count: @image.creators.count) %></h3>
+    <ul id="image-creator-list">
+      <% @image.creators.each do |creator| %>
+        <li class="image-creator-item">
+          <div class="creator-avatar">
+            <%= link_to image_tag(creator.avatar_img_thumb), user_path(creator) %>
+          </div>
+          <p class="creator-name"><%= link_to creator.name, creator %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

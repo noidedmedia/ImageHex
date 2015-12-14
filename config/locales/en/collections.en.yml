@@ -1,11 +1,16 @@
 ---
 en:
   collections:
-    new:
+    edit:
+      edit_collection: Edit collection
+    form:
       create_collection: Create collection
       description: Description
-      new_collection_page_title: New collection
       title: Title
+    index:
+      browse_collections: Browse collections
+    new:
+      new_collection: New collection
     show:
       curated_by: Curated by
       follow: Follow

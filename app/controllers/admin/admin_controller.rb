@@ -4,6 +4,7 @@
 class Admin::AdminController < ApplicationController
   before_filter :ensure_admin
   protected
+  
   ##
   # Verify that the user is an admin. Redirects to the login page if they
   # are't.

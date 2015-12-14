@@ -1,6 +1,9 @@
-<h1> <%= @user.name.possessive %> Collections </h1>
-<h3> He has <%= @collections.count %> of them </h3>
-<% @collections.each do |collection| %>
-  <%= collection.name %>
-  <%= collection.description %>
-<% end %>
+<%- title t(".browse_collections") %>
+
+<%= render partial: "shared/browse_tabs" %>
+
+<div class="collections-list-container">
+  <%= render partial: "collections/show_stub", collection: @collections, as: :collection %>
+</div>
+
+<%= will_paginate @collections %>

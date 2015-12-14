@@ -18,10 +18,7 @@ module ImageHex
     routes.default_url_options[:host] = "localhost"
 
     config.generators.javascript_engine :js
-    ##
-    # Use Postmark to send emails
-    config.action_mailer.delivery_method = :postmark
-    config.action_mailer.postmark_settings = {api_key: ENV['POSTMARK_API_KEY']}
+    
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

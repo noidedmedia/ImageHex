@@ -2,11 +2,16 @@
 nv:
   images:
     collection_select:
+      collections: Collections
       youre_not_the_curator_of_any_collections_yet: You're not the curator of any collections yet.
+    image_page_creator_info:
+      creators:
+        one: Creator
+        other: Creators
     image_page_information:
       add_a_comment: Add a comment...
       cancel: Cancel
-      new_tag_group: Create a new tag group on this image
+      source: 'Source:'
       submit: Send data to the server for processing
       uploaded_by: Uploaded by
     image_page_sidebar:
@@ -30,7 +35,6 @@ nv:
         nsfw_nudity: Nudity
         nsfw_sexuality: Sexuality
       date_taken: Date taken
-      date_uploaded: Uploaded
       details: Details about this image
       dimensions: Dimensions
       exposure: Exposure
@@ -52,19 +56,18 @@ nv:
       content_rating: Content rating
       description_optional: 'Description (optional):'
       drop_images_here_to_upload: Use the cursor to move a file into this box and upload said file
+      i_made_this: I made this
       nsfw_gore: NSFW Gore
       nsfw_language: NSFW Language
       nsfw_nudity: NSFW Nudity
       nsfw_sexuality: NSFW Sexuality
       or: alternatively
+      source_recommended: Source (recommended)
       submit: Send the data to the server
       upload_image: Create a new image on ImageHex
       upload_page_title: Upload
     search:
-      add_a_tag_group: Add a tag group
-      search: Search
       search_page_title: Search
-      tag_group: Tag group
       your_search_didnt_bring_up_any_results: Your search didn't bring up any results.
     show:
       image_page_title: 'Image #%{id}'

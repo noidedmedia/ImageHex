@@ -4,7 +4,7 @@ class UserPolicy < ApplicationPolicy
     @user = user
   end
 
-  def edit?
+  def update?
     same_user
   end
 

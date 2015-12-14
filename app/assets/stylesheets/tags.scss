@@ -1,1 +1,85 @@
 @import "scss-variables";
+
+.tag-creation {
+  &.inactive {
+    font-size: 1.3rem;
+    color: #777;
+
+    span {
+      display: block;
+    }
+  }
+}
+
+.inline-tag-creation {
+  background-color: #fff;
+  padding: 10px;
+
+  p {
+    display: flex;
+    flex-direction: column;
+  }
+
+  span {
+    display: block;
+  }
+}
+
+.tag-information {
+  position: relative;
+  padding: 19px;
+
+  header {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+    font-weight: 500;
+    margin-right: 10px;
+  }
+}
+
+.tag-description {
+  font-size: 1.3rem;
+  padding: 5px 0;
+}
+
+.tag-edit-link {
+  text-decoration: none;
+  padding: 2px 5px 2px 5px;
+  border: 1px solid #aaa;
+  color: #333;
+}
+
+.related-tags {
+  margin-top: 10px;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    max-width: 500px;
+
+    li {
+      display: block;
+      margin: 0 3px 3px 0;
+      padding: 2px 3px;
+      border: 1px solid #aaa;
+
+      a {
+        display: block;
+        text-decoration: none;
+        color: #333;
+      }
+    }
+  }
+}
