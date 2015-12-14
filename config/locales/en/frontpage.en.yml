@@ -3,6 +3,7 @@
 en:
   frontpage:
     index:
-      imagehex: "ImageHex"
+      imagehex: ImageHex
     index_with_user:
-      imagehex: "ImageHex"
+      imagehex: ImageHex
+      created_by_html: Created by %{creators_list}
