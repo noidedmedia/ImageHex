@@ -13,5 +13,8 @@
   <div id="commission-product-background">
     <%= react_component("ProductBackgroundInput", price: @product.background_price, offerBackground: @product.offer_background, includeBackground: @product.include_background) %>
   </div>
-  <%= f.submit %> 
+  <div id="commission-product-subjects">
+    <%= react_component("ProductSubjectInput", price: @product.subject_price, includedSubjects: @product.included_subjects, offerSubjects: @product.offer_subjects, maximumSubjects: @product.maximum_subjects) %>
+  </div>
+  <%= f.submit %>
 <% end %> 

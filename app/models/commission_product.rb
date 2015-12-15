@@ -15,10 +15,11 @@ class CommissionProduct < ActiveRecord::Base
 
   validates :maximum_subjects,
     numericality: {greater_than: 1},
-    allow_nil: true
+    allow_nil: true,
+    :unless => :offer_subjects?
 
   def allow_further_subjects?
-    subject_price > 0
+    offer_subjects?
   end
 
   def includes_subjects?

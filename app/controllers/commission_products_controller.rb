@@ -1,11 +1,16 @@
 class CommissionProductsController < ApplicationController
   include Pundit
-  after_action :verify_authorized
+  after_action :verify_authorized, except: [:index, :show]
   before_action :ensure_user, except: [:index, :show]
 
   def new
     @product = CommissionProduct.new
     authorize(@product)
+  end
+
+  def show
+    @product = CommissionProduct.find(params[:id])
+
   end
 
   def create
@@ -16,6 +21,7 @@ class CommissionProductsController < ApplicationController
         format.html {redirect_to @product}
         format.json {render action: 'show'}
       else
+        logger.debug("Found errors #{@product.errors.inspect}")
         format.html {render 'new'}
         format.json {render json: @product.errors, status: 422}
       end
@@ -36,5 +42,6 @@ class CommissionProductsController < ApplicationController
               :offer_background,
               :offer_subjects,
               :maximum_subjects)
+      .merge(user_id: current_user.id)
   end
 end

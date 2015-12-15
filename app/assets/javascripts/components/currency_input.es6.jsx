@@ -12,15 +12,18 @@ class CurrencyInput extends React.Component{
       step="0.01"
       value={this.state.value}
       onChange={this.handleChange.bind(this)} />
-
   }
   handleChange(event){
     var value = event.target.value;
     var centValue = Math.round(parseFloat(value) * 100);
+    this.setState({
+      value: value
+    });
     this.props.onChange(centValue);
   }
   componentWillReceiveProps(props){
     if(props.centValue !== Math.round(parseFloat(this.state.value) * 100)){
+      console.log("Changing value because it was changed on us");
       this.setState({
         value: props.centValue / 100
       })
