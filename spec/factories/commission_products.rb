@@ -5,6 +5,8 @@ FactoryGirl.define do
     description "EZ Product, EZ Life"
     base_price 500
     subject_price 500
+    offer_background true
+    background_price 100
   end
 
 end

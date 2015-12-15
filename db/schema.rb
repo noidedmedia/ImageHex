@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214221437) do
+ActiveRecord::Schema.define(version: 20151215212635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 20151214221437) do
     t.integer  "subject_price"
     t.integer  "background_price"
     t.integer  "maximum_subjects"
+    t.boolean  "offer_background",    default: true,  null: false
+    t.boolean  "offer_subjects",      default: true,  null: false
   end
 
   add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree

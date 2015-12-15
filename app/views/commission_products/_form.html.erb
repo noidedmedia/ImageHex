@@ -1,0 +1,16 @@
+<%= form_for @product do |f| %>
+  <div id="commission-product-name-field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div id="commission-product-description-field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div id="commission-product-base-price">
+    <%= react_component('CurrencyInputField', initialValue: @product.base_price, name: "commission_product[base_price]", :label => "Base Price", min: 3.50) %>
+  </div>
+  <div id="commission-proudct-subject-options">
+  </div>
+  <%= f.submit %> 
+<% end %> 

@@ -12,8 +12,21 @@ class CommissionOffer < ActiveRecord::Base
   validates :commission_product, presence: true
 
   validate :has_acceptable_subject_count
+  validate :background_is_acceptable
+
   before_save :calculate_price
+
+  def has_background?
+    backgrounds.length > 0 
+  end
   protected
+  def background_is_acceptable
+    return unless commission_product
+    if has_background? && ! commission_product.allow_background?
+      errors.add(:backgrounds, "have too many")
+    end
+  end
+
   def has_acceptable_subject_count
     return unless commission_product
     if (s = commission_product.try(:maximum_subjects)) && subjects.size > s
@@ -31,7 +44,7 @@ class CommissionOffer < ActiveRecord::Base
     i = p.base_price
     subject_charge_count = subjects.size - p.included_subjects
     i += p.subject_price * subject_charge_count if subject_charge_count > 0
-    if backgrounds.size > 0 && ! p.includes_background?
+    if has_background? && p.charge_for_background? 
       i += p.background_price
     end
     self.total_price = i 

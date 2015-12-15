@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :commission_products
+  
   resources :tag_group_changes, only: [:show] do
 
   end

@@ -12,10 +12,29 @@ RSpec.describe CommissionOffer, type: :model do
                           subjects_attributes: (1..100).map{subj}).save!
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
+    context "without an offered backgrond" do
+      let(:product){
+        FactoryGirl.create(:commission_product,
+                           subject_price: 150,
+                           offer_background: false,
+                           includes_background: false)
+      }
+      let(:at){
+        {description: "test"}
+      }
+      it "does not allow you to add a background" do
+        c = FactoryGirl.build(:commission_offer,
+                              commission_product: product,
+                              subjects_attributes: [{description: "test"}],
+                              backgrounds_attributes: [at])
+        expect(c).to_not be_valid
+      end
+    end
     context "with limited subjects" do
       let(:product){
         FactoryGirl.create(:commission_product,
                            subject_price: 0,
+                           offer_subjects: false,
                            included_subjects: 3)
       }
       let(:subj){ {description: "test"} }
