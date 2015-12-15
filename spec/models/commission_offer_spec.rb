@@ -17,7 +17,7 @@ RSpec.describe CommissionOffer, type: :model do
         FactoryGirl.create(:commission_product,
                            subject_price: 150,
                            offer_background: false,
-                           includes_background: false)
+                           include_background: false)
       }
       let(:at){
         {description: "test"}
@@ -73,7 +73,7 @@ RSpec.describe CommissionOffer, type: :model do
         FactoryGirl.create(:commission_product,
                            base_price: base_price,
                            included_subjects: 1,
-                           includes_background: false,
+                           include_background: false,
                            background_price: background_price,
                            subject_price: subject_price,
                            maximum_subjects: 4)

@@ -26,13 +26,13 @@ class CommissionProduct < ActiveRecord::Base
   end
 
   def allow_background?
-    includes_background? || offer_background?
+    include_background? || offer_background?
   end
   
   ##
   # You have to pay for backgrounds if they are allowed
   # but not free
   def charge_for_background?
-    allow_background? && ! includes_background?
+    allow_background? && ! include_background?
   end
 end

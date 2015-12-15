@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215212635) do
+ActiveRecord::Schema.define(version: 20151215214800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,19 +89,19 @@ ActiveRecord::Schema.define(version: 20151215212635) do
   add_index "commission_offers", ["user_id"], name: "index_commission_offers_on_user_id", using: :btree
 
   create_table "commission_products", force: :cascade do |t|
-    t.integer  "user_id",                             null: false
+    t.integer  "user_id",                            null: false
     t.string   "name"
     t.text     "description"
-    t.integer  "base_price",          default: 1000,  null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "included_subjects",   default: 0,     null: false
-    t.boolean  "includes_background", default: false, null: false
+    t.integer  "base_price",         default: 1000,  null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "included_subjects",  default: 0,     null: false
+    t.boolean  "include_background", default: false, null: false
     t.integer  "subject_price"
     t.integer  "background_price"
     t.integer  "maximum_subjects"
-    t.boolean  "offer_background",    default: true,  null: false
-    t.boolean  "offer_subjects",      default: true,  null: false
+    t.boolean  "offer_background",   default: true,  null: false
+    t.boolean  "offer_subjects",     default: true,  null: false
   end
 
   add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree

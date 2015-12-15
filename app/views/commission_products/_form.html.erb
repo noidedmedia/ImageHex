@@ -10,7 +10,8 @@
   <div id="commission-product-base-price">
     <%= react_component('CurrencyInputField', initialValue: @product.base_price, name: "commission_product[base_price]", :label => "Base Price", min: 3.50) %>
   </div>
-  <div id="commission-proudct-subject-options">
+  <div id="commission-product-background">
+    <%= react_component("ProductBackgroundInput", price: @product.background_price, offerBackground: @product.offer_background, includeBackground: @product.include_background) %>
   </div>
   <%= f.submit %> 
 <% end %> 

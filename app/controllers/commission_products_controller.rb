@@ -31,7 +31,10 @@ class CommissionProductsController < ApplicationController
               :base_price,
               :included_subjects,
               :subject_price,
-              :includes_background,
+              :include_background,
+              :background_price,
+              :offer_background,
+              :offer_subjects,
               :maximum_subjects)
   end
 end
