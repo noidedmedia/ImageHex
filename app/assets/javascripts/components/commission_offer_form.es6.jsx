@@ -2,25 +2,46 @@ class CommissionOfferForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      product: props.product,
-      offer: props.offer
+      subjects: [],
+      background: [],
     };
   }
   render(){
-    var subjects = this.state.offer.subjects.map((subj, index) => {
-      return <li><CommissionSubject subj={subj} key={subj.id} /></li>;
-    })
+    var subjects = this.state.subjects.map((subj, index) => {
+      return <CommissionSubjectForm 
+        descriptionChange={this.changeSubjectDescription.bind(this, index)}
+        remove={this.removeSubject.bind(this, index)} />;
+    });
     return <div>
-      <ul>
-        {subjects}
-      </ul>
-      <button onClick={this.newSubject.bind(this)}>
-        New Subject
-      </button>
       <span className="offer-cost">
-        Total cost is {Math.round(this.state.offer.getPrice() / 100)}
+        Total cost is {this.calculateCost()}
       </span>
     </div>;
+  }
+  calculateCost(){
+    return "";
+  }
+  removeSubject(index){
+    this.state.subjects.splice(subj, index);
+    this.setState({
+      subjects: this.state.subjects
+    });
+  }
+  changeSubjectDescription(index, event){
+    var subj = this.state.subjects[index];
+    subj.description = event.target.value;
+    this.setState({
+      subjects: this.state.subjects
+    });
+  }
+  addSubject(){
+    this.state.subjects.push({
+      description: "",
+      tags: []
+    });
+    this.setState({
+      subjects: this.state.subjects
+    });
   }
 }
 
@@ -31,7 +52,7 @@ document.addEventListener("page:change", function(){
     var id = d.dataset.productId;
     CommissionProduct.find(id, (c) => {
       console.log("Found product", c);
-      ReactDOM.render(<CommissionOfferForm product={c} offer={c.buildOffer()} />,
+      ReactDOM.render(<CommissionOfferForm product={c} />,
                       d);
     });
   }

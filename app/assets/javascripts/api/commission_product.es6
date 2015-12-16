@@ -9,11 +9,4 @@ class CommissionProduct{
       callback(new CommissionProduct(j));
     });
   }
-  buildOffer(){
-    return new CommissionOffer({
-      product: this,
-      subjects: [],
-      background: null
-    });
-  }
 }
