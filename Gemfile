@@ -81,8 +81,6 @@ gem 'unicorn'
 # Use Paperclip to upload images.
 gem 'paperclip'
 
-
-
 ##
 # https://github.com/rails/jquery-rails
 # Use jQuery as the JavaScript library.
@@ -154,6 +152,11 @@ group :development do
   gem 'bullet'
 
   ##
+  # https://github.com/presidentbeef/brakeman
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
+  gem 'brakeman'
+
+  ##
   # https://github.com/rails/spring
   # Spring speeds up development by keeping your application running in the background.
   gem 'spring'
@@ -182,7 +185,7 @@ group :development, :test do
   # https://github.com/thoughtbot/factory_girl_rails
   # A library for setting up Ruby objects as test data.
   gem 'factory_girl_rails'
-  
+
   ##
   # https://github.com/stympy/faker
   # Faker produces fake data for testing/development.
@@ -202,7 +205,7 @@ group :test do
   # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good
   gem 'shoulda-matchers'
-  
+
   ##
   # https://github.com/colszowka/simplecov
   # See how much coverage our tests have

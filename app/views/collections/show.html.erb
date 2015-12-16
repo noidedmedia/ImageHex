@@ -13,7 +13,8 @@
           <p class="collection-page-description"><%= @collection.description %>
 
           <%# Collection curators %>
-          <p class="collection-page-curators"><%= t(".curated_by") %> <%= @collection.curators.pluck(:name).map {|str| "#{str}"}.join(',') %>
+          <p class="collection-page-curators"><%= t(".curated_by_html",
+              curators_list: @collection.curators.collect { |curator| link_to(curator.name, curator) }.join(",").html_safe ) %>
 
         </div>
       <% end %> 
