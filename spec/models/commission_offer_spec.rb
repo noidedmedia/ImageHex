@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe CommissionOffer, type: :model do
   describe "validation" do
+    it "does not allow you to offer to yourself" do
+      p = FactoryGirl.create(:commission_product)
+      c = FactoryGirl.build(:commission_offer,
+                            user: p.user)
+      expect(c).to_not be_valid
+    end
     it "breaks with subjects over the maximum" do
       c = FactoryGirl.create(:commission_product,
                              maximum_subjects: 3)
