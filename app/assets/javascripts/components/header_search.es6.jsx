@@ -7,17 +7,13 @@ class HeaderSearch extends React.Component {
   }
   render() {
     return <div id="header-search-react">
-      <label title="Search" htmlFor="header-search-input">
-        <span className="icon icon-small icon-search"></span>
-      </label>
-
       <TagGroupEditor
         key={1}
         group={this.state.tagGroup}
         tags={this.state.tagGroup.tags}
         onTagRemove={this.removeTag.bind(this)}
         onTagAdd={this.addTag.bind(this)}
-        autofocus={true}
+        isSearch={true}
         submit={this.submit.bind(this)}
       />
     </div>;

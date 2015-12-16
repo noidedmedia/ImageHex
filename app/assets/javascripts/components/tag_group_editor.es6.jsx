@@ -49,23 +49,42 @@ class TagGroupEditor extends React.Component {
         onClick={this.props.onRemove}>
         Remove
       </div>
-    }
-    else {
+    } else {
       removalButton = <div></div>;
     }
-    return <div className="tag-group-editor">
-      {removalButton}
-      <ul className="tag-group-editor-tags">
-        {tags}
-      </ul>
-      <input type="text" 
+
+    var inputField;
+    if (this.props.isSearch) {
+      inputField = <div>
+        <label title="Search" htmlFor="search-input">
+          <span className="icon icon-small icon-search"></span>
+        </label>
+        <input type="text" 
+          id="search-input"
+          name="suggestions" 
+          onChange={this.onInputChange.bind(this)}
+          onKeyDown={this.onKeyUp.bind(this)}
+          value={this.state.inputValue}
+          ref="groupInput"
+          placeholder="Search"
+        />
+      </div>;
+    } else {
+      inputField = <input type="text" 
         name="suggestions" 
         onChange={this.onInputChange.bind(this)}
         onKeyDown={this.onKeyUp.bind(this)}
         value={this.state.inputValue}
         ref="groupInput"
-        placeholder="Search"
-      />
+      />;
+    }
+
+    return <div className="tag-group-editor">
+      {removalButton}
+      <ul className="tag-group-editor-tags">
+        {tags}
+      </ul>
+      {inputField}
       <ul className="tag-group-editor-tags-suggestions">
         {suggestions}
       </ul>

@@ -11,8 +11,15 @@
   }
 }
 
+.tag-group-editor {
+  // Placement of the search icon (if there is one)
+  span.icon::before {
+    transform: translate(8px, 9px);
+  }
+}
+
 .tag-group-editor-tags {
-  background-color: #333;
+  background-color: transparent;
   width: 100%;
   
   li {
