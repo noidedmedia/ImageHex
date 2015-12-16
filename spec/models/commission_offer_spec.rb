@@ -5,7 +5,9 @@ RSpec.describe CommissionOffer, type: :model do
     it "does not allow you to offer to yourself" do
       p = FactoryGirl.create(:commission_product)
       c = FactoryGirl.build(:commission_offer,
-                            user: p.user)
+                            commission_product: p,
+                            user_id: p.user_id)
+      expect(p.user).to eq(c.user)
       expect(c).to_not be_valid
     end
     it "breaks with subjects over the maximum" do

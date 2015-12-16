@@ -13,6 +13,7 @@ class CommissionOffer < ActiveRecord::Base
 
   validate :has_acceptable_subject_count
   validate :background_is_acceptable
+  validate :not_offering_to_self
 
   before_save :calculate_price
 
@@ -20,6 +21,12 @@ class CommissionOffer < ActiveRecord::Base
     backgrounds.length > 0 
   end
   protected
+
+  def not_offering_to_self
+    if user_id == commission_product.try(:user_id)
+      errors.add('user', "cannot offer to yourself!")
+    end
+  end
   def background_is_acceptable
     return unless commission_product
     if has_background? && ! commission_product.allow_background?
