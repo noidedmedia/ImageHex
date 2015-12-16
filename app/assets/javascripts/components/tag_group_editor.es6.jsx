@@ -33,24 +33,24 @@ class TagGroupEditor extends React.Component {
         onAdd={this.onTagAdd.bind(this)}
         tagName={this.state.inputValue} />;
     }
-    else if(this.state.showSuggestions){
-      console.log("No suggestions found, informing the user...");
-      suggestions = <li className="no-suggestions-found">
+    else if (this.state.showSuggestions) {
+      suggestions = <li className="imagehex-empty-note">
         Found no suggestions.
       </li>;
     }
-    else{
+    else {
       console.log("No suggestions to show and no reason to tell the user");
       suggestions = "";
     }
+    
     var removalButton;
-    if(this.props.allowRemoval){
+    if (this.props.allowRemoval) {
       removalButton = <div className="remove-tag-group"
         onClick={this.props.onRemove}>
         Remove
       </div>
     }
-    else{
+    else {
       removalButton = <div></div>;
     }
     return <div className="tag-group-editor">
@@ -64,6 +64,7 @@ class TagGroupEditor extends React.Component {
         onKeyDown={this.onKeyUp.bind(this)}
         value={this.state.inputValue}
         ref="groupInput"
+        placeholder="Search"
       />
       <ul className="tag-group-editor-tags-suggestions">
         {suggestions}
@@ -74,7 +75,6 @@ class TagGroupEditor extends React.Component {
   componentDidUpdate() {
     if (this.props.autofocus) {
       ReactDOM.findDOMNode(this.refs.groupInput).focus();
-    } else {
     }
   }
 
@@ -204,8 +204,8 @@ class TagGroupEditor extends React.Component {
     Tag.withPrefix(value, (tags) => {
       if (tags.length > 0) {
         var ntags = tags.filter( (tag) => {
-          for(var i = 0; i < this.props.tags.length; i++){
-            if(this.props.tags[i].id === tag.id){
+          for (var i = 0; i < this.props.tags.length; i++) {
+            if (this.props.tags[i].id === tag.id) {
               console.log("Tag named " + tag.name + " already in list");
               console.log(tags);
               console.log("Removing it from the suggestion list");

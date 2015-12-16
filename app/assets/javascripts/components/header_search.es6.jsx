@@ -7,6 +7,10 @@ class HeaderSearch extends React.Component {
   }
   render() {
     return <div id="header-search-react">
+      <label title="Search" htmlFor="header-search-input">
+        <span className="icon icon-small icon-search"></span>
+      </label>
+
       <TagGroupEditor
         key={1}
         group={this.state.tagGroup}
