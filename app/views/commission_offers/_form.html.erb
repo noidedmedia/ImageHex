@@ -1,0 +1,9 @@
+<%= form_for [@product, @offer] do |f| %>
+  <div id="offer-form-react-container"
+    data-product-id="<%= @product.id %>">
+    <span>
+      One moment...
+    </span>
+  </div>
+  <%= f.submit %> 
+<% end %>

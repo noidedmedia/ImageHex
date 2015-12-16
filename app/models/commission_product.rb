@@ -1,5 +1,7 @@
 class CommissionProduct < ActiveRecord::Base
   belongs_to :user
+  has_many :offers, class_name: "CommissionOffer"
+
   validates :base_price, numericality: {greater_than: 300}
   validates :subject_price,
     presence: true,
