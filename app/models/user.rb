@@ -131,13 +131,14 @@ class User < ActiveRecord::Base
       .order("MAX(user_creations.created_at) DESC")
   end
 
+
   ####################
   # INSTANCE METHODS #
   ####################
 
   def enable_twofactor
     self.otp_secret = User.generate_otp_secret
-    self.otp_backup_codes = User.generate_otp_backup_codes
+    self.otp_backup_codes = User.generate_otp_backup_codes!
     self.save
   end
 
@@ -219,8 +220,8 @@ class User < ActiveRecord::Base
   def curatorship_for(c)
     Curatorship.where(user: self, collection: c).first
   end
-  protected
 
+  protected
 
   ##
   # Rails passes the true and false values from checkboxes as "0" and "1"
