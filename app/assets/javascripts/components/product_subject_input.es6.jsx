@@ -29,7 +29,7 @@ class ProductSubjectInput extends React.Component {
           min={1.00}
           initialValue={this.props.subjectPrice}
           name="commission_product[subject_price]" />.
-        You can also chose to <a onClick={this.disallowSubjects.bind(this)}>
+        You can also choose to <a onClick={this.disallowSubjects.bind(this)}>
           limit the commission to a certain number of subjects,
           included in the base price.
         </a>
