@@ -7,7 +7,7 @@ class FrontpageController < ApplicationController
   ##
   # "/" of our site.
   def index
-    if current_user
+    if current_user && !current_user.image_feed.blank?
       puts current_user.image_feed.class
       @images = current_user.image_feed
         .paginate(page: page, per_page: per_page)
