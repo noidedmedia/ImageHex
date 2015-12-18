@@ -93,7 +93,9 @@ class User < ActiveRecord::Base
   # Two-factor Backupable
   # Generates 5 backup codes of length 16 characters for the user.
   # For use if/when the user loses access to their two-factor device.
-  devise :two_factor_backupable, otp_backup_code_length: 16, otp_number_of_backup_codes: 5
+  devise :two_factor_backupable,
+    otp_backup_code_length: 16,
+    otp_number_of_backup_codes: 5
 
   ###############
   # VALIDATIONS #
