@@ -1,7 +1,6 @@
-ruby '2.2.3'
+ruby '2.2.4'
 source 'https://rubygems.org'
 
-gem 'dalli'
 ##
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
@@ -147,19 +146,55 @@ gem 'migration_data'
 # https://github.com/droptheplot/apipony
 # API Documentation
 # NOIDED: We wrote part of this!
-gem 'apipony', git: 'https://github.com/noidedmedia/apipony.git'
+gem 'apipony'
+
+##
+# https://github.com/petergoldstein/dalli
+# High performance memcached client for Ruby
+gem 'dalli'
 
 
 ##
 # Development-only gems
 group :development do
+  ##
+  # https://github.com/rweng/pry-rails
+  # Use Pry as your Rails console.
   gem 'pry-rails'
+
+  ##
+  # https://github.com/banister/binding_of_caller
+  # Retrieve the binding of a method's caller in MRI 1.9.2+.
   gem 'binding_of_caller'
+  
+  ##
+  # https://github.com/troessner/reek
+  # Code smell detector for Ruby.
   gem 'reek'
+  
+  ##
+  # https://github.com/railsbp/rails_best_practices
+  # A code metric tool for rails projects.
   gem 'rails_best_practices'
+  
+  ##
+  # Mutes asset pipeline log messages.
+  # https://github.com/evrone/quiet_assets
   gem 'quiet_assets'
+
+  ##
+  # https://github.com/charliesome/better_errors
+  # Better error page for Rack apps.
   gem 'better_errors'
+  
+  ##
+  # https://github.com/ctran/annotate_models
+  # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
   gem 'annotate'
+
+  ##
+  # https://github.com/flyerhzm/bullet
+  # Help to kill N+1 queries and unused eager loading.
   gem 'bullet'
 
   ##
