@@ -1,3 +1,5 @@
 <h1>Two-factor Backup Codes</h1>
 
-<%= @codes %>
+<% @codes.each do |code| %>
+  <%= code %>
+<% end %>

@@ -131,6 +131,7 @@ class User < ActiveRecord::Base
       .order("MAX(user_creations.created_at) DESC")
   end
 
+
   ####################
   # INSTANCE METHODS #
   ####################
@@ -219,8 +220,8 @@ class User < ActiveRecord::Base
   def curatorship_for(c)
     Curatorship.where(user: self, collection: c).first
   end
-  protected
 
+  protected
 
   ##
   # Rails passes the true and false values from checkboxes as "0" and "1"
