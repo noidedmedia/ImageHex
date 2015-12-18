@@ -138,7 +138,7 @@ class User < ActiveRecord::Base
 
   def enable_twofactor
     self.otp_secret = User.generate_otp_secret
-    self.otp_backup_codes = User.generate_otp_backup_codes!
+    self.generate_otp_backup_codes!
     self.save
   end
 
