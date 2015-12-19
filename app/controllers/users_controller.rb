@@ -71,6 +71,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     authorize @user
     @user.otp_required_for_login = false
+    @user.two_factor_verified = false
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_disabled_for_your_account") }
