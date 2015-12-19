@@ -1,9 +1,16 @@
 <%- title t(".twofactor_authentication_backup_codes") %>
 
-<h2><%= t(".twofactor_authentication_backup_codes") %></h2>
+<div class="imagehex-static-page-container">
+  <h2><%= t(".twofactor_authentication_backup_codes") %></h2>
+  <div class="imagehex-static-text">
+    <p>If you lose access to your authentication device, you can use one of these backup codes to login to your account. Each code may be used only once. Make a copy of these codes, and store them somewhere safe.</p>
 
-If you lose access to your authentication device, you can use one of these backup codes to login to your account. Each code may be used only once. Make a copy of these codes, and store them somewhere safe.
-
-<% @backup_codes.each do |code| %>
-  <%= code %>
-<% end %>
+    <div class="twofactor-backup-codes-container">
+      <ul>
+        <% @backup_codes.each do |code| %>
+          <li><%= code %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
