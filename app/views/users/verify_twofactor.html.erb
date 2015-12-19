@@ -1,5 +1,8 @@
-<h1>Twofactor Code</h1>
-<div id="twofactor-container">
+<%- title t(".twofactor_authentication_setup") %>
+
+<h2><%= t(".twofactor_authentication_setup") %></h2>
+
+<div class="twofactor-container">
   <%= image_tag verify_twofactor_user_url(@user, format: :gif), class: "twofactor-qr-code" %>
 </div>
 

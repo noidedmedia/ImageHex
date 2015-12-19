@@ -1,5 +1,9 @@
-<h1>Two-factor Backup Codes</h1>
+<%- title t(".twofactor_authentication_backup_codes") %>
 
-<% @codes.each do |code| %>
+<h2><%= t(".twofactor_authentication_backup_codes") %></h2>
+
+If you lose access to your authentication device, you can use one of these backup codes to login to your account. Each code may be used only once. Make a copy of these codes, and store them somewhere safe.
+
+<% @backup_codes.each do |code| %>
   <%= code %>
 <% end %>
