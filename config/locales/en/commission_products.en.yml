@@ -1,0 +1,7 @@
+---
+en:
+  commission_products:
+    new:
+      new_commission_product: New commission product
+    form:
+      create_commission_product: Create commission product

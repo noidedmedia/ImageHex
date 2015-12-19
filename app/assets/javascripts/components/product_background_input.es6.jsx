@@ -43,13 +43,13 @@ class ProductBackgroundInput extends React.Component{
     else if(this.state.type === "charged-background"){
       return <div>
         <h3>Charged Backgrounds</h3>
-        Cusomters will pay a fee of
+        Customers will pay a fee of
         <CurrencyInputField
           min={1.00}
           initialValue={this.props.price}
           name="commission_product[background_price]" />
         for a background.
-        You can also chose to <a onClick={this.moveToFree.bind(this)}>offer free backgrounds</a> or <a onClick={this.moveToNone.bind(this)}>disallow backgrounds entirely.</a>
+        You can also choose to <a onClick={this.moveToFree.bind(this)}>offer free backgrounds</a> or <a onClick={this.moveToNone.bind(this)}>disallow backgrounds entirely.</a>
         <input type="hidden"
           name="commission_product[offer_background]"
           value="true" />
