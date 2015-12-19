@@ -151,6 +151,7 @@ class TagGroupEditor extends React.Component {
       else {
         this.addActive();
       }
+      event.preventDefault();
     }
     else if (event.keyCode == 188) {
       this.addActive();

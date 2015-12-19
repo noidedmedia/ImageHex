@@ -16,6 +16,9 @@ class CommissionOffersController < ApplicationController
 
   end
 
+  def update 
+
+  end
   protected
   def commission_offer_params
 
