@@ -12,3 +12,4 @@ en:
     youre_not_allowed_to_do_that: You aren't allowed to do that.
     two_factor_authentication_has_been_enabled_for_your_account: Two-Factor Authentication has been enabled for your account.
     two_factor_authentication_has_been_disabled_for_your_account: Two-Factor Authentication has been disabled for your account.
+    incorrect_two_factor_authentication_code: Incorrect Two-Factor Authentication Code.

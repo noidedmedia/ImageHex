@@ -11,6 +11,13 @@ en:
       save_changes: Save changes
       show_content_labeled_as: 'Show content labeled as:'
       user_bio: User bio
+      twofactor_authentication: Two-Factor Authentication
+      enable_twofactor_authentication: Disable Two-Factor Authentication
+      view_backup_codes: View backup codes
+      enable_twofactor_authentication: Enable Two-Factor Authentication
+      twofactor_authentication_is_currently_enabled: Two-Factor Authentication is currently enabled.
+      content_filters: Content filters
+      upload_a_new_picture: Upload a new picture
     index:
       browse_creators: Browse creators
     show:
@@ -24,5 +31,6 @@ en:
       you_dont_have_any_collections_yet: You don't have any collections yet.
     backup_twofactor:
       twofactor_authentication_backup_codes: Two-Factor Authentication Backup Codes
+      twofactor_authentication_backup_body_text: If you lose access to your authentication device, you can use one of these backup codes to login to your account. Each code may be used only once. Make a copy of these codes, and store them somewhere safe.
     verify_twofactor:
       twofactor_authentication_setup: Two-Factor Authentication Setup

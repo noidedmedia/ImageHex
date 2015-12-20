@@ -13,7 +13,7 @@
           <% end %>
         </div>
 
-        Upload a new picture
+        <%= t(".upload_a_new_picture") %>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
     </div>
 
     <div class="field-container">
-      <h3 class="generic-smallcaps-title">Content filters</h3>
+      <h3 class="generic-smallcaps-title"><%= t(".content_filters") %></h3>
 
       <%= f.fields_for :content_pref, OpenStruct.new(@user.content_pref) do |fc| %>
         <div class="checkbox-container">
@@ -54,17 +54,17 @@
     </div>
 
     <div class="field-container">
-      <h3 class="generic-smallcaps-title">Two-Factor Authentication</h3>
+      <h3 class="generic-smallcaps-title"><%= t(".twofactor_authentication") %></h3>
 
       <% if @user.otp_required_for_login %>
-        <p>Two-Factor Authentication is currently enabled.</p>
+        <p><%= t(".twofactor_authentication_is_currently_enabled") %></p>
 
-        <%= link_to "Disable Two-Factor Authentication", disable_twofactor_user_path(@user), method: :put %>
+        <%= link_to t(".enable_twofactor_authentication"), disable_twofactor_user_path(@user), method: :put %>
 
-        <%= link_to "View backup codes", backup_twofactor_user_path(@user) %>
+        <%= link_to t(".view_backup_codes"), backup_twofactor_user_path(@user) %>
       <% else %>
 
-        <%= link_to "Enable Two-Factor Authentication", enable_twofactor_user_path(@user), method: :put %>
+        <%= link_to t(".enable_twofactor_authentication"), enable_twofactor_user_path(@user), method: :put %>
       <% end %>
     </div>
 

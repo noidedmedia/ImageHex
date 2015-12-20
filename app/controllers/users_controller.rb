@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       if @user.confirm_twofactor(params[:otp_key])
         format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_enabled_for_your_account") }
       else
-        format.html { redirect_to verify_twofactor_user_path(@user) }
+        format.html { redirect_to verify_twofactor_user_path(@user), warning: I18n.t("notices.incorrect_two_factor_authentication_code") }
       end
     end
   end

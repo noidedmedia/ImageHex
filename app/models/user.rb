@@ -88,7 +88,8 @@ class User < ActiveRecord::Base
 
   # Two-factor Authenticatable
   devise :two_factor_authenticatable,
-    otp_secret_encryption_key: ENV['TWO_FACTOR_KEY']
+    otp_secret_encryption_key: ENV['TWO_FACTOR_KEY'],
+    otp_allowed_drift: 0
   
   # Two-factor Backupable
   # Generates 5 backup codes of length 16 characters for the user.
