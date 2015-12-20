@@ -12,7 +12,7 @@ en:
       show_content_labeled_as: 'Show content labeled as:'
       user_bio: User bio
       twofactor_authentication: Two-Factor Authentication
-      enable_twofactor_authentication: Disable Two-Factor Authentication
+      disable_twofactor_authentication: Disable Two-Factor Authentication
       view_backup_codes: View backup codes
       enable_twofactor_authentication: Enable Two-Factor Authentication
       twofactor_authentication_is_currently_enabled: Two-Factor Authentication is currently enabled.
