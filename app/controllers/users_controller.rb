@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
-      if @codes = @user.confirm_twofactor(params[:otp_key])
+      if @backup_codes = @user.confirm_twofactor(params[:otp_key])
         format.html
-        format.json{ render json: @codes } 
+        format.json { render json: @backup_codes }
       else
         format.html { redirect_to verify_twofactor_user_path(@user), warning: I18n.t("notices.incorrect_two_factor_authentication_code") }
       end
@@ -38,16 +38,6 @@ class UsersController < ApplicationController
       end
       format.html
     end
-  end
-
-  ##
-  # Display backup two-factor authentication codes for a given user.
-  # @user:: The user who owns the codes.
-  # @backup_codes:: The backup codes.
-  def backup_twofactor
-    @user = User.friendly.find(params[:id])
-    authorize @user
-    @backup_codes = @user.otp_backup_codes
   end
 
   ##
@@ -75,7 +65,7 @@ class UsersController < ApplicationController
     @user.two_factor_verified = false
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_disabled_for_your_account") }
+        format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_succesfully_disabled") }
       else
         format.html { redirect_to @user, error: @user.errors }
       end

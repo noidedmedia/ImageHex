@@ -40,6 +40,12 @@
     font-weight: 500;
   }
 
+  h2 + h3,
+  h3 + h4,
+  h4 + h3 {
+    margin-top: 5px;
+  }
+
   h4 {
     margin-top: 20px;
     font-size: 1.6rem;
@@ -71,4 +77,9 @@
       display: list-item;
     }
   }
+}
+
+.imagehex-static-section {
+  width: 100%;
+  margin-top: 20px;
 }

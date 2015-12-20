@@ -4,15 +4,33 @@
   <h2><%= t(".twofactor_authentication_setup") %></h2>
 
   <div class="imagehex-static-text">
-    <div class="twofactor-container">
-      <%= image_tag verify_twofactor_user_url(@user, format: :gif), class: "twofactor-qr-code" %>
-    </div>
 
-    Scan the barcode and enter the resulting code in the form below:
+    <section class="imagehex-static-section">
+      <h4><%= t(".step_1") %></h4>
+      <h3><%= t(".get_the_app") %></h3>
 
-    <%= form_tag(confirm_twofactor_user_path(@user), method: :put) do %>
-      <%= text_field_tag :otp_key %>
-      <%= button_tag :submit %>
-    <% end %>
+      <p>Get a Two-Factor Authentication app like <%= link_to "Google Authenticator", "https://support.google.com/accounts/answer/1066447" %> or <%= link_to "Authy", "https://www.authy.com/" %>.
+    </section>
+
+    <section class="imagehex-static-section">
+      <h4><%= t(".step_2") %></h4>
+      <h3><%= t(".scan_the_barcode") %></h3>
+
+      <div class="twofactor-qrcode-container">
+        <%= image_tag verify_twofactor_user_url(@user, format: :gif), class: "twofactor-qrcode" %>
+        <p><%= t(".scan_the_barcode_with_your_twofactor_authentication_app") %>
+      </div>
+    </section>
+
+    <section class="imagehex-static-section">
+      <h4><%= t(".step_3") %></h4>
+      <h3><%= t(".enter_the_verification_code") %></h3>
+      <p><%= t(".after_scanning_the_above_barcode_enter_the_6_dit_code_generated_by_the_app") %>
+
+      <%= form_tag(confirm_twofactor_user_path(@user), method: :put) do %>
+        <%= text_field_tag :otp_key %>
+        <%= button_tag t(".verify_and_activate"), type: :submit %>
+      <% end %>
+    </section>
   </div>
 </div>
