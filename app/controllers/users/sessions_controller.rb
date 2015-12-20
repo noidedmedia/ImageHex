@@ -9,7 +9,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    if params[:user][:otp_attempt] != ""
+    if params[:user][:otp_attempt] && params[:user][:otp_attempt] != ""
       self.resource = User.find(params[:user][:id])
       # Somebody's trying to attack us. Foil it.
       render_weirdness! if resource.id != session[:_otp_password_id]
@@ -22,7 +22,7 @@ class Users::SessionsController < Devise::SessionsController
         yield resource if block_given?
         respond_with resource, location: after_sign_in_path_for(resource)
       end
-    elsif params[:user][:otp_backup_attempt] != ""
+    elsif params[:user][:otp_backup_attempt] && params[:user][:otp_backup_attempt] != ""
       logger.debug "Otp backup codes is set"
       self.resource = User.find(params[:user][:id])
       # Prevent hackzors 
