@@ -9,8 +9,10 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    if params[:user][:otp_attempt]
+    if params[:user][:otp_attempt] != ""
       self.resource = User.find(params[:user][:id])
+      # Somebody's trying to attack us. Foil it.
+      render_weirdness! if resource.id != session[:_otp_password_id]
       unless resource.validate_and_consume_otp!(params[:user][:otp_attempt])
         flash[:alert] = "Invalid Authentication Token"
         render :two_factor
@@ -19,6 +21,21 @@ class Users::SessionsController < Devise::SessionsController
         sign_in(resource_name, resource)
         yield resource if block_given?
         respond_with resource, location: after_sign_in_path_for(resource)
+      end
+    elsif params[:user][:otp_backup_attempt] != ""
+      logger.debug "Otp backup codes is set"
+      self.resource = User.find(params[:user][:id])
+      # Prevent hackzors 
+      render_weirdness! if resource.id != session[:_otp_password_id] 
+      if resource.invalidate_otp_backup_code!(params[:user][:otp_backup_attempt])
+        resource.save
+        set_flash_message(:notice, :signed_in) if is_flashing_format?
+        sign_in(resource_name, resource)
+        yield resource if block_given?
+        respond_with resource, location: after_sign_in_path_for(resource)
+      else
+        flash[:alert] = "Invalid OTP backup code!"
+        render :two_factor
       end
     else
       self.resource = warden.authenticate!(auth_options)
@@ -38,10 +55,13 @@ class Users::SessionsController < Devise::SessionsController
   
   def two_factor_enabled?
     @user = User.find_by(email: params[:user][:email])
-    unless params[:user][:otp_attempt].present?
+    unless params[:user][:otp_attempt].present? || params[:user][:otp_backup_attempt].present? 
       if @user && @user.valid_password?(params[:user][:password])
         self.resource = @user
-        render :two_factor if resource.otp_required_for_login
+        if resource.otp_required_for_login
+          session[:_otp_password_id] = @user.id
+          render :two_factor
+        end
       else
         warden.authenticate!(auth_options)
       end
@@ -51,4 +71,7 @@ class Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute
   # end
+  def render_weirdness!
+    render plain: "Something weird happened, or you were trying to hack us"
+  end
 end

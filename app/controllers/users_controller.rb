@@ -12,8 +12,9 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
-      if @user.confirm_twofactor(params[:otp_key])
-        format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_enabled_for_your_account") }
+      if @codes = @user.confirm_twofactor(params[:otp_key])
+        format.html
+        format.json{ render json: @codes } 
       else
         format.html { redirect_to verify_twofactor_user_path(@user), warning: I18n.t("notices.incorrect_two_factor_authentication_code") }
       end

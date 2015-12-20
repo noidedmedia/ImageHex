@@ -98,6 +98,7 @@ class User < ActiveRecord::Base
     otp_backup_code_length: 16,
     otp_number_of_backup_codes: 10
 
+  attr_accessor :otp_backup_attempt
   ###############
   # VALIDATIONS #
   ###############
@@ -146,8 +147,9 @@ class User < ActiveRecord::Base
     if self.validate_and_consume_otp!(key)
       self.otp_required_for_login = true
       self.two_factor_verified = true
-      self.otp_backup_codes = self.generate_otp_backup_codes!
+      codes = self.generate_otp_backup_codes!
       self.save
+      codes
     else
       return false
     end
