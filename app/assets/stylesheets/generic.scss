@@ -71,8 +71,10 @@
   }
 }
 
-.generic-page-title {
-  text-align: center;
-  margin: 90px 0 10px;
-  font-weight: 300;
+.generic-smallcaps-title {
+  text-transform: uppercase;
+  color: #333;
+  margin: 15px 0 10px;
+  font-weight: 500;
+  font-size: 1.4rem;
 }

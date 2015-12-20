@@ -9,11 +9,11 @@ class UserPolicy < ApplicationPolicy
   end
 
   def confirm_twofactor?
-    same_user && @user.otp_secret && ! @user.two_factor_verified?
+    same_user && @user.otp_secret && !@user.two_factor_verified?
   end
 
   def verify_twofactor?
-    same_user && ! @user.two_factor_verified && @user.otp_secret
+    same_user && !@user.two_factor_verified && @user.otp_secret
   end
   
   def enable_twofactor?

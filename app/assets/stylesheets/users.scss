@@ -1,14 +1,33 @@
 @import "scss-variables";
 
 
-#twofactor-container{
+.twofactor-container {
   width: 100%;
   padding: 100px;
 }
-.twofactor-qr-code{
+
+.twofactor-qr-code {
   height: auto;
   width: 300px;
   margin: auto;
+}
+
+.twofactor-backup-codes-container {
+  display: block;
+  width: 80%;
+  margin: auto;
+
+  ul {
+    list-style: none;
+    font-family: monospace;
+    
+    li {
+      width: 49%;
+      text-align: center;
+      min-width: 240px;
+      display: inline-block;
+    }
+  }
 }
 
 /* ==============================================

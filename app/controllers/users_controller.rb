@@ -5,19 +5,25 @@ class UsersController < ApplicationController
   include Pundit
   before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor, :verify_twofactor]
 
-
+  ##
+  # Confirm that provided two-factor authentication code matches otp key for a given user.
+  # @user:: The user enabling two-factor auth.
   def confirm_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
-      if @user.confirm_twofactor(params[:otp_key])
-        format.html { redirect_to @user }
+      if @codes = @user.confirm_twofactor(params[:otp_key])
+        format.html
+        format.json{ render json: @codes } 
       else
-        format.html { redirect_to verify_twofactor_user_path(@user) }
+        format.html { redirect_to verify_twofactor_user_path(@user), warning: I18n.t("notices.incorrect_two_factor_authentication_code") }
       end
     end
   end
 
+  ##
+  # Display a QR Code for the Authentication app.
+  # @user:: The user enabling two-factor auth.
   def verify_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
@@ -34,12 +40,19 @@ class UsersController < ApplicationController
     end
   end
 
+  ##
+  # Display backup two-factor authentication codes for a given user.
+  # @user:: The user who owns the codes.
+  # @backup_codes:: The backup codes.
   def backup_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
-    @codes = @user.otp_backup_codes
+    @backup_codes = @user.otp_backup_codes
   end
 
+  ##
+  # Enable two-factor authentication for a given user.
+  # @user:: The user enabling two-factor auth.
   def enable_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
@@ -52,19 +65,26 @@ class UsersController < ApplicationController
     end
   end
 
+  ##
+  # Disable two-factor authentication for a given user.
+  # @user:: The user disabling two-factor auth.
   def disable_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
     @user.otp_required_for_login = false
+    @user.two_factor_verified = false
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user }
+        format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_disabled_for_your_account") }
       else
         format.html { redirect_to @user, error: @user.errors }
       end
     end
   end
 
+  ##
+  # "Browse creators" page
+  # @users:: A list of users, as chosen by the get_user_index method below.
   def index
     @users = get_user_index
     .preload(:creations)
@@ -147,7 +167,7 @@ class UsersController < ApplicationController
   # Ensures that params[:id] is the current_user and requires login, for
   # obvious reasons.
   # Sets the following variables:
-  # @user:: The user who is being edited. 
+  # @user:: The user being edited. 
   def edit
     @user = params[:id] ? User.friendly.find(params[:id]) : current_user
     authorize @user
@@ -159,7 +179,7 @@ class UsersController < ApplicationController
   # 
   # If the user cannot be updated, it puts the errors in flash[:error] and 
   # redirects to the edit page again.
-  # @user:: The user who is being updated. 
+  # @user:: The user being updated. 
   def update
     @user = User.friendly.find(params[:id])
     authorize @user

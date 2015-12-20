@@ -88,15 +88,17 @@ class User < ActiveRecord::Base
 
   # Two-factor Authenticatable
   devise :two_factor_authenticatable,
-    otp_secret_encryption_key: ENV['TWO_FACTOR_KEY']
+    otp_secret_encryption_key: ENV['TWO_FACTOR_KEY'],
+    otp_allowed_drift: 0
   
   # Two-factor Backupable
   # Generates 5 backup codes of length 16 characters for the user.
   # For use if/when the user loses access to their two-factor device.
   devise :two_factor_backupable,
     otp_backup_code_length: 16,
-    otp_number_of_backup_codes: 5
+    otp_number_of_backup_codes: 10
 
+  attr_accessor :otp_backup_attempt
   ###############
   # VALIDATIONS #
   ###############
@@ -138,7 +140,6 @@ class User < ActiveRecord::Base
 
   def enable_twofactor
     self.otp_secret = User.generate_otp_secret
-    self.otp_backup_codes = self.generate_otp_backup_codes!
     self.save
   end
 
@@ -146,7 +147,9 @@ class User < ActiveRecord::Base
     if self.validate_and_consume_otp!(key)
       self.otp_required_for_login = true
       self.two_factor_verified = true
+      codes = self.generate_otp_backup_codes!
       self.save
+      codes
     else
       return false
     end

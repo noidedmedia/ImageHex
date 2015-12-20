@@ -1,5 +1,16 @@
-<h1>Two-factor Backup Codes</h1>
+<%- title t(".twofactor_authentication_backup_codes") %>
 
-<% @codes.each do |code| %>
-  <%= code %>
-<% end %>
+<div class="imagehex-static-page-container">
+  <h2><%= t(".twofactor_authentication_backup_codes") %></h2>
+  <div class="imagehex-static-text">
+    <p><%= t(".twofactor_authentication_backup_body_text") %></p>
+
+    <div class="twofactor-backup-codes-container">
+      <ul>
+        <% @backup_codes.each do |code| %>
+          <li><%= code %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

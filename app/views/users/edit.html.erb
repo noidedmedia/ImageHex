@@ -12,6 +12,8 @@
             <%= image_tag @user.avatar_img %>
           <% end %>
         </div>
+
+        <%= t(".upload_a_new_picture") %>
       </div>
     </div>
 
@@ -26,7 +28,7 @@
     </div>
 
     <div class="field-container">
-      <p><%= t(".show_content_labeled_as") %></p>
+      <h3 class="generic-smallcaps-title"><%= t(".content_filters") %></h3>
 
       <%= f.fields_for :content_pref, OpenStruct.new(@user.content_pref) do |fc| %>
         <div class="checkbox-container">
@@ -51,18 +53,22 @@
       <% end %>
     </div>
 
+    <div class="field-container">
+      <h3 class="generic-smallcaps-title"><%= t(".twofactor_authentication") %></h3>
+
+      <% if @user.otp_required_for_login %>
+        <p><%= t(".twofactor_authentication_is_currently_enabled") %></p>
+
+        <%= link_to t(".enable_twofactor_authentication"), disable_twofactor_user_path(@user), method: :put %>
+
+        <%= link_to t(".view_backup_codes"), backup_twofactor_user_path(@user) %>
+      <% else %>
+
+        <%= link_to t(".enable_twofactor_authentication"), enable_twofactor_user_path(@user), method: :put %>
+      <% end %>
+    </div>
+
     <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>
   <% end %>
 
-
-  <% if @user.otp_required_for_login %>
-    <%= form_tag disable_twofactor_user_path(@user), method: :put do %>
-      <%= button_tag "Disable 2FA" %>
-    <% end %>
-    <%= link_to "See your 2FA Key", backup_twofactor_user_path(@user) %>
-  <% else %>
-    <%= form_tag enable_twofactor_user_path(@user), method: :put do %>
-      <%= button_tag "Enable 2FA" %>
-    <% end %>
-  <% end %>
 </div>
