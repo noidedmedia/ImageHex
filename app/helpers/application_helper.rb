@@ -2,6 +2,9 @@
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
 
+  def price(num)
+    number_to_currency(num / 100)
+  end
   def frontpage_reason_path img
     return "" unless id = img.try(:reason_id)
     case img.try(:reason_type)

@@ -1,4 +1,17 @@
 <h1><%= @product.name %></h1>
 <h3>A product from <%= link_to @product.user.name, @product.user %></h3>
+<% if policy(@product.offers.build).create? %>
+  <%= link_to "Make an offer", new_commission_product_commission_offer_path(@product) %>
+<% end %>
+<div id="offer-base-price">
+  Base price: <%= price(@product.base_price) %>
+</div>
 
-<%= link_to "Make an offer", new_commission_product_commission_offer_path(@product) %>
+<% if @product.offer_subjects? %>
+  <div>
+    Subjects may be purchased at a price of <%= price(@product.subject_price) %> each, up to a maximum of <%= @product.maximum_subjects %> 
+    <% if @product.includes_subjects? %>
+      <% @product.included_subjects %> are free.
+    <% end %> 
+  </div>
+<% end %> 
