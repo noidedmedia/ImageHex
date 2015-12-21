@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215214800) do
+ActiveRecord::Schema.define(version: 20151220225720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,18 @@ ActiveRecord::Schema.define(version: 20151215214800) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "subject_references", force: :cascade do |t|
+    t.integer  "commission_subject_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  add_index "subject_references", ["commission_subject_id"], name: "index_subject_references_on_commission_subject_id", using: :btree
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "collection_id"
@@ -323,10 +335,7 @@ ActiveRecord::Schema.define(version: 20151215214800) do
   add_foreign_key "comments", "users"
   add_foreign_key "commission_backgrounds", "commission_offers"
   add_foreign_key "commission_offers", "commission_products"
-  add_foreign_key "commission_offers", "users"
-  add_foreign_key "commission_products", "users", on_delete: :cascade
   add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
-  add_foreign_key "commission_subject_tags", "tags", on_delete: :cascade
   add_foreign_key "commission_subjects", "commission_offers"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
@@ -334,6 +343,7 @@ ActiveRecord::Schema.define(version: 20151215214800) do
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "subject_references", "commission_subjects", on_delete: :cascade
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tag_changes", "tags", on_delete: :cascade

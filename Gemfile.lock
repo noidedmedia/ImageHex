@@ -398,6 +398,7 @@ GEM
     thread (0.2.2)
     thread_safe (0.3.5)
     tilt (2.0.1)
+    timecop (0.8.0)
     timers (4.0.4)
       hitimes
     tins (1.8.1)
@@ -481,6 +482,7 @@ DEPENDENCIES
   simplecov
   spring
   sprockets-es6
+  timecop
   train_track
   turbolinks
   uglifier

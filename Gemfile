@@ -248,6 +248,7 @@ end
 ##
 # Test-only gems
 group :test do
+  gem 'timecop'
   ##
   # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good

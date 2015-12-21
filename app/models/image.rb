@@ -1,4 +1,4 @@
-##
+#
 # Image is sort of the fundamental concept of ImageHex, as the name
 # implies.
 # You should be pretty familiar with this file.

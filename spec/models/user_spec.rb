@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'devise_two_factor/spec_helpers'
 
 describe User do
 
@@ -109,6 +108,4 @@ describe User do
 
   end
 
-  it_behaves_like "two_factor_authenticatable"
-  it_behaves_like "two_factor_backupable"
 end

@@ -1,3 +1,16 @@
-// Place all the styles related to the CommissionOffers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#commission-offer-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.commission-subject-form-fields{
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #333;
+}
+
+.subject-references-form{
+  display: block;
+
+}

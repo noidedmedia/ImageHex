@@ -1,9 +1,23 @@
 class CommissionSubjectForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = {};
+    var initialReferences = props.subj.references || []
+    this.state = {
+      references: initialReferences,
+      currentRefKey: 0
+    };
   }
   render(){
+    var refs = this.state.references.map((ref, index) => {
+      var id = ref.id ? ref.id : ref.key;
+      var b = this.baseFieldName() + "[references_attributes][" + index + "]";
+      return <SubjectReferenceField
+        baseFieldName={b}
+        ref={ref}
+        index={index}
+        key={id}
+        remove={this.removeReference.bind(this, index)} />;
+    });
     return <div className="commission-subject-form-fields">
       <div>
         {this.idField()}
@@ -15,6 +29,14 @@ class CommissionSubjectForm extends React.Component {
           initialTags = {this.props.subj.tags ? this.props.subj.tags : []}
           baseFieldName={this.baseFieldName()} />
       </div>
+      <ul className="subject-references-form">
+        {refs}
+      </ul>
+      <button onClick={this.addReference.bind(this)}
+        type="button">
+        Add a Reference Image
+      </button>
+      <br/>
       <button onClick={this.removeSelf.bind(this)} type="button">
         Remove
       </button>
@@ -28,6 +50,23 @@ class CommissionSubjectForm extends React.Component {
       />;
     }
     return "";
+  }
+  addReference(event){
+    event.preventDefault();
+    var ref = this.state.references;
+    ref.push({
+      key: this.state.currentRefKey
+    });
+    this.setState({
+      references: ref,
+      currentRefKey: this.state.currentRefKey - 1
+    });
+  }
+  removeReference(index){
+    this.state.references.splice(index, 1);
+    this.setState({
+      refrences: this.state.references
+    });
   }
   removeSelf(event){
     console.log("removeSelf fires with event",event);
@@ -92,3 +131,27 @@ class SubjectTagSelector extends React.Component {
     event.preventDefault();
   }
 }
+
+class SubjectReferenceField extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return <div className="subject-reference-section">
+      <input type="file"
+        name={this.fileFieldName()}
+      />
+      <button type="button"
+        onClick={this.removeSelf.bind(this)}>
+        Remove Reference
+      </button>
+    </div>;
+  }
+  fileFieldName(){
+    return this.props.baseFieldName + "[file]"
+  }
+  removeSelf(){
+    this.props.remove();
+  }
+}
+
