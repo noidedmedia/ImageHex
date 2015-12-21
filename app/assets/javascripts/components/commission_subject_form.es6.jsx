@@ -18,6 +18,13 @@ class CommissionSubjectForm extends React.Component {
         key={id}
         remove={this.removeReference.bind(this, index)} />;
     });
+    var refButton = <button onClick={this.addReference.bind(this)}
+        type="button">
+        Add a Reference Image
+      </button>;
+    if(refs.length > 4){
+      refButton = undefined;
+    }
     return <div className="commission-subject-form-fields">
       <div>
         {this.idField()}
@@ -32,10 +39,7 @@ class CommissionSubjectForm extends React.Component {
       <ul className="subject-references-form">
         {refs}
       </ul>
-      <button onClick={this.addReference.bind(this)}
-        type="button">
-        Add a Reference Image
-      </button>
+      {refButton}
       <br/>
       <button onClick={this.removeSelf.bind(this)} type="button">
         Remove

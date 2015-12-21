@@ -13,7 +13,17 @@ class CommissionOffersController < ApplicationController
   end
 
   def create
-
+    @offer = @product.offers.build(commission_offer_params)
+    authorize @offer
+    respond_to do |format|
+      if @offer.save
+        format.html {redirect_to @offer}
+        format.json {render 'show'}
+      else
+        format.html {render 'new'}
+        format.json {render json: @offer.errors, status: :unprocessible_entity}
+      end
+    end
   end
 
   def update 
@@ -21,7 +31,10 @@ class CommissionOffersController < ApplicationController
   end
   protected
   def commission_offer_params
-
+    params.require(:commission_offer)
+      .permit(subjects_attributes: [:description,
+              {tag_ids: []},
+              {references_attributes: [:file]}])
   end
 
   def set_product

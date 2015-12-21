@@ -17,7 +17,7 @@ class CommissionSubject < ActiveRecord::Base
   end
 
   def has_acceptable_reference_number
-    if self.subject_references.length > 5
+    if self.references.length > 5
       errors.add(:subject_references, "must have less than 5")
     end
   end
