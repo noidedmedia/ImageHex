@@ -28,6 +28,9 @@ class ProductBackgroundInput extends React.Component{
         <input type="hidden"
           name="commission_product[offer_background]"
           value="false" />
+        <input type="hidden"
+          name="commission_product[includes_background]"
+          value="false" />
       </div>
     }
     else if(this.state.type === "free-background"){
@@ -38,6 +41,9 @@ class ProductBackgroundInput extends React.Component{
         <input type="hidden"
           name="commission_product[include_background]"
           value="true" />
+        <input type="hidden"
+          name="commission_product[offer_backgroud]"
+          value="false" />
       </div>
     }
     else if(this.state.type === "charged-background"){
@@ -53,6 +59,9 @@ class ProductBackgroundInput extends React.Component{
         <input type="hidden"
           name="commission_product[offer_background]"
           value="true" />
+        <input type="hidden"
+          name="commission_product[includes_background]"
+          value="false" />
       </div>
     }
     return <div>
