@@ -1,0 +1,15 @@
+<h1>Offer</h1>
+<span>By <%= link_to @offer.user.name, @offer.user %></span>
+<br>
+Total cost of <%= price(@offer.total_price) %> 
+<% if @offer.has_background? %> 
+  <div>
+    <h2>Background</h2>
+    <div class="background-description">
+      <%= markdown_parse @offer.backgrounds.first.description %> 
+    </div>
+  </div>
+<% end %>
+<ul id="subjects">
+<%= render partial: "subject_stub", collection: @offer.subjects, as: :subject %>
+</ul>
