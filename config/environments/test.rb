@@ -3,8 +3,8 @@ Rails.application.configure do
   # Store test files in a temporary directory
   Paperclip::Attachment.default_options.merge!({path: "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"})
   $IMAGE_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
-  $BACKGROUND_REF_PATH = $IMAGE_REF_PATH
   $SUBJECT_REF_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+  $BACKGROUND_REF_PATH = $IMAGE_PATH
   $AVATAR_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
 
   # The test environment is used exclusively to run your application's
