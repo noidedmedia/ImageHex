@@ -9,11 +9,46 @@ class CommissionOfferForm extends React.Component{
   }
   render(){
     return <div>
+      {this.backgroundSection()}
       {this.subjectSection()}
       <span className="offer-cost">
         Total cost is ${(this.calculateCost() / 100).toFixed(2)} 
       </span>
     </div>;
+  }
+  backgroundSection(){
+    var content;
+    if(this.state.background){
+      content = <CommissionBackgroundForm
+          background={this.state.background}
+          permanent={false}
+          onRemove={this.removeBackground.bind(this)} />;
+    }
+    else if(this.props.project.include_background){
+      content =  <CommissionBackgroundForm
+        permanent={true}
+        background={{}}
+      />;
+    }
+    else{
+      var price = (this.props.product.background_price / 100).toFixed(2);
+      content = <button type="button"
+        onClick={this.addBackground.bind(this)}>
+        Add a background (${price})
+      </button>
+    }
+    var p = this.props.product;
+    if(p.offer_background || p.includes_background){
+      return <div>
+        <h2>
+          Background {p.includes_background ? "(Included in purcahse price)" : ""}
+        </h2>
+        {content}
+      </div>
+    }
+    else{
+      return "";
+    }
   }
   // Returns the HTML for the subject section
   subjectSection(){
@@ -29,17 +64,16 @@ class CommissionOfferForm extends React.Component{
     var newButton;
     if(this.canAddSubjects()){
       newButton = <button onClick={this.addSubject.bind(this)}>
-        Add a Subject
+        Add a Subject (${(this.props.product.subject_price / 100).toFixed(2)})
       </button>;
     }
     else{
       newButton = "";
     }
-    
     return <div>
-      <h1>
+      <h2>
         Subjects
-      </h1>
+      </h2>
       You may add {this.subjectsLeft()} more.
       <div id="offer-subject-container">
         {subjects}
@@ -49,6 +83,16 @@ class CommissionOfferForm extends React.Component{
   }
   canAddSubjects(){
     return this.subjectsLeft() > 0;
+  }
+  addBackground(){
+    this.setState({
+      background: {}
+    });
+  }
+  removeBackground(){
+    this.setState({
+      background: undefined
+    });
   }
   subjectsLeft(){
     if(this.props.product.offer_subjects){

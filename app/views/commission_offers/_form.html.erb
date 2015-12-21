@@ -1,9 +1,15 @@
 <%= form_for [@product, @offer], html: {id: "commission-offer-form", multipart: true} do |f| %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %> 
   <div id="offer-form-react-container"
     data-product-id="<%= @product.id %>">
     <span>
       One moment...
     </span>
+    <noscript>
+      This form requires JavaScript to work. Please enable it!
+    </noscript>
   </div>
   <%= f.submit %> 
 <% end %>

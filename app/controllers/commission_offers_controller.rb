@@ -7,6 +7,11 @@ class CommissionOffersController < ApplicationController
 
   end
 
+  def show
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
+  end
+
   def new
     @offer = @product.offers.build
     authorize @offer
@@ -32,9 +37,12 @@ class CommissionOffersController < ApplicationController
   protected
   def commission_offer_params
     params.require(:commission_offer)
-      .permit(subjects_attributes: [:description,
+      .permit(:description,
+        subjects_attributes: [:description,
               {tag_ids: []},
-              {references_attributes: [:file]}])
+              {references_attributes: [:file]}],
+        backgrounds_attributes: [:description])
+      .merge(user_id: current_user.id)
   end
 
   def set_product
