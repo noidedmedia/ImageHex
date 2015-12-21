@@ -2,13 +2,15 @@ class CommissionBackgroundForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      refs: []
+      refs: [],
+      refKey: 0
     }
   }
   render(){
     var refs = this.state.refs.map((ref, index) => {
       name = "commission_offer[backgrounds_attributes][0][references_attributes][" + index + "]";
-      return <div key="index">
+      var key = ref.id || ref.key;
+      return <div key={key}>
         <input type="file"
           name={name + "[file]"}
         />
@@ -38,9 +40,12 @@ class CommissionBackgroundForm extends React.Component{
     });
   }
   addReference(){
-    this.state.refs.push({});
+    this.state.refs.push({
+      key: this.state.refKey
+    });
     this.setState({
-      refs: this.state.refs
+      refs: this.state.refs,
+      refKey: this.state.refKey - 1
     });
   }
 }

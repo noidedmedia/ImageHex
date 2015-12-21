@@ -3,7 +3,6 @@ class CommissionOfferForm extends React.Component{
     super(props);
     this.state = {
       subjects: [],
-      background: [],
       currentSubjectKey: 0,
     };
   }
@@ -24,7 +23,7 @@ class CommissionOfferForm extends React.Component{
           permanent={false}
           onRemove={this.removeBackground.bind(this)} />;
     }
-    else if(this.props.project.include_background){
+    else if(this.props.product.include_background){
       content =  <CommissionBackgroundForm
         permanent={true}
         background={{}}
@@ -122,6 +121,9 @@ class CommissionOfferForm extends React.Component{
     var paidSubjects = this.state.subjects.length - prod.included_subjects;
     if(paidSubjects > 0){
       cost += paidSubjects * prod.subject_price;
+    }
+    if(! prod.includes_background && this.state.background){
+      cost += prod.background_price 
     }
     return cost;
   }
