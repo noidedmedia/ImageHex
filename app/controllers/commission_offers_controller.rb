@@ -41,7 +41,7 @@ class CommissionOffersController < ApplicationController
         subjects_attributes: [:description,
               {tag_ids: []},
               {references_attributes: [:file]}],
-        backgrounds_attributes: [:description])
+        backgrounds_attributes: [:description, {references_attributes: [:file]}])
       .merge(user_id: current_user.id)
   end
 

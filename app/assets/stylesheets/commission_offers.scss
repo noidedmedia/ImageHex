@@ -12,5 +12,22 @@
 
 .subject-references-form{
   display: block;
+}
 
+.reference-images{
+  display: flex;
+  flex-direction: row wrap;
+}
+
+#offer-subjects{
+  border: 1px solid #333;
+}
+#subjects-list{
+  display: flex;
+  flex-direction: column;
+  flex-basis: center;
+}
+.subjects-list-item{
+  border: 1px solid #333;
+  margin: 10px;
 }

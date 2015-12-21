@@ -20,6 +20,12 @@ class CommissionOffer < ActiveRecord::Base
   def has_background?
     backgrounds.length > 0 
   end
+
+  def has_subjects?
+    subjects.length > 0
+  end
+
+
   protected
 
   def not_offering_to_self

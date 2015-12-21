@@ -10,7 +10,6 @@ class CommissionProductsController < ApplicationController
 
   def show
     @product = CommissionProduct.find(params[:id])
-
   end
 
   def create

@@ -1,8 +1,8 @@
-<li class="commission-offer-subject">
+<li class="subjects-list-item">
 <div class="subject-description">
   <%= markdown_parse subject.description %> 
 </div>
-<ul id="reference-images">
+<ul class="reference-images">
   <% subject.references.each do |ref| %>
     <%= image_tag ref.file.expiring_url(60) %>
   <% end %> 

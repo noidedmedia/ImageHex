@@ -8,8 +8,21 @@ Total cost of <%= price(@offer.total_price) %>
     <div class="background-description">
       <%= markdown_parse @offer.backgrounds.first.description %> 
     </div>
+    <ul id="reference-images">
+      <% @offer.backgrounds.first.references.each do |ref| %>
+        <li class="background-reference-item">
+        <%= image_tag ref.file.expiring_url(60) %>
+        </li>
+      <% end %> 
+    </ul>
   </div>
 <% end %>
-<ul id="subjects">
-<%= render partial: "subject_stub", collection: @offer.subjects, as: :subject %>
-</ul>
+<% if @offer.has_subjects? %>
+  <div id="offer-subjects">
+    <h2>Subjects</h2>
+    <ul id="subjects-list">
+      <%= render partial: "subject_stub", collection: @offer.subjects, as: :subject %>
+    </ul>
+  </div>
+<% end %>
+
