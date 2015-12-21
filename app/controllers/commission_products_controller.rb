@@ -20,7 +20,6 @@ class CommissionProductsController < ApplicationController
         format.html {redirect_to @product}
         format.json {render action: 'show'}
       else
-        logger.debug("Found errors #{@product.errors.inspect}")
         format.html {render 'new'}
         format.json {render json: @product.errors, status: 422}
       end
