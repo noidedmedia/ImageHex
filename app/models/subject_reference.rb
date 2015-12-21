@@ -8,4 +8,6 @@ class SubjectReference < ActiveRecord::Base
   validates_attachment :file, 
     content_type: { content_type: /\Aimage\/.*\Z/},
     presence: true
+  validates_attachment_content_type :file,
+    content_type: /\Aimage\/.*\Z/
 end

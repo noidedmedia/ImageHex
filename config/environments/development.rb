@@ -19,6 +19,7 @@ Rails.application.configure do
   $IMAGE_PATH = "public/system/fs/:class/:id_:style.:extension"
   $SUBJECT_REF_PATH = "public/system/fs/:class/:id_:style.:extension"
   $AVATAR_PATH = "public/system/fs/:class/:id_:style.:extension"
+  $BACKGROUND_REF_PATH  = $SUBJECT_REF_PATH
 
   # Do not eager load code on boot.
   config.eager_load = false

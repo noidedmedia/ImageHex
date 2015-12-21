@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221221132) do
+ActiveRecord::Schema.define(version: 20151221221340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,12 @@ ActiveRecord::Schema.define(version: 20151221221132) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "commission_background_id", null: false
   end
+
+  add_index "background_references", ["commission_background_id"], name: "index_background_references_on_commission_background_id", using: :btree
 
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
@@ -338,6 +341,7 @@ ActiveRecord::Schema.define(version: 20151221221132) do
 
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
+  add_foreign_key "background_references", "commission_backgrounds", on_delete: :cascade
   add_foreign_key "collection_images", "collections"
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
