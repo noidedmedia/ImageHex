@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       if @user.enable_twofactor
         format.html { redirect_to verify_twofactor_user_path(@user) }
       else
-        format.html { redirect_to @user, error: @user.errors }
+        format.html { redirect_to settings_path, error: @user.errors }
       end
     end
   end
@@ -65,9 +65,9 @@ class UsersController < ApplicationController
     @user.two_factor_verified = false
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_succesfully_disabled") }
+        format.html { redirect_to settings_path, notice: I18n.t("notices.two_factor_authentication_has_been_succesfully_disabled") }
       else
-        format.html { redirect_to @user, error: @user.errors }
+        format.html { redirect_to settings_path, error: @user.errors }
       end
     end
   end

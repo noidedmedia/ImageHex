@@ -33,6 +33,7 @@ en:
       twofactor_authentication_backup_codes: Two-Factor Authentication Backup Codes
       twofactor_authentication_backup_body_text: If you lose access to your authentication device, you can use one of these backup codes to login to your account. Each code may be used only once. Make a copy of these codes, and store them somewhere safe.
       you_can_only_access_these_once_save_or_print_them_now: You can only access these once, save or print them now.
+      return_to_settings: Return to Settings
     verify_twofactor:
       twofactor_authentication_setup: Two-Factor Authentication Setup
       step_1: Step 1
