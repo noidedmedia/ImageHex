@@ -61,13 +61,20 @@ class UsersController < ApplicationController
   def disable_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
-    @user.otp_required_for_login = false
-    @user.two_factor_verified = false
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_succesfully_disabled") }
-      else
-        format.html { redirect_to @user, error: @user.errors }
+    if @user.valid_password?(params[:current_password])
+      @user.otp_required_for_login = false
+      @user.two_factor_verified = false
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_succesfully_disabled") }
+        else
+          format.html { redirect_to @user, error: @user.errors }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to @user, notice: I18n.t("invalid-password")}
+        format.json {render json: "invalid_password"}
       end
     end
   end

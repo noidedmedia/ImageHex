@@ -58,7 +58,6 @@
 
       <% if @user.otp_required_for_login %>
         <p><%= t(".twofactor_authentication_is_currently_enabled") %></p>
-
         <%= link_to t(".disable_twofactor_authentication"), disable_twofactor_user_path(@user), method: :put %>
       <% else %>
 
