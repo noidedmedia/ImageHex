@@ -35,6 +35,14 @@ gem 'rqrcode-rails3'
 gem 'mini_magick'
 
 ##
+# Use Oauth to connect stripe users
+gem 'oauth2'
+
+##
+# Use Stripe
+gem 'stripe'
+
+##
 # Use .env files for development secret keys
 # Our real key is set in production
 gem 'dotenv-rails', groups: [:development, :test]
