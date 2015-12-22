@@ -13,8 +13,9 @@ class Users::SessionsController < Devise::SessionsController
       self.resource = User.find(params[:user][:id])
       # Somebody's trying to attack us. Foil it.
       render_weirdness! if resource.id != session[:_otp_password_id]
+
       unless resource.validate_and_consume_otp!(params[:user][:otp_attempt])
-        flash[:alert] = "Invalid Authentication Token"
+        flash[:alert] = I18n.t("notices.invalid_two_factor_authentication_code")
         render :two_factor
       else
         set_flash_message(:notice, :signed_in) if is_flashing_format?
@@ -23,7 +24,6 @@ class Users::SessionsController < Devise::SessionsController
         respond_with resource, location: after_sign_in_path_for(resource)
       end
     elsif params[:user][:otp_backup_attempt] && params[:user][:otp_backup_attempt] != ""
-      logger.debug "Otp backup codes is set"
       self.resource = User.find(params[:user][:id])
       # Prevent hackzors 
       render_weirdness! if resource.id != session[:_otp_password_id] 
@@ -34,7 +34,7 @@ class Users::SessionsController < Devise::SessionsController
         yield resource if block_given?
         respond_with resource, location: after_sign_in_path_for(resource)
       else
-        flash[:alert] = "Invalid OTP backup code!"
+        flash[:alert] = I18n.t("notices.invalid_two_factor_authentication_backup_code")
         render :two_factor
       end
     else
@@ -67,6 +67,7 @@ class Users::SessionsController < Devise::SessionsController
       end
     end
   end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.for(:sign_in) << :attribute

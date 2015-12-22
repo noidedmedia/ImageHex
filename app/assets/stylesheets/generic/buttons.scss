@@ -8,14 +8,15 @@
   font-size: 1.4rem;
   font-weight: 400;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 4px;
   display: inline-block;
   color: #fff;
-  transition: background-color 300ms;
+  transition: background-color 300ms, border-color 300ms;
   appearance: none;
   border: 0;
-  height: 32px;
+  min-height: 32px;
   cursor: pointer;
+  text-decoration: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   box-shadow: none;
@@ -85,6 +86,25 @@
 
 
 /* ==============================================
+    Button styles
+   ============================================== */
+
+.btn-with-border {
+  padding: 10px;
+  border: 1px solid #aaaab2;
+  border-radius: 3px;
+
+  &:hover, &:focus {
+    border-color: darken(#aaaab2, 10%);
+  }
+}
+
+.btn-bold {
+  font-weight: 500;
+}
+
+
+/* ==============================================
     Button colors
    ============================================== */
 
@@ -120,6 +140,16 @@
 
   &:hover, &:focus {
     background-color: darken(#aaaab2, 10%);
+  }
+}
+
+// White button, darkens on hover/focus.
+.btn-white {
+  background-color: #fff;
+  color: #333;
+
+  &:hover, &:focus {
+    background-color: darken(#fff, 3%);
   }
 }
 

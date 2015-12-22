@@ -30,8 +30,8 @@
       <p><%= t(".after_scanning_the_barcode_above_enter_the_6_digit_code_generated_by_the_app") %>
 
       <%= form_tag(confirm_twofactor_user_path(@user), method: :put) do %>
-        <%= text_field_tag :otp_key %>
-        <%= button_tag t(".verify_and_activate"), type: :submit %>
+        <%= text_field_tag :otp_key, nil, placeholder: t(".code"), autocomplete: :off %>
+        <%= submit_tag t(".verify_and_activate") %>
       <% end %>
     </section>
   </div>

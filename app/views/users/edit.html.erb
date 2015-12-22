@@ -6,20 +6,20 @@
     <div class="field-container">
       <div id="avatar-uploader-container">
         <%= f.file_field :avatar, id: "avatar-uploader" %>
-        
+
         <div id="avatar-uploader-thumbnail">
           <% if @user.avatar %>
             <%= image_tag @user.avatar_img %>
           <% end %>
         </div>
 
-        <%= t(".upload_a_new_picture") %>
+        <p><%= t(".upload_a_new_picture") %>
       </div>
     </div>
 
     <div class="field-container">
-        <%= f.label :description, t(".user_bio"), class: "label input-empty", for: "user-bio-field" %>
-        <%= f.text_area :description, autocomplete: false, id: "user-bio-field", class: "input" %>
+      <%= f.label :description, t(".user_bio"), class: "label input-empty", for: "user-bio-field" %>
+      <%= f.text_area :description, autocomplete: false, id: "user-bio-field", class: "input" %>
     </div>
 
     <div class="field-container">
@@ -56,13 +56,25 @@
     <div class="field-container">
       <h3 class="generic-smallcaps-title"><%= t(".twofactor_authentication") %></h3>
 
-      <% if @user.otp_required_for_login %>
-        <p><%= t(".twofactor_authentication_is_currently_enabled") %></p>
-        <%= link_to t(".disable_twofactor_authentication"), disable_twofactor_user_path(@user), method: :put %>
-      <% else %>
 
-        <%= link_to t(".enable_twofactor_authentication"), enable_twofactor_user_path(@user), method: :put %>
-      <% end %>
+      <div class="generic-container-with-side-image">
+        <div class="side-image">
+          <span class="icon icon-medium icon-smartphone icon-dark"></span>
+        </div>
+
+        <div class="side-image-text">
+          <% if @user.otp_required_for_login %>
+            <p><%= t(".add_an_extra_layer_of_security_to_your_imagehex_account") %>
+            <p class="bold"><%= t(".twofactor_authentication_is_currently_enabled") %></p>
+
+            <%= link_to t(".disable_twofactor_authentication"), disable_twofactor_user_path(@user), class: "btn btn-white btn-with-border btn-bold", method: :put %>
+          <% else %>
+            <p><%= t(".add_an_extra_layer_of_security_to_your_imagehex_account") %></p>
+
+            <%= link_to t(".enable_twofactor_authentication"), enable_twofactor_user_path(@user), class: "btn btn-white btn-with-border btn-bold", method: :put %>
+          <% end %>
+        </div>
+      </div>
     </div>
 
     <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>

@@ -50,19 +50,18 @@ class UsersController < ApplicationController
       if @user.enable_twofactor
         format.html { redirect_to verify_twofactor_user_path(@user) }
       else
-        format.html { redirect_to @user, error: @user.errors }
+        format.html { redirect_to settings_path, error: @user.errors }
       end
     end
   end
 
   ##
-  # Disable two-factor authentication for a given user.
+  # Disaable two-factor authentication for a given user.
   # @user:: The user disabling two-factor auth.
   def disable_twofactor
     @user = User.friendly.find(params[:id])
     authorize @user
     if @user.valid_password?(params[:current_password])
-      @user.otp_required_for_login = false
       @user.two_factor_verified = false
       respond_to do |format|
         if @user.save
