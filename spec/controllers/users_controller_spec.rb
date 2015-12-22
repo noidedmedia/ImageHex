@@ -4,7 +4,8 @@ RSpec.describe UsersController, :type => :controller do
   include Devise::TestHelpers
   context "when logged in" do
     before(:each) do
-      @user = FactoryGirl.create(:user)
+      @user = FactoryGirl.create(:user,
+                                 password: "thispassword")
       @user.confirm
       sign_in @user
     end
@@ -77,8 +78,9 @@ RSpec.describe UsersController, :type => :controller do
     describe "PUT #disable_twofactor" do
       it "disables 2factor" do
         @user.enable_twofactor
-        put :disable_twofactor, id: @user
-        expect(@user.reload.otp_required_for_login).to eq(false)
+        put :disable_twofactor, id: @user,
+          current_password: "thispassword"
+        expect(@user.reload.otp_required_for_login).to be_falsy
       end
       it "does not work for other users" do
         u = FactoryGirl.create(:user)
