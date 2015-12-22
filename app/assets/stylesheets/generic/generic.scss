@@ -103,6 +103,8 @@
 
     p {
       padding-bottom: 15px;
+      // `em` to force line-height to scale relative to font size.
+      line-height: 1.4em;
     }
   }
 

@@ -8,10 +8,10 @@
   font-size: 1.4rem;
   font-weight: 400;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 4px;
   display: inline-block;
   color: #fff;
-  transition: background-color 300ms;
+  transition: background-color 300ms, border-color 300ms;
   appearance: none;
   border: 0;
   min-height: 32px;
@@ -93,6 +93,10 @@
   padding: 10px;
   border: 1px solid #aaaab2;
   border-radius: 3px;
+
+  &:hover, &:focus {
+    border-color: darken(#aaaab2, 10%);
+  }
 }
 
 .btn-bold {
@@ -145,7 +149,7 @@
   color: #333;
 
   &:hover, &:focus {
-    background-color: darken(#fff, 5%);
+    background-color: darken(#fff, 3%);
   }
 }
 
