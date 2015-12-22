@@ -1,13 +1,16 @@
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="sign-in-container">
+  <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), method: :post) do |f| %>
 
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
-  </div>
+    <div class="sign-in-fields">
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, placeholder: t(".email") %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
+    <%= f.submit t(".resend_unlock_instructions") %>
+  <% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="sign-in-extras-container">
+  <%= render "devise/shared/links" %>
+</div>

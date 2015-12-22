@@ -19,7 +19,9 @@ RSpec.describe UsersController, :type => :controller do
     end
     describe "delete #unsubscribe" do
       it "creates a subscription" do
-        u = FactoryGirl.create(:user)
+        u = FactoryGirl.create(:user,
+                               password: "thisisapassword",
+                               confirm_password: "thisisapassword")
         @user.subscribe! u
         expect(@user.subscribed_artists).to include(u)
         expect{
@@ -77,7 +79,8 @@ RSpec.describe UsersController, :type => :controller do
     describe "PUT #disable_twofactor" do
       it "disables 2factor" do
         @user.enable_twofactor
-        put :disable_twofactor, id: @user
+        put :disable_twofactor, id: @user,
+          current_password: "thisisapassword"
         expect(@user.reload.otp_required_for_login).to eq(false)
       end
       it "does not work for other users" do

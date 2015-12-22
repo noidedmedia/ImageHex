@@ -1,7 +1,7 @@
 @import "scss-variables";
 
 /* Styling for sign-in container, used on all registration-related pages (e.g. sign-in, sign-up, forgot password, etc.) */
-#sign-in-container {
+.sign-in-container {
   display: block;
   margin: auto;
   margin-top: 100px;
@@ -136,7 +136,7 @@
 }
 
 /* Sign-in extras are the links below the sign-in container (e.g. forgot password, sign up, etc.) */
-#sign-in-extras-container {
+.sign-in-extras-container {
   display: block;
   height: auto;
   left: 0;
