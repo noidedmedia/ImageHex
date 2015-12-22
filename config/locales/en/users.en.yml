@@ -14,6 +14,7 @@ en:
       twofactor_authentication: Two-Factor Authentication
       disable_twofactor_authentication: Disable Two-Factor Authentication
       enable_twofactor_authentication: Enable Two-Factor Authentication
+      add_an_extra_layer_of_security_to_your_imagehex_account: Add an extra layer of security to your ImageHex account by requiring access to your phone when you log in.
       twofactor_authentication_is_currently_enabled: Two-Factor Authentication is currently enabled.
       content_filters: Content filters
       upload_a_new_picture: Upload a new picture

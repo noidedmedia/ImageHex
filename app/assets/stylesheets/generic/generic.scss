@@ -89,3 +89,24 @@
   margin: 90px 0 10px;
   font-weight: 300;
 }
+
+.generic-container-with-side-image {
+  display: flex;
+  flex-flow: row nowrap;
+
+  > .side-image {
+    flex: 0 0 50px;
+  }
+
+  > .side-image-text {
+    flex: 1;
+
+    p {
+      padding-bottom: 15px;
+    }
+  }
+
+  .btn {
+    margin-top: 10px;
+  }
+}
