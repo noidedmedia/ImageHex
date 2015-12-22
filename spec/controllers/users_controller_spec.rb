@@ -19,9 +19,7 @@ RSpec.describe UsersController, :type => :controller do
     end
     describe "delete #unsubscribe" do
       it "creates a subscription" do
-        u = FactoryGirl.create(:user,
-                               password: "thisisapassword",
-                               confirm_password: "thisisapassword")
+        u = FactoryGirl.create(:user)
         @user.subscribe! u
         expect(@user.subscribed_artists).to include(u)
         expect{
