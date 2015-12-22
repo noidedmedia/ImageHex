@@ -31,10 +31,14 @@ en:
         sign_in_title: Sign in
         welcome_back: Welcome back.
       two_factor:
-        two_factor_authentication: Two-factor authentication
+        two_factor_authentication: Two-Factor Authentication
         authentication_code: Authentication code
         verify: Verify
         backup_code: Backup code
+    unlocks:
+      new:
+        email: Email
+        resend_unlock_instructions: Resend unlock instructions
     shared:
       links:
         already_have_an_account: Already have an account?
@@ -46,4 +50,4 @@ en:
         sign_in: Sign in.
         sign_in_with: Sign in with %{provider}
         dont_have_your_phone: Don’t have your phone?
-        enter_a_two_factor_recovery_code: Enter a two-factor recovery code
+        enter_a_two_factor_backup_code: Enter a Two-Factor backup code.
