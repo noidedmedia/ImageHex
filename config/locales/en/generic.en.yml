@@ -13,3 +13,5 @@ en:
     two_factor_authentication_has_been_succesfully_enabled: Two-Factor Authentication has been succesfully enabled.
     two_factor_authentication_has_been_succesfully_disabled: Two-Factor Authentication has been successfully disabled.
     incorrect_two_factor_authentication_code: Incorrect Two-Factor Authentication Code.
+    invalid_two_factor_authentication_code: Invalid Two-Factor Authentication code.
+    invalid_two_factor_authentication_backup_code: Invalid Two-Factor Authentication backup code.

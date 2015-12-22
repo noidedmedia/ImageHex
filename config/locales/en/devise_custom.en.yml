@@ -34,6 +34,7 @@ en:
         two_factor_authentication: Two-factor authentication
         authentication_code: Authentication code
         verify: Verify
+        backup_code: Backup code
     shared:
       links:
         already_have_an_account: Already have an account?
