@@ -2,6 +2,13 @@
 <span>By <%= link_to @offer.user.name, @offer.user %></span>
 <br>
 Total cost of <%= price(@offer.total_price) %> 
+<% unless @offer.confirmed? %>
+  <% link_to "Confirm this offer", 
+  confirm_commision_offer_path(@offer),
+  type: :post,
+  method: :post,
+  confirm: "Are you sure?" %>
+<% end %>
 <% if @offer.has_background? %> 
   <div>
     <h2>Background</h2>

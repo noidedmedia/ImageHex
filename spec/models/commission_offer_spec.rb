@@ -72,6 +72,15 @@ RSpec.describe CommissionOffer, type: :model do
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
+  describe "confirmation" do
+    it "has a method to confirm" do
+      c = FactoryGirl.create(:commission_offer)
+      expect{
+        c.confirm!
+      }.to change{c.confirmed_at}
+      expect(c.confirmed).to eq(true)
+    end
+  end
   describe "creation" do
     let(:subject_price){300}
     let(:base_price){500}

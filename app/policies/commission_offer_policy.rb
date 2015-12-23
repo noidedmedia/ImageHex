@@ -8,12 +8,16 @@ class CommissionOfferPolicy < ApplicationPolicy
     not_offering_self?
   end
 
+  def confirm?
+    unconfirmed? && owner?
+  end
+
   def create?
     not_offering_self?
   end
 
   def show?
-    if @offer.finalized?
+    if @offer.confirmed?
       owner? || offeree?
     else
       owner?
@@ -21,6 +25,10 @@ class CommissionOfferPolicy < ApplicationPolicy
   end
 
   protected
+  def unconfirmed?
+    !! @offer.confirmed?
+  end
+
   def owner?
     @offer.user == @user
   end

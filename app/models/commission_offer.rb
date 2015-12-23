@@ -25,6 +25,11 @@ class CommissionOffer < ActiveRecord::Base
     subjects.length > 0
   end
 
+  def confirm!
+    self.confirmed = true
+    self.touch(:confirmed_at)
+    self.save
+  end
 
   protected
 
