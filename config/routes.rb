@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   ############
   # CONCERNS #
   ############
-  
-  
+
   concern :reportable do
     post "report", on: :member
   end
@@ -22,14 +21,21 @@ Rails.application.routes.draw do
   ##################
   # RESTFUL ROUTES #
   ##################
-  
-  
+
+
   resources :tags do
     collection do
       get "suggest"
     end
   end
-
+  ##
+  # Not really resourceful at all but whatever yolo
+  resources :stripe, only: [] do
+    collection do
+      get :authorize
+      get :callback
+    end
+  end
   resources :commission_products do
     resources :commission_offers, shallow: true
   end
@@ -55,8 +61,8 @@ Rails.application.routes.draw do
   devise_for :users, 
     path: "accounts", 
     controllers: { 
-      sessions: "users/sessions"
-    }
+    sessions: "users/sessions"
+  }
 
 
   resources :users, only: [:show, :edit, :update, :index] do
@@ -81,12 +87,12 @@ Rails.application.routes.draw do
     ##
     # OK we get non-REST here
     resources :images, only: [:create, :destroy], controller: :collection_images  do
-    ##
-    # An action which sees if an image already exists in the collection
-    get "exists", on: :collection
-  end
+      ##
+      # An action which sees if an image already exists in the collection
+      get "exists", on: :collection
+    end
 
-  resources :curatorships, except: [:index, :show]
+    resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"
       delete "unsubscribe"
@@ -129,7 +135,7 @@ Rails.application.routes.draw do
   # SINGLE ACTION ROUTES #
   ########################
   get 'settings', to: "users#edit"
-  
+
   #################
   # STATIC ROUTES #
   #################
@@ -148,5 +154,5 @@ Rails.application.routes.draw do
   post 'settings', to: 'users#update'
 
   get 'search', to: "images#search"
-  
+
 end
