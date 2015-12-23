@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151221221340) do
+ActiveRecord::Schema.define(version: 20151223175954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -333,6 +333,9 @@ ActiveRecord::Schema.define(version: 20151221221340) do
     t.jsonb    "elsewhere"
     t.boolean  "two_factor_verified",                   default: false, null: false
     t.string   "otp_backup_codes",                                                   array: true
+    t.text     "stripe_publishable_key"
+    t.text     "stripe_access_token"
+    t.text     "stripe_user_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -9,6 +9,7 @@ class StripeController < ApplicationController
     redirect_to url
   end
   def callback
-
+    code = params[:code]
+    @resp = OAUTH_CLIENT.auth_code.get_token(code, params: {scope: "read_write"})
   end
 end
