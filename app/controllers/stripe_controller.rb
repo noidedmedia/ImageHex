@@ -13,8 +13,8 @@ class StripeController < ApplicationController
     @resp = OAUTH_CLIENT.auth_code.get_token(code, 
                                              params: {scope: "read_write"})
     params = {
-      :stripe_publishable_key => @resp["stripe_publishable_key"]
-      :stripe_user_id => @resp["stripe_user_id"]
+      :stripe_publishable_key => @resp["stripe_publishable_key"],
+      :stripe_user_id => @resp["stripe_user_id"],
       :stripe_access_token => @resp.token
     }
   end

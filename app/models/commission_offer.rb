@@ -31,6 +31,12 @@ class CommissionOffer < ActiveRecord::Base
     self.save
   end
 
+  def accept!
+    return false unless confirmed?
+    self.accepted = true
+    self.touch(:accepted_at)
+    self.save
+  end
   protected
 
   def not_offering_to_self

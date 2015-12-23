@@ -30,7 +30,7 @@ class CommissionOffersController < ApplicationController
         format.json {render json: true}
       else
         format.html {redirect_to @offer, notice: "Something went wrong"}
-        format.json {render json: true}
+        format.json {render json: false}
       end
     end
   end

@@ -81,6 +81,24 @@ RSpec.describe CommissionOffer, type: :model do
       expect(c.confirmed).to eq(true)
     end
   end
+
+  describe "accepting" do
+    it "accepts confirmed offers" do
+      c = FactoryGirl.create(:commission_offer)
+      c.confirm!
+      expect{
+        c.accept!
+      }.to change{c.accepted_at}
+      expect(c.accepted?).to eq(true)
+    end
+    it "does not accept unconfirmed offers" do
+      c = FactoryGirl.create(:commission_offer)
+      expect{
+        c.accept!
+      }.to_not change{c.accepted_at}
+      expect(c.accepted?).to eq(false)
+    end
+  end
   describe "creation" do
     let(:subject_price){300}
     let(:base_price){500}
