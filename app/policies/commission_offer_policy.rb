@@ -12,8 +12,12 @@ class CommissionOfferPolicy < ApplicationPolicy
     unconfirmed? && owner?
   end
 
+  def accept?
+    confirmed? && offeree?
+  end
+
   def create?
-    not_offering_self?
+    not_offering_self? 
   end
 
   def show?
@@ -38,6 +42,7 @@ class CommissionOfferPolicy < ApplicationPolicy
   end
 
   def not_offering_self?
-    @offer.commission_product.user != @user
+    ! offeree? 
   end
+
 end

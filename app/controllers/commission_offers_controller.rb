@@ -20,6 +20,21 @@ class CommissionOffersController < ApplicationController
       end
     end
   end
+
+  def accept
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
+    respond_to do |format|
+      if @offer.accept!
+        format.html {redirect_to @offer, notice: "Accepted!"}
+        format.json {render json: true}
+      else
+        format.html {redirect_to @offer, notice: "Something went wrong"}
+        format.json {render json: true}
+      end
+    end
+  end
+
   def show
     @offer = CommissionOffer.find(params[:id])
     authorize @offer
