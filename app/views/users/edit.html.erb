@@ -56,7 +56,6 @@
     <div class="field-container">
       <h3 class="generic-smallcaps-title"><%= t(".twofactor_authentication") %></h3>
 
-
       <div class="generic-container-with-side-image">
         <div class="side-image">
           <span class="icon icon-medium icon-smartphone icon-dark"></span>
@@ -67,7 +66,7 @@
             <p><%= t(".add_an_extra_layer_of_security_to_your_imagehex_account") %>
             <p class="bold"><%= t(".twofactor_authentication_is_currently_enabled") %></p>
 
-            <%= link_to t(".disable_twofactor_authentication"), disable_twofactor_user_path(@user), class: "btn btn-white btn-with-border btn-bold", method: :put %>
+            <div class="btn btn-white btn-with-border btn-bold" id="disable-two-factor-button"><%= t(".disable_twofactor_authentication") %></div>
           <% else %>
             <p><%= t(".add_an_extra_layer_of_security_to_your_imagehex_account") %></p>
 
@@ -80,4 +79,11 @@
     <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>
   <% end %>
 
+</div>
+
+<div id="disable-two-factor-dialog" hidden>
+  <%= form_for @user, url: disable_twofactor_user_path(@user), method: :put do |f| %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: t(".password") %>
+    <%= f.submit %>
+  <% end %>
 </div>

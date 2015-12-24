@@ -11,9 +11,21 @@ function twoFactorBackup() {
   });
 }
 
+function twoFactorDisablePasswordDialog() {
+  document.getElementById("disable-two-factor-button").addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById("disable-two-factor-dialog").removeAttribute("hidden");
+    
+  });
+}
+
 var ready = function() {
   if (document.getElementById("two-factor-backup-code-button")) {
     twoFactorBackup();
+  }
+
+  if (document.getElementById("disable-two-factor-button")) {
+    twoFactorDisablePasswordDialog();
   }
 };
 

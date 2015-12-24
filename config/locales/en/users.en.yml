@@ -18,6 +18,7 @@ en:
       twofactor_authentication_is_currently_enabled: Two-Factor Authentication is currently enabled.
       content_filters: Content filters
       upload_a_new_picture: Upload a new picture
+      password: Password
     index:
       browse_creators: Browse creators
     show:

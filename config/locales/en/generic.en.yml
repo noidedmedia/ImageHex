@@ -10,8 +10,9 @@ en:
     tag_group_updated: Tag group updated.
     your_comment_was_submitted_successfully: Your comment was submitted successfully.
     youre_not_allowed_to_do_that: You aren't allowed to do that.
-    two_factor_authentication_has_been_succesfully_enabled: Two-Factor Authentication has been succesfully enabled.
-    two_factor_authentication_has_been_succesfully_disabled: Two-Factor Authentication has been successfully disabled.
+    two_factor_authentication_has_been_successfully_enabled: Two-Factor Authentication has been successfully enabled.
+    two_factor_authentication_has_been_successfully_disabled: Two-Factor Authentication has been successfully disabled.
     incorrect_two_factor_authentication_code: Incorrect Two-Factor Authentication Code.
     invalid_two_factor_authentication_code: Invalid Two-Factor Authentication code.
     invalid_two_factor_authentication_backup_code: Invalid Two-Factor Authentication backup code.
+    incorrect_password: Incorrect password.
