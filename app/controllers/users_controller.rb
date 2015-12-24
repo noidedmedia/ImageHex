@@ -66,7 +66,7 @@ class UsersController < ApplicationController
       @user.two_factor_verified = false
       respond_to do |format|
         if @user.save
-          format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_succesfully_disabled") }
+          format.html { redirect_to @user, notice: I18n.t("notices.two_factor_authentication_has_been_successfully_disabled") }
         else
           format.html { redirect_to @user, error: @user.errors }
         end
