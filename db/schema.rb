@@ -351,7 +351,10 @@ ActiveRecord::Schema.define(version: 20151223193252) do
   add_foreign_key "comments", "users"
   add_foreign_key "commission_backgrounds", "commission_offers"
   add_foreign_key "commission_offers", "commission_products"
+  add_foreign_key "commission_offers", "users"
+  add_foreign_key "commission_products", "users", on_delete: :cascade
   add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
+  add_foreign_key "commission_subject_tags", "tags", on_delete: :cascade
   add_foreign_key "commission_subjects", "commission_offers"
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
