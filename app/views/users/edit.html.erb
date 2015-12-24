@@ -82,8 +82,8 @@
 </div>
 
 <div id="disable-two-factor-dialog" hidden>
-  <%= form_for @user, url: disable_twofactor_user_path(@user), method: :put do |f| %>
-    <%= f.password_field :password, autocomplete: "off", placeholder: t(".password") %>
-    <%= f.submit %>
+  <%= form_tag disable_twofactor_user_path(@user), method: :put do |f| %>
+    <%= password_field_tag :password, nil, autocomplete: "off", placeholder: t(".password") %>
+    <%= submit_tag %>
   <% end %>
 </div>
