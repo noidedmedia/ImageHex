@@ -110,18 +110,18 @@
 
 // Green button, darkens on hover/focus.
 .btn-green {
-  background-color: #5bb289;
+  background-color: #2ab27b;
 
   &:hover, &:focus {
-    background-color: darken(#5bb289, 6%);
+    background-color: darken(#2ab27b, 5%);
   }
 }
 
 .btn-minimal-green {
-  color: #5bb289;
+  color: #2ab27b;
   
   &:hover, &:focus {
-    color: darken(#5bb289, 6%);
+    color: darken(#2ab27b, 6%);
   }
 }
 

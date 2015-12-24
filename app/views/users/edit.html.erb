@@ -81,9 +81,9 @@
 
 </div>
 
-<div id="disable-two-factor-dialog" hidden>
+<div id="disable-two-factor-dialog" class="modal-dialog" hidden>
   <%= form_tag disable_twofactor_user_path(@user), method: :put do |f| %>
-    <%= password_field_tag :password, nil, autocomplete: "off", placeholder: t(".password") %>
-    <%= submit_tag %>
+    <%= password_field_tag :password, nil, autocomplete: "off", placeholder: t(".password"), class: "input" %>
+    <%= submit_tag t(".confirm_password"), class: "btn btn-green btn-full-width" %>
   <% end %>
 </div>

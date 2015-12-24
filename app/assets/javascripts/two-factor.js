@@ -11,11 +11,12 @@ function twoFactorBackup() {
   });
 }
 
+// On Settings page, display Password Dialog to confirm the user definitely
+// wants to disable Two-Factor Authentication.
 function twoFactorDisablePasswordDialog() {
   document.getElementById("disable-two-factor-button").addEventListener('click', function(e) {
     e.preventDefault();
     document.getElementById("disable-two-factor-dialog").removeAttribute("hidden");
-    
   });
 }
 
