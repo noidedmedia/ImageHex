@@ -1,0 +1,19 @@
+<%- title t(".twofactor_authentication_backup_codes") %>
+
+<div class="imagehex-static-page-container">
+  <h2><%= t(".twofactor_authentication_backup_codes") %></h2>
+  <div class="imagehex-static-text">
+    <p class="center"><%= t(".twofactor_authentication_backup_body_text") %></p>
+    <p class="bold center"><%= t(".you_can_only_access_these_once_save_or_print_them_now") %></p>
+
+    <div class="twofactor-backup-codes-container">
+      <ul>
+        <% @backup_codes.each do |code| %>
+          <li><%= code %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <p class="center"><%= link_to t(".return_to_settings"), settings_path %>
+  </div>
+</div>

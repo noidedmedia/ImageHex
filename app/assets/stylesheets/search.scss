@@ -84,35 +84,35 @@
     background-color: #fff;
     border: 0;
   }
-}
 
-input[type="search"] {
-  min-width: 150px;
-  width: auto;
-  height: 30px;
-  margin: 5px;
-  display: inline-block;
-  background-color: #fff;
-  border: 0;
-  box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.15);
-  border-radius: 2px;
-}
+  input[type="search"] {
+    min-width: 150px;
+    width: auto;
+    height: 30px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #fff;
+    border: 0;
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.15);
+    border-radius: 2px;
+  }
 
-input[type="submit"] {
-  height: 40px;
-  background-color: #fff;
-  border: 0;
-  cursor: pointer;
-}
+  input[type="submit"] {
+    height: 40px;
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+  }
 
-button,
-input[type="search"],
-input[type="submit"] {
-  font-size: 1.2rem;
-  padding: 2px 10px;
+  button,
+  input[type="search"],
+  input[type="submit"] {
+    font-size: 1.2rem;
+    padding: 2px 10px;
 
-  &:focus {
-    outline: transparent;
+    &:focus {
+      outline: transparent;
+    }
   }
 }
 

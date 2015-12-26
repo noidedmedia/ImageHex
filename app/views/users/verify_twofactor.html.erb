@@ -1,0 +1,37 @@
+<%- title t(".twofactor_authentication_setup") %>
+
+<div class="imagehex-static-page-container">
+  <h2><%= t(".twofactor_authentication_setup") %></h2>
+
+  <div class="imagehex-static-text">
+    <section class="imagehex-static-section">
+      <h4><%= t(".step_1") %></h4>
+      <h3><%= t(".get_the_app") %></h3>
+
+      <p><%= t(".get_a_twofactor_authentication_app_like_google_authenticator_or_authy_html",
+        google_authenticator: link_to(t(".google_authenticator"), "//support.google.com/accounts/answer/1066447"),
+        authy: link_to(t(".authy"), "//www.authy.com") ) %>
+    </section>
+
+    <section class="imagehex-static-section">
+      <h4><%= t(".step_2") %></h4>
+      <h3><%= t(".scan_the_barcode") %></h3>
+
+      <div class="twofactor-qrcode-container">
+        <%= image_tag verify_twofactor_user_url(@user, format: :gif), class: "twofactor-qrcode" %>
+        <p><%= t(".scan_the_barcode_with_your_twofactor_authentication_app") %>
+      </div>
+    </section>
+
+    <section class="imagehex-static-section">
+      <h4><%= t(".step_3") %></h4>
+      <h3><%= t(".enter_the_verification_code") %></h3>
+      <p><%= t(".after_scanning_the_barcode_above_enter_the_6_digit_code_generated_by_the_app") %>
+
+      <%= form_tag(confirm_twofactor_user_path(@user), method: :put) do %>
+        <%= text_field_tag :otp_key, nil, placeholder: t(".code"), autocomplete: :off %>
+        <%= submit_tag t(".verify_and_activate") %>
+      <% end %>
+    </section>
+  </div>
+</div>

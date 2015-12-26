@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2015-10-20: Created with FontForge (http://fontforge.org)
+2015-12-21: Created with FontForge (http://fontforge.org)
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20150828 at Tue Oct 20 21:33:43 2015
+Created by FontForge 20150828 at Mon Dec 21 16:25:25 2015
  By Connor Shea
 Copyright (c) 2015, Connor Shea
 </metadata>
@@ -19,10 +19,10 @@ Copyright (c) 2015, Connor Shea
     panose-1="2 0 5 3 0 0 0 0 0 0"
     ascent="448"
     descent="-64"
-    bbox="1.21582 -62.3203 510.784 446.304"
+    bbox="1.21582 -64 510.784 448"
     underline-thickness="25.6"
     underline-position="-51.2"
-    unicode-range="U+0020-F11D"
+    unicode-range="U+0020-F11E"
   />
     <missing-glyph />
     <glyph glyph-name="space" unicode=" " horiz-adv-x="200" 
@@ -87,6 +87,9 @@ c10.0322 0 18.1602 -8.12793 18.1602 -18.1602v-0.0478516h-118.896c-7.05566 0 -13.
     <glyph glyph-name="uniF116" unicode="&#xf116;" 
 d="M120.576 266.384h270.848l-27.9043 -252.815c0 -0.192383 0.0488281 -0.352539 0.0488281 -0.543945c0 -19.5527 -15.8242 -35.376 -35.3926 -35.376h-144.271c-19.5205 0 -35.3447 15.8232 -35.3447 35.376v0zM434.096 291.264h-356.191
 c0.511719 31.5039 26.1602 56.8965 57.7754 56.8965h40.3359l33.4883 58.0801v0.0957031h92.9277v-0.0957031l33.5361 -58.0801h40.3047c31.6475 0 57.3115 -25.3926 57.8232 -56.8965zM226.16 377.648l-17.0244 -29.4883h93.7119l-17.0078 29.4883h-59.6797z" />
+    <glyph glyph-name="uniF11E" unicode="&#xf11e;" 
+d="M372.8 448c25.6006 0 46.4004 -20.7998 44.7998 -46.4004v-419.199c0 -25.6006 -20.7998 -46.4004 -46.3994 -46.4004h-232c-25.6006 0 -46.4004 20.7998 -46.4004 46.4004v419.199c0 25.6006 20.7998 46.4004 46.4004 46.4004h233.6zM372.8 28.7998h-1.59961v326.4h-232
+v-326.4h233.6z" />
     <glyph glyph-name="uniF105" unicode="&#xf105;" 
 d="M465.424 274.656l-209.408 -209.424l-209.439 209.424l44.1123 44.1113l165.327 -165.327l165.328 165.327z" />
     <glyph glyph-name="uniF113" unicode="&#xf113;" 

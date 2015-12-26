@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206192853) do
+ActiveRecord::Schema.define(version: 20151214040947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,12 +210,12 @@ ActiveRecord::Schema.define(version: 20151206192853) do
   add_index "user_creations", ["user_id"], name: "index_user_creations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                     limit: 255, default: "", null: false
-    t.string   "encrypted_password",        limit: 255, default: "", null: false
+    t.string   "email",                     limit: 255, default: "",    null: false
+    t.string   "encrypted_password",        limit: 255, default: "",    null: false
     t.string   "reset_password_token",      limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         default: 0,  null: false
+    t.integer  "sign_in_count",                         default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",        limit: 255
@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(version: 20151206192853) do
     t.string   "slug"
     t.string   "provider"
     t.string   "uid"
-    t.jsonb    "content_pref",                          default: {}, null: false
+    t.jsonb    "content_pref",                          default: {},    null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -242,8 +242,10 @@ ActiveRecord::Schema.define(version: 20151206192853) do
     t.string   "encrypted_otp_secret_salt"
     t.integer  "consumed_timestep"
     t.boolean  "otp_required_for_login"
-    t.text     "description",                           default: "", null: false
+    t.text     "description",                           default: "",    null: false
     t.jsonb    "elsewhere"
+    t.boolean  "two_factor_verified",                   default: false, null: false
+    t.string   "otp_backup_codes",                                                   array: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

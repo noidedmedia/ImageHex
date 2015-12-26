@@ -24,9 +24,20 @@ gem 'aws-sdk', '< 2.0'
 gem 'devise'
 
 ##
-# https://github.com/intridea/omniauth
-# Omniauth for logging in with different services.
-gem 'omniauth'
+# https://github.com/tinfoil/devise-two-factor
+# Two-factor authentication for devise
+gem 'devise-two-factor'
+
+##
+# Use to generate the QR codes for devise-two-factor
+gem 'rqrcode-rails3'
+
+gem 'mini_magick'
+
+##
+# Use .env files for development secret keys
+# Our real key is set in production
+gem 'dotenv-rails', groups: [:development, :test]
 
 ##
 # https://github.com/elabs/pundit
@@ -216,6 +227,7 @@ group :development, :test do
   # A testing framework for Rails.
   gem 'rspec-rails'
 
+  gem 'pry'
   ##
   # https://github.com/thoughtbot/factory_girl_rails
   # A library for setting up Ruby objects as test data.

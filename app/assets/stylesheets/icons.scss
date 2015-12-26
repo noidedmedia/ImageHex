@@ -97,3 +97,7 @@
   // Translate left half of the font-size to enable centering.
   transform: translateX(-3.6rem);
 }
+
+.icon-dark:before {
+  color: #333;
+}
