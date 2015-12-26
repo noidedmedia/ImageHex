@@ -1,5 +1,6 @@
 @import "scss-variables";
 
+// Container for the "Upload new picture" element on the Settings page.
 #avatar-uploader-container {
   width: 100%;
   height: 150px;
@@ -30,7 +31,7 @@
   }
 }
 
-// Input field
+// Input field hidden inside the avatar-uploader-container.
 #avatar-uploader {
   position: absolute;
   left: 0;
@@ -40,4 +41,22 @@
   padding: 150px;
   opacity: 0;
   cursor: pointer;
+}
+
+// Password dialog displayed for confirmation when attempting to disable
+// Two-Factor Authentication on the Settings page.
+#disable-two-factor-dialog {
+  position: fixed;
+  left: calc(50vw - 250px);
+  top: 20vh;
+  // Force dialog above the footer.
+  z-index: 1001;
+
+  input[type="password"] {
+    margin-top: 15px;
+  }
+
+  input[type="submit"] {
+    margin: 10px 0;
+  }
 }

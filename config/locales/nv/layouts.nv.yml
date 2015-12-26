@@ -9,6 +9,7 @@ nv:
     footer:
       about: Further Information about ImageHex
       api: Application Programming Interface
+      blog: Blog
       contact: A list of ways to contact us
       faq: FAQ
       help: Assistance
@@ -35,3 +36,6 @@ nv:
       sign_in: Verify your identity
       sign_out: Dissassociate this computer with an identity on ImageHex
       upload: Upload a new image on ImageHex
+    header_search:
+      search: Search
+      search_suggestions_note: Search for the tag you're looking for, suggestions will show up here.

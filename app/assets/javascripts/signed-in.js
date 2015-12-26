@@ -5,7 +5,7 @@
  * The function will pass all divs with the "data-signed-in" attribute to be
  * processed and evaluated to prevent 
  */
-var signedin = function() {
+var signedIn = function() {
   // If the body element doesn't have the "signed-in" class, the variable
   // is declared. Otherwise, nothing happens.
   if (!document.getElementsByTagName('body')[0].classList.contains("signed-in")) {
@@ -75,7 +75,7 @@ function signInDialog() {
 }
 
 var ready = function() {
-  signedin();
+  signedIn();
 };
 
 document.addEventListener('page:change', ready);

@@ -46,7 +46,11 @@ body.modal-open {
 
     .btn {
       height: 32px;
-      margin-left: 4px;
+
+      // Only apply left margin when another button is adjacent.
+      + .btn {
+        margin-left: 4px;
+      }
     }
   }
 }
