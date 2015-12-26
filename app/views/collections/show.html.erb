@@ -18,6 +18,14 @@
       </div>
     <% end %>
 
+    <% if policy(@collection).update? %>
+      <%= link_to t(".edit"), edit_collection_path(@collection), class: "btn btn-minimal btn-minimal-with-padding" %>
+    <% end %>
+    
+    <% if policy(@collection).destroy? %>
+      <%= link_to t(".delete"), collection_path(@collection), method: :delete, class: "btn btn-minimal btn-minimal-red btn-minimal-with-padding" %>
+    <% end %>
+
     <%# If the user is already subscribed to, or "Following", a collection,
       render the Unfollow button as active. If pressed, the Unfollow button is replaced
     and by the Follow button. %>

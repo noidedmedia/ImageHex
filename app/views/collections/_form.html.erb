@@ -15,6 +15,6 @@
       for now we just use this %>
     <%= f.hidden_field :type, value: "Subjective" %>
     
-    <%= f.submit t(".create_collection"), id: "new-collection-submit", class: "btn btn-green btn-full-width" %>
+    <%= f.submit t(".submit.#{action_name}"), id: "new-collection-submit", class: "btn btn-green btn-full-width" %>
   <% end %>
 </div>

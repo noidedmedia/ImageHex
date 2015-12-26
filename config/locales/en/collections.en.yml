@@ -4,7 +4,9 @@ en:
     edit:
       edit_collection: Edit collection
     form:
-      create_collection: Create collection
+      submit:
+        new: Create collection
+        edit: Update collection
       description: Description
       title: Title
     index:
@@ -17,3 +19,5 @@ en:
       follow: Follow
       following: Following
       unfollow: Unfollow
+      edit: Edit
+      delete: Delete
