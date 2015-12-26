@@ -80,6 +80,12 @@ RSpec.describe CommissionOffer, type: :model do
       }.to change{c.confirmed_at}
       expect(c.confirmed).to eq(true)
     end
+    it "sends the artist a notification" do
+      c = FactoryGirl.create(:commission_offer)
+      expect{
+        c.confirm!
+      }.to change{c.commission_product.user.notifications.count}.by(1)
+    end
   end
 
   describe "accepting" do
@@ -97,6 +103,13 @@ RSpec.describe CommissionOffer, type: :model do
         c.accept!
       }.to_not change{c.accepted_at}
       expect(c.accepted?).to eq(false)
+    end
+    it "sends the commissioner a notification" do
+      c = FactoryGirl.create(:commission_offer)
+      c.confirm!
+      expect{
+        c.accept!
+      }.to change{c.user.notifications.count}.by(1)
     end
   end
   describe "creation" do

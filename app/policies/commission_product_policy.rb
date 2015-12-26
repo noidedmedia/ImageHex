@@ -4,12 +4,13 @@ class CommissionProductPolicy < ApplicationPolicy
     @product = product
   end
 
-  def new?
-    @user
+  def create?
+    verified_user_info?
   end
 
-  def create?
-    @user
+  protected
+  def verified_user_info?
+    @user.stripe_user_id && @user.stripe_publishable_key
   end
 
 end

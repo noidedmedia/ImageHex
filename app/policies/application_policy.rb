@@ -5,4 +5,8 @@ class ApplicationPolicy
   def edit?
     update?
   end
+
+  def new?
+    create?
+  end
 end

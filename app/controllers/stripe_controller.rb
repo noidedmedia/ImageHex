@@ -17,5 +17,10 @@ class StripeController < ApplicationController
       :stripe_user_id => @resp["stripe_user_id"],
       :stripe_access_token => @resp.token
     }
+    if current_user.update(params)
+      redirect_to current_user, notice: "Stripe info saved!"
+    else
+      redirect_to current_user, notice: "Stripe error!"
+    end
   end
 end

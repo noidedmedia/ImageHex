@@ -26,19 +26,29 @@ class CommissionOffer < ActiveRecord::Base
   end
 
   def confirm!
-    self.confirmed = true
-    self.touch(:confirmed_at)
-    self.save
+    transaction do 
+      self.confirmed = true
+      self.touch(:confirmed_at)
+      self.save
+      Notification.create(user: commission_product.user,
+                          subject: self,
+                          kind: :commission_offer_confirmed)
+    end
   end
 
   def accept!
     return false unless confirmed?
-    self.accepted = true
-    self.touch(:accepted_at)
-    self.save
+    transaction do
+      self.accepted = true
+      self.touch(:accepted_at)
+      self.save
+      Notification.create(user: self.user,
+                          subject: self,
+                          kind: :commission_offer_accepted)
+    end
   end
-  protected
 
+  protected
   def not_offering_to_self
     if user_id == commission_product.try(:user_id)
       errors.add('user', "cannot offer to yourself!")

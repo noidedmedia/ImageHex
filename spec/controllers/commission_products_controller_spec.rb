@@ -6,6 +6,11 @@ RSpec.describe CommissionProductsController, type: :controller do
     before(:each) do 
       @user = FactoryGirl.create(:user)
       @user.confirm
+      @user.update(
+        stripe_publishable_key: "this_is_fake",
+        stripe_user_id: "this_is_also_fake",
+        stripe_access_token: "wow_its_fake"
+      )
       sign_in @user
     end
     describe "POST #create" do
