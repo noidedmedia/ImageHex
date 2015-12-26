@@ -4,15 +4,16 @@ en:
     changes_have_been_saved: Changes have been saved.
     collection_created_successfully: Collection created successfully.
     collection_type_not_specified_or_not_applicable: Collection type not specified or not applicable.
+    image_file_too_large: Image file too large (limit 5 MB).
     image_uploaded_successfully: Image uploaded successfully.
+    incorrect_password: Incorrect password.
+    incorrect_two_factor_authentication_code: Incorrect Two-Factor Authentication Code.
+    invalid_two_factor_authentication_backup_code: Invalid Two-Factor Authentication backup code.
+    invalid_two_factor_authentication_code: Invalid Two-Factor Authentication code.
     report_submitted_thank_you: Report submitted, thank you!
     tag_group_added: Tag group added.
     tag_group_updated: Tag group updated.
+    two_factor_authentication_has_been_successfully_disabled: Two-Factor Authentication has been successfully disabled.
+    two_factor_authentication_has_been_successfully_enabled: Two-Factor Authentication has been successfully enabled.
     your_comment_was_submitted_successfully: Your comment was submitted successfully.
     youre_not_allowed_to_do_that: You aren't allowed to do that.
-    two_factor_authentication_has_been_successfully_enabled: Two-Factor Authentication has been successfully enabled.
-    two_factor_authentication_has_been_successfully_disabled: Two-Factor Authentication has been successfully disabled.
-    incorrect_two_factor_authentication_code: Incorrect Two-Factor Authentication Code.
-    invalid_two_factor_authentication_code: Invalid Two-Factor Authentication code.
-    invalid_two_factor_authentication_backup_code: Invalid Two-Factor Authentication backup code.
-    incorrect_password: Incorrect password.

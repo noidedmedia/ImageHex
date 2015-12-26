@@ -251,7 +251,7 @@ class Image < ActiveRecord::Base
 
   def is_within_allowed_size
     unless (0..5.megabytes).include?(self.f_file_size)
-      errors.add(:f, I18n.t("image_file_too_large"))
+      errors.add(:f, I18n.t("notices.image_file_too_large"))
     end
   end
 end

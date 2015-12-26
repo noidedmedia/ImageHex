@@ -1,6 +1,5 @@
 ---
 en:
-  image_file_too_large: "Image file too large (limit 5 MB)"
   images:
     collection_select:
       collections: Collections

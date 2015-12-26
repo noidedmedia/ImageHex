@@ -67,6 +67,11 @@ en:
         welcome_back: Welcome back.
       signed_in: Signed in successfully.
       signed_out: Signed out successfully.
+      two_factor:
+        authentication_code: Authentication code
+        backup_code: Backup code
+        two_factor_authentication: Two-Factor Authentication
+        verify: Verify
     shared:
       links:
         already_have_an_account: Already have an account?
@@ -74,10 +79,15 @@ en:
         didnt_receive_confirmation: Didn't receive confirmation instructions?
         didnt_receive_unlock: Didn't receive unlock instructions?
         dont_have_an_account: Don't have an account?
+        dont_have_your_phone: Don’t have your phone?
+        enter_a_two_factor_backup_code: Enter a Two-Factor backup code.
         forgot_your_password: Forgot your password?
         sign_in: Sign in.
         sign_in_with: Sign in with %{provider}
     unlocks:
+      new:
+        email: Email
+        resend_unlock_instructions: Resend unlock instructions
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please sign in to continue.
