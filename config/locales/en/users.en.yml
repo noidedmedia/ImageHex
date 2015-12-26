@@ -18,6 +18,7 @@ en:
       twofactor_authentication_is_currently_enabled: Two-Factor Authentication is currently enabled.
       content_filters: Content filters
       upload_a_new_picture: Upload a new picture
+      please_confirm_your_password_to_disable_twofactor_authentication: Please confirm your password to disable Two-Factor Authentication.
       password: Password
       confirm_password: Confirm password
     index:

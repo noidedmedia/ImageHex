@@ -78,12 +78,15 @@
 
     <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>
   <% end %>
-
 </div>
 
+<%# Dialog is shown if user attempts to disable Two-Factor Authentication. %>
 <div id="disable-two-factor-dialog" class="modal-dialog" hidden>
+  <p><%= t(".please_confirm_your_password_to_disable_twofactor_authentication") %>
+
   <%= form_tag disable_twofactor_user_path(@user), method: :put do |f| %>
     <%= password_field_tag :password, nil, autocomplete: "off", placeholder: t(".password"), class: "input" %>
+    
     <%= submit_tag t(".confirm_password"), class: "btn btn-green btn-full-width" %>
   <% end %>
 </div>
