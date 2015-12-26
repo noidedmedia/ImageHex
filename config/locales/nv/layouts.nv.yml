@@ -9,11 +9,12 @@ nv:
     footer:
       about: Further Information about ImageHex
       api: Application Programming Interface
+      blog: Blog
       contact: A list of ways to contact us
       faq: FAQ
       help: Assistance
       imagehex: ImageHex
-      imagehex_copyright: 'Copyrighted during the present year to the company titled #noided Media'
+      imagehex_copyright: "© %{year} Noided Media"
       imagehex_description: ImageHex is a place to search, share, and commission images and other artwork. We endeavour to be the best directory of images on the internet.
       people: The Workers of ImageHex
       press_kit: Press Kit
@@ -35,3 +36,6 @@ nv:
       sign_in: Verify your identity
       sign_out: Dissassociate this computer with an identity on ImageHex
       upload: Upload a new image on ImageHex
+    header_search:
+      search: Search
+      search_suggestions_note: Search for the tag you're looking for, suggestions will show up here.

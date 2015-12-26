@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   ############
   # CONCERNS #
   ############
-
+  
+  
   concern :reportable do
     post "report", on: :member
   end
@@ -47,14 +48,27 @@ Rails.application.routes.draw do
     concerns :reportable, :commentable
   end
 
-  devise_for :users, path: "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, 
+    path: "accounts", 
+    controllers: { 
+      sessions: "users/sessions"
+    }
+
 
   resources :users, only: [:show, :edit, :update, :index] do
+    ##
+    # This is done so it's easier to see a users collections.
+    # Meanwhile, creation and modification of collections is its own thing.
     member do
+      put 'enable_twofactor'
+      get 'verify_twofactor'
+      get 'backup_twofactor'
+      put 'confirm_twofactor'
+      put 'disable_twofactor'
       get 'favorites'
       get 'creations'
-      post 'subscribe'
-      delete 'unsubscribe'
+      get 'subscribe'
+      get 'unsubscribe'
     end
   end
 
@@ -110,7 +124,8 @@ Rails.application.routes.draw do
   ########################
   # SINGLE ACTION ROUTES #
   ########################
-
+  get 'settings', to: "users#edit"
+  
   #################
   # STATIC ROUTES #
   #################

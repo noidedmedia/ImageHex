@@ -31,6 +31,7 @@ class SearchPage extends React.Component {
         autofocus={index == this.state.focusedGroup}
         onSubmit={this.onSubmit.bind(this)}
         allowRemoval={index !== 0}
+        isSearch={true}
         onRemove={this.removeTagGroup.bind(this, index)}
       />;
     });

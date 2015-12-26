@@ -46,6 +46,12 @@
     font-weight: 500;
   }
 
+  h2 + h3,
+  h3 + h4,
+  h4 + h3 {
+    margin-top: 5px;
+  }
+
   h4 {
     margin-top: 20px;
     font-size: 1.6rem;
@@ -78,8 +84,13 @@
     }
   }
 
+  form {
+    margin-top: 10px;
+  }
+
   input[type="text"] {
     height: 36px;
+    -moz-appearance: none;
     -webkit-appearance: none;
     background-color: #fff;
     box-shadow: none;
@@ -94,15 +105,18 @@
     }
   }
 
-  input[type="submit"] {
+  input[type="submit"],
+  button[type="submit"] {
     height: 36px;
+    -moz-appearance: none;
     -webkit-appearance: none;
     border: 1px solid #aaaab2;
     border-radius: 4px;
     background-color: #fff;
     margin: 0 0 0 5px;
     font-size: 1.4rem;
-    padding: 0;
+    padding: 0 12px;
+    cursor: pointer;
 
     &:focus {
       outline: none;
@@ -124,4 +138,9 @@
   input[type="submit"] {
     flex: 0 0 100px;
   }
+}
+
+.imagehex-static-section {
+  width: 100%;
+  margin-top: 20px;
 }

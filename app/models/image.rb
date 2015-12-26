@@ -95,7 +95,6 @@ class Image < ActiveRecord::Base
   validates :nsfw_nudity, inclusion: {in: [true, false]}
   validates_attachment :f,
     content_type: { content_type: /\Aimage\/.*\Z/},
-    size: { in: 0..5.megabytes},
     presence: true
 
 
@@ -104,6 +103,7 @@ class Image < ActiveRecord::Base
   validates :medium, presence: true
   validates :description, length:{ maximum: 2000}
 
+  validate :is_within_allowed_size
   #################
   # CLASS METHODS #
   #################
@@ -247,5 +247,11 @@ class Image < ActiveRecord::Base
     ext = File.extname(f_file_name).downcase
     base = File.basename(f_file_name, File.extname(f_file_name)).downcase
     self.f.instance_write :file_name, "#{base}#{ext}"
+  end
+
+  def is_within_allowed_size
+    unless (0..5.megabytes).include?(self.f_file_size)
+      errors.add(:f, I18n.t("notices.image_file_too_large"))
+    end
   end
 end

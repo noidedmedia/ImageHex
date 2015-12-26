@@ -6,7 +6,7 @@
   width: 500px;
   padding: 10px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   position: relative;
 
   input[type="submit"] {
@@ -38,17 +38,17 @@
   appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-  border: 0;
   border-radius: 0;
-  border-bottom: 1px solid #aaaab2;
+  border: 1px solid #aaaab2;
   padding-bottom: 4px;
   background-color: transparent;
   font-size: 1.4rem;
   transition: border 200ms ease;
+  padding: 7px;
 
   &:focus {
     outline: transparent;
-    border-bottom: 1px solid #333;
+    border: 1px solid #333;
   }
 
   @media all and (max-width: $mobile-width) {
@@ -70,12 +70,12 @@
 
   &.input-empty {
     color: #aaaab2;
-    transform: translateY(1px);
     text-align: left;
     pointer-events: none;
     font-size: 1.4rem;
     font-weight: 400;
-    left: 4px;
+    left: 10px;
+    transform: translateY(8px);
   }
 
   @media all and (max-width: $mobile-width) {

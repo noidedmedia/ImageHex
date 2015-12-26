@@ -1,0 +1,130 @@
+@import "scss-variables";
+
+.imagehex-empty-note-container {
+  width: 100%;
+  display: block;
+}
+
+.imagehex-empty-note {
+  display: inline-block;
+  margin: auto;
+  color: #aaaab2;
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 5px;
+}
+
+// Container for ImageHex tabs with:
+// Current tab underlined green
+// Full-width white background
+// Centered tabs
+.imagehex-tab-container {
+  width: 100vw;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  text-align: center;
+  padding-top: 4px;
+
+  .imagehex-tabs {
+    display: inline-block;
+    margin: auto;
+
+    a {
+      display: inline-block;
+      padding: 0 25px;
+    }
+  }
+
+  a {
+    color: #333;
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 0;
+    text-align: right;
+    text-decoration: none;
+  }
+
+  .current {
+    font-weight: 500;
+    color: #17cd94;
+
+    &:after {
+      content: '';
+      background-color: #17cd94;
+      width: calc(100% + 30px);
+      transform: translate(-15px,6px);
+      height: 3px;
+      display: block;
+    }
+  }
+}
+
+// A generic container with some standard styles:
+// white background, box-shadow, border.
+// Used for listing collections, creators, etc.
+.generic-container {
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(201, 201, 201, 0.7);
+  border-radius: 3px;
+  transition: border 200ms, box-shadow 300ms;
+
+  &:hover {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #c9c9c9;
+  }
+}
+
+// Generic class for smallcaps titles, used for sections, e.g. on the Settings page.
+.generic-smallcaps-title {
+  text-transform: uppercase;
+  color: #333;
+  margin: 15px 0 10px;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+// Generic class for centered text.
+.center {
+  text-align: center;
+}
+
+// Generic class for bold text.
+.bold {
+  font-weight: 500;
+}
+
+// Generic class for page headers.
+.generic-page-title {
+  text-align: center;
+  margin: 90px 0 10px;
+  font-weight: 300;
+}
+
+// Container with "side-image", an image with companion text to the right.
+.generic-container-with-side-image {
+  display: flex;
+  flex-flow: row nowrap;
+
+  > .side-image {
+    flex: 0 0 50px;
+  }
+
+  > .side-image-text {
+    flex: 1;
+
+    p {
+      padding-bottom: 15px;
+      // Uses `em` to force line-height to scale relative to font size.
+      line-height: 1.4em;
+    }
+  }
+
+  .btn {
+    margin-top: 10px;
+  }
+}
+

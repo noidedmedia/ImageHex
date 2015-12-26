@@ -1,31 +1,31 @@
 <% cache "footer" do %>
-<footer id="footer-container" role="contentinfo">
-  <div id="footer">
+  <footer id="footer-container" role="contentinfo">
+    <div id="footer">
 
-  <%# ImageHex description text %>
-    <div class="footer-description-column">
-      <img src=<%= asset_path("logo/imagehex-monochrome-white-text.svg") %> alt="<%= t(".imagehex") %>">
-      <p class="footer-description-body"><%= t(".imagehex_description") %>
-      <p class="footer-description-copyright"><%= t(".imagehex_copyright") %>
-    </div>
+    <%# ImageHex description text %>
+      <div class="footer-description-column">
+        <img src=<%= asset_path("logo/imagehex-monochrome-white-text.svg") %> alt="<%= t(".imagehex") %>">
+        <p class="footer-description-body"><%= t(".imagehex_description") %>
+        <p class="footer-description-copyright"><%= t(".imagehex_copyright", year: Time.now.year) %>
+      </div>
 
-    <%# Footer columns %>
-    <div class="footer-links-column">
-      <ul class="footer-links-list">
-        <li><%= link_to t(".about"), about_path %>
-        <li><%= link_to t(".people"), people_path %>
-        <li><%= link_to t(".contact"), contact_path %>
-        <li><%= link_to t(".faq"), faq_path %>
-        <li><%= link_to t(".rules"), rules_path %>
-        <li><%= link_to t(".help"), help_path %>
-        <li><%= link_to t(".press_kit"), press_path %>
-        <li><%= link_to t(".twitter"), "https://twitter.com/ImageHex" %>
-        <!-- <li><%# link_to t(".status"), status_path %> -->
-        <!-- <li><%# link_to t(".api"), api_path %> -->
-        <!-- <li><%# link_to t(".terms"), terms_path %> -->
-        <!-- <li><%# link_to t(".privacy"), privacy_path %> -->
-      </ul>
+      <%# Footer columns %>
+      <div class="footer-links-column">
+        <ul class="footer-links-list">
+          <li><%= link_to t(".about"), about_path %>
+          <li><%= link_to t(".people"), people_path %>
+          <li><%= link_to t(".contact"), contact_path %>
+          <li><%= link_to t(".faq"), faq_path %>
+          <li><%= link_to t(".rules"), rules_path %>
+          <li><%= link_to t(".help"), help_path %>
+          <li><%= link_to t(".press_kit"), press_path %>
+          <li><%= link_to t(".twitter"), "https://twitter.com/ImageHex" %>
+          <!-- <li><%# link_to t(".blog"), blog_path %> -->
+          <!-- <li><%# link_to t(".api"), api_path %> -->
+          <!-- <li><%# link_to t(".terms"), terms_path %> -->
+          <!-- <li><%# link_to t(".privacy"), privacy_path %> -->
+        </ul>
+      </div>
     </div>
-  </div>
   </footer>
 <% end %> 

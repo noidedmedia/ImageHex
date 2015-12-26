@@ -1,0 +1,30 @@
+<%- title t(".two_factor_authentication") %>
+
+<div class="sign-in-container">
+
+  <div class="sign-in-header">
+    <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="ImageHex">
+    <h4><%= t(".two_factor_authentication") %></h4>
+  </div>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+    
+    <div id="sign-in-fields">
+      <div class="field">
+        <%= f.text_field :otp_attempt, tabindex: 1, placeholder: t(".authentication_code"), autocomplete: :off, id: "two-factor-authentication-code-input" %>
+      </div>
+
+      <div class="field">
+        <%= f.text_field :otp_backup_attempt, placeholder: t(".backup_code"), autocomplete: :off, id: "two-factor-authentication-backup-code-input", hidden: true %>
+      </div>
+    </div>
+    
+    <%= f.hidden_field :id %>
+
+    <%= f.submit t(".verify"), class: "btn btn-green btn-large" %>
+  <% end %>
+</div>
+
+<div class="sign-in-extras-container">
+  <%= render "devise/shared/links" %>
+</div>

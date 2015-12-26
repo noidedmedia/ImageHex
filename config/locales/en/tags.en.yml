@@ -5,6 +5,7 @@ en:
       editing_tag: Editing %{tag}
     form:
       description: Description
+      display_name: Display name
       name: Name
       save_changes: Save changes
     show:

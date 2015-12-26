@@ -30,12 +30,8 @@ class Collection < ActiveRecord::Base
   has_many :curators, through: :curatorships, source: :user
   # Join table: Collection -> Images
   has_many :collection_images
-  # Collections are useless without images.
-  # Collections also do not need duplicates, thus the uniq specifier
-  has_many :images, 
-    ->{joins(:collection_images)
-        .order("collection_images.created_at DESC")}, 
-    through: :collection_images
+  has_many :images,
+  through: :collection_images
   ###############
   # VALIDATIONS #
   ###############
@@ -52,9 +48,9 @@ class Collection < ActiveRecord::Base
 
   def self.by_popularity(interval = 2.weeks.ago..Time.now)
     joins(:subscriptions)
-      .where(subscriptions: {created_at: interval})
-      .group("collections.id")
-      .order("COUNT(subscriptions) DESC")
+    .where(subscriptions: {created_at: interval})
+    .group("collections.id")
+    .order("COUNT(subscriptions) DESC")
   end
 
   def self.with_image_inclusion(i)

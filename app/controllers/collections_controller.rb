@@ -30,7 +30,7 @@ class CollectionsController < ApplicationController
     @collections = find_index_collections
       .subjective
       .paginate(page: page, per_page: per_page)
-      .includes(:images)
+      .preload(:images)
     # FIXME: This is a hack.
     @content = content_pref
   end
@@ -60,6 +60,7 @@ class CollectionsController < ApplicationController
   def show
     @collection = Collection.find(params[:id])
     @images = @collection.images
+    .order("collection_images.created_at DESC")
     .paginate(page: page, per_page: per_page)
     .for_content(content_pref)
     @curators = @collection.curators

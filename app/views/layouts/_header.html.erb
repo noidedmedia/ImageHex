@@ -1,3 +1,4 @@
+<% cache ["header", current_user || "no-user"] do %>
 <header id="header-container" role="banner">
   <div id="header-left">
 
@@ -9,7 +10,9 @@
     </div>
 
     <%# Header search %>
-    <%= render partial: "layouts/header_search" %>
+    <div id="header-search">
+      
+    </div>
 
     <%# Browse button %>
     <div class="header-item" id="header-browse">
@@ -109,4 +112,5 @@
 
     <% end %>
   </div>
-</header>
+  </header>
+<% end %>
