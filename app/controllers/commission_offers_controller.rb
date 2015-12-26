@@ -7,6 +7,32 @@ class CommissionOffersController < ApplicationController
 
   end
 
+  def pay
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
+  end
+
+  def charge
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
+    begin
+      token = params[:stripeToken]
+      fee = @offer.calculate_fee
+      logger.info("Created a charge of #{@offer.total_price} with fee #{fee}")
+      Stripe::Charge.create({
+        :amount => @offer.total_price,
+        :currency => "usd",
+        :source => token,
+        :description => "Commission Payment",
+        :application_fee => fee,
+        :destination => @offer.offeree.stripe_user_id})
+      redirect_to @offer, notice: "Charge created!"
+    rescue Stripe::CardError => e
+      @error = e
+      render
+    end
+  end
+
   def confirm
     @offer = CommissionOffer.find(params[:id])
     authorize @offer

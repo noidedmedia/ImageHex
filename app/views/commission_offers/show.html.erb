@@ -1,13 +1,23 @@
 <h1>Offer</h1>
 <span>By <%= link_to @offer.user.name, @offer.user %></span>
 <br>
-Total cost of <%= price(@offer.total_price) %> 
-<% unless @offer.confirmed? %>
-  <% link_to "Confirm this offer", 
-  confirm_commision_offer_path(@offer),
-  type: :post,
-  method: :post,
-  confirm: "Are you sure?" %>
+Total cost of <%= price(@offer.total_price) %>
+<% if @offer.accepted? %>
+  <p class="commission-offer-accept-date">
+  Accepted <%= time_ago_in_words @offer.accepted_at %> ago
+  </p>
+  <% if @offer.charged? %>
+    <p class="commission-offer-charge-date">
+    Charged <%= time_ago_in_words @offer.charged_at %> ago
+    </p>
+  <% else %>
+    <p class="commission-offer-awaiting-charge-info">
+    Awaiting Payment
+    <% if policy(@offer).charge? %>
+      <%= link_to("Pay Now", pay_commission_offer_path(@offer)) %>
+    <% end %>
+    </p>
+  <% end %>
 <% end %>
 <% if @offer.has_background? %> 
   <div>
@@ -32,4 +42,14 @@ Total cost of <%= price(@offer.total_price) %>
     </ul>
   </div>
 <% end %>
-
+<% if policy(@offer).confirm? %>
+  <%= form_tag(confirm_commission_offer_path(@offer), method: :post) do %>
+    <%= button_tag("Confirm this Offer") %>
+  <% end %>
+<% end %>
+<% if policy(@offer).accept? %>
+  <%= link_to("Accept this offer", accept_commission_offer_path(@offer),
+              type: :post,
+              method: :post,
+              confirm: "Are you sure?") %>
+            <% end %>

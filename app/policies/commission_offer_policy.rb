@@ -8,16 +8,28 @@ class CommissionOfferPolicy < ApplicationPolicy
     not_offering_self?
   end
 
-  def confirm?
-    unconfirmed? && owner?
+  def confirm? 
+    res = unconfirmed? && owner?
   end
 
   def accept?
-    confirmed? && offeree?
+    @offer.confirmed? && offeree? && ! @offer.accepted?
+  end
+
+  def pay?
+    charge?
+  end
+
+  def charge?
+    owner? && @offer.accepted?
   end
 
   def create?
     not_offering_self? 
+  end
+
+  def update?
+    owner? && unconfirmed?
   end
 
   def show?
@@ -30,7 +42,7 @@ class CommissionOfferPolicy < ApplicationPolicy
 
   protected
   def unconfirmed?
-    !! @offer.confirmed?
+    ! @offer.confirmed?
   end
 
   def owner?

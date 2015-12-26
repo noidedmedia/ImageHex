@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       member do 
         post 'accept'
         post 'confirm'
+        get 'pay'
+        post 'charge'
       end
     end
   end

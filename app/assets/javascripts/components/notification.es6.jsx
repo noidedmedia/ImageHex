@@ -88,6 +88,9 @@ class NotificationItem extends React.Component {
     else if (this.props.subject.type == "user") {
       return "/users/" + this.props.subject.id;
     }
+    else if (this.props.subject.type == "commission_offer"){
+      return "/commission_offers/" + this.props.subject.id;
+    }
   }
   message() {
     var kind = this.props["kind"];
@@ -113,6 +116,16 @@ class NotificationItem extends React.Component {
     if (kind == "new_subscriber") {
       return <p className="notification-message">
         {username} subscribed to you!
+      </p>;
+    }
+    if(kind == "commission_offer_confirmed"){
+      return <p className="notification-message">
+        {username} just submitted a commission offer to you!
+      </p>
+    }
+    if(kind == "commission_offer_accepted"){
+      return <p className="notification-message">
+        {username} just accepted your offer!
       </p>;
     }
     else {

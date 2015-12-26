@@ -17,12 +17,24 @@ class CommissionOffer < ActiveRecord::Base
 
   before_save :calculate_price
 
+  def calculate_fee
+    (total_price * (0.09 + 0.029)).floor + 30
+  end
+
   def has_background?
     backgrounds.length > 0 
   end
 
+  def offeree
+    commission_product.user
+  end
+
   def has_subjects?
     subjects.length > 0
+  end
+
+  def offeree_name
+    offeree.name
   end
 
   def confirm!
