@@ -1,5 +1,40 @@
 @import "scss-variables";
 
+.twofactor-qrcode-container {
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
+  display: inline-block;
+
+  p {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.twofactor-qrcode {
+  height: 200px;
+  width: 200px;
+  margin-right: 10px;
+}
+
+.twofactor-backup-codes-container {
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+
+  ul {
+    list-style: none;
+    font-family: monospace;
+    
+    li {
+      width: 49%;
+      text-align: center;
+      min-width: 240px;
+      display: inline-block;
+    }
+  }
+}
 
 /* ==============================================
     User page container

@@ -33,38 +33,58 @@ class TagGroupEditor extends React.Component {
         onAdd={this.onTagAdd.bind(this)}
         tagName={this.state.inputValue} />;
     }
-    else if(this.state.showSuggestions){
-      console.log("No suggestions found, informing the user...");
-      suggestions = <li className="no-suggestions-found">
+    else if (this.state.showSuggestions) {
+      suggestions = <li className="imagehex-empty-note">
         Found no suggestions.
       </li>;
     }
-    else{
+    else {
       console.log("No suggestions to show and no reason to tell the user");
       suggestions = "";
     }
+    
     var removalButton;
-    if(this.props.allowRemoval){
+    if (this.props.allowRemoval) {
       removalButton = <div className="remove-tag-group"
         onClick={this.props.onRemove}>
         Remove
       </div>
-    }
-    else{
+    } else {
       removalButton = <div></div>;
     }
-    return <div className="tag-group-editor">
-      {removalButton}
-      <ul className="tag-group-editor-tags">
-        {tags}
-      </ul>
-      <input type="text" 
+
+    var inputField;
+    if (this.props.isSearch) {
+      inputField = <div>
+        <label title="Search" htmlFor="search-input">
+          <span className="icon icon-small icon-search"></span>
+        </label>
+        <input type="text" 
+          id="search-input"
+          name="suggestions" 
+          onChange={this.onInputChange.bind(this)}
+          onKeyDown={this.onKeyUp.bind(this)}
+          value={this.state.inputValue}
+          ref="groupInput"
+          placeholder="Search"
+        />
+      </div>;
+    } else {
+      inputField = <input type="text" 
         name="suggestions" 
         onChange={this.onInputChange.bind(this)}
         onKeyDown={this.onKeyUp.bind(this)}
         value={this.state.inputValue}
         ref="groupInput"
-      />
+      />;
+    }
+
+    return <div className="tag-group-editor">
+      {removalButton}
+      <ul className="tag-group-editor-tags">
+        {tags}
+      </ul>
+      {inputField}
       <ul className="tag-group-editor-tags-suggestions">
         {suggestions}
       </ul>
@@ -74,7 +94,6 @@ class TagGroupEditor extends React.Component {
   componentDidUpdate() {
     if (this.props.autofocus) {
       ReactDOM.findDOMNode(this.refs.groupInput).focus();
-    } else {
     }
   }
 
@@ -204,8 +223,8 @@ class TagGroupEditor extends React.Component {
     Tag.withPrefix(value, (tags) => {
       if (tags.length > 0) {
         var ntags = tags.filter( (tag) => {
-          for(var i = 0; i < this.props.tags.length; i++){
-            if(this.props.tags[i].id === tag.id){
+          for (var i = 0; i < this.props.tags.length; i++) {
+            if (this.props.tags[i].id === tag.id) {
               console.log("Tag named " + tag.name + " already in list");
               console.log(tags);
               console.log("Removing it from the suggestion list");

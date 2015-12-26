@@ -13,7 +13,7 @@ class HeaderSearch extends React.Component {
         tags={this.state.tagGroup.tags}
         onTagRemove={this.removeTag.bind(this)}
         onTagAdd={this.addTag.bind(this)}
-        autofocus={true}
+        isSearch={true}
         submit={this.submit.bind(this)}
       />
     </div>;

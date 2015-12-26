@@ -19,7 +19,7 @@ body.modal-open {
   }
 }
 
-#modal-dialog {
+.modal-dialog {
   margin: 150px auto;
   height: auto;
   width: 500px;
@@ -46,7 +46,11 @@ body.modal-open {
 
     .btn {
       height: 32px;
-      margin-left: 4px;
+
+      // Only apply left margin when another button is adjacent.
+      + .btn {
+        margin-left: 4px;
+      }
     }
   }
 }

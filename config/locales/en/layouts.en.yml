@@ -9,6 +9,7 @@ en:
     footer:
       about: About
       api: API
+      blog: Blog
       contact: Contact
       faq: FAQ
       help: Help
@@ -29,6 +30,8 @@ en:
       home: Home
       new_collection: New collection
       profile: Profile
+      search: Page where you can find many images
+      search_suggestions_note: Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags
       settings: Settings
       sign_in: Sign in
       sign_out: Sign out

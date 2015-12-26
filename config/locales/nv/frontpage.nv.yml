@@ -1,8 +1,8 @@
-# Frontpage strings.
-
+---
 nv:
   frontpage:
     index:
-      imagehex: "ImageHex"
+      imagehex: ImageHex
     index_with_user:
-      imagehex: "ImageHex"
+      created_by_html: Created by %{creators_list}
+      imagehex: ImageHex
