@@ -46,22 +46,22 @@
       </div>
 
       <ul id="user-page-header-tabs">
-        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @uploads.count) %>
-        <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations", count: @creations.count) %>
+        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".creations", count: @creations.count) %>
+        <li data-tab="tab-2" class="user-page-header-tab"><%= t(".uploads", count: @uploads.count) %>
         <li data-tab="tab-3" class="user-page-header-tab"><%= t(".favorites", count: @favorites.count) %>
         <li data-tab="tab-4" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
       </ul>
 
     </div>
-  <% end %> 
-  <div id="user-content-container">
+  <% end %>
 
-    <div id="user-uploads-container" class="user-content tab-content tc-tab-1 current">
-      <%= render 'images/show_stub', images: @uploads %>
+  <div id="user-content-container">
+    <div id="user-creations-container" class="user-content tab-content tc-tab-1 current">
+      <%= render 'images/show_stub', images: @creations %>
     </div>
 
-    <div id="user-creations-container" class="user-content tab-content tc-tab-2">
-      <%= render 'images/show_stub', images: @creations %>
+    <div id="user-uploads-container" class="user-content tab-content tc-tab-2">
+      <%= render 'images/show_stub', images: @uploads %>
     </div>
 
     <div id="user-favorites-container" class="user-content tab-content tc-tab-3">
@@ -73,11 +73,11 @@
         <%= render partial: "collections/show_stub", collection: @collections, as: :collection %>
       <% elsif @user == current_user %>
         <p class="imagehex-empty-note">
-        <%= t(".you_dont_have_any_collections_yet") %>
+          <%= t(".you_dont_have_any_collections_yet") %>
         </p>
       <% else %>
         <p class="imagehex-empty-note">
-        <%= t(".this_user_doesnt_have_any_collections_yet") %>
+          <%= t(".this_user_doesnt_have_any_collections_yet") %>
         </p>
       <% end %>
     </div>
