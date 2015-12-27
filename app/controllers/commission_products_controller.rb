@@ -39,7 +39,8 @@ class CommissionProductsController < ApplicationController
               :background_price,
               :offer_background,
               :offer_subjects,
-              :maximum_subjects)
+              :maximum_subjects,
+              :weeks_to_completion)
       .merge(user_id: current_user.id)
   end
 end

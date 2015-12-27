@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227203219) do
+ActiveRecord::Schema.define(version: 20151227204637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(version: 20151227203219) do
     t.boolean  "confirmed",             default: false, null: false
     t.datetime "confirmed_at"
     t.boolean  "charged",               default: false, null: false
+    t.datetime "due_at"
+    t.text     "stripe_charge_id"
   end
 
   add_index "commission_offers", ["commission_product_id"], name: "index_commission_offers_on_commission_product_id", using: :btree

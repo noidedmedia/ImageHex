@@ -87,7 +87,29 @@ RSpec.describe CommissionOffer, type: :model do
       }.to change{c.commission_product.user.notifications.count}.by(1)
     end
   end
-
+  describe "charging" do
+    let(:product){
+      FactoryGirl.create(:commission_product,
+                         :weeks_to_completion: 4)
+    }
+    let(:offer){
+      FactoryGirl.create(:commission_offer,
+                         commission_product: product)
+    }
+    it "stores the charge id" do
+      expect{
+        offer.charge("fake_stripe_id")
+      }.to change{offer.reload.stripe_charge_id}.to("fake_stripe_id")
+    end
+    
+    it "sets the weeks to completion date" do
+      Timecop.freeze do
+        time = product.weeks_to_completion.weeks.from_now
+        offer.charge("fake_stripe_id")
+        expect(offer.reload.due_at).to eq(time)
+      end
+    end
+  end
   describe "accepting" do
     it "accepts confirmed offers" do
       c = FactoryGirl.create(:commission_offer)
