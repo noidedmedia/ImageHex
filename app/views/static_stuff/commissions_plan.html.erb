@@ -19,7 +19,7 @@
       
       <div class="newsletter-sign-up">
         <%# form_for @newsletter do |f| %>
-          <%= text_field_tag html: { placeholder: "sarah@example.com" } %>
+          <%= text_field_tag :newsletter, nil, placeholder: "sarah@example.com" %>
           <%= submit_tag "Sign up" %>
         <%# end %>
       </div>
