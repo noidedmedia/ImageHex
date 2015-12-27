@@ -5,6 +5,10 @@ class CommissionOffer < ActiveRecord::Base
     inverse_of: :commission_offer
   has_many :backgrounds, class_name: "CommissionBackground",
     inverse_of: :commission_offer
+
+  has_many :commission_images
+  has_many :images, through: :commission_images
+
   accepts_nested_attributes_for :subjects
   accepts_nested_attributes_for :backgrounds
 
@@ -76,6 +80,18 @@ class CommissionOffer < ActiveRecord::Base
                         subject: self,
                         kind: :commission_offer_charged)
   end
+
+  def fill!(image)
+    self.class.transaction do 
+      self.images << image
+      Notification.create(user: user,
+                          kind: :commission_offer_filled,
+                          subject: self)
+      self.update(filled_at: Time.now,
+                  filled: true)
+    end
+  end
+
   protected
   def not_offering_to_self
     if user_id == commission_product.try(:user_id)

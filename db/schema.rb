@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227220013) do
+ActiveRecord::Schema.define(version: 20151227224939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,16 @@ ActiveRecord::Schema.define(version: 20151227220013) do
   end
 
   add_index "commission_backgrounds", ["commission_offer_id"], name: "index_commission_backgrounds_on_commission_offer_id", using: :btree
+
+  create_table "commission_images", force: :cascade do |t|
+    t.integer  "image_id"
+    t.integer  "commission_offer_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "commission_images", ["commission_offer_id"], name: "index_commission_images_on_commission_offer_id", using: :btree
+  add_index "commission_images", ["image_id"], name: "index_commission_images_on_image_id", using: :btree
 
   create_table "commission_offers", force: :cascade do |t|
     t.integer  "commission_product_id",                 null: false
@@ -356,6 +366,8 @@ ActiveRecord::Schema.define(version: 20151227220013) do
   add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "commission_backgrounds", "commission_offers"
+  add_foreign_key "commission_images", "commission_offers", on_delete: :cascade
+  add_foreign_key "commission_images", "images", on_delete: :cascade
   add_foreign_key "commission_offers", "commission_products"
   add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
   add_foreign_key "commission_subjects", "commission_offers"
