@@ -98,16 +98,29 @@ RSpec.describe CommissionOffer, type: :model do
     }
     it "stores the charge id" do
       expect{
-        offer.charge("fake_stripe_id")
+        offer.charge!("fake_stripe_id")
       }.to change{offer.reload.stripe_charge_id}.to("fake_stripe_id")
     end
     
     it "sets the weeks to completion date" do
       Timecop.freeze do
         time = product.weeks_to_completion.weeks.from_now
-        offer.charge("fake_stripe_id")
+        offer.charge!("fake_stripe_id")
         expect(offer.reload.due_at).to eq(time)
       end
+    end
+
+    it "sets charged_at to Time.now" do
+      Timecop.freeze do
+        offer.charge!("fake_stripe_id")
+        expect(offer.reload.charged_at).to eq(Time.now)
+      end
+    end
+
+    it "makes a new notification" do
+      expect{
+        offer.charge!("fake_stripe_id")
+      }.to change{product.user.notifications.count}.by(1)
     end
   end
   describe "accepting" do

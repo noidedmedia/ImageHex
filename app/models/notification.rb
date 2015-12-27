@@ -23,7 +23,8 @@ class Notification < ActiveRecord::Base
     :mentioned,
     :new_subscriber,
     :commission_offer_confirmed,
-    :commission_offer_accepted]
+    :commission_offer_accepted,
+    :commission_offer_charged]
 
   def subject=(sub)
     to_write = nil

@@ -64,6 +64,18 @@ class CommissionOffer < ActiveRecord::Base
     end
   end
 
+  ##
+  # Don't do this in a transaction because we'd rather not notify and make
+  # the charge than do neither
+  def charge!(stripe_charge_id)
+    time_due = commission_product.weeks_to_completion.weeks.from_now
+    self.update(stripe_charge_id: stripe_charge_id,
+                charged_at: Time.now,
+                due_at: time_due)
+    Notification.create(user: offeree,
+                        subject: self,
+                        kind: :commission_offer_charged)
+  end
   protected
   def not_offering_to_self
     if user_id == commission_product.try(:user_id)
