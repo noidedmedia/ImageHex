@@ -7,6 +7,7 @@ FactoryGirl.define do
     subject_price 500
     offer_background true
     background_price 100
+    weeks_to_completion 4
   end
 
 end

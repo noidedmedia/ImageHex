@@ -18,7 +18,11 @@ class CommissionOffer < ActiveRecord::Base
   before_save :calculate_price
 
   def calculate_fee
-    (total_price * 0.09).floor
+    if offeree.has_filled_commissions?
+      (total_price * 0.12).floor + 0.30
+    else
+      0
+    end
   end
 
   def has_background?

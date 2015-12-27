@@ -15,6 +15,10 @@ class CommissionProduct < ActiveRecord::Base
 
   validates :user, presence: true
 
+  validates :weeks_to_completion,
+    presence: true,
+    numericality: {greater_than: 0, less_than: 52}
+
   validates :maximum_subjects,
     numericality: {greater_than: 1},
     allow_nil: true,
