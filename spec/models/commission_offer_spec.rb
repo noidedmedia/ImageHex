@@ -90,7 +90,7 @@ RSpec.describe CommissionOffer, type: :model do
   describe "charging" do
     let(:product){
       FactoryGirl.create(:commission_product,
-                         :weeks_to_completion: 4)
+                         weeks_to_completion: 4)
     }
     let(:offer){
       FactoryGirl.create(:commission_offer,
