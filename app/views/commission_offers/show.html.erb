@@ -2,7 +2,7 @@
 <span>By <%= link_to @offer.user.name, @offer.user %></span>
 <br>
 Total cost of <%= price(@offer.total_price) %>
-<% if @offer.accepted? %>
+<% if @offer.accepted? && ! @offer.filled? %>
   <p class="commission-offer-accept-date">
   Accepted <%= time_ago_in_words @offer.accepted_at %> ago
   </p>
@@ -10,6 +10,9 @@ Total cost of <%= price(@offer.total_price) %>
     <p class="commission-offer-charge-date">
     Charged <%= time_ago_in_words @offer.charged_at %> ago
     </p>
+    <% if policy(@offer).fill? %>
+      <%= link_to("Fill now", fullfill_commission_offer_path(@offer)) %>
+    <% end %>
   <% else %>
     <p class="commission-offer-awaiting-charge-info">
     Awaiting Payment
@@ -17,6 +20,14 @@ Total cost of <%= price(@offer.total_price) %>
       <%= link_to("Pay Now", pay_commission_offer_path(@offer)) %>
     <% end %>
     </p>
+  <% end %>
+<% end %>
+<% if @offer.filled? %>
+  <p class="commission-offer-fill-date">
+  Filled <%= time_ago_in_words @offer.filled_at %> ago
+  </p>
+  <%= link_to @offer.images.first do %>
+    <%= image_tag @offer.images.first.f(:large) %> 
   <% end %>
 <% end %>
 <% if @offer.has_background? %> 
