@@ -43,6 +43,8 @@ Rails.application.routes.draw do
         post 'confirm'
         get 'pay'
         post 'charge'
+        get 'fullfill'
+        post 'fill'
       end
     end
   end

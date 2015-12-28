@@ -24,6 +24,14 @@ class CommissionOfferPolicy < ApplicationPolicy
     owner? && @offer.accepted?
   end
 
+  def fullfill?
+    fill?
+  end
+
+  def fill?
+    offeree? && @offer.charged? 
+  end
+
   def create?
     not_offering_self? 
   end

@@ -6,6 +6,27 @@ class CommissionOffersController < ApplicationController
   def index
 
   end
+  
+  def fullfill
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
+  end
+
+  def fill
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
+    @image = Image.find(params[:image_id])
+    raise Pundit::NotAuthorizedError.new unless @image.created_by? current_user
+    respond_to do |format|
+      if @offer.fill!(@image)
+        format.html{ redirect_to @offer, notice: "Created successfully" }
+        format.json{ render json: true }
+      else
+        format.html{ render 'fullfill', notice: "Something broke ;-;"}
+        format.json{ render json: false, status: :unprocessible_entity }
+      end
+    end
+  end
 
   def pay
     @offer = CommissionOffer.find(params[:id])
