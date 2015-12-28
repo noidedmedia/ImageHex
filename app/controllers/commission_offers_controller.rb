@@ -40,13 +40,14 @@ class CommissionOffersController < ApplicationController
       token = params[:stripeToken]
       fee = @offer.calculate_fee
       logger.info("Created a charge of #{@offer.total_price} with fee #{fee}")
-      Stripe::Charge.create({
+      charge = Stripe::Charge.create({
         :amount => @offer.total_price,
         :currency => "usd",
         :source => token,
         :description => "Commission Payment",
         :application_fee => fee,
         :destination => @offer.offeree.stripe_user_id})
+        @offer.charge!(charge.id)
       redirect_to @offer, notice: "Charge created!"
     rescue Stripe::CardError => e
       @error = e

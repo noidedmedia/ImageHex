@@ -11,6 +11,8 @@ class User{
         this[prop] = json[prop];
       }
     }
+    this.creations = this.getCreationsCollection();
+    this.favorites = this.getFavoritesCollection();
   }
   hasFullData(){
     return "description" in this;
@@ -23,11 +25,11 @@ class User{
       User.find(this.id, callback);
     }
   }
-  favorites(){
+  getFavoritesCollection(){
     return new ImageCollection("/users/" + this.id + " /favorites", "images");
   }
-  creations(){
-    return new ImageCollection("/users/" + this.id + "/creations", "images");
+  getCreationsCollection(){
+    return new ImageCollection("/users/" + this.id + "/creations", null);
   }
   static find(id, callback){
     NM.getJSON("/users/" + id, (j) => {

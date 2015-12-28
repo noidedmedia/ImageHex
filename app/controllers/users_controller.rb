@@ -110,11 +110,9 @@ class UsersController < ApplicationController
   # @images:: Images credited to this user.
   def creations
     @user = User.friendly.find(params[:id])
-    @collection = @user.creations
-    @images = @collection.images
+    @images = @user.creations
     .for_content(content_pref)
     .paginate(page: page, per_page: per_page)
-    render 'collections/show'
   end
 
   def subscribe

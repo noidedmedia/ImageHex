@@ -140,6 +140,14 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
+  #
+  def has_filled_commissions?
+    count = commission_products
+      .joins(:offers)
+      .where(commission_offers: {filled: true})
+      .count
+    count > 0
+  end
 
   def enable_twofactor
     self.otp_secret = User.generate_otp_secret

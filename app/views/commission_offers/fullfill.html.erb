@@ -1,0 +1,7 @@
+<%= form_tag fill_commission_offer_path(@offer) do %>
+  <div id="fullfill-picker-container"
+    data-user-id="<%= @offer.offeree.id %>">
+
+  </div>
+  <%= submit_tag %>
+<% end %>

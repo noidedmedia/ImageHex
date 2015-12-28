@@ -32,8 +32,25 @@ class ImageCollection {
     }
   }
 
+  previousPage(){
+    if(this.hasPreviousPage()){
+      this.page = this.page - 1;
+      return this;
+    } else {
+      return undefined;
+    }
+  }
+
+  currentPage(){
+    return this.page;
+  }
+
   hasNextPage() {
     return !!(this.total_pages && ! this.page + 1  > this.total_pages);
+  }
+
+  hasPreviousPage() {
+    return !!(this.total_pages && ! this.page < 2);
   }
 
   getPageImages(callback) {

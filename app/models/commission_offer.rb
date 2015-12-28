@@ -74,6 +74,7 @@ class CommissionOffer < ActiveRecord::Base
   def charge!(stripe_charge_id)
     time_due = commission_product.weeks_to_completion.weeks.from_now
     self.update(stripe_charge_id: stripe_charge_id,
+                charged: true,
                 charged_at: Time.now,
                 due_at: time_due)
     Notification.create(user: offeree,

@@ -219,6 +219,10 @@ class Image < ActiveRecord::Base
     URI.parse(source_link).host
   end
 
+  def created_by? user
+    creators.include? user
+  end
+
   def source_link
     if self.source.start_with?("http://", "https://")
       self.source
