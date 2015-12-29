@@ -15,6 +15,22 @@
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
+      <h3>Pricing</h3>
+      <h3>12% + $0.30</h3>
+
+      <div id="commission-calculator-input-container">
+        <%= number_field_tag "Total Commission Amount", nil, min: 3, class: "input", id: "commission-calculator-input" %>
+      </div>
+
+      <div id="commission-calculator-results-container">
+        
+      </div>
+    </div>
+
+  </section>
+
+  <section class="imagehex-static-section">
+    <div class="imagehex-static-text">
       <h3>Sign up for our newsletter</h3>
       
       <div class="newsletter-sign-up">
