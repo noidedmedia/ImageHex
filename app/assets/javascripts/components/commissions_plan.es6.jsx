@@ -9,9 +9,11 @@ class CommissionCalculatorResults extends React.Component {
   render() {
     var input = <input type="number"
       value={this.state.value}
-      min="3"
+      min="3.00"
+      step="0.01"
       id="commission-calculator-input"
       onChange={this.updateValue.bind(this)}
+      className="input"
     />;
     total = this.state.value * 100;
 
@@ -22,9 +24,22 @@ class CommissionCalculatorResults extends React.Component {
     if (total >= 300) {
       return <div>
         {input}
-        <p>Stripe: ${(stripeFees / 100).toFixed(2)}</p>
-        <p>ImageHex: ${(imagehexFees / 100).toFixed(2)}</p>
-        <p>Artist Earnings: ${(artistEarnings / 100).toFixed(2)}</p>
+        <table>
+          <tbody>
+            <tr>
+              <td>Stripe</td>
+              <td>${(stripeFees / 100).toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td>ImageHex</td>
+              <td>${(imagehexFees / 100).toFixed(2)}</td>
+            </tr>
+            <tr>
+              <td>Artist Earnings</td>
+              <td>${(artistEarnings / 100).toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>;
     }
 
