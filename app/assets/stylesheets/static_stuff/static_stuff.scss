@@ -38,6 +38,14 @@
 .imagehex-static-section {
   width: 100%;
   margin-top: 20px;
+
+  &:last-of-type {
+    margin-bottom: 40px;
+  }
+  
+  > .imagehex-static-text {
+    margin-bottom: 0;
+  }
 }
 
 .imagehex-static-text {
@@ -83,6 +91,11 @@
     padding-top: 10px;
     font-size: 1.6rem;
     line-height: 2.2rem;
+
+    &.smaller-text {
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+    }
   }
 
   a {
@@ -160,6 +173,10 @@
       }
     }
   }
+
+  @media all and (max-width: $mobile-width) {
+    padding: 20px;
+  }
 }
 
 .newsletter-sign-up {
@@ -231,5 +248,9 @@ $color2: #00b376;
   > section {
     flex: 1 1 50%;
     text-align: center;
+  }
+
+  @media all and (max-width: $mobile-width) {
+    flex-flow: column nowrap;
   }
 }

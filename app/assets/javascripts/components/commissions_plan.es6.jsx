@@ -2,7 +2,7 @@ class CommissionCalculatorResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ""
+      value: "10.00"
     }
   }
 
@@ -48,6 +48,7 @@ class CommissionCalculatorResults extends React.Component {
       <p></p>
     </div>;
   }
+
   updateValue(event){
     this.setState({
       value: event.target.value
