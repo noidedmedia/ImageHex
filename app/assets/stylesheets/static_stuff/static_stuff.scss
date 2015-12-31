@@ -55,6 +55,10 @@
     margin: 45px 0 0;
     font-weight: 500;
     font-size: 2.4rem;
+
+    &.center {
+      text-align: center;
+    }
   }
 
   h3 {
@@ -140,6 +144,22 @@
       border-color: #0099e5;
     }
   }
+
+  table {
+    font-size: 1.6rem;
+    margin: auto;
+    margin-top: 10px;
+    border-spacing: 10px;
+
+    tr > td {
+      text-align: left;
+
+      &:first-of-type {
+        text-align: right;
+        font-weight: 500;
+      }
+    }
+  }
 }
 
 .newsletter-sign-up {
@@ -171,6 +191,7 @@ $color2: #00b376;
   margin-top: 0;
   color: #fff;
   height: calc(100vh - 40px);
+  min-height: 500px;
   text-align: center;
   padding: 60px 20px 20px 20px;
   text-shadow: 0 1px 2px rgba(0,0,0,0.2);
@@ -200,5 +221,15 @@ $color2: #00b376;
         height: auto;
       }
     }
+  }
+}
+
+.two-column-container {
+  display: flex;
+  flex-flow: row nowrap;
+
+  > section {
+    flex: 1 1 50%;
+    text-align: center;
   }
 }
