@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227224939) do
+ActiveRecord::Schema.define(version: 20160101200502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,14 @@ ActiveRecord::Schema.define(version: 20151227224939) do
   end
 
   add_index "commission_subjects", ["commission_offer_id"], name: "index_commission_subjects_on_commission_offer_id", using: :btree
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "commission_offer_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "conversations", ["commission_offer_id"], name: "index_conversations_on_commission_offer_id", using: :btree
 
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
@@ -371,6 +379,7 @@ ActiveRecord::Schema.define(version: 20151227224939) do
   add_foreign_key "commission_offers", "commission_products"
   add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
   add_foreign_key "commission_subjects", "commission_offers"
+  add_foreign_key "conversations", "commission_offers", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "image_reports", "images", on_delete: :cascade
