@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101200502) do
+ActiveRecord::Schema.define(version: 20160101202107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,17 @@ ActiveRecord::Schema.define(version: 20160101200502) do
   end
 
   add_index "commission_subjects", ["commission_offer_id"], name: "index_commission_subjects_on_commission_offer_id", using: :btree
+
+  create_table "conversation_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "conversation_users", ["conversation_id"], name: "index_conversation_users_on_conversation_id", using: :btree
+  add_index "conversation_users", ["user_id", "conversation_id"], name: "index_conversation_users_on_user_id_and_conversation_id", unique: true, using: :btree
+  add_index "conversation_users", ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "commission_offer_id"
@@ -379,6 +390,8 @@ ActiveRecord::Schema.define(version: 20160101200502) do
   add_foreign_key "commission_offers", "commission_products"
   add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
   add_foreign_key "commission_subjects", "commission_offers"
+  add_foreign_key "conversation_users", "conversations", on_delete: :cascade
+  add_foreign_key "conversation_users", "users", on_delete: :cascade
   add_foreign_key "conversations", "commission_offers", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
