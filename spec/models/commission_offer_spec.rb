@@ -73,18 +73,24 @@ RSpec.describe CommissionOffer, type: :model do
     end
   end
   describe "confirmation" do
+    let(:c){FactoryGirl.create(:commission_offer)}
     it "has a method to confirm" do
-      c = FactoryGirl.create(:commission_offer)
       expect{
         c.confirm!
       }.to change{c.confirmed_at}
       expect(c.confirmed).to eq(true)
     end
     it "sends the artist a notification" do
-      c = FactoryGirl.create(:commission_offer)
       expect{
         c.confirm!
       }.to change{c.commission_product.user.notifications.count}.by(1)
+    end
+    it "creates a new conversation" do
+      expect{
+        c.confirm!
+      }.to change{Conversation.count}.by(1)
+      expect(Conversation.last.users).to contain_exactly(c.user,
+                                                         c.offeree)
     end
   end
   describe "charging" do
@@ -147,6 +153,19 @@ RSpec.describe CommissionOffer, type: :model do
       }.to change{c.user.notifications.count}.by(1)
     end
   end
+  describe ".involves" do
+    let(:c){ create(:commission_offer) }
+    it "is true for the offeree" do
+      expect(c.involves?(c.offeree)).to eq(true)
+    end
+    it "is true for the offerer" do
+      expect(c.involves?(c.user)).to eq(true)
+    end
+    it "is not true for randoms" do
+      expect(c.involves?(create(:user))).to eq(false)
+    end
+  end
+
   describe "creation" do
     let(:subject_price){300}
     let(:base_price){500}

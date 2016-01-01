@@ -19,6 +19,8 @@ class CommissionOffer < ActiveRecord::Base
   validate :background_is_acceptable
   validate :not_offering_to_self
 
+  has_one :conversation
+
   before_save :calculate_price
 
   def calculate_fee
@@ -45,14 +47,21 @@ class CommissionOffer < ActiveRecord::Base
     offeree.name
   end
 
+  def involves?(u)
+    offeree == u || self.user == u
+  end
+
   def confirm!
     transaction do 
       self.confirmed = true
       self.touch(:confirmed_at)
       self.save
-      Notification.create(user: commission_product.user,
+      Notification.create(user: offeree,
                           subject: self,
                           kind: :commission_offer_confirmed)
+      Conversation.create(commission_offer: self,
+                          users: [user,
+                            offeree])
     end
   end
 
