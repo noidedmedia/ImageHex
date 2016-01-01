@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101202107) do
+ActiveRecord::Schema.define(version: 20160101202827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +231,18 @@ ActiveRecord::Schema.define(version: 20160101202107) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.boolean  "read"
+    t.datetime "read_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "read",       default: false, null: false
@@ -398,6 +410,8 @@ ActiveRecord::Schema.define(version: 20160101202107) do
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
+  add_foreign_key "messages", "conversations", on_delete: :cascade
+  add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
   add_foreign_key "subject_references", "commission_subjects", on_delete: :cascade
   add_foreign_key "subscriptions", "collections"
