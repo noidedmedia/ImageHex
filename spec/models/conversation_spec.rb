@@ -32,4 +32,54 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
+  describe ".mark_read(user)" do
+    let(:user_a){ create(:user) }
+    let(:user_b){ create(:user) }
+    let(:conversation){ 
+      create(:conversation, users: [user_a, user_b])
+    }
+    it "raises an error if the user is not in the conversation" do
+      expect{
+        conversation.mark_read!(create(:user))
+      }.to raise_error(Conversation::UserNotInConversation)
+    end
+    it "changes the user's last read at time" do
+      cu = conversation.conversation_users.where(user: user_a).first
+      Timecop.freeze do
+        expect{
+          conversation.mark_read!(user_a)
+        }.to change{cu.reload.last_read_at}.to(Time.now)
+      end
+    end
+  end
+
+  describe ".messages_for_user" do
+    let(:user_a){ create(:user) }
+    let(:user_b){ create(:user) }
+    let(:conversation){ 
+      create(:conversation, users: [user_a, user_b])
+    }
+    it "throws an error if the user isn't in the conversation" do
+      expect{
+        conversation.messages_for_user(create(:user))
+      }.to raise_error(Conversation::UserNotInConversation)
+    end
+    it "returns messages made after this user's last_read_at" do
+      m1 = create(:message,
+                  conversation: conversation,
+                  user: user_b)
+      m2 = create(:message,
+                  conversation: conversation,
+                  user: user_a)
+      conversation.mark_read!(user_a)
+      m3 = create(:message,
+                  conversation: conversation,
+                  user: user_b)
+      m4 = create(:message,
+                  conversation: conversation,
+                  user: user_b)
+      res = conversation.messages_for_user(user_a)
+      expect(res).to contain_exactly(m3, m4)
+    end
+  end
 end
