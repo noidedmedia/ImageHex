@@ -1,6 +1,8 @@
 class ConversationUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :conversation
+  validates :user, presence: true
+  validates :conversation, presence: true
   validate :user_is_involved_in_commission,
     :if => :conversation_for_offer?
   def conversation_for_offer?
