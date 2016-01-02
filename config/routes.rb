@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   ##################
 
 
+  resources :conversations do
+    resources :messages, shallow: true
+  end
+
   resources :tags do
     collection do
       get "suggest"
