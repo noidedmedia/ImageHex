@@ -1,0 +1,56 @@
+@import "scss-variables";
+
+.detail-icon {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  margin: 25px auto 10px;
+
+  img {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  + h3 {
+    margin-top: 0;
+  }
+}
+
+.commission-calculator-input-container {
+  input {
+    width: 45px;
+    border: 0;
+    padding: 0 0 0 2px;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    right: 0;
+    border-bottom: 1px solid rgba(#000, 0.3);
+    transition: border 200ms;
+
+    &:focus {
+      border: 0;
+      border-bottom: 1px solid rgba(#000, 0.8);
+    }
+  }
+
+  // Force alignment of the "Total commission" text and input field.
+  table p {
+    padding: 0;
+  }
+}
+
+.newsletter-sign-up {
+  display: flex;
+  flex: row nowrap;
+  max-width: 400px;
+  margin-top: 8px;
+
+  input[type="text"] {
+    flex: 5 5 300px;
+  }
+
+  input[type="submit"] {
+    flex: 0 0 100px;
+  }
+}

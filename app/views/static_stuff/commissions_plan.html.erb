@@ -6,8 +6,8 @@
 
     <div class="image-container">
       <picture>
-        <source srcset=<%= asset_path("commissions-hero-graphic.svg") %> type="image/svg+xml">
-        <img src=<%= asset_path("commissions-hero-graphic.png") %>>
+        <source srcset=<%= asset_path("commissions/commissions-hero-graphic.svg") %> type="image/svg+xml">
+        <img src=<%= asset_path("commissions/commissions-hero-graphic.png") %>>
       </picture>
     </div>
 
@@ -15,12 +15,17 @@
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
-      <h2 class="center">Pricing</h2>
-      
+      <h2 class="center section-header">Pricing</h2>
+      <p class="center section-subheader">ImageHex has a simple, transparent pricing structure. We're not interested in tricking artists into paying fees they didn't agree to.</p>
+
       <div class="two-column-container">
-        <section>
-          <h3>12% + 30¢</h3>
-          <h4>per commission</h4>
+        <section class="generic-container no-hover">
+          <div class="detail-icon">
+            <img src=<%= asset_path("commissions/icon-fees.svg") %>>
+          </div>
+
+          <h3>Fees</h3>
+          <h4>12% + 30¢ per commission</h4>
           
           <table>
             <tbody>
@@ -28,27 +33,31 @@
                 <td>Stripe</td>
                 <td>2.9% + 30¢</td>
               </tr>
-
               <tr>
                 <td>ImageHex</td>
                 <td>9.1%</td>
+              </tr>
+              <tr>
+                <td>Artist</td>
+                <td>88% - 30¢</td>
               </tr>
             </tbody>
           </table>
         </section>
 
-        <section>
-          <div id="commission-calculator-input-container">
-            
+        <section class="generic-container no-hover">
+          <div class="detail-icon">
+            <img src=<%= asset_path("commissions/icon-calculator.svg") %>>
           </div>
 
-          <div id="commission-calculator-results-container">
-
+          <h3>Calculate your costs</h3>
+          <div id="commission-calculator-input-container" class="commission-calculator-input-container">
+            
           </div>
         </section>
       </div>
 
-      <p class="smaller-text">Note that this assumes transactions involving either USD or CAD, users in other countries may have slightly different Stripe fees due to currency conversion and varying pricing in different countries. See <%= link_to "Stripe's Pricing page", "https://stripe.com/pricing" %> in your respective region for more information.
+      <p class="smaller-text padding-top">Note that this assumes transactions involving either USD or CAD, users in other countries may have slightly different Stripe fees due to currency conversion and varying pricing in different countries. See <%= link_to "Stripe's Pricing page", "https://stripe.com/pricing" %> in your respective region for more information.
     </div>
 
   </section>

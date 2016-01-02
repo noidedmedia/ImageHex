@@ -2,15 +2,15 @@ class CommissionCalculatorResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "10.00"
+      value: "10"
     }
   }
 
   render() {
     var input = <input type="number"
       value={this.state.value}
-      min="3.00"
-      step="0.01"
+      min="3"
+      max="999"
       id="commission-calculator-input"
       onChange={this.updateValue.bind(this)}
       className="input"
@@ -23,9 +23,12 @@ class CommissionCalculatorResults extends React.Component {
 
     if (total >= 300) {
       return <div>
-        {input}
         <table>
           <tbody>
+            <tr>
+              <td>Total Commission</td>
+              <td><p>${input}</p></td>
+            </tr>
             <tr>
               <td>Stripe</td>
               <td>${(stripeFees / 100).toFixed(2)}</td>
@@ -35,7 +38,7 @@ class CommissionCalculatorResults extends React.Component {
               <td>${(imagehexFees / 100).toFixed(2)}</td>
             </tr>
             <tr>
-              <td>Artist Earnings</td>
+              <td>Artist</td>
               <td>${(artistEarnings / 100).toFixed(2)}</td>
             </tr>
           </tbody>
@@ -44,12 +47,18 @@ class CommissionCalculatorResults extends React.Component {
     }
 
     return <div>
-      {input}
-      <p></p>
+      <table>
+          <tbody>
+            <tr>
+              <td>Total Commission</td>
+              <td><p>${input}</p></td>
+            </tr>
+          </tbody>
+        </table>
     </div>;
   }
 
-  updateValue(event){
+  updateValue(event) {
     this.setState({
       value: event.target.value
     });
