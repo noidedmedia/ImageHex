@@ -6,7 +6,7 @@
 
     <div class="image-container">
       <picture>
-        <source srcset=<%= asset_path("commissions/commissions-hero-graphic.svg") %> type="image/svg+xml">
+        <source srcset=<%= asset_path("commissions/commissions-hero-graphic.svg") %>>
         <img src=<%= asset_path("commissions/commissions-hero-graphic.png") %>>
       </picture>
     </div>
@@ -15,11 +15,137 @@
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
+      <h2 class="center section-header">Safe, secure, protected</h2>
+      <p class="center section-subheader">Commission disputes, two-factor authentication, and other safeguards protect both parties from bad actors.</p>
+
+      <ul class="features-list">
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-dispute.svg") %>>
+          <p>Commission disputes</p>
+          <p>Either party can dispute a commission if they believe the other has broken the rules. We’ll handle it personally.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-smartphone.svg") %>>
+          <p>Two-factor authentication</p>
+          <p>Use two-factor authentication to protect yourself and your ImageHex account from being compromised, even if your password is stolen.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-secure.svg") %>>
+          <p>Client payment verification (optional)</p>
+          <p>Clients are unable to send commissions before their payment information is verified to protect artists from wasting time with trolls and clients unable to pay.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="imagehex-static-section">
+    <div class="imagehex-static-text">
+      <h2 class="center section-header">Connecting creators with clients</h2>
+      <p class="center section-subheader">Expand your audience, get more clients, and earn more money.</p>
+    
+      <ul class="features-list">
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-marketplace.svg") %>>
+          <p>Marketplace</p>
+          <p>Commissions appear on the open marketplace, providing more exposure and making it easier to find artists accepting commissions.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-notifications.svg") %>>
+          <p>Notify followers</p>
+          <p>Send notifications to followers when you become open for commissions.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-global.svg") %>>
+          <p>It is a small world after all</p>
+          <p>We use Stripe for payments, meaning that we support conversion between more than 100 currencies and accept payment in more than a dozen countries.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="imagehex-static-section">
+    <div class="imagehex-static-text">
+      <h2 class="center section-header">The tools you need to succeed</h2>
+      <p class="center section-subheader">Manage commissions, deadlines, payments, and update clients from one central place.</p>
+    
+      <ul class="features-list">
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-credit-card.svg") %>>
+          <p>Simple payments</p>
+          <p>We handle payments to make sure everything goes smoothly.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-calendar.svg") %>>
+          <p>Deadlines</p>
+          <p>Keep track of deadlines, and opt to recieve email notifications when deadlines are approaching.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-messages.svg") %>>
+          <p>Messages</p>
+          <p>Update clients on progress, request clarification, and send them work-in-progress shots.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="imagehex-static-section">
+    <div class="imagehex-static-text">
+      <h2 class="center section-header">Everyone on the same page</h2>
+      <p class="center section-subheader">Clients often forget to provide crucial details in their requests, but artists aren’t mind readers. We use simple but highly specific parameters to ensure that everyone knows what the final product should look like.</p>
+
+      <ul class="features-list">
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-tag-groups.svg") %>>
+          <p>Tag groups</p>
+          <p>Give the exact details of a character, place, or object.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-reference-images.svg") %>>
+          <p>Reference images</p>
+          <p>Useful for specifying an art style, showing a subject, or giving inspiration.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-calendar.svg") %>>
+          <p>Deadlines</p>
+          <p>Guarantee artwork is delivered on time.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-technical.svg") %>>
+          <p>Technical</p>
+          <p>Agree on the file format, resolution, and orientation so the artwork delivered can be used without issue.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-copyright.svg") %>>
+          <p>License</p>
+          <p>Licensing and rights are communicated up front so clients know what they’re able to do with the art they’re commissioning.</p>
+        </li>
+
+        <li class="feature">
+          <img src=<%= asset_path("commissions/icon-medium.svg") %>>
+          <p>Medium</p>
+          <p>Different artists make use of all kinds of different mediums: digital, 3D rendering, watercolor, pencil, ink, etc.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="imagehex-static-section">
+    <div class="imagehex-static-text">
       <h2 class="center section-header">Pricing</h2>
       <p class="center section-subheader">ImageHex has a simple, transparent pricing structure. We're not interested in tricking artists into paying fees they didn't agree to.</p>
 
       <div class="two-column-container">
-        <section class="generic-container no-hover">
+        <section class="pricing-container generic-container no-hover">
           <div class="detail-icon">
             <img src=<%= asset_path("commissions/icon-fees.svg") %>>
           </div>
@@ -45,7 +171,7 @@
           </table>
         </section>
 
-        <section class="generic-container no-hover">
+        <section class="pricing-container generic-container no-hover">
           <div class="detail-icon">
             <img src=<%= asset_path("commissions/icon-calculator.svg") %>>
           </div>

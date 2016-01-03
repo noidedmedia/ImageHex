@@ -253,6 +253,11 @@ $color2: #00b376;
   }
 
   @media all and (max-width: $mobile-width) {
-    flex-flow: column nowrap;
+    display: block;
+
+    > section {
+      margin: 15px auto;
+      width: 100%;
+    }
   }
 }
