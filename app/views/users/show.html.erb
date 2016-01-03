@@ -28,21 +28,42 @@
           <% end %>
 
           <div class="user-page-website"></div>
-
-          <%# Only show "edit" button if the page belongs to the current user. %>
-          <% if current_user == @user %>
-            <div class="user-page-bio-edit">
-              <%= link_to t(".edit"), edit_user_path %>
-            </div>
-          <% end %>
-
-          <%# Only show "follow" if the page does not belong to the current user. %>
-          <% if current_user != @user %>
-            <div class="user-page-follow">
-              <%# <%= link_to t(".follow"), follow_user_path %>
-            </div>
-          <% end %>
         </div>
+
+        <% if policy(@user).update? %>
+          <%= link_to t(".settings"), edit_user_path(@user), class: "btn btn-minimal btn-minimal-with-padding" %>
+        <% end %>
+
+        <%# If the current user is already following the user, render the Unfollow button as active. If pressed, the Unfollow button is replaced
+        and by the Follow button. %>
+        <% if current_user.try(:subscribed_to?, @user) %>
+
+          <%= form_tag(unsubscribe_user_path(@user.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+            <%= button_tag id: "user-unfollow", class: "btn btn-unfollow active" do %>
+              <span class="btn-text-following"> <%= t(".following") %> </span>
+              <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
+            <% end %>
+          <% end %>
+
+          <%= form_tag(subscribe_user_path(@user.id), "data-signed-in": "ajax", remote: true) do %>
+            <%= button_tag t(".follow"), id: "user-follow", class: "btn btn-follow inactive" %>
+          <% end %>
+
+        <%# If the current user isn't following the user, do the opposite. %>
+        <% else %>
+
+          <%= form_tag(unsubscribe_user_path(@user.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+            <%= button_tag id: "user-unfollow", class: "btn btn-unfollow inactive" do %>
+              <span class="btn-text-following"> <%= t(".following") %> </span>
+              <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
+            <% end %>
+          <% end %>
+
+          <%= form_tag(subscribe_user_path(@user.id), "data-signed-in": "ajax", remote: true) do %>
+            <%= button_tag t(".follow"), id: "user-follow", class: "btn btn-follow active" %>
+          <% end %>
+
+        <% end %>
       </div>
 
       <ul id="user-page-header-tabs">
