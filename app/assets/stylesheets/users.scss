@@ -17,7 +17,6 @@
 
 // User page header
 // Header for all user pages with the respective user's information.
- 
 .user-page-header {
   position: relative;
   width: 100vw;
@@ -29,6 +28,14 @@
   flex-flow: row wrap;
   box-shadow: 8px 0 5px 5px rgba(#000,.1);
   background-color: #fff;
+
+  // Spacing for the user info and actions containers.
+  // Only applies on desktop.
+  @media all and (min-width: $mobile-width) {
+    > div {
+      margin-top: 80px;
+    }
+  }
 
   @media all and (max-width: $mobile-width) {
     display: flex;
@@ -47,7 +54,6 @@
   position: relative;
   display: flex;
   padding: 0 50px;
-  margin-top: 80px;
   margin-bottom: 25px;
 }
 
@@ -137,10 +143,12 @@
 .user-page-actions {
   position: absolute;
   right: 0;
-  
+  width: auto;
+  padding: 0 10px;
 
   @media all and (max-width: $mobile-width) {
     position: relative;
+    width: 100%;
   }
 }
 
