@@ -27,6 +27,11 @@ Rails.application.routes.draw do
     resources :messages, shallow: true
   end
 
+  resources :messages, only: [] do
+    collection do
+      get 'unread'
+    end
+  end
   resources :tags do
     collection do
       get "suggest"

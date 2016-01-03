@@ -48,6 +48,9 @@ class User < ActiveRecord::Base
   # Join table: users -> collections
   has_many :commission_products
   has_many :commission_offers
+  has_many :conversation_users
+  has_many :conversations,
+    through: :conversation_users
   has_many :subscriptions
   has_many :comments
   has_many :subscribed_collections,

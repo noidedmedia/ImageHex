@@ -5,6 +5,9 @@ class MessagesController < ApplicationController
   def index
   end
 
+  def unread
+    @messages = Message.unread_for(current_user)
+  end
   protected
   def set_conversation
     @conversation = Conversation.find(params[:conversation_id])
