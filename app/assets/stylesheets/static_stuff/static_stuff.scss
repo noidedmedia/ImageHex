@@ -131,6 +131,10 @@
       padding: 4px 0;
       display: list-item;
     }
+
+    &.no-left-padding {
+      padding-left: 0;
+    }
   }
 
   form {
