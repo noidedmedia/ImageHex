@@ -141,14 +141,18 @@
 }
 
 .user-page-actions {
-  position: absolute;
+  position: relative;
   right: 0;
-  width: auto;
+  width: 100%;
   padding: 0 10px;
 
-  @media all and (max-width: $mobile-width) {
-    position: relative;
-    width: 100%;
+  @media all and (min-width: $mobile-width) {
+    position: absolute;
+    width: auto;
+
+    > form, > a {
+      display: inline-block;
+    }
   }
 }
 
