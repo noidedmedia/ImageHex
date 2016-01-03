@@ -1,22 +1,21 @@
 <%- title @user.name %>
 
-<div id="user-page-container">
+<div class="user-page-container">
   <% cache_unless current_user, @user do %>
-    <div id="user-page-header">
+    <div class="user-page-header">
       <div class="user-page-information">
-        <div id="user-page-profile-picture">
-          <% if @user.avatar %>
-            <%= image_tag @user.avatar_img %>
-          <% end %>
+        <div class="user-page-profile-picture">
+          <%= image_tag @user.avatar_img %>
         </div>
 
         <div class="user-page-text">
           <div class="user-page-username"><%= @user.name %></div>
 
           <%# User's website goes here. %>
+          <div class="user-page-website"></div>
 
           <%# User bio %>
-          <% if ! @user.description.blank? %>
+          <% if !@user.description.blank? %>
             <div class="user-page-bio">
               <%= markdown_parse @user.description %>
             </div>
@@ -26,16 +25,15 @@
               <%= t(".user_page_bio_empty") %>
             </div>
           <% end %>
-
-          <div class="user-page-website"></div>
         </div>
+      </div>
 
+      <div class="user-page-actions">
         <% if policy(@user).update? %>
           <%= link_to t(".settings"), edit_user_path(@user), class: "btn btn-minimal btn-minimal-with-padding" %>
         <% end %>
 
-        <%# If the current user is already following the user, render the Unfollow button as active. If pressed, the Unfollow button is replaced
-        and by the Follow button. %>
+        <%# If the current user is already following the user, render the Unfollow button as active. If pressed, the Unfollow button is replaced by the Follow button. %>
         <% if current_user.try(:subscribed_to?, @user) %>
 
           <%= form_tag(unsubscribe_user_path(@user.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
@@ -66,7 +64,7 @@
         <% end %>
       </div>
 
-      <ul id="user-page-header-tabs">
+      <ul class="user-page-header-tabs">
         <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".creations", count: @creations.count) %>
         <li data-tab="tab-2" class="user-page-header-tab"><%= t(".uploads", count: @uploads.count) %>
         <li data-tab="tab-3" class="user-page-header-tab"><%= t(".favorites", count: @favorites.count) %>
@@ -76,7 +74,7 @@
     </div>
   <% end %>
 
-  <div id="user-content-container">
+  <div class="user-content-container">
     <div id="user-creations-container" class="user-content tab-content tc-tab-1 current">
       <%= render 'images/show_stub', images: @creations %>
     </div>
