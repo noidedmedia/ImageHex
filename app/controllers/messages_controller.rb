@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   end
 
   def unread
-    @messages = Message.unread_for(current_user)
+    @messages = Message.unread_for(current_user).includes(:user)
   end
   protected
   def set_conversation

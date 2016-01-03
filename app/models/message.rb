@@ -11,4 +11,10 @@ class Message < ActiveRecord::Base
       .where("messages.created_at > conversation_users.last_read_at")
       .order("messages.conversation_id")     
   end
+
+  def self.with_read_status_for(user)
+    joins("INNER JOIN conversation_users ON conversation_users.conversation_id = messages.conversation_id")
+      .where(conversation_users: {user_id: user.id})
+      .select("messages.*, (messages.created_at < conversation_users.last_read_at) AS read")
+  end
 end

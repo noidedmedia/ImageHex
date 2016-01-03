@@ -24,13 +24,11 @@ Rails.application.routes.draw do
 
 
   resources :conversations do
-    resources :messages, shallow: true
+    resources :messages, only: [:index, :new, :create]
   end
 
   resources :messages, only: [] do
-    collection do
-      get 'unread'
-    end
+    get 'unread', on: :collection
   end
   resources :tags do
     collection do
