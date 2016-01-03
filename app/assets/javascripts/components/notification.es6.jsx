@@ -66,14 +66,14 @@ class NotificationItem extends React.Component {
       </a>
     </li>
   }
-  readSelf(){
+  readSelf() {
     NM.postJSON("/notifications/" + this.props.id + "/read", 
                 {}, 
                 (test) => {
                   this.visitLink();
                 });
   }
-  visitLink(){
+  visitLink() {
     this.link();
     Turbolinks.visit(this.link());
   }
