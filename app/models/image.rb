@@ -63,7 +63,7 @@ class Image < ActiveRecord::Base
     huge: "1000x1000>"},
     # Use suffixes for the path
     path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
-  belongs_to :user
+  belongs_to :user, touch: true
 
   before_post_process :downcase_extension
   has_many :tag_groups, -> {includes :tags}, dependent: :delete_all

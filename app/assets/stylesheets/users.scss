@@ -1,46 +1,10 @@
 @import "scss-variables";
 
-.twofactor-qrcode-container {
-  text-align: left;
-  width: 100%;
-  margin-top: 10px;
-  display: inline-block;
+// ==============================================
+//  User page container
+// ==============================================
 
-  p {
-    display: inline-block;
-    vertical-align: top;
-  }
-}
-
-.twofactor-qrcode {
-  height: 200px;
-  width: 200px;
-  margin-right: 10px;
-}
-
-.twofactor-backup-codes-container {
-  display: block;
-  width: 80%;
-  margin: 20px auto;
-
-  ul {
-    list-style: none;
-    font-family: monospace;
-    
-    li {
-      width: 49%;
-      text-align: center;
-      min-width: 240px;
-      display: inline-block;
-    }
-  }
-}
-
-/* ==============================================
-    User page container
-   ============================================== */
-
-#user-page-container {
+.user-page-container {
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
@@ -51,19 +15,9 @@
   }
 }
 
-
-/* ==============================================
-    User Page Header
-   ============================================== */
-
-/**
- * User page header
- *
- * Header for all user pages with the respective user's information.
- *
- */
- 
-#user-page-header {
+// User page header
+// Header for all user pages with the respective user's information.
+.user-page-header {
   position: relative;
   width: 100vw;
   height: auto;
@@ -74,6 +28,14 @@
   flex-flow: row wrap;
   box-shadow: 8px 0 5px 5px rgba(#000,.1);
   background-color: #fff;
+
+  // Spacing for the user info and actions containers.
+  // Only applies on desktop.
+  @media all and (min-width: $mobile-width) {
+    > div {
+      margin-top: 80px;
+    }
+  }
 
   @media all and (max-width: $mobile-width) {
     display: flex;
@@ -92,7 +54,6 @@
   position: relative;
   display: flex;
   padding: 0 50px;
-  margin-top: 80px;
   margin-bottom: 25px;
 }
 
@@ -106,7 +67,7 @@
   }
 }
 
-#user-page-profile-picture {
+.user-page-profile-picture {
   width: 120px;
   height: 120px;
   background-color: #c9c9c9;
@@ -179,24 +140,28 @@
   }
 }
 
-#edit-user-container {
-  display: inline-block;
-  font-size: 1.4rem;
-  margin-top: 75px;
-  margin-left: calc(50vw - 150px);
+.user-page-actions {
+  position: relative;
+  right: 0;
+  width: 100%;
+  padding: 0 10px;
+
+  @media all and (min-width: $mobile-width) {
+    position: absolute;
+    width: auto;
+
+    > form, > a {
+      display: inline-block;
+    }
+  }
 }
 
-// Text field for editing the user's bio.
-#user-bio-field {
-  resize: vertical;
-  max-height: 250px;
-}
 
-/* ==============================================
-    User page content (tabs and/or images)
-   ============================================== */
+// ==============================================
+//  User page content (tabs and/or images)
+// ==============================================
 
-#user-content-container {
+.user-content-container {
   width: 100vw;
 
   a {
@@ -209,20 +174,16 @@
  * User page header tabs
  *
  * Tabs for the user page (Uploads and Collections).
- *
- * 1. User page's header tabs begin 10px from the end of the user
- *    sidebar.
- * 2. Box shadow moved right 8 pixels ensure that it won't run
- *    into the user sidebar.
- * 3. z-index moved down one to prevent the box shadow from
+ * 
+ * 1. z-index moved down one to prevent the box shadow from
  *    showing up over the "sidebar" when the tabs and "sidebar"
- *    are combined into one object for mobile devices.
+ *    are combined into one object.
  */
 
-#user-page-header-tabs {
+.user-page-header-tabs {
   position: relative;
   z-index: 100;
-  padding-left: 40px; /* 1 */
+  padding-left: 40px;
   background-color: #fff;
   margin: 0;
   left: 0;
@@ -232,13 +193,9 @@
   text-overflow: clip;
   white-space: nowrap;
 
-  &.sticky {
-    box-shadow: 8px 0 5px 5px rgba(#000,.1); /* 2 */
-  }
-
   @media all and (max-width: $mobile-width) {
     position: relative;
-    z-index: 99; /* 3 */
+    z-index: 99; /* 1 */
     text-align: center;
     padding-left: 0;
   }
@@ -277,8 +234,8 @@
 }
 
 
-/* Containers for uploads and collections
-   ============================================== */
+// Containers for uploads and collections
+// ==============================================
 
 .user-content {
   padding: 10px;
@@ -290,5 +247,46 @@
 
   @media all and (max-width: $mobile-width) {
     margin-top: 5px;
+  }
+}
+
+
+// ==============================================
+//  Two-Factor Authentication
+// ==============================================
+
+.twofactor-qrcode-container {
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
+  display: inline-block;
+
+  p {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.twofactor-qrcode {
+  height: 200px;
+  width: 200px;
+  margin-right: 10px;
+}
+
+.twofactor-backup-codes-container {
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+
+  ul {
+    list-style: none;
+    font-family: monospace;
+    
+    li {
+      width: 49%;
+      text-align: center;
+      min-width: 240px;
+      display: inline-block;
+    }
   }
 }

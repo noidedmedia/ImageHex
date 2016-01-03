@@ -1,22 +1,21 @@
 <%- title @user.name %>
 
-<div id="user-page-container">
+<div class="user-page-container">
   <% cache_unless current_user, @user do %>
-    <div id="user-page-header">
+    <div class="user-page-header">
       <div class="user-page-information">
-        <div id="user-page-profile-picture">
-          <% if @user.avatar %>
-            <%= image_tag @user.avatar_img %>
-          <% end %>
+        <div class="user-page-profile-picture">
+          <%= image_tag @user.avatar_img %>
         </div>
 
         <div class="user-page-text">
           <div class="user-page-username"><%= @user.name %></div>
 
           <%# User's website goes here. %>
+          <div class="user-page-website"></div>
 
           <%# User bio %>
-          <% if ! @user.description.blank? %>
+          <% if !@user.description.blank? %>
             <div class="user-page-bio">
               <%= markdown_parse @user.description %>
             </div>
@@ -26,42 +25,61 @@
               <%= t(".user_page_bio_empty") %>
             </div>
           <% end %>
-
-          <div class="user-page-website"></div>
-
-          <%# Only show "edit" button if the page belongs to the current user. %>
-          <% if current_user == @user %>
-            <div class="user-page-bio-edit">
-              <%= link_to t(".edit"), edit_user_path %>
-            </div>
-          <% end %>
-
-          <%# Only show "follow" if the page does not belong to the current user. %>
-          <% if current_user != @user %>
-            <div class="user-page-follow">
-              <%# <%= link_to t(".follow"), follow_user_path %>
-            </div>
-          <% end %>
         </div>
       </div>
 
-      <ul id="user-page-header-tabs">
-        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".uploads", count: @uploads.count) %>
-        <li data-tab="tab-2" class="user-page-header-tab"><%= t(".creations", count: @creations.count) %>
+      <div class="user-page-actions">
+        <% if policy(@user).update? %>
+          <%= link_to t(".settings"), edit_user_path(@user), class: "btn btn-minimal btn-minimal-with-padding" %>
+        <% end %>
+
+        <%# If the current user is already following the user, render the Unfollow button as active. If pressed, the Unfollow button is replaced by the Follow button. %>
+        <% if current_user.try(:subscribed_to?, @user) %>
+
+          <%= form_tag(unsubscribe_user_path(@user.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+            <%= button_tag id: "user-unfollow", class: "btn btn-unfollow active" do %>
+              <span class="btn-text-following"> <%= t(".following") %> </span>
+              <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
+            <% end %>
+          <% end %>
+
+          <%= form_tag(subscribe_user_path(@user.id), "data-signed-in": "ajax", remote: true) do %>
+            <%= button_tag t(".follow"), id: "user-follow", class: "btn btn-follow inactive" %>
+          <% end %>
+
+        <%# If the current user isn't following the user, do the opposite. %>
+        <% else %>
+
+          <%= form_tag(unsubscribe_user_path(@user.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+            <%= button_tag id: "user-unfollow", class: "btn btn-unfollow inactive" do %>
+              <span class="btn-text-following"> <%= t(".following") %> </span>
+              <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
+            <% end %>
+          <% end %>
+
+          <%= form_tag(subscribe_user_path(@user.id), "data-signed-in": "ajax", remote: true) do %>
+            <%= button_tag t(".follow"), id: "user-follow", class: "btn btn-follow active" %>
+          <% end %>
+
+        <% end %>
+      </div>
+
+      <ul class="user-page-header-tabs">
+        <li data-tab="tab-1" class="user-page-header-tab current"><%= t(".creations", count: @creations.count) %>
+        <li data-tab="tab-2" class="user-page-header-tab"><%= t(".uploads", count: @uploads.count) %>
         <li data-tab="tab-3" class="user-page-header-tab"><%= t(".favorites", count: @favorites.count) %>
         <li data-tab="tab-4" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
       </ul>
-
     </div>
-  <% end %> 
-  <div id="user-content-container">
+  <% end %>
 
-    <div id="user-uploads-container" class="user-content tab-content tc-tab-1 current">
-      <%= render 'images/show_stub', images: @uploads %>
-    </div>
-
-    <div id="user-creations-container" class="user-content tab-content tc-tab-2">
+  <div class="user-content-container">
+    <div id="user-creations-container" class="user-content tab-content tc-tab-1 current">
       <%= render 'images/show_stub', images: @creations %>
+    </div>
+
+    <div id="user-uploads-container" class="user-content tab-content tc-tab-2">
+      <%= render 'images/show_stub', images: @uploads %>
     </div>
 
     <div id="user-favorites-container" class="user-content tab-content tc-tab-3">
@@ -73,11 +91,11 @@
         <%= render partial: "collections/show_stub", collection: @collections, as: :collection %>
       <% elsif @user == current_user %>
         <p class="imagehex-empty-note">
-        <%= t(".you_dont_have_any_collections_yet") %>
+          <%= t(".you_dont_have_any_collections_yet") %>
         </p>
       <% else %>
         <p class="imagehex-empty-note">
-        <%= t(".this_user_doesnt_have_any_collections_yet") %>
+          <%= t(".this_user_doesnt_have_any_collections_yet") %>
         </p>
       <% end %>
     </div>

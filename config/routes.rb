@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete "/@:id" => "users#destroy"
   post "/@:id/subscribe" => "users#subscribe"
   delete "/@:id/unsubscribe" => "users#unsubscribe"
+
   ############
   # CONCERNS #
   ############
@@ -67,8 +68,8 @@ Rails.application.routes.draw do
       put 'disable_twofactor'
       get 'favorites'
       get 'creations'
-      get 'subscribe'
-      get 'unsubscribe'
+      post 'subscribe'
+      delete 'unsubscribe'
     end
   end
 
