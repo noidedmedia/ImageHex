@@ -1,4 +1,4 @@
-<% cache ["header", current_user || "no-user"] do %>
+<% cache_unless current_user, "header" do %>
 <header id="header-container" role="banner">
   <div id="header-left">
 

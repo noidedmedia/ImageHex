@@ -30,7 +30,7 @@
 
       <div class="user-page-actions">
         <% if policy(@user).update? %>
-          <%= link_to t(".settings"), edit_user_path(@user), class: "btn btn-minimal btn-minimal-with-padding" %>
+          <%= link_to t(".settings"), settings_path, class: "btn btn-minimal btn-minimal-with-padding" %>
         <% end %>
 
         <%# If the current user is already following the user, render the Unfollow button as active. If pressed, the Unfollow button is replaced by the Follow button. %>
