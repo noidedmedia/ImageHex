@@ -1,0 +1,159 @@
+@import "scss-variables";
+
+.features-list {
+  list-style: none;
+  margin-top: 20px;
+
+  .feature {
+    position: relative;
+    padding-left: 50px;
+    color: #333;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 18px;
+
+    img {
+      position: absolute;
+      top: 8px;
+      left: 0;
+      width: 36px;
+      height: 36px;
+    }
+
+    p {
+      font-size: 1.6rem;
+      padding: 0;
+
+      &:first-of-type {
+        font-weight: 400;
+      }
+
+      &:last-of-type {
+        font-weight: 300;
+      }
+    }
+  }
+
+  // Only use this style on desktop.
+  // Otherwise revert to the same style as the other feature lists.
+  @media all and (min-width: $mobile-width) {
+    &.features-list-horizontal {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+
+      .feature {
+        padding: 0;
+        margin: 0 15px;
+        flex: 1 0;
+        max-width: 240px;
+
+        img {
+          position: relative;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  &.features-list-two-column {
+    flex-flow: row wrap;
+    display: flex;
+    justify-content: space-between;
+
+    .feature {
+      flex: 0 1 45%;
+      margin: 5px 0;
+
+      @media all and (max-width: $mobile-width) {
+        flex: 0 1 100%;
+        margin: 10px auto;
+      }
+    }
+  }
+}
+
+.section-graphic {
+  width: 180px;
+  margin: 40px auto 0;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &.wide {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  &.thin {
+    width: 100px;
+  }
+}
+
+.detail-icon {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 25px auto 10px;
+
+  img {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  + h3 {
+    margin-top: 0;
+  }
+}
+
+section.pricing-container {
+  table {
+    margin-top: 20px;
+  }
+
+  > h3 {
+    margin-top: 10px;
+  }
+}
+
+.commission-calculator-input-container {
+  input {
+    width: 45px;
+    border: 0;
+    padding: 0 0 0 2px;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    right: 0;
+    border-bottom: 1px solid rgba(#000, 0.3);
+    transition: border 200ms;
+
+    &:focus {
+      border: 0;
+      border-bottom: 1px solid rgba(#000, 0.8);
+    }
+  }
+
+  // Force alignment of the "Total commission" text and input field.
+  table p {
+    padding: 0;
+  }
+}
+
+.newsletter-sign-up {
+  display: flex;
+  flex: row nowrap;
+  max-width: 400px;
+  margin-top: 8px;
+
+  input[type="text"] {
+    flex: 5 5 300px;
+  }
+
+  input[type="submit"] {
+    flex: 0 0 100px;
+  }
+}
