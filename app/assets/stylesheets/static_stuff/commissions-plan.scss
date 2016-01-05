@@ -36,6 +36,20 @@
   }
 }
 
+.section-graphic {
+  width: 160px;
+  margin: 40px auto 0;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &.wide {
+    width: 100%;
+    max-width: 350px;
+  }
+}
 
 .detail-icon {
   width: 50px;

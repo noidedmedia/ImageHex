@@ -5,16 +5,16 @@
     <h2>A simpler way to commission art online.</h2>
 
     <div class="image-container">
-      <picture>
-        <source srcset=<%= asset_path("commissions/commissions-hero-graphic.svg") %>>
-        <img src=<%= asset_path("commissions/commissions-hero-graphic.png") %>>
-      </picture>
+      
     </div>
 
   </section>
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
+      <div class="section-graphic">
+        <img src=<%= asset_path("commissions/toolbox.svg") %>>
+      </div>
       <h2 class="center section-header">The tools you need to succeed</h2>
       <p class="center section-subheader">Manage commissions, deadlines, get paid, and update clients all from one central place.</p>
     
@@ -22,13 +22,13 @@
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-credit-card.svg") %>>
           <p>Simple payments</p>
-          <p>We handle payments to make sure everything goes smoothly.</p>
+          <p>We handle payments for the client to make sure everything goes smoothly, but allow artists to control their Stripe account independent of ImageHex.</p>
         </li>
 
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-calendar.svg") %>>
           <p>Deadlines</p>
-          <p>Keep track of deadlines, and opt to recieve email notifications when deadlines are approaching.</p>
+          <p>Keep track of deadlines, and opt to recieve email notifications so they can't sneak up on you.</p>
         </li>
 
         <li class="feature">
@@ -42,6 +42,9 @@
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
+      <div class="section-graphic wide">
+        <img src=<%= asset_path("commissions/commissions-hero-graphic.svg") %>>
+      </div>
       <h2 class="center section-header">Connecting creators with clients</h2>
       <p class="center section-subheader">Expand your audience, get more clients, and earn more money.</p>
     
@@ -97,7 +100,8 @@
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
       <h2 class="center section-header">Everyone on the same page</h2>
-      <p class="center section-subheader">Clients often forget to provide crucial details in their requests, but artists aren’t mind readers. We use simple but highly specific parameters to ensure that everyone knows what the final product should look like.</p>
+      <p class="center section-subheader">Clients often forget to provide crucial details in their requests, or details get lost in email threads dozens of messages long.</p>
+      <p class="center section-subheader">Here are a few ways ImageHex helps ease that burden:</p>
 
       <ul class="features-list no-left-padding">
         <li class="feature">
