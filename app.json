@@ -1,9 +1,6 @@
 {
   "name": "ImageHex",
   "description": "An artwork network",
-  "scripts": {
-    "postdeploy": "rake db:migrate"
-  },
   "env": {
     "AWS_ACCESS_KEY_ID": {
       "required": true
@@ -28,10 +25,9 @@
     }
   },
   "addons": [
-    "codacy",
-    "postmark",
-    "papertrail",
-    "heroku-postgresql",
-    "memcachier"
+    "sendgrid:starter",
+    "papertrail:choklad",
+    "heroku-postgresql:hobby-dev",
+    "memcachier:dev"
   ]
 }
