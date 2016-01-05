@@ -25,6 +25,7 @@ class Conversation{
   }
   addMessage(msg){
     this.messages.push(msg);
+    this.associateUser(msg);
     this.sortMessages();
     return this;
   }
@@ -33,17 +34,29 @@ class Conversation{
   addMessages(messages){
     messages.forEach((msg) => {
       this.messages.push(msg);
+      this.associateUser(msg);
     });
     this.sortMessages();
     return this;
   }
+
   sortMessages(){
     this.messages.sort(function(a, b){
       return new Date(a.created_at) - new Date(b.created_at);
     });
   }
+
   trim(num){
     var ind = num | 5
     this.messages = this.messages.slice(0 - ind);
+  }
+  
+  associateUser(msg){
+    for(var i = 0; i < this.users.length; i++){
+      if(this.users[i].id == msg.user_id){
+        msg.user = this.users[i];
+        return this;
+      }
+    }
   }
 }

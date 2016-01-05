@@ -4,8 +4,15 @@ class ConversationComponent extends React.Component{
     this.state = {}
   }
   render(){
+    var messages = this.props.conversation.messages.map((msg) => {
+      return <MessageComponent key={msg.id}
+        message={msg} />;
+    });
     return <div>
-      Conversation with id #{this.props.conversation.id}
-    </div>
+      Conversation
+      <ul className="conversation-message-list">
+        {messages}
+      </ul>
+    </div>;
   }
 }

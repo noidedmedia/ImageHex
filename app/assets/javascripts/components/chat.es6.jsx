@@ -13,10 +13,12 @@ class Chat extends React.Component{
           <progress></progress>
         </div>;
       }
-      var c = this.state.conversationsCollection.map((conv) => {
-        return <ConversationComponent conversation={conv} />;
+      var c = this.state.conversationCollection.map((conv) => {
+        return <ConversationComponent key={conv.id}
+        conversation={conv} />;
       });
       return <div>
+        {c}
       </div>;
     }
     else{
@@ -33,9 +35,13 @@ class Chat extends React.Component{
     console.log("Activating chat");
     if(! this.state.conversationCollection){
       ConversationCollection.getCurrent((conv) => {
+        if(this.state.unread){
+          conv.addMessages(this.state.unread);
+        }
         console.log("Got current collection", conv);
         this.setState({
-          conversationCollection: conv
+          conversationCollection: conv,
+          unread: []
         });
       });
     }
