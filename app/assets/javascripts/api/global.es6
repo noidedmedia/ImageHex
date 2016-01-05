@@ -1,4 +1,5 @@
 var NM = {};
+
 NM.getJSON = function(url, callback){
   aja()
   .url(url)
