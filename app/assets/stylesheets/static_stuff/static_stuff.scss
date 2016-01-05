@@ -37,7 +37,7 @@
 
 .imagehex-static-section {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
 
   &:last-of-type {
     margin-bottom: 40px;
@@ -57,6 +57,32 @@
     max-width: 450px;
     margin: auto;
   }
+
+  &.two-column {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 45px auto 0;
+    width: 100%;
+    max-width: 900px;
+    justify-content: flex-start;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    > div {
+      flex: 0 1 400px;
+      margin: auto;
+
+      // On desktop, place right-column after the first column.
+      // Otherwise, leave it alone.
+      @media all and (min-width: $mobile-width) {
+        &.right-column {
+          order: 2;
+        }
+      }
+    }
+  }
 }
 
 .imagehex-static-text {
@@ -68,6 +94,10 @@
   max-width: 700px;
   margin-bottom: 40px;
   padding: 20px 0;
+
+  &.full-width {
+    max-width: 100%;
+  }
 
   h2 {
     text-align: left;

@@ -34,6 +34,44 @@
       }
     }
   }
+
+  // Only use this style on desktop.
+  // Otherwise revert to the same style as the other feature lists.
+  @media all and (min-width: $mobile-width) {
+    &.features-list-horizontal {
+      display: flex;
+      justify-content: center;
+      flex-flow: row wrap;
+
+      .feature {
+        padding: 0;
+        margin: 0 15px;
+        flex: 1 0;
+        max-width: 240px;
+
+        img {
+          position: relative;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  &.features-list-two-column {
+    flex-flow: row wrap;
+    display: flex;
+    justify-content: space-between;
+
+    .feature {
+      flex: 0 1 45%;
+      margin: 5px 0;
+
+      @media all and (max-width: $mobile-width) {
+        flex: 0 1 100%;
+        margin: 10px auto;
+      }
+    }
+  }
 }
 
 .section-graphic {

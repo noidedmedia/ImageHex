@@ -40,11 +40,12 @@
     </div>
   </section>
 
-  <section class="imagehex-static-section">
+  <section class="imagehex-static-section two-column">
+    <div class="section-graphic right-column wide">
+      <img src=<%= asset_path("commissions/commissions-hero-graphic.svg") %>>
+    </div>
+
     <div class="imagehex-static-text">
-      <div class="section-graphic wide">
-        <img src=<%= asset_path("commissions/commissions-hero-graphic.svg") %>>
-      </div>
       <h2 class="center section-header">Connecting creators with clients</h2>
       <p class="center section-subheader">Expand your audience, get more clients, and earn more money.</p>
     
@@ -71,11 +72,11 @@
   </section>
 
   <section class="imagehex-static-section">
-    <div class="imagehex-static-text">
+    <div class="imagehex-static-text full-width">
       <h2 class="center section-header">Safe, secure, protected</h2>
       <p class="center section-subheader">Commission disputes, two-factor authentication, and other safeguards protect both parties from bad actors.</p>
 
-      <ul class="features-list no-left-padding">
+      <ul class="features-list features-list-horizontal no-left-padding">
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-dispute.svg") %>>
           <p>Commission disputes</p>
@@ -90,7 +91,7 @@
 
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-secure.svg") %>>
-          <p>Client payment verification (optional)</p>
+          <p>Client payment verification</p>
           <p>Clients are unable to send commissions before their payment information is verified to protect artists from wasting time with trolls and clients unable to pay.</p>
         </li>
       </ul>
@@ -103,7 +104,7 @@
       <p class="center section-subheader">Clients often forget to provide crucial details in their requests, or details get lost in email threads dozens of messages long.</p>
       <p class="center section-subheader">Here are a few ways ImageHex helps ease that burden:</p>
 
-      <ul class="features-list no-left-padding">
+      <ul class="features-list features-list-two-column no-left-padding">
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-tag-groups.svg") %>>
           <p>Tag groups</p>
