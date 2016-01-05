@@ -76,7 +76,7 @@ p {
 }
 
 /* Fix for WebKit lists. */
-ul, figure {
+ul, ol, figure {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   -webkit-margin-start: 0;
