@@ -29,10 +29,8 @@ class NotificationList extends React.Component {
     </div>;
   }
   markRead() {
-    console.log("Trying to read notifications");
     NM.postJSON("/notifications/mark_all_read", {}, () => {
       NM.getJSON("/notifications/", (n) => {
-        console.log("Got new notifications");
         document.querySelector(".header-notifications").classList.remove("unread", "active");
         document.querySelector(".notifications-dropdown").classList.remove("active");
         document.querySelector(".notifications-unread-count > a").innerHTML = "0";
@@ -66,14 +64,14 @@ class NotificationItem extends React.Component {
       </a>
     </li>
   }
-  readSelf(){
+  readSelf() {
     NM.postJSON("/notifications/" + this.props.id + "/read", 
                 {}, 
                 (test) => {
                   this.visitLink();
                 });
   }
-  visitLink(){
+  visitLink() {
     this.link();
     Turbolinks.visit(this.link());
   }
@@ -92,7 +90,7 @@ class NotificationItem extends React.Component {
   message() {
     var kind = this.props["kind"];
     var username = this.props.subject.user_name;
-    if(! username) {
+    if (!username) {
       username = this.props.subject.name;
     }
     if (kind == "uploaded_image_commented_on") {
@@ -112,7 +110,7 @@ class NotificationItem extends React.Component {
     }
     if (kind == "new_subscriber") {
       return <p className="notification-message">
-        {username} subscribed to you!
+        {username} has started following you
       </p>;
     }
     else {

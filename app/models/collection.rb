@@ -46,9 +46,13 @@ class Collection < ActiveRecord::Base
   scope :creations, ->{ where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
 
-  def self.by_popularity(interval = 2.weeks.ago..Time.now)
-    joins(:subscriptions)
-    .where(subscriptions: {created_at: interval})
+  def self.by_popularity(inter = 2.weeks.ago..Time.now)
+    subs = Subscription.arel_table
+    col = self.arel_table
+    j = col.join(subs, Arel::Nodes::OuterJoin)
+      .on(subs[:collection_id].eq(col[:id]), subs[:created_at].between(inter))
+      .join_sources
+    res = joins(j)
     .group("collections.id")
     .order("COUNT(subscriptions) DESC")
   end
