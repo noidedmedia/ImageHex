@@ -153,6 +153,13 @@ gem 'apipony'
 # High performance memcached client for Ruby
 gem 'dalli'
 
+##
+# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
+# View what Autoprefixer will change with `rake autoprefixer:info`.
+# Config file: `config/autoprefixer.yml`
+# https://github.com/ai/autoprefixer-rails
+gem 'autoprefixer-rails'
+
 
 ##
 # Development-only gems
