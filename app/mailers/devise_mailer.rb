@@ -2,7 +2,8 @@
 # Sends mail to users.
 class DeviseMailer < Devise::Mailer
   include Devise::Mailers::Helpers
-  default from: "no-reply@imagehex.com"
+  default from: "ImageHex <noreply@imagehex.com>"
+  layout "mailer"
   
   ##
   # Just invokes super.

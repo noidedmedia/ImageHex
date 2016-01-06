@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "no-reply@imagehex.com"
+  default from: "ImageHex <noreply@imagehex.com>"
   layout "mailer"
 end
