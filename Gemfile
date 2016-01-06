@@ -230,7 +230,7 @@ group :development do
   # Config file: `config/scss_lint.yml`
   # Run linter with `rake scss_lint`
   # https://github.com/brigade/scss-lint
-  gem 'scss_lint'
+  gem 'scss_lint', require: false
 end
 
 ##
