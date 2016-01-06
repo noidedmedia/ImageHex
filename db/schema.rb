@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214040947) do
+ActiveRecord::Schema.define(version: 20160106200249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20151214040947) do
   add_index "artist_subscriptions", ["artist_id", "user_id"], name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
   add_index "artist_subscriptions", ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
   add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
+
+  create_table "background_references", force: :cascade do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "commission_background_id", null: false
+  end
+
+  add_index "background_references", ["commission_background_id"], name: "index_background_references_on_commission_background_id", using: :btree
 
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
@@ -61,6 +73,105 @@ ActiveRecord::Schema.define(version: 20151214040947) do
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "commission_backgrounds", force: :cascade do |t|
+    t.integer  "commission_offer_id", null: false
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "commission_backgrounds", ["commission_offer_id"], name: "index_commission_backgrounds_on_commission_offer_id", using: :btree
+
+  create_table "commission_images", force: :cascade do |t|
+    t.integer  "image_id"
+    t.integer  "commission_offer_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "commission_images", ["commission_offer_id"], name: "index_commission_images_on_commission_offer_id", using: :btree
+  add_index "commission_images", ["image_id"], name: "index_commission_images_on_image_id", using: :btree
+
+  create_table "commission_offers", force: :cascade do |t|
+    t.integer  "commission_product_id",                 null: false
+    t.integer  "user_id",                               null: false
+    t.integer  "total_price"
+    t.text     "description"
+    t.datetime "charged_at"
+    t.boolean  "accepted"
+    t.datetime "accepted_at"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "confirmed",             default: false, null: false
+    t.datetime "confirmed_at"
+    t.boolean  "charged",               default: false, null: false
+    t.datetime "due_at"
+    t.text     "stripe_charge_id"
+    t.boolean  "filled",                default: false, null: false
+    t.datetime "filled_at"
+  end
+
+  add_index "commission_offers", ["commission_product_id"], name: "index_commission_offers_on_commission_product_id", using: :btree
+  add_index "commission_offers", ["user_id"], name: "index_commission_offers_on_user_id", using: :btree
+
+  create_table "commission_products", force: :cascade do |t|
+    t.integer  "user_id",                             null: false
+    t.string   "name"
+    t.text     "description"
+    t.integer  "base_price",          default: 1000,  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "included_subjects",   default: 0,     null: false
+    t.boolean  "include_background",  default: false, null: false
+    t.integer  "subject_price"
+    t.integer  "background_price"
+    t.integer  "maximum_subjects"
+    t.boolean  "offer_background",    default: true,  null: false
+    t.boolean  "offer_subjects",      default: true,  null: false
+    t.integer  "weeks_to_completion", default: 4,     null: false
+  end
+
+  add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree
+
+  create_table "commission_subject_tags", force: :cascade do |t|
+    t.integer  "tag_id",                null: false
+    t.integer  "commission_subject_id", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "commission_subject_tags", ["commission_subject_id"], name: "index_commission_subject_tags_on_commission_subject_id", using: :btree
+  add_index "commission_subject_tags", ["tag_id"], name: "index_commission_subject_tags_on_tag_id", using: :btree
+
+  create_table "commission_subjects", force: :cascade do |t|
+    t.integer  "commission_offer_id", null: false
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "commission_subjects", ["commission_offer_id"], name: "index_commission_subjects_on_commission_offer_id", using: :btree
+
+  create_table "conversation_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.datetime "last_read_at"
+  end
+
+  add_index "conversation_users", ["conversation_id"], name: "index_conversation_users_on_conversation_id", using: :btree
+  add_index "conversation_users", ["user_id", "conversation_id"], name: "index_conversation_users_on_user_id_and_conversation_id", unique: true, using: :btree
+  add_index "conversation_users", ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "commission_offer_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "conversations", ["commission_offer_id"], name: "index_conversations_on_commission_offer_id", using: :btree
 
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
@@ -121,6 +232,17 @@ ActiveRecord::Schema.define(version: 20151214040947) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.text     "body"
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
     t.boolean  "read",       default: false, null: false
@@ -131,6 +253,18 @@ ActiveRecord::Schema.define(version: 20151214040947) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
+  create_table "subject_references", force: :cascade do |t|
+    t.integer  "commission_subject_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  add_index "subject_references", ["commission_subject_id"], name: "index_subject_references_on_commission_subject_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
@@ -246,6 +380,9 @@ ActiveRecord::Schema.define(version: 20151214040947) do
     t.jsonb    "elsewhere"
     t.boolean  "two_factor_verified",                   default: false, null: false
     t.string   "otp_backup_codes",                                                   array: true
+    t.text     "stripe_publishable_key"
+    t.text     "stripe_access_token"
+    t.text     "stripe_user_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -254,16 +391,29 @@ ActiveRecord::Schema.define(version: 20151214040947) do
 
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
-  add_foreign_key "collection_images", "collections"
+  add_foreign_key "background_references", "commission_backgrounds", on_delete: :cascade
+  add_foreign_key "collection_images", "collections", on_delete: :cascade
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "commission_backgrounds", "commission_offers"
+  add_foreign_key "commission_images", "commission_offers", on_delete: :cascade
+  add_foreign_key "commission_images", "images", on_delete: :cascade
+  add_foreign_key "commission_offers", "commission_products"
+  add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
+  add_foreign_key "commission_subjects", "commission_offers"
+  add_foreign_key "conversation_users", "conversations", on_delete: :cascade
+  add_foreign_key "conversation_users", "users", on_delete: :cascade
+  add_foreign_key "conversations", "commission_offers", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
+  add_foreign_key "messages", "conversations", on_delete: :cascade
+  add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
+  add_foreign_key "subject_references", "commission_subjects", on_delete: :cascade
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tag_changes", "tags", on_delete: :cascade
