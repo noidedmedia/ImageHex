@@ -1,10 +1,12 @@
+@import "scss-variables";
+
 #tag-group-changes-container {
   display: flex;
   flex-flow: row wrap;
 }
 
 #tag-group-change-label {
-  font-size: 3em;
+  font-size: 3.0rem;
   font-weight: 500;
   padding: 5px;
 }
@@ -13,18 +15,18 @@
   padding: 10px;
 
   h1 {
-    font-size: 1.9em;
+    font-size: 1.9rem;
     font-weight: 500;
   }
 
   h2 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: 500;
   }
 
   a {
     text-decoration: none;
-    color: black;
+    color: #333;
 
     &:hover {
       text-decoration: underline;
@@ -37,7 +39,7 @@
 
   a {
     text-decoration: none;
-    color: black;
+    color: #333;
   
     &:hover {
       text-decoration: underline;

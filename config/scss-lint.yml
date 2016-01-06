@@ -9,6 +9,9 @@ linters:
   ColorKeyword:
     enabled: true
 
+  ColorVariable:
+    enabled: false
+
   # Require empty lines between selector blocks.
   EmptyLineBetweenBlocks:
     enabled: true
@@ -27,9 +30,16 @@ linters:
     enabled: true
     style: lowercase
 
+  LeadingZero:
+    enabled: false
+
   # Ignore property sort order rule.
   PropertySortOrder:
     enabled: false
+
+  SelectorDepth:
+    enabled: true
+    max_depth: 4
 
   # Selector style like `.selector-name`.
   SelectorFormat:
