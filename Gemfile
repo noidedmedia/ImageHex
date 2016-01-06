@@ -227,7 +227,7 @@ group :development do
 
   ##
   # Configurable tool for writing clean and consistent SCSS
-  # Config file: `.scss_lint.yml`
+  # Config file: `config/scss_lint.yml`
   # Run linter with `rake scss_lint`
   # https://github.com/brigade/scss-lint
   gem 'scss_lint'
@@ -242,7 +242,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'pry'
-  
+
   ##
   # https://github.com/thoughtbot/factory_girl_rails
   # A library for setting up Ruby objects as test data.
