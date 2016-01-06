@@ -17,6 +17,7 @@ gem 'pg'
 # Amazon Web Services SDK
 gem 'aws-sdk', '< 2.0'
 
+
 ##
 # https://github.com/plataformatec/devise
 # Devise is "a flexible authentication solution for Rails based on Warden".
@@ -220,12 +221,7 @@ group :development do
   # See the README.md for more on how this works.
   gem 'fontcustom'
 
-  ##
-  # Configurable tool for writing clean and consistent SCSS
-  # Config file: `config/scss_lint.yml`
-  # Run linter with `rake scss_lint`
-  # https://github.com/brigade/scss-lint
-  gem 'scss_lint', require: false
+  
 end
 
 ##
