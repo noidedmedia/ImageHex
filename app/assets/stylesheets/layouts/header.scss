@@ -173,7 +173,6 @@
 #header-create.header-item {
   display: inline-block;
   cursor: pointer;
-  height: 100%;
   margin-right: 4px;
   width: 38px;
   height: $header-height;
@@ -181,7 +180,7 @@
 
   i::before {
     // Firefox hack to get the "+" icon to center within the header-create div.
-    -moz-transform: translateX(-13px);
+    -moz-transform: translateX(-13px); // scss-lint:disable VendorPrefix
   }
 
   &.active {

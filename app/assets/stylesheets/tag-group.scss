@@ -73,12 +73,11 @@
   text-decoration: none;
   color: #333;
   padding: 2px;
-  text-decoration: none;
   position: absolute;
   top: 15px;
   right: 45px;
 
-  &:before {
+  &::before {
     content: $icon-history;
     font-size: 1.6rem;
   }
@@ -138,7 +137,7 @@
   top: 15px;
   right: 15px;
 
-  &:before {
+  &::before {
     content: $icon-edit;
     display: inline-block;
     font-size: 1.9rem;

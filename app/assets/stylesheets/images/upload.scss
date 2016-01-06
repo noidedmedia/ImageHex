@@ -144,7 +144,7 @@
         margin-top: 140px;
       }
       
-      &:before {
+      &::before {
         content: $icon-folder;
         position: absolute;
         display: inline-block;
@@ -230,7 +230,7 @@
   padding: 0;
   position: relative;
 
-  &:after {
+  &::after {
     content: $icon-dropdown;
     font-size: 1.8rem;
     color: #aaaab2;

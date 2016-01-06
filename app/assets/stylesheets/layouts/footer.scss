@@ -123,14 +123,8 @@
   // Only use columns on desktop.
   @media all and (min-width: $mobile-width) {
     display: inherit;
-    -webkit-columns: 100px 2;
-       -moz-columns: 100px 2;
             columns: 100px 2;
-    -webkit-column-gap: 20px;
-       -moz-column-gap: 20px;
             column-gap: 20px;
-    -webkit-column-fill: balance;
-       -moz-column-fill: balance;
             column-fill: balance;
 
     li {

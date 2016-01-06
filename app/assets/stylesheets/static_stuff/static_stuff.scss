@@ -264,7 +264,7 @@ $color2: #00b376;
   }
 
   .image-container {
-    -webkit-user-select: none;
+    -webkit-user-select: none; // scss-lint:disable VendorPrefix
     pointer-events: none;
     height: 200px;
     margin: 130px auto 0;

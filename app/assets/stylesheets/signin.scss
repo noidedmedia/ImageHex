@@ -86,7 +86,7 @@
     color: #333;
     cursor: pointer;
 
-    &:after {
+    &::after {
       content: $icon-checkmark;
       opacity: 0.3;
       position: relative;
@@ -111,7 +111,7 @@
   background-color: transparent;
 
   /* Black square on-checked. */
-  &:after {
+  &::after {
     content: $icon-checkmark;
     opacity: 1;
     font-size: 1.8rem;

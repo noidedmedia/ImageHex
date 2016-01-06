@@ -61,7 +61,7 @@
     color: #17cd94;
 
     /* 2 */
-    &:after {
+    &::after {
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);

@@ -70,7 +70,7 @@
     right: 55px;
     cursor: pointer;
 
-    &:after {
+    &::after {
       content: $icon-close;
       font-size: 1.4rem;
       color: #fff;

@@ -43,14 +43,8 @@
 }
 
 #image-page-information {
-  -webkit-columns: 450px auto;
-  -moz-columns: 450px auto;
        columns: 450px auto;
-  -webkit-column-gap: 20px;
-  -moz-column-gap: 20px;
   column-gap: 20px;
-  -webkit-column-fill: balance;
-     -moz-column-fill: balance;
           column-fill: balance;
 }
 
@@ -106,7 +100,7 @@
   cursor: pointer;
   display: inline-block;
 
-  &:before {
+  &::before {
     content: $icon-plus;
     position: absolute;
     display: inline-block;
@@ -150,7 +144,7 @@
   display: inline-block;
   position: relative;
 
-  &:before {
+  &::before {
     content: $icon-help;
     position: absolute;
     display: inline-block;
@@ -164,7 +158,7 @@
   cursor: pointer;
   display: inline-block;
 
-  &:before {
+  &::before {
     content: $icon-info;
     position: absolute;
     display: inline-block;
@@ -186,7 +180,7 @@
   transform: translateX(-90%);
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 
-  &:before, &:after {
+  &::before, &::after {
     content: '';
     width: 0;
     height: 0;
@@ -197,13 +191,13 @@
   }
 
   // Outline for the arrow protruding outside of the tooltip.
-  &:before {
+  &::before {
     top: -11px;
     border-color: rgba(0,0,0,0.1) transparent;
   }
 
   // Arrow protruding outside of the tooltip.
-  &:after {
+  &::after {
     top: -10px;
     border-color: #fff transparent;
   }
@@ -258,7 +252,7 @@
     position: relative;
     padding-right: 4px;
 
-    &:not(:last-of-type):after {
+    &:not(:last-of-type)::after {
       content: ", ";
       position: absolute;
       right: 3px;
@@ -270,7 +264,7 @@
   cursor: pointer;
   display: inline-block;
 
-  &:before {
+  &::before {
     content: $icon-history;
     position: absolute;
     display: inline-block;

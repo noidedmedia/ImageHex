@@ -51,7 +51,7 @@
     font-weight: 500;
     color: #17cd94;
 
-    &:after {
+    &::after {
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);
