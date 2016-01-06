@@ -18,7 +18,6 @@ gem 'pg'
 gem 'aws-sdk', '< 2.0'
 
 
-gem 'scss_lint'
 ##
 # https://github.com/plataformatec/devise
 # Devise is "a flexible authentication solution for Rails based on Warden".
