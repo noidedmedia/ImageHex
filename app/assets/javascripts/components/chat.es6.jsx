@@ -21,6 +21,7 @@ class Chat extends React.Component{
             key={conv.id}
             currentUserId={this.props.currentUserId}
             fetchOlderMessages={this.fetchOlderMessages.bind(this, ind)}
+            createMessage={this.createMessage.bind(this, conv)}
           />;
         } else {
           return <UnfocusedConversationComponent
@@ -42,6 +43,15 @@ class Chat extends React.Component{
       </div>;
     }
   }
+  createMessage(conversation, body){
+    console.log("Creating message in chat component");
+    conversation.createMessage(body, (message) => {
+      this.setState({
+        conversationCollection: this.state.conversationCollection
+      });
+    });
+  }
+
   fetchOlderMessages(index, callback){
     console.log("Want to fetch messages with index", index);
     var conv = this.state.conversationCollection.conversations[index];
@@ -54,14 +64,26 @@ class Chat extends React.Component{
       });
     });
   }
+
   unreadMessageCount(){
-    this.state.unread.length;
+    if(this.state.unread){
+      return this.state.unread.length;
+    }
+    else if(this.state.conversationsCollection){
+      return this.state.conversationCollection.unreadMessageCount();
+    }
+    else{
+      return "";
+    }
   }
+
   focusConversation(index){
     this.setState({
       focusedIndex: index
     });
+    this.readConversation(this.conversationCollection.conversations[index]);
   }
+
   activate(){
     console.log("Activating chat");
     if(! this.state.conversationCollection){
@@ -70,6 +92,7 @@ class Chat extends React.Component{
           conv.addMessages(this.state.unread);
         }
         console.log("Got current collection", conv);
+        this.readConversation(conv.conversations[0]);
         this.setState({
           conversationCollection: conv,
           unread: []
@@ -82,6 +105,15 @@ class Chat extends React.Component{
       this.state.conversationCollection.addMessages(this.state.unread);
     }
     this.setState(obj);
+  }
+
+  readConversation(conv){
+    console.log("marking ", conv, "as read");
+    conv.markRead(() => {
+      this.setState({
+        conversationsCollection: this.state.conversationsCollection
+      });
+    });
   }
 }
 

@@ -5,7 +5,7 @@ class MessageComponent extends React.Component{
   }
   render(){
     var msg = this.props.message
-    return <li className="message-item">
+    return <li className={this.containerClassName()}>
       <div className="message-user-info">
         <a href={"/@" + msg.user.slug}>
           <img src={this.userAvatar()} 
@@ -17,6 +17,20 @@ class MessageComponent extends React.Component{
       </div>
     </li>;
   }
+
+  containerClassName(){
+    var t = "message-item";
+    if(this.sentBySelf()){
+      console.log("Sent by us, appending...");
+      t = t + " sent-by-self";
+    }
+    return t;
+  }
+
+  sentBySelf(){
+    return this.props.message.user.id == this.props.currentUserId;
+  }
+
   userAvatar(){
     var avatar = this.props.message.user.avatar_path;
     return avatar;

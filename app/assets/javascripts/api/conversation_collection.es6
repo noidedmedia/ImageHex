@@ -14,6 +14,11 @@ class ConversationCollection{
     this.conversations.forEach((conv) => conv.trim(n));
   }
 
+  unreadMessageCount(){
+    return this.conversations.reduce((a, b) => {
+      return a + b.unreadMessageCount();
+    }, 0);
+  }
   map(func){
     return this.conversations.map(func);
   }

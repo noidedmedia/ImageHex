@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :conversations do
     resources :messages, only: [:index, :new, :create]
+    post :read, on: :member
   end
 
   resources :messages, only: [] do

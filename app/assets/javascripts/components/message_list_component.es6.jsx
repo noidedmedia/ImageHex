@@ -3,10 +3,13 @@ class MessageListComponent extends React.Component{
     super(props);
     this.state = {}
   }
+
   render(){
     var messages = this.props.messages.map((msg) => {
       return <MessageComponent key={msg.id}
-        message={msg} />;
+        message={msg} 
+        currentUserId={this.props.currentUserId}
+        />;
     });
     return <ul className="conversation-message-list"
       onScroll={this.scrollMessages.bind(this)}>
@@ -30,6 +33,7 @@ class MessageListComponent extends React.Component{
     this.scrollHeight = node.scrollHeight;
     this.scrollTop = node.scrollTop;
   }
+
   componentDidUpdate(){
     var node = ReactDOM.findDOMNode(this);
     if(this.shouldScrollBottom){
@@ -72,4 +76,6 @@ class MessageListComponent extends React.Component{
       console.log("No reason to get other messages");
     }
   }
+
+
 }
