@@ -1,6 +1,6 @@
 @import "scss-variables";
 
-/* The following animations are used to move the error dialog down below the header, keep it there for 90% of the duration of the animation, then hide it again. */
+// The following animations are used to move the error dialog down below the header, keep it there for 90% of the duration of the animation, then hide it again.
 @keyframes alertAnimation {
   0% {
     display: block;
@@ -25,7 +25,7 @@
   }
 }
 
-/* Generic alert container for all warnings/errors/successful actions. */
+// Generic alert container for all warnings/errors/successful actions.
 .alert {
   animation: alertAnimation 6000ms linear 300ms 1 normal forwards;
   transform: translateY(-40px);
@@ -58,7 +58,7 @@
     position: relative;
   }
 
-  /* If there are multiple errors listed sequentially, this will change all but the first to lower-case so there aren't random capital letters in the middle of a sentence. */
+  // If there are multiple errors listed sequentially, this will change all but the first to lower-case so there aren't random capital letters in the middle of a sentence.
   p:not(:first-of-type) {
     text-transform: lowercase;
   }
@@ -93,7 +93,7 @@
   }
 }
 
-/* Style for positive alerts. */
+// Style for positive alerts.
 .alert-success,
 .alert-notice {
   background-color: $color-success;
@@ -103,7 +103,7 @@
   }
 }
 
-/* Style for informative alerts. */
+// Style for informative alerts.
 .alert-info {
   background-color: $color-info;
 
@@ -112,7 +112,7 @@
   }
 }
 
-/* Style for less severe errors. */
+// Style for less severe errors.
 .alert-warning,
 .alert-alert {
   background-color: $color-warning;
@@ -122,7 +122,7 @@
   }
 }
 
-/* Style for "dangerous" errors. */
+// Style for "dangerous" errors.
 .alert-danger {
   background-color: $color-danger;
 

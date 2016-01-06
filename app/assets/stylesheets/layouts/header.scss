@@ -166,7 +166,7 @@
   }
   
   @media all and (max-width: $mobile-width) {
-    padding: 15px 15px;
+    padding: 15px;
   }
 }
 
@@ -176,7 +176,7 @@
   margin-right: 4px;
   width: 38px;
   height: $header-height;
-  padding: 12px 12px;
+  padding: 12px;
 
   i::before {
     // Firefox hack to get the "+" icon to center within the header-create div.

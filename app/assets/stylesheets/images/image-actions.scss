@@ -1,8 +1,8 @@
 @import "scss-variables";
 
-/* ==============================================
-    General
-   ============================================== */
+// ==============================================
+//  General
+// ==============================================
 .image-actions-sidebar {
   width: 20vw;
   background-color: #272727;
@@ -34,10 +34,10 @@
     font-weight: 300;
     width: 100%;
     text-decoration: none;
-    color: rgba(#fff,0.8);
+    color: rgba(#fff, 0.8);
 
     &:hover {
-      color: rgba(#fff,1.0);
+      color: rgba(#fff, 1.0);
     }
 
     @media all and (max-width: $mobile-width) {
@@ -57,8 +57,8 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #333333;
-    color: rgba(#fff,1.0);
+    background-color: #333;
+    color: rgba(#fff, 1.0);
 
     @media all and (max-width: $mobile-width) {
       background-color: transparent;
@@ -98,7 +98,7 @@
   background: #fff;
   color: #333;
   border-radius: 3px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   display: none;
 
   .agree-button {
@@ -132,9 +132,9 @@
     display: none;
   }
 
-  /* A dumb CSS hack to increase the specifity of this selector and 
-   override the .active class. This ensures that the element will not
-   be shown, without relying on an "!important" declaration. */
+  // A dumb CSS hack to increase the specifity of this selector and 
+  // override the .active class. This ensures that the element will not
+  // be shown, without relying on an "!important" declaration.
   &.not-signed-in.not-signed-in {
     display: none;
   }
@@ -181,9 +181,9 @@
 }
 
 
-/* ==============================================
-    Download
-   ============================================== */
+// ==============================================
+//  Download
+// ==============================================
 
 #img-action-download-tooltip {
   top: -25px;
@@ -204,9 +204,9 @@
 }
 
 
-/* ==============================================
-    Favorite
-   ============================================== */
+// ==============================================
+//  Favorite
+// ==============================================
 
 .image-actions-favorite-container {
   width: 100%;
@@ -215,7 +215,7 @@
   > div > a {
     display: block;
     padding: 10px 20px;
-    color: rgba(#fff,0.8);
+    color: rgba(#fff, 0.8);
 
     @media all and (max-width: $mobile-width) {
       padding: 10px 15px;
@@ -223,7 +223,7 @@
   }
 
   &:hover > div > a {
-    color: rgba(#fff,1.0);
+    color: rgba(#fff, 1.0);
   }
 
   @media all and (max-width: $mobile-width) {
@@ -245,9 +245,9 @@
 }
 
 
-/* ==============================================
-    Add a collection
-   ============================================== */
+// ==============================================
+//  Add a collection
+// ==============================================
 
 #collection-add-list-container {
   overflow: hidden;
@@ -284,13 +284,13 @@
     background-color: #fff;
   }
    
-  /* Handle */
+  // Handle
   &::-webkit-scrollbar-thumb {
     border-radius: 0;
-    background-color: rgba(#333,0.7);
+    background-color: rgba(#333, 0.7);
 
     &:hover {
-      background-color: rgba(#333,0.8);
+      background-color: rgba(#333, 0.8);
     }
   }
 }
@@ -299,7 +299,7 @@
   width: 100%;
   font-size: 1.3rem;
   font-weight: 300;
-  color: rgba(#333,0.8);
+  color: rgba(#333, 0.8);
   border: 0;
   border-radius: 0;
   -webkit-appearance: none;
@@ -320,7 +320,7 @@
 
   &:hover {
     color: #333;
-    background-color: darken(#fff,5%);
+    background-color: darken(#fff, 5%);
   }
 
   &:focus {
@@ -343,9 +343,9 @@
 }
 
 
-/* ==============================================
-    Share
-   ============================================== */
+// ==============================================
+//  Share
+// ==============================================
 
 #img-action-share-tooltip {
   width: 275px;
@@ -465,9 +465,9 @@
 
 
 
-/* ==============================================
-    Report
-   ============================================== */
+// ==============================================
+//  Report
+// ==============================================
 
 #img-action-report-tooltip {
   top: -200px;
@@ -591,9 +591,9 @@
 }
 
 
-/* ==============================================
-    Delete
-   ============================================== */
+// ==============================================
+//  Delete
+// ==============================================
 
 #img-action-delete {
   transition: background-color 200ms;

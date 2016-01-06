@@ -17,37 +17,39 @@
 
 @import "scss-variables";
 
-/* Selector for all elements, don't put anything here without a lot of thought first. */
-/* Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height. */
+// scss-lint:disable SingleLinePerSelector
+
+// Selector for all elements, don't put anything here without a lot of thought first.
+// Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height.
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Styles applicable to all pages. */
+// Styles applicable to all pages.
 html, body {
   font: 400 10px $font-stack;
   background-color: #f0f0f0;
   margin: 0;
   overflow-x: hidden;
 
-  /* Only apply "height: 100%" to desktop devices or else 
-     weird things happen with mobile scrolling. */
+  // Only apply "height: 100%" to desktop devices or else 
+  // weird things happen with mobile scrolling.
   @media all and (min-width: $mobile-width) {
     height: 100%;
   }
 
-  /* Fix for iOS Safari messing with the text size. */
+  // Fix for iOS Safari messing with the text size.
   @media all and (max-width: $mobile-width) {
     -webkit-text-size-adjust: none;
   }
 }
 
-/* Removes margins from all header items. */
+// Removes margins from all header items.
 h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
-/* Font sizing for all header elements specifically, h1-h5. */
+// Font sizing for all header elements specifically, h1-h5.
 h1 {
   font-size: 3.2rem;
 }
@@ -68,14 +70,14 @@ h5 {
   font-size: 1.8rem;
 }
 
-/* Removes margin from all paragraph, or "p" elements. */
+// Removes margin from all paragraph, or "p" elements.
 p {
   margin: 0;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
 }
 
-/* Fix for WebKit lists. */
+// Fix for WebKit lists.
 ul, ol, figure {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
@@ -91,13 +93,13 @@ li {
   display: block;
 }
 
-/* Fix for WebKit search decorations. */
+// Fix for WebKit search decorations.
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
 
-/* Fix for Safari adding a box-shadow to text fields on iOS. */ 
+// Fix for Safari adding a box-shadow to text fields on iOS.
 input[type="text"],
 input[type="password"],
 input[type="email"] {
@@ -109,7 +111,7 @@ textarea {
   font-family: $font-stack;
 }
 
-/* Fix for WebKit input text style. */
+// Fix for WebKit input text style.
 input, textarea, keygen, select, button {
   font: 400 inherit $font-stack;
 }

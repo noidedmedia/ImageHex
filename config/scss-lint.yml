@@ -30,8 +30,14 @@ linters:
     enabled: true
     style: lowercase
 
+  IdSelector:
+    enabled: false
+
   LeadingZero:
     enabled: false
+
+  NestingDepth:
+    max_depth: 4
 
   # Ignore property sort order rule.
   PropertySortOrder:
@@ -50,6 +56,9 @@ linters:
   SpaceBeforeBrace:
     enabled: true
     style: space
+
+  StringQuotes:
+    enabled: false
 
   # Don't include units with 0 values, e.g. `0px` vs. just `0`, the latter is slightly more performant.
   ZeroUnit:
