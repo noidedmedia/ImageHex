@@ -214,6 +214,7 @@ class UsersController < ApplicationController
             :avatar,
             :otp_required_for_login,
             :description,
+            :subscribed_to_newsletter,
             content_pref: [:nsfw_language,
               :nsfw_gore,
               :nsfw_nudity,
