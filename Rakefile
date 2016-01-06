@@ -3,7 +3,7 @@
 require 'rdoc/task'
 require 'scss_lint/rake_task'
 
-SCSSLint::RakeTask.new  do |t|
+SCSSLint::RakeTask.new :development do |t|
   t.config = 'config/scss-lint.yml'
   t.files = ['app/assets/stylesheets']
 end
