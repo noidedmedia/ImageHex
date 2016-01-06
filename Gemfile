@@ -224,6 +224,13 @@ group :development do
   # Use FontCustom for generating the icon font.
   # See the README.md for more on how this works.
   gem 'fontcustom'
+
+  ##
+  # Configurable tool for writing clean and consistent SCSS
+  # Config file: `.scss_lint.yml`
+  # Run linter with `rake scss_lint`
+  # https://github.com/brigade/scss-lint
+  gem 'scss_lint'
 end
 
 ##
@@ -235,6 +242,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'pry'
+  
   ##
   # https://github.com/thoughtbot/factory_girl_rails
   # A library for setting up Ruby objects as test data.
