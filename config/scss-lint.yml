@@ -1,4 +1,8 @@
-scss_files: 'app/assets/stylesheets/**/*.scss'
+scss_files: '../app/assets/stylesheets/**/*.scss'
+
+exclude:
+  - '../app/assets/stylesheets/_imagehexicons.scss'
+  - '../app/assets/stylesheets/application.scss'
 
 linters:
   # Always indent with 2 spaces.

@@ -6,7 +6,6 @@ require 'scss_lint/rake_task'
 SCSSLint::RakeTask.new  do |t|
   t.config = 'config/scss-lint.yml'
   t.files = ['app/assets/stylesheets']
-  t.args = ['-e', 'app/assets/stylesheets/_imagehexicons.scss']
 end
 
 RDoc::Task.new :documentation do |rdoc|
