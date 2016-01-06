@@ -1,12 +1,6 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 require 'rdoc/task'
-require 'scss_lint/rake_task'
-
-SCSSLint::RakeTask.new :development do |t|
-  t.config = 'config/scss-lint.yml'
-  t.files = ['app/assets/stylesheets']
-end
 
 RDoc::Task.new :documentation do |rdoc|
   rdoc.rdoc_files.include("README.rdoc", "app/**/*.rb", "lib/**/*.rb", "config/locales/**/*.rdoc")
