@@ -254,6 +254,13 @@ group :development, :test do
   # Use .env files for development secret keys
   # Our real key is set in production
   gem 'dotenv-rails'
+
+  ##
+  # Configurable tool for writing clean and consistent SCSS
+  # Config file: `config/scss_lint.yml`
+  # Run linter with `rake scss:lint`
+  # https://github.com/brigade/scss-lint
+  gem 'scss_lint', require: false
 end
 
 ##
