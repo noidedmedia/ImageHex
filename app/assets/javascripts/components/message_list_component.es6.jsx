@@ -53,14 +53,16 @@ class MessageListComponent extends React.Component{
   }
 
   checkForOlderMessageFetch(){
+    console.group("Checking if we need to fetch older messages...");
     if(this.state.fetchingMessages){
       console.log("We are already fetching messages, stopping check");
+      console.groupEnd();
       return;
     }
     var node = ReactDOM.findDOMNode(this);
     console.log("Scrolltop of node:",node.scrollTop);
     if(node.scrollTop < 100 && this.props.hasOlderMessages()){
-      console.log("Fetching older messages...");
+      console.log("Older message fetch needed. Starting now");
       this.props.fetchOlderMessages(() => {
         this.setState({
           fetchingMessages: false
@@ -73,8 +75,9 @@ class MessageListComponent extends React.Component{
       });
     } 
     else{
-      console.log("No reason to get other messages");
+      console.log("Older message fetch is not needed.");
     }
+    console.groupEnd();
   }
 
 

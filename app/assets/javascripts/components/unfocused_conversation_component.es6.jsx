@@ -21,10 +21,8 @@ class UnfocusedConversationComponent extends React.Component{
   }
   title(){
     var base = this.userNameList();
-    if(this.props.conversation.hasUnreadMessages()){
-      var count = this.props.conversation.unreadMessagesCount();
-      base = base + "(" + count + " unread)";
-    }
+    var count = this.props.conversation.unreadMessageCount();
+    base += ` (${count} unread)`;
     return base;
   }
 }

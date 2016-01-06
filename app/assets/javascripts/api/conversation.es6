@@ -32,8 +32,11 @@ class Conversation{
   }
 
   unreadMessageCount(){
+    if(this.messages === []){
+      return 0;
+    }
     var init = 0;
-    for(var i = this.messages.length - 1; i >= 0; i++){
+    for(var i = this.messages.length - 1; i >= 0; i--){
       if(this.messages[i].read){
         return init;
       }
@@ -43,22 +46,24 @@ class Conversation{
   }
 
   hasUnreadMessages(){
-    return this.unreadMessageCount === 0;
+    return this.unreadMessageCount() === 0;
   }
 
   markRead(callback){
-    console.log("Trying to mark read");
+    console.log(`Conversation ${this.id} told to mark self as read.`);
     NM.postJSON(this.baseURL() + "/read", {}, () => {
       this.messages.forEach((msg) => msg.read = true);
+      console.log(`Conversation ${this.id} successfully marked as read.`);
       callback(this);
     });
   }
 
   createMessage(body, callback, error){
     var url = this.baseURL() + "/messages";
-    console.log("Creating a message on converation" + this.id);
-    console.log("Body is:",body);
+    console.log(`Conversation ${this.id} informed to create a message.`);
+    console.log(`Message createion gives us a body string of ${body}`);
     var success = (msg) => {
+      console.log(`New message (${msg.id}) created on #${this.id}.`);
       this.addMessage(new Message(msg));
       callback(this);
     };
@@ -76,7 +81,7 @@ class Conversation{
       if(msg = this.oldestMessage()){
         url = url + "?before=" + msg.created_at;
       }
-      console.log("Fetching older messages with URL",url);
+      console.log(`Fetching older messages for conversation ${this.id}`);
       NM.getJSON(url, (data) => {
         if(data.length == 0){
           this._hasOlder = false;

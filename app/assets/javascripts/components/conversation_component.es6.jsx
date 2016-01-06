@@ -41,6 +41,9 @@ class ConversationComponent extends React.Component{
   submitMessage(){
     console.log("Submitting a new message with body:",this.state.inputValue);
     this.props.createMessage(this.state.inputValue);
+    this.setState({
+      inputValue: ""
+    });
   }
 
   hasOlderMessages(){
@@ -52,10 +55,6 @@ class ConversationComponent extends React.Component{
       .filter((u) => u.id !== this.props.currentUserId)
       .map((u) => u.name)
       .join(", ");
-    if(this.props.conversation.hasUnreadMessages()){
-      var unreadCount = this.props.conversation.unreadMessageCount();
-      return users + "(" + unreadCount + " unread)";
-    }
-    return users;
+    return `Conversation with ${users}`;
   }
 }

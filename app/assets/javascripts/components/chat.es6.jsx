@@ -53,11 +53,10 @@ class Chat extends React.Component{
   }
 
   fetchOlderMessages(index, callback){
-    console.log("Want to fetch messages with index", index);
     var conv = this.state.conversationCollection.conversations[index];
-    console.log("Fetching older messages for conv", conv);
+    console.log(`Told to fetch older messages for ${conv.id}, doing so.`);
     conv.fetchOlderMessages((msg) => {
-      console.log("Message fetch finished");
+      console.log("Message fetch finished. Updating state.");
       callback();
       this.setState({
         conversationCollection: this.state.conversationCollection
@@ -81,17 +80,17 @@ class Chat extends React.Component{
     this.setState({
       focusedIndex: index
     });
-    this.readConversation(this.conversationCollection.conversations[index]);
+    var conv = this.state.conversationCollection.conversations[index];
+    this.readConversation(conv);
   }
 
   activate(){
-    console.log("Activating chat");
+    console.log("Chat linked is clicked, activating...");
     if(! this.state.conversationCollection){
       ConversationCollection.getCurrent((conv) => {
         if(this.state.unread){
           conv.addMessages(this.state.unread);
         }
-        console.log("Got current collection", conv);
         this.readConversation(conv.conversations[0]);
         this.setState({
           conversationCollection: conv,
@@ -108,7 +107,7 @@ class Chat extends React.Component{
   }
 
   readConversation(conv){
-    console.log("marking ", conv, "as read");
+    console.log("Marking all messages in conversation #",conv.id,"as read");
     conv.markRead(() => {
       this.setState({
         conversationsCollection: this.state.conversationsCollection
