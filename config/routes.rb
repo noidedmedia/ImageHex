@@ -31,7 +31,9 @@ Rails.application.routes.draw do
 
   resources :messages, only: [] do
     get 'unread', on: :collection
+    get 'by_time', on: :collection
   end
+
   resources :tags do
     collection do
       get "suggest"

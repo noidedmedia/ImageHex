@@ -12,6 +12,14 @@ class MessagesController < ApplicationController
     end
   end
 
+  def by_time
+    @messages = Message.for_user(current_user)
+    if c = Time.parse(params[:after])
+      @messages = @messages.posted_since(c)
+    end
+    render 'index'
+  end
+
   def create
     @message = @conversation.messages.build(message_params)
     respond_to do |format|

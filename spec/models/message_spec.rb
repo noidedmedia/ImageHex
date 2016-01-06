@@ -2,7 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Message, type: :model do
   describe "scopes" do
-    describe "relating to reading" do
+    describe ".posted_since" do
+      it "gives messages posted since a certain date" do
+        b = create(:message)
+        a = create(:message)
+        expect(Message.posted_since(b.created_at)).to eq([a])
+      end
+    end
+
+    context "relating to reading" do
       let(:user_a){ create(:user) }
       let(:user_b){ create(:user) }
       let(:conv){ 
@@ -43,6 +51,9 @@ RSpec.describe Message, type: :model do
         describe ".unread_for" do
           it "shows unread messages" do
             expect(conv.messages.unread_for(user_a)).to eq([@message_c])
+          end
+          it "restricts to messages the user can see" do
+            expect(conv.messages.unread_for(create(:user))).to eq([])
           end
         end
         describe ".with_read_status_for" do

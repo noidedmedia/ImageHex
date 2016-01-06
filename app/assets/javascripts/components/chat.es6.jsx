@@ -6,7 +6,9 @@ class Chat extends React.Component{
       hasFetchedConversations: false,
       focusedIndex: 0
     }
+
   }
+
   render(){
     if(this.state.active){
       if(! this.state.conversationCollection){
@@ -43,11 +45,13 @@ class Chat extends React.Component{
       </div>;
     }
   }
+
   createMessage(conversation, body){
     console.log("Creating message in chat component");
     conversation.createMessage(body, (message) => {
       this.setState({
-        conversationCollection: this.state.conversationCollection
+        conversationCollection: this.state.conversationCollection,
+        lastMessageSent: new Date();
       });
     });
   }
@@ -83,9 +87,17 @@ class Chat extends React.Component{
     var conv = this.state.conversationCollection.conversations[index];
     this.readConversation(conv);
   }
+  // Start listening periodically for changes 
+  beginPolling(){
+    function poll(){
+
+    }.bind(this);
+
+  }
 
   activate(){
     console.log("Chat linked is clicked, activating...");
+    this.beginPolling();
     if(! this.state.conversationCollection){
       ConversationCollection.getCurrent((conv) => {
         if(this.state.unread){

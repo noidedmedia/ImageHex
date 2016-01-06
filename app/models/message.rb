@@ -30,4 +30,9 @@ class Message < ActiveRecord::Base
       .where(conversation_users: {user_id: user.id})
       .select("messages.*, (messages.created_at < conversation_users.last_read_at) AS read")
   end
+
+  def self.posted_since(timestamp)
+    where("messages.created_at > ?",timestamp)
+  end
+
 end
