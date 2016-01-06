@@ -35,11 +35,6 @@ gem 'rqrcode-rails3'
 gem 'mini_magick'
 
 ##
-# Use .env files for development secret keys
-# Our real key is set in production
-gem 'dotenv-rails', groups: [:development, :test]
-
-##
 # https://github.com/elabs/pundit
 # Use Pundit for authorization.
 gem 'pundit'
@@ -258,6 +253,11 @@ group :development, :test do
   # Mailcatcher for confirming that mails work.
   # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
   gem 'mailcatcher'
+
+  ##
+  # Use .env files for development secret keys
+  # Our real key is set in production
+  gem 'dotenv-rails'
 end
 
 ##
