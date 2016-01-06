@@ -64,6 +64,9 @@ linters:
   StringQuotes:
     enabled: false
 
+  UnnecessaryMantissa:
+    enabled: false
+
   # Don't include units with 0 values, e.g. `0px` vs. just `0`, the latter is slightly more performant.
   ZeroUnit:
     enabled: true

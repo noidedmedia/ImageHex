@@ -1,6 +1,6 @@
 @import "scss-variables";
 
-/* Container for the header item, always fixed to the top of the screen. */
+// Container for the header item, always fixed to the top of the screen.
 #header-container {
   background-color: #333;
   color: #fff;
@@ -27,7 +27,7 @@
   }
 }
 
-/* Items aligned to the left side of the header. */
+// Items aligned to the left side of the header.
 #header-left {
   display: inline-block;
   left: 50px;
@@ -89,7 +89,7 @@
   }
 }
 
-/* Items aligned to the right side of the header. */
+// Items aligned to the right side of the header.
 #header-right {
   display: inline-block;
   position: relative;
@@ -139,7 +139,7 @@
   }
 }
 
-/* Header items, e.g. "Sign out", "Upload", etc. */
+// Header items, e.g. "Sign out", "Upload", etc.
 .header-item {
   color: #aaaab2;
   display: inline-block;
@@ -186,7 +186,8 @@
   &.active {
     background-color: #fff;
     
-    i, i::before {
+    i,
+    i::before {
       color: #333;
     }
   }
@@ -248,10 +249,8 @@
     transition: color 300ms;
   }
 
-  &.active {
-    span::before {
-      color: #fff;
-    }
+  &.active span::before {
+    color: #fff;
   }
 
   @media all and (max-width: $mobile-width) {

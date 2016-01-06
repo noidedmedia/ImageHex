@@ -1,9 +1,9 @@
 @import "scss-variables";
 
 
-/* ==============================================
-    Company pages container
-   ============================================== */
+// ==============================================
+//  Company pages container
+// ==============================================
    
 #about-page-container,
 #people-page-container,
@@ -18,14 +18,12 @@
 }
 
 
-/**
- * Company pages navigation
- *
- * Navigational header for the company pages.
- *
- * 1. Horizontal padding for each of the navigational items.
- * 2. Green underline for the current section title.
- */
+
+// Company pages navigation
+// Navigational header for the company pages.
+//
+// 1. Horizontal padding for each of the navigational items.
+// 2. Green underline for the current section title.
  
 #company-nav-container {
   width: 100vw;
@@ -41,7 +39,7 @@
 
     a {
       display: inline-block;
-      padding: 0 25px; /* 1 */
+      padding: 0 25px; // 1
     }
   }
 
@@ -60,7 +58,7 @@
     font-weight: 500;
     color: #17cd94;
 
-    /* 2 */
+    // 2
     &::after {
       content: '';
       background-color: #17cd94;
@@ -72,7 +70,7 @@
   }
 }
 
-/* Content container for Company pages. */
+// Content container for Company pages.
 .company-page-main-column {
   display: block;
   margin: auto;
@@ -80,7 +78,7 @@
   margin-top: 25px;
 }
 
-/* Content for Company pages. */
+// Content for Company pages.
 .company-page-content {
   color: #333;
   font-size: 1.4rem;
@@ -90,4 +88,3 @@
     padding: 0 0 12px;
   }
 }
-
