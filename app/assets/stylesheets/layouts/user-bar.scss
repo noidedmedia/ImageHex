@@ -36,7 +36,7 @@
       opacity: 1.0;
     }
 
-    &:after {
+    &::after {
       transform: rotateZ(-180deg);
       color: #333;
     }
@@ -63,7 +63,7 @@
       text-decoration: none;
       color: #333;
       background-color: transparent;
-      border: none;
+      border: 0;
       appearance: none;
       -webkit-appearance: none;
       font-size: 1.4rem;
@@ -84,7 +84,7 @@
     }
   }
 
-  &:after {
+  &::after {
     content: $icon-dropdown;
     font-size: 1.4rem;
     display: inline-block;
@@ -99,7 +99,6 @@
 @media all and (max-width: $mobile-width) {
   .user-bar {
     position: initial;
-    width: auto;
     display: auto;
     padding: 0;
     margin: 0;
@@ -112,7 +111,7 @@
       box-shadow: none;
     }
 
-    &:after {
+    &::after {
       display: none;
     }
 
@@ -123,7 +122,7 @@
     ul {
       background: none;
       display: inline-block;
-      border: none;
+      border: 0;
       position: relative;
       opacity: 1.0;
       visibility: visible;

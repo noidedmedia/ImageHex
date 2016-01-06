@@ -1,16 +1,20 @@
 @import "scss-variables";
 
-.icon:before {
+.icon::before {
   position: absolute;
   color: #aaaab2;
+  // scss-lint:disable VendorPrefix
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  // scss-lint:enable VendorPrefix
   font-family: $font-stack;
 }
 
-[data-icon]:before { content: attr(data-icon); }
+[data-icon]::before {
+  content: attr(data-icon);
+}
 
-[data-icon]:before,
+[data-icon]::before,
 .icon {
   font-family: "imagehexicons";
   font-style: normal;
@@ -20,84 +24,86 @@
   text-decoration: inherit;
   text-rendering: optimizeLegibility;
   text-transform: none;
+  // scss-lint:disable VendorPrefix
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  // scss-lint:enable VendorPrefix
   font-smoothing: antialiased;
 }
 
 // Home icon
-.icon-home:before {
+.icon-home::before {
   content: $icon-placeholder;
 }
 
 // Search icon
-.icon-search:before {
+.icon-search::before {
   content: $icon-search;
 }
 
 // Menu icon
-.icon-menu:before {
+.icon-menu::before {
   content: $icon-menu;
 }
 
 // Close icon
-.icon-close:before {
+.icon-close::before {
   content: $icon-close;
 }
 
-.icon-download:before {
+.icon-download::before {
   content: $icon-download;
 }
 
-.icon-favorite:before {
+.icon-favorite::before {
   content: $icon-heart-outline;
 }
 
-.icon-favorited:before {
+.icon-favorited::before {
   content: $icon-heart-fill;
 }
 
-.icon-add:before {
+.icon-add::before {
   content: $icon-plus;
 }
 
-.icon-share:before {
+.icon-share::before {
   content: $icon-share;
 }
 
-.icon-report:before {
+.icon-report::before {
   content: $icon-flag;
 }
 
-.icon-delete:before {
+.icon-delete::before {
   content: $icon-trash;
 }
 
-.icon-checkmark:before {
+.icon-checkmark::before {
   content: $icon-checkmark;
 }
 
-.icon-small:before {
+.icon-small::before {
   font-size: 1.8rem;
 }
 
-.icon-medium:before {
+.icon-medium::before {
   font-size: 3.2rem;
 }
 
-.icon-large:before {
+.icon-large::before {
   font-size: 4.8rem;
 }
 
-.icon-huge:before {
+.icon-huge::before {
   font-size: 7.2rem;
   // Translate left half of the font-size to enable centering.
   transform: translateX(-3.6rem);
 }
 
-.icon-dark:before {
+.icon-dark::before {
   color: #333;
 }

@@ -1,18 +1,18 @@
 @import "scss-variables";
 
 
-/* ==============================================
-    People page
-   ============================================== */
+// ==============================================
+//  People page
+// ==============================================
 
-/* Staff list container. */
+// Staff list container.
 #people-page-list-container {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
 }
 
-/* List items in the people page. */
+// List items in the people page.
 .people-page-list-item {
   width: 200px;
   margin: 0 20px 20px 0;
@@ -33,7 +33,7 @@
   }
 }
 
-/* Photos for the Staff page. */
+// Photos for the Staff page.
 .people-page-list-item-photo {
   background-color: #d6d6d6;
   height: 240px;
@@ -48,14 +48,14 @@
   }
 }
 
-/* Styling for staff name's displayed below their portrait.. */
+// Styling for staff name's displayed below their portrait.
 .people-page-list-item-name {
   font-size: 1.4rem;
   font-weight: 500;
   padding: 8px 0 4px;
 }
 
-/* Job title for staff members. */
+// Job title for staff members.
 .people-page-list-item-job-title {
   font-size: 1.2rem;
   font-weight: 400;

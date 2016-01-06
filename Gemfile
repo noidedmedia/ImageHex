@@ -35,11 +35,6 @@ gem 'rqrcode-rails3'
 gem 'mini_magick'
 
 ##
-# Use .env files for development secret keys
-# Our real key is set in production
-gem 'dotenv-rails', groups: [:development, :test]
-
-##
 # https://github.com/elabs/pundit
 # Use Pundit for authorization.
 gem 'pundit'
@@ -153,6 +148,13 @@ gem 'apipony'
 # High performance memcached client for Ruby
 gem 'dalli'
 
+##
+# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
+# View what Autoprefixer will change with `rake autoprefixer:info`.
+# Config file: `config/autoprefixer.yml`
+# https://github.com/ai/autoprefixer-rails
+gem 'autoprefixer-rails'
+
 
 ##
 # Development-only gems
@@ -217,6 +219,13 @@ group :development do
   # Use FontCustom for generating the icon font.
   # See the README.md for more on how this works.
   gem 'fontcustom'
+
+  ##
+  # Configurable tool for writing clean and consistent SCSS
+  # Config file: `config/scss_lint.yml`
+  # Run linter with `rake scss_lint`
+  # https://github.com/brigade/scss-lint
+  gem 'scss_lint', require: false
 end
 
 ##
@@ -228,6 +237,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'pry'
+
   ##
   # https://github.com/thoughtbot/factory_girl_rails
   # A library for setting up Ruby objects as test data.
@@ -243,6 +253,11 @@ group :development, :test do
   # Mailcatcher for confirming that mails work.
   # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
   gem 'mailcatcher'
+
+  ##
+  # Use .env files for development secret keys
+  # Our real key is set in production
+  gem 'dotenv-rails'
 end
 
 ##
