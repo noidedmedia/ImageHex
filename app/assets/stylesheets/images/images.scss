@@ -1,14 +1,14 @@
 @import "scss-variables";
 @import "imagehexicons";
 
-/* Padding for images in image pages. */
-/* Adding properties to this can have unintended consequences effecting all images across the site. */
+// Padding for images in image pages.
+// Adding properties to this can have unintended consequences effecting all images across the site.
 .image {
   padding: 25px;
   text-align: center;
   flex-grow: 1;
 
-  /* Width/height for the image element itself. */
+  // Width/height for the image element itself.
   img {
     max-height: 80vh;
     max-width: 75vw;
@@ -32,32 +32,26 @@
 }
 
 #image-page-bottom-container {
-  padding: 55px 40px 30px 40px;
+  padding: 55px 40px 30px;
   min-height: 300px;
   color: #333;
   position: relative;
 
   @media all and (max-width: $mobile-width) {
-    padding: 55px 20px 30px 20px;
+    padding: 55px 20px 30px;
   }
 }
 
 #image-page-information {
-  -webkit-columns: 450px auto;
-  -moz-columns: 450px auto;
-       columns: 450px auto;
-  -webkit-column-gap: 20px;
-  -moz-column-gap: 20px;
+  columns: 450px auto;
   column-gap: 20px;
-  -webkit-column-fill: balance;
-     -moz-column-fill: balance;
-          column-fill: balance;
+  column-fill: balance;
 }
 
 
-/* ==============================================
-    Image page toolbar
-   ============================================== */
+// ==============================================
+//  Image page toolbar
+// ==============================================
 
 #image-page-toolbar {
   width: 100%;
@@ -69,7 +63,7 @@
   padding: 12px 40px 12px 60px;
   font-size: 1.4rem;
   z-index: 40;
-  box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
 
   @media all and (max-width: $mobile-width) {
     padding: 12px 20px 12px 40px;
@@ -106,7 +100,7 @@
   cursor: pointer;
   display: inline-block;
 
-  &:before {
+  &::before {
     content: $icon-plus;
     position: absolute;
     display: inline-block;
@@ -122,7 +116,7 @@
   margin-bottom: 20px;
   background-color: #fff;
   border-radius: 2px;
-  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
 
   &.inactive {
     display: none;
@@ -150,11 +144,11 @@
   display: inline-block;
   position: relative;
 
-  &:before {
+  &::before {
     content: $icon-help;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
+    transform: translate(-24px, -4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -164,11 +158,11 @@
   cursor: pointer;
   display: inline-block;
 
-  &:before {
+  &::before {
     content: $icon-info;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
+    transform: translate(-24px, -4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -184,9 +178,9 @@
   max-width: 400px;
   width: auto;
   transform: translateX(-90%);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 
-  &:before, &:after {
+  &::before, &::after {
     content: '';
     width: 0;
     height: 0;
@@ -197,13 +191,13 @@
   }
 
   // Outline for the arrow protruding outside of the tooltip.
-  &:before {
+  &::before {
     top: -11px;
-    border-color: rgba(0,0,0,0.1) transparent;
+    border-color: rgba(0, 0, 0, 0.1) transparent;
   }
 
   // Arrow protruding outside of the tooltip.
-  &:after {
+  &::after {
     top: -10px;
     border-color: #fff transparent;
   }
@@ -258,7 +252,7 @@
     position: relative;
     padding-right: 4px;
 
-    &:not(:last-of-type):after {
+    &:not(:last-of-type)::after {
       content: ", ";
       position: absolute;
       right: 3px;
@@ -270,11 +264,11 @@
   cursor: pointer;
   display: inline-block;
 
-  &:before {
+  &::before {
     content: $icon-history;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-4px);
+    transform: translate(-24px, -4px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }

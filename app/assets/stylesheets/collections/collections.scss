@@ -1,8 +1,8 @@
 @import "scss-variables";
 
-/* ==============================================
-    "New collection" page
-   ============================================== */
+// ==============================================
+//  "New collection" page
+// ==============================================
 
 .new-collection-container {
   display: flex;
@@ -25,9 +25,9 @@
 }
 
 
-/* ==============================================
-    Collection page
-   ============================================== */
+// ==============================================
+//  Collection page
+// ==============================================
 
 #collection-page-container {
   display: flex;
@@ -39,7 +39,7 @@
   position: relative;
   display: flex;
   flex-flow: row nowrap;
-  box-shadow: 0 0 5px 5px rgba(#000,.1);
+  box-shadow: 0 0 5px 5px rgba(#000, .1);
   background-color: #fff;
   width: 100%;
   height: auto;
@@ -115,9 +115,9 @@
 }
 
 
-/* ==============================================
-    Collection preview
-   ============================================== */
+// ==============================================
+//  Collection preview
+// ==============================================
 
 .collections-list-container {
   display: flex;
@@ -127,11 +127,8 @@
   justify-content: flex-start;
 }
 
-/**
- * Collected preview styles
- *
- * Collection preview, e.g. on user pages.
- */
+// Collected preview styles
+// Collection preview, e.g. on user pages.
  
 .collection-preview {
   background-color: #fff;
@@ -143,8 +140,8 @@
   min-width: 220px;
   height: auto;
   overflow: hidden;
-  box-shadow: 0 1px 0 rgba(0,0,0,.25);
-  border: 1px solid rgba(201, 201, 201,0.7);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .25);
+  border: 1px solid rgba(201, 201, 201, 0.7);
   transition: border 200ms, box-shadow 300ms;
 
   > a {
@@ -181,7 +178,7 @@
   }
 
   &:hover {
-    border: 1px solid rgba(201, 201, 201,1);
+    border: 1px solid rgba(201, 201, 201, 1.0);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
   }
 

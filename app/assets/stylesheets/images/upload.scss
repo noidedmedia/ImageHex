@@ -144,12 +144,12 @@
         margin-top: 140px;
       }
       
-      &:before {
+      &::before {
         content: $icon-folder;
         position: absolute;
         display: inline-block;
         color: #8e8e8e;
-        transform: translate(-60px,20px);
+        transform: translate(-60px, 20px);
         font-size: 12.0rem;
       }
     }
@@ -185,7 +185,7 @@
 
       .image-file-name {
         font-size: 1.2rem;
-        color: rgba(#fff,.9);
+        color: rgba(#fff, .9);
         background-color: rgba(#000,.6);
         width: 100%;
         text-align: center;
@@ -230,7 +230,7 @@
   padding: 0;
   position: relative;
 
-  &:after {
+  &::after {
     content: $icon-dropdown;
     font-size: 1.8rem;
     color: #aaaab2;
@@ -249,7 +249,7 @@
   height: 40px;
   background-color: #fff;
   color: #333;
-  border: none;
+  border: 0;
   border-bottom: 1px solid #aaaab2;
   -webkit-appearance: none;
   padding: 5px 10px;
