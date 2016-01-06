@@ -6,12 +6,29 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages
       .with_read_status_for(current_user)
       .order(created_at: :desc)
-      .paginate(page: page, per_page: per_page)
+      .limit(20)
+    if params[:before]
+      @messages = @messages.where("messages.created_at < ?", params[:before])
+    end
+  end
+
+  def create
+    @message = @conversation.messages.build(message_params)
+    respond_to do |format|
+      if @message.save
+        format.html { redirect_to @message }
+        format.json { render 'show' }
+      else
+        format.html { render 'new', errors: @message.errors }
+        format.json { render 'show', status: :unproccessible_entity } 
+      end
+    end
   end
 
   def unread
     @messages = Message.unread_for(current_user).includes(:user)
   end
+
 
   protected
   def set_conversation
@@ -20,6 +37,12 @@ class MessagesController < ApplicationController
     unless ConversationPolicy.new(current_user, @conversation).show?
       raise Punit::NotAuthorizedError
     end
+  end
+
+  def message_params
+    params.require(:message)
+    .permit(:body)
+    .merge(user_id: current_user.id)
   end
 
 end

@@ -1,3 +1,15 @@
-// Place all the styles related to the Conversations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.conversation {
+  width: 300px;
+}
+
+.conversation-message-list{
+  height: 250px;
+  overflow: scroll;
+}
+
+.chat-input{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+}

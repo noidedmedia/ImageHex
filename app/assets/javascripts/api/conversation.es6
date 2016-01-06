@@ -18,6 +18,51 @@ class Conversation{
       }
     }
   }
+  hasOlderMessages(){
+    if("_hasOlder" in this){
+      return this._hasMore
+    }
+    return true;
+  }
+  // The oldest message we have is the last message in our array
+  oldestMessage(){
+    return this.messages[0];
+  }
+
+  createMessage(body, callback, error){
+    var url = this.baseURL() + "/messages";
+    var success = (msg) => {
+      this.addMessage(new Message(msg));
+      callback(this);
+    };
+    NM.postJSON(url, {message: {body: body}}, success, error);
+  }
+  
+  baseURL(){
+    return "/conversations/" + this.id;
+  }
+
+  fetchOlderMessages(callback){
+    if(this.hasOlderMessages()){
+      var url = this.baseURL() + "/messages";
+      url = url + "?before=" + this.oldestMessage().created_at;
+      console.log("Fetching older messages with URL",baseURL)
+      NM.getJSON(url, (data) => {
+        if(data.length == 0){
+          this._hasOlder = false;
+          callback(false);
+        }
+        else{
+          var d = data.map((da) => new Message(da));
+          this.addMessages(d);
+          callback(this);
+        }
+      });
+    }
+    else{
+      callback(false);
+    }
+  }
   static find(id, callback){
     NM.getJSON("/conversations/" + id, (data) => {
       callback(new Conversation(data));
@@ -45,7 +90,7 @@ class Conversation{
       return new Date(a.created_at) - new Date(b.created_at);
     });
   }
-
+  
   trim(num){
     var ind = num | 5
     this.messages = this.messages.slice(0 - ind);

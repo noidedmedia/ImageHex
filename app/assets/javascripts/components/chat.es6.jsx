@@ -3,7 +3,8 @@ class Chat extends React.Component{
     super(props);
     this.state = {
       unread: props.initialUnread,
-      hasFetchedConversations: false
+      hasFetchedConversations: false,
+      focusedIndex: 0
     }
   }
   render(){
@@ -13,9 +14,22 @@ class Chat extends React.Component{
           <progress></progress>
         </div>;
       }
-      var c = this.state.conversationCollection.map((conv) => {
-        return <ConversationComponent key={conv.id}
-        conversation={conv} />;
+      var c = this.state.conversationCollection.map((conv, ind) => {
+        if(ind === this.state.focusedIndex){
+          return <ConversationComponent
+            conversation={conv}
+            key={conv.id}
+            currentUserId={this.props.currentUserId}
+            fetchOlderMessages={this.fetchOlderMessages.bind(this, ind)}
+          />;
+        } else {
+          return <UnfocusedConversationComponent
+            key={conv.id}
+            conversation={conv}
+            currentUserId={this.props.currentUserId}
+            focus={this.focusConversation.bind(this, ind)}
+          />;
+        }
       });
       return <div>
         {c}
@@ -28,8 +42,25 @@ class Chat extends React.Component{
       </div>;
     }
   }
+  fetchOlderMessages(index, callback){
+    console.log("Want to fetch messages with index", index);
+    var conv = this.state.conversationCollection.conversations[index];
+    console.log("Fetching older messages for conv", conv);
+    conv.fetchOlderMessages((msg) => {
+      console.log("Message fetch finished");
+      callback();
+      this.setState({
+        conversationCollection: this.state.conversationCollection
+      });
+    });
+  }
   unreadMessageCount(){
     this.state.unread.length;
+  }
+  focusConversation(index){
+    this.setState({
+      focusedIndex: index
+    });
   }
   activate(){
     console.log("Activating chat");
@@ -61,7 +92,8 @@ document.addEventListener("page:change", function(){
   var elem = document.getElementById("chatbox");
   console.log("Got element",elem,"for chat");
   Message.unread((msg) => {
-    ReactDOM.render(<Chat initialUnread={msg} />,
+    ReactDOM.render(<Chat initialUnread={msg} 
+                    currentUserId={USER_ID}/>,
                     elem);
   });
 });

@@ -2,17 +2,16 @@ class MessageComponent extends React.Component{
   constructor(props){
     super(props);
     this.state = {};
-    console.log("Making a message component with message",props.message);
   }
   render(){
     var msg = this.props.message
     return <li className="message-item">
-      <img src={this.userAvatar()} />
-      <p className="message-user-name">
+      <div className="message-user-info">
         <a href={"/@" + msg.user.slug}>
-          {msg.user.name}
+          <img src={this.userAvatar()} 
+            className="message-avatar" />
         </a>
-      </p>
+      </div>
       <div className="message-body">
         {msg.body}
       </div>
@@ -20,7 +19,6 @@ class MessageComponent extends React.Component{
   }
   userAvatar(){
     var avatar = this.props.message.user.avatar_path;
-    console.log("Got user avatar",avatar,"in message #",this.props.message.id);
     return avatar;
   }
 }
