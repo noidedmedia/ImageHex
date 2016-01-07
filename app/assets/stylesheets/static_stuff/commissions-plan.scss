@@ -143,17 +143,20 @@ section.pricing-container {
   }
 }
 
-.newsletter-sign-up {
+#call-to-action-container{
   display: flex;
-  flex: row nowrap;
-  max-width: 400px;
-  margin-top: 8px;
-
-  input[type="text"] {
-    flex: 5 5 300px;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+#call-to-action-sign-up{
+  color: white;
+  width: 300px;
+  div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
   }
-
-  input[type="submit"] {
-    flex: 0 0 100px;
-  }
+  text-decoration: none;
 }

@@ -211,6 +211,15 @@
       Want information on these features? Simply make an account and opt-in to our newsletter. We'll send you progress reports, and may even select you to participate in a private beta.
       <p>
       We're already working hard on making these features a reality. With your help, we can make commissioning art (and accepting commissions) easier for everybody. 
+      <% unless current_user %>
+        <div id="call-to-action-container">
+          <a href="/accounts/sign_up" id="call-to-action-sign-up">
+            <div class="btn btn-green btn-large">
+              Sign Up
+            </div>
+          </a>
+        </div>
+      <% end %> 
     </div>
   </section>
 </div>
