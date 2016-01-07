@@ -12,7 +12,7 @@
   // Box-shadow cut off by columns bug in Blink/WebKit.
   // This fixes it.
   margin-right: 10px;
-  box-shadow: 2px 2px 6px 0 rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
 
   hr {
     border: 0;
@@ -289,11 +289,11 @@ a:target + .comment {
 
 @keyframes commentTarget {
   0% {
-    background-color: rgba(#ffe11a,.5);
+    background-color: rgba(#ffe11a, .5);
   }
 
   40% {
-    background-color: rgba(#ffe11a,.5);
+    background-color: rgba(#ffe11a, .5);
   }
 
   100% {

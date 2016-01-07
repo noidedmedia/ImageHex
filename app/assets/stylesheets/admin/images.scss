@@ -1,13 +1,12 @@
-.live-image-content-ratings{
-
-  .hidden{
-    display: none;
-  }
+.live-image-content-ratings .hidden {
+  display: none;
 }
-.live-image{
+
+.live-image {
   flex-grow: 1;
 }
-#live-images{
+
+#live-images {
   padding: 20px;
   display: flex;
   flex-wrap: wrap;

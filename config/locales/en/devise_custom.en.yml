@@ -22,6 +22,7 @@ en:
         password: Password (minimum 8 characters)
         reenter_password: Re-enter password
         username: Username
+        subscribed_to_newsletter: Subscribe to Newsletter
     sessions:
       new:
         email: Email

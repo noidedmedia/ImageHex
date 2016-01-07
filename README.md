@@ -1,4 +1,4 @@
-ImageHex [![Codeship Status for connorshea/ImageHex](https://codeship.com/projects/3deaa030-bd7d-0132-9ea7-7a0ba2699df2/status?branch=develop)](https://codeship.com/projects/72579)
+ImageHex [![Circle CI](https://circleci.com/gh/connorshea/ImageHex.svg?style=svg&circle-token=73cd8359ee558fddcfcb428772629af6ef8c6ad2)](https://circleci.com/gh/connorshea/ImageHex)
 ========
 ### ImageHex wants to be *the* place to buy, sell, search, and share your artwork.
 

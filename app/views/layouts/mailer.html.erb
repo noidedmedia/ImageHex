@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <table cellspacing="0" cellpadding="0">
+      <tr>
+        <td style="padding: 10px;">
+          <a href="https://www.imagehex.com">
+            <img src="<%= asset_url('logo/imagehex-color-black-text.png', host: 'https://www.imagehex.com') %>" style="width: 100%; max-width: 300px; margin: auto;" />
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: #fff; padding: 10px 10px; font-family: 'Helvetica Neue', Helvetica, sans-serif; font-size: 14px;">
+          <%= yield %>
+        </td>
+      </tr>
+    </table>
+  </body>
+
+</html>

@@ -17,9 +17,15 @@ module ImageHex
     config.active_record.raise_in_transactional_callbacks = true
     routes.default_url_options[:host] = "localhost"
 
+    # Default host URL for links in emails.
+    config.action_mailer.default_url_options = { host: 'https://www.imagehex.com' }
+
+    # Use vanilla JavaScript for the JavaScript engine in generators.
     config.generators.javascript_engine :js
     
+    # Add the fonts folder to the paths used by the Asset Pipeline.
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

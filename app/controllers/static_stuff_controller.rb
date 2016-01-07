@@ -3,6 +3,8 @@
 # It serves to render completely static pages.
 # At some point we should replace this with an NGINX thing or something.
 class StaticStuffController < ApplicationController
+  def commissions_plan
+  end
   ##
   # About page. Information about what ImageHex is.
   def about

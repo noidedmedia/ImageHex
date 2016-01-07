@@ -1,6 +1,6 @@
 @import "scss-variables";
 
-/* Styling for sign-in container, used on all registration-related pages (e.g. sign-in, sign-up, forgot password, etc.) */
+// Styling for sign-in container, used on all registration-related pages (e.g. sign-in, sign-up, forgot password, etc.).
 .sign-in-container {
   display: block;
   margin: auto;
@@ -9,7 +9,7 @@
   text-align: left;
   width: 350px;
 
-  /* "Header" for the registration pages that acts as a page title. */
+  // "Header" for the registration pages that acts as a page title.
   .sign-in-header {
     padding: 10px 0;
     text-align: center;
@@ -29,14 +29,14 @@
     }
   }
 
-  /* Styling for the submit button on registration pages. */
+  // Styling for the submit button on registration pages.
   input[type=submit] {
     margin-top: 12px;
     margin-bottom: 8px;
   }
 }
 
-/* Styling applied to all text-input fields in the registration pages. */
+// Styling applied to all text-input fields in the registration pages.
 .field {
   color: #333;
   margin: auto;
@@ -45,7 +45,7 @@
   width: 100%;
 }
 
-/* Styling for the text, email, and password fields specifically. */
+// Styling for the text, email, and password fields specifically.
 .field input[type=text],
 .field input[type=email],
 .field input[type=password] {
@@ -68,7 +68,7 @@
   }
 }
 
-/* Styling for "Remember me" checkbox. */
+// Styling for "Remember me" checkbox.
 .field input[type=checkbox] {
   display: inline-block;
   -webkit-appearance: none;
@@ -79,14 +79,14 @@
   margin: 5px 2px 0 1px;
   vertical-align: bottom;
 
-  /* Semi-transparent square on-hover. */
+  // Semi-transparent square on-hover.
   &:hover {
     font-size: 1.8rem;
     line-height: 16px;
     color: #333;
     cursor: pointer;
 
-    &:after {
+    &::after {
       content: $icon-checkmark;
       opacity: 0.3;
       position: relative;
@@ -105,13 +105,13 @@
   }
 }
 
-/* Styling for "Remember me" checkbox when checked. */
+// Styling for "Remember me" checkbox when checked.
 .field input[type=checkbox]:checked {
   border: 1px solid #333;
   background-color: transparent;
 
-  /* Black square on-checked. */
-  &:after {
+  // Black square on-checked.
+  &::after {
     content: $icon-checkmark;
     opacity: 1;
     font-size: 1.8rem;
@@ -123,7 +123,7 @@
   }
 }
 
-/* Styling for field labels. Labels are an HTML element, see the MDN for more information. */
+// Styling for field labels. Labels are an HTML element, see the MDN for more information.
 .field label {
   display: inline-block;
   font-size: 1.4rem;
@@ -135,7 +135,7 @@
   }
 }
 
-/* Sign-in extras are the links below the sign-in container (e.g. forgot password, sign up, etc.) */
+// Sign-in extras are the links below the sign-in container (e.g. forgot password, sign up, etc.).
 .sign-in-extras-container {
   display: block;
   height: auto;
@@ -148,7 +148,7 @@
   width: 360px;
 }
 
-/* Class used to separate each row of sign-in extras, this allows the buttons to change size responsively depending on the registration page the user is viewing. */
+// Class used to separate each row of sign-in extras, this allows the buttons to change size responsively depending on the registration page the user is viewing.
 .sign-in-extras-row {
   margin: auto;
   text-align: center;

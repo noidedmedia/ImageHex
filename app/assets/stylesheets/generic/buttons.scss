@@ -1,8 +1,8 @@
 @import "scss-variables";
 
-/* ==============================================
-   Generic button class
-   ============================================== */
+// ==============================================
+// Generic button class
+// ==============================================
 
 .btn {
   font-size: 1.4rem;
@@ -65,9 +65,9 @@
 }
 
 
-/* ==============================================
-    Button sizes
-   ============================================== */
+// ==============================================
+//  Button sizes
+// ==============================================
 
 // Larger button than default.
 .btn-large {
@@ -90,16 +90,17 @@
 }
 
 
-/* ==============================================
-    Button styles
-   ============================================== */
+// ==============================================
+//  Button styles
+// ==============================================
 
 .btn-with-border {
   padding: 10px;
   border: 1px solid #aaaab2;
   border-radius: 3px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: darken(#aaaab2, 10%);
   }
 }
@@ -109,15 +110,16 @@
 }
 
 
-/* ==============================================
-    Button colors
-   ============================================== */
+// ==============================================
+//  Button colors
+// ==============================================
 
 // Green button, darkens on hover/focus.
 .btn-green {
   background-color: #2ab27b;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: darken(#2ab27b, 5%);
   }
 }
@@ -125,7 +127,8 @@
 .btn-minimal-green {
   color: #2ab27b;
   
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: darken(#2ab27b, 6%);
   }
 }
@@ -134,7 +137,8 @@
 .btn-red {
   background-color: #cb2e32;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: darken(#cb2e32, 6%);
   }
 }
@@ -142,7 +146,8 @@
 .btn-minimal-red {
   color: #cb2e32;
   
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: darken(#cb2e32, 6%);
   }
 }
@@ -151,7 +156,8 @@
 .btn-grey {
   background-color: #aaaab2;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: darken(#aaaab2, 10%);
   }
 }
@@ -161,15 +167,16 @@
   background-color: #fff;
   color: #333;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: darken(#fff, 3%);
   }
 }
 
 
-/* ==============================================
-    Follow/Unfollow buttons
-   ============================================== */
+// ==============================================
+//  Follow/Unfollow buttons
+// ==============================================
 
 .btn-follow,
 .btn-unfollow {
@@ -207,7 +214,8 @@
   background-color: #5bb289;
 
   // Follow button darkens on hover.
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: darken(#5bb289, 6%);
   }
 }
@@ -229,7 +237,8 @@
     display: none;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     // Darker gray on hover.
     background-color: darken(#aaaab2,10%);
 

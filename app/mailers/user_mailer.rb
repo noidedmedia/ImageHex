@@ -1,24 +1,14 @@
 ##
 # Sends mail to users.
-class UserMailer < Devise::Mailer
-  include Devise::Mailers::Helpers
-  default from: "admin@imagehex.com"
-  
-  ##
-  # Just invokes super.
-  def confirmation_instructions(record, token, other)
-    super
+class UserMailer < ApplicationMailer
+
+  def enable_twofactor(user)
+    @user = user
+    mail(to: @user.email, subject: 'Two-Factor Authentication enabled for your account')
   end
 
-  ##
-  # Just invokes super
-  def reset_password_instructions(record, token, other)
-    super
-  end
-
-  ##
-  # Just invokes super
-  def unlock_instructions(record, token, other)
-    super
+  def disable_twofactor(user)
+    @user = user
+    mail(to: @user.email, subject: 'Two-Factor Authentication disabled for your account')
   end
 end

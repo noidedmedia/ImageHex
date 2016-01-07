@@ -36,8 +36,6 @@
   display: inline-block;
   vertical-align: top;
   appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
   border-radius: 0;
   border: 1px solid #aaaab2;
   padding-bottom: 4px;
@@ -92,15 +90,14 @@
 
   input[type=checkbox] {
     display: inline-block;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    appearance: none;
     border: 1px solid #aaaab2;
     border-radius: 2px;
     height: 22px;
     width: 22px;
     margin: 5px 2px 0 1px;
 
-    &:after {
+    &::after {
       content: $icon-checkmark;
       position: relative;
       top: 1px;
@@ -109,7 +106,7 @@
       font-size: 1.6rem;
     }
 
-    /* Semi-transparent square on-hover. */
+    // Semi-transparent square on-hover.
     &:hover {
       color: #333;
     }
@@ -119,7 +116,7 @@
       border-color: #333;
     }
 
-    &:checked:after {
+    &:checked::after {
       color: #333;
     }
 

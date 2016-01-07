@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
       if @backup_codes = @user.confirm_twofactor(params[:otp_key])
+        UserMailer.enable_twofactor(@user).deliver_now
         format.html
         format.json { render json: @backup_codes }
       else
@@ -66,6 +67,7 @@ class UsersController < ApplicationController
       @user.two_factor_verified = false
       respond_to do |format|
         if @user.save
+          UserMailer.disable_twofactor(@user).deliver_now
           format.html { redirect_to settings_path, notice: I18n.t("notices.two_factor_authentication_has_been_successfully_disabled") }
         else
           format.html { redirect_to settings_path, error: @user.errors }
@@ -210,6 +212,7 @@ class UsersController < ApplicationController
             :avatar,
             :otp_required_for_login,
             :description,
+            :subscribed_to_newsletter,
             content_pref: [:nsfw_language,
               :nsfw_gore,
               :nsfw_nudity,

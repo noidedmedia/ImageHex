@@ -17,7 +17,6 @@
 
 // User page header
 // Header for all user pages with the respective user's information.
- 
 .user-page-header {
   position: relative;
   width: 100vw;
@@ -29,6 +28,14 @@
   flex-flow: row wrap;
   box-shadow: 8px 0 5px 5px rgba(#000,.1);
   background-color: #fff;
+
+  // Spacing for the user info and actions containers.
+  // Only applies on desktop.
+  @media all and (min-width: $mobile-width) {
+    > div {
+      margin-top: 80px;
+    }
+  }
 
   @media all and (max-width: $mobile-width) {
     display: flex;
@@ -47,7 +54,6 @@
   position: relative;
   display: flex;
   padding: 0 50px;
-  margin-top: 80px;
   margin-bottom: 25px;
 }
 
@@ -135,12 +141,18 @@
 }
 
 .user-page-actions {
-  position: absolute;
+  position: relative;
   right: 0;
-  
+  width: 100%;
+  padding: 0 10px;
 
-  @media all and (max-width: $mobile-width) {
-    position: relative;
+  @media all and (min-width: $mobile-width) {
+    position: absolute;
+    width: auto;
+
+    > form, > a {
+      display: inline-block;
+    }
   }
 }
 
@@ -158,15 +170,13 @@
 }
 
 
-/**
- * User page header tabs
- *
- * Tabs for the user page (Uploads and Collections).
- * 
- * 1. z-index moved down one to prevent the box shadow from
- *    showing up over the "sidebar" when the tabs and "sidebar"
- *    are combined into one object.
- */
+// User page header tabs
+//
+// Tabs for the user page (Uploads and Collections).
+// 
+// 1. z-index moved down one to prevent the box shadow from
+//    showing up over the "sidebar" when the tabs and "sidebar"
+//    are combined into one object.
 
 .user-page-header-tabs {
   position: relative;
@@ -183,7 +193,7 @@
 
   @media all and (max-width: $mobile-width) {
     position: relative;
-    z-index: 99; /* 1 */
+    z-index: 99; // 1
     text-align: center;
     padding-left: 0;
   }
@@ -206,7 +216,7 @@
     font-weight: 500;
     color: #333;
 
-    &:after {
+    &::after {
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);

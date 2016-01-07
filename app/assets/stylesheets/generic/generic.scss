@@ -51,7 +51,7 @@
     font-weight: 500;
     color: #17cd94;
 
-    &:after {
+    &::after {
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);
@@ -76,6 +76,11 @@
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
     border: 1px solid #c9c9c9;
   }
+
+  &.no-hover:hover {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(201, 201, 201, 0.7);
+  }
 }
 
 // Generic class for smallcaps titles, used for sections, e.g. on the Settings page.
@@ -90,6 +95,14 @@
 // Generic class for centered text.
 .center {
   text-align: center;
+}
+
+.left-aligned {
+  text-align: left;
+}
+
+.right-aligned {
+  text-align: right;
 }
 
 // Generic class for bold text.
@@ -127,4 +140,3 @@
     margin-top: 10px;
   }
 }
-

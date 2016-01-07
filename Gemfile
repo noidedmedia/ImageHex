@@ -18,6 +18,13 @@ gem 'pg'
 gem 'aws-sdk', '< 2.0'
 
 ##
+# Use Stripe
+gem 'stripe'
+
+##
+# Use Omniauth with Stripe
+gem 'oauth2'
+##
 # https://github.com/plataformatec/devise
 # Devise is "a flexible authentication solution for Rails based on Warden".
 # Includes the bcrypt gem for securely storing passwords.
@@ -33,19 +40,6 @@ gem 'devise-two-factor'
 gem 'rqrcode-rails3'
 
 gem 'mini_magick'
-
-##
-# Use Oauth to connect stripe users
-gem 'oauth2'
-
-##
-# Use Stripe
-gem 'stripe'
-
-##
-# Use .env files for development secret keys
-# Our real key is set in production
-gem 'dotenv-rails', groups: [:development, :test]
 
 ##
 # https://github.com/elabs/pundit
@@ -161,6 +155,20 @@ gem 'apipony'
 # High performance memcached client for Ruby
 gem 'dalli'
 
+##
+# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
+# View what Autoprefixer will change with `rake autoprefixer:info`.
+# Config file: `config/autoprefixer.yml`
+# https://github.com/ai/autoprefixer-rails
+gem 'autoprefixer-rails'
+
+##
+# Configurable tool for writing clean and consistent SCSS
+# Config file: `config/scss_lint.yml`
+# Run linter with `rake scss:lint`
+# https://github.com/brigade/scss-lint
+gem 'scss_lint', require: false  
+
 
 ##
 # Development-only gems
@@ -236,6 +244,7 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'pry'
+
   ##
   # https://github.com/thoughtbot/factory_girl_rails
   # A library for setting up Ruby objects as test data.
@@ -251,12 +260,16 @@ group :development, :test do
   # Mailcatcher for confirming that mails work.
   # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
   gem 'mailcatcher'
+
+  ##
+  # Use .env files for development secret keys
+  # Our real key is set in production
+  gem 'dotenv-rails'
 end
 
 ##
 # Test-only gems
 group :test do
-  gem 'timecop'
   ##
   # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good

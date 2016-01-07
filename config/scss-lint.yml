@@ -1,0 +1,89 @@
+scss_files: '../app/assets/stylesheets/**/*.scss'
+
+exclude:
+  - '../app/assets/stylesheets/_imagehexicons.scss'
+  - '../app/assets/stylesheets/application.scss'
+
+linters:
+  # Always indent with 2 spaces.
+  Indentation:
+    width: 2
+
+  # Don't allow `color: white`, should be `color: #fff`.
+  ColorKeyword:
+    enabled: true
+
+  # Require empty lines between selector blocks.
+  EmptyLineBetweenBlocks:
+    enabled: true
+
+  # Throw a warning for selectors without properties.
+  EmptyRule:
+    enabled: true
+
+  # If possible, hex colors should use 3 characters, e.g. `#fff` instead of `#ffffff`.
+  HexLength:
+    enabled: true
+    style: short
+
+  # Color format should be lowercase to differentiate between numbers and letters (e.g. `#O0O` vs. `#o0o`).
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  # Don't complain about any leading zeroes.
+  LeadingZero:
+    enabled: false
+
+  # Allow up to 4 nesting depth
+  NestingDepth:
+    max_depth: 4
+
+  # Ignore property sort order rule.
+  PropertySortOrder:
+    enabled: false
+
+  # Allow up to 4 selector depth
+  SelectorDepth:
+    enabled: true
+    max_depth: 4
+
+  # Selector style like `.selector-name`.
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_lowercase
+
+  # Require a single space before the brace for selector declarations, e.g. `.selector-name {`.
+  SpaceBeforeBrace:
+    enabled: true
+    style: space
+
+  # I'm not sure which type of quotes to use yet.
+  StringQuotes:
+    enabled: false
+
+  # 
+  UnnecessaryMantissa:
+    enabled: false
+
+  # Don't include units with 0 values, e.g. `0px` vs. just `0`, the latter is slightly more performant.
+  ZeroUnit:
+    enabled: true
+
+
+  ColorVariable:
+    enabled: false
+  Comment:
+    enabled: false
+  IdSelector:
+    enabled: false
+  MergeableSelector:
+    enabled: false
+  PseudoElement:
+    enabled: false
+  QualifyingElement:
+    enabled: false
+  SingleLinePerSelector:
+    enabled: false
+  SpaceAfterComma:
+    enabled: false

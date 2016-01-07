@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103204447) do
+ActiveRecord::Schema.define(version: 20160106233442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -383,6 +383,7 @@ ActiveRecord::Schema.define(version: 20160103204447) do
     t.text     "stripe_publishable_key"
     t.text     "stripe_access_token"
     t.text     "stripe_user_id"
+    t.boolean  "subscribed_to_newsletter",              default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -392,7 +393,7 @@ ActiveRecord::Schema.define(version: 20160103204447) do
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
   add_foreign_key "background_references", "commission_backgrounds", on_delete: :cascade
-  add_foreign_key "collection_images", "collections"
+  add_foreign_key "collection_images", "collections", on_delete: :cascade
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
