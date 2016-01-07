@@ -206,20 +206,15 @@
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
-      <h3>Sign up for our newsletter</h3>
-      <p>
-      Want information on these features? Simply make an account and opt-in to our newsletter. We'll send you progress reports, and may even select you to participate in a private beta.
-      <p>
-      We're already working hard on making these features a reality. With your help, we can make commissioning art (and accepting commissions) easier for everybody. 
-      <% unless current_user %>
-        <div id="call-to-action-container">
-          <a href="/accounts/sign_up" id="call-to-action-sign-up">
-            <div class="btn btn-green btn-large">
-              Sign Up
-            </div>
-          </a>
-        </div>
-      <% end %> 
+      <h2 class="center section-header">Newsletter</h2>
+      
+      <p>Want information on these features? Simply make an account and opt-in to our newsletter. We'll send you progress reports, and may even select you to participate in a private beta.</p>
+
+      Keep up to date with our progress by signi
+
+      <div class="btn btn-green btn-thin btn-center btn-with-margin">
+        <%= link_to "Sign up", new_user_registration_path %>
+      </div>
     </div>
   </section>
 </div>

@@ -85,6 +85,15 @@
   width: 100%;
 }
 
+.btn-thin {
+  width: 50%;
+  
+  // Full-width on mobile.
+  @media all and (max-width: $mobile-width) {
+    width: 100%;
+  }
+}
+
 .btn-right-aligned {
   float: right;
 }
@@ -107,6 +116,14 @@
 
 .btn-bold {
   font-weight: 500;
+}
+
+.btn-center {
+  margin: auto;
+}
+
+.btn-with-margin {
+  margin-top: 20px;
 }
 
 

@@ -14,7 +14,8 @@ en:
       confirm_password: Confirm password
       content_filters: Content filters
       disable_twofactor_authentication: Disable Two-Factor Authentication
-      subscribed_to_newsletter: Subscribed to Newsletter
+      emails: Emails
+      imagehex_newsletter: ImageHex newsletter
       edit_page_title: Settings
       enable_twofactor_authentication: Enable Two-Factor Authentication
       images_per_page: Images per page
