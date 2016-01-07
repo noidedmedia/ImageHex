@@ -156,6 +156,13 @@ gem 'dalli'
 # https://github.com/ai/autoprefixer-rails
 gem 'autoprefixer-rails'
 
+##
+# Configurable tool for writing clean and consistent SCSS
+# Config file: `config/scss_lint.yml`
+# Run linter with `rake scss:lint`
+# https://github.com/brigade/scss-lint
+gem 'scss_lint', require: false  
+
 
 ##
 # Development-only gems
@@ -220,13 +227,6 @@ group :development do
   # Use FontCustom for generating the icon font.
   # See the README.md for more on how this works.
   gem 'fontcustom'
-  
-  ##
-  # Configurable tool for writing clean and consistent SCSS
-  # Config file: `config/scss_lint.yml`
-  # Run linter with `rake scss:lint`
-  # https://github.com/brigade/scss-lint
-  gem 'scss_lint', require: false  
 end
 
 ##
