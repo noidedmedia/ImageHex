@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
   end
 
   def by_time
-    @messages = Message.for_user(current_user)
+    @messages = Message.with_read_status_for(current_user)
     if c = Time.parse(params[:after])
       @messages = @messages.posted_since(c)
     end

@@ -10,4 +10,11 @@ class Message{
       callback(mapped);
     });
   }
+  static createdSince(date, callback){
+    var url = "/messages/by_time";
+    url = url + `?after=${date}`;
+    NM.getJSON(url, (data) => {
+      callback(data.map(m => new Message(m)));
+    });
+  }
 }

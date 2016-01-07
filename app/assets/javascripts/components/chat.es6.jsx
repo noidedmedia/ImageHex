@@ -4,6 +4,7 @@ class Chat extends React.Component{
     this.state = {
       unread: props.initialUnread,
       hasFetchedConversations: false,
+      lastFetchedAt: props.initialFetched,
       focusedIndex: 0
     }
 
@@ -51,9 +52,10 @@ class Chat extends React.Component{
     conversation.createMessage(body, (message) => {
       this.setState({
         conversationCollection: this.state.conversationCollection,
-        lastMessageSent: new Date();
+        lastSentAt: new Date()
       });
     });
+    this.fetchNewMessages();
   }
 
   fetchOlderMessages(index, callback){
@@ -80,6 +82,22 @@ class Chat extends React.Component{
     }
   }
 
+  fetchNewMessages(){
+    console.log("Fetching messages in chat.");
+    Message.createdSince(this.state.lastFetchedAt, (messages) => {
+      var state = {
+        lastFetchedAt: new Date(),
+        conversationsCollection: this.state.conversationsCollection
+      };
+      if(messages){
+        console.log("Got new messages, updating last recieved at.");
+        state.lastRecievedAt = new Date();
+        this.state.conversationCollection.addMessages(messages);
+      }
+      this.setState(state);
+    });
+  }
+
   focusConversation(index){
     this.setState({
       focusedIndex: index
@@ -90,9 +108,26 @@ class Chat extends React.Component{
   // Start listening periodically for changes 
   beginPolling(){
     function poll(){
-
-    }.bind(this);
-
+      this.fetchNewMessages();
+      console.log(`Determining how long to poll.
+                  Last sent: ${this.state.lastSentAt}
+                  LastRecieved: ${this.state.lastRecievedAt}`);
+      if(this.state.lastSentAt &&
+          new Date() - this.state.lastSentAt < 10 * 1000){
+        console.log("Sent within the last ten seconds.");
+        return window.setTimeout(poll.bind(this), 1000);
+      }
+      else if(this.state.lastRecievedAt && 
+          new Date() - this.state.lastRecievedAt < 10 * 100){
+        console.log("Recieved in the last ten seconds.");
+        return window.setTimeout(poll.bind(this), 1.5 * 1000);
+      }
+      else{
+        console.log("Using default time.");
+        return window.setTimeout(poll.bind(this), 10 * 1000);
+      }
+    }
+    window.setTimeout(poll.bind(this), 10000);
   }
 
   activate(){
@@ -110,7 +145,7 @@ class Chat extends React.Component{
         });
       });
     }
-    var obj = {active: true}
+    var obj = {active: true};
     if(this.state.unread && this.state.conversationCollection){
       obj[unread] = [];
       this.state.conversationCollection.addMessages(this.state.unread);
@@ -136,7 +171,8 @@ document.addEventListener("page:change", function(){
   console.log("Got element",elem,"for chat");
   Message.unread((msg) => {
     ReactDOM.render(<Chat initialUnread={msg} 
-                    currentUserId={USER_ID}/>,
+      currentUserId={USER_ID}
+      initialFetched={new Date()} />,
                     elem);
   });
 });
