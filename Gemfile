@@ -30,9 +30,12 @@ gem 'devise-two-factor'
 
 ##
 # https://github.com/samvincent/rqrcode-rails3
-# Used to generate the QR codes for devise-two-factor
+# Used to generate the QR codes for devise-two-factor.
 gem 'rqrcode-rails3'
 
+##
+# https://github.com/minimagick/minimagick
+# A ruby wrapper for ImageMagick, required for rqrcode-rails3.
 gem 'mini_magick'
 
 ##
