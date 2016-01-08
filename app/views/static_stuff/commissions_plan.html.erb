@@ -208,13 +208,19 @@
     <div class="imagehex-static-text">
       <h2 class="center section-header">Newsletter</h2>
       
-      <p>Want information on these features? Simply make an account and opt-in to our newsletter. We'll send you progress reports, and may even select you to participate in a private beta.</p>
+      <% if current_user %>
+        <p class="center section-subheader">Keep up to date with the development of Commissions by subscribing to our monthly newsletter in your Settings.</p>
 
-      Keep up to date with our progress by signi
+        <div class="btn btn-green btn-thin btn-center btn-with-margin">
+          <%= link_to "Settings", settings_path %>
+        </div>
+      <% else %>
+        <p class="center section-subheader">Keep up to date with the development of Commissions by signing up and subscribing to our monthly newsletter.</p>
 
-      <div class="btn btn-green btn-thin btn-center btn-with-margin">
-        <%= link_to "Sign up", new_user_registration_path %>
-      </div>
+        <div class="btn btn-green btn-thin btn-center btn-with-margin">
+          <%= link_to "Sign up", new_user_registration_path %>
+        </div>
+      <% end %>
     </div>
   </section>
 </div>

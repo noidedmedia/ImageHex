@@ -15,7 +15,7 @@ en:
       content_filters: Content filters
       disable_twofactor_authentication: Disable Two-Factor Authentication
       emails: Emails
-      imagehex_newsletter: ImageHex newsletter
+      monthly_newsletter: Monthly newsletter
       edit_page_title: Settings
       enable_twofactor_authentication: Enable Two-Factor Authentication
       images_per_page: Images per page
