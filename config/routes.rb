@@ -155,10 +155,7 @@ Rails.application.routes.draw do
   # SINGLE ACTION ROUTES #
   ########################
   get 'settings', to: "users#edit"
-<<<<<<< HEAD
-=======
   
->>>>>>> develop
 
   #################
   # STATIC ROUTES #
