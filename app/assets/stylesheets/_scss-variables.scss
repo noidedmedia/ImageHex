@@ -8,6 +8,10 @@ $mobile-width: 750px;
 $laptop-width: 1000px;
 $desktop-width: 1400px;
 
+// For use with media queries 
+$mobile: "all and (max-width: 750px)";
+$desktop: "all and (min-width: 750px)";
+
 // Text colors
 $emph-text: #828282; // Emphasized text
 $unemph-text: #6d6d6d; // Unemphasized text

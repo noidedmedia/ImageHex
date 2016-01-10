@@ -74,7 +74,7 @@
   height: 40px;
   width: 100%;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     height: 50px;
     font-size: 1.6rem;
   }
@@ -89,7 +89,7 @@
   width: 50%;
   
   // Full-width on mobile.
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     width: 100%;
   }
 }

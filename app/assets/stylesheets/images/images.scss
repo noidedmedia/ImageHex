@@ -13,7 +13,7 @@
     max-width: 75vw;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     padding: 0;
     margin: 0;
 
@@ -36,7 +36,7 @@
   color: #333;
   position: relative;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     padding: 55px 20px 30px;
   }
 }
@@ -64,7 +64,7 @@
   z-index: 40;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     padding: 12px 20px 12px 40px;
   }
 
@@ -89,7 +89,7 @@
 
     // Hides extra image-page-toolbar options for mobile users
     // This is a temporary fix.
-    @media all and (max-width: $mobile-width) {
+    @media #{$mobile} {
       display: none;
     }
   }

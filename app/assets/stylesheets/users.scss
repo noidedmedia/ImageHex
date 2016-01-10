@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     flex-flow: column wrap;
   }
 }
@@ -31,13 +31,13 @@
 
   // Spacing for the user info and actions containers.
   // Only applies on desktop.
-  @media all and (min-width: $mobile-width) {
+  @media #{$desktop} {
     > div {
       margin-top: 80px;
     }
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: flex;
     flex-flow: row wrap;
     height: auto;
@@ -61,7 +61,7 @@
   display: inline-block;
   padding-left: 15px;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: block;
     text-align: left;
   }
@@ -79,7 +79,7 @@
     width: 100%;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     margin-right: 10px;
     width: 75px;
     height: 75px;
@@ -97,7 +97,7 @@
   display: inline-block;
   padding-bottom: 5px;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     width: 100%;
   }
 }
@@ -146,7 +146,7 @@
   width: 100%;
   padding: 0 10px;
 
-  @media all and (min-width: $mobile-width) {
+  @media #{$desktop} {
     position: absolute;
     width: auto;
 
@@ -191,7 +191,7 @@
   text-overflow: clip;
   white-space: nowrap;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     position: relative;
     z-index: 99; // 1
     text-align: center;
@@ -243,7 +243,7 @@
     display: flex;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     margin-top: 5px;
   }
 }

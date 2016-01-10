@@ -74,7 +74,7 @@
 
       // On desktop, place right-column after the first column.
       // Otherwise, leave it alone.
-      @media all and (min-width: $mobile-width) {
+      @media #{$desktop} {
         &.right-column {
           order: 2;
         }
@@ -232,7 +232,7 @@
     }
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     padding: 20px;
   }
 }
@@ -276,7 +276,7 @@ $color2: #00b376;
     source, img {
       height: 100%;
 
-      @media all and (max-width: $mobile-width) {
+      @media #{$mobile} {
         width: 100%;
         height: auto;
       }
@@ -296,7 +296,7 @@ $color2: #00b376;
     text-align: center;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: block;
 
     > section {
