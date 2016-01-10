@@ -19,6 +19,10 @@ $desktop: "all and (min-width: 750px)";
 $header-height: 40px;
 $header-height-mobile: 50px;
 
+// Header background colors
+$header-color: #333;
+$header-color-alt: #222;
+
 // Footer colors
 $footer-color: #191a1a;
 $footer-emph-text: #828282; // Emphasized text
@@ -38,12 +42,9 @@ $color-tumblr: #35465c;
 $color-pinterest: #c92228;
 
 // Global colors
+$background: #f0f0f0;
 $active-tab-color: #17cd94;
 $white: #fff;
 $black: #000;
 $off-black: #333;
 $gray: #aaaab2;
-
-// Header background colors
-$header-color: #333;
-$header-color-alt: #222;
