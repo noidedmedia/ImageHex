@@ -1,28 +1,28 @@
 @import "scss-variables";
 
 .header-notifications {
-  background-color: #222;
+  background-color: $header-color-alt;
   display: inline-block;
-  height: 40px;
+  height: $header-height;
   vertical-align: top;
 
   &.unread {
     background-color: #b70f3b;
 
     .notifications-unread-count a {
-      color: #fff;
+      color: $white;
     }
   }
 
   &.active {
-    background-color: #fff;
+    background-color: $white;
 
     .notifications-unread-count a {
-      color: #333;
+      color: $off-black;
       transition: 0;
 
       &:hover {
-        color: #333;
+        color: $off-black;
       }
     }
   }
@@ -30,30 +30,30 @@
   .notifications-unread-count a {
     font-size: 1.4rem;
     font-weight: 400;
-    color: #aaaab2;
+    color: $gray;
     text-decoration: none;
     transition: color 300ms ease-in-out;
     padding: 12px 15px;
     display: inline-block;
 
     &:hover {
-      color: #fff;
+      color: $white;
       text-decoration: none;
     }
   }
 
   .notifications-dropdown {
-    background-color: #fff;
-    color: #333;
+    background-color: $white;
+    color: $off-black;
     height: auto;
     width: 300px;
     position: absolute;
     left: -100px;
-    top: 40px;
+    top: $header-height;
     text-align: left;
     opacity: 0;
     display: inline-block;
-    box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 10px 1px rgba($black, 0.05);
     transition: max-height 400ms;
     overflow: auto;
 
@@ -97,17 +97,17 @@
   margin-bottom: 50px;
 
   a {
-    color: #aaaab2;
+    color: $gray;
     text-decoration: none;
     font-size: 1.2rem;
 
     &:hover {
-      color: #333;
+      color: $off-black;
     }
   }
 
   .notifications-header {
-    border-bottom: 1px solid #aaaab2;
+    border-bottom: 1px solid $gray;
     position: relative;
 
     h3 a {
@@ -115,7 +115,7 @@
       font-weight: 500;
       padding: 0 0 6px 10px;
       display: inline-block;
-      color: #333;
+      color: $off-black;
     }
 
     .mark-all-read {
@@ -132,10 +132,10 @@
 .notifications-list-item {
   width: 100%;
   font-size: 1.2rem;
-  border-bottom: 1px solid #aaaab2;
+  border-bottom: 1px solid $gray;
 
   &.unread {
-    background-color: #fff;
+    background-color: $white;
     border-left: 6px solid #d21849;
   }
 
@@ -144,7 +144,7 @@
     width: 100%;
     padding: 12px 10px;
     text-decoration: none;
-    color: #333;
+    color: $off-black;
   }
 
   .notification-message {
@@ -152,12 +152,12 @@
   }
 
   .notification-time-ago {
-    color: #aaaab2;
+    color: $gray;
   }
 }
 
 .notifications-empty {
-  color: #aaaab2;
+  color: $gray;
   font-size: 1.2rem;
   text-align: center;
   height: 150px;
@@ -170,7 +170,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    background-color: #333;
+    background-color: $header-color;
     height: 45px;
 
     .notifications-unread-count a {

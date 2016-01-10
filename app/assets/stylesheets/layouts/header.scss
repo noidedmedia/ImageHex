@@ -103,10 +103,10 @@
   @media #{$mobile} {
     position: absolute;
     right: 0;
-    top: 50px;
+    top: $header-height-mobile;
     width: calc(100vw - 90px);
     max-width: 250px;
-    height: calc(100vh - 50px);
+    height: calc(100vh - $header-height-mobile);
     display: block;
     text-align: left;
     background-color: $header-color-alt;
@@ -206,7 +206,7 @@
 
 .create-dropdown {
   position: absolute;
-  top: 40px;
+  top: $header-height;
   left: 0;
   display: inline-block;
   background-color: $white;
@@ -272,10 +272,10 @@
 
   #mobile-menu-overlay {
     width: 100vw;
-    height: calc(100vh - 50px);
+    height: calc(100vh - $header-height-mobile);
     position: fixed;
     display: block;
-    top: 50px;
+    top: $header-height-mobile;
     left: 0;
     pointer-events: none;
     background-color: rgba($off-black, 0);

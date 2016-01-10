@@ -219,9 +219,7 @@ a:target + .comment {
   padding: 8px;
   transition: 300ms border-color;
   border-radius: 0;
-
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  appearance: none;
 
   &:focus {
     outline: transparent;
