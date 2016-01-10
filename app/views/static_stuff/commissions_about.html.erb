@@ -1,3 +1,5 @@
+<%- title t(".commissions") %>
+
 <div class="imagehex-static-page-container no-padding no-margin white-background">
 
   <section class="imagehex-static-section imagehex-static-hero">
@@ -169,26 +171,12 @@
           <div class="detail-icon">
             <img src=<%= asset_path("commissions/icon-fees.svg") %>>
           </div>
-
           <h3>Fees</h3>
-          <h4>12% + 30¢ per commission</h4>
-          
-          <table>
-            <tbody>
-              <tr>
-                <td>Stripe</td>
-                <td>2.9% + 30¢</td>
-              </tr>
-              <tr>
-                <td>ImageHex</td>
-                <td>9.1%</td>
-              </tr>
-              <tr>
-                <td>Artist</td>
-                <td>88% - 30¢</td>
-              </tr>
-            </tbody>
-          </table>
+
+          <p>12% + 30¢</p>
+          <p>per commission</p>
+
+          <p class="smaller-text">Fees breakdown to 9.1% going to ImageHex and 2.9% + 30¢ going to Stripe.</p>
         </section>
 
         <section class="pricing-container generic-container no-hover">
@@ -198,7 +186,7 @@
 
           <h3>Calculate your costs</h3>
           <div id="commission-calculator-input-container" class="commission-calculator-input-container">
-            
+            <%# Commission cost calculator is inserted with JavaScript %>
           </div>
         </section>
       </div>

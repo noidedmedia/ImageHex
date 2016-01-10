@@ -127,6 +127,7 @@ Rails.application.routes.draw do
   ########################
   get 'settings', to: "users#edit"
   
+
   #################
   # STATIC ROUTES #
   #################
@@ -140,7 +141,7 @@ Rails.application.routes.draw do
   get 'faq', to: "static_stuff#faq"
   get 'help', to: "static_stuff#help"
   get 'press', to: "static_stuff#press"
-  get 'commissions_plan', to: "static_stuff#commissions_plan"
+  get 'commissions', to: "static_stuff#commissions_about"
   get 'settings', to: 'users#edit'
   post 'settings', to: 'users#update'
 
