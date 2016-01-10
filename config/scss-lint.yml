@@ -62,7 +62,12 @@ linters:
   StringQuotes:
     enabled: false
 
-  # 
+
+  # Disable
+  TrailingWhitespace:
+    enabled: false
+
+  # Disable "Numeric values should not contain unnecessary fractional portions".
   UnnecessaryMantissa:
     enabled: false
 

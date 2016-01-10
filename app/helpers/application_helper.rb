@@ -45,7 +45,8 @@ module ApplicationHelper
     }
     extensions = {
       autolink: true,
-      superscript: true
+      superscript: true,
+      fenced_code_blocks: true
     }
     renderer = Redcarpet::Render::HTML.new(options)
     markdown = Redcarpet::Markdown.new(renderer, extensions)

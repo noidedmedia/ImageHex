@@ -26,10 +26,7 @@
       <%= f.label :page_pref, t(".images_per_page"), class: "label input-empty", for: "page-pref-field" %>
       <%= f.number_field :page_pref, id: "page-pref-field", class: "input" %>
     </div>
-    <div class="checkbox-container">
-      <%= f.label:subscribed_to_newsletter, t(".subscribed_to_newsletter") %>
-      <%= f.check_box :subscribed_to_newsletter %>
-    </div>
+
     <div class="field-container">
       <h3 class="generic-smallcaps-title"><%= t(".content_filters") %></h3>
 
@@ -76,6 +73,15 @@
             <%= link_to t(".enable_twofactor_authentication"), enable_twofactor_user_path(@user), class: "btn btn-white btn-with-border btn-bold", method: :put %>
           <% end %>
         </div>
+      </div>
+    </div>
+
+    <div class="field-container">
+      <h3 class="generic-smallcaps-title"><%= t(".emails") %></h3>
+
+      <div class="checkbox-container">
+        <%= f.check_box :subscribed_to_newsletter %>
+        <%= f.label :subscribed_to_newsletter, t(".monthly_newsletter") %>
       </div>
     </div>
 

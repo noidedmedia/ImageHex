@@ -1,3 +1,5 @@
+<%- title t(".commissions") %>
+
 <div class="imagehex-static-page-container no-padding no-margin white-background">
 
   <section class="imagehex-static-section imagehex-static-hero">
@@ -109,6 +111,10 @@
   </section>
 
   <section class="imagehex-static-section alt-background">
+    <div class="section-graphic">
+      <img src=<%= asset_path("commissions/book.svg") %>>
+    </div>
+
     <div class="imagehex-static-text">
       <h2 class="center section-header">Everyone on the same page</h2>
       <p class="center section-subheader">Clients often forget to provide crucial details in their requests, or details get lost in email threads dozens of messages long.</p>
@@ -165,26 +171,12 @@
           <div class="detail-icon">
             <img src=<%= asset_path("commissions/icon-fees.svg") %>>
           </div>
-
           <h3>Fees</h3>
-          <h4>12% + 30¢ per commission</h4>
-          
-          <table>
-            <tbody>
-              <tr>
-                <td>Stripe</td>
-                <td>2.9% + 30¢</td>
-              </tr>
-              <tr>
-                <td>ImageHex</td>
-                <td>9.1%</td>
-              </tr>
-              <tr>
-                <td>Artist</td>
-                <td>88% - 30¢</td>
-              </tr>
-            </tbody>
-          </table>
+
+          <p>12% + 30¢</p>
+          <p>per commission</p>
+
+          <p class="smaller-text">Fees breakdown to 9.1% going to ImageHex and 2.9% + 30¢ going to Stripe.</p>
         </section>
 
         <section class="pricing-container generic-container no-hover">
@@ -194,7 +186,7 @@
 
           <h3>Calculate your costs</h3>
           <div id="commission-calculator-input-container" class="commission-calculator-input-container">
-            
+            <%# Commission cost calculator is inserted with JavaScript %>
           </div>
         </section>
       </div>
@@ -206,20 +198,21 @@
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
-      <h3>Sign up for our newsletter</h3>
-      <p>
-      Want information on these features? Simply make an account and opt-in to our newsletter. We'll send you progress reports, and may even select you to participate in a private beta.
-      <p>
-      We're already working hard on making these features a reality. With your help, we can make commissioning art (and accepting commissions) easier for everybody. 
-      <% unless current_user %>
-        <div id="call-to-action-container">
-          <a href="/accounts/sign_up" id="call-to-action-sign-up">
-            <div class="btn btn-green btn-large">
-              Sign Up
-            </div>
-          </a>
+      <h2 class="center section-header">Newsletter</h2>
+      
+      <% if current_user %>
+        <p class="center section-subheader">Keep up to date with the development of Commissions by subscribing to our monthly newsletter in your Settings.</p>
+
+        <div class="btn btn-green btn-thin btn-center btn-with-margin">
+          <%= link_to "Settings", settings_path %>
         </div>
-      <% end %> 
+      <% else %>
+        <p class="center section-subheader">Keep up to date with the development of Commissions by signing up and subscribing to our monthly newsletter.</p>
+
+        <div class="btn btn-green btn-thin btn-center btn-with-margin">
+          <%= link_to "Sign up", new_user_registration_path %>
+        </div>
+      <% end %>
     </div>
   </section>
 </div>
