@@ -25,9 +25,7 @@
     resize: none;
     font-size: 1.2rem;
     transition: 300ms border-color;
-
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    appearance: none;
 
     &:focus {
       outline: transparent;
@@ -48,7 +46,7 @@
       display: block;
     }
 
-    @media all and (max-width: $mobile-width) {
+    @media #{$mobile} {
       width: 90vw;
     }
   }

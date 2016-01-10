@@ -8,7 +8,7 @@ body.modal-open {
   display: none;
   width: 100vw;
   height: 100vh;
-  background: rgba(#fff, 0.4);
+  background: rgba($white, 0.4);
   z-index: 1000;
   position: fixed;
   top: 0;
@@ -24,12 +24,12 @@ body.modal-open {
   height: auto;
   width: 500px;
   max-width: calc(100vw - 20px);
-  background-color: #fff;
+  background-color: $white;
   padding: 20px 20px 12px;
   border-radius: 4px;
   vertical-align: middle;
   position: relative;
-  box-shadow: 2px 2px 6px 0 rgba(#000, 0.25);
+  box-shadow: 2px 2px 6px 0 rgba($black, 0.25);
   
   > p {
     font-size: 1.4rem;

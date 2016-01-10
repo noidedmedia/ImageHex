@@ -8,7 +8,7 @@
 .imagehex-empty-note {
   display: inline-block;
   margin: auto;
-  color: #aaaab2;
+  color: $gray;
   font-size: 1.4rem;
   text-align: center;
   padding: 5px;
@@ -21,7 +21,7 @@
 .imagehex-tab-container {
   width: 100vw;
   height: 40px;
-  background-color: #fff;
+  background-color: $white;
   display: flex;
   text-align: center;
   padding-top: 4px;
@@ -37,7 +37,7 @@
   }
 
   a {
-    color: #333;
+    color: $off-black;
     display: block;
     font-size: 1.4rem;
     font-weight: 400;
@@ -49,11 +49,11 @@
 
   .current {
     font-weight: 500;
-    color: #17cd94;
+    color: $active-tab-color;
 
     &::after {
       content: '';
-      background-color: #17cd94;
+      background-color: $active-tab-color;
       width: calc(100% + 30px);
       transform: translate(-15px,6px);
       height: 3px;
@@ -66,19 +66,19 @@
 // white background, box-shadow, border.
 // Used for listing collections, creators, etc.
 .generic-container {
-  background-color: #fff;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  background-color: $white;
+  box-shadow: 0 1px 0 rgba($black, 0.25);
   border: 1px solid rgba(201, 201, 201, 0.7);
   border-radius: 3px;
   transition: border 200ms, box-shadow 300ms;
 
   &:hover {
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba($black, 0.25), 2px 2px 6px 0 rgba($black, 0.1);
     border: 1px solid #c9c9c9;
   }
 
   &.no-hover:hover {
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 0 rgba($black, 0.25);
     border: 1px solid rgba(201, 201, 201, 0.7);
   }
 }
@@ -86,7 +86,7 @@
 // Generic class for smallcaps titles, used for sections, e.g. on the Settings page.
 .generic-smallcaps-title {
   text-transform: uppercase;
-  color: #333;
+  color: $off-black;
   margin: 15px 0 10px;
   font-weight: 500;
   font-size: 1.4rem;
