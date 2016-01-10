@@ -19,9 +19,10 @@ $desktop: "all and (min-width: 750px)";
 $header-height: 40px;
 $header-height-mobile: 50px;
 
-// Text colors
-$emph-text: #828282; // Emphasized text
-$unemph-text: #6d6d6d; // Unemphasized text
+// Footer colors
+$footer-color: #191a1a;
+$footer-emph-text: #828282; // Emphasized text
+$footer-unemph-text: #6d6d6d; // Unemphasized text
 
 // Error colors
 $color-success: #5bb289;

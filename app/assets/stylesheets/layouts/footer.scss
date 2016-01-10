@@ -2,9 +2,9 @@
 
 // Container for the footer
 .footer-container {
-  background-color: #191a1a;
+  background-color: $footer-color;
   bottom: 0;
-  color: $unemph-text;
+  color: $footer-unemph-text;
   display: block;
   min-height: 160px;
   left: 0;
@@ -30,11 +30,11 @@
   width: 60%;
 
   a {
-    color: $unemph-text;
+    color: $footer-unemph-text;
     text-decoration: none;
 
     &:hover {
-      color: $emph-text;
+      color: $footer-emph-text;
     }
   }
 
@@ -78,7 +78,7 @@
 
 // Copyright text in the description column.
 .footer-description-copyright {
-  color: $emph-text;
+  color: $footer-emph-text;
   display: block;
   font-size: 1.2rem;
   font-weight: 400;
