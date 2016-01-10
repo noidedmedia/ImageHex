@@ -50,12 +50,13 @@
       width: 50px;
     }
 
+    // ImageHex logo with wordmark for desktop browsers.
     .imagehex-header-logo {
       width: 160px;
       height: $header-height;
       position: absolute;
       top: 0;
-      background: asset-url("logo/imagehex-monochrome-white-text.svg") 50% 50% / 110% 110% no-repeat;
+      background: asset-url("#{$imagehex-header-logo-with-text}") 50% 50% / 110% 110% no-repeat;
       opacity: 0.75;
       transition: 200ms opacity;
 
@@ -63,18 +64,20 @@
         opacity: 1;
       }
 
+      // Show only the ImageHex logo, no wordmark, for browsers between mobile and laptop size.
       @media all and (min-width: $mobile-width) and (max-width: $laptop-width) {
         width: 40px;
         height: $header-height;
         top: 0;
-        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+        background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
       }
 
+      // Show only the ImageHex logo, no wordmark, for mobile browsers.
       @media all and (max-width: $mobile-width) {
         width: 50px;
         height: $header-height-mobile;
         top: 0;
-        background: asset-url("logo/imagehex-monochrome-white.svg") 50% 50% / 75% 75% no-repeat;
+        background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
       }
     }
   }
