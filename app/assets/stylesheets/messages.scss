@@ -1,4 +1,6 @@
-.message-item{
+@import "scss-variables";
+
+.message-item {
   padding: 3px;
   margin: 5px;
   display: flex;
@@ -6,18 +8,18 @@
   align-items: center;
 }
 
-.message-user-info{
+.message-user-info {
   width: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.message-avatar{
+.message-avatar {
   width: 100%;
   height: auto;
 }
 
-.message-body{
+.message-body {
   padding: 4px;
 }

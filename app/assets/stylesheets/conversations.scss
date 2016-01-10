@@ -1,15 +1,16 @@
+@import "scss-variables";
+
 .conversation {
   width: 300px;
 }
 
-.conversation-message-list{
+.conversation-message-list {
   height: 250px;
   overflow: scroll;
 }
 
-.chat-input{
+.chat-input {
   margin: 0;
   padding: 0;
   width: 100%;
-
 }
