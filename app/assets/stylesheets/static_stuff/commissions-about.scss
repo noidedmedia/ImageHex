@@ -112,11 +112,33 @@
 
 section.pricing-container {
   table {
-    margin-top: 20px;
+    margin: 20px auto 10px;
   }
 
   > h3 {
     margin-top: 10px;
+  }
+
+  > p {
+    padding: 10px;
+    width: 280px;
+    margin: auto;
+  }
+
+  .fees {
+    margin-bottom: 25px;
+
+    > h3 {
+      font-size: 3.2rem;
+      font-weight: 300;
+      padding: 0;
+    }
+
+    > p {
+      font-size: 2.0rem;
+      font-weight: 300;
+      padding: 0;
+    }
   }
 }
 
@@ -125,6 +147,7 @@ section.pricing-container {
     width: 45px;
     border: 0;
     padding: 0 0 0 2px;
+    margin: 0;
     font-size: 1.6rem;
     line-height: 2.2rem;
     right: 0;

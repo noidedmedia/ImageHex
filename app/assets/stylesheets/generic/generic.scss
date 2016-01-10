@@ -97,17 +97,19 @@
   text-align: center;
 }
 
+// Generic class for bold text.
+.bold {
+  font-weight: 500;
+}
+
+// Generic class for left-aligned text.
 .left-aligned {
   text-align: left;
 }
 
+// Generic class for right-aligned text.
 .right-aligned {
   text-align: right;
-}
-
-// Generic class for bold text.
-.bold {
-  font-weight: 500;
 }
 
 // Generic class for page headers.
