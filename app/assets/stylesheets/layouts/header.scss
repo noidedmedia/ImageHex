@@ -2,8 +2,8 @@
 
 // Container for the header item, always fixed to the top of the screen.
 #header-container {
-  background-color: #333;
-  color: #fff;
+  background-color: $header-color;
+  color: $white;
   display: block;
   font-weight: 300;
   height: $header-height;
@@ -16,10 +16,10 @@
   width: 100vw;
   z-index: 1000;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     width: 100vw;
     height: $header-height-mobile;
-    background-color: #333;
+    background-color: $header-color;
     display: flex;
     flex-flow: row nowrap;
     position: fixed;
@@ -35,7 +35,7 @@
   position: absolute;
   text-align: left;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     position: relative;
     left: 30px;
     height: $header-height-mobile;
@@ -46,7 +46,7 @@
     margin-right: 15px;
     width: 160px;
 
-    @media all and (max-width: 1000px) {
+    @media all and (max-width: $laptop-width) {
       width: 50px;
     }
 
@@ -63,7 +63,7 @@
         opacity: 1;
       }
 
-      @media all and (min-width: $mobile-width) and (max-width: 1000px) {
+      @media all and (min-width: $mobile-width) and (max-width: $laptop-width) {
         width: 40px;
         height: $header-height;
         top: 0;
@@ -83,7 +83,7 @@
     position: relative;
 
     // Prevent elements hitting each other.
-    @media all and (max-width: 1000px) {
+    @media all and (max-width: $laptop-width) {
       display: none;
     }
   }
@@ -97,7 +97,7 @@
   text-align: right;
   height: 100%;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     position: absolute;
     right: 0;
     top: 50px;
@@ -106,7 +106,7 @@
     height: calc(100vh - 50px);
     display: block;
     text-align: left;
-    background-color: #222;
+    background-color: $header-color-alt;
     z-index: 1000;
     transition: transform 300ms;
     transform: translateX(calc(100vw + 90px));
@@ -141,7 +141,7 @@
 
 // Header items, e.g. "Sign out", "Upload", etc.
 .header-item {
-  color: #aaaab2;
+  color: $gray;
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
@@ -150,22 +150,22 @@
   vertical-align: top;
 
   &:hover {
-    color: #fff;
+    color: $white;
     text-decoration: none;
   }
 
   a {
-    color: #aaaab2;
+    color: $gray;
     text-decoration: none;
     transition: color 300ms ease-in-out;
 
     &:hover {
-      color: #fff;
+      color: $white;
       text-decoration: none;
     }
   }
   
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     padding: 15px;
   }
 }
@@ -184,15 +184,15 @@
   }
 
   &.active {
-    background-color: #fff;
+    background-color: $white;
     
     i,
     i::before {
-      color: #333;
+      color: $off-black;
     }
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: none;
   }
 }
@@ -206,8 +206,8 @@
   top: 40px;
   left: 0;
   display: inline-block;
-  background-color: #fff;
-  box-shadow: 0 6px 10px 1px rgba(0, 0, 0, 0.05);
+  background-color: $white;
+  box-shadow: 0 6px 10px 1px rgba($black, 0.05);
   text-align: left;
 
   li {
@@ -219,14 +219,14 @@
     width: 100%;
     text-decoration: none;
     font-size: 1.4rem;
-    color: #333;
+    color: $off-black;
 
     // Ensure padding on the right side of the list items.
     padding: 10px 50px 10px 10px;
 
     &:hover {
-      color: #333;
-      background-color: darken(#fff, 5%);
+      color: $off-black;
+      background-color: darken($white, 5%);
     }
   }
 
@@ -245,15 +245,15 @@
 
   span::before {
     // Center icon within the tap target
-    transform: translate(11px,14px);
+    transform: translate(11px, 14px);
     transition: color 300ms;
   }
 
   &.active span::before {
-    color: #fff;
+    color: $white;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: block;
   }
 }
@@ -262,7 +262,7 @@
   display: none;
 }
 
-@media all and (max-width: $mobile-width) {
+@media #{$mobile} {
   #header-home {
     padding: 0 15px;
   }
@@ -275,12 +275,12 @@
     top: 50px;
     left: 0;
     pointer-events: none;
-    background-color: rgba(#333,0);
+    background-color: rgba($off-black, 0);
     z-index: 999;
     transition: background-color 300ms 0;
 
     &.active {
-      background-color: rgba(#333,0.4);
+      background-color: rgba($off-black, 0.4);
       pointer-events: auto;
       transition: background-color 300ms 300ms;
     }

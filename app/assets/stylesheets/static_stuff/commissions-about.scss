@@ -7,7 +7,7 @@
   .feature {
     position: relative;
     padding-left: 50px;
-    color: #333;
+    color: $off-black;
     width: 100%;
     max-width: 400px;
     margin: auto;
@@ -151,12 +151,12 @@ section.pricing-container {
     font-size: 1.6rem;
     line-height: 2.2rem;
     right: 0;
-    border-bottom: 1px solid rgba(#000, 0.3);
+    border-bottom: 1px solid rgba($black, 0.3);
     transition: border 200ms;
 
     &:focus {
       border: 0;
-      border-bottom: 1px solid rgba(#000, 0.8);
+      border-bottom: 1px solid rgba($black, 0.8);
     }
   }
 
