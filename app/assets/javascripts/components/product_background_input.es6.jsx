@@ -19,56 +19,41 @@ class ProductBackgroundInput extends React.Component{
     };
   }
   render(){
+    var body;
     if(this.state.type === "no-background"){
-      return <div>
-        <h3>No Background</h3>
-        Customers cannot add a background to this image.
-        You can also chose to <a onClick={this.moveToCharge.bind(this)}>charge for a background</a>
-        or <a onClick={this.moveToFree.bind(this)}>include a background in the base price</a> instead.
-        <input type="hidden"
-          name="commission_product[offer_background]"
-          value="false" />
-        <input type="hidden"
-          name="commission_product[includes_background]"
-          value="false" />
-      </div>
+      body = <NoneBackground />;
     }
     else if(this.state.type === "free-background"){
-      return <div>
-        <h3>Free Background</h3>
-        Customers will recieve a background included in the base price of the image.
-        You can also chose to <a onClick={this.moveToCharge.bind(this)}>charge for a background</a> or <a onClick={this.moveToNone.bind(this)}>disallow backgrounds entirely</a> instead.
-        <input type="hidden"
-          name="commission_product[include_background]"
-          value="true" />
-        <input type="hidden"
-          name="commission_product[offer_backgroud]"
-          value="false" />
-      </div>
+      body = <FreeBackground />;
     }
     else if(this.state.type === "charged-background"){
-      return <div>
-        <h3>Charged Backgrounds</h3>
-        Customers will pay a fee of
-        <CurrencyInputField
-          min={1.00}
-          initialValue={this.props.price}
-          name="commission_product[background_price]" />
-        for a background.
-        You can also choose to <a onClick={this.moveToFree.bind(this)}>offer free backgrounds</a> or <a onClick={this.moveToNone.bind(this)}>disallow backgrounds entirely.</a>
-        <input type="hidden"
-          name="commission_product[offer_background]"
-          value="true" />
-        <input type="hidden"
-          name="commission_product[includes_background]"
-          value="false" />
-      </div>
+      body = <ChargedBackground price={this.state.price} />;
     }
-    return <div>
-      This should never happen.
+    return <div className="product-background-input">
+      <div class="radio-container">
+        <label>No Background</label>
+        <input type="radio"
+          checked={this.state.type === "no-background"}
+          onChange={this.moveToNone.bind(this)}/>
+      </div>
+      <div class="radio-container">
+        <label>Free Background</label>
+        <input type="radio"
+          checked={this.state.type === "free-background"}
+          onChange={this.moveToFree.bind(this)} />
+      </div>
+      <div class="radio-container">
+        <label>Paid Background</label>
+        <input type="radio"
+          checked={this.state.type === "charged-background"}
+          onChange={this.moveToCharged.bind(this)} />
+      </div>
+      <div class="background-input-body">
+        {body}
+      </div>
     </div>;
   }
-  moveToCharge(){
+  moveToCharged(){
     this.setState({
       type: "charged-background"
     })
@@ -84,3 +69,50 @@ class ProductBackgroundInput extends React.Component{
     });
   }
 }
+
+
+var NoneBackground = () => {
+  return <div>
+    <h3>No Background</h3>
+    Customers cannot add a background to this image.
+    <input type="hidden"
+      name="commission_product[offer_background]"
+      value="false" />
+    <input type="hidden"
+      name="commission_product[includes_background]"
+      value="false" />
+  </div>;
+};
+
+var FreeBackground = () => {
+  return <div>
+    <h3>Free Background</h3>
+    Customers will recieve a background included in the base price of the image.
+    <input type="hidden"
+      name="commission_product[include_background]"
+      value="true" />
+    <input type="hidden"
+      name="commission_product[offer_backgroud]"
+      value="false" />
+  </div>;
+}
+
+var ChargedBackground = (props) => {
+  return <div>
+    <h3>Charged Backgrounds</h3>
+    Customers will pay a fee of
+    <CurrencyInputField
+      min={1.00}
+      initialValue={props.price}
+      name="commission_product[background_price]" />
+    for a background.
+    <input type="hidden"
+      name="commission_product[offer_background]"
+      value="true" />
+    <input type="hidden"
+      name="commission_product[includes_background]"
+      value="false" />
+  </div>
+}
+
+

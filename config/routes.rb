@@ -162,7 +162,6 @@ Rails.application.routes.draw do
   #################
 
   root to: "frontpage#index"
-
   get 'about', to: "static_stuff#about"
   get 'people', to: "static_stuff#people"
   get 'contact', to: "static_stuff#contact"
