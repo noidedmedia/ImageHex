@@ -1,11 +1,17 @@
-/* Simple home container that makes sure the home page's content doesn't clip the header/footer. */
-#home-container {
+@import "scss-variables";
+
+// Simple home container that makes sure the home page's content doesn't clip the header/footer.
+.home-container {
   display: block;
   height: auto;
   padding: 20px 40px;
   position: relative;
   text-align: center;
   width: 100%;
+
+  @media all and (max-width: $mobile-width) {
+    padding: 20px;
+  }
 }
 
 .frontpage-subscription-container {
@@ -13,7 +19,7 @@
   flex-flow: row wrap;
 }
 
-#frontpage-logo {
+.frontpage-logo {
   width: 100%;
 
   img {
