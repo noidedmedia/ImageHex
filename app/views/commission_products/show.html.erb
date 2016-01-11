@@ -1,7 +1,7 @@
 <h1><%= @product.name %></h1>
 <h3>A product from <%= link_to @product.user.name, @product.user %></h3>
 <% if policy(@product.offers.build).create? %>
-  <%= link_to "Make an offer", new_commission_product_commission_offer_path(@product) %>
+  <%= link_to "Make an offer", new_commission_offer_path(commission_product_id: @product.id) %>
 <% end %>
 <div id="offer-base-price">
   Base price: <%= price(@product.base_price) %>

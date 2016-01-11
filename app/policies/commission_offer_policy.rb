@@ -1,11 +1,8 @@
 class CommissionOfferPolicy < ApplicationPolicy
+  
   def initialize(user, offer)
     @user = user
     @offer = offer
-  end
-
-  def new?
-    not_offering_self?
   end
 
   def confirm? 
@@ -33,7 +30,7 @@ class CommissionOfferPolicy < ApplicationPolicy
   end
 
   def create?
-    not_offering_self? 
+    not_offering_self?
   end
 
   def update?
@@ -58,7 +55,7 @@ class CommissionOfferPolicy < ApplicationPolicy
   end
 
   def offeree? 
-    @offer.commission_product.user == @user
+    @offer.commission_product&.user == @user
   end
 
   def not_offering_self?

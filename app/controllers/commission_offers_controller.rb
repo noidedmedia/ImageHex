@@ -2,7 +2,6 @@ class CommissionOffersController < ApplicationController
   include Pundit
   after_action :verify_authorized
   before_action :ensure_user
-  before_action :set_product, only: [:index, :new, :create]
   def index
 
   end
@@ -89,12 +88,12 @@ class CommissionOffersController < ApplicationController
   end
 
   def new
-    @offer = @product.offers.build
+    @offer = CommissionOffer.new
     authorize @offer
   end
 
   def create
-    @offer = @product.offers.build(commission_offer_params)
+    @offer = CommissionOffer.new(commission_offer_params)
     authorize @offer
     respond_to do |format|
       if @offer.save
@@ -119,9 +118,5 @@ class CommissionOffersController < ApplicationController
               {references_attributes: [:file]}],
         backgrounds_attributes: [:description, {references_attributes: [:file]}])
       .merge(user_id: current_user.id)
-  end
-
-  def set_product
-    @product = CommissionProduct.find(params[:commission_product_id])
   end
 end

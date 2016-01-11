@@ -47,16 +47,16 @@ Rails.application.routes.draw do
       get :callback
     end
   end
-  resources :commission_products do
-    resources :commission_offers, shallow: true do
-      member do 
-        post 'accept'
-        post 'confirm'
-        get 'pay'
-        post 'charge'
-        get 'fullfill'
-        post 'fill'
-      end
+  resources :commission_products
+
+  resources :commission_offers do
+    member do 
+      post 'accept'
+      post 'confirm'
+      get 'pay'
+      post 'charge'
+      get 'fullfill'
+      post 'fill'
     end
   end
 
@@ -155,7 +155,7 @@ Rails.application.routes.draw do
   # SINGLE ACTION ROUTES #
   ########################
   get 'settings', to: "users#edit"
-  
+
 
   #################
   # STATIC ROUTES #

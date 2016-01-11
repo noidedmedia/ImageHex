@@ -1,9 +1,9 @@
-<%= form_for [@product, @offer], html: {id: "commission-offer-form", multipart: true} do |f| %>
+<%= form_for @offer, html: {id: "commission-offer-form", multipart: true} do |f| %>
 
   <%= f.label :description %>
   <%= f.text_area :description %> 
   <div id="offer-form-react-container"
-    data-product-id="<%= @product.id %>">
+    data-product-id="<%= @offer.commission_product_id %>">
     <span>
       One moment...
     </span>
