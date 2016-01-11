@@ -88,9 +88,14 @@ class CommissionOffersController < ApplicationController
   end
 
   def new
-    @offer = CommissionOffer.new
+    if id = params["commission_product_id"]
+      @offer = CommissionOffer.new(commission_product_id: id)
+    else
+      @offer = CommissionOffer.new
+    end
     authorize @offer
   end
+
 
   def create
     @offer = CommissionOffer.new(commission_offer_params)
@@ -106,18 +111,39 @@ class CommissionOffersController < ApplicationController
     end
   end
 
-  def update 
-
+  def edit
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
   end
+
+  def update 
+    @offer = CommissionOffer.find(params[:id])
+    authorize @offer
+    respond_to do |format|
+      if @offer.update(commission_offer_params)
+        format.html { redirect_to @offer }
+        format.json { render 'show' }
+      else
+        format.html { render 'edit' }
+        format.json { render @offer.errors, status: :unproccessible_entity } 
+      end
+    end
+  end
+
   protected
   def commission_offer_params
     params.require(:commission_offer)
       .permit(:description,
         :commission_product_id,
         subjects_attributes: [:description,
+              :id,
+              :_destroy,
               {tag_ids: []},
-              {references_attributes: [:file]}],
-        backgrounds_attributes: [:description, {references_attributes: [:file]}])
+              {references_attributes: [:file, :id, :_destroy]}],
+        backgrounds_attributes: [:description, 
+          :id,
+          :destroy,
+          {references_attributes: [:file, :id, :_destroy]}])
       .merge(user_id: current_user.id)
   end
 end

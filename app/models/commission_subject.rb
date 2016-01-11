@@ -6,7 +6,8 @@ class CommissionSubject < ActiveRecord::Base
     inverse_of: :commission_subject
   validates :commission_offer, presence: true
   validate :has_acceptable_reference_number
-  accepts_nested_attributes_for :references
+  accepts_nested_attributes_for :references,
+    allow_destroy: true
   attr_accessor :tag_ids
   before_validation :build_tag_ids
 

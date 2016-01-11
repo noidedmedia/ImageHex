@@ -9,11 +9,15 @@ class CommissionOffer < ActiveRecord::Base
   has_many :commission_images
   has_many :images, through: :commission_images
 
-  accepts_nested_attributes_for :subjects
-  accepts_nested_attributes_for :backgrounds
+  accepts_nested_attributes_for :subjects,
+    allow_destroy: true
+  accepts_nested_attributes_for :backgrounds,
+    allow_destroy: true
 
   validates :user, presence: true
-  validates :commission_product, presence: true
+
+  validates :commission_product, presence: true,
+    :if => :confirmed
 
   validate :has_acceptable_subject_count
   validate :background_is_acceptable
@@ -21,7 +25,8 @@ class CommissionOffer < ActiveRecord::Base
 
   has_one :conversation
 
-  before_save :calculate_price
+  before_save :calculate_price,
+    :if => :confirmed 
 
   def calculate_fee
     if offeree.has_filled_commissions?

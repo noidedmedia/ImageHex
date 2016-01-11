@@ -1,19 +1,27 @@
 class CommissionSubjectForm extends React.Component {
   constructor(props){
     super(props);
-    var initialReferences = props.subj.references || []
+    var initialReferences = props.subj.references || [];
     this.state = {
       references: initialReferences,
       currentRefKey: 0
     };
+    console.log("Creating a subject field for subject", props.subj);
   }
   render(){
     var refs = this.state.references.map((ref, index) => {
       var id = ref.id ? ref.id : ref.key;
       var b = this.baseFieldName() + "[references_attributes][" + index + "]";
+      if(ref.removed){
+        return <CommissionSubjectForm.RemovedReferenceFields
+          key={id}
+          baseFieldName={b}
+          reference={ref}
+        />;
+      }
       return <SubjectReferenceField
         baseFieldName={b}
-        ref={ref}
+        reference={ref}
         index={index}
         key={id}
         remove={this.removeReference.bind(this, index)} />;
@@ -22,7 +30,7 @@ class CommissionSubjectForm extends React.Component {
         type="button">
         Add a Reference Image
       </button>;
-    if(refs.length > 4){
+    if(refs.filter(r => ! r.deleted).length > 4){
       refButton = undefined;
     }
     return <div className="commission-subject-form-fields">
@@ -32,6 +40,9 @@ class CommissionSubjectForm extends React.Component {
         <textarea name={this.descriptionFieldName()}
           type="text"
           defaultValue={this.defaultDescription()} />
+        <input type="hidden"
+          name={this.baseFieldName() + "[id]"}
+          value={this.props.subj.id} />
         <SubjectTagSelector
           initialTags = {this.props.subj.tags ? this.props.subj.tags : []}
           baseFieldName={this.baseFieldName()} />
@@ -66,12 +77,14 @@ class CommissionSubjectForm extends React.Component {
       currentRefKey: this.state.currentRefKey - 1
     });
   }
+
   removeReference(index){
-    this.state.references.splice(index, 1);
+    this.state.references[index].removed = true;
     this.setState({
-      refrences: this.state.references
+      references: this.state.references
     });
   }
+
   removeSelf(event){
     console.log("removeSelf fires with event",event);
     event.preventDefault();
@@ -79,7 +92,7 @@ class CommissionSubjectForm extends React.Component {
   }
   defaultDescription(){
     console.log("In commission subject form, found props:",this.props);
-    return "";
+    return this.props.subj.description || "";
   }
   descriptionFieldName(){
     return this.baseFieldName() + "[description]";
@@ -88,6 +101,40 @@ class CommissionSubjectForm extends React.Component {
   baseFieldName(){
     return "commission_offer[subjects_attributes][" + this.props.index + "]";
   }
+}
+
+CommissionSubjectForm.RemovedReferenceFields = (props) => {
+  console.log("Removed reference field gets props:",props);
+  if(! props.reference.id){
+    return "";
+  }
+  return <div>
+    <input name={props.baseFieldName + "[id]"}
+      type="hidden"
+      value={props.reference.id} />
+    <input name={props.baseFieldName + "[_destroy]"}
+      type="hidden"
+      value="true" />
+  </div>;
+};
+
+// Stateless component that shows removed subjects
+CommissionSubjectForm.RemovedSubjectFields = (props) => {
+  // Not actually persisted, just ignore it
+  if(! props.subj.id){
+    return "";
+  }
+  var baseName = `commission_offer[subjects_attributes][${props.index}]`;
+  // Return fields to remove this subject
+  return <div className="removed-subject-fields-container">
+    <input
+      name={baseName + "[id]"}
+      type="hidden"
+      value={props.subj.id} />
+    <input name={baseName + "[_destroy]"}
+      value="true"
+      type="hidden" />
+  </div>;
 }
 
 class SubjectTagSelector extends React.Component {
@@ -139,17 +186,29 @@ class SubjectTagSelector extends React.Component {
 class SubjectReferenceField extends React.Component{
   constructor(props){
     super(props);
+    console.log("Subject reference field gets props:",props);
   }
   render(){
-    return <div className="subject-reference-section">
-      <input type="file"
-        name={this.fileFieldName()}
-      />
-      <button type="button"
-        onClick={this.removeSelf.bind(this)}>
-        Remove Reference
-      </button>
-    </div>;
+    if(this.props.reference.id){
+      return <div className="subject-reference-item persisted">
+        <img src={this.props.reference.url} />
+        <button type="button"
+          onClick={this.removeSelf.bind(this)}>
+          Remove
+        </button>
+      </div>;
+    }
+    else{
+      return <div className="subject-reference-item">
+        <input type="file"
+          name={this.fileFieldName()}
+        />
+        <button type="button"
+          onClick={this.removeSelf.bind(this)}>
+          Remove Reference
+        </button>
+      </div>;
+    }
   }
   fileFieldName(){
     return this.props.baseFieldName + "[file]"

@@ -1,7 +1,9 @@
 <h1>Offer</h1>
 <span>By <%= link_to @offer.user.name, @offer.user %></span>
 <br>
-Total cost of <%= price(@offer.total_price) %>
+<% if @offer.total_price %>
+  Total cost of <%= price(@offer.total_price) %>
+<% end %> 
 <% if @offer.accepted? && ! @offer.filled? %>
   <p class="commission-offer-accept-date">
   Accepted <%= time_ago_in_words @offer.accepted_at %> ago
