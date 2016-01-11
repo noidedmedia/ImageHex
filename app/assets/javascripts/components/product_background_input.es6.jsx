@@ -21,13 +21,14 @@ class ProductBackgroundInput extends React.Component{
   render(){
     var body;
     if(this.state.type === "no-background"){
-      body = <NoneBackground />;
+      body = <ProductBackgroundInput.NoneBackground />;
     }
     else if(this.state.type === "free-background"){
-      body = <FreeBackground />;
+      body = <ProductBackgroundInput.FreeBackground />;
     }
     else if(this.state.type === "charged-background"){
-      body = <ChargedBackground price={this.state.price} />;
+      body = <ProductBackgroundInput.ChargedBackground 
+        price={this.state.price} />;
     }
     return <div className="product-background-input">
       <div class="radio-container">
@@ -71,7 +72,7 @@ class ProductBackgroundInput extends React.Component{
 }
 
 
-var NoneBackground = () => {
+ProductBackgroundInput.NoneBackground = () => {
   return <div>
     <h3>No Background</h3>
     Customers cannot add a background to this image.
@@ -84,7 +85,7 @@ var NoneBackground = () => {
   </div>;
 };
 
-var FreeBackground = () => {
+ProductBackgroundInput.FreeBackground = () => {
   return <div>
     <h3>Free Background</h3>
     Customers will recieve a background included in the base price of the image.
@@ -97,7 +98,7 @@ var FreeBackground = () => {
   </div>;
 }
 
-var ChargedBackground = (props) => {
+ProductBackgroundInput.ChargedBackground = (props) => {
   return <div>
     <h3>Charged Backgrounds</h3>
     Customers will pay a fee of
