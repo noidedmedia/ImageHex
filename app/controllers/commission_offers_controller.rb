@@ -113,6 +113,7 @@ class CommissionOffersController < ApplicationController
   def commission_offer_params
     params.require(:commission_offer)
       .permit(:description,
+        :commission_product_id,
         subjects_attributes: [:description,
               {tag_ids: []},
               {references_attributes: [:file]}],

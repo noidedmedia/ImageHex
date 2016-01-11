@@ -15,6 +15,7 @@ RSpec.describe CommissionOffersController, type: :controller do
       context "with valid attributes" do
         let(:commission_offer_params){
           {
+            :commission_product_id => @product.id,
             :description => "test",
             :subjects_attributes => [
               {
