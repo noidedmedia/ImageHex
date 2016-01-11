@@ -1,33 +1,37 @@
-#commission-offer-form{
+@import "scss-variables";
+
+#commission-offer-form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.commission-subject-form-fields{
+.commission-subject-form-fields {
   padding: 5px;
   margin: 5px;
   border: 1px solid #333;
 }
 
-.subject-references-form{
+.subject-references-form {
   display: block;
 }
 
-.reference-images{
+.reference-images {
   display: flex;
   flex-direction: row wrap;
 }
 
-#offer-subjects{
+#offer-subjects {
   border: 1px solid #333;
 }
-#subjects-list{
+
+#subjects-list {
   display: flex;
   flex-direction: column;
   flex-basis: center;
 }
-.subjects-list-item{
+
+.subjects-list-item {
   border: 1px solid #333;
   margin: 10px;
 }

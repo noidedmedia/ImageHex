@@ -7,7 +7,7 @@
   .feature {
     position: relative;
     padding-left: 50px;
-    color: #333;
+    color: $off-black;
     width: 100%;
     max-width: 400px;
     margin: auto;
@@ -37,7 +37,7 @@
 
   // Only use this style on desktop.
   // Otherwise revert to the same style as the other feature lists.
-  @media all and (min-width: $mobile-width) {
+  @media #{$desktop} {
     &.features-list-horizontal {
       display: flex;
       justify-content: center;
@@ -66,7 +66,7 @@
       flex: 0 1 45%;
       margin: 5px 0;
 
-      @media all and (max-width: $mobile-width) {
+      @media #{$mobile} {
         flex: 0 1 100%;
         margin: 10px auto;
       }
@@ -151,12 +151,12 @@ section.pricing-container {
     font-size: 1.6rem;
     line-height: 2.2rem;
     right: 0;
-    border-bottom: 1px solid rgba(#000, 0.3);
+    border-bottom: 1px solid rgba($black, 0.3);
     transition: border 200ms;
 
     &:focus {
       border: 0;
-      border-bottom: 1px solid rgba(#000, 0.8);
+      border-bottom: 1px solid rgba($black, 0.8);
     }
   }
 
