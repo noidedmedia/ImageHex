@@ -125,7 +125,7 @@ class CommissionOfferForm extends React.Component{
     if(this.subjectsLeft() < Infinity){
       subjectsLimit = `You may add ${this.subjectsLeft()} more`; 
     }
-    return <div>
+    return <div className="subjects-section">
       <h2>
         Subjects
       </h2>
