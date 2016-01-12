@@ -3,7 +3,7 @@ class CommissionOffer < ActiveRecord::Base
   belongs_to :user
   has_many :subjects, class_name: "CommissionSubject",
     inverse_of: :commission_offer
-  has_many :backgrounds, class_name: "CommissionBackground",
+  has_one :background, class_name: "CommissionBackground",
     inverse_of: :commission_offer
 
   has_many :commission_images
@@ -11,7 +11,7 @@ class CommissionOffer < ActiveRecord::Base
 
   accepts_nested_attributes_for :subjects,
     allow_destroy: true
-  accepts_nested_attributes_for :backgrounds,
+  accepts_nested_attributes_for :background,
     allow_destroy: true
 
   validates :user, presence: true
@@ -26,7 +26,7 @@ class CommissionOffer < ActiveRecord::Base
   has_one :conversation
 
   before_save :calculate_price,
-    :if => :confirmed 
+    :if => :commission_product
 
   def calculate_fee
     if offeree.has_filled_commissions?
@@ -37,7 +37,7 @@ class CommissionOffer < ActiveRecord::Base
   end
 
   def has_background?
-    backgrounds.length > 0 
+    background.present?
   end
 
   def offeree
@@ -116,7 +116,7 @@ class CommissionOffer < ActiveRecord::Base
   def background_is_acceptable
     return unless commission_product
     if has_background? && ! commission_product.allow_background?
-      errors.add(:backgrounds, "have too many")
+      errors.add(:background, "Not allowed")
     end
   end
 

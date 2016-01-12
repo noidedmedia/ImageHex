@@ -1,4 +1,6 @@
-json.extract! product, :name,
+json.extract! product, 
+  :id,
+  :name,
   :description,
   :created_at,
   :updated_at,

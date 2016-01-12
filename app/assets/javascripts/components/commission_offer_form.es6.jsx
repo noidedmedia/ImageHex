@@ -3,7 +3,6 @@ class CommissionOfferForm extends React.Component{
     super(props);
     this.state = {
       subjects: props.initialSubjects || [],
-      background: props.initialBackground,
       currentSubjectKey: 0,
       product: props.initialProduct
     };
@@ -15,6 +14,8 @@ class CommissionOfferForm extends React.Component{
       productBox = <CommissionOfferForm.ProductBox
         totalCost={this.calculateCost()}
         removeProduct={this.removeProduct.bind(this)}
+        subjectsCount={this.subjectsCount()}
+        hasBackground={this.state.hasBackground}
         product={this.state.product} />
     }
     else{
@@ -41,42 +42,44 @@ class CommissionOfferForm extends React.Component{
   }
 
   isInvalid(){
-    return (((! this.canAddBackground) && this.state.hasBackground)
-      || (this.subjectsLeft() < 0));
+    if(this.state.product){
+      return ! this.state.product.validOffer({
+        subjectsCount: this.subjectsCount(),
+        hasBackground: this.state.hasBackground
+      });
+    }
+    else{
+      return true;
+    }
   }
 
   backgroundSection(){
     var backgroundForm = <CommissionBackgroundForm
       product={this.state.product} 
       removeBackground={this.removeBackground.bind(this)}
+      background={this.props.background}
     />;
-    if(this.canAddBackground()){
-      console.log("Can add a background");
-      if(this.state.hasBackground){
-        console.log("We have a background");
-        return backgroundForm;
+    if(this.props.product){
+      if(this.props.product.allowBackground()){
+        return backgroundForm
       }
-      else{
-        console.log("No background found, returning a butotn to add one");
-        return <div>
-          <button onClick={this.addBackground.bind(this)}>
-            Add a Background
-          </button>
-        </div>;
-      }
-    }
-    else if(this.state.hasBackground){
-      console.log("Not allowed to add a background, but we have one.");
-      return <div>
-        <div className="error">
-          Cannot add a background to this product!
+      // We are now in error! 
+      else if(this.state.hasBackground){
+        return <div className="error">
+          Not allowed to add a background for this product.
+          Chose a different product or remove the background.
+          {backgroundForm}
         </div>
-        {backgroundForm}
-      </div>;
+      }
+      // No background, which is good, because we don't allow any
+      else{
+        // now, check 
+        if(this.props.background){
+        }
+      }
     }
     else{
-      console.log("Not allowed to add a background and we have none.");
-      return "";
+      return backgroundForm;
     }
   }
   // Returns the HTML for the subject section
@@ -132,7 +135,7 @@ class CommissionOfferForm extends React.Component{
     return this.state.subjects.filter(s => ! s.removed).length;
   }
 
-  addProduct(){
+  addProduct(product){
     this.setState({
       product: product
     });
@@ -214,16 +217,13 @@ class CommissionOfferForm extends React.Component{
 CommissionOfferForm.ProductBox = (props) => {
   return <div>
     <CommissionProductDisplay
-      product={props.product} />
+      {...props} />
     <button onClick={props.removeProduct}>
-      Chose Another
+      Chose A Different Product
     </button>
     <input type="hidden"
       name="commission_offer[commission_product_id]"
       value={props.product.id} />
-    <span className="offer-cost">
-      Total cost of ${(props.totalCost / 100).toFixed(2)}
-    </span>
   </div>;
 }
 
@@ -236,7 +236,7 @@ document.addEventListener("page:change", function(){
       CommissionOffer.find(cid, (c) => {
         console.log("Found offer:",c);
         ReactDOM.render(<CommissionOfferForm
-          initialBackground={c.background}
+          background={c.background}
           initialProduct={c.product}
           initialSubjects={c.subjects}
         />, d);

@@ -5,11 +5,9 @@ json.extract! @offer,
 json.subjects @offer.subjects, partial: "subject",
   as: :subject
 
-if @offer.has_background?
-  json.background @offer.backgrounds.first,
-    partial: "background",
-    as: :background
-end
+json.background @offer.background,
+  partial: "background",
+  as: :background
 
 
 json.user @offer.user, partial: "users/stub", as: :user

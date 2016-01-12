@@ -1,8 +1,9 @@
 class CommissionBackgroundForm extends React.Component{
   constructor(props){
     super(props);
+    var initialRefs = props.background.references || [];
     this.state = {
-      refs: [],
+      refs: initalRefs,
       refKey: 0
     }
   }

@@ -47,7 +47,9 @@ Rails.application.routes.draw do
       get :callback
     end
   end
-  resources :commission_products
+  resources :commission_products do
+    get 'search', on: :collection
+  end
 
   resources :commission_offers do
     member do 

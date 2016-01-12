@@ -34,7 +34,7 @@ RSpec.describe CommissionOffer, type: :model do
         c = FactoryGirl.build(:commission_offer,
                               commission_product: product,
                               subjects_attributes: [{description: "test"}],
-                              backgrounds_attributes: [at])
+                              background_attributes: at)
         expect(c).to_not be_valid
       end
     end
@@ -63,12 +63,6 @@ RSpec.describe CommissionOffer, type: :model do
       expect{
         FactoryGirl.create(:commission_offer,
                            user: nil)
-      }.to raise_error(ActiveRecord::RecordInvalid)
-    end
-    it "requires a commission product" do
-      expect{
-        FactoryGirl.create(:commission_offer,
-                           commission_product: nil)
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
@@ -200,7 +194,7 @@ RSpec.describe CommissionOffer, type: :model do
         f = FactoryGirl.create(:commission_offer,
                                commission_product: product,
                                subjects_attributes: [subject_attrs],
-                               backgrounds_attributes: [{description: "test"}])
+                               background_attributes: {description: "test"})
         expect(f.total_price).to eq(base_price + background_price)
       end
     end

@@ -1,7 +1,12 @@
 class CommissionProductsController < ApplicationController
   include Pundit
-  after_action :verify_authorized, except: [:index, :show]
+  after_action :verify_authorized, except: [:index, :show, :search]
   before_action :ensure_user, except: [:index, :show]
+
+  def search
+    @products = CommissionProduct.all
+      .paginate(page: page, per_page: per_page)
+  end
 
   def new
     @product = CommissionProduct.new
