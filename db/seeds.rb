@@ -100,10 +100,10 @@ Subjective.first.collection_images.create([{image_id: 1},
 dragon = Tag.create(name: "Dragon")
 tiamat = Tag.create(name: "Tiamat (D&D)")
 fighter = Tag.create(name: "Fighter Jet")
-Image.first.tag_groups.create(tags: [dragon, tiamat])
-Image.find(2).tag_groups.create(tags: [dragon, tiamat])
-Image.find(3).tag_groups.create(tags: [dragon])
-Image.find(3).tag_groups.create(tags: [fighter])
+Image.first.tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
+Image.find(2).tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
+Image.find(3).tag_groups.create!(tag_ids: [dragon.id])
+Image.find(3).tag_groups.create!(tag_ids: [fighter.id])
 u1.favorite! Image.first
 u2.favorite! Image.first
 u3.favorite! Image.first
