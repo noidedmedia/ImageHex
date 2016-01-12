@@ -4,8 +4,10 @@ class CommissionOfferForm extends React.Component{
     this.state = {
       subjects: props.initialSubjects || [],
       currentSubjectKey: 0,
-      product: props.initialProduct
+      product: props.initialProduct,
+      hasBackground: !! props.background
     };
+    console.log("Our background is:", props.background);
     console.log("At end of construction, state is:",this.state);
   }
   render(){
@@ -59,27 +61,35 @@ class CommissionOfferForm extends React.Component{
       removeBackground={this.removeBackground.bind(this)}
       background={this.props.background}
     />;
-    if(this.props.product){
-      if(this.props.product.allowBackground()){
-        return backgroundForm
+    if(this.state.hasBackground){
+      console.log("Offer has an attached background");
+      if( (! this.state.product) || this.state.product.allowBackground){
+        console.log("Backgrounds are allowed, returning a form...");
+        return backgroundForm;
       }
-      // We are now in error! 
-      else if(this.state.hasBackground){
-        return <div className="error">
-          Not allowed to add a background for this product.
-          Chose a different product or remove the background.
-          {backgroundForm}
-        </div>
-      }
-      // No background, which is good, because we don't allow any
       else{
-        // now, check 
-        if(this.props.background){
-        }
+        console.log("Backgrounds are not allowed, displaying error...");
+        return <div className="error">
+          This product does not allow backgrounds.
+          Remove this background before submitting.
+          {backgroundForm}
+        </div>;
       }
     }
     else{
-      return backgroundForm;
+      console.log("We do not have a background.");
+      var button = "";
+      if((! this.state.product) || (this.state.product.allowBackground)){
+        button = <button type="button"
+          onClick={this.addBackground.bind(this)}>
+          Add a background
+        </button>
+      }
+      return <div>
+        <CommissionBackgroundForm.BackgroundRemovalFields
+          background={this.props.background} />
+        {button}
+      </div>
     }
   }
   // Returns the HTML for the subject section

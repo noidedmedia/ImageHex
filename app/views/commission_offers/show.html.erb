@@ -36,10 +36,10 @@
   <div>
     <h2>Background</h2>
     <div class="background-description">
-      <%= markdown_parse @offer.backgrounds.first.description %> 
+      <%= markdown_parse @offer.background.description %> 
     </div>
     <ul id="reference-images">
-      <% @offer.backgrounds.first.references.each do |ref| %>
+      <% @offer.background.references.each do |ref| %>
         <li class="background-reference-item">
         <%= image_tag ref.file.expiring_url(60) %>
         </li>

@@ -140,9 +140,9 @@ class CommissionOffersController < ApplicationController
               :_destroy,
               {tag_ids: []},
               {references_attributes: [:file, :id, :_destroy]}],
-        backgrounds_attributes: [:description, 
+        background_attributes: [:description, 
           :id,
-          :destroy,
+          :_destroy,
           {references_attributes: [:file, :id, :_destroy]}])
       .merge(user_id: current_user.id)
   end

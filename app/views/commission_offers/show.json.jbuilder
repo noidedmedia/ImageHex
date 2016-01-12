@@ -2,13 +2,15 @@ json.extract! @offer,
   :id,
   :created_at,
   :confirmed
+
 json.subjects @offer.subjects, partial: "subject",
   as: :subject
 
-json.background @offer.background,
-  partial: "background",
-  as: :background
-
+if @offer.has_background?
+  json.background @offer.background,
+    partial: "background",
+    as: :background
+end
 
 json.user @offer.user, partial: "users/stub", as: :user
 if @offer.commission_product
