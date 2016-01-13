@@ -333,6 +333,10 @@ $color2: #00e676;
         font-weight: 500;
         color: #fff;
         text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
 
