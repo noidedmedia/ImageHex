@@ -6,6 +6,7 @@ class TagGroupEditor extends React.Component {
       activeSuggestion: undefined,
       hasBlankInput: true
     };
+    console.log("Got props in editor:",props);
   }
 
   render() {
@@ -306,3 +307,37 @@ class TagBox extends React.Component {
     this.props.onRemove(this.props.tag);
   }
 }
+
+TagGroupEditor.propTypes = {
+  // Should we display a tag creator?
+  // Typically only true if we are editing a tag group
+  allowTagCreation: React.PropTypes.bool,
+  // This is either a tag group or an EtherealTagGroup
+  // EtherealTagGroups quack like TagGroups for the purposes of this
+  // component
+  group: React.PropTypes.oneOfType([
+    React.PropTypes.instanceOf(TagGroup),
+    React.PropTypes.instanceOf(EtherealTagGroup)
+  ]),
+  // Autofocus this editor's input when we have new suggestions if true
+  autofocus: React.PropTypes.bool,
+  // A function called when an InlineTagEditor wants to hide the form's 
+  // submit button. Mostly used when creating or editing tag groups, since we
+  // wrap that in another component.
+  //
+  // Should probably be renamed, to be honest.
+  hideSubmit: React.PropTypes.func,
+  // Same as the above, but alerts the parent that they should show the submit
+  // button again.
+  showSubmit: React.PropTypes.func,
+  // We don't handle any of the group's state, instead passing everything up
+  // to the parent. This callback is called with a `tag` option when the
+  // user adds a new tag to this group.
+  onTagAdd: React.PropTypes.func,
+  // Same as the above, but intended to be used for removal.
+  onTagRemove: React.PropTypes.func,
+  // The tags in this group
+  // We could get that from the group object, come to think of it.
+  // Maybe refactor this out.
+  tags: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Tag))
+};
