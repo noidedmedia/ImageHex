@@ -32,7 +32,7 @@ class TagGroupEditor extends React.Component {
       suggestions = <InlineTagCreator 
         hideSubmit={this.props.hideSubmit}
         onAdd={this.onTagAdd.bind(this)}
-        tagName={this.state.inputValue} />;
+        initialTagName={this.state.inputValue} />;
     }
     else if (this.state.showSuggestions) {
       suggestions = <li className="imagehex-empty-note">

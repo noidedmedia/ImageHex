@@ -2,7 +2,7 @@ class InlineTagCreator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: props.tagName
+      name: props.initialTagName
     }
   }
 
@@ -79,3 +79,16 @@ class InlineTagCreator extends React.Component {
     }
   }
 }
+
+InlineTagCreator.propTypes = {
+  // Tell the parent form to hide the submit button.
+  // See TagGroupEditor for details.
+  hideSubmit: React.PropTypes.func,
+  // Call this function with the newly-created tag after we finish creating
+  // it.
+  onAdd: React.PropTypes.func,
+  // The initial value of this tag's name. Basically, if the user types
+  // a part of a tag name and decides to make a new tag with that name,
+  // we want that name to be in the form already. 
+  initialTagname: React.PropTypes.string
+};
