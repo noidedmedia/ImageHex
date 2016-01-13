@@ -1,116 +1,116 @@
 <% cache_unless current_user, "header" do %>
-<header id="header-container" role="banner">
-  <div id="header-left">
+  <header id="header-container" role="banner">
+    <div id="header-left">
 
-    <%# Home button %>
-    <div class="header-item" id="header-home">
-      <%= link_to root_path, title: t(".home") do %>
-        <div class="imagehex-header-logo"></div>
-      <% end %>
+      <%# Home button %>
+      <div class="header-item" id="header-home">
+        <%= link_to root_path, title: t(".home") do %>
+          <div class="imagehex-header-logo"></div>
+        <% end %>
+      </div>
+
+      <%# Header search %>
+      <div id="header-search">
+        
+      </div>
+
+      <%# Browse button %>
+      <div class="header-item" id="header-browse">
+        <%= link_to t(".browse"), images_path %>
+      </div>
     </div>
 
-    <%# Header search %>
-    <div id="header-search">
-      
+    <%# Search icon that opens a mobile-specific, fullscreen search dialog. %>
+    <div id="mobile-search-icon">
+      <span class="icon icon-small icon-search"></span>
     </div>
 
-    <%# Browse button %>
-    <div class="header-item" id="header-browse">
-      <%= link_to t(".browse"), images_path %>
+    <%# "Hamburger menu" icon, only displayed on mobile devices. %>
+    <div id="mobile-menu-icon">
+      <span class="icon icon-small icon-menu"></span>
     </div>
-  </div>
 
-  <%# Search icon that opens a mobile-specific, fullscreen search dialog. %>
-  <div id="mobile-search-icon">
-    <span class="icon icon-small icon-search"></span>
-  </div>
+    <%# Semi-transparent black overlay used to hide background content when the mobile sidebar is opened. This is controlled by JavaScript. %>
+    <div id="mobile-menu-overlay"></div>
 
-  <%# "Hamburger menu" icon, only displayed on mobile devices. %>
-  <div id="mobile-menu-icon">
-    <span class="icon icon-small icon-menu"></span>
-  </div>
+    <div id="header-right">
+      <% if user_signed_in? %>
 
-  <%# Semi-transparent black overlay used to hide background content when the mobile sidebar is opened. This is controlled by JavaScript. %>
-  <div id="mobile-menu-overlay"></div>
+        <%# Upload %>
+        <div class="header-item" id="header-create">
+          <div id="header-create-button">
+            <i class="icon icon-add"></i>
+          </div>
 
-  <div id="header-right">
-    <% if user_signed_in? %>
-
-      <%# Upload %>
-      <div class="header-item" id="header-create">
-        <div id="header-create-button">
-          <i class="icon icon-add"></i>
+          <div class="create-dropdown inactive" data-showon="#header-create">
+            <ul>
+              <li><%= link_to t(".upload"), new_image_path %>
+              <li><%= link_to t(".new_collection"), new_collection_path %>
+            </ul>
+          </div>
         </div>
 
-        <div class="create-dropdown inactive" data-showon="#header-create">
+        <%# Displays the number of unread notifications %>
+        <% if current_user.notifications.unread.size > 0 %>
+
+          <div class="header-notifications unread">
+            <div class="notifications-unread-count">
+              <%= link_to notifications_path do %>
+                <%= current_user.notifications.unread.size %>
+              <% end %>
+            </div>
+        
+        <% else %>
+
+          <div class="header-notifications">
+            <div class="notifications-unread-count">
+              <%= link_to notifications_path do %>
+                <%= current_user.notifications.unread.size %>
+              <% end %>
+            </div>
+
+        <% end %>
+          <div class="notifications-dropdown inactive">
+          </div>
+        </div>
+
+        <%# User dropdown %>
+        <div class="user-bar">
+          <%# Current user's username %>
+          <div class="header-item" id="username">
+            <%= current_user.name %>
+          </div>
+
           <ul>
-            <li><%= link_to t(".upload"), new_image_path %>
-            <li><%= link_to t(".new_collection"), new_collection_path %>
+            <li><%= link_to t(".profile"), current_user %>
+
+            <%# Admin, only displayed for admins. %>
+            <% if current_user.admin? %>
+              <li><%= link_to t(".admin"), admin_images_path %>
+            <% end %>
+            
+            <%# Settings %>
+            <li><%= link_to t(".settings"), settings_path %>
+            
+            <%# Sign out %>
+            <li><%= button_to t(".sign_out"), destroy_user_session_path, method: :delete %>
           </ul>
         </div>
-      </div>
 
-      <%# Displays the number of unread notifications %>
-      <% if current_user.notifications.unread.size > 0 %>
-
-        <div class="header-notifications unread">
-          <div class="notifications-unread-count">
-            <%= link_to notifications_path do %>
-              <%= current_user.notifications.unread.size %>
-            <% end %>
-          </div>
-      
+      <%# If user isn't signed in, display "Sign up" and "Sign in" buttons only. %>
       <% else %>
 
-        <div class="header-notifications">
-          <div class="notifications-unread-count">
-            <%= link_to notifications_path do %>
-              <%= current_user.notifications.unread.size %>
-            <% end %>
-          </div>
+        <%# Sign up %>
+        <div class="header-item" id="header-sign-up">
+          <%= link_to t(".create_an_account"), new_user_registration_path %>
+        </div>
+
+        <%# Sign in %>
+        <div class="header-item" id="header-sign-up">
+          <%= link_to t(".sign_in"), new_user_session_path %>
+        </div>
 
       <% end %>
-        <div class="notifications-dropdown inactive">
-        </div>
-      </div>
-
-      <%# User dropdown %>
-      <div class="user-bar">
-        <%# Current user's username %>
-        <div class="header-item" id="username">
-          <%= current_user.name %>
-        </div>
-
-        <ul>
-          <li><%= link_to t(".profile"), current_user %>
-
-          <%# Admin, only displayed for admins. %>
-          <% if current_user.admin? %>
-            <li><%= link_to t(".admin"), admin_images_path %>
-          <% end %>
-          
-          <%# Settings %>
-          <li><%= link_to t(".settings"), settings_path %>
-          
-          <%# Sign out %>
-          <li><%= button_to t(".sign_out"), destroy_user_session_path, method: :delete %>
-        </ul>
-      </div>
-
-    <%# If user isn't signed in, display "Sign up" and "Sign in" buttons only. %>
-    <% else %>
-
-      <%# Sign up %>
-      <div class="header-item" id="header-sign-up">
-        <%= link_to t(".create_an_account"), new_user_registration_path %>
-      </div>
-
-      <%# Sign in %>
-      <div class="header-item" id="header-sign-up">
-        <%= link_to t(".sign_in"), new_user_session_path %>
-      </div>
-
-    <% end %>
-  </div>
+    </div>
   </header>
 <% end %>
