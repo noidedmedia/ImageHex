@@ -1,4 +1,12 @@
+/**
+ * Display an interface for editing tag groups.
+ * Doesn't manage any state relating to an actual group, so you have to wrap
+ * it in something. This is to make it easier to use in various situations.
+ */
 class TagGroupEditor extends React.Component {
+  /**
+   * See TagGroupEditor.propTypes
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -6,10 +14,10 @@ class TagGroupEditor extends React.Component {
       activeSuggestion: undefined,
       hasBlankInput: true
     };
-    console.log("Got props in editor:",props);
   }
 
   render() {
+    // A list of all tags in this group currently
     var tags = this.props.tags.map((tag) => {
       return <TagBox tag={tag} 
         onRemove={this.props.onTagRemove} 
@@ -18,7 +26,7 @@ class TagGroupEditor extends React.Component {
     });
     var suggestions;
     if (this.state.hasSuggestions) {
-      console.log("Rendering suggestions",this.state.suggestions);
+      // Show the suggestions if we have any
       suggestions = this.state.suggestions.map((sug, index) => {
         return <TagSuggestion
           key={"tag-" + sug.id}
@@ -27,33 +35,37 @@ class TagGroupEditor extends React.Component {
           onAdd={this.onTagAdd.bind(this)} />
       });
     }
+    // If our input isn't blank and we allow tag creation, then display
+    // a prompt to let the user initiate inline tag creation.
     else if (!this.state.hasBlankInput && this.props.allowTagCreation) {
-      console.log("Rendering an inline tag creator");
       suggestions = <InlineTagCreator 
         hideSubmit={this.props.hideSubmit}
         onAdd={this.onTagAdd.bind(this)}
         initialTagName={this.state.inputValue} />;
     }
+    // Now, if we do want to show the user suggestions, display a notification
+    // that there aren't any to show.
     else if (this.state.showSuggestions) {
       suggestions = <li className="imagehex-empty-note">
         Found no suggestions.
       </li>;
     }
+    // Sometimes we don't even want to let the user know that we don't have
+    // any suggestions. This is mostly for the case where the input is blank,
+    // and can probably be refactored out.
     else {
-      console.log("No suggestions to show and no reason to tell the user");
       suggestions = "";
     }
-    
-    var removalButton;
+    var removalButton = "";
+    // If we allow removal, add a button to do so.
     if (this.props.allowRemoval) {
       removalButton = <div className="remove-tag-group"
         onClick={this.props.onRemove}>
         Remove
       </div>
-    } else {
-      removalButton = <div></div>;
     }
-
+    // Determine how the input field is going to look
+    // Used for styling purposes.
     var inputField;
     if (this.props.isSearch) {
       inputField = <div>
@@ -91,13 +103,20 @@ class TagGroupEditor extends React.Component {
       </ul>
     </div>;
   }
-
+  /**
+   * Focus our text box on every update, if props tells us to.
+   * Otherwise, the user has to click in the box again.
+   */
   componentDidUpdate() {
     if (this.props.autofocus) {
       ReactDOM.findDOMNode(this.refs.groupInput).focus();
     }
   }
 
+  /**
+   * Tell our parent that we are adding a tag, and do our own bookkeeping.
+   * Notably, we clear suggestions and our input field.
+   */
   onTagAdd(tag) {
     this.props.onTagAdd(tag);
     this.setState({
@@ -109,8 +128,13 @@ class TagGroupEditor extends React.Component {
   }
 
 
-  // Watch for a backspace in a blank box, which automatically fills the box
-  // with the value of the last tag.
+  /**
+   * Watch for a backspace in a blank box, which automatically removes the
+   * previously-added tag and puts its name in the box. 
+   *
+   * This feature exists so that you can easily correct your mistake if you
+   * accidentally click the wrong tag in suggestions.
+   */
   onKeyUp(event) {
     // Input is currently blank, but that may be because we deleted the last
     // character in the box
@@ -187,30 +211,35 @@ class TagGroupEditor extends React.Component {
 
   }
 
-  // Probably should be called "addActiveSuggestion"
+  /**
+   * Add the active suggestion.
+   */
   addActive() {
     if (this.state.activeSuggestion !== undefined) {
       var tag = this.state.suggestions[this.state.activeSuggestion];
       this.onTagAdd(tag);
-      this.setState({
-        suggestions: [],
-        hasSuggestions: false,
-        showSuggestions: false,
-        lastKeyWasBackspace: false
-      });
     } else {
-      // TODO: Handle this error ;-;
+      // TODO: Handle this error, even though it should never happen.
     }
   }
 
+  /**
+   * Handle each time the input updates, fetching new suggestions each time,
+   * or doing other actions in certain cases.
+   *
+   * This should almost certainly be modified to only fetch new suggestions for
+   * the first 3-4 characters, and to filter the existing suggestions from that
+   * point on. Right now, though, we're 2agile4that, or something.
+   */
   onInputChange(event){ 
-    let value = event.target.value;
+    var value = event.target.value;
     if (event.target.value !== "") {
       this.fetchSuggestions(event.target.value);
       this.setState({
         inputValue: event.target.value
       });
-    } else {
+    } 
+    else {
       this.setState({
         hasBlankInput: true,
         hasSuggestions: false,
@@ -221,15 +250,16 @@ class TagGroupEditor extends React.Component {
     }
   }
 
+  /**
+   * Start fetching new suggestions. 
+   * See `onInputChange` for info on how we may refactor this.
+   */
   fetchSuggestions(value) {
     Tag.withPrefix(value, (tags) => {
       if (tags.length > 0) {
         var ntags = tags.filter( (tag) => {
           for (var i = 0; i < this.props.tags.length; i++) {
             if (this.props.tags[i].id === tag.id) {
-              console.log("Tag named " + tag.name + " already in list");
-              console.log(tags);
-              console.log("Removing it from the suggestion list");
               return false;
             }
           }
@@ -264,6 +294,61 @@ class TagGroupEditor extends React.Component {
   }
 }
 
+TagGroupEditor.propTypes = {
+  // Should we display a tag creator?
+  // Typically only true if we are editing a tag group
+  allowTagCreation: React.PropTypes.bool,
+  // This is either a tag group or an EtherealTagGroup
+  // EtherealTagGroups quack like TagGroups for the purposes of this
+  // component. Commented out for now because these JS files aren't being
+  // loaded in the proper order, so this errors out. We can probably fix that
+  // using ES6 require at some point.
+  /* 
+  group: React.PropTypes.oneOfType([
+    React.PropTypes.instanceOf(TagGroup),
+    React.PropTypes.instanceOf(EtherealTagGroup)
+    ]),
+  */
+  // Autofocus this editor's input when we have new suggestions if true
+  autofocus: React.PropTypes.bool,
+  // A function called when an InlineTagEditor wants to hide the form's 
+  // submit button. Mostly used when creating or editing tag groups, since we
+  // wrap that in another component.
+  //
+  // Should probably be renamed, to be honest.
+  hideSubmit: React.PropTypes.func,
+  // Same as the above, but alerts the parent that they should show the submit
+  // button again.
+  showSubmit: React.PropTypes.func,
+  // We don't handle any of the group's state, instead passing everything up
+  // to the parent. This callback is called with a `tag` option when the
+  // user adds a new tag to this group.
+  onTagAdd: React.PropTypes.func,
+  // Same as the above, but intended to be used for removal.
+  onTagRemove: React.PropTypes.func,
+  // The tags in this group
+  // We could get that from the group object, come to think of it.
+  // Maybe refactor this out.
+  //
+  // Commented out for now because the JS files are not required in the right
+  // order. Maybe use ES6 modules to fix?
+  // tags: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Tag)),
+  // Should we allow this tag group to self-destruct? 
+  // Useful in contexts in which we edit more than one group.
+  // 
+  // Should maybe be refactored into some kind of "removable" component, which
+  // would wrap this TagGroupEditor (and all the other things we can remove) and
+  // show a little X in the corner. Not really sure.
+  allowRemoval: React.PropTypes.bool,
+  // We call this when the user clicks our `remove` button.
+  //
+  // See above for a way to refactor this.
+  onRemove: React.PropTypes.func
+};
+
+/**
+ * A very simple display of a tag suggestion
+ */
 class TagSuggestion extends React.Component {
   constructor(props) {
     super(props);
@@ -281,12 +366,28 @@ class TagSuggestion extends React.Component {
       <span>{this.props.tag.name}</span>
     </li>;
   }
-
   click() {
     this.props.onAdd(this.props.tag);
   }
 }
 
+TagSuggestion.propTypes = {
+  // The tag we are suggesting. Commented out for now because our JS
+  // is loading in the wrong order, so this isn't visible
+  // tag: React.PropTypes.instanceOf(Tag),
+  // Is this the active suggestion?
+  active: React.PropTypes.bool,
+  // Call this callback with our tag if somebody clicks on us
+  onTagAdd: React.PropTypes.func
+};
+
+
+
+/**
+ * Box one tag value, displaying it in this group and allowing user removal.
+ * 
+ * Should almost definitely be renamed.
+ */
 class TagBox extends React.Component {
   constructor(props) {
     super(props);
@@ -308,36 +409,12 @@ class TagBox extends React.Component {
   }
 }
 
-TagGroupEditor.propTypes = {
-  // Should we display a tag creator?
-  // Typically only true if we are editing a tag group
-  allowTagCreation: React.PropTypes.bool,
-  // This is either a tag group or an EtherealTagGroup
-  // EtherealTagGroups quack like TagGroups for the purposes of this
-  // component
-  group: React.PropTypes.oneOfType([
-    React.PropTypes.instanceOf(TagGroup),
-    React.PropTypes.instanceOf(EtherealTagGroup)
-  ]),
-  // Autofocus this editor's input when we have new suggestions if true
-  autofocus: React.PropTypes.bool,
-  // A function called when an InlineTagEditor wants to hide the form's 
-  // submit button. Mostly used when creating or editing tag groups, since we
-  // wrap that in another component.
-  //
-  // Should probably be renamed, to be honest.
-  hideSubmit: React.PropTypes.func,
-  // Same as the above, but alerts the parent that they should show the submit
-  // button again.
-  showSubmit: React.PropTypes.func,
-  // We don't handle any of the group's state, instead passing everything up
-  // to the parent. This callback is called with a `tag` option when the
-  // user adds a new tag to this group.
-  onTagAdd: React.PropTypes.func,
-  // Same as the above, but intended to be used for removal.
-  onTagRemove: React.PropTypes.func,
-  // The tags in this group
-  // We could get that from the group object, come to think of it.
-  // Maybe refactor this out.
-  tags: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Tag))
-};
+TagBox.propTypes = {
+  // The tag we are displaying 
+  //  Commented our for now due to JS load order weirdness
+  // tag: React.PropTypes.instanceOf(Tag),
+  // Call this function when the user clicks our `remove` button
+  onRemove: React.PropTypes.func
+}
+
+
