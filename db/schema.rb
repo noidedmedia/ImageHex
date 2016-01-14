@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111173525) do
+ActiveRecord::Schema.define(version: 20160114215536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -254,6 +254,17 @@ ActiveRecord::Schema.define(version: 20160111173525) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "product_example_images", force: :cascade do |t|
+    t.integer  "commission_product_id"
+    t.integer  "image_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "product_example_images", ["commission_product_id", "image_id"], name: "unique_examples_images", unique: true, using: :btree
+  add_index "product_example_images", ["commission_product_id"], name: "index_product_example_images_on_commission_product_id", using: :btree
+  add_index "product_example_images", ["image_id"], name: "index_product_example_images_on_image_id", using: :btree
+
   create_table "subject_references", force: :cascade do |t|
     t.integer  "commission_subject_id"
     t.datetime "created_at",            null: false
@@ -414,6 +425,8 @@ ActiveRecord::Schema.define(version: 20160111173525) do
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
+  add_foreign_key "product_example_images", "commission_products", on_delete: :cascade
+  add_foreign_key "product_example_images", "images", on_delete: :cascade
   add_foreign_key "subject_references", "commission_subjects", on_delete: :cascade
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"

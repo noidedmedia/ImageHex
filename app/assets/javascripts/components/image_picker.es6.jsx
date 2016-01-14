@@ -47,7 +47,7 @@ class ImagePicker extends React.Component{
   selectImage(img){
     console.log("Selecting image:",img);
     if(this.props.multi){
-      this.state.selectImages.push(img);
+      this.state.selectedImages.push(img);
       this.setState({
         selectedImages: this.state.selectedImages
       });
@@ -72,8 +72,9 @@ class ImagePicker extends React.Component{
   isSelected(img){
     return this.state.selectedImages.some((i) => {
       return img.id === i.id;
-    }); 
+    });
   }
+
   fetchImages(){
     this.props.collection.getPageImages((images) => {
       console.log("Got images:",images);

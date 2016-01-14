@@ -2,7 +2,19 @@ class CommissionProduct < ActiveRecord::Base
   belongs_to :user
   has_many :offers, class_name: "CommissionOffer"
 
+  has_many :product_example_images,
+    inverse_of: :commission_product
+
+  has_many :example_images, 
+    through: :product_example_images,
+    class_name: "Image",
+    source: :image
+
+  accepts_nested_attributes_for :product_example_images,
+    allow_destroy: true
+
   validates :base_price, numericality: {greater_than: 300}
+
   validates :subject_price,
     presence: true,
     numericality: {greater_than: 0},
@@ -27,6 +39,7 @@ class CommissionProduct < ActiveRecord::Base
   def allow_further_subjects?
     offer_subjects?
   end
+
 
   def includes_subjects?
     included_subjects > 0
