@@ -3,6 +3,7 @@
 <% if policy(@product.offers.build).create? %>
   <%= link_to "Make an offer", new_commission_offer_path(commission_product_id: @product.id) %>
 <% end %>
+
 <div id="offer-base-price">
   Base price: <%= price(@product.base_price) %>
 </div>
