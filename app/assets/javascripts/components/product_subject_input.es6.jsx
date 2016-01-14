@@ -22,11 +22,11 @@ class ProductSubjectInput extends React.Component {
       <h3>Included Subjects</h3>
       This commission will include {includedInput} subjects, free of charge.
       <div className="checkbox-container">
-        <label>Charge for additional subjects</label>
         <input type="checkbox"
           name="commission_product[offer_subjects]"
           value={this.state.allowAdditional}
           onChange={this.toggleAdditional.bind(this)} />
+        <label>Charge for additional subjects</label>
       </div>
       {this.state.allowAdditional ? chargeSection : disallowChargeSection}
     </div>;
