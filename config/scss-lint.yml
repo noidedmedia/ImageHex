@@ -13,9 +13,6 @@ linters:
   ColorKeyword:
     enabled: true
 
-  ColorVariable:
-    enabled: false
-
   # Require empty lines between selector blocks.
   EmptyLineBetweenBlocks:
     enabled: true
@@ -34,12 +31,11 @@ linters:
     enabled: true
     style: lowercase
 
-  IdSelector:
-    enabled: false
-
+  # Don't complain about any leading zeroes.
   LeadingZero:
     enabled: false
 
+  # Allow up to 4 nesting depth
   NestingDepth:
     max_depth: 4
 
@@ -47,6 +43,7 @@ linters:
   PropertySortOrder:
     enabled: false
 
+  # Allow up to 4 selector depth
   SelectorDepth:
     enabled: true
     max_depth: 4
@@ -61,12 +58,37 @@ linters:
     enabled: true
     style: space
 
+  # I'm not sure which type of quotes to use yet.
   StringQuotes:
     enabled: false
 
+
+  # Disable
+  TrailingWhitespace:
+    enabled: false
+
+  # Disable "Numeric values should not contain unnecessary fractional portions".
   UnnecessaryMantissa:
     enabled: false
 
   # Don't include units with 0 values, e.g. `0px` vs. just `0`, the latter is slightly more performant.
   ZeroUnit:
     enabled: true
+
+
+  ColorVariable:
+    enabled: false
+  Comment:
+    enabled: false
+  IdSelector:
+    enabled: false
+  MergeableSelector:
+    enabled: false
+  PseudoElement:
+    enabled: false
+  QualifyingElement:
+    enabled: false
+  SingleLinePerSelector:
+    enabled: false
+  SpaceAfterComma:
+    enabled: false

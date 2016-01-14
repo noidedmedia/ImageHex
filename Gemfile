@@ -9,14 +9,13 @@ gem 'rails', '4.2.5'
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
-# Use Postgres
+# Use Postgres for our database
 gem 'pg'
 
 ##
 # https://github.com/aws/aws-sdk-ruby
 # Amazon Web Services SDK
 gem 'aws-sdk', '< 2.0'
-
 
 ##
 # https://github.com/plataformatec/devise
@@ -26,13 +25,17 @@ gem 'devise'
 
 ##
 # https://github.com/tinfoil/devise-two-factor
-# Two-factor authentication for devise
+# Two-factor authentication support for devise
 gem 'devise-two-factor'
 
 ##
-# Use to generate the QR codes for devise-two-factor
+# https://github.com/samvincent/rqrcode-rails3
+# Used to generate the QR codes for devise-two-factor.
 gem 'rqrcode-rails3'
 
+##
+# https://github.com/minimagick/minimagick
+# A ruby wrapper for ImageMagick, required for rqrcode-rails3.
 gem 'mini_magick'
 
 ##
@@ -237,6 +240,9 @@ group :development, :test do
   # A testing framework for Rails.
   gem 'rspec-rails'
 
+  ##
+  # https://github.com/pry/pry
+  # An IRB alternative and runtime developer console.
   gem 'pry'
 
   ##

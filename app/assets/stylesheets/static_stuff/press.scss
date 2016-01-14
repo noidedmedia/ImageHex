@@ -6,7 +6,7 @@
   margin: 10px 0 25px;
   justify-content: space-between;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     flex-flow: row wrap;
   }
 
@@ -57,7 +57,7 @@
       }
     }
 
-    @media all and (max-width: $mobile-width) {
+    @media #{$mobile} {
       width: 100%;
       padding-bottom: 20px;
     }
@@ -65,7 +65,7 @@
 
   // On desktop, determine width depending on which `*-column` CSS class
   // has been applied to the `press-kit-section-container`.
-  @media all and (min-width: $mobile-width) {
+  @media #{$desktop} {
     &.two-column .logo-wordmark-container {
       width: calc(50% - 8px);
     }

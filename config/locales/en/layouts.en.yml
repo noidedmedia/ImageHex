@@ -3,7 +3,7 @@ en:
   layouts:
     application:
       create_an_account: Create an account
-      imagehex_meta_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
+      imagehex_meta_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier than ever.
       please_sign_in: This action requires an account, please sign in.
       sign_in: Sign in
     footer:
@@ -15,7 +15,7 @@ en:
       help: Help
       imagehex: ImageHex
       imagehex_copyright: "© %{year} Noided Media"
-      imagehex_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier (and safer) than ever.
+      imagehex_description: Browse, buy, and share art. ImageHex connects creators with a larger audience, and makes commissioning art easier than ever.
       people: People
       press_kit: Press Kit
       privacy: Privacy
@@ -23,6 +23,7 @@ en:
       status: Status
       terms: Terms
       twitter: Twitter
+      commissions: Commissions
     header:
       admin: Admin
       browse: Browse

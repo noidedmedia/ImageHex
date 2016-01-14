@@ -74,7 +74,7 @@
   height: 40px;
   width: 100%;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     height: 50px;
     font-size: 1.6rem;
   }
@@ -83,6 +83,15 @@
 // For full-width buttons, e.g. in a sidebar or other thin container.
 .btn-full-width {
   width: 100%;
+}
+
+.btn-thin {
+  width: 50%;
+  
+  // Full-width on mobile.
+  @media #{$mobile} {
+    width: 100%;
+  }
 }
 
 .btn-right-aligned {
@@ -107,6 +116,14 @@
 
 .btn-bold {
   font-weight: 500;
+}
+
+.btn-center {
+  margin: auto;
+}
+
+.btn-with-margin {
+  margin-top: 20px;
 }
 
 

@@ -76,6 +76,15 @@
       </div>
     </div>
 
+    <div class="field-container">
+      <h3 class="generic-smallcaps-title"><%= t(".emails") %></h3>
+
+      <div class="checkbox-container">
+        <%= f.check_box :subscribed_to_newsletter %>
+        <%= f.label :subscribed_to_newsletter, t(".monthly_newsletter") %>
+      </div>
+    </div>
+
     <%= f.submit t(".save_changes"), class: "btn-minimal btn-minimal-green btn-right-aligned" %>
   <% end %>
 </div>

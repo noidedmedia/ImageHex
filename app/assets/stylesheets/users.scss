@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     flex-flow: column wrap;
   }
 }
@@ -23,7 +23,7 @@
   height: auto;
   padding: 0;
   z-index: 100;
-  color: #333;
+  color: $off-black;
   display: flex;
   flex-flow: row wrap;
   box-shadow: 8px 0 5px 5px rgba(#000,.1);
@@ -31,18 +31,18 @@
 
   // Spacing for the user info and actions containers.
   // Only applies on desktop.
-  @media all and (min-width: $mobile-width) {
+  @media #{$desktop} {
     > div {
       margin-top: 80px;
     }
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: flex;
     flex-flow: row wrap;
     height: auto;
     position: relative;
-    background-color: #fff;
+    background-color: $white;
     width: 100%;
     box-shadow: none;
     min-height: 0;
@@ -61,7 +61,7 @@
   display: inline-block;
   padding-left: 15px;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: block;
     text-align: left;
   }
@@ -79,7 +79,7 @@
     width: 100%;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     margin-right: 10px;
     width: 75px;
     height: 75px;
@@ -97,7 +97,7 @@
   display: inline-block;
   padding-bottom: 5px;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     width: 100%;
   }
 }
@@ -108,21 +108,7 @@
   line-height: 24px;
 
   &.inactive {
-    color: #aaaab2;
-  }
-}
-
-.user-page-bio-edit {
-  font-size: 1.4rem;
-  font-weight: 300;
-  color: #888;
-  text-decoration: none;
-  transition: color 200ms;
-  line-height: 24px;
-  display: none;
-
-  &:hover {
-    color: #333;
+    color: $gray;
   }
 }
 
@@ -146,7 +132,7 @@
   width: 100%;
   padding: 0 10px;
 
-  @media all and (min-width: $mobile-width) {
+  @media #{$desktop} {
     position: absolute;
     width: auto;
 
@@ -191,7 +177,7 @@
   text-overflow: clip;
   white-space: nowrap;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     position: relative;
     z-index: 99; // 1
     text-align: center;
@@ -243,7 +229,7 @@
     display: flex;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     margin-top: 5px;
   }
 }
