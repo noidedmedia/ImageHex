@@ -28,7 +28,7 @@
     pointer-events: none;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     margin: 10px;
   }
 }
@@ -61,4 +61,3 @@
   font-weight: 400;
   padding-bottom: 8px;
 }
-

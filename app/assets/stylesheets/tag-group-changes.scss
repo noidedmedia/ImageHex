@@ -1,11 +1,11 @@
 @import "scss-variables";
 
-#tag-group-changes-container {
+.tag-group-changes-container {
   display: flex;
   flex-flow: row wrap;
 }
 
-#tag-group-change-label {
+.tag-group-change-label {
   font-size: 3.0rem;
   font-weight: 500;
   padding: 5px;

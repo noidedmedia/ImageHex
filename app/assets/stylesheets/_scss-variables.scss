@@ -3,17 +3,30 @@
 
 $icon-placeholder: '\e80c';
 
+// Font stack
+$font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexicons';
+
 // Screen width values
 $mobile-width: 750px;
 $laptop-width: 1000px;
 $desktop-width: 1400px;
 
-// Text colors
-$emph-text: #828282; // Emphasized text
-$unemph-text: #6d6d6d; // Unemphasized text
+// For use with media queries 
+$mobile: "all and (max-width: 750px)";
+$desktop: "all and (min-width: 750px)";
 
-// Font stack
-$font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif, 'imagehexicons';
+// Header height
+$header-height: 40px;
+$header-height-mobile: 50px;
+
+// Header background colors
+$header-color: #333;
+$header-color-alt: #222;
+
+// Footer colors
+$footer-color: #191a1a;
+$footer-emph-text: #828282; // Emphasized text
+$footer-unemph-text: #6d6d6d; // Unemphasized text
 
 // Error colors
 $color-success: #5bb289;
@@ -21,13 +34,20 @@ $color-info: #556db3;
 $color-warning: #efb63e;
 $color-danger: #cb2e32;
 
-// Other colors
+// Social media colors
 $color-facebook: #3b5998;
 $color-twitter: #55acee;
 $color-google-plus: #d13f2d;
 $color-tumblr: #35465c;
 $color-pinterest: #c92228;
 
-// Header height
-$header-height: 40px;
-$header-height-mobile: 50px;
+// Global colors
+$background: #f0f0f0;
+$active-tab-color: #17cd94;
+$white: #fff;
+$black: #000;
+$off-black: #333;
+$gray: #aaaab2;
+
+$imagehex-header-logo: "logo/imagehex-monochrome-white.svg";
+$imagehex-header-logo-with-text: "logo/imagehex-monochrome-white-text.svg";

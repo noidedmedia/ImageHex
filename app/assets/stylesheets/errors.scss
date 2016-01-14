@@ -76,13 +76,13 @@
       color: #fff;
     }
 
-    @media all and (max-width: $mobile-width) {
+    @media #{$mobile} {
       top: 13px;
       right: 30px;
     }
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     height: 50px;
     padding: 13px 20px;
     font-size: 1.6rem;

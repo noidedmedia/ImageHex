@@ -1,11 +1,18 @@
+<%- title t(".commissions") %>
+
 <div class="imagehex-static-page-container no-padding no-margin white-background">
 
-  <section class="imagehex-static-section imagehex-static-hero">
-    <h1>Commissions</h1>
-    <h2>A simpler way to commission art online.</h2>
+  <section class="imagehex-static-section imagehex-static-hero green commissions-about">
+    <div class="title-container commissions-about">
+      <h1>Commissions</h1>
+      <h2>A simpler way to commission art online.</h2>
+    </div>
 
-    <div class="image-container">
-      
+    <div class="image-container commissions-about">
+      <img src=<%= asset_path("commissions/canvas.svg") %> />
+      <img class="commissions-artwork" src=<%= asset_path("commissions/rocketship.png") %> />
+
+      <p>Artwork by <a href="https://www.imagehex.com/@connor">Connor Shea</a>.</p>
     </div>
 
   </section>
@@ -109,6 +116,10 @@
   </section>
 
   <section class="imagehex-static-section alt-background">
+    <div class="section-graphic">
+      <img src=<%= asset_path("commissions/book.svg") %>>
+    </div>
+
     <div class="imagehex-static-text">
       <h2 class="center section-header">Everyone on the same page</h2>
       <p class="center section-subheader">Clients often forget to provide crucial details in their requests, or details get lost in email threads dozens of messages long.</p>
@@ -165,26 +176,14 @@
           <div class="detail-icon">
             <img src=<%= asset_path("commissions/icon-fees.svg") %>>
           </div>
-
           <h3>Fees</h3>
-          <h4>12% + 30¢ per commission</h4>
-          
-          <table>
-            <tbody>
-              <tr>
-                <td>Stripe</td>
-                <td>2.9% + 30¢</td>
-              </tr>
-              <tr>
-                <td>ImageHex</td>
-                <td>9.1%</td>
-              </tr>
-              <tr>
-                <td>Artist</td>
-                <td>88% - 30¢</td>
-              </tr>
-            </tbody>
-          </table>
+
+          <div class="fees">
+            <h3>12% + 30¢</h3>
+            <p>per commission</p>
+          </div>
+
+          <p class="smaller-text">Fees breakdown to 9.1% for ImageHex and 2.9% + 30¢ for Stripe.</p>
         </section>
 
         <section class="pricing-container generic-container no-hover">
@@ -194,7 +193,7 @@
 
           <h3>Calculate your costs</h3>
           <div id="commission-calculator-input-container" class="commission-calculator-input-container">
-            
+            <%# Commission cost calculator is inserted with JavaScript %>
           </div>
         </section>
       </div>
@@ -206,16 +205,21 @@
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
-      <h3>Sign up for our newsletter</h3>
+      <h2 class="center section-header">Newsletter</h2>
       
-      <div class="newsletter-sign-up">
-        <%# form_for @newsletter do |f| %>
-          <%= text_field_tag :newsletter, nil, placeholder: "sarah@example.com" %>
-          <%= submit_tag "Sign up" %>
-        <%# end %>
-      </div>
+      <% if current_user %>
+        <p class="center section-subheader">Keep up to date with the development of Commissions by subscribing to our monthly newsletter in your Settings.</p>
 
-      <p>Keep up to date with the development of our Commissions feature. We promise to never send more than one email a month, and you can unsubscribe whenever you want.
+        <div class="btn btn-green btn-thin btn-center btn-with-margin">
+          <%= link_to "Settings", settings_path %>
+        </div>
+      <% else %>
+        <p class="center section-subheader">Keep up to date with the development of Commissions by signing up and subscribing to our monthly newsletter.</p>
+
+        <div class="btn btn-green btn-thin btn-center btn-with-margin">
+          <%= link_to "Sign up", new_user_registration_path %>
+        </div>
+      <% end %>
     </div>
   </section>
 </div>

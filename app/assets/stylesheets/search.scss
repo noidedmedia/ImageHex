@@ -142,7 +142,7 @@
   background-color: #fff;
   transition: max-height 300ms ease-in-out; // 1
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: none;
   }
 }
@@ -153,7 +153,7 @@ label[for="header-search-input"] span {
   top: 10px;
   cursor: pointer;
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     left: 15px;
   }
 }
@@ -205,25 +205,25 @@ label[for="header-search-input"] span {
     border-color: transparent;
     background-color: #fff;
   }
-}
 
-@media all and (max-width: $mobile-width) {
-  height: 100%;
-  max-height: 100%;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  transition: max-height 300ms ease-in-out, width 300ms ease-in-out;
-  display: block;
-  position: fixed;
-  box-shadow: none;
+  @media #{$mobile} {
+    height: 100%;
+    max-height: 100%;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    transition: max-height 300ms ease-in-out, width 300ms ease-in-out;
+    display: block;
+    position: fixed;
+    box-shadow: none;
 
-  form input[type="search"] {
-    width: calc(100% - 75px);
-    left: 15px;
-    top: 2px;
-    position: absolute;
-    background-color: transparent;
+    form input[type="search"] {
+      width: calc(100% - 75px);
+      left: 15px;
+      top: 2px;
+      position: absolute;
+      background-color: transparent;
+    }
   }
 }
 
@@ -232,7 +232,7 @@ label[for="header-search-input"] span {
   opacity: 1;
   transition: opacity 300ms ease-in-out 600ms; // 2
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     margin-top: 40px;
   } 
 }
@@ -253,7 +253,7 @@ label[for="header-search-input"] span {
     opacity: 1;
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     padding-top: 75px;
 
     p {
@@ -276,7 +276,7 @@ label[for="header-search-input"] span {
 #close-mobile-search-icon {
   display: none; // 1
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: inline-block;
     position: absolute;
     right: 45px;
@@ -297,7 +297,7 @@ label[for="header-search-input"] span {
     transform: translate(8px, 14px);
   }
 
-  @media all and (max-width: $mobile-width) {
+  @media #{$mobile} {
     display: block;
   }
 }

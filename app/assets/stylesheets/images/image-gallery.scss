@@ -1,5 +1,4 @@
 @import "scss-variables";
-@import "imagehexicons";
 
 .image-gallery {
   display: flex;
@@ -30,8 +29,8 @@
     }
   }
 
-  @media all and (max-width: $mobile-width) {
-    flex: 3 1 40vw;
-    max-width: 50%;
+  @media #{$mobile} {
+    flex: 3 1 100%;
+    max-width: 100%;
   }
 }
