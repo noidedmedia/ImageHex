@@ -32,22 +32,22 @@ class ProductBackgroundInput extends React.Component{
     }
     return <div className="product-background-input">
       <div class="radio-container">
-        <label>No Background</label>
         <input type="radio"
           checked={this.state.type === "no-background"}
           onChange={this.moveToNone.bind(this)}/>
+        <label>No Background</label>
       </div>
       <div class="radio-container">
-        <label>Free Background</label>
         <input type="radio"
           checked={this.state.type === "free-background"}
           onChange={this.moveToFree.bind(this)} />
+        <label>Free Background</label>
       </div>
       <div class="radio-container">
-        <label>Paid Background</label>
         <input type="radio"
           checked={this.state.type === "charged-background"}
           onChange={this.moveToCharged.bind(this)} />
+        <label>Paid Background</label>
       </div>
       <div class="background-input-body">
         {body}
