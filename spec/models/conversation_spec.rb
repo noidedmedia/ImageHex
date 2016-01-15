@@ -48,7 +48,7 @@ RSpec.describe Conversation, type: :model do
       Timecop.freeze do
         expect{
           conversation.mark_read!(user_a)
-        }.to change{cu.reload.last_read_at}.to(Time.now)
+        }.to change{cu.reload.last_read_at}.to be_within(5.minutes).of(Time.now)
       end
     end
   end

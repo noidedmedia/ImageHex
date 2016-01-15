@@ -106,14 +106,14 @@ RSpec.describe CommissionOffer, type: :model do
       Timecop.freeze do
         time = product.weeks_to_completion.weeks.from_now
         offer.charge!("fake_stripe_id")
-        expect(offer.reload.due_at).to eq(time)
+        expect(offer.reload.due_at).to be_within(5.minutes).of(time)
       end
     end
 
     it "sets charged_at to Time.now" do
       Timecop.freeze do
         offer.charge!("fake_stripe_id")
-        expect(offer.reload.charged_at).to eq(Time.now)
+        expect(offer.reload.charged_at).to be_within(5.minutes).of(Time.now)
       end
     end
 
