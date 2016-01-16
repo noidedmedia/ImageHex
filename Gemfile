@@ -188,11 +188,6 @@ group :development do
   gem 'binding_of_caller'
   
   ##
-  # https://github.com/troessner/reek
-  # Code smell detector for Ruby.
-  gem 'reek'
-  
-  ##
   # https://github.com/railsbp/rails_best_practices
   # A code metric tool for rails projects.
   gem 'rails_best_practices'
