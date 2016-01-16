@@ -166,8 +166,9 @@ class ImagesController < ApplicationController
     @groups = TagGroup.where(image: @image).includes(:tags)
     @collections = current_user.try(:collections).try(:subjective)
   end
-  
+
   protected
+
   # Returns the right image collection, pased on params[:order]
   def get_index_collection
     case params[:order]
@@ -177,7 +178,7 @@ class ImagesController < ApplicationController
       Image.order('created_at DESC')
     end
   end
-  
+
   # Load the image with params[:id] into @image.
   # should be refactored out.
   def load_image
@@ -187,9 +188,9 @@ class ImagesController < ApplicationController
   def image_update_params
     params.require(:image)
       .permit(:license,
-              :medium,
-              :replies_to_inbox,
-              :description)
+        :medium,
+        :replies_to_inbox,
+        :description)
   end
 
   ##
@@ -197,17 +198,17 @@ class ImagesController < ApplicationController
   #
   def image_params
     params.require(:image)
-      .permit(:f, 
-              :license, 
-              :medium, 
-              :replies_to_inbox,
-              :source,
-              :description,
-              :nsfw_gore,
-              :nsfw_nudity,
-              :nsfw_sexuality,
-              :nsfw_language,
-              :created_by_uploader) # stuff the user adds
+      .permit(:f,
+        :license,
+        :medium,
+        :replies_to_inbox,
+        :source,
+        :description,
+        :nsfw_gore,
+        :nsfw_nudity,
+        :nsfw_sexuality,
+        :nsfw_language,
+        :created_by_uploader) # stuff the user adds
       .merge(user_id: current_user.id) # We add the user id
   end
 

@@ -9,6 +9,5 @@ class AddStripeFieldsToUser < ActiveRecord::Migration
     add_column :users,
       :stripe_user_id,
       :text
-
   end
 end

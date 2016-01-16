@@ -3,7 +3,7 @@
 # Uses friendly_id for ids.
 class UsersController < ApplicationController
   include Pundit
-  before_filter :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor, :verify_twofactor]
+  before_action :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor, :verify_twofactor]
 
   ##
   # Confirm that provided two-factor authentication code matches otp key for a given user.
@@ -31,11 +31,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.gif do
         render qrcode: @user.otp_provisioning_uri(@user.email,
-                                                  issuer: "ImageHex")
+          issuer: "ImageHex")
       end
-      format.svg do 
+      format.svg do
         render qrcode: @user.otp_provisioning_uri(@user.email,
-                                                  issuer: "ImageHex")
+          issuer: "ImageHex")
       end
       format.html
     end
@@ -86,9 +86,9 @@ class UsersController < ApplicationController
   # @users:: A list of users, as chosen by the get_user_index method below.
   def index
     @users = get_user_index
-    .preload(:creations)
-    .merge(Image.for_content(content_pref))
-    .paginate(page: page, per_page: per_page)
+      .preload(:creations)
+      .merge(Image.for_content(content_pref))
+      .paginate(page: page, per_page: per_page)
   end
 
   ##
@@ -100,8 +100,8 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @collection = @user.favorites
     @images = @collection.images
-    .for_content(content_pref)
-    .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
     render 'collections/show'
   end
 
@@ -113,15 +113,15 @@ class UsersController < ApplicationController
   def creations
     @user = User.friendly.find(params[:id])
     @images = @user.creations
-    .for_content(content_pref)
-    .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
   end
 
   def subscribe
     @user = User.friendly.find(params[:id])
     current_user.subscribe! @user
     respond_to do |format|
-      format.json { render json: { success: true }}
+      format.json { render json: { success: true } }
       format.html { redirect_to @user }
     end
   end
@@ -130,15 +130,15 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     current_user.unsubscribe! @user
     respond_to do |format|
-      format.json { render json: { success: true }}
-      format.html { redirect_to @user } 
+      format.json { render json: { success: true } }
+      format.html { redirect_to @user }
     end
   end
 
   ##
   # Show a user's profile, including their bio and collections.
   # User should be in params[:id]
-  # 
+  #
   # Sets the following variables:
   # @user:: The user we're viewing.
   # @uploads:: Images the user has uploaded.
@@ -146,16 +146,16 @@ class UsersController < ApplicationController
   def show
     @user = User.friendly.find(params[:id])
     @uploads = @user.images
-    .paginate(page: page, per_page: per_page)
-    .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     @creations = @user.creations
-    .paginate(page: page, per_page: per_page)
-    .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     @favorites = @user.favorites.images
-    .paginate(page: page, per_page: per_page)
-    .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     @collections = @user.collections.subjective
-    # this is a hack, fix please 
+    # this is a hack, fix please
     @content = content_pref
   end
 
@@ -164,7 +164,7 @@ class UsersController < ApplicationController
   # Ensures that params[:id] is the current_user and requires login, for
   # obvious reasons.
   # Sets the following variables:
-  # @user:: The user being edited. 
+  # @user:: The user being edited.
   def edit
     @user = params[:id] ? User.friendly.find(params[:id]) : current_user
     authorize @user
@@ -173,10 +173,10 @@ class UsersController < ApplicationController
   #
   # Post to update the user in params[:id].
   # Ensures that current_user is the user in params[:id] beforehand.
-  # 
-  # If the user cannot be updated, it puts the errors in flash[:error] and 
+  #
+  # If the user cannot be updated, it puts the errors in flash[:error] and
   # redirects to the edit page again.
-  # @user:: The user being updated. 
+  # @user:: The user being updated.
   def update
     @user = User.friendly.find(params[:id])
     authorize @user
@@ -203,19 +203,19 @@ class UsersController < ApplicationController
   ##
   # Parameters to update a user.
   # page_pref:: The amount of images per page.
-  # avatar:: The user's avatar image. 
+  # avatar:: The user's avatar image.
   # description:: The user's description.
   def user_params
     params
-    .require(:user)
-    .permit(:page_pref,
-            :avatar,
-            :otp_required_for_login,
-            :description,
-            :subscribed_to_newsletter,
-            content_pref: [:nsfw_language,
-              :nsfw_gore,
-              :nsfw_nudity,
-              :nsfw_sexuality])
+      .require(:user)
+      .permit(:page_pref,
+        :avatar,
+        :otp_required_for_login,
+        :description,
+        :subscribed_to_newsletter,
+        content_pref: [:nsfw_language,
+                       :nsfw_gore,
+                       :nsfw_nudity,
+                       :nsfw_sexuality])
   end
 end

@@ -3,5 +3,4 @@ FactoryGirl.define do
     image
     commission_offer
   end
-
 end

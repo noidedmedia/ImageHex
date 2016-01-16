@@ -7,11 +7,11 @@ RSpec.describe ConversationUser, type: :model do
       c.confirm!
       c
     end
-    let(:c){ o.conversation }
+    let(:c) { o.conversation }
     it "does not allow other users to be created" do
       expect(build(:conversation_user,
-                   conversation: c,
-                   user: create(:user))).to_not be_valid
+        conversation: c,
+        user: create(:user))).to_not be_valid
     end
   end
 end

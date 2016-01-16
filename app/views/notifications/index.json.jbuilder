@@ -1,3 +1,3 @@
-json.partial! "notifications/stub", 
-  collection: @notifications, 
+json.partial! "notifications/stub",
+  collection: @notifications,
   as: :notification

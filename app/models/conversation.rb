@@ -6,7 +6,7 @@ class Conversation < ActiveRecord::Base
   has_many :messages
   accepts_nested_attributes_for :conversation_users
   def for_offer?
-    !! commission_offer
+    !!commission_offer
   end
 
   class UserNotInConversation < StandardError
@@ -14,7 +14,7 @@ class Conversation < ActiveRecord::Base
 
   def mark_read!(user)
     cu = conversation_user_for(user)
-    raise UserNotInConversation unless cu
+    fail UserNotInConversation unless cu
     cu.touch(:last_read_at)
   end
 
@@ -26,9 +26,9 @@ class Conversation < ActiveRecord::Base
         messages
       end
     else
-      raise UserNotInConversation
+      fail UserNotInConversation
     end
-  end 
+  end
 
   def conversation_user_for(user)
     conversation_users.where(user: user).first

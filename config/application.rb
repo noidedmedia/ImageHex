@@ -22,7 +22,7 @@ module ImageHex
 
     # Use vanilla JavaScript for the JavaScript engine in generators.
     config.generators.javascript_engine :js
-    
+
     # Add the fonts folder to the paths used by the Asset Pipeline.
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 

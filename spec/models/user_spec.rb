@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe User do
-
   # Page pref has to be a sensable value
-  it {should validate_inclusion_of(:page_pref).in_range(1..100)}
+  it { should validate_inclusion_of(:page_pref).in_range(1..100) }
   # Validations for the name
-  it {should validate_presence_of(:name)}
+  it { should validate_presence_of(:name) }
   # Has many images
-  it {should have_many(:images)}
+  it { should have_many(:images) }
   describe "avatars" do
     it "Should allow image avatars" do
       u = FactoryGirl.create(:user)
@@ -19,10 +18,10 @@ describe User do
       u.avatar = Rack::Test::UploadedFile.new(Rails.root.join("spec", "fixtures", "files", "evil.js"), "application/javascript")
       expect(u).to_not be_valid
     end
-  end 
+  end
   describe "curatorships" do
-    let(:u){FactoryGirl.create(:user)}
-    let(:c){FactoryGirl.create(:collection)}
+    let(:u) { FactoryGirl.create(:user) }
+    let(:c) { FactoryGirl.create(:collection) }
     it "gives back the curatorship" do
       cur = Curatorship.create(user: u,
                                collection: c)
@@ -33,8 +32,8 @@ describe User do
     end
   end
   describe "subscriptions" do
-    let(:u){FactoryGirl.create(:user)}
-    let(:c){FactoryGirl.create(:collection)}
+    let(:u) { FactoryGirl.create(:user) }
+    let(:c) { FactoryGirl.create(:collection) }
     describe ".subscribe!" do
       it "works with collections" do
         u.subscribe!(c)
@@ -83,15 +82,15 @@ describe User do
   end
   describe "creation" do
     it "gives the user a favorites collection" do
-      expect{FactoryGirl.create(:user)}.to change{Collection.count}.by(1)
+      expect { FactoryGirl.create(:user) }.to change { Collection.count }.by(1)
       u = FactoryGirl.create(:user)
       expect(u.collections.favorites.size).to eq(1)
     end
   end
 
   describe "favoriting" do
-    let(:u){FactoryGirl.create(:user)}
-    let(:i){FactoryGirl.create(:image)}
+    let(:u) { FactoryGirl.create(:user) }
+    let(:i) { FactoryGirl.create(:image) }
 
     it "adds an image to the favorites" do
       u.favorite!(i)
@@ -99,12 +98,11 @@ describe User do
     end
   end
   describe "creation" do
-    let(:u){FactoryGirl.create(:user)}
-    let(:i){FactoryGirl.create(:image)}
+    let(:u) { FactoryGirl.create(:user) }
+    let(:i) { FactoryGirl.create(:image) }
     it "adds an image to creations" do
       u.created!(i)
       expect(u.creations).to eq([i])
     end
-
   end
 end

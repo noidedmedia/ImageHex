@@ -2,10 +2,10 @@
 # This controller is for adding images to a collection (or removing them).
 #
 # It only contains the POST and DELETE actions, since that is all that really
-# makes sense on this controller. 
+# makes sense on this controller.
 class CollectionImagesController < ApplicationController
   ##
-  # Use pundit for permissions 
+  # Use pundit for permissions
   include Pundit
 
   ##
@@ -35,25 +35,26 @@ class CollectionImagesController < ApplicationController
                               collection: col).first
     unless c
       respond_to do |format|
-        format.json { render json: {success: false}, status: :not_found }
+        format.json { render json: { success: false }, status: :not_found }
         format.html { redirect_to col }
       end
-      return 
+      return
     end
     authorize c
     c.destroy!
     respond_to do |format|
-      format.json { render json: {success: true}}
-      format.html { redirect_to col } 
+      format.json { render json: { success: true } }
+      format.html { redirect_to col }
     end
   end
 
   protected
+
   ##
   # Paramters, of the format:
   #    collection_image:
   #        image_id: $image_id
-  # 
+  #
   # The collection_id is automatically taken from the URL.
   def collection_image_params
     params.require(:collection_image)

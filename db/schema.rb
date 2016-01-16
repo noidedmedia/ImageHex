@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114215536) do
-
+ActiveRecord::Schema.define(version: 20_160_114_215_536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "citext"
@@ -24,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "artist_subscriptions", ["artist_id", "user_id"], name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
+  add_index "artist_subscriptions", %w(artist_id user_id), name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
   add_index "artist_subscriptions", ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
   add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
 
@@ -48,7 +47,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.integer  "user_id"
   end
 
-  add_index "collection_images", ["collection_id", "image_id"], name: "index_collection_images_on_collection_id_and_image_id", unique: true, using: :btree
+  add_index "collection_images", %w(collection_id image_id), name: "index_collection_images_on_collection_id_and_image_id", unique: true, using: :btree
   add_index "collection_images", ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
   add_index "collection_images", ["image_id"], name: "index_collection_images_on_image_id", using: :btree
   add_index "collection_images", ["user_id"], name: "index_collection_images_on_user_id", using: :btree
@@ -71,7 +70,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.integer  "user_id"
   end
 
-  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+  add_index "comments", %w(commentable_type commentable_id), name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "commission_backgrounds", force: :cascade do |t|
@@ -95,7 +94,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
 
   create_table "commission_offers", force: :cascade do |t|
     t.integer  "commission_product_id"
-    t.integer  "user_id",                               null: false
+    t.integer  "user_id", null: false
     t.integer  "total_price"
     t.text     "description"
     t.datetime "charged_at"
@@ -103,12 +102,12 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.datetime "accepted_at"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.boolean  "confirmed",             default: false, null: false
+    t.boolean  "confirmed", default: false, null: false
     t.datetime "confirmed_at"
-    t.boolean  "charged",               default: false, null: false
+    t.boolean  "charged", default: false, null: false
     t.datetime "due_at"
     t.text     "stripe_charge_id"
-    t.boolean  "filled",                default: false, null: false
+    t.boolean  "filled", default: false, null: false
     t.datetime "filled_at"
   end
 
@@ -119,7 +118,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.integer  "user_id",                             null: false
     t.string   "name"
     t.text     "description"
-    t.integer  "base_price",          default: 1000,  null: false
+    t.integer  "base_price", default: 1000, null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "included_subjects",   default: 0,     null: false
@@ -162,7 +161,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
   end
 
   add_index "conversation_users", ["conversation_id"], name: "index_conversation_users_on_conversation_id", using: :btree
-  add_index "conversation_users", ["user_id", "conversation_id"], name: "index_conversation_users_on_user_id_and_conversation_id", unique: true, using: :btree
+  add_index "conversation_users", %w(user_id conversation_id), name: "index_conversation_users_on_user_id_and_conversation_id", unique: true, using: :btree
   add_index "conversation_users", ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
 
   create_table "conversations", force: :cascade do |t|
@@ -178,7 +177,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.integer  "collection_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "level",         default: 0, null: false
+    t.integer  "level", default: 0, null: false
   end
 
   add_index "curatorships", ["collection_id"], name: "index_curatorships_on_collection_id", using: :btree
@@ -192,8 +191,8 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", %w(slug sluggable_type scope), name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", %w(slug sluggable_type), name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
@@ -204,7 +203,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.text     "message"
-    t.boolean  "active",     default: true, null: false
+    t.boolean  "active", default: true, null: false
   end
 
   add_index "image_reports", ["image_id"], name: "index_image_reports_on_image_id", using: :btree
@@ -218,7 +217,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.string   "f_content_type",     limit: 255
     t.integer  "license"
     t.integer  "medium"
-    t.boolean  "replies_to_inbox",               default: true,  null: false
+    t.boolean  "replies_to_inbox", default: true, null: false
     t.jsonb    "exif"
     t.text     "description"
     t.boolean  "nsfw_language",                  default: false, null: false
@@ -227,7 +226,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.boolean  "nsfw_sexuality",                 default: false, null: false
     t.integer  "f_file_size"
     t.string   "source"
-    t.boolean  "allow_new_creators",             default: false, null: false
+    t.boolean  "allow_new_creators", default: false, null: false
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
@@ -245,11 +244,11 @@ ActiveRecord::Schema.define(version: 20160114215536) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
-    t.boolean  "read",       default: false, null: false
+    t.boolean  "read", default: false, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "kind"
-    t.jsonb    "subject",    default: {},    null: false
+    t.jsonb    "subject", default: {}, null: false
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
@@ -261,7 +260,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.datetime "updated_at",            null: false
   end
 
-  add_index "product_example_images", ["commission_product_id", "image_id"], name: "unique_examples_images", unique: true, using: :btree
+  add_index "product_example_images", %w(commission_product_id image_id), name: "unique_examples_images", unique: true, using: :btree
   add_index "product_example_images", ["commission_product_id"], name: "index_product_example_images_on_commission_product_id", using: :btree
   add_index "product_example_images", ["image_id"], name: "index_product_example_images_on_image_id", using: :btree
 
@@ -294,7 +293,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
-    t.integer  "importance",  default: 1, null: false
+    t.integer  "importance", default: 1, null: false
   end
 
   add_index "tag_changes", ["tag_id"], name: "index_tag_changes_on_tag_id", using: :btree
@@ -319,7 +318,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.datetime "updated_at"
   end
 
-  add_index "tag_group_members", ["tag_group_id", "tag_id"], name: "index_tag_group_members_on_tag_group_id_and_tag_id", unique: true, using: :btree
+  add_index "tag_group_members", %w(tag_group_id tag_id), name: "index_tag_group_members_on_tag_group_id_and_tag_id", unique: true, using: :btree
   add_index "tag_group_members", ["tag_group_id"], name: "index_tag_group_members_on_tag_group_id", using: :btree
   add_index "tag_group_members", ["tag_id"], name: "index_tag_group_members_on_tag_id", using: :btree
 
@@ -351,7 +350,7 @@ ActiveRecord::Schema.define(version: 20160114215536) do
   end
 
   add_index "user_creations", ["creation_id"], name: "index_user_creations_on_creation_id", using: :btree
-  add_index "user_creations", ["user_id", "creation_id"], name: "index_user_creations_on_user_id_and_creation_id", unique: true, using: :btree
+  add_index "user_creations", %w(user_id creation_id), name: "index_user_creations_on_user_id_and_creation_id", unique: true, using: :btree
   add_index "user_creations", ["user_id"], name: "index_user_creations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -360,24 +359,24 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.string   "reset_password_token",      limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         default: 0,     null: false
+    t.integer  "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",        limit: 255
     t.string   "last_sign_in_ip",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                      limit: 255
-    t.integer  "page_pref",                             default: 20
-    t.string   "confirmation_token",        limit: 255
+    t.string   "name", limit: 255
+    t.integer  "page_pref", default: 20
+    t.string   "confirmation_token", limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",         limit: 255
-    t.integer  "role",                                  default: 0
+    t.string   "unconfirmed_email", limit: 255
+    t.integer  "role", default: 0
     t.string   "slug"
     t.string   "provider"
     t.string   "uid"
-    t.jsonb    "content_pref",                          default: {},    null: false
+    t.jsonb    "content_pref", default: {}, null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -387,14 +386,14 @@ ActiveRecord::Schema.define(version: 20160114215536) do
     t.string   "encrypted_otp_secret_salt"
     t.integer  "consumed_timestep"
     t.boolean  "otp_required_for_login"
-    t.text     "description",                           default: "",    null: false
+    t.text     "description", default: "", null: false
     t.jsonb    "elsewhere"
-    t.boolean  "two_factor_verified",                   default: false, null: false
-    t.string   "otp_backup_codes",                                                   array: true
+    t.boolean  "two_factor_verified", default: false, null: false
+    t.string   "otp_backup_codes", array: true
     t.text     "stripe_publishable_key"
     t.text     "stripe_access_token"
     t.text     "stripe_user_id"
-    t.boolean  "subscribed_to_newsletter",              default: false, null: false
+    t.boolean  "subscribed_to_newsletter", default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

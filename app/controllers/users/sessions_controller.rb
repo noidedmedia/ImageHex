@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  prepend_before_filter :two_factor_enabled?, only: :create
+  prepend_before_action :two_factor_enabled?, only: :create
   # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -25,8 +25,8 @@ class Users::SessionsController < Devise::SessionsController
       end
     elsif params[:user][:otp_backup_attempt] && params[:user][:otp_backup_attempt] != ""
       self.resource = User.find(params[:user][:id])
-      # Prevent hackzors 
-      render_weirdness! if resource.id != session[:_otp_password_id] 
+      # Prevent hackzors
+      render_weirdness! if resource.id != session[:_otp_password_id]
       if resource.invalidate_otp_backup_code!(params[:user][:otp_backup_attempt])
         resource.save
         set_flash_message(:notice, :signed_in) if is_flashing_format?
@@ -52,10 +52,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   protected
-  
+
   def two_factor_enabled?
     @user = User.find_by(email: params[:user][:email])
-    unless params[:user][:otp_attempt].present? || params[:user][:otp_backup_attempt].present? 
+    unless params[:user][:otp_attempt].present? || params[:user][:otp_backup_attempt].present?
       if @user && @user.valid_password?(params[:user][:password])
         self.resource = @user
         if resource.otp_required_for_login

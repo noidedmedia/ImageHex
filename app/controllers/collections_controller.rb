@@ -1,18 +1,18 @@
 ##
 # A controller for actions relating to collections
 class CollectionsController < ApplicationController
-  before_filter :ensure_user, except: [:index, :show]
+  before_action :ensure_user, except: [:index, :show]
 
   include Pundit
-  
+
   ##
   # Unsubscribe from a collection
   # Member action
   def unsubscribe
     Subscription.where(collection_id: params[:id],
                        user_id: current_user.id)
-    .first
-    .try(:destroy)
+      .first
+      .try(:destroy)
     redirect_to Collection.find(params[:id])
   end
 
@@ -60,9 +60,9 @@ class CollectionsController < ApplicationController
   def show
     @collection = Collection.find(params[:id])
     @images = @collection.images
-    .order("collection_images.created_at DESC")
-    .paginate(page: page, per_page: per_page)
-    .for_content(content_pref)
+      .order("collection_images.created_at DESC")
+      .paginate(page: page, per_page: per_page)
+      .for_content(content_pref)
     @curators = @collection.curators
   end
 
@@ -89,7 +89,7 @@ class CollectionsController < ApplicationController
     end
     unless c
       flash[:warning] = I18n.t("notices.collection_type_not_specified_or_not_applicable")
-      redirect_to action: "new" and return
+      redirect_to(action: "new") && return
     end
     respond_to do |format|
       if c.save
@@ -144,7 +144,7 @@ class CollectionsController < ApplicationController
   # description:: A short bit of info describing this collection.
   def collection_params
     params.require(:collection)
-    .permit(:type, :name, :description)
-    .merge(curators: [current_user])
+      .permit(:type, :name, :description)
+      .merge(curators: [current_user])
   end
 end

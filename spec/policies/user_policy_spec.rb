@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe UserPolicy do
-
   let(:user) { User.new }
 
   subject { described_class }

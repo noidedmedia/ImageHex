@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
-
   resources :conversations do
     resources :messages, only: [:index, :new, :create]
     post :read, on: :member
@@ -52,7 +51,7 @@ Rails.application.routes.draw do
   end
 
   resources :commission_offers do
-    member do 
+    member do
       post 'accept'
       post 'confirm'
       get 'pay'
@@ -63,7 +62,6 @@ Rails.application.routes.draw do
   end
 
   resources :tag_group_changes, only: [:show] do
-
   end
 
   resources :images do
@@ -73,19 +71,18 @@ Rails.application.routes.draw do
       delete "unfavorite"
     end
 
-    resources :tag_groups do 
+    resources :tag_groups do
       resources :changes, only: [:index], controller: :tag_group_changes
     end
 
     concerns :reportable, :commentable
   end
 
-  devise_for :users, 
-    path: "accounts", 
-    controllers: { 
-    sessions: "users/sessions"
-  }
-
+  devise_for :users,
+    path: "accounts",
+    controllers: {
+      sessions: "users/sessions"
+    }
 
   resources :users, only: [:show, :edit, :update, :index] do
     ##
@@ -108,7 +105,7 @@ Rails.application.routes.draw do
     get :mine, on: :collection
     ##
     # OK we get non-REST here
-    resources :images, only: [:create, :destroy], controller: :collection_images  do
+    resources :images, only: [:create, :destroy], controller: :collection_images do
       ##
       # An action which sees if an image already exists in the collection
       get "exists", on: :collection
@@ -126,7 +123,7 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index] do
-    collection do 
+    collection do
       get 'unread'
       post 'mark_all_read'
     end
@@ -158,7 +155,6 @@ Rails.application.routes.draw do
   ########################
   get 'settings', to: "users#edit"
 
-
   #################
   # STATIC ROUTES #
   #################
@@ -176,5 +172,4 @@ Rails.application.routes.draw do
   post 'settings', to: 'users#update'
 
   get 'search', to: "images#search"
-
 end

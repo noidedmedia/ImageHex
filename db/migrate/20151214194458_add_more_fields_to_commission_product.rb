@@ -10,7 +10,7 @@ class AddMoreFieldsToCommissionProduct < ActiveRecord::Migration
       null: false, default: 500
     # if null, you can't add a background
     add_column :commission_products, :background_price, :integer
-    # if non-null, limit the amount of subjects allowed 
+    # if non-null, limit the amount of subjects allowed
     add_column :commission_products, :maximum_subjects, :integer
   end
 end

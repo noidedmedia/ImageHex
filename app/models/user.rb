@@ -8,10 +8,10 @@
 #
 # == Relations
 # collections:: collections the user curates. See Collection for more
-#               information. All  users are created with a Favorites 
+#               information. All  users are created with a Favorites
 #               collection and a Creations collection, which are special.
 # subscriptions:: represents all the collections a user is
-#                 subscribed to. Using user.image_feed will 
+#                 subscribed to. Using user.image_feed will
 #                 give a list of all images in
 #                 all collections the user is subscribed to.
 # notifications:: Anything the user needs to know. Using user.notifications
@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
 
   enum role: [:normal, :admin]
 
-
   has_attached_file :avatar,
     styles: {
       original: "500x500>#",
@@ -36,11 +35,10 @@ class User < ActiveRecord::Base
     path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension"),
     default_url: "default-avatar.svg"
 
-
-  validates_attachment_content_type :avatar, 
+  validates_attachment_content_type :avatar,
     content_type: /\Aimage\/.*\Z/
 
-    validates_with AttachmentSizeValidator, 
+  validates_with AttachmentSizeValidator,
     attributes: :avatar,
     less_than: 2.megabytes
 
@@ -62,7 +60,7 @@ class User < ActiveRecord::Base
   has_many :curatorships
   has_many :collections, through: :curatorships
   has_many :user_creations
-  has_many :creations, -> { order(created_at: :desc)},  through: :user_creations
+  has_many :creations, -> { order(created_at: :desc) }, through: :user_creations
 
   # ArtistSubscriber is a join table of User to User.
   # This is, as you imagine, kind of annoying to deal with.
@@ -70,7 +68,7 @@ class User < ActiveRecord::Base
   # This is the first. It's the artists this user is subscribed to.
   has_many :artist_subscriptions, foreign_key: :user_id
   # and here we have the actual users
-  has_many :subscribed_artists, 
+  has_many :subscribed_artists,
     through: :artist_subscriptions,
     source: :artist
 
@@ -95,7 +93,7 @@ class User < ActiveRecord::Base
   devise :two_factor_authenticatable,
     otp_secret_encryption_key: ENV['TWO_FACTOR_KEY'],
     otp_allowed_drift: 0
-  
+
   # Two-factor Backupable
   # Generates 5 backup codes of length 16 characters for the user.
   # For use if/when the user loses access to their two-factor device.
@@ -109,10 +107,10 @@ class User < ActiveRecord::Base
   # VALIDATIONS #
   ###############
   validates :name, presence: true,
-    uniqueness: {case_sensitive: false},
-    format: {with: /\A([[:alpha:]]|\w)+\z/ },
-    length: {in: 2..25}
-  validates :page_pref, inclusion: {:in => (1..100)}
+                   uniqueness: { case_sensitive: false },
+                   format: { with: /\A([[:alpha:]]|\w)+\z/ },
+                   length: { in: 2..25 }
+  validates :page_pref, inclusion: { in: (1..100) }
 
   #############
   # CALLBACKS #
@@ -121,16 +119,15 @@ class User < ActiveRecord::Base
 
   before_save :coerce_content_pref!
 
-
   #################
   # CLASS METHODS #
   #################
 
   def self.popular_creators(interval = 14.days.ago..Time.now)
     joins(creations: :collection_images)
-    .group("users.id")
-    .where(collection_images: {created_at: interval})
-    .order("COUNT(collection_images) DESC")
+      .group("users.id")
+      .where(collection_images: { created_at: interval })
+      .order("COUNT(collection_images) DESC")
   end
 
   def self.recent_creators
@@ -139,7 +136,6 @@ class User < ActiveRecord::Base
       .order("MAX(user_creations.created_at) DESC")
   end
 
-
   ####################
   # INSTANCE METHODS #
   ####################
@@ -147,22 +143,22 @@ class User < ActiveRecord::Base
   def has_filled_commissions?
     count = commission_products
       .joins(:offers)
-      .where(commission_offers: {filled: true})
+      .where(commission_offers: { filled: true })
       .count
     count > 0
   end
 
   def enable_twofactor
     self.otp_secret = User.generate_otp_secret
-    self.save
+    save
   end
 
   def confirm_twofactor(key)
-    if self.validate_and_consume_otp!(key)
+    if validate_and_consume_otp!(key)
       self.otp_required_for_login = true
       self.two_factor_verified = true
-      backup_codes = self.generate_otp_backup_codes!
-      self.save
+      backup_codes = generate_otp_backup_codes!
+      save
       backup_codes
     else
       return false
@@ -173,7 +169,7 @@ class User < ActiveRecord::Base
   # See if the user is subscribed to a collection
   # Returns true or false
   # c:: the collection we are checking
-  def subscribed_to? c
+  def subscribed_to?(c)
     c.subscribers.include? self
   end
 
@@ -198,11 +194,11 @@ class User < ActiveRecord::Base
   ##
   # Add a collection to the user's subscriptions.
   # c:: the collection to add.
-  def subscribe! c
+  def subscribe!(c)
     c.subscribers << self
   end
 
-  def unsubscribe! c
+  def unsubscribe!(c)
     c.subscribers.destroy(self)
   end
 
@@ -214,7 +210,7 @@ class User < ActiveRecord::Base
 
   ##
   # Add an image to a user's favorites
-  def favorite! i
+  def favorite!(i)
     favorites.images << i
   end
 
@@ -226,8 +222,8 @@ class User < ActiveRecord::Base
 
   ##
   # Add an image to a user's creationed collection.
-  def created! i
-    creations << i 
+  def created!(i)
+    creations << i
   end
 
   ##
@@ -245,17 +241,15 @@ class User < ActiveRecord::Base
   # we here convert them into the proper "True" and "false"
   def coerce_content_pref!
     return unless content_pref
-    self.content_pref = self.content_pref.map do |k, v|
-      if k.start_with?("nsfw")
-        if v.is_a? String
-          [k, v == "0" ? false : true]
-        else
-          [k, v]
-        end
+    self.content_pref = content_pref.map do |k, v|
+      next unless k.start_with?("nsfw")
+      if v.is_a? String
+        [k, v == "0" ? false : true]
+      else
+        [k, v]
       end
     end.to_h
   end
-
 
   ##
   # All users have to have a Favorite collection and a Created collection.
@@ -269,7 +263,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
     end
   end

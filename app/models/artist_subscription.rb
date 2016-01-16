@@ -4,10 +4,11 @@ class ArtistSubscription < ActiveRecord::Base
   after_create :notify_artist
 
   protected
+
   def notify_artist
     n = Notification.new(kind: :new_subscriber,
-                         subject: self.user,
-                         user: self.artist)
+                         subject: user,
+                         user: artist)
     n.save
   end
 end

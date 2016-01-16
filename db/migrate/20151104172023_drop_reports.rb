@@ -2,7 +2,8 @@ class DropReports < ActiveRecord::Migration
   def up
     drop_table :reports
   end
+
   def down
-    raise ActiveRecord::IrreversibleMigration
+    fail ActiveRecord::IrreversibleMigration
   end
 end

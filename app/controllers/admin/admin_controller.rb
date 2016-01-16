@@ -2,9 +2,10 @@
 # The root controller for the Admin namespace.
 # Ensures only admins can access actions within.
 class Admin::AdminController < ApplicationController
-  before_filter :ensure_admin
+  before_action :ensure_admin
+
   protected
-  
+
   ##
   # Verify that the user is an admin. Redirects to the login page if they
   # are't.

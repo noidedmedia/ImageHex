@@ -1,61 +1,60 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-raise "Should not seed in production" if Rails.env.production?
+fail "Should not seed in production" if Rails.env.production?
 
 def img(filename)
   filename = "#{Rails.root}/db/seed_assets/#{filename}"
   File.open(filename)
 end
 
-User.create!([{name: "test",
-              email: "test@example.com",
-              password: "testtest",
-              password_confirmation: "testtest"},
-             {name: "foo", 
-              email: "foo@example.com",
-              password: "foobarbaz",
-              password_confirmation: "foobarbaz"},
-             {name: "Moot",
-              email: "moot@example.com",
-              password: "lol4chanjoke",
-              password_confirmation: "lol4chanjoke"}])
-User.find_each{|u| u.confirm}
+User.create!([{ name: "test",
+                email: "test@example.com",
+                password: "testtest",
+                password_confirmation: "testtest" },
+              { name: "foo",
+                email: "foo@example.com",
+                password: "foobarbaz",
+                password_confirmation: "foobarbaz" },
+              { name: "Moot",
+                email: "moot@example.com",
+                password: "lol4chanjoke",
+                password_confirmation: "lol4chanjoke" }])
+User.find_each(&:confirm)
 u1 = User.first
 u2 = User.second
 u3 = User.third
 
-Image.create!([{f: img("tiamat.jpg"),
-               user: u1,
-               nsfw_gore: false,
-               nsfw_sexuality: false,
-               nsfw_language: false,
-               nsfw_nudity: false,
-               description: "A toy tiamat. Is adorable, no?",
-               license: :public_domain,
-               medium: :photograph,
-               created_by_uploader: true},
-              {f: img("tiamat2.png"),
-                user: u1,
-                nsfw_gore: false,
-                nsfw_nudity: false,
-                nsfw_sexuality: false,
-                nsfw_language: false,
-                description: "A scarier tiamat model",
-                medium: :photograph,
-                license: :public_domain,
-                created_by_uploader: true},
-              {f: img("planedragon.png"),
-               user: u2,
-               nsfw_gore: false,
-               nsfw_nudity: false,
-               nsfw_sexuality: false,
-               nsfw_language: false,
-               description: "A dragon I drew with fighter jets.",
-               medium: :digital_paint,
-               license: :public_domain,
-               created_by_uploader: true}])
-               
+Image.create!([{ f: img("tiamat.jpg"),
+                 user: u1,
+                 nsfw_gore: false,
+                 nsfw_sexuality: false,
+                 nsfw_language: false,
+                 nsfw_nudity: false,
+                 description: "A toy tiamat. Is adorable, no?",
+                 license: :public_domain,
+                 medium: :photograph,
+                 created_by_uploader: true },
+               { f: img("tiamat2.png"),
+                 user: u1,
+                 nsfw_gore: false,
+                 nsfw_nudity: false,
+                 nsfw_sexuality: false,
+                 nsfw_language: false,
+                 description: "A scarier tiamat model",
+                 medium: :photograph,
+                 license: :public_domain,
+                 created_by_uploader: true },
+               { f: img("planedragon.png"),
+                 user: u2,
+                 nsfw_gore: false,
+                 nsfw_nudity: false,
+                 nsfw_sexuality: false,
+                 nsfw_language: false,
+                 description: "A dragon I drew with fighter jets.",
+                 medium: :digital_paint,
+                 license: :public_domain,
+                 created_by_uploader: true }])
 
 Image.first.comments.create!(user: u2,
                              body: "Wow, this actually is adorable.")
@@ -92,9 +91,9 @@ Flying lizards who breathe fire.
 Note: Dragons that breathe other things are cool too.
 eos
 
-Subjective.first.collection_images.create([{image_id: 1},
-                                          {image_id: 2},
-                                          {image_id: 3}])
+Subjective.first.collection_images.create([{ image_id: 1 },
+                                           { image_id: 2 },
+                                           { image_id: 3 }])
 
 ## Tag some images
 dragon = Tag.create(name: "Dragon")

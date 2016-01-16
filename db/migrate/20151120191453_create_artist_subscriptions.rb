@@ -9,6 +9,5 @@ class CreateArtistSubscriptions < ActiveRecord::Migration
     add_index :artist_subscriptions, :artist_id
     add_foreign_key :artist_subscriptions, :users, on_delete: :cascade
     add_foreign_key :artist_subscriptions, :users, column: :artist_id, on_delete: :cascade
-
   end
 end

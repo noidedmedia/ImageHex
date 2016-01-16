@@ -12,6 +12,7 @@ class TagTracker < ApplicationTracker
   end
 
   protected
+
   def make_change
     TagChange.create(tag: @record,
                      user: @user,

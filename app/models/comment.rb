@@ -16,16 +16,15 @@
 #== Relations
 # commentable:: What this comment is on
 # user:: Who commented
-# notifications:: Notifications that reference this comment. Used for people 
+# notifications:: Notifications that reference this comment. Used for people
 #                 who reply to a comment or iamge.
 class Comment < ActiveRecord::Base
-  
-  scope :for_display, ->{ includes(:user).order("created_at ASC") }
+  scope :for_display, -> { includes(:user).order("created_at ASC") }
   #############
   # RELATIONS #
   #############
   belongs_to :commentable, polymorphic: true,
-    touch: true
+                           touch: true
   belongs_to :user
   ###############
   # VALIDATIONS #
@@ -44,6 +43,7 @@ class Comment < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
+
   protected
 
   ##
@@ -58,19 +58,16 @@ class Comment < ActiveRecord::Base
     end
   end
 
-  
   ##
   # Notify reply tells us to make a notification of a reply to
   # this comment. It's protected so only other comments can
   # call it.
-  def notify_reply(other)
+  def notify_reply(_other)
     n = Notification.create(user: user,
                             subject: self,
                             kind: :comment_replied_to)
     n.save
-
   end
-
 
   ##
   # You can reply to another comment 4chan-style, by typing
@@ -79,9 +76,9 @@ class Comment < ActiveRecord::Base
   def notify_replied_comments
     # find all matches of our ">>" pattern
     ids = body.scan(/>>\d+/)
-      .map{|m| m.gsub(">>", "")} # then remove the >> to get just the ids
+      .map { |m| m.gsub(">>", "") } # then remove the >> to get just the ids
     comments = Comment.where(id: ids)
-    comments.map{|x| x.notify_reply(self)}
+    comments.map { |x| x.notify_reply(self) }
   end
 
   ##
@@ -91,9 +88,9 @@ class Comment < ActiveRecord::Base
     ##
     # All words that start with an @ until the spaces
     names = body.scan(/@\w+/)
-      .map{|m| m.gsub("@", "")}
+      .map { |m| m.delete("@") }
     users = User.where(name: names)
-    users.each{|u| notify_mention(u) unless u == self.user}
+    users.each { |u| notify_mention(u) unless u == user }
   end
 
   ##
@@ -104,6 +101,5 @@ class Comment < ActiveRecord::Base
                          subject: self,
                          kind: :mentioned)
     n.save!
-  end  
-
+  end
 end

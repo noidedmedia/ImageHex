@@ -1,5 +1,5 @@
 ##
-# See notifications a user has. 
+# See notifications a user has.
 # This entire controller requires login, as it doesn't really make sense for
 # people who aren't logged in to have notifications.
 class NotificationsController < ApplicationController
@@ -18,16 +18,18 @@ class NotificationsController < ApplicationController
   def mark_all_read
     render json: current_user.notifications.unread.update_all(read: true)
   end
+
   ##
   # Mark the notification in params[:id] as read.
   # Returns a JSON response indicating success.
   def read
     n = current_user.notifications.where(id: params[:id]).first
-    raise ActiveRecord::RecordNotFound unless n
+    fail ActiveRecord::RecordNotFound unless n
     n.read = true
     worked = n.save
     render json: (worked ? worked : notifications.errors.full_messages)
   end
+
   ##
   # Obtain a list of unread notifications.
   # Returns JSON or HTML.
@@ -37,7 +39,7 @@ class NotificationsController < ApplicationController
     @notifications = current_user.notifications.unread
     respond_to do |format|
       format.html
-      format.json { render json: @notifications}
+      format.json { render json: @notifications }
     end
   end
 end

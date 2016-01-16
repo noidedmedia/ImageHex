@@ -7,7 +7,7 @@ class CollectionPolicy < ApplicationPolicy
   def update?
     admined? && non_innate?
   end
-  
+
   def destroy?
     admined? && non_innate?
   end

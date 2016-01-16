@@ -10,6 +10,7 @@ class TagGroupMember < ActiveRecord::Base
   after_create :touch_group
 
   protected
+
   def touch_group
     tag_group.touch
   end

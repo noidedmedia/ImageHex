@@ -20,6 +20,7 @@ class Curatorship < ActiveRecord::Base
   before_save :resolve_user_name
 
   protected
+
   ##
   # Allow this to be created with a user_name
   # Makes the interface just a little bit nicer

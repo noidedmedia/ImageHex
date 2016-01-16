@@ -9,10 +9,8 @@ class CommissionBackground < ActiveRecord::Base
   validate :has_acceptable_references
 
   protected
-  def has_acceptable_references
-    unless references.length < 11
-      errors.add(:references, "have too many")
-    end
-  end
 
+  def has_acceptable_references
+    errors.add(:references, "have too many") unless references.length < 11
+  end
 end

@@ -3,5 +3,4 @@ FactoryGirl.define do
     tag
     tag_group
   end
-
 end

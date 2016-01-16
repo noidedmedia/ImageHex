@@ -4,5 +4,4 @@ FactoryGirl.define do
     collection
     level :admin
   end
-
 end

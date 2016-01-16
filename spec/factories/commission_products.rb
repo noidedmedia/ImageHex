@@ -9,5 +9,4 @@ FactoryGirl.define do
     background_price 100
     weeks_to_completion 4
   end
-
 end

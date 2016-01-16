@@ -3,27 +3,25 @@
 
 Rails.application.routes.default_url_options[:host] = "www.imagehex.com"
 ActionMailer::Base.smtp_settings = {
-  :address        => 'smtp.sendgrid.net',
-  :port           => '587',
-  :authentication => :plain,
-  :user_name      => ENV['SENDGRID_USERNAME'],
-  :password       => ENV['SENDGRID_PASSWORD'],
-  :domain         => 'heroku.com',
-  :enable_starttls_auto => true
+  address: 'smtp.sendgrid.net',
+  port: '587',
+  authentication: :plain,
+  user_name: ENV['SENDGRID_USERNAME'],
+  password: ENV['SENDGRID_PASSWORD'],
+  domain: 'heroku.com',
+  enable_starttls_auto: true
 }
 
-
 Rails.application.configure do
-
   # Use AWS for paperclip
   config.paperclip_defaults = {
     storage: :s3,
     s3_protocol: :https,
     s3_credentials: {
-    :bucket => ENV['S3_BUCKET_NAME'],
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-  },
+      bucket: ENV['S3_BUCKET_NAME'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    },
     # prevents a permanent redirect error on images:
     url: ":s3_alias_url",
     s3_host_alias: "i.imagehex.com",
@@ -32,7 +30,7 @@ Rails.application.configure do
   }
   # Settings specified here will take precedence over those in config/application.rb.
   #
-  config.action_mailer.default_url_options = {host: "www.imagehex.com"}
+  config.action_mailer.default_url_options = { host: "www.imagehex.com" }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -87,13 +85,13 @@ Rails.application.configure do
   # Use a different cache store in production.
 
   config.cache_store = :dalli_store,
-    (ENV["MEMCACHIER_SERVERS"] || "").split(","),
-    {:username => ENV["MEMCACHIER_USERNAME"],
-      :password => ENV["MEMCACHIER_PASSWORD"],
-      :failover => true,
-      :socket_timeout => 1.5,
-      :socket_failure_delay => 0.2
-  } 
+                       (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+                       { username: ENV["MEMCACHIER_USERNAME"],
+                         password: ENV["MEMCACHIER_PASSWORD"],
+                         failover: true,
+                         socket_timeout: 1.5,
+                         socket_failure_delay: 0.2
+                     }
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
 

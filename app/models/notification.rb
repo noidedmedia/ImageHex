@@ -10,7 +10,7 @@ class Notification < ActiveRecord::Base
   belongs_to :user, touch: true
   ##
   # SCOPES
-  scope :unread, ->{where(read: false)}
+  scope :unread, -> { where(read: false) }
 
   ###############
   # VALIDATIONS #
@@ -18,14 +18,14 @@ class Notification < ActiveRecord::Base
   validates :user, presence: true
   validates :subject, presence: true
   enum kind: [:uploaded_image_commented_on,
-    :subscribed_image_commented_on,
-    :comment_replied_to,
-    :mentioned,
-    :new_subscriber,
-    :commission_offer_confirmed,
-    :commission_offer_accepted,
-    :commission_offer_charged,
-    :commission_offer_filled]
+              :subscribed_image_commented_on,
+              :comment_replied_to,
+              :mentioned,
+              :new_subscriber,
+              :commission_offer_confirmed,
+              :commission_offer_accepted,
+              :commission_offer_charged,
+              :commission_offer_filled]
 
   def subject=(sub)
     to_write = nil
@@ -47,9 +47,9 @@ class Notification < ActiveRecord::Base
       to_write = {
         id: sub.id,
         type: :commission_offer,
-        user_name: sub.user.name,
+        user_name: sub.user.name
       }
     end
-    write_attribute(:subject, to_write)
+    self[:subject] = to_write
   end
 end

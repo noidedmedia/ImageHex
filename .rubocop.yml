@@ -7,7 +7,7 @@ StringLiterals:
 AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
-MutlilineOperationIndentation:
+MultilineOperationIndentation:
   EnforcedStyle: indented
 
 MultilineMethodCallIndentation:

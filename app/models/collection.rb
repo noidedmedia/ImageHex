@@ -31,7 +31,7 @@ class Collection < ActiveRecord::Base
   # Join table: Collection -> Images
   has_many :collection_images
   has_many :images,
-  through: :collection_images
+    through: :collection_images
   ###############
   # VALIDATIONS #
   ###############
@@ -42,19 +42,19 @@ class Collection < ActiveRecord::Base
   # SCOPES #
   ##########
 
-  scope :favorites, ->{ where(type: "Favorite") }
-  scope :creations, ->{ where(type: "Creation") }
+  scope :favorites, -> { where(type: "Favorite") }
+  scope :creations, -> { where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
 
   def self.by_popularity(inter = 2.weeks.ago..Time.now)
     subs = Subscription.arel_table
-    col = self.arel_table
+    col = arel_table
     j = col.join(subs, Arel::Nodes::OuterJoin)
       .on(subs[:collection_id].eq(col[:id]), subs[:created_at].between(inter))
       .join_sources
     res = joins(j)
-    .group("collections.id")
-    .order("COUNT(subscriptions) DESC")
+      .group("collections.id")
+      .order("COUNT(subscriptions) DESC")
   end
 
   def self.with_image_inclusion(i)
@@ -66,9 +66,10 @@ class Collection < ActiveRecord::Base
         (SELECT collections.id FROM collections
         INNER JOIN collection_images
           ON collection_images.collection_id = collections.id
-        WHERE collection_images.image_id = #{i.id.to_i.to_s}))
+        WHERE collection_images.image_id = #{i.id.to_i}))
         AS contains_image})
   end
+
   def self.without_image(i)
     where.not(id: i.collections)
   end
@@ -87,13 +88,12 @@ class Collection < ActiveRecord::Base
   #   collection.curated?(User.first) #=> true
   #   collection.curate?(User.last) #=> false
   def curated?(u)
-    self.curators.include?(u)
+    curators.include?(u)
   end
 
   protected
+
   def make_admins
-    curatorships.update_all({
-      level: 2
-    })
+    curatorships.update_all(level: 2)
   end
 end

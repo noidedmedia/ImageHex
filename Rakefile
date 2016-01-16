@@ -8,7 +8,7 @@ RDoc::Task.new :documentation do |rdoc|
   rdoc.main      = "README.rdoc"
   rdoc.generator = "bootstrap"
   rdoc.title     = "ImageHex Documentation"
-  rdoc.options   << "--all"
+  rdoc.options << "--all"
 end
 
 RDoc::Task.new :doc_coverage do |rdoc|

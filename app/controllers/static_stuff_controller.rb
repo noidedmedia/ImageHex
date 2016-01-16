@@ -5,6 +5,7 @@
 class StaticStuffController < ApplicationController
   def commissions_plan
   end
+
   ##
   # About page. Information about what ImageHex is.
   def about
@@ -37,6 +38,6 @@ class StaticStuffController < ApplicationController
 
   ##
   # Press resources and whatnot.
-  def press 
+  def press
   end
 end

@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe CollectionsController, :type => :controller do
+RSpec.describe CollectionsController, type: :controller do
   include Devise::TestHelpers
   describe "get #index" do
-    
     it "renders the index page" do
       user = FactoryGirl.create(:user)
       user.collections << [FactoryGirl.create(:collection)]
@@ -12,7 +11,7 @@ RSpec.describe CollectionsController, :type => :controller do
     end
   end
   describe "get #show" do
-    let(:c){FactoryGirl.create(:collection)}
+    let(:c) { FactoryGirl.create(:collection) }
     it "is success" do
       get :show, id: c.id
       expect(response).to be_success
@@ -37,7 +36,7 @@ RSpec.describe CollectionsController, :type => :controller do
       sign_in @user
     end
     describe "PUT #update" do
-      let(:c){FactoryGirl.create(:collection)}
+      let(:c) { FactoryGirl.create(:collection) }
       before :each do
         Curatorship.create(collection: c,
                            user: @user,
@@ -51,16 +50,16 @@ RSpec.describe CollectionsController, :type => :controller do
     end
 
     describe "DELETE #destroy" do
-      let(:c){FactoryGirl.create(:collection)}
-      before :each do 
+      let(:c) { FactoryGirl.create(:collection) }
+      before :each do
         Curatorship.create(collection: c,
                            user: @user,
                            level: :admin)
       end
       it "allows deletion" do
-        expect{
+        expect do
           delete :destroy, id: c.id
-        }.to change{Collection.count}.by(-1)
+        end.to change { Collection.count }.by(-1)
       end
     end
 
@@ -69,22 +68,19 @@ RSpec.describe CollectionsController, :type => :controller do
         c = FactoryGirl.create(:collection)
         @user.subscribed_collections << c
         expect(@user.subscribed_collections).to include(c)
-        expect{
+        expect do
           delete(:unsubscribe, id: c)
-        }.to change{@user.subscribed_collections.count}.by(-1)
+        end.to change { @user.subscribed_collections.count }.by(-1)
         expect(@user.subscribed_collections.reload).to_not include(c)
       end
     end
 
-
-
     describe "post #subscribe" do
-      let(:c){FactoryGirl.create(:collection)}
+      let(:c) { FactoryGirl.create(:collection) }
       it "adds the collection to a users subscribed collections" do
-        expect{
+        expect do
           post "subscribe", id: c
-        }.to change{@user.subscribed_collections.count}.by(1)
-
+        end.to change { @user.subscribed_collections.count }.by(1)
       end
     end
     describe "get #new" do
@@ -93,12 +89,14 @@ RSpec.describe CollectionsController, :type => :controller do
     end
     describe "post #create" do
       context "with valid attributes" do
-        let(:subjective_atrs){ {type: "Subjective",
-          name: "My Kawaii Images"}}
+        let(:subjective_atrs) do
+          { type: "Subjective",
+            name: "My Kawaii Images" }
+        end
         it "makes a new collection of the proper type with an admin user" do
-          expect{
+          expect do
             post :create, collection: subjective_atrs
-          }.to change{Subjective.count}.by(1)
+          end.to change { Subjective.count }.by(1)
           expect(Curatorship.last.level).to eq("admin")
         end
         it "redirects to the collection" do
@@ -111,6 +109,5 @@ RSpec.describe CollectionsController, :type => :controller do
         it "renders the #new page with errors set"
       end
     end
-
   end
 end

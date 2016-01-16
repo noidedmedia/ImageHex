@@ -16,4 +16,3 @@ class ApplicationTracker
     @record = record
   end
 end
-

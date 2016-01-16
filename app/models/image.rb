@@ -14,21 +14,20 @@
 #        without havint to kill their bandwidth by downloading the entire thing.
 #
 #
-# == Relationships 
+# == Relationships
 # tag_groups:: Tag groups on this image. ImageHex isn't very useful without
 #                these, is it?
-# comments:: Much to Connor Shea's dismay, we allow comments on image. They 
+# comments:: Much to Connor Shea's dismay, we allow comments on image. They
 #            are related in the normal polymorphatic way.
 # collection_images:: This is here so the image can know what collections it
 #                     is in. It's dependent: :destroy, so if the image is
 #                     removed, it's automatically removed from those
 #                     collections.
-# 
+#
 # == Enums
 # license:: What license the image is under.
 # medium:: How the image was created
 class Image < ActiveRecord::Base
-
   ##############
   # ATTRIBUTES #
   ##############
@@ -40,33 +39,32 @@ class Image < ActiveRecord::Base
 
   after_create :add_uploader_creation
 
-
   ##########
   # SCOPES #
   ##########
 
-  scope :without_nudity, ->{ where(nsfw_nudity: false) }
-  scope :without_gore, -> { where(nsfw_gore: false)}
-  scope :without_language, -> { where(nsfw_language: false)}
-  scope :without_sex, -> { where(nsfw_sexuality: false)}
+  scope :without_nudity, -> { where(nsfw_nudity: false) }
+  scope :without_gore, -> { where(nsfw_gore: false) }
+  scope :without_language, -> { where(nsfw_language: false) }
+  scope :without_sex, -> { where(nsfw_sexuality: false) }
   scope :completely_safe, -> { without_nudity.without_gore.without_language.without_sex }
-  scope :mostly_safe, -> { without_nudity.without_gore.without_sex } 
+  scope :mostly_safe, -> { without_nudity.without_gore.without_sex }
   ################
   # ASSOCIATIONS #
   ################
   has_attached_file :f,
     # Steal Flickr's suffixes
-    :styles => {
-    small: "140x140>",
-    medium: "300x300>",
-    large: "500x500>",
-    huge: "1000x1000>"},
+    styles: {
+      small: "140x140>",
+      medium: "300x300>",
+      large: "500x500>",
+      huge: "1000x1000>" },
     # Use suffixes for the path
     path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
   belongs_to :user, touch: true
 
   before_post_process :downcase_extension
-  has_many :tag_groups, -> {includes :tags}, dependent: :delete_all
+  has_many :tag_groups, -> { includes :tags }, dependent: :delete_all
   has_many :image_reports
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :collection_images, dependent: :destroy
@@ -89,19 +87,18 @@ class Image < ActiveRecord::Base
   ###############
   # VALIDATIONS #
   ###############
-  validates :nsfw_language, inclusion: {in: [true, false]}
-  validates :nsfw_gore, inclusion: {in: [true, false]}
-  validates :nsfw_sexuality, inclusion: {in: [true, false]}
-  validates :nsfw_nudity, inclusion: {in: [true, false]}
+  validates :nsfw_language, inclusion: { in: [true, false] }
+  validates :nsfw_gore, inclusion: { in: [true, false] }
+  validates :nsfw_sexuality, inclusion: { in: [true, false] }
+  validates :nsfw_nudity, inclusion: { in: [true, false] }
   validates_attachment :f,
-    content_type: { content_type: /\Aimage\/.*\Z/},
+    content_type: { content_type: /\Aimage\/.*\Z/ },
     presence: true
-
 
   validates :user, presence: :true
   validates :license, presence: true
   validates :medium, presence: true
-  validates :description, length:{ maximum: 2000}
+  validates :description, length: { maximum: 2000 }
 
   validate :is_within_allowed_size
   #################
@@ -112,14 +109,15 @@ class Image < ActiveRecord::Base
     imgs = Image.arel_table
     cimgs = CollectionImage.arel_table
     j = imgs.join(cimgs, Arel::Nodes::OuterJoin)
-    .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
-    .join_sources
+      .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
+      .join_sources
     res = joins(j)
-    .group("images.id")
-    .order("COUNT (collection_images) DESC")
+      .group("images.id")
+      .order("COUNT (collection_images) DESC")
   end
+
   ##
-  # Find all images a user is subscribed to. 
+  # Find all images a user is subscribed to.
   # user:: The user we're finding the subscription for
   # example usage:
   #   Image.feed_for(User.first) #=> first user's image feed
@@ -132,18 +130,18 @@ class Image < ActiveRecord::Base
     # WHERE subscriptions.user_id = ?
     # ORDER BY collection_images.created_at DESC
     SubscriptionQuery.new(user).result
-    .order("sort_created_at DESC")
-    .for_content(user.content_pref)
+      .order("sort_created_at DESC")
+      .for_content(user.content_pref)
   end
 
   def self.with_all_tags(tags)
     tags.reject!(&:blank?) # reject blank tags
     ## Clear previous scope to construct a subquery
-    sq = Image.unscoped.joins(tag_groups: {tag_group_members: :tag})
-    .where(tags: {id: tags})
-    .group("images.id")
-    .having("COUNT(*) >= ?", tags.length)
-    return self.where(id: sq)
+    sq = Image.unscoped.joins(tag_groups: { tag_group_members: :tag })
+      .where(tags: { id: tags })
+      .group("images.id")
+      .having("COUNT(*) >= ?", tags.length)
+    where(id: sq)
   end
 
   def self.search(q)
@@ -161,36 +159,27 @@ class Image < ActiveRecord::Base
   # Only returns the images which have at least 1 report.
   def self.by_reports
     joins(:image_reports)
-    .references(:image_reports)
-    .where(image_reports: {active: true})
-    .group(:id).order("COUNT(image_reports)")
+      .references(:image_reports)
+      .where(image_reports: { active: true })
+      .group(:id).order("COUNT(image_reports)")
   end
 
   def self.without_tags(tags)
-    subq = joins(tag_groups:  {tag_group_members: :tag})
-    .where.not(tags: {name: tags})
+    subq = joins(tag_groups:  { tag_group_members: :tag })
+      .where.not(tags: { name: tags })
     where(id: subq)
   end
 
   def self.for_content(content)
     q = all
-    unless content["nsfw_nudity"]
-      q = q.without_nudity
-    end
-    unless content["nsfw_gore"]
-      q = q.without_gore
-    end
-    unless content["nsfw_language"]
-      q = q.without_language
-    end
-    unless content["nsfw_sexuality"]
-      q = q.without_sex
-    end
-    if content["disallowed_tags"]
-      q = q.without_tags(content["disallowed_tags"])
-    end
-    return q
+    q = q.without_nudity unless content["nsfw_nudity"]
+    q = q.without_gore unless content["nsfw_gore"]
+    q = q.without_language unless content["nsfw_language"]
+    q = q.without_sex unless content["nsfw_sexuality"]
+    q = q.without_tags(content["disallowed_tags"]) if content["disallowed_tags"]
+    q
   end
+
   ##
   # Returns a localized list of all license options for use
   # with the select element on the Upload page.
@@ -198,7 +187,7 @@ class Image < ActiveRecord::Base
   # The text after "[I18n.t(" is the hierarchal location of
   # the license translations in the localization file.
   def self.license_attributes_for_select
-    licenses.map do |license, k|
+    licenses.map do |license, _k|
       [I18n.t("activerecord.attributes.licenses.#{license}"), license]
     end
   end
@@ -207,10 +196,10 @@ class Image < ActiveRecord::Base
   # Returns a localized list of all medium options for use
   # with the select element on the Upload page.
   #
-  # The text after "[I18n.t(" is the hierarchal location of the 
+  # The text after "[I18n.t(" is the hierarchal location of the
   # license translations in the localization file.
   def self.medium_attributes_for_select
-    media.map do |medium, k|
+    media.map do |medium, _k|
       [I18n.t("activerecord.attributes.mediums.#{medium}"), medium]
     end
   end
@@ -219,26 +208,26 @@ class Image < ActiveRecord::Base
     URI.parse(source_link).host
   end
 
-  def created_by? user
+  def created_by?(user)
     creators.include? user
   end
 
   def source_link
-    if self.source.start_with?("http://", "https://")
-      self.source
+    if source.start_with?("http://", "https://")
+      source
     else
-      "//#{self.source}"
+      "//#{source}"
     end
   end
+
   protected
+
   def add_uploader_creation
     # This is gross beecause of how form params work
     if created_by_uploader.is_a? TrueClass
-      self.user.creations << self
+      user.creations << self
     elsif created_by_uploader.is_a? String
-      if ['true', '1'].include?(created_by_uploader)
-        self.user.creations << self
-      end
+      user.creations << self if %w(true 1).include?(created_by_uploader)
     end
   end
 
@@ -250,11 +239,11 @@ class Image < ActiveRecord::Base
   def downcase_extension
     ext = File.extname(f_file_name).downcase
     base = File.basename(f_file_name, File.extname(f_file_name)).downcase
-    self.f.instance_write :file_name, "#{base}#{ext}"
+    f.instance_write :file_name, "#{base}#{ext}"
   end
 
   def is_within_allowed_size
-    unless (0..5.megabytes).include?(self.f_file_size)
+    unless (0..5.megabytes).cover?(f_file_size)
       errors.add(:f, I18n.t("notices.image_file_too_large"))
     end
   end

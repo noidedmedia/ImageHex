@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :commission_background do
     commission_offer
-description "MyText"
+    description "MyText"
   end
-
 end

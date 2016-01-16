@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # Store test files in a temporary directory
-  Paperclip::Attachment.default_options.merge!({path: "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"})
+  Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
   $IMAGE_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
   $SUBJECT_REF_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
   $BACKGROUND_REF_PATH = $IMAGE_PATH
@@ -19,7 +19,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_files  = true
+  config.serve_static_files = true
   config.static_cache_control = 'public, max-age=3600'
 
   # Show full error reports and disable caching.

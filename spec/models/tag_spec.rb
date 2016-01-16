@@ -4,15 +4,15 @@ describe Tag do
   describe "creation" do
     it "requires unique names" do
       t = FactoryGirl.create(:tag, name: "test")
-      expect{
+      expect do
         FactoryGirl.create(:tag, name: "test")
-      }.to raise_error ActiveRecord::RecordInvalid
+      end.to raise_error ActiveRecord::RecordInvalid
     end
     it "is case insensitive with name uniqueness" do
       t = FactoryGirl.create(:tag, name: "test")
-      expect{
+      expect do
         FactoryGirl.create(:tag, name: "TEST")
-      }.to raise_error ActiveRecord::RecordInvalid
+      end.to raise_error ActiveRecord::RecordInvalid
     end
   end
 
@@ -21,7 +21,7 @@ describe Tag do
       tag = FactoryGirl.create(:tag, name: "two  spaces")
       expect(tag.name).to eq("two spaces")
     end
-   
+
     it "removes trailing whitespace" do
       str = "asd  "
       tag = FactoryGirl.create(:tag, name: str)
@@ -37,6 +37,6 @@ describe Tag do
       expect(Tag.suggest("b").map(&:name)).to_not include("asdf")
     end
   end
-  it{should have_many(:tag_groups).through(:tag_group_members)}
-  it{should have_many(:tag_group_members)}
+  it { should have_many(:tag_groups).through(:tag_group_members) }
+  it { should have_many(:tag_group_members) }
 end

@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :conversation_user do
-    user 
-    conversation 
+    user
+    conversation
   end
-
 end

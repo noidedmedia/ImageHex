@@ -5,51 +5,49 @@ class CommissionProduct < ActiveRecord::Base
   has_many :product_example_images,
     inverse_of: :commission_product
 
-  has_many :example_images, 
+  has_many :example_images,
     through: :product_example_images,
     class_name: "Image",
     source: :image
 
-  validates :base_price, numericality: {greater_than: 300}
+  validates :base_price, numericality: { greater_than: 300 }
 
   validates :subject_price,
     presence: true,
-    numericality: {greater_than: 0},
-    :if => :offer_subjects?
+    numericality: { greater_than: 0 },
+    if: :offer_subjects?
 
   validates :background_price,
     presence: true,
-    numericality: {greater_than: 0},
-    :if => :charge_for_background?
+    numericality: { greater_than: 0 },
+    if: :charge_for_background?
 
   validates :user, presence: true
 
   validates :weeks_to_completion,
     presence: true,
-    numericality: {greater_than: 0, less_than: 52}
+    numericality: { greater_than: 0, less_than: 52 }
 
   validates :maximum_subjects,
-    numericality: {greater_than: 1},
+    numericality: { greater_than: 1 },
     allow_nil: true,
-    :unless => :offer_subjects?
+    unless: :offer_subjects?
 
   validate :example_images_created_by_user
   ##
   # Small hack to make example images easier
   def example_image_ids
-    self.example_images.pluck(:id)
+    example_images.pluck(:id)
   end
 
-
   def example_image_ids=(ar)
-    raise ArgumentError.new("must be passed an array") unless ar.is_a? Array
+    fail ArgumentError.new("must be passed an array") unless ar.is_a? Array
     self.example_images = Image.where(id: ar)
   end
 
   def allow_further_subjects?
     offer_subjects?
   end
-
 
   def includes_subjects?
     included_subjects > 0
@@ -58,21 +56,20 @@ class CommissionProduct < ActiveRecord::Base
   def allow_background?
     include_background? || offer_background?
   end
-  
+
   ##
   # You have to pay for backgrounds if they are allowed
   # but not free
   def charge_for_background?
-    allow_background? && ! include_background?
+    allow_background? && !include_background?
   end
 
   ##
   # TODO: refactor this so it's faster
   def example_images_created_by_user
     user = self.user
-    unless self.example_images.all?{|i| i.created_by?(user)}
+    unless example_images.all? { |i| i.created_by?(user) }
       errors.add(:example_images, "must be created by you")
     end
   end
-
 end

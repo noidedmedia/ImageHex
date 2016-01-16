@@ -2,9 +2,9 @@ class CommissionOffer < ActiveRecord::Base
   belongs_to :commission_product
   belongs_to :user
   has_many :subjects, class_name: "CommissionSubject",
-    inverse_of: :commission_offer
+                      inverse_of: :commission_offer
   has_one :background, class_name: "CommissionBackground",
-    inverse_of: :commission_offer
+                       inverse_of: :commission_offer
 
   has_many :commission_images
   has_many :images, through: :commission_images
@@ -17,7 +17,7 @@ class CommissionOffer < ActiveRecord::Base
   validates :user, presence: true
 
   validates :commission_product, presence: true,
-    :if => :confirmed
+                                 if: :confirmed
 
   validate :has_acceptable_subject_count
   validate :background_is_acceptable
@@ -26,7 +26,7 @@ class CommissionOffer < ActiveRecord::Base
   has_one :conversation
 
   before_save :calculate_price,
-    :if => :commission_product
+    if: :commission_product
 
   def calculate_fee
     if offeree.has_filled_commissions?
@@ -48,25 +48,23 @@ class CommissionOffer < ActiveRecord::Base
     subjects.length > 0
   end
 
-  def offeree_name
-    offeree.name
-  end
+  delegate :name, to: :offeree, prefix: true
 
   def involves?(u)
-    offeree == u || self.user == u
+    offeree == u || user == u
   end
 
   def confirm!
-    transaction do 
+    transaction do
       self.confirmed = true
-      self.touch(:confirmed_at)
-      self.save
+      touch(:confirmed_at)
+      save
       Notification.create(user: offeree,
                           subject: self,
                           kind: :commission_offer_confirmed)
       Conversation.create(commission_offer: self,
                           users: [user,
-                            offeree])
+                                  offeree])
     end
   end
 
@@ -74,9 +72,9 @@ class CommissionOffer < ActiveRecord::Base
     return false unless confirmed?
     transaction do
       self.accepted = true
-      self.touch(:accepted_at)
-      self.save
-      Notification.create(user: self.user,
+      touch(:accepted_at)
+      save
+      Notification.create(user: user,
                           subject: self,
                           kind: :commission_offer_accepted)
     end
@@ -87,35 +85,37 @@ class CommissionOffer < ActiveRecord::Base
   # the charge than do neither
   def charge!(stripe_charge_id)
     time_due = commission_product.weeks_to_completion.weeks.from_now
-    self.update(stripe_charge_id: stripe_charge_id,
-                charged: true,
-                charged_at: Time.now,
-                due_at: time_due)
+    update(stripe_charge_id: stripe_charge_id,
+           charged: true,
+           charged_at: Time.now,
+           due_at: time_due)
     Notification.create(user: offeree,
                         subject: self,
                         kind: :commission_offer_charged)
   end
 
   def fill!(image)
-    self.class.transaction do 
-      self.images << image
+    self.class.transaction do
+      images << image
       Notification.create(user: user,
                           kind: :commission_offer_filled,
                           subject: self)
-      self.update(filled_at: Time.now,
-                  filled: true)
+      update(filled_at: Time.now,
+             filled: true)
     end
   end
 
   protected
+
   def not_offering_to_self
     if user_id == commission_product.try(:user_id)
       errors.add('user', "cannot offer to yourself!")
     end
   end
+
   def background_is_acceptable
     return unless commission_product
-    if has_background? && ! commission_product.allow_background?
+    if has_background? && !commission_product.allow_background?
       errors.add(:background, "Not allowed")
     end
   end
@@ -137,9 +137,7 @@ class CommissionOffer < ActiveRecord::Base
     i = p.base_price
     subject_charge_count = subjects.size - p.included_subjects
     i += p.subject_price * subject_charge_count if subject_charge_count > 0
-    if has_background? && p.charge_for_background? 
-      i += p.background_price
-    end
-    self.total_price = i 
+    i += p.background_price if has_background? && p.charge_for_background?
+    self.total_price = i
   end
 end

@@ -5,7 +5,7 @@ class CuratorshipsController < ApplicationController
 
   ##
   # Only registered users can trouch this controller
-  before_filter :ensure_user
+  before_action :ensure_user
 
   ##
   # Make a new curatorship
@@ -28,7 +28,7 @@ class CuratorshipsController < ApplicationController
     @curatorship.delete
   end
 
-  ## 
+  ##
   # Modify a curatorship
   # Can only be done by admins
   #
@@ -54,9 +54,9 @@ class CuratorshipsController < ApplicationController
   #         level
   def curatorship_params
     params.require(:curatorship)
-    .permit(:user_id,
-            :user_name,
-            :level)
-    .merge(collection_id: params[:collection_id])
+      .permit(:user_id,
+        :user_name,
+        :level)
+      .merge(collection_id: params[:collection_id])
   end
 end

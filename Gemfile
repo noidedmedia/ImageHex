@@ -171,13 +171,11 @@ gem 'autoprefixer-rails'
 # Config file: `config/scss_lint.yml`
 # Run linter with `rake scss:lint`
 # https://github.com/brigade/scss-lint
-gem 'scss_lint', require: false  
-
+gem 'scss_lint', require: false
 
 ##
 # Development-only gems
 group :development do
-
   ##
   # Ruby code formatter
   gem 'rubocop'
@@ -190,12 +188,12 @@ group :development do
   # https://github.com/banister/binding_of_caller
   # Retrieve the binding of a method's caller in MRI 1.9.2+.
   gem 'binding_of_caller'
-  
+
   ##
   # https://github.com/railsbp/rails_best_practices
   # A code metric tool for rails projects.
   gem 'rails_best_practices'
-  
+
   ##
   # Mutes asset pipeline log messages.
   # https://github.com/evrone/quiet_assets
@@ -205,7 +203,7 @@ group :development do
   # https://github.com/charliesome/better_errors
   # Better error page for Rack apps.
   gem 'better_errors'
-  
+
   ##
   # https://github.com/ctran/annotate_models
   # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
@@ -276,7 +274,6 @@ end
 ##
 # Test-only gems
 group :test do
-
   gem 'timecop'
   ##
   # https://github.com/thoughtbot/shoulda-matchers

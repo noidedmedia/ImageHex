@@ -24,6 +24,7 @@ class Favorite < Collection
   def self.model_name
     Collection.model_name
   end
+
   ##
   # since this will only ever have 1 curator, we make a helpful
   # alias method
@@ -32,20 +33,22 @@ class Favorite < Collection
   end
 
   protected
+
   ##
   # Fill the name for the collection, so they are uniform.
   # As a side-effect of translation, this will produce a description in
   # the users' favorite language.
   def fill_name
-    self.name = I18n.t "activerecord.models.favorite.favorites_collection_title", usernames: "#{self.curator.name.possessive}"
+    self.name = I18n.t "activerecord.models.favorite.favorites_collection_title", usernames: curator.name.possessive.to_s
   end
 
   protected
+
   ##
   # Fill the description for the collection, so they are uniform.
   # As a side-effect of translation, this will produce a description in
   # the users' native language.
   def fill_desc
-    self.description = I18n.t "activerecord.models.favorite.favorites_collection_description", username: "#{self.curator.name}"
+    self.description = I18n.t "activerecord.models.favorite.favorites_collection_description", username: curator.name.to_s
   end
 end

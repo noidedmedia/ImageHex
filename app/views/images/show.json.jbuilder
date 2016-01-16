@@ -1,8 +1,8 @@
-json.extract! @image, 
-  :id, 
-  :user_id, 
-  :created_at, 
-  :updated_at, 
+json.extract! @image,
+  :id,
+  :user_id,
+  :created_at,
+  :updated_at,
   :description,
   :license,
   :medium

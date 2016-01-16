@@ -1,4 +1,4 @@
-json.extract! product, 
+json.extract! product,
   :id,
   :name,
   :description,

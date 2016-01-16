@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
         format.json { render 'show' }
       else
         format.html { render 'new', errors: @message.errors }
-        format.json { render 'show', status: :unproccessible_entity } 
+        format.json { render 'show', status: :unproccessible_entity }
       end
     end
   end
@@ -37,20 +37,19 @@ class MessagesController < ApplicationController
     @messages = Message.unread_for(current_user).includes(:user)
   end
 
-
   protected
+
   def set_conversation
     @conversation = Conversation.find(params[:conversation_id])
     # Gotta do this manually, sadly
     unless ConversationPolicy.new(current_user, @conversation).show?
-      raise Punit::NotAuthorizedError
+      fail Punit::NotAuthorizedError
     end
   end
 
   def message_params
     params.require(:message)
-    .permit(:body)
-    .merge(user_id: current_user.id)
+      .permit(:body)
+      .merge(user_id: current_user.id)
   end
-
 end

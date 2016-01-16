@@ -1,11 +1,11 @@
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
-
   def price(num)
     number_to_currency(num / 100)
   end
-  def frontpage_reason_path img
+
+  def frontpage_reason_path(img)
     return "" unless id = img.try(:reason_id)
     case img.try(:reason_type)
     when "user"
@@ -14,19 +14,18 @@ module ApplicationHelper
       "/collections/" + id.to_s
     end
   end
-  def user_path user
+
+  def user_path(user)
     "/@" + user.slug.to_s
   end
 
-  def notification_path note
+  def notification_path(note)
     if note[:type] == :comment
-      if note[:commentable_type] == :image
-        "/images/" + note[:commentable_id]
-      end
+      "/images/" + note[:commentable_id] if note[:commentable_type] == :image
     end
   end
 
-  def comment_url comment
+  def comment_url(comment)
     polymorphic_url(comment.commentable) + "#" + comment.id.to_s
   end
 
@@ -35,7 +34,7 @@ module ApplicationHelper
     options = {
       filter_html: true,
       hard_wrap: true,
-      link_attributes: {rel: "nofollow", target: "_blank"},
+      link_attributes: { rel: "nofollow", target: "_blank" },
       no_styles: true,
       no_images: false,
       with_toc_data: true,
@@ -56,6 +55,7 @@ module ApplicationHelper
   def pretty_time(t)
     t.strftime("%l:%M %p %B %d, %Y")
   end
+
   ##
   # This allows us to get a "link" to a comment, which is really just a link
   # to the thing being commented on with the id of the comment appended to the

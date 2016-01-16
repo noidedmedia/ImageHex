@@ -4,7 +4,7 @@ class DeviseMailer < Devise::Mailer
   include Devise::Mailers::Helpers
   default from: "ImageHex <noreply@imagehex.com>"
   layout "mailer"
-  
+
   ##
   # Just invokes super.
   def confirmation_instructions(record, token, other)

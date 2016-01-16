@@ -24,7 +24,7 @@ describe ImagesController do
       it "works when the user has made the image" do
         i = FactoryGirl.create(:image, user: @user, description: "")
         expect(i.description).to eq("")
-        post :update, id: i.id, image: {description: "test"}
+        post :update, id: i.id, image: { description: "test" }
         expect(i.reload.description).to eq("test")
       end
       it "doesn't work when the user hasn't" do
@@ -32,18 +32,18 @@ describe ImagesController do
         i = FactoryGirl.create(:image, user: u, description: "")
         expect(i.description).to eq("")
         expect(i.user).to eq(u)
-        post :update, id: i.id, image:{description: "test"}
+        post :update, id: i.id, image: { description: "test" }
         expect(i.reload.description).to_not eq("test")
         expect(i.reload.description).to eq("")
       end
     end
     describe "POST #create" do
       context "with valid attributes" do
-        let(:atrs){FactoryGirl.attributes_for(:image)}
+        let(:atrs) { FactoryGirl.attributes_for(:image) }
         it "creates a new image" do
-          expect{
+          expect do
             post :create, image: atrs
-          }.to change{Image.count}.by(1)
+          end.to change { Image.count }.by(1)
         end
         it "Redirects to the image" do
           post :create, image: atrs
@@ -52,9 +52,9 @@ describe ImagesController do
       end
     end
     describe "POST #favorite" do
-      let(:i){FactoryGirl.create(:image)}
+      let(:i) { FactoryGirl.create(:image) }
       it "makes a new favorite for a user" do
-        expect{post :favorite, id: i}.to change{@user.favorites.images.count}.by(1)
+        expect { post :favorite, id: i }.to change { @user.favorites.images.count }.by(1)
       end
       it "adds the image to the user's favorite" do
         post :favorite, id: i
@@ -62,18 +62,17 @@ describe ImagesController do
       end
     end
     describe "POST #created" do
-      let(:i){FactoryGirl.create(:image)}
+      let(:i) { FactoryGirl.create(:image) }
       it "makes a new creation for a user" do
-        expect{
+        expect do
           post :created, id: i
-        }.to change{@user.creations.count}.by(1)
+        end.to change { @user.creations.count }.by(1)
       end
       it "adds the image to the user's creation" do
         post :created, id: i
         expect(@user.creations).to include(i)
       end
     end
-
   end
 
   context "when not logged in" do
@@ -93,11 +92,10 @@ describe ImagesController do
     describe "POST 'new'" do
       it "doesn't do anything" do
         @images = FactoryGirl.create(:image)
-        expect{
+        expect do
           post :new, id: @image, image: FactoryGirl.attributes_for(:image)
-        }.to_not change{Image.count}
+        end.to_not change { Image.count }
       end
     end
-
   end
 end

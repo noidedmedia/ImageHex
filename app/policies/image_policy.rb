@@ -11,9 +11,11 @@ class ImagePolicy < ApplicationPolicy
   def edit?
     update?
   end
+
   def update?
     admin? || @image.user == @user
   end
+
   def destroy?
     admin? || (owned? && recently_made?)
   end

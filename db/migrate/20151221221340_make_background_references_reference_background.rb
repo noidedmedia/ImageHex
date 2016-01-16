@@ -1,6 +1,6 @@
 class MakeBackgroundReferencesReferenceBackground < ActiveRecord::Migration
   def change
-    add_column :background_references, 
+    add_column :background_references,
       :commission_background_id,
       :integer,
       null: false
