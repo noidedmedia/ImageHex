@@ -1,3 +1,9 @@
+AllCops:
+  Exclude:
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+
 Rails:
   Enabled: true
 
