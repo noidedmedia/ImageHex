@@ -177,6 +177,10 @@ gem 'scss_lint', require: false
 ##
 # Development-only gems
 group :development do
+
+  ##
+  # Ruby code formatter
+  gem 'rubocop'
   ##
   # https://github.com/rweng/pry-rails
   # Use Pry as your Rails console.
