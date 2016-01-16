@@ -237,48 +237,116 @@
   }
 }
 
-// #FF1744 - 25%
-// #2196F3 - 25%
-// #00E676 - 25%
-// #00BCD4 - 25%
-// #5C6BC0 - 30%
-$color1: #00e676;
-$color2: #00b376;
+// #FF1744
+// #2196F3
+// #00E676
+// #00BCD4
+// #5C6BC0
+$color1: #00b376;
+$color2: #00e676;
 
 .imagehex-static-hero {
-  background: $color1;
-  background-image: linear-gradient(-95deg, $color1 0, $color2 100%);
   margin-top: 0;
   color: #fff;
   height: calc(100vh - 40px);
   min-height: 500px;
   text-align: center;
   padding: 60px 20px 20px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 
   h1 {
-    font-weight: 300;
-    font-size: 3.6rem;
+    font-weight: 400;
+    font-size: 3.8rem;
+
+    @media #{$mobile} {
+      font-size: 3.4rem;
+    }
   }
 
   h2 {
-    font-size: 2.4rem;
-    font-weight: 200;
-    margin-top: 4px;
+    font-size: 2.0rem;
+    font-weight: 300;
+  }
+
+  &.green {
+    background: $color1;
+    background-image: linear-gradient(-95deg, $color1 0, $color2 100%);
+  }
+
+  @media #{$desktop} {
+    &.commissions-about {
+      padding-top: 20px;
+    }
+  }
+
+  .title-container {
+    flex: 0 1 auto;
+
+    @media #{$desktop} {
+      &.commissions-about {
+        text-align: left;
+        margin: 25vh 40px 0 0;
+      }
+    }
   }
 
   .image-container {
-    -webkit-user-select: none; // scss-lint:disable VendorPrefix
-    pointer-events: none;
     height: 200px;
     margin: 130px auto 0;
+    text-align: center;
+    flex: 0 1 auto;
+    position: relative;
 
-    source, img {
+    img {
+      pointer-events: none;
+      -webkit-user-select: none; // scss-lint:disable VendorPrefix
       height: 100%;
 
       @media #{$mobile} {
-        width: 100%;
-        height: auto;
+        width: auto;
+        max-height: 80vh;
+      }
+
+      &.commissions-artwork {
+        position: absolute;
+        
+        // The exact measurements of the distance between the canvas and the image edges.
+        top: 1.35%;
+        left: 18.8%;
+        height: 54.2%;
+
+        @media #{$mobile} {
+          width: auto;
+        }
+      }
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 1.6rem;
+      font-weight: 300;
+
+      a {
+        font-weight: 500;
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.commissions-about {
+      height: 50vh;
+      margin: 0;
+
+      @media #{$desktop} {
+        margin: auto 0;
+        height: 400px;
       }
     }
   }

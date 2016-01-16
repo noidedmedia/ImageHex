@@ -2,12 +2,17 @@
 
 <div class="imagehex-static-page-container no-padding no-margin white-background">
 
-  <section class="imagehex-static-section imagehex-static-hero">
-    <h1>Commissions</h1>
-    <h2>A simpler way to commission art online.</h2>
+  <section class="imagehex-static-section imagehex-static-hero green commissions-about">
+    <div class="title-container commissions-about">
+      <h1>Commissions</h1>
+      <h2>A simpler way to commission art online.</h2>
+    </div>
 
-    <div class="image-container">
-      
+    <div class="image-container commissions-about">
+      <img src=<%= asset_path("commissions/canvas.svg") %> />
+      <img class="commissions-artwork" src=<%= asset_path("commissions/rocketship.png") %> />
+
+      <p>Artwork by <a href="https://www.imagehex.com/@connor">Connor Shea</a>.</p>
     </div>
 
   </section>
@@ -131,7 +136,7 @@
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-reference-images.svg") %>>
           <p>Reference images</p>
-          <p>Useful for specifying an art style, showing a subject, or giving inspiration.</p>
+          <p>Include reference images for subjects or the background.</p>
         </li>
 
         <li class="feature">
