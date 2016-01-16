@@ -55,17 +55,17 @@ class CommissionProductsController < ApplicationController
   def commission_product_params
     params.require(:commission_product)
       .permit(:name,
-        :description,
-        :base_price,
-        :included_subjects,
-        :subject_price,
-        :include_background,
-        :background_price,
-        :offer_background,
-        :offer_subjects,
-        :maximum_subjects,
-        :weeks_to_completion,
-        example_image_ids: [])
+              :description,
+              :base_price,
+              :included_subjects,
+              :subject_price,
+              :include_background,
+              :background_price,
+              :offer_background,
+              :offer_subjects,
+              :maximum_subjects,
+              :weeks_to_completion,
+              example_image_ids: [])
       .merge(user_id: current_user.id)
   end
 end

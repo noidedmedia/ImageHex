@@ -79,10 +79,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users,
-    path: "accounts",
-    controllers: {
-      sessions: "users/sessions"
-    }
+             path: "accounts",
+             controllers: {
+               sessions: "users/sessions"
+             }
 
   resources :users, only: [:show, :edit, :update, :index] do
     ##

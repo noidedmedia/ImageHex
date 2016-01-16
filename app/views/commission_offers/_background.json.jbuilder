@@ -1,6 +1,6 @@
 json.extract! background,
-  :id,
-  :description
+              :id,
+              :description
 
 json.references background.references do |reference|
   json.extract! reference, :id

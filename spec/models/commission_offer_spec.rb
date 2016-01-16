@@ -5,56 +5,56 @@ RSpec.describe CommissionOffer, type: :model do
     it "does not allow you to offer to yourself" do
       p = FactoryGirl.create(:commission_product)
       c = FactoryGirl.build(:commission_offer,
-        commission_product: p,
-        user_id: p.user_id)
+                            commission_product: p,
+                            user_id: p.user_id)
       expect(p.user).to eq(c.user)
       expect(c).to_not be_valid
     end
     it "breaks with subjects over the maximum" do
       c = FactoryGirl.create(:commission_product,
-        maximum_subjects: 3)
+                             maximum_subjects: 3)
       subj = { description: "A description" }
       expect do
         FactoryGirl.build(:commission_offer,
-          commission_product: c,
-          subjects_attributes: (1..100).map { subj }).save!
+                          commission_product: c,
+                          subjects_attributes: (1..100).map { subj }).save!
       end.to raise_error(ActiveRecord::RecordInvalid)
     end
     context "without an offered backgrond" do
       let(:product) do
         FactoryGirl.create(:commission_product,
-          subject_price: 150,
-          offer_background: false,
-          include_background: false)
+                           subject_price: 150,
+                           offer_background: false,
+                           include_background: false)
       end
       let(:at) do
         { description: "test" }
       end
       it "does not allow you to add a background" do
         c = FactoryGirl.build(:commission_offer,
-          commission_product: product,
-          subjects_attributes: [{ description: "test" }],
-          background_attributes: at)
+                              commission_product: product,
+                              subjects_attributes: [{ description: "test" }],
+                              background_attributes: at)
         expect(c).to_not be_valid
       end
     end
     context "with limited subjects" do
       let(:product) do
         FactoryGirl.create(:commission_product,
-          subject_price: 0,
-          offer_subjects: false,
-          included_subjects: 3)
+                           subject_price: 0,
+                           offer_subjects: false,
+                           included_subjects: 3)
       end
       let(:subj) { { description: "test" } }
       it "can be under the limit" do
         expect(FactoryGirl.build(:commission_offer,
-          commission_product: product,
-          subjects_attributes: [subj])).to be_valid
+                                 commission_product: product,
+                                 subjects_attributes: [subj])).to be_valid
       end
       it "cannot be over the limit" do
         o = FactoryGirl.build(:commission_offer,
-          commission_product: product,
-          subjects_attributes: 10.times.map { subj })
+                              commission_product: product,
+                              subjects_attributes: 10.times.map { subj })
         expect(o.subjects.size).to be > product.included_subjects
         expect(o).to_not be_valid
       end
@@ -62,7 +62,7 @@ RSpec.describe CommissionOffer, type: :model do
     it "requires a user" do
       expect do
         FactoryGirl.create(:commission_offer,
-          user: nil)
+                           user: nil)
       end.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
@@ -84,17 +84,17 @@ RSpec.describe CommissionOffer, type: :model do
         c.confirm!
       end.to change { Conversation.count }.by(1)
       expect(Conversation.last.users).to contain_exactly(c.user,
-        c.offeree)
+                                                         c.offeree)
     end
   end
   describe "charging" do
     let(:product) do
       FactoryGirl.create(:commission_product,
-        weeks_to_completion: 4)
+                         weeks_to_completion: 4)
     end
     let(:offer) do
       FactoryGirl.create(:commission_offer,
-        commission_product: product)
+                         commission_product: product)
     end
     it "stores the charge id" do
       expect do
@@ -167,34 +167,34 @@ RSpec.describe CommissionOffer, type: :model do
       let(:background_price) { 400 }
       let(:product) do
         FactoryGirl.create(:commission_product,
-          base_price: base_price,
-          included_subjects: 1,
-          include_background: false,
-          background_price: background_price,
-          subject_price: subject_price,
-          maximum_subjects: 4)
+                           base_price: base_price,
+                           included_subjects: 1,
+                           include_background: false,
+                           background_price: background_price,
+                           subject_price: subject_price,
+                           maximum_subjects: 4)
       end
       let(:subject_attrs) do
         { description: "This is a subject" }
       end
       it "does not charge for the included subject" do
         f = FactoryGirl.create(:commission_offer,
-          commission_product: product,
-          subjects_attributes: [subject_attrs])
+                               commission_product: product,
+                               subjects_attributes: [subject_attrs])
         expect(f.total_price).to eq(base_price)
       end
       it "does charge for extra subjects" do
         f = FactoryGirl.create(:commission_offer,
-          commission_product: product,
-          subjects_attributes: [subject_attrs,
-                                subject_attrs])
+                               commission_product: product,
+                               subjects_attributes: [subject_attrs,
+                                                     subject_attrs])
         expect(f.total_price).to eq(base_price + subject_price)
       end
       it "charges for a background" do
         f = FactoryGirl.create(:commission_offer,
-          commission_product: product,
-          subjects_attributes: [subject_attrs],
-          background_attributes: { description: "test" })
+                               commission_product: product,
+                               subjects_attributes: [subject_attrs],
+                               background_attributes: { description: "test" })
         expect(f.total_price).to eq(base_price + background_price)
       end
     end

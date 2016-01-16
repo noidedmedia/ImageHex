@@ -8,63 +8,63 @@ Apipony::Documentation.define do
 
   subtype :collection_stub do
     attribute :name,
-      type: :string,
-      example: "Test's Favorites"
+              type: :string,
+              example: "Test's Favorites"
     attribute :id, type: :integer,
                    example: 20,
                    description: "The ID of this collection"
     attribute :type, type: :enum do
       choice :Subjective,
-        description: "A collection based on some subjective quantity"
+             description: "A collection based on some subjective quantity"
       choice :Favorite,
-        description: "A collection of a user's favorite images"
+             description: "A collection of a user's favorite images"
     end
     attribute :url, type: :url,
                     example: "/collections.4.json",
                     description: "A URL to access more information about this collection"
     attribute :id,
-      type: :integer,
-      example: 20
+              type: :integer,
+              example: 20
     attribute :type, type: :enum do
       choice :Favorite,
-        description: "A collection of a user's favorite images."
+             description: "A collection of a user's favorite images."
       choice :Subjective,
-        description: "A collection based on some subjective quantity."
+             description: "A collection based on some subjective quantity."
     end
     attribute :url,
-      type: :url,
-      example: "/collections/4.json"
+              type: :url,
+              example: "/collections/4.json"
   end
 
   subtype :user_stub do
     attribute :name,
-      type: :string,
-      example: "tony",
-      description: "This user's name"
+              type: :string,
+              example: "tony",
+              description: "This user's name"
     attribute :id,
-      type: :integer,
-      example: 10,
-      description: "The id of the user"
+              type: :integer,
+              example: 10,
+              description: "The id of the user"
     attribute :slug,
-      type: :string,
-      description: %(The slug for this users's name. You can then access their
-      user page at `/@:slug`.),
-      example: "test"
+              type: :string,
+              description: %(The slug for this users's name. You can then access their
+              user page at `/@:slug`.),
+              example: "test"
     attribute :avatar_path,
-      type: :url,
-      description: "The user's avatar.",
-      example: "https://i.imagehex.com/default-avatar.svg"
+              type: :url,
+              description: "The user's avatar.",
+              example: "https://i.imagehex.com/default-avatar.svg"
   end
 
   subtype :image_stub do
     attribute :id,
-      type: :integer,
-      example: 1,
-      description: "The ID of this image"
+              type: :integer,
+              example: 1,
+              description: "The ID of this image"
     attribute :description,
-      type: :string,
-      example: "An image",
-      description: "A user-set description of this image"
+              type: :string,
+              example: "An image",
+              description: "A user-set description of this image"
     attribute :user_id, type: :integer,
                         description: "The id of the uploader",
                         example: 10
@@ -134,15 +134,15 @@ Apipony::Documentation.define do
     endpoint "get", "/images" do
       request_with do
         param :page,
-          description: "What page of the list of images to get. Default 0.",
-          required: false
+              description: "What page of the list of images to get. Default 0.",
+              required: false
         param :per_page,
-          description: %{
-            How many images you want on each page. If a user is logged in,
-            this will default to their page preference. Otherwise, it will
-            be the server's default (20)
-        },
-          required: false
+              description: %{
+                How many images you want on each page. If a user is logged in,
+                this will default to their page preference. Otherwise, it will
+                be the server's default (20)
+            },
+              required: false
       end
 
       response_with 200 do
@@ -214,8 +214,8 @@ Apipony::Documentation.define do
             attribute :url, type: :url, example: "/tags/1"
           end
           attribute :id,
-            type: :integer,
-            example: 1
+                    type: :integer,
+                    example: 1
         end
       end
     end
@@ -229,54 +229,54 @@ Apipony::Documentation.define do
 
       request_with do
         param :name,
-          required: true,
-          description: "The name fragment to suggest"
+              required: true,
+              description: "The name fragment to suggest"
       end
 
       response_with 200, array: true do
         attribute :id,
-          type: :integer,
-          description: "The tag ID.",
-          example: 10
+                  type: :integer,
+                  description: "The tag ID.",
+                  example: 10
         attribute :name,
-          type: :string,
-          description: "The tag's name.",
-          example: :dragon
+                  type: :string,
+                  description: "The tag's name.",
+                  example: :dragon
         attribute :display_name,
-          type: :string,
-          description: "The tag's display name.",
-          example: "Dragon"
+                  type: :string,
+                  description: "The tag's display name.",
+                  example: "Dragon"
         attribute :importance,
-          type: :integer,
-          description: "The importance of the tag for sorting purposes.",
-          example: 4
+                  type: :integer,
+                  description: "The importance of the tag for sorting purposes.",
+                  example: 4
       end
     end
 
     endpoint "get", "/tags/:id" do |_e|
       request_with do
         param :id,
-          type: :integer,
-          required: true,
-          description: "The tag ID."
+              type: :integer,
+              required: true,
+              description: "The tag ID."
       end
 
       response_with 200 do
         attribute :name,
-          type: :string,
-          description: "The tag's name.",
-          example: :dragon
+                  type: :string,
+                  description: "The tag's name.",
+                  example: :dragon
         attribute :description,
-          type: :string,
-          description: "The tag's description.",
-          example: "A fire-breathing lizard with wings."
+                  type: :string,
+                  description: "The tag's description.",
+                  example: "A fire-breathing lizard with wings."
         attribute :display_name,
-          type: :string,
-          description: "The tag's display name.",
-          example: "Dragon"
+                  type: :string,
+                  description: "The tag's display name.",
+                  example: "Dragon"
         attribute :images,
-          type: :image_collection,
-          description: "A list of the images associated with the tag."
+                  type: :image_collection,
+                  description: "A list of the images associated with the tag."
       end
     end
   end
@@ -285,18 +285,18 @@ Apipony::Documentation.define do
     endpoint "get", "/collections" do |_e|
       response_with 200 do
         attribute :id,
-          type: :integer,
-          description: "The collection ID.",
-          example: 1
+                  type: :integer,
+                  description: "The collection ID.",
+                  example: 1
         attribute :name,
-          type: :string,
-          description: "The collection's name",
-          example: "Undertale Images"
+                  type: :string,
+                  description: "The collection's name",
+                  example: "Undertale Images"
         attribute :type, type: :enum do
           choice :Favorite,
-            description: "A collection of a user's favorite images."
+                 description: "A collection of a user's favorite images."
           choice :Subjective,
-            description: "A collection based on some subjective quantity."
+                 description: "A collection based on some subjective quantity."
         end
       end
     end
@@ -304,31 +304,31 @@ Apipony::Documentation.define do
     endpoint "get", "/collections/:id" do |_e|
       request_with do
         param :id,
-          type: :integer,
-          description: "The collection ID.",
-          required: true
+              type: :integer,
+              description: "The collection ID.",
+              required: true
       end
 
       response_with 200 do
         attribute :name, type: :string,
                          example: "Red Letter Media GIFs"
         attribute :id,
-          type: :integer,
-          description: "The collection ID.",
-          example: 4
+                  type: :integer,
+                  description: "The collection ID.",
+                  example: 4
         attribute :description,
-          type: :string,
-          description: "The collection's description.",
-          example: "These Hack Frauds make for great reactions!"
+                  type: :string,
+                  description: "The collection's description.",
+                  example: "These Hack Frauds make for great reactions!"
         attribute :type, type: :enum do
           choice :Subjective,
-            description: "Images based on some subjective quality"
+                 description: "Images based on some subjective quality"
           choice :Favorite,
-            description: "Images a user has favorited"
+                 description: "Images a user has favorited"
         end
         attribute :images,
-          type: :image_collection,
-          description: "A list of images in the collection."
+                  type: :image_collection,
+                  description: "A list of images in the collection."
       end
     end
   end
@@ -337,34 +337,34 @@ Apipony::Documentation.define do
     endpoint "get", "/users/:id" do |_e|
       response_with 200 do
         attribute :name,
-          type: :string,
-          description: "The user's username.",
-          example: "tony"
+                  type: :string,
+                  description: "The user's username.",
+                  example: "tony"
         attribute :id,
-          type: :integer,
-          description: "The user ID.",
-          example: 10
+                  type: :integer,
+                  description: "The user ID.",
+                  example: 10
         attribute :created_at,
-          type: :date,
-          description: "The Unix time stamp at which the user's account was created.",
-          example: "2015-11-21T19:00:38.391Z"
+                  type: :date,
+                  description: "The Unix time stamp at which the user's account was created.",
+                  example: "2015-11-21T19:00:38.391Z"
         attribute :uploads,
-          type: :image_collection,
-          description: "A list of the images uploaded by the user."
+                  type: :image_collection,
+                  description: "A list of the images uploaded by the user."
         attribute :creations,
-          type: :image_collection,
-          description: "A list of the images the user has been given credit for."
+                  type: :image_collection,
+                  description: "A list of the images the user has been given credit for."
         attribute :favorites,
-          type: :collection_stub,
-          description: "A list of the images favorited by the user."
+                  type: :collection_stub,
+                  description: "A list of the images favorited by the user."
         attribute :collections,
-          array: true,
-          type: :collection_stub,
-          description: "A list of collections the user curates."
+                  array: true,
+                  type: :collection_stub,
+                  description: "A list of collections the user curates."
         attribute :bio,
-          type: :string,
-          description: "The user's description.",
-          example: "I do art."
+                  type: :string,
+                  description: "The user's description.",
+                  example: "I do art."
       end
     end
   end

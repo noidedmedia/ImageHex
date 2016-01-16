@@ -15,18 +15,18 @@ describe TagGroupsController do
       let(:tag2) { FactoryGirl.create(:tag) }
       it "properly updates" do
         put(:update,
-          image_id: image,
-          id: group,
-          tag_group: { tag_ids: [tag1.id, tag2.id] })
+            image_id: image,
+            id: group,
+            tag_group: { tag_ids: [tag1.id, tag2.id] })
         expect(group.tags.reload).to contain_exactly(tag1, tag2)
       end
       it "creates a new tag group change" do
         old_tags = group.tags.pluck(:id)
         expect do
           put(:update,
-            image_id: image,
-            id: group,
-            tag_group: { tag_ids: [tag1.id, tag2.id] })
+              image_id: image,
+              id: group,
+              tag_group: { tag_ids: [tag1.id, tag2.id] })
         end.to change { TagGroupChange.count }.by(1)
         expect(TagGroupChange.last.tag_group).to eq(group)
         expect(TagGroupChange.last.before).to match_array(old_tags)
@@ -38,16 +38,16 @@ describe TagGroupsController do
       it "makes a new tag group" do
         expect do
           post :create,
-            image_id: image,
-            tag_group: { tag_ids: [tag1.id, tag2.id] }
+               image_id: image,
+               tag_group: { tag_ids: [tag1.id, tag2.id] }
         end
           .to change { TagGroup.count }.by(1)
       end
       it "makes a new tag group change" do
         expect do
           post :create,
-            image_id: image,
-            tag_group: { tag_ids: [tag1.id, tag2.id] }
+               image_id: image,
+               tag_group: { tag_ids: [tag1.id, tag2.id] }
         end.to change { TagGroupChange.count }.by(1)
         expect(TagGroupChange.last.kind).to eq("created")
         expect(TagGroupChange.last.user).to eq(@user)

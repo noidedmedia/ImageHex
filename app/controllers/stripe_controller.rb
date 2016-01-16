@@ -12,7 +12,7 @@ class StripeController < ApplicationController
   def callback
     code = params[:code]
     @resp = OAUTH_CLIENT.auth_code.get_token(code,
-      params: { scope: "read_write" })
+                                             params: { scope: "read_write" })
     params = {
       stripe_publishable_key: @resp["stripe_publishable_key"],
       stripe_user_id: @resp["stripe_user_id"],

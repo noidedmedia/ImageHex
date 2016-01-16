@@ -1,9 +1,9 @@
 json.extract! image, :id, :description,
-  :user_id,
-  :created_at,
-  :updated_at,
-  :license,
-  :medium
+              :user_id,
+              :created_at,
+              :updated_at,
+              :license,
+              :medium
 json.url image_url(image)
 json.original_size image.f.url(:original)
 json.medium_thumbnail image.f.url(:medium)

@@ -6,8 +6,8 @@ class CreateProductExampleImages < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :product_example_images, :commission_products,
-      on_delete: :cascade
+                    on_delete: :cascade
     add_foreign_key :product_example_images, :images,
-      on_delete: :cascade
+                    on_delete: :cascade
   end
 end

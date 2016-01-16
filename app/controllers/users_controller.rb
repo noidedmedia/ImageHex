@@ -31,11 +31,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.gif do
         render qrcode: @user.otp_provisioning_uri(@user.email,
-          issuer: "ImageHex")
+                                                  issuer: "ImageHex")
       end
       format.svg do
         render qrcode: @user.otp_provisioning_uri(@user.email,
-          issuer: "ImageHex")
+                                                  issuer: "ImageHex")
       end
       format.html
     end
@@ -209,13 +209,13 @@ class UsersController < ApplicationController
     params
       .require(:user)
       .permit(:page_pref,
-        :avatar,
-        :otp_required_for_login,
-        :description,
-        :subscribed_to_newsletter,
-        content_pref: [:nsfw_language,
-                       :nsfw_gore,
-                       :nsfw_nudity,
-                       :nsfw_sexuality])
+              :avatar,
+              :otp_required_for_login,
+              :description,
+              :subscribed_to_newsletter,
+              content_pref: [:nsfw_language,
+                             :nsfw_gore,
+                             :nsfw_nudity,
+                             :nsfw_sexuality])
   end
 end

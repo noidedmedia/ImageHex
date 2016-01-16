@@ -132,16 +132,16 @@ class CommissionOffersController < ApplicationController
   def commission_offer_params
     params.require(:commission_offer)
       .permit(:description,
-        :commission_product_id,
-        subjects_attributes: [:description,
-                              :id,
-                              :_destroy,
-                              { tag_ids: [] },
-                              { references_attributes: [:file, :id, :_destroy] }],
-        background_attributes: [:description,
-                                :id,
-                                :_destroy,
-                                { references_attributes: [:file, :id, :_destroy] }])
+              :commission_product_id,
+              subjects_attributes: [:description,
+                                    :id,
+                                    :_destroy,
+                                    { tag_ids: [] },
+                                    { references_attributes: [:file, :id, :_destroy] }],
+              background_attributes: [:description,
+                                      :id,
+                                      :_destroy,
+                                      { references_attributes: [:file, :id, :_destroy] }])
       .merge(user_id: current_user.id)
   end
 end

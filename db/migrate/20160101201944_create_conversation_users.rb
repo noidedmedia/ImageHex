@@ -6,8 +6,8 @@ class CreateConversationUsers < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :conversation_users, :users,
-      on_delete: :cascade
+                    on_delete: :cascade
     add_foreign_key :conversation_users, :conversations,
-      on_delete: :cascade
+                    on_delete: :cascade
   end
 end

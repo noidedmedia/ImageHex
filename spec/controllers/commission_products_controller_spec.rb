@@ -20,7 +20,7 @@ RSpec.describe CommissionProductsController, type: :controller do
       it "creates a new commission offer" do
         expect do
           post :create,
-            commission_product: commission_product_params
+               commission_product: commission_product_params
         end.to change { @user.commission_products.count }.by(1)
       end
     end

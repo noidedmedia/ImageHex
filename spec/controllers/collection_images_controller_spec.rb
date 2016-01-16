@@ -13,17 +13,17 @@ RSpec.describe CollectionImagesController, type: :controller do
     end
     let(:curatorship) do
       FactoryGirl.create(:curatorship,
-        user: @user,
-        collection: collection,
-        level: :admin)
+                         user: @user,
+                         collection: collection,
+                         level: :admin)
     end
     describe "post #create" do
       it "adds the image to a collection" do
         curatorship
         post(:create,
-          collection_id: collection,
-          collection_image: FactoryGirl.attributes_for(:collection_image,
-            image_id: image.id))
+             collection_id: collection,
+             collection_image: FactoryGirl.attributes_for(:collection_image,
+                                                          image_id: image.id))
         expect(collection.images).to include(image)
       end
     end
@@ -33,8 +33,8 @@ RSpec.describe CollectionImagesController, type: :controller do
         collection.images << image
         expect(collection.images).to include(image)
         delete(:destroy,
-          collection_id: collection,
-          id: image)
+               collection_id: collection,
+               id: image)
         expect(collection.reload.images).to_not include(image)
       end
     end

@@ -4,7 +4,7 @@ class ConversationUser < ActiveRecord::Base
   validates :user, presence: true
   validates :conversation, presence: true
   validate :user_is_involved_in_commission,
-    if: :conversation_for_offer?
+           if: :conversation_for_offer?
   before_create :set_initial_read_date
 
   delegate :for_offer?, to: :conversation, prefix: true

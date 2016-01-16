@@ -13,6 +13,6 @@ RSpec.describe SubscriptionQuery do
     expect(SubscriptionQuery.new(user).result).to eq([image_a])
     user.subscribe! artist.favorites
     expect(SubscriptionQuery.new(user).result).to contain_exactly(image_a,
-      image_b)
+                                                                  image_b)
   end
 end

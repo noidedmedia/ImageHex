@@ -20,9 +20,9 @@ describe Image do
     let(:unwanted_img) { FactoryGirl.create(:image) }
     let(:unwanted_group) do
       FactoryGirl.create(:tag_group,
-        tags: [unwanted_tag_a,
-               unwanted_tag_b],
-        image: unwanted_img)
+                         tags: [unwanted_tag_a,
+                                unwanted_tag_b],
+                         image: unwanted_img)
     end
     let(:wanted_image) { FactoryGirl.create(:image) }
     it "filters given tags" do
@@ -57,19 +57,19 @@ describe Image do
   describe "content validation" do
     let(:sex) do
       FactoryGirl.create(:image,
-        nsfw_sexuality: true)
+                         nsfw_sexuality: true)
     end
     let(:nude) do
       FactoryGirl.create(:image,
-        nsfw_nudity: true)
+                         nsfw_nudity: true)
     end
     let(:lang) do
       FactoryGirl.create(:image,
-        nsfw_language: true)
+                         nsfw_language: true)
     end
     let(:gore) do
       FactoryGirl.create(:image,
-        nsfw_gore: true)
+                         nsfw_gore: true)
     end
     let(:collec) { Image.where(id: [sex, nude, lang, gore].map(&:id)) }
     describe "content preference" do

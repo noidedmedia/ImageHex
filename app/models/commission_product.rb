@@ -3,35 +3,35 @@ class CommissionProduct < ActiveRecord::Base
   has_many :offers, class_name: "CommissionOffer"
 
   has_many :product_example_images,
-    inverse_of: :commission_product
+           inverse_of: :commission_product
 
   has_many :example_images,
-    through: :product_example_images,
-    class_name: "Image",
-    source: :image
+           through: :product_example_images,
+           class_name: "Image",
+           source: :image
 
   validates :base_price, numericality: { greater_than: 300 }
 
   validates :subject_price,
-    presence: true,
-    numericality: { greater_than: 0 },
-    if: :offer_subjects?
+            presence: true,
+            numericality: { greater_than: 0 },
+            if: :offer_subjects?
 
   validates :background_price,
-    presence: true,
-    numericality: { greater_than: 0 },
-    if: :charge_for_background?
+            presence: true,
+            numericality: { greater_than: 0 },
+            if: :charge_for_background?
 
   validates :user, presence: true
 
   validates :weeks_to_completion,
-    presence: true,
-    numericality: { greater_than: 0, less_than: 52 }
+            presence: true,
+            numericality: { greater_than: 0, less_than: 52 }
 
   validates :maximum_subjects,
-    numericality: { greater_than: 1 },
-    allow_nil: true,
-    unless: :offer_subjects?
+            numericality: { greater_than: 1 },
+            allow_nil: true,
+            unless: :offer_subjects?
 
   validate :example_images_created_by_user
   ##

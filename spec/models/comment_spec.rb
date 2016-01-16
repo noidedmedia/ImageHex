@@ -2,13 +2,13 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
   it "should require user to be set" do
     expect(FactoryGirl.build(:comment,
-      user: nil)).to_not be_valid
+                             user: nil)).to_not be_valid
   end
   it "should touch images" do
     i = FactoryGirl.create(:image)
     expect do
       FactoryGirl.create(:comment,
-        commentable: i)
+                         commentable: i)
     end.to change { i.updated_at }
   end
   it "should commit sudoku when subject is deleted" do
@@ -20,11 +20,11 @@ RSpec.describe Comment, type: :model do
   end
   it "should require the commentable to be set" do
     expect(FactoryGirl.build(:comment,
-      commentable: nil)).to_not be_valid
+                             commentable: nil)).to_not be_valid
   end
   it "should require the body to be set" do
     expect(FactoryGirl.build(:comment,
-      body: nil)).to_not be_valid
+                             body: nil)).to_not be_valid
   end
   it "makes a notification when replying" do
     c = FactoryGirl.create(:comment)

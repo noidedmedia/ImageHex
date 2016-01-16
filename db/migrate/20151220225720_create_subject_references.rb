@@ -6,6 +6,6 @@ class CreateSubjectReferences < ActiveRecord::Migration
       t.attachment :file
     end
     add_foreign_key :subject_references, :commission_subjects,
-      on_delete: :cascade
+                    on_delete: :cascade
   end
 end

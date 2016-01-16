@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller do
   context "when logged in" do
     before(:each) do
       @user = FactoryGirl.create(:user,
-        password: "thispassword")
+                                 password: "thispassword")
       @user.confirm
       sign_in @user
     end

@@ -5,7 +5,7 @@ RSpec.describe ArtistSubscription, type: :model do
     u = FactoryGirl.create(:user)
     expect do
       c = FactoryGirl.create(:artist_subscription,
-        artist: u)
+                             artist: u)
     end.to change { u.notifications.count }.by(1)
     expect(u.notifications.last.kind).to eq("new_subscriber")
   end

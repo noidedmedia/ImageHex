@@ -8,8 +8,8 @@ class CreateMessages < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_foreign_key :messages, :users,
-      on_delete: :cascade
+                    on_delete: :cascade
     add_foreign_key :messages, :conversations,
-      on_delete: :cascade
+                    on_delete: :cascade
   end
 end

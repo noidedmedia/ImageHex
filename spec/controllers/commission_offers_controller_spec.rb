@@ -31,8 +31,8 @@ RSpec.describe CommissionOffersController, type: :controller do
         it "makes a new offer" do
           expect do
             post :create,
-              commission_product_id: @product,
-              commission_offer: commission_offer_params
+                 commission_product_id: @product,
+                 commission_offer: commission_offer_params
           end.to change { @product.offers.count }.by(1)
           offer = @product.offers.last
           expect(offer.user).to eq(@user)

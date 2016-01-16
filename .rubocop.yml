@@ -4,9 +4,6 @@ Rails:
 StringLiterals:
   Enabled: false
 
-AlignParameters:
-  EnforcedStyle: with_fixed_indentation
-
 MultilineOperationIndentation:
   EnforcedStyle: indented
 

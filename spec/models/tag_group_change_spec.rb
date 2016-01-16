@@ -9,9 +9,9 @@ RSpec.describe TagGroupChange, type: :model do
   let(:group) { FactoryGirl.create(:tag_group) }
   let(:change) do
     FactoryGirl.create(:tag_group_change,
-      tag_group: group,
-      before: before_tags.map(&:id),
-      after: after_tags.map(&:id))
+                       tag_group: group,
+                       before: before_tags.map(&:id),
+                       after: after_tags.map(&:id))
   end
   it "resolves the before tags properly" do
     expect(change.before).to match_array(before_tags.map(&:id))

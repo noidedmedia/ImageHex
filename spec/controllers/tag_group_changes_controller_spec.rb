@@ -4,11 +4,11 @@ RSpec.describe TagGroupChangesController, type: :controller do
   let(:image) { FactoryGirl.create(:image) }
   let(:group) do
     FactoryGirl.create(:tag_group,
-      image: image)
+                       image: image)
   end
   let(:change) do
     FactoryGirl.create(:tag_group_change,
-      tag_group: group)
+                       tag_group: group)
   end
   describe "get #index" do
     it "displays all tag groups" do

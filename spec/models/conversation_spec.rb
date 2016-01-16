@@ -66,18 +66,18 @@ RSpec.describe Conversation, type: :model do
     end
     it "returns messages made after this user's last_read_at" do
       m1 = create(:message,
-        conversation: conversation,
-        user: user_b)
+                  conversation: conversation,
+                  user: user_b)
       m2 = create(:message,
-        conversation: conversation,
-        user: user_a)
+                  conversation: conversation,
+                  user: user_a)
       conversation.mark_read!(user_a)
       m3 = create(:message,
-        conversation: conversation,
-        user: user_b)
+                  conversation: conversation,
+                  user: user_b)
       m4 = create(:message,
-        conversation: conversation,
-        user: user_b)
+                  conversation: conversation,
+                  user: user_b)
       res = conversation.messages_for_user(user_a)
       expect(res).to contain_exactly(m3, m4)
     end

@@ -55,8 +55,8 @@ class CuratorshipsController < ApplicationController
   def curatorship_params
     params.require(:curatorship)
       .permit(:user_id,
-        :user_name,
-        :level)
+              :user_name,
+              :level)
       .merge(collection_id: params[:collection_id])
   end
 end

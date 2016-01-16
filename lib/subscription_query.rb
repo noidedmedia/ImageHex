@@ -19,10 +19,10 @@ class SubscriptionQuery
       .on(subscriptions[:collection_id].eq(collections[:id]))
       .where(subscriptions[:user_id].eq(@user.id))
       .project(images[Arel.star],
-        Arel::Nodes::SqlLiteral.new("'collection'").as("reason_type"),
-        collections[:name].as("reason"),
-        collections[:id].as("reason_id"),
-        collection_images[:created_at].as("sort_created_at"))
+               Arel::Nodes::SqlLiteral.new("'collection'").as("reason_type"),
+               collections[:name].as("reason"),
+               collections[:id].as("reason_id"),
+               collection_images[:created_at].as("sort_created_at"))
   end
 
   def find_artist_subscriptions
@@ -35,10 +35,10 @@ class SubscriptionQuery
       .on(artist_subscriptions[:artist_id].eq(user_creations[:user_id]))
       .where(artist_subscriptions[:user_id].eq(@user.id))
       .project(images[Arel.star],
-        Arel::Nodes::SqlLiteral.new("'user'").as("reason_type"),
-        users[:name].as("reason"),
-        users[:id].as("reason_id"),
-        user_creations[:created_at].as("sort_created_at"))
+               Arel::Nodes::SqlLiteral.new("'user'").as("reason_type"),
+               users[:name].as("reason"),
+               users[:id].as("reason_id"),
+               user_creations[:created_at].as("sort_created_at"))
   end
 
   def user_creations

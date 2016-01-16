@@ -31,7 +31,7 @@ class Collection < ActiveRecord::Base
   # Join table: Collection -> Images
   has_many :collection_images
   has_many :images,
-    through: :collection_images
+           through: :collection_images
   ###############
   # VALIDATIONS #
   ###############

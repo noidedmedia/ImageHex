@@ -7,6 +7,6 @@ class CreateCommissionSubjectTags < ActiveRecord::Migration
     end
     add_foreign_key :commission_subject_tags, :tags, on_delete: :cascade
     add_foreign_key :commission_subject_tags, :commission_subjects,
-      on_delete: :cascade
+                    on_delete: :cascade
   end
 end

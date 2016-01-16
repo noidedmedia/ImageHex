@@ -53,14 +53,14 @@ class Image < ActiveRecord::Base
   # ASSOCIATIONS #
   ################
   has_attached_file :f,
-    # Steal Flickr's suffixes
-    styles: {
-      small: "140x140>",
-      medium: "300x300>",
-      large: "500x500>",
-      huge: "1000x1000>" },
-    # Use suffixes for the path
-    path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
+                    # Steal Flickr's suffixes
+                    styles: {
+                      small: "140x140>",
+                      medium: "300x300>",
+                      large: "500x500>",
+                      huge: "1000x1000>" },
+                    # Use suffixes for the path
+                    path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
   belongs_to :user, touch: true
 
   before_post_process :downcase_extension
@@ -69,10 +69,10 @@ class Image < ActiveRecord::Base
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :collection_images, dependent: :destroy
   has_many :user_creations,
-    foreign_key: :creation_id
+           foreign_key: :creation_id
   has_many :creators,
-    through: :user_creations,
-    source: :user
+           through: :user_creations,
+           source: :user
   has_many :collections, through: :collection_images
   #########
   # ENUMS #
@@ -92,8 +92,8 @@ class Image < ActiveRecord::Base
   validates :nsfw_sexuality, inclusion: { in: [true, false] }
   validates :nsfw_nudity, inclusion: { in: [true, false] }
   validates_attachment :f,
-    content_type: { content_type: /\Aimage\/.*\Z/ },
-    presence: true
+                       content_type: { content_type: /\Aimage\/.*\Z/ },
+                       presence: true
 
   validates :user, presence: :true
   validates :license, presence: true

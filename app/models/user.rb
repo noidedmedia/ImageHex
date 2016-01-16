@@ -26,21 +26,21 @@ class User < ActiveRecord::Base
   enum role: [:normal, :admin]
 
   has_attached_file :avatar,
-    styles: {
-      original: "500x500>#",
-      medium: "300x300>#",
-      small: "200x200>#",
-      tiny: "100x100>#"
-    },
-    path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension"),
-    default_url: "default-avatar.svg"
+                    styles: {
+                      original: "500x500>#",
+                      medium: "300x300>#",
+                      small: "200x200>#",
+                      tiny: "100x100>#"
+                    },
+                    path: ($AVATAR_PATH ? $AVATAR_PATH : "avatars/:id_:style.:extension"),
+                    default_url: "default-avatar.svg"
 
   validates_attachment_content_type :avatar,
-    content_type: /\Aimage\/.*\Z/
+                                    content_type: /\Aimage\/.*\Z/
 
   validates_with AttachmentSizeValidator,
-    attributes: :avatar,
-    less_than: 2.megabytes
+                 attributes: :avatar,
+                 less_than: 2.megabytes
 
   ##
   # Join table: users -> collections
@@ -48,12 +48,12 @@ class User < ActiveRecord::Base
   has_many :commission_offers
   has_many :conversation_users
   has_many :conversations,
-    through: :conversation_users
+           through: :conversation_users
   has_many :subscriptions
   has_many :comments
   has_many :subscribed_collections,
-    through: :subscriptions,
-    source: :collection
+           through: :subscriptions,
+           source: :collection
   has_many :image_reports
   has_many :notifications
   has_many :images
@@ -69,37 +69,37 @@ class User < ActiveRecord::Base
   has_many :artist_subscriptions, foreign_key: :user_id
   # and here we have the actual users
   has_many :subscribed_artists,
-    through: :artist_subscriptions,
-    source: :artist
+           through: :artist_subscriptions,
+           source: :artist
 
   # now we have the artists subscribers.
   # this has many is for when the user is in the role of artist
   has_many :artist_subscribers,
-    class_name: :ArtistSubscription,
-    foreign_key: :artist_id
+           class_name: :ArtistSubscription,
+           foreign_key: :artist_id
 
   # and here's a list of the users that are subscribed to us
   has_many :subscribers,
-    through: :artist_subscribers,
-    source: :user
+           through: :artist_subscribers,
+           source: :user
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :registerable,
-    :recoverable, :rememberable, :trackable, :validatable,
-    :confirmable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   # Two-factor Authenticatable
   devise :two_factor_authenticatable,
-    otp_secret_encryption_key: ENV['TWO_FACTOR_KEY'],
-    otp_allowed_drift: 0
+         otp_secret_encryption_key: ENV['TWO_FACTOR_KEY'],
+         otp_allowed_drift: 0
 
   # Two-factor Backupable
   # Generates 5 backup codes of length 16 characters for the user.
   # For use if/when the user loses access to their two-factor device.
   devise :two_factor_backupable,
-    otp_backup_code_length: 16,
-    otp_number_of_backup_codes: 10
+         otp_backup_code_length: 16,
+         otp_number_of_backup_codes: 10
 
   attr_accessor :otp_backup_attempt
 

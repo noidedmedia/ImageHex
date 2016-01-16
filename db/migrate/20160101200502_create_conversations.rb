@@ -6,6 +6,6 @@ class CreateConversations < ActiveRecord::Migration
     end
     add_index :conversations, :commission_offer_id
     add_foreign_key :conversations, :commission_offers,
-      on_delete: :nullify
+                    on_delete: :nullify
   end
 end
