@@ -11,7 +11,8 @@ class ProductSubjectInput extends React.Component {
     var includedInput = <span>
       <input type="number"
         step="1"
-        name="commision_product[included_subjects]"
+        name="commission_product[included_subjects]"
+        defaultValue="0"
         min={this.findMinimumIncluded()} />
     </span>;
     var chargeSection = <ProductSubjectInput.ChargedSubjectSection />;

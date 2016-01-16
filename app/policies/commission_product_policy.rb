@@ -8,6 +8,9 @@ class CommissionProductPolicy < ApplicationPolicy
     verified_user_info?
   end
 
+  def update?
+    @product.user == @user
+  end
   protected
   def verified_user_info?
     @user.stripe_user_id && @user.stripe_publishable_key

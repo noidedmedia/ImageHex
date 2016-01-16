@@ -11,6 +11,7 @@ class ImageCollection {
     this.url = url;
     this.current_page = 1;
     this.prefix = prefix;
+    this.page = 1;
   }
   
   iteratePageImages(callback) {
@@ -46,11 +47,13 @@ class ImageCollection {
   }
 
   hasNextPage() {
+    console.log("Check if we ahve a next page with page",this.page);
     return !!(this.total_pages && ! this.page + 1  > this.total_pages);
   }
 
   hasPreviousPage() {
-    return !!(this.total_pages && ! this.page < 2);
+    console.log("Checking if we have a previous page with page",this.page);
+    return (this.page > 1);
   }
 
   getPageImages(callback) {

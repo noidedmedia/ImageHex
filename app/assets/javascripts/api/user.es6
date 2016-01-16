@@ -25,17 +25,38 @@ class User{
       User.find(this.id, callback);
     }
   }
+
+  get favoritesCollection(){
+    return this.getFavoritesCollection();
+  }
+  // todo: refactor this out
   getFavoritesCollection(){
-    return new ImageCollection("/users/" + this.id + " /favorites", "images");
+    return User.favoritesCollectionFor(this.id);
   }
+
+  get creationsCollection(){
+    return this.getCreationsCollection();
+  }
+
+  // todo: refactor this out
   getCreationsCollection(){
-    return new ImageCollection("/users/" + this.id + "/creations", null);
+    User.creationsCollectionFor(this.id);
   }
+
   static find(id, callback){
     NM.getJSON("/users/" + id, (j) => {
       callback(new User(j));
     });
   }
+
+  static favoritesCollectionFor(id){
+    return new ImageCollection("/users/" + id + " /favorites", "images");
+  }
+
+  static creationsCollectionFor(id){
+    return new ImageCollection("/users/" + id + "/creations", null);
+  }
+
 }
 
 

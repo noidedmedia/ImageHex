@@ -10,9 +10,6 @@ class CommissionProduct < ActiveRecord::Base
     class_name: "Image",
     source: :image
 
-  accepts_nested_attributes_for :product_example_images,
-    allow_destroy: true
-
   validates :base_price, numericality: {greater_than: 300}
 
   validates :subject_price,
@@ -36,6 +33,19 @@ class CommissionProduct < ActiveRecord::Base
     allow_nil: true,
     :unless => :offer_subjects?
 
+  validate :example_images_created_by_user
+  ##
+  # Small hack to make example images easier
+  def example_image_ids
+    self.example_images.pluck(:id)
+  end
+
+
+  def example_image_ids=(ar)
+    raise ArgumentError.new("must be passed an array") unless ar.is_a? Array
+    self.example_images = Image.where(id: ar)
+  end
+
   def allow_further_subjects?
     offer_subjects?
   end
@@ -55,4 +65,14 @@ class CommissionProduct < ActiveRecord::Base
   def charge_for_background?
     allow_background? && ! include_background?
   end
+
+  ##
+  # TODO: refactor this so it's faster
+  def example_images_created_by_user
+    user = self.user
+    unless self.example_images.all?{|i| i.created_by?(user)}
+      errors.add(:example_images, "must be created by you")
+    end
+  end
+
 end

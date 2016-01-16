@@ -31,6 +31,25 @@ class CommissionProductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = CommissionProduct.find(params[:id])
+    authorize @product
+  end
+
+  def update
+    @product = CommissionProduct.find(params[:id])
+    authorize @product
+    respond_to do |format|
+      if @product.update(commission_product_params)
+        format.html { redirect_to @product }
+        format.json { render action: "show" }
+      else
+        format.html { render "edit" }
+        format.json { render json: @product.errors, status: 422 }
+      end
+    end
+  end
+
   protected
 
   def commission_product_params
@@ -45,7 +64,8 @@ class CommissionProductsController < ApplicationController
               :offer_background,
               :offer_subjects,
               :maximum_subjects,
-              :weeks_to_completion)
+              :weeks_to_completion,
+              example_image_ids: [])
       .merge(user_id: current_user.id)
   end
 end

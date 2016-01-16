@@ -80,7 +80,7 @@ ProductBackgroundInput.NoneBackground = () => {
       name="commission_product[offer_background]"
       value="false" />
     <input type="hidden"
-      name="commission_product[includes_background]"
+      name="commission_product[include_background]"
       value="false" />
   </div>;
 };
@@ -111,7 +111,7 @@ ProductBackgroundInput.ChargedBackground = (props) => {
       name="commission_product[offer_background]"
       value="true" />
     <input type="hidden"
-      name="commission_product[includes_background]"
+      name="commission_product[include_background]"
       value="false" />
   </div>
 }

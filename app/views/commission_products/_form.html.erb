@@ -26,6 +26,10 @@
       <%= react_component("ProductSubjectInput", price: @product.subject_price, includedSubjects: @product.included_subjects, offerSubjects: @product.offer_subjects, maximumSubjects: @product.maximum_subjects) %>
     </div>
 
+    <div class="image-picker" id="example-image-picker"
+      data-user-id="<%= current_user.id %>">
+
+    </div>
     <%= f.submit t(".create_commission_product"), class: "btn btn-green btn-full-width" %>
   <% end %> 
 </div>
