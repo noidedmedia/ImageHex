@@ -102,7 +102,7 @@ class Image < ActiveRecord::Base
   ###############
   # VALIDATIONS #
   ###############
-  
+
   validates :nsfw_language, inclusion: { in: [true, false] }
   validates :nsfw_gore, inclusion: { in: [true, false] }
   validates :nsfw_sexuality, inclusion: { in: [true, false] }
@@ -116,7 +116,7 @@ class Image < ActiveRecord::Base
   validates :medium, presence: true
   validates :description, length: { maximum: 2000 }
 
-  validate :is_within_allowed_size
+  validate :within_allowed_size
 
   #################
   # CLASS METHODS #
@@ -259,7 +259,7 @@ class Image < ActiveRecord::Base
     f.instance_write :file_name, "#{base}#{ext}"
   end
 
-  def is_within_allowed_size
+  def within_allowed_size
     unless (0..5.megabytes).cover?(f_file_size)
       errors.add(:f, I18n.t("notices.image_file_too_large"))
     end
