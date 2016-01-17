@@ -6,7 +6,8 @@ class NotificationsController < ApplicationController
   before_action :ensure_user
 
   ##
-  # Obtain a list of all notifications for the current_user
+  # Obtain a list of all notifications for the current_user.
+  # @notifications:: The current user's notifications.
   def index
     @notifications = current_user.notifications.order("created_at DESC")
       .limit(10)

@@ -138,7 +138,6 @@ class ImagesController < ApplicationController
 
   ##
   # DELETE to remove an image.
-  # Does nothing currently.
   # @image:: The image being deleted.
   def destroy
     @image = Image.find(params[:id])

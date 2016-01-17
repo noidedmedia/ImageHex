@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   include Pundit
   before_action :ensure_user
   before_action :set_conversation, only: [:new, :create, :index]
+  
   def index
     @messages = @conversation.messages
       .with_read_status_for(current_user)
