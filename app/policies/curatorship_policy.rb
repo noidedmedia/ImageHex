@@ -15,26 +15,26 @@ class CuratorshipPolicy < ApplicationPolicy
   ##
   # A user can modify a curatorship if they are an admin
   def update?
-    is_admin?
+    admin?
   end
 
   ##
   # A user can delete a curatorship if they are an admin
   def delete?
-    is_admin?
+    admin?
   end
 
   ##
   # A user can create a curatorship if they are an admin
   def create?
-    is_admin?
+    admin?
   end
 
   protected
 
   ##
   # See if the user is an admin of this collection
-  def is_admin?
+  def admin?
     @user_curatorship.try(:level) == "admin"
   end
 end

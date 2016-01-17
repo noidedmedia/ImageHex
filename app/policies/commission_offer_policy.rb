@@ -1,11 +1,10 @@
 class CommissionOfferPolicy < ApplicationPolicy
-  
   def initialize(user, offer)
     @user = user
     @offer = offer
   end
 
-  def confirm? 
+  def confirm?
     res = unconfirmed? && owner?
   end
 
@@ -26,7 +25,7 @@ class CommissionOfferPolicy < ApplicationPolicy
   end
 
   def fill?
-    offeree? && @offer.charged? 
+    offeree? && @offer.charged?
   end
 
   def create?
@@ -46,6 +45,7 @@ class CommissionOfferPolicy < ApplicationPolicy
   end
 
   protected
+
   def unconfirmed?
     ! @offer.confirmed?
   end
@@ -54,12 +54,11 @@ class CommissionOfferPolicy < ApplicationPolicy
     @offer.user == @user
   end
 
-  def offeree? 
+  def offeree?
     @offer.commission_product&.user == @user
   end
 
   def not_offering_self?
-    ! offeree? 
+    !offeree?
   end
-
 end
