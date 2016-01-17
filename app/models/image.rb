@@ -49,9 +49,11 @@ class Image < ActiveRecord::Base
   scope :without_sex, -> { where(nsfw_sexuality: false) }
   scope :completely_safe, -> { without_nudity.without_gore.without_language.without_sex }
   scope :mostly_safe, -> { without_nudity.without_gore.without_sex }
+
   ################
   # ASSOCIATIONS #
   ################
+  
   has_attached_file :f,
                     # Steal Flickr's suffixes
                     styles: {
@@ -74,19 +76,33 @@ class Image < ActiveRecord::Base
            through: :user_creations,
            source: :user
   has_many :collections, through: :collection_images
+
   #########
   # ENUMS #
   #########
 
   # What license the image is under
-  enum license: [:public_domain, :all_rights_reserved, :cc_by, :cc_by_sa, :cc_by_nd, :cc_by_nc, :cc_by_nd_sa, :cc_by_nc_nd]
+  enum license: [:public_domain,
+                 :all_rights_reserved,
+                 :cc_by,
+                 :cc_by_sa,
+                 :cc_by_nd,
+                 :cc_by_nc,
+                 :cc_by_nd_sa,
+                 :cc_by_nc_nd]
 
   # What kind of image this is
-  enum medium: [:photograph, :pencil, :paint, :digital_paint, :mixed_media, :three_dimensional_render]
+  enum medium: [:photograph,
+                :pencil,
+                :paint,
+                :digital_paint,
+                :mixed_media,
+                :three_dimensional_render]
 
   ###############
   # VALIDATIONS #
   ###############
+  
   validates :nsfw_language, inclusion: { in: [true, false] }
   validates :nsfw_gore, inclusion: { in: [true, false] }
   validates :nsfw_sexuality, inclusion: { in: [true, false] }
@@ -101,6 +117,7 @@ class Image < ActiveRecord::Base
   validates :description, length: { maximum: 2000 }
 
   validate :is_within_allowed_size
+
   #################
   # CLASS METHODS #
   #################

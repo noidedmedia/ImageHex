@@ -24,6 +24,7 @@ gem 'stripe'
 ##
 # Use Omniauth with Stripe
 gem 'oauth2'
+
 ##
 # https://github.com/plataformatec/devise
 # Devise is "a flexible authentication solution for Rails based on Warden".
@@ -160,25 +161,29 @@ gem 'apipony'
 gem 'dalli'
 
 ##
+# https://github.com/ai/autoprefixer-rails
 # Automatically adds vendor prefixes to CSS with the Asset Pipeline.
 # View what Autoprefixer will change with `rake autoprefixer:info`.
 # Config file: `config/autoprefixer.yml`
-# https://github.com/ai/autoprefixer-rails
 gem 'autoprefixer-rails'
 
 ##
+# https://github.com/brigade/scss-lint
 # Configurable tool for writing clean and consistent SCSS
 # Config file: `config/scss_lint.yml`
 # Run linter with `rake scss:lint`
-# https://github.com/brigade/scss-lint
 gem 'scss_lint', require: false
 
 ##
 # Development-only gems
 group :development do
   ##
-  # Ruby code formatter
+  # https://github.com/bbatsov/rubocop
+  # A Ruby static code analyzer based on the community Ruby style guide.
+  # Config file: `.rubocop.yml`
+  # Run Rubocop with `rake rubocop`
   gem 'rubocop'
+
   ##
   # https://github.com/rweng/pry-rails
   # Use Pry as your Rails console.

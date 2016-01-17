@@ -16,3 +16,6 @@ MultilineOperationIndentation:
 
 MultilineMethodCallIndentation:
   EnforcedStyle: indented
+
+Style/Documentation:
+  Enabled: false

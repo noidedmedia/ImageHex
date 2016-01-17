@@ -1,6 +1,10 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+# for example lib/tasks/capistrano.rake, and they will automatically be
+# available to Rake.
 require 'rdoc/task'
+require 'rubocop/rake_task'
+
+RuboCop::RakeTask.new
 
 RDoc::Task.new :documentation do |rdoc|
   rdoc.rdoc_files.include("README.rdoc", "app/**/*.rb", "lib/**/*.rb", "config/locales/**/*.rdoc")
