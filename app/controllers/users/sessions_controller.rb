@@ -1,3 +1,32 @@
+##
+# BEWARE
+# MOST OF THIS CODE IS COPY/PASTE, I BARELY UNDERSTAND IT, AND IT SUCKS
+# ABANDON HOPE, ALL YE WHO ENTER HERE
+#
+#       .ed"""" """$$$$be.
+#     -"           ^""**$$$e.
+#   ."                   '$$$c
+#  /                      "4$$b
+# d  3                      $$$$
+# $  *                   .$$$$$$
+#.$  ^c           $$$$$e$$$$$$$$.
+#d$L  4.         4$$$$$$$$$$$$$$b
+#$$$$b ^ceeeee.  4$$ECL.F*$$$$$$$
+#$$$$P d$$$$F $ $$$$$$$$$- $$$$$$
+#$$$F "$$$$b   $"$$$$$$$  $$$$*"
+# $$P"  "$$b   .$ $$$$$...e$$
+#  *c    ..    $$ 3$$$$$$$$$$eF
+#    %ce""    $$$  $$$$$$$$$$*
+#     *$e.    *** d$$$$$"L$$
+#      $$$      4J$$$$$% $$$
+#     $"'$=e....$*$$**$cz$$"
+#     $  *=%4.$ L L$ P3$$$F
+#     $   "%*ebJLzb$e$$$$$b
+#      %..      4$$$$$$$$$$
+#       $$$e   z$$$$$$$$$$ 
+#        "*$c  "$$$$$$$P"
+#          """*$$$$$$$"
+#
 class Users::SessionsController < Devise::SessionsController
   prepend_before_action :two_factor_enabled?, only: :create
   # before_filter :configure_sign_in_params, only: [:create]
