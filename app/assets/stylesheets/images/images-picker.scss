@@ -1,15 +1,18 @@
-.image-picker-list{
+@import "scss-variables";
+
+.image-picker-list {
   display: flex;
   flex-flow: row wrap;
   padding: 10px;
 }
 
-.image-picker-item{
+.image-picker-item {
   padding: 5px;
   margin: 5px;
-  border: 3px solid rgba(255, 255, 255, 0.0);
-  &.selected{
+  border: 3px solid rgba(#fff, 0.0);
+  transition: border 500ms ease-out;
+
+  &.selected {
     border: 3px solid green;
   }
-  transition: border 500ms ease-out;
 }
