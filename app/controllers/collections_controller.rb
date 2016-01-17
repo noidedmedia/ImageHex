@@ -19,7 +19,7 @@ class CollectionsController < ApplicationController
 
   ##
   # "Browse collections" page.
-  # @collections: The collections displayed based on popularity or recency.
+  # @collections:: The collections displayed based on popularity or recency.
   def index
     @collections = find_index_collections
       .subjective
