@@ -106,6 +106,7 @@ class User < ActiveRecord::Base
   ###############
   # VALIDATIONS #
   ###############
+
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false },
                    format: { with: /\A([[:alpha:]]|\w)+\z/ },
@@ -115,6 +116,7 @@ class User < ActiveRecord::Base
   #############
   # CALLBACKS #
   #############
+
   after_create :make_collections
 
   before_save :coerce_content_pref!
@@ -139,7 +141,7 @@ class User < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-  #
+
   def has_filled_commissions?
     count = commission_products
       .joins(:offers)

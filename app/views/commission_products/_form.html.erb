@@ -10,12 +10,14 @@
       <%= f.label :description, class: "label input-empty" %>
       <%= f.text_area :description, class: "input" %>
     </div>
+
     <div class="field-container" id="commission-product-weeeks-to-completion-field">
       <%= f.label :weeks_to_completion %>
       <%= f.number_field :weeks_to_completion, min: 1, max: 52 %>
-    </div>   
+    </div>
+
     <div class="field-container" id="commission-product-base-price">
-      <%= react_component('CurrencyInputField', initialValue: @product.base_price, name: "commission_product[base_price]", :label => "Base Price", min: 3.50) %>
+      <%= react_component('CurrencyInputField', initialValue: @product.base_price, name: "commission_product[base_price]", label: "Base Price", min: 3.50) %>
     </div>
 
     <div class="field-container" id="commission-product-background">
@@ -30,6 +32,7 @@
       data-user-id="<%= current_user.id %>">
 
     </div>
+
     <%= f.submit t(".create_commission_product"), class: "btn btn-green btn-full-width" %>
   <% end %> 
 </div>

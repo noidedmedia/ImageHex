@@ -1,5 +1,6 @@
 <h1><%= @product.name %></h1>
 <h3>A product from <%= link_to @product.user.name, @product.user %></h3>
+
 <% if policy(@product.offers.build).create? %>
   <%= link_to "Make an offer", new_commission_offer_path(commission_product_id: @product.id) %>
 <% end %>
@@ -22,6 +23,7 @@
 <% elsif @product.offer_background? %> 
   A background may be purcahsed for <%= price(@product.background_price) %>.
 <% end %>
+
 <ul class="product-example-images">
   <% @product.example_images.each do |img| %>
     <li class="example-image-item">

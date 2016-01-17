@@ -9,19 +9,23 @@ class CuratorshipsController < ApplicationController
 
   ##
   # Make a new curatorship
+  # @curatorship:: Curatorship being created.
   def create
     @curatorship = Curatorship.new(curatorship_params)
     authorize @curatorship
     if @curatorship.save
       redirect_to @curatorship.collection
     else
-      flash[:warning] = @curatorship.errors.full_messages
-      redirect_to @curatorship.collection
+      format.html {
+        redirect_to @curatorship.collection,
+        warning: @curatorship.errors.full_messages
+      }
     end
   end
 
   ##
-  # Remove a curatorship
+  # Remove a curatorship.
+  # @curatorship:: Curatorship being removed.
   def delete
     @curatorship = Curatorship.find(params[:id])
     authorize @curatorship
@@ -29,8 +33,8 @@ class CuratorshipsController < ApplicationController
   end
 
   ##
-  # Modify a curatorship
-  # Can only be done by admins
+  # Modify a curatorship.
+  # Can only be done by admins.
   #
   # Common use case is promoting or demoting a user
   def update

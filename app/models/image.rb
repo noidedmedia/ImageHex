@@ -53,7 +53,7 @@ class Image < ActiveRecord::Base
   ################
   # ASSOCIATIONS #
   ################
-  
+
   has_attached_file :f,
                     # Steal Flickr's suffixes
                     styles: {
