@@ -1,10 +1,16 @@
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
+  ##
+  # Number to currency helper.
   def price(num)
     number_to_currency(num / 100)
   end
 
+  ##
+  # Provides the link for the reason an image is being displayed on a user's
+  # frontpage. For example, if it's because the user follows a collection,
+  # this will link to the given collection.
   def frontpage_reason_path(img)
     return "" unless id = img.try(:reason_id)
     case img.try(:reason_type)
@@ -15,20 +21,8 @@ module ApplicationHelper
     end
   end
 
-  def user_path(user)
-    "/@" + user.slug.to_s
-  end
-
-  def notification_path(note)
-    if note[:type] == :comment
-      "/images/" + note[:commentable_id] if note[:commentable_type] == :image
-    end
-  end
-
-  def comment_url(comment)
-    polymorphic_url(comment.commentable) + "#" + comment.id.to_s
-  end
-
+  ##
+  # Markdown parsing helper, uses the Redcarpet gem.
   def markdown_parse(str)
     return unless str
     options = {
@@ -52,8 +46,28 @@ module ApplicationHelper
     markdown.render(str).html_safe
   end
 
+  ##
+  # Provides pretty time formatting.
   def pretty_time(t)
     t.strftime("%l:%M %p %B %d, %Y")
+  end
+
+  ##
+  # Modifies the default user_path to utilize "/@username" for URLs.
+  def user_path(user)
+    "/@" + user.slug.to_s
+  end
+
+  ##
+  # Helper for links in notifications.
+  def notification_path(note)
+    if note[:type] == :comment
+      "/images/" + note[:commentable_id] if note[:commentable_type] == :image
+    end
+  end
+
+  def comment_url(comment)
+    polymorphic_url(comment.commentable) + "#" + comment.id.to_s
   end
 
   ##

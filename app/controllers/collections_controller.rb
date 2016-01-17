@@ -84,6 +84,7 @@ class CollectionsController < ApplicationController
   # POST to create a new collection
   # Redirects to the new action with errors in flash[:warning] on failure,
   # and to the created collection on success.
+  # TODO: Authorization?
   def create
     c = nil
     # We create 2 different types in this view. So we have to build
@@ -141,6 +142,9 @@ class CollectionsController < ApplicationController
 
   protected
 
+  ##
+  # Convenience method that finds collections for the "Browse Collections" page.
+  # Sorted either by upload date or by popularity.
   def find_index_collections
     case params['order']
     when "created_at"

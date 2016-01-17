@@ -201,7 +201,10 @@ class UsersController < ApplicationController
   end
 
   protected
-
+  
+  ##
+  # Convenience method that finds users for the "Browse Creators" page.
+  # Sorted either by account creation date or popularity.
   def get_user_index
     case params[:order]
     when 'popular'
