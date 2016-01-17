@@ -13,7 +13,7 @@ en:
       cancel: Cancel
       source: 'Source:'
       submit: Submit
-      uploaded_by: Uploaded by
+      uploaded_by_username_html: Uploaded by %{username}
     image_page_sidebar:
       add_to_collection: Add to Collection
       agree_and_download: Agree and Download
