@@ -6,16 +6,7 @@ class CollectionsController < ApplicationController
   include Pundit
 
   ##
-  # Unsubscribe from a collection
-  # Member action
-  def unsubscribe
-    Subscription.where(collection_id: params[:id],
-                       user_id: current_user.id)
-      .first
-      .try(:destroy)
-    redirect_to Collection.find(params[:id])
-  end
-
+  # @collections: Collections belonging to the current user.
   def mine
     @collections = if t = params[:inspect_image]
                      img = Image.find(t)
@@ -26,12 +17,15 @@ class CollectionsController < ApplicationController
     render 'index'
   end
 
+  ##
+  # "Browse collections" page.
+  # @collections: The collections displayed based on popularity or recency.
   def index
     @collections = find_index_collections
       .subjective
       .paginate(page: page, per_page: per_page)
       .preload(:images)
-    # FIXME: This is a hack.
+    # HACK: This is a hack.
     @content = content_pref
   end
 
@@ -49,6 +43,17 @@ class CollectionsController < ApplicationController
     ## in case our session doesn't have a back
   rescue ActionController::RedirectBackError
     redirect_to root_path
+  end
+
+  ##
+  # Unsubscribe from a collection
+  # Member action
+  def unsubscribe
+    Subscription.where(collection_id: params[:id],
+                       user_id: current_user.id)
+      .first
+      .try(:destroy)
+    redirect_to Collection.find(params[:id])
   end
 
   ##
@@ -100,10 +105,16 @@ class CollectionsController < ApplicationController
     end
   end
 
+  ##
+  # Edit a given collection.
+  # @collection:: Collection being edited.
   def edit
     @collection = Collection.find(params[:id])
   end
 
+  ##
+  # Update a given collection.
+  # @collection:: Collection being updated.
   def update
     @collection = Collection.find(params[:id])
     authorize @collection
@@ -118,6 +129,9 @@ class CollectionsController < ApplicationController
     end
   end
 
+  ##
+  # Delete a given collection.
+  # @collection:: Collection being deleted.
   def destroy
     @collection = Collection.find(params[:id])
     authorize @collection

@@ -20,12 +20,15 @@
 #                 who reply to a comment or iamge.
 class Comment < ActiveRecord::Base
   scope :for_display, -> { includes(:user).order("created_at ASC") }
+  
   #############
   # RELATIONS #
   #############
+
   belongs_to :commentable, polymorphic: true,
                            touch: true
   belongs_to :user
+
   ###############
   # VALIDATIONS #
   ###############
@@ -37,9 +40,11 @@ class Comment < ActiveRecord::Base
   #############
   # CALLBACKS #
   #############
+
   after_save :notify_mentioned_users
   after_save :notify_replied_comments
   after_save :notify_image
+
   ####################
   # INSTANCE METHODS #
   ####################

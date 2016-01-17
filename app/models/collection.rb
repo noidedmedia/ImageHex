@@ -22,7 +22,7 @@ class Collection < ActiveRecord::Base
   # ASSOCIATIONS #
   ################
 
-  # join table: User -> Collection
+  # Join table: User -> Collection
   has_many :subscriptions
   has_many :subscribers, through: :subscriptions, source: :user
   # Join table: User -> Collection
@@ -32,12 +32,15 @@ class Collection < ActiveRecord::Base
   has_many :collection_images
   has_many :images,
            through: :collection_images
+
   ###############
   # VALIDATIONS #
   ###############
+
   validates :name, presence: true
 
   after_create :make_admins
+
   ##########
   # SCOPES #
   ##########
@@ -59,8 +62,8 @@ class Collection < ActiveRecord::Base
 
   def self.with_image_inclusion(i)
     ##
-    # Using string interpolation is SQL is scary
-    # However, we force it ot be an integer first, so it's less so
+    # Using string interpolation is SQL is scary.
+    # However, we force it to be an integer first, so it's less scary.
     select(%{
       collections.*, (collections.id IN
         (SELECT collections.id FROM collections
@@ -77,6 +80,7 @@ class Collection < ActiveRecord::Base
   def self.with_image(i)
     where(id: i.collections)
   end
+
   ####################
   # INSTANCE METHODS #
   ####################

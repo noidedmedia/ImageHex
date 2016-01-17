@@ -8,6 +8,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
+  # FIXME HACK WTF: This is disgusting.
   def create
     if params[:user][:otp_attempt] && params[:user][:otp_attempt] != ""
       self.resource = User.find(params[:user][:id])

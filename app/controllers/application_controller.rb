@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :unauthorized
+
   def unauthorized
     render 'shared/401', status: :unauthorized
   end
@@ -34,7 +35,7 @@ class ApplicationController < ActionController::Base
   ##
   # The number of things to display on each page.
   # Works like this:
-  # 1. If the user is signed in and has a preference, use that
+  # 1. If the user is signed in and has a preference, use that.
   # 2. If the user has added a query string specifying the page pref in
   #    "page_pref", use that if it's reasonable. We define a reasonable
   #    page_pref to be between 1 and 100.

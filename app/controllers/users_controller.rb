@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   before_action :ensure_user, only: [:edit, :update, :delete, :destroy, :enable_twofactor, :disable_twofactor, :verify_twofactor]
 
   ##
-  # Confirm that provided two-factor authentication code matches otp key for a given user.
+  # Confirm that provided two-factor authentication code matches OTP key for
+  # a given user.
   # @user:: The user enabling two-factor auth.
   def confirm_twofactor
     @user = User.friendly.find(params[:id])
@@ -57,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   ##
-  # Disaable two-factor authentication for a given user.
+  # Disable two-factor authentication for a given user.
   # @user:: The user disabling two-factor auth.
   def disable_twofactor
     @user = User.friendly.find(params[:id])
@@ -117,6 +118,11 @@ class UsersController < ApplicationController
       .paginate(page: page, per_page: per_page)
   end
 
+  ##
+  # Subscribe to a user.
+  # @user:: User the current_user is subscribing to.
+  # TODO: Pundit authenticate, should check if subscription is saved before
+  # returning success?
   def subscribe
     @user = User.friendly.find(params[:id])
     current_user.subscribe! @user
@@ -126,6 +132,11 @@ class UsersController < ApplicationController
     end
   end
 
+  ##
+  # Unsubscribe from a user.
+  # @user:: User the current_user is unsubscribing from.
+  # TODO: Pundit authenticate, should check if removal of subscription is
+  # saved before returning success?
   def unsubscribe
     @user = User.friendly.find(params[:id])
     current_user.unsubscribe! @user
@@ -155,7 +166,7 @@ class UsersController < ApplicationController
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
     @collections = @user.collections.subjective
-    # this is a hack, fix please
+    # HACK
     @content = content_pref
   end
 

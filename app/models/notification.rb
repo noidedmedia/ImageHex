@@ -7,14 +7,19 @@ class Notification < ActiveRecord::Base
   #############
   # RELATIONS #
   #############
+
   belongs_to :user, touch: true
-  ##
-  # SCOPES
+  
+  ##########
+  # SCOPES #
+  ##########
+  
   scope :unread, -> { where(read: false) }
 
   ###############
   # VALIDATIONS #
   ###############
+
   validates :user, presence: true
   validates :subject, presence: true
   enum kind: [:uploaded_image_commented_on,

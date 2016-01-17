@@ -131,6 +131,7 @@ class ImagesController < ApplicationController
   ##
   # GET to acquire a page where you can edit an image.
   # Does nothing currently.
+  # FIXME
   def edit
     authorize @image
   end
@@ -181,6 +182,7 @@ class ImagesController < ApplicationController
 
   # Load the image with params[:id] into @image.
   # should be refactored out.
+  # FIXME
   def load_image
     @image = Image.find(params[:id])
   end
