@@ -268,7 +268,7 @@ group :development, :test do
   # https://github.com/sj26/mailcatcher
   # Mailcatcher for confirming that mails work.
   # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
-  gem 'mailcatcher'
+  gem 'mailcatcher', require: false
 
   ##
   # Use .env files for development secret keys
