@@ -106,7 +106,7 @@ class CommissionSubjectForm extends React.Component {
 CommissionSubjectForm.RemovedReferenceFields = (props) => {
   console.log("Removed reference field gets props:",props);
   if(! props.reference.id){
-    return "";
+    return <span></span>;
   }
   return <div>
     <input name={props.baseFieldName + "[id]"}
@@ -122,7 +122,8 @@ CommissionSubjectForm.RemovedReferenceFields = (props) => {
 CommissionSubjectForm.RemovedSubjectFields = (props) => {
   // Not actually persisted, just ignore it
   if(! props.subj.id){
-    return "";
+    console.log("Not returning anything because we have no id");
+    return <span></span>;
   }
   var baseName = `commission_offer[subjects_attributes][${props.index}]`;
   // Return fields to remove this subject

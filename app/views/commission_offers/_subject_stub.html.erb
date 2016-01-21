@@ -4,7 +4,7 @@
 </div>
 <ul class="reference-images">
   <% subject.references.each do |ref| %>
-    <%= image_tag ref.file.expiring_url(60) %>
+    <li><%= image_tag ref.file.expiring_url(60) %>
   <% end %> 
 </ul>
 </li>

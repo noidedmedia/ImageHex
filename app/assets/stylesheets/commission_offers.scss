@@ -1,5 +1,29 @@
 @import "scss-variables";
 
+
+.commission-offer-container {
+  margin: 5px;
+  padding: 5px;
+}
+
+.offer-meta-info {
+
+}
+
+.offer-fill-container {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.commission-offer-fill-date {
+  margin: 5px;
+  text-align: center;
+  font-size: 2.4rem;
+}
+
+
 #commission-offer-form {
   display: flex;
   flex-direction: column;
@@ -19,21 +43,38 @@
 .reference-images {
   display: flex;
   flex-direction: row wrap;
+  align-items: center;
+  li {
+    margin: 5px;
+    height: auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
 #offer-subjects {
-  border: 1px solid #333;
+
 }
 
 #subjects-list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row wrap;
   flex-basis: center;
+  justify-content: space-between;
 }
 
 .subjects-list-item {
+  display: inline;
+  margin: 5px;
+  padding: 5px;
   border: 1px solid #333;
   margin: 10px;
+  width: 45%;
+  @media #{$mobile} {
+    width: auto;
+  }
 }
 
 .subjects-section {
