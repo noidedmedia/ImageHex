@@ -30,7 +30,7 @@ class CommissionOffer < ActiveRecord::Base
 
   def calculate_fee
     if offeree.has_filled_commissions?
-      (total_price * 0.12).floor + 0.30
+      ((total_price * 0.12).floor + 0.30).to_i
     else
       0
     end
