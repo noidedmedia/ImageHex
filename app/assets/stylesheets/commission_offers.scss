@@ -42,11 +42,16 @@
 
 .reference-images {
   display: flex;
-  flex-direction: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
   li {
     margin: 5px;
-    height: auto;
+    display: inline;
+    @media #{$desktop} {
+        max-width: 45%;
+    }
     img {
       width: 100%;
       height: auto;
@@ -60,20 +65,19 @@
 
 #subjects-list {
   display: flex;
-  flex-direction: row wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
   flex-basis: center;
   justify-content: space-between;
 }
 
 .subjects-list-item {
-  display: inline;
-  margin: 5px;
+  display: block;
   padding: 5px;
   border: 1px solid #333;
   margin: 10px;
-  width: 45%;
-  @media #{$mobile} {
-    width: auto;
+  @media #{$desktop} {
+    width: calc(50% - 20px);
   }
 }
 
