@@ -78,10 +78,6 @@ linters:
 
   ColorVariable:
     enabled: false
-  Comment:
-    enabled: false
-  IdSelector:
-    enabled: false
   MergeableSelector:
     enabled: false
   PseudoElement:

@@ -1,6 +1,5 @@
 @import "variables";
 
-
 .commission-offer-container {
   margin: 5px;
   padding: 5px;
@@ -23,8 +22,7 @@
   font-size: 2.4rem;
 }
 
-
-#commission-offer-form {
+.commission-offer-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,12 +44,15 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  
   li {
     margin: 5px;
     display: inline;
+
     @media #{$desktop} {
-        max-width: 45%;
+      max-width: 45%;
     }
+
     img {
       width: 100%;
       height: auto;
@@ -59,11 +60,11 @@
   }
 }
 
-#offer-subjects {
+.offer-subjects {
 
 }
 
-#subjects-list {
+.subjects-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -76,6 +77,7 @@
   padding: 5px;
   border: 1px solid #333;
   margin: 10px;
+
   @media #{$desktop} {
     width: calc(50% - 20px);
   }

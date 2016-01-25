@@ -74,31 +74,19 @@
 </head>
 
 <body class="<% if user_signed_in? %>signed-in<% end %>">
-<% if current_user %>
-    <script type="text/javascript">
-      USER_SIGNED_IN = true;
-      USER_ID = <%= current_user.id %>;
-    </script>
-  <% else %>
-    <script type="text/javascript">
-      USER_SIGNED_IN = false
-    </script>
-  <% end %>
   <%= render 'layouts/header' %>
+
   <% flash.each do |name, msg| -%>
     <div class="alert alert-<%= name %>">
       <p><%= msg %></p>
-      <div id="alert-close"></div>
+      <div id="alert-close" class="alert-close"></div>
     </div>
   <% end %>
 
   <div class="masthead" id="masthead">
     <%= yield %>
   </div>
-  <% if current_user %>
-    <div id="chatbox">
-    </div>
-  <% end %>
+  
   <%= render 'layouts/footer' %>
 
   <%# This script can be parsed by web crawlers to enable Google's in-results search box. %>

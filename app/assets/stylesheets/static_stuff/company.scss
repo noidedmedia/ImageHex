@@ -5,9 +5,9 @@
 //  Company pages container
 // ==============================================
    
-#about-page-container,
-#people-page-container,
-#contact-page-container {
+.about-page-container,
+.people-page-container,
+.contact-page-container {
   display: flex;
   flex-flow: column wrap;
   height: 100%;
@@ -18,17 +18,16 @@
 }
 
 
-
 // Company pages navigation
 // Navigational header for the company pages.
 //
 // 1. Horizontal padding for each of the navigational items.
 // 2. Green underline for the current section title.
  
-#company-nav-container {
+.company-nav-container {
   width: 100vw;
   height: 40px;
-  background-color: #fff;
+  background-color: $white;
   display: flex;
   text-align: center;
   padding-top: 4px;
@@ -44,7 +43,7 @@
   }
 
   a {
-    color: #333;
+    color: $off-black;
     display: block;
     font-size: 1.4rem;
     font-weight: 400;
@@ -56,14 +55,14 @@
 
   .current {
     font-weight: 500;
-    color: #17cd94;
+    color: $active-tab-color;
 
     // 2
     &::after {
       content: '';
-      background-color: #17cd94;
+      background-color: $active-tab-color;
       width: calc(100% + 30px);
-      transform: translate(-15px,6px);
+      transform: translate(-15px, 6px);
       height: 3px;
       display: block;
     }
@@ -80,7 +79,7 @@
 
 // Content for Company pages.
 .company-page-content {
-  color: #333;
+  color: $off-black;
   font-size: 1.4rem;
   font-weight: 300;
 

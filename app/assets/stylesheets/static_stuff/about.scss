@@ -4,7 +4,7 @@
 //  About page
 // ==============================================
 
-#about-page-container {
+.about-page-container {
   display: flex;
   flex-flow: column wrap;
   height: 100%;
@@ -36,8 +36,8 @@
   }
 }
 
-#about-page-description {
-  color: #333;
+.about-page-description {
+  color: $off-black;
   font-size: 1.4rem;
   font-weight: 300;
   width: 100%;
