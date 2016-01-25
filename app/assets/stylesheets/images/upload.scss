@@ -194,15 +194,15 @@
       }
     }
 
-    .checkbox-container ~ .checkbox-container {
-      padding-top: 0;
-    }
-
     .checkbox-container {
       padding: 10px 9px;
 
       p {
         margin-top: 5px;
+      }
+
+      ~ .checkbox-container {
+        padding-top: 0;
       }
     }
 

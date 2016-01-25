@@ -1,5 +1,9 @@
 @import "variables";
 
+// We prefer selectors not be merged in this file because when merged the
+// ".field" selector gets very big and the code is much less readable.
+// scss-lint:disable MergeableSelector
+
 // Styling for sign-in container, used on all registration-related pages (e.g. sign-in, sign-up, forgot password, etc.).
 .sign-in-container {
   display: block;
@@ -123,7 +127,7 @@
   }
 }
 
-// Styling for field labels. Labels are an HTML element, see the MDN for more information.
+// Styling for field labels.
 .field label {
   display: inline-block;
   font-size: 1.4rem;

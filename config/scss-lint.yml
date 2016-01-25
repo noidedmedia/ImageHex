@@ -79,13 +79,7 @@ linters:
     enabled: false
   IdSelector:
     enabled: false
-  MergeableSelector:
-    enabled: false
-  PseudoElement:
-    enabled: false
   QualifyingElement:
-    enabled: false
-  SingleLinePerSelector:
     enabled: false
   SpaceAfterComma:
     enabled: false

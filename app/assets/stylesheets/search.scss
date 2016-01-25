@@ -1,5 +1,9 @@
 @import "variables";
 
+// We prefer selectors not be merged in this file because when merged the
+// header-search selector gets very big and the code is much less readable.
+// scss-lint:disable MergeableSelector
+
 #header-search {
   background-color: #333;
   
