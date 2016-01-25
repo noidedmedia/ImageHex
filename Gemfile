@@ -178,13 +178,6 @@ gem 'scss_lint', require: false
 # Development-only gems
 group :development do
   ##
-  # https://github.com/bbatsov/rubocop
-  # A Ruby static code analyzer based on the community Ruby style guide.
-  # Config file: `.rubocop.yml`
-  # Run Rubocop with `rake rubocop`
-  gem 'rubocop'
-
-  ##
   # https://github.com/rweng/pry-rails
   # Use Pry as your Rails console.
   gem 'pry-rails'
@@ -274,6 +267,13 @@ group :development, :test do
   # Use .env files for development secret keys
   # Our real key is set in production
   gem 'dotenv-rails'
+  
+  ##
+  # https://github.com/bbatsov/rubocop
+  # A Ruby static code analyzer based on the community Ruby style guide.
+  # Config file: `.rubocop.yml`
+  # Run Rubocop with `rake rubocop`
+  gem 'rubocop'
 end
 
 ##
