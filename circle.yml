@@ -8,6 +8,3 @@ test:
     - gem install scss_lint
   post:
     - 'scss-lint -c config/scss-lint.yml'
-dependencies:
-  cache_directories:
-    - /home/ubuntu/.rvm/gems/ruby-2.3.0 # Cache the Ruby version since Circle doesn't have it yet.
