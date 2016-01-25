@@ -81,5 +81,3 @@ linters:
     enabled: false
   QualifyingElement:
     enabled: false
-  SpaceAfterComma:
-    enabled: false

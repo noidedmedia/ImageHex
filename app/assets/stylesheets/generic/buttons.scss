@@ -257,7 +257,7 @@
   &:hover,
   &:focus {
     // Darker gray on hover.
-    background-color: darken(#aaaab2,10%);
+    background-color: darken(#aaaab2, 10%);
 
     // On hover/focus, hide "Following" text.
     .btn-text-following {
