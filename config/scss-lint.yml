@@ -62,7 +62,7 @@ linters:
   StringQuotes:
     enabled: false
 
-  # Disable
+  # Disable removal of trailing whitespace on lines.
   TrailingWhitespace:
     enabled: false
 
