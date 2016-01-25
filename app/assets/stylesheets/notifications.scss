@@ -77,7 +77,8 @@
       }
     }
 
-    > .notifications-container ul > li:last-of-type {
+    // Unfortunately this selector is necessary for CSS specificity reasons.
+    > .notifications-container ul > li:last-of-type { // scss-lint:disable SelectorDepth
       border-bottom: 0;
     }
   }
