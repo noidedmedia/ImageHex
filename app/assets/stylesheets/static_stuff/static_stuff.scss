@@ -313,7 +313,8 @@ $color2: #00e676;
       &.commissions-artwork {
         position: absolute;
         
-        // The exact measurements of the distance between the canvas and the image edges.
+        // The exact measurements of the distance between the canvas in the
+        // image and the image edges.
         top: 1.35%;
         left: 18.8%;
         height: 54.2%;
@@ -328,15 +329,15 @@ $color2: #00e676;
       margin-top: 15px;
       font-size: 1.6rem;
       font-weight: 300;
+    }
 
-      a {
-        font-weight: 500;
-        color: #fff;
-        text-decoration: none;
+    a {
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
 
-        &:hover {
-          text-decoration: underline;
-        }
+      &:hover {
+        text-decoration: underline;
       }
     }
 

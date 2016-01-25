@@ -164,9 +164,6 @@ class Chat extends React.Component{
 }
 
 document.addEventListener("page:change", function(){
-  if(! USER_SIGNED_IN){
-    return;
-  }
   var elem = document.getElementById("chatbox");
   console.log("Got element",elem,"for chat");
   Message.unread((msg) => {

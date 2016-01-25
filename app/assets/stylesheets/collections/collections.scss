@@ -1,41 +1,16 @@
 @import "variables";
 
 // ==============================================
-//  "New collection" page
-// ==============================================
-
-.new-collection-container {
-  display: flex;
-  flex-flow: column wrap;
-  width: 500px;
-  padding: 10px;
-  margin: auto;
-  margin-top: 100px;
-  position: relative;
-
-  @media #{$mobile} {
-    width: 100vw;
-    margin-top: 40px;
-  }
-}
-
-#new-collection-description {
-  resize: vertical;
-  max-height: 250px;
-}
-
-
-// ==============================================
 //  Collection page
 // ==============================================
 
-#collection-page-container {
+.collection-page-container {
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
 }
 
-#collection-page-header {
+.collection-page-header {
   position: relative;
   display: flex;
   flex-flow: row nowrap;
@@ -57,7 +32,7 @@
   }
 }
 
-#collection-page-info-container {
+.collection-page-info-container {
   position: relative;
   width: calc(100% - 200px);
 
@@ -104,7 +79,7 @@
   right: 0;
 }
 
-#collection-images-container {
+.collection-images-container {
   margin: 10px 30px;
   width: calc(100% - 60px);
 

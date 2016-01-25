@@ -1,5 +1,5 @@
 function avatarUploader() {
-  document.querySelector("#avatar-uploader").addEventListener("change", avatarUploaderPreview);
+  document.querySelector(".avatar-uploader").addEventListener("change", avatarUploaderPreview);
 }
 
 function avatarUploaderPreview(event) {
@@ -15,13 +15,13 @@ function avatarUploaderPreview(event) {
       window.URL.revokeObjectURL(this.src);
     };
 
-    var thumb = document.getElementById("avatar-uploader-thumbnail");
+    var thumb = document.querySelector(".avatar-uploader-thumbnail");
     thumb.replaceChild(img, thumb.firstChild);
   }
 }
 
 var ready = function() {
-  if (document.querySelector("#avatar-uploader")) {
+  if (document.querySelector(".avatar-uploader")) {
     avatarUploader();
   }
 };
