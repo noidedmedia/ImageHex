@@ -4,6 +4,7 @@ AllCops:
     - "db/**/*"
     - "config/**/*"
     - "script/**/*"
+    - "test/**/*"
 
 Style/Documentation:
   Enabled: false
@@ -15,6 +16,9 @@ Style/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
 Style/StringLiterals:
+  Enabled: false
+
+Metrics/ClassLength:
   Enabled: false
 
 Rails:

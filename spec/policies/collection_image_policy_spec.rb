@@ -23,7 +23,7 @@ describe CollectionImagePolicy do
 
   permissions :destroy? do
     it "allows mods" do
-      c = FactoryGirl.create(:curatorship,
+      FactoryGirl.create(:curatorship,
                              user: user,
                              collection: collection,
                              level: :mod)
