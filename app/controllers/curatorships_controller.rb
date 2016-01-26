@@ -16,10 +16,10 @@ class CuratorshipsController < ApplicationController
     if @curatorship.save
       redirect_to @curatorship.collection
     else
-      format.html {
+      format.html do
         redirect_to @curatorship.collection,
-        warning: @curatorship.errors.full_messages
-      }
+                    warning: @curatorship.errors.full_messages
+      end
     end
   end
 

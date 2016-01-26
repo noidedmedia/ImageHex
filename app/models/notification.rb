@@ -9,11 +9,11 @@ class Notification < ActiveRecord::Base
   #############
 
   belongs_to :user, touch: true
-  
+
   ##########
   # SCOPES #
   ##########
-  
+
   scope :unread, -> { where(read: false) }
 
   ###############

@@ -39,7 +39,8 @@ class Favorite < Collection
   # As a side-effect of translation, this will produce a description in
   # the users' favorite language.
   def fill_name
-    self.name = I18n.t "activerecord.models.favorite.favorites_collection_title", usernames: curator.name.possessive.to_s
+    p = "activerecord.models.favorite.favorites_collection_title"
+    self.name = I18n.t(p, usernames: curator.name.possessive.to_s)
   end
 
   protected
@@ -49,6 +50,7 @@ class Favorite < Collection
   # As a side-effect of translation, this will produce a description in
   # the users' native language.
   def fill_desc
-    self.description = I18n.t "activerecord.models.favorite.favorites_collection_description", username: curator.name.to_s
+    p = "activerecord.models.favorite.favorites_collection_description"
+    self.description = I18n.t(p, username: curator.name.to_s)
   end
 end

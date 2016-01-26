@@ -10,12 +10,14 @@ describe User do
   describe "avatars" do
     it "Should allow image avatars" do
       u = FactoryGirl.create(:user)
-      u.avatar = Rack::Test::UploadedFile.new(Rails.root.join("spec", "fixtures", "files", "test.jpg"), "image/jpg")
+      path = Rails.root.join("spec", "fixtures", "files", "test.jpg")
+      u.avatar = Rack::Test::UploadedFile.new(path, "image/jpg")
       expect(u).to be_valid
     end
     it "does not allow evil js or other things" do
       u = FactoryGirl.create(:user)
-      u.avatar = Rack::Test::UploadedFile.new(Rails.root.join("spec", "fixtures", "files", "evil.js"), "application/javascript")
+      path = Rails.root.join("spec", "fixtures", "files", "evil.js")
+      u.avatar = Rack::Test::UploadedFile.new(path, "application/javascript")
       expect(u).to_not be_valid
     end
   end

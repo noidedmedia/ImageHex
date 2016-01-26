@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Tag do
   describe "creation" do
     it "requires unique names" do
-      t = FactoryGirl.create(:tag, name: "test")
+      FactoryGirl.create(:tag, name: "test")
       expect do
         FactoryGirl.create(:tag, name: "test")
       end.to raise_error ActiveRecord::RecordInvalid
     end
     it "is case insensitive with name uniqueness" do
-      t = FactoryGirl.create(:tag, name: "test")
+      FactoryGirl.create(:tag, name: "test")
       expect do
         FactoryGirl.create(:tag, name: "TEST")
       end.to raise_error ActiveRecord::RecordInvalid

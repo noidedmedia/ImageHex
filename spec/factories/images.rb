@@ -1,7 +1,10 @@
 FactoryGirl.define do
   factory :image do
     user
-    f { Rack::Test::UploadedFile.new(Rails.root.join("spec", "fixtures", "files", "test.jpg"), "image/jpg") }
+    f do
+      path = Rails.root.join("spec", "fixtures", "files", "test.jpg")
+      Rack::Test::UploadedFile.new(path, "image/jpeg")
+    end
     license :public_domain
     medium :photograph
     nsfw_nudity false

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     authorize @user
     respond_to do |format|
-      if @backup_codes = @user.confirm_twofactor(params[:otp_key])
+      if (@backup_codes = @user.confirm_twofactor(params[:otp_key]))
         UserMailer.enable_twofactor(@user).deliver_now
         format.html
         format.json { render json: @backup_codes }
@@ -201,7 +201,7 @@ class UsersController < ApplicationController
   end
 
   protected
-  
+
   ##
   # Convenience method that finds users for the "Browse Creators" page.
   # Sorted either by account creation date or popularity.

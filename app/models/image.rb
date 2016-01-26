@@ -47,7 +47,9 @@ class Image < ActiveRecord::Base
   scope :without_gore, -> { where(nsfw_gore: false) }
   scope :without_language, -> { where(nsfw_language: false) }
   scope :without_sex, -> { where(nsfw_sexuality: false) }
-  scope :completely_safe, -> { without_nudity.without_gore.without_language.without_sex }
+  scope :completely_safe, lambda {
+    without_nudity.without_gore.without_language.without_sex
+  }
   scope :mostly_safe, -> { without_nudity.without_gore.without_sex }
 
   ################
@@ -62,7 +64,9 @@ class Image < ActiveRecord::Base
                       large: "500x500>",
                       huge: "1000x1000>" },
                     # Use suffixes for the path
+                    # rubocop:disable GlobalVars
                     path: ($IMAGE_PATH ? $IMAGE_PATH : ":id_:style.:extension")
+  # rubocop:enable GlobalVars
   belongs_to :user, touch: true
 
   before_post_process :downcase_extension
@@ -108,7 +112,7 @@ class Image < ActiveRecord::Base
   validates :nsfw_sexuality, inclusion: { in: [true, false] }
   validates :nsfw_nudity, inclusion: { in: [true, false] }
   validates_attachment :f,
-                       content_type: { content_type: /\Aimage\/.*\Z/ },
+                       content_type: { content_type: %r{\Aimage\/.*\Z} },
                        presence: true
 
   validates :user, presence: :true
@@ -122,16 +126,18 @@ class Image < ActiveRecord::Base
   # CLASS METHODS #
   #################
 
-  def self.by_popularity(interval = 2.weeks.ago..Time.now)
+  # rubocop:disable AbcSize
+  def self.by_popularity(interval = 2.weeks.ago..Time.zone.now)
     imgs = Image.arel_table
     cimgs = CollectionImage.arel_table
     j = imgs.join(cimgs, Arel::Nodes::OuterJoin)
       .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
       .join_sources
-    res = joins(j)
+    joins(j)
       .group("images.id")
       .order("COUNT (collection_images) DESC")
   end
+  # rubocop:enable AbcSize
 
   ##
   # Find all images a user is subscribed to.
@@ -143,7 +149,8 @@ class Image < ActiveRecord::Base
     #
     # SELECT images.* FROM images
     # INNER JOIN collection_images ON collection_images.image_id = images.id
-    # INNER JOIN subscriptions ON subscriptions.collection_id = collection_images.collection_id
+    # INNER JOIN subscriptions
+    #   ON subscriptions.collection_id = collection_images.collection_id
     # WHERE subscriptions.user_id = ?
     # ORDER BY collection_images.created_at DESC
     SubscriptionQuery.new(user).result

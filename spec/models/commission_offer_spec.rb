@@ -54,7 +54,7 @@ RSpec.describe CommissionOffer, type: :model do
       it "cannot be over the limit" do
         o = FactoryGirl.build(:commission_offer,
                               commission_product: product,
-                              subjects_attributes: 10.times.map { subj })
+                              subjects_attributes: Array.new(10) { subj })
         expect(o.subjects.size).to be > product.included_subjects
         expect(o).to_not be_valid
       end
@@ -112,8 +112,9 @@ RSpec.describe CommissionOffer, type: :model do
 
     it "sets charged_at to Time.now" do
       Timecop.freeze do
+        t = Time.zone.now
         offer.charge!("fake_stripe_id")
-        expect(offer.reload.charged_at).to be_within(5.minutes).of(Time.now)
+        expect(offer.reload.charged_at).to be_within(5.minutes).of(t)
       end
     end
 

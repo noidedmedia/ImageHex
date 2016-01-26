@@ -123,8 +123,8 @@ describe Image do
   it "allows selection by reports" do
     image = FactoryGirl.create(:image)
     # We make a non-reported image for testing purposes
-    image2 = FactoryGirl.create(:image)
-    report = FactoryGirl.create(:image_report, image: image)
+    FactoryGirl.create(:image)
+    FactoryGirl.create(:image_report, image: image)
     expect(Image.by_reports).to eq([image])
   end
 

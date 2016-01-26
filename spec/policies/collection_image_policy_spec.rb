@@ -24,9 +24,9 @@ describe CollectionImagePolicy do
   permissions :destroy? do
     it "allows mods" do
       FactoryGirl.create(:curatorship,
-                             user: user,
-                             collection: collection,
-                             level: :mod)
+                         user: user,
+                         collection: collection,
+                         level: :mod)
       expect(subject).to permit(user, i)
     end
     it "allows admins" do

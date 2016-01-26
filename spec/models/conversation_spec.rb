@@ -46,9 +46,10 @@ RSpec.describe Conversation, type: :model do
     it "changes the user's last read at time" do
       cu = conversation.conversation_users.where(user: user_a).first
       Timecop.freeze do
+        t = Time.zone.now
         expect do
           conversation.mark_read!(user_a)
-        end.to change { cu.reload.last_read_at }.to be_within(5.minutes).of(Time.now)
+        end.to change { cu.reload.last_read_at }.to be_within(5.minutes).of(t)
       end
     end
   end
@@ -65,12 +66,12 @@ RSpec.describe Conversation, type: :model do
       end.to raise_error(Conversation::UserNotInConversation)
     end
     it "returns messages made after this user's last_read_at" do
-      m1 = create(:message,
-                  conversation: conversation,
-                  user: user_b)
-      m2 = create(:message,
-                  conversation: conversation,
-                  user: user_a)
+      create(:message,
+             conversation: conversation,
+             user: user_b)
+      create(:message,
+             conversation: conversation,
+             user: user_a)
       conversation.mark_read!(user_a)
       m3 = create(:message,
                   conversation: conversation,

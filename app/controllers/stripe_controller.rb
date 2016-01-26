@@ -1,6 +1,6 @@
 class StripeController < ApplicationController
   before_action :ensure_user
-  
+
   def authorize
     params = {
       scope: "read_write",
