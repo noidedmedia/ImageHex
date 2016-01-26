@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(message_params)
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message }
+        format.html { redirect_to messages_path(@message) }
         format.json { render 'show' }
       else
         format.html { render 'new', errors: @message.errors }
