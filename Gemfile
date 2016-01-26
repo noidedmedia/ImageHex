@@ -220,11 +220,6 @@ group :development do
   gem 'bullet'
 
   ##
-  # https://github.com/presidentbeef/brakeman
-  # A static analysis security vulnerability scanner for Ruby on Rails applications
-  gem 'brakeman'
-
-  ##
   # https://github.com/rails/spring
   # Spring speeds up development by keeping your application running in the background.
   gem 'spring'
@@ -274,6 +269,16 @@ group :development, :test do
   # Use .env files for development secret keys
   # Our real key is set in production
   gem 'dotenv-rails'
+
+  ##
+  # https://github.com/presidentbeef/brakeman
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
+  gem 'brakeman'
+
+  ##
+  # Patch-level verification for Bundler
+  # https://github.com/rubysec/bundler-audit
+  gem 'bundler-audit'
 end
 
 ##
