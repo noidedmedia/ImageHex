@@ -7,4 +7,7 @@ test:
   pre:
     - gem install scss_lint
   post:
-    - 'scss-lint -c config/scss-lint.yml'
+    - scss-lint -c config/scss-lint.yml
+    - brakeman -z
+    - bundle-audit update
+    - bundle-audit
