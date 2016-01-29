@@ -23,8 +23,7 @@ class Admin::AdminController < ApplicationController
       return true
       # We're good
     else
-      redirect_to("/users/sign_in")
-      return false
+      return render 'shared/401'
     end
   end
 end

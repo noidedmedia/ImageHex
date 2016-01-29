@@ -112,20 +112,20 @@ class Chat extends React.Component{
       console.log(`Determining how long to poll.
                   Last sent: ${this.state.lastSentAt}
                   LastRecieved: ${this.state.lastRecievedAt}`);
-      if(this.state.lastSentAt &&
-          new Date() - this.state.lastSentAt < 10 * 1000){
-        console.log("Sent within the last ten seconds.");
-        return window.setTimeout(poll.bind(this), 1000);
-      }
-      else if(this.state.lastRecievedAt && 
-          new Date() - this.state.lastRecievedAt < 10 * 100){
-        console.log("Recieved in the last ten seconds.");
-        return window.setTimeout(poll.bind(this), 1.5 * 1000);
-      }
-      else{
-        console.log("Using default time.");
-        return window.setTimeout(poll.bind(this), 10 * 1000);
-      }
+                  if(this.state.lastSentAt &&
+                     new Date() - this.state.lastSentAt < 10 * 1000){
+                    console.log("Sent within the last ten seconds.");
+                  return window.setTimeout(poll.bind(this), 1000);
+                  }
+                  else if(this.state.lastRecievedAt && 
+                          new Date() - this.state.lastRecievedAt < 10 * 100){
+                    console.log("Recieved in the last ten seconds.");
+                  return window.setTimeout(poll.bind(this), 1.5 * 1000);
+                  }
+                  else{
+                    console.log("Using default time.");
+                    return window.setTimeout(poll.bind(this), 10 * 1000);
+                  }
     }
     window.setTimeout(poll.bind(this), 10000);
   }
@@ -166,10 +166,15 @@ class Chat extends React.Component{
 document.addEventListener("page:change", function(){
   var elem = document.getElementById("chatbox");
   console.log("Got element",elem,"for chat");
-  Message.unread((msg) => {
-    ReactDOM.render(<Chat initialUnread={msg} 
-      currentUserId={USER_ID}
-      initialFetched={new Date()} />,
-                    elem);
-  });
+  if(elem){
+    Message.unread((msg) => {
+      ReactDOM.render(<Chat initialUnread={msg} 
+        currentUserId={USER_ID}
+        initialFetched={new Date()} />,
+          elem);
+    });
+  }
+  else{
+    console.log("no chat to get");
+  }
 });
