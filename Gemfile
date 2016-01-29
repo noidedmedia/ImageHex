@@ -266,6 +266,7 @@ group :development, :test do
   gem 'mailcatcher', require: false
 
   ##
+  # https://github.com/bkeepers/dotenv
   # Use .env files for development secret keys
   # Our real key is set in production
   gem 'dotenv-rails'
@@ -276,15 +277,34 @@ group :development, :test do
   gem 'brakeman'
 
   ##
-  # Patch-level verification for Bundler
   # https://github.com/rubysec/bundler-audit
+  # Patch-level verification for Bundler
   gem 'bundler-audit'
+
+  ##
+  # https://github.com/jnicklas/capybara
+  # Acceptance test framework for web applications
+  gem 'capybara'
+  
+  ##
+  # https://github.com/mattheworiordan/capybara-screenshot
+  # Automatically save screen shots when a Capybara scenario fails
+  gem 'capybara-screenshot'
+  
+  ##
+  # https://github.com/teampoltergeist/poltergeist
+  # A PhantomJS driver for Capybara
+  gem 'poltergeist'
 end
 
 ##
 # Test-only gems
 group :test do
+  ##
+  # https://github.com/travisjeffery/timecop
+  # A gem providing "time travel", "time freezing", and "time acceleration" capabilities.
   gem 'timecop'
+
   ##
   # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good
@@ -301,5 +321,6 @@ end
 group :production do
   ##
   # https://github.com/heroku/rails_12factor
+  # 
   gem 'rails_12factor'
 end
