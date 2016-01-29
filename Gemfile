@@ -15,7 +15,7 @@ gem 'pg'
 ##
 # https://github.com/aws/aws-sdk-ruby
 # Amazon Web Services SDK
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk', '~> 2.0'
 
 ##
 # Use Stripe

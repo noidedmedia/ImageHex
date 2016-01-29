@@ -51,11 +51,12 @@ GEM
     autoprefixer-rails (6.3.1)
       execjs
       json
-    aws-sdk (1.66.0)
-      aws-sdk-v1 (= 1.66.0)
-    aws-sdk-v1 (1.66.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
+    aws-sdk (2.2.14)
+      aws-sdk-resources (= 2.2.14)
+    aws-sdk-core (2.2.14)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.2.14)
+      aws-sdk-core (= 2.2.14)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -196,6 +197,7 @@ GEM
     jbuilder (2.4.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jmespath (1.1.3)
     jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -463,7 +465,7 @@ DEPENDENCIES
   annotate
   apipony
   autoprefixer-rails
-  aws-sdk (< 2.0)
+  aws-sdk (~> 2.0)
   better_errors
   binding_of_caller
   brakeman
