@@ -9,7 +9,7 @@ test:
     - gem install rubocop
   post:
     - scss-lint -c config/scss-lint.yml
-    - rake rubocop
+    - bundle exec rake rubocop
     - bundle exec brakeman -z
     - bundle exec bundle-audit update
     - bundle exec bundle-audit
