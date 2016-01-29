@@ -6,10 +6,8 @@ machine:
 test:
   pre:
     - gem install scss_lint
-    - gem install rubocop
   post:
     - scss-lint -c config/scss-lint.yml
-    - bundle exec rake rubocop
     - bundle exec brakeman -z
     - bundle exec bundle-audit update
     - bundle exec bundle-audit
