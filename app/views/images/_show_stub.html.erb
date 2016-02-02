@@ -1,7 +1,4 @@
-<div id="image-show-stub" data-page="<%= images.try(:current_page) %>"
-  data-infinite-scroll="<%= current_user.try(:use_infinite_scroll) %>"
-  data-current-page="<%= images.try(:current_page) %>">
-
+<div id="image-show-stub" data-page="<%= images.try(:current_page) %>">
   <div class="image-gallery">
     <% if images %>
       <% images.each_with_index do |img, i| %>
