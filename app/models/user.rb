@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
                    uniqueness: { case_sensitive: false },
                    format: { with: /\A([[:alpha:]]|\w)+\z/ },
                    length: { in: 2..25 }
-  validates :page_pref, inclusion: { in: (1..100) }
+  validates :page_pref, inclusion: { in: (10..100) }
 
   #############
   # CALLBACKS #
