@@ -12,7 +12,7 @@ class FrontpageController < ApplicationController
         .paginate(page: page, per_page: per_page)
       render "index_with_user"
     else
-      @images = Image
+      @images = Image.all
         .paginate(page: page, per_page: per_page)
         .order('created_at DESC')
         .for_content(content_pref)
