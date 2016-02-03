@@ -25,7 +25,7 @@
 <% end %>
 
 <ul class="product-example-images all-example-images">
-  <% @product.example_images.each do |img| %>
+  <% @example_images.each do |img| %>
     <li class="product-example-images-item">
     <%= link_to img do %>
       <% image_tag img.f.url(:medium) %> 

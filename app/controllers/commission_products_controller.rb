@@ -24,6 +24,8 @@ class CommissionProductsController < ApplicationController
 
   def show
     @product = CommissionProduct.find(params[:id])
+    @example_images = @product.example_images
+      .for_content(content_pref)
   end
 
   def create

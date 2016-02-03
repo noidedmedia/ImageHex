@@ -12,5 +12,4 @@ json.extract! product,
               :offer_subjects,
               :maximum_subjects,
               :include_background
-
 json.user product.user, partial: "users/stub", as: :user
