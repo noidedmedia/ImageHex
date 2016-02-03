@@ -8,6 +8,15 @@ class CommissionProductsController < ApplicationController
       .paginate(page: page, per_page: per_page)
   end
 
+  def index
+    @products = CommissionProduct.all
+      .joins(:example_images)
+      .preload(:example_images)
+      .merge(Image.for_content(content_pref))
+      .paginate(page: page, per_page: per_page)
+      .uniq
+  end
+
   def new
     @product = CommissionProduct.new
     authorize(@product)

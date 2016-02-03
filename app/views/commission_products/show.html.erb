@@ -24,9 +24,9 @@
   A background may be purcahsed for <%= price(@product.background_price) %>.
 <% end %>
 
-<ul class="product-example-images">
+<ul class="product-example-images all-example-images">
   <% @product.example_images.each do |img| %>
-    <li class="example-image-item">
+    <li class="product-example-images-item">
     <%= link_to img do %>
       <% image_tag img.f.url(:medium) %> 
     <% end %>
