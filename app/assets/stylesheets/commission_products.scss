@@ -1,3 +1,5 @@
+@import "variables";
+
 .commission-products-list {
   display: flex;
   flex-direction: column;
@@ -10,9 +12,10 @@
   margin: 5px;
   flex-grow: 1;
   flex-basis: 0;
+
   > a {
     text-decoration: none;
-    color: black;
+    color: $black;
   }
 }
 
@@ -23,8 +26,8 @@
 }
 
 .all-example-images {
-    flex-wrap: wrap;
-    justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .product-example-images-item {
