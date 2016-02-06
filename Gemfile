@@ -300,6 +300,7 @@ end
 ##
 # Test-only gems
 group :test do
+  gem 'rails-controller-testing'
   ##
   # https://github.com/travisjeffery/timecop
   # A gem providing "time travel", "time freezing", and "time acceleration" capabilities.
