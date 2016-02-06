@@ -4,7 +4,7 @@ class SearchQuery
   end
 
   def each_group(&_block)
-    fail ArgumentError("Must take a block") unless block_given?
+    raise ArgumentError("Must take a block") unless block_given?
     return unless @q["tag_groups"]
     @q["tag_groups"].each do |group|
       yield group
@@ -12,7 +12,7 @@ class SearchQuery
   end
 
   def each_group_tag_ids(&_block)
-    fail ArgumentError("Must take a block") unless block_given?
+    raise ArgumentError("Must take a block") unless block_given?
     each_group do |g|
       yield g["tags"].map { |t| t["id"] }
     end

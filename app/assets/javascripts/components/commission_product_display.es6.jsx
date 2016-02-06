@@ -4,33 +4,45 @@ class CommissionProductDisplay extends React.Component{
     this.state = {};
   }
   render(){
-    console.log("Displaying a product:",this.props.product);
     var cost = this.props.product.calculateCost(this.props);
-    console.log(`In product display, found a cost of ${cost}`);
     var costInfo = "";
     if(cost){
       costInfo = <span className="commission-product-total-cost">
         Total Cost of ${(cost / 100).toFixed(2)}
       </span>
     }
-    return <div className="commission-product-display">
-      <h2 onClick={this.props.clickTitle}>
-        {this.props.product.name}
-      </h2>
+    var examples = this.props.product.example_images.map((img) => {
+      return <li className="product-example-images-item"
+        key={img.id}>
+        <a href={`/images/${img.id}`} target="_blank">
+          <img src={img.thumbnail} />
+        </a>
+      </li>;
+    });
+    return <li className="commission-products-list-item">
+      <a onClick={this.props.clickTitle}>
+        <h2>
+          {this.props.product.name}
+        </h2>
+      </a>
       <CommissionProductDisplay.UserBox {...this.props.product.user} />
       {costInfo}
-    </div>;
+      <ul className="product-example-images">
+        {examples}
+      </ul>
+    </li>;
   }
 }
 
 CommissionProductDisplay.UserBox = (props) => {
-  console.log("UserBox gets props:",props);
-  return <div className="product-user-display">
-    <img src={props.avatar_path} />
-    <span>
+  return <span className="product-user-container">
+    <span className="product-user-avatar">
+      <img src={props.avatar_path} />
+    </span>
+    <span className="product-user-name">
       <a href={`/@${props.slug}`} target="_blank">
         {props.name}
       </a>
     </span>
-  </div>;
+  </span>
 }

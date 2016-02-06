@@ -14,7 +14,7 @@ class CommissionOffersController < ApplicationController
     @offer = CommissionOffer.find(params[:id])
     authorize @offer
     @image = Image.find(params[:image_id])
-    fail Pundit::NotAuthorizedError.new unless @image.created_by? current_user
+    raise Pundit::NotAuthorizedError.new unless @image.created_by? current_user
     respond_to do |format|
       if @offer.fill!(@image)
         format.html { redirect_to @offer, notice: "Created successfully" }

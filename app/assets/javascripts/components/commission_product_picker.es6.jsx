@@ -6,22 +6,19 @@ class CommissionProductPicker extends React.Component{
       fetched: false,
     };
     console.log("In product picker, got props",props);
-    this.fetchData();
+    this.fetchData(props);
   }
   render(){
     if(this.state.fetched){
       var products = this.state.products.map((p) => {
-        return <div className="commission-product-possible"
-          key={p.id} >
-          <CommissionProductDisplay
+        return <CommissionProductDisplay
             product={p}
             clickTitle={this.onAdd.bind(this, p)}
-            {...this.props} />
-        </div>
+            {...this.props} />;
       });
-      return <div>
+      return <ul className="commission-products-list">
         {products}
-      </div>;
+      </ul>;
     }
     else{ 
       return <div>
@@ -30,22 +27,24 @@ class CommissionProductPicker extends React.Component{
     }
   }
   componentWillReceiveProps(nextProps){
+    console.log("Commission product picker is receiving new props",nextProps);
     if((this.props.subjectsCount == nextProps.subjectsCount &&
         this.props.hasBackground == nextProps.hasBackgroud)){
+      console.log("subjectsCount or hasBackground has not changed.");
       return;
     }
     this.setState({
       page: 1
     });
-    this.fetchData();
-    
+    this.fetchData(nextProps);
   }
   onAdd(product){
     this.props.onAdd(product);
   }
   // Get a new list products we can use
-  fetchData(){
-    CommissionProduct.withCriteria(this.props, this.state.page, (products) => {
+  fetchData(props){
+    console.log("Fetching new data");
+    CommissionProduct.withCriteria(props, this.state.page, (products) => {
       this.setState({
         fetched: true,
         products: products

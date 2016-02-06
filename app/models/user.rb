@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
                     default_url: "default-avatar.svg"
 
   validates_attachment_content_type :avatar,
-                                    content_type: /\Aimage\/.*\Z/
+                                    content_type: %r{\Aimage\/.*\Z}
 
   validates_with AttachmentSizeValidator,
                  attributes: :avatar,
@@ -156,15 +156,12 @@ class User < ActiveRecord::Base
   end
 
   def confirm_twofactor(key)
-    if validate_and_consume_otp!(key)
-      self.otp_required_for_login = true
-      self.two_factor_verified = true
-      backup_codes = generate_otp_backup_codes!
-      save
-      backup_codes
-    else
-      return false
-    end
+    return false unless validate_and_consume_otp!(key)
+    self.otp_required_for_login = true
+    self.two_factor_verified = true
+    backup_codes = generate_otp_backup_codes!
+    save
+    backup_codes
   end
 
   ##
@@ -233,7 +230,7 @@ class User < ActiveRecord::Base
   #
   # c:: the collection
   def curatorship_for(c)
-    Curatorship.where(user: self, collection: c).first
+    Curatorship.find_by(user: self, collection: c)
   end
 
   protected
@@ -258,15 +255,5 @@ class User < ActiveRecord::Base
   # This method makes both of those collections in a callback on user creation.
   def make_collections
     Favorite.create!(curators: [self])
-  end
-
-  ##
-  # Class method to get a user from onmiauth
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name
-    end
   end
 end

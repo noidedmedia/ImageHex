@@ -11,5 +11,4 @@ feature 'Users', feature: true do
     fill_in 'user_password_confirmation', with: 'password'
     expect { click_button 'Create account' }.to change { User.count }.by(1)
   end
-
 end

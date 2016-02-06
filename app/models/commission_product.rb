@@ -34,6 +34,16 @@ class CommissionProduct < ActiveRecord::Base
             unless: :offer_subjects?
 
   validate :example_images_created_by_user
+
+  scope :allows_background, lambda {
+    where(offer_background: true)
+  }
+  def self.for_search(params)
+    c = self
+    c = c.allows_background if params["has_background"].to_s == "true"
+    c
+  end
+
   ##
   # Small hack to make example images easier
   def example_image_ids
@@ -41,7 +51,7 @@ class CommissionProduct < ActiveRecord::Base
   end
 
   def example_image_ids=(ar)
-    fail ArgumentError.new("must be passed an array") unless ar.is_a? Array
+    raise ArgumentError.new("must be passed an array") unless ar.is_a? Array
     self.example_images = Image.where(id: ar)
   end
 

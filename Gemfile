@@ -285,12 +285,12 @@ group :development, :test do
   # https://github.com/jnicklas/capybara
   # Acceptance test framework for web applications
   gem 'capybara'
-  
+
   ##
   # https://github.com/mattheworiordan/capybara-screenshot
   # Automatically save screen shots when a Capybara scenario fails
   gem 'capybara-screenshot'
-  
+
   ##
   # https://github.com/teampoltergeist/poltergeist
   # A PhantomJS driver for Capybara
@@ -321,6 +321,6 @@ end
 group :production do
   ##
   # https://github.com/heroku/rails_12factor
-  # 
+  #
   gem 'rails_12factor'
 end

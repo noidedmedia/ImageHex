@@ -5,7 +5,12 @@ class CommissionProductsController < ApplicationController
 
   def search
     @products = CommissionProduct.all
+      .joins(:example_images)
       .paginate(page: page, per_page: per_page)
+      .preload(:example_images)
+      .merge(Image.for_content(content_pref))
+      .for_search(params)
+      .uniq
   end
 
   def index

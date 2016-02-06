@@ -5,7 +5,7 @@ class CollectionImagePolicy < ApplicationPolicy
   # user:: the user trying to add an image
   # record:: the collection_image the user is trying to make
   def initialize(user, record)
-    fail Pundit::NotAuthorizedError, "must be logged in" unless user
+    raise Pundit::NotAuthorizedError, "must be logged in" unless user
     @user = user
     @record = record
   end

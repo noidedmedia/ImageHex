@@ -1,5 +1,16 @@
 @import "variables";
 
+.commission-offer-form-react {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.offer-form-subjects-section {
+  width: 600px;
+}
+
 .commission-offer-container {
   margin: 5px;
   padding: 5px;

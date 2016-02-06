@@ -50,6 +50,7 @@ class CommissionProduct{
     }
   }
   static withCriteria(criteria, page, callback){
+    console.log("Finding products with criteria",criteria);
     var baseURL = "/commission_products/search";
     var {subjectsCount, hasBackground} = criteria;
     baseURL += `?subjects_count=${encodeURIComponent(subjectsCount)}`;

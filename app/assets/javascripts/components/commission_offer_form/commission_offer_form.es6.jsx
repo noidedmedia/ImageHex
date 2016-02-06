@@ -7,8 +7,6 @@ class CommissionOfferForm extends React.Component{
       product: props.initialProduct,
       hasBackground: !! props.background
     };
-    console.log("Our background is:", props.background);
-    console.log("At end of construction, state is:",this.state);
   }
   render(){
     var productBox;
@@ -26,7 +24,7 @@ class CommissionOfferForm extends React.Component{
         hasBackground={this.state.hasBackground}
         onAdd={this.addProduct.bind(this)} />;
     }
-    return <div>
+    return <div className="commission-offer-form-react">
       {this.backgroundSection()}
       {this.subjectSection()}
       {productBox}
@@ -42,7 +40,6 @@ class CommissionOfferForm extends React.Component{
       product: undefined
     });
   }
-
   isInvalid(){
     if(this.state.product){
       return ! this.state.product.validOffer({
@@ -62,13 +59,10 @@ class CommissionOfferForm extends React.Component{
       background={this.props.background}
     />;
     if(this.state.hasBackground){
-      console.log("Offer has an attached background");
       if( (! this.state.product) || this.state.product.allowBackground){
-        console.log("Backgrounds are allowed, returning a form...");
         return backgroundForm;
       }
       else{
-        console.log("Backgrounds are not allowed, displaying error...");
         return <div className="error">
           This product does not allow backgrounds.
           Remove this background before submitting.
@@ -125,7 +119,7 @@ class CommissionOfferForm extends React.Component{
     if(this.subjectsLeft() < Infinity){
       subjectsLimit = `You may add ${this.subjectsLeft()} more`; 
     }
-    return <div className="subjects-section">
+    return <div className="offer-form-subjects-section">
       <h2>
         Subjects
       </h2>

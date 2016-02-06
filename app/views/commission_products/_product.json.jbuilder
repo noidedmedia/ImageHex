@@ -13,3 +13,7 @@ json.extract! product,
               :maximum_subjects,
               :include_background
 json.user product.user, partial: "users/stub", as: :user
+json.example_images product.example_images.take(3) do |i|
+  json.extract! i, :id, :created_at
+  json.thumbnail path_to_image(i.f :medium)
+end
