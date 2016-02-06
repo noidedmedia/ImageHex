@@ -25,13 +25,17 @@ describe Admin::ImagesController do
       it "removes all reports on the image" do
         image = FactoryGirl.create(:image)
         FactoryGirl.create(:image_report, image: image)
-        expect { post :absolve, id: image }.to change { image.image_reports.active.count }.from(1).to(0)
+        expect do
+          post :absolve, params: { id: image }
+        end.to change { image.image_reports.active.count }.from(1).to(0)
       end
     end
     describe "post #destroy" do
       it "removes the image" do
         img = FactoryGirl.create(:image)
-        expect { post :destroy, id: img }.to change { Image.count }.by(-1)
+        expect do
+          post :destroy, params: { id: img }
+        end.to change { Image.count }.by(-1)
       end
     end
   end

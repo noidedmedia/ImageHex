@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/connorshea/devise-two-factor.git
+  remote: https://github.com/connorshea/devise-two-factor.git
   revision: 0fa0a69147399fbe1e6875f802eea638c73ed86e
   branch: patch3
   specs:

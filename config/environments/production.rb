@@ -50,12 +50,14 @@ Rails.application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_files = true
+  config.public_file_server.enabled = true
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=#{2.weeks.to_i}'
+  }
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
-  config.static_cache_control = "public, max-age=#{2.weeks.to_i}"
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
