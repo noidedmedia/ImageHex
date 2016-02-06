@@ -34,7 +34,7 @@ gem 'devise', '>= 4.0.0.rc1'
 ##
 # https://github.com/tinfoil/devise-two-factor
 # Two-factor authentication support for devise
-gem 'devise-two-factor', github: 'connorshea/devise-two-factor', branch: 'patch3'
+gem 'devise-two-factor', git: 'https://github.com/connorshea/devise-two-factor.git', branch: 'patch3'
 
 ##
 # https://github.com/samvincent/rqrcode-rails3
