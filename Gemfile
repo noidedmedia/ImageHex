@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', '4.2.5.1'
+gem 'rails', '= 5.0.0.beta2'
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
@@ -29,12 +29,12 @@ gem 'oauth2'
 # https://github.com/plataformatec/devise
 # Devise is "a flexible authentication solution for Rails based on Warden".
 # Includes the bcrypt gem for securely storing passwords.
-gem 'devise'
+gem 'devise', '>= 4.0.0.rc1'
 
 ##
 # https://github.com/tinfoil/devise-two-factor
 # Two-factor authentication support for devise
-gem 'devise-two-factor'
+gem 'devise-two-factor', github: 'connorshea/devise-two-factor', branch: 'patch3'
 
 ##
 # https://github.com/samvincent/rqrcode-rails3
@@ -242,7 +242,7 @@ group :development, :test do
   ##
   # https://github.com/rspec/rspec-rails
   # A testing framework for Rails.
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 3.5.0.beta1'
 
   ##
   # https://github.com/pry/pry
