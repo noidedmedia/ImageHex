@@ -20,12 +20,14 @@ RSpec.describe CuratorshipsController, type: :controller do
                            user: @user,
                            collection: collection,
                            level: :admin)
-        put(:update,
+        put :update,
+          params: {
             id: c.id,
             collection_id: collection.id,
             curatorship: FactoryGirl.attributes_for(:curatorship,
                                                     user_id: other_user.id,
-                                                    level: :admin))
+                                                    level: :admin)
+          }
         expect(c.reload.level).to eq("admin")
       end
     end
@@ -35,11 +37,13 @@ RSpec.describe CuratorshipsController, type: :controller do
                                user: @user,
                                collection: collection,
                                level: :admin)
-        post(:create,
-             collection_id: collection.id,
-             curatorship: FactoryGirl.attributes_for(:curatorship,
-                                                     user_id: other_user.id,
-                                                     level: :mod))
+        post :create,
+          params: {
+            collection_id: collection.id,
+            curatorship: FactoryGirl.attributes_for(:curatorship,
+                                                   user_id: other_user.id,
+                                                   level: :mod)
+          }
         expect(Curatorship.last.user).to eq(other_user)
       end
     end

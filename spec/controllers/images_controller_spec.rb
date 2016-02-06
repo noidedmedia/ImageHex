@@ -16,7 +16,7 @@ describe ImagesController do
     end
     describe "GET #show" do
       it "shows the iamge" do
-        get :show, id: FactoryGirl.create(:image)
+        get :show, params: { id: FactoryGirl.create(:image) }
         expect(response).to be_success
       end
     end
@@ -24,7 +24,11 @@ describe ImagesController do
       it "works when the user has made the image" do
         i = FactoryGirl.create(:image, user: @user, description: "")
         expect(i.description).to eq("")
-        post :update, id: i.id, image: { description: "test" }
+        post :update,
+          params: {
+            id: i.id,
+            image: { description: "test" }
+          }
         expect(i.reload.description).to eq("test")
       end
       it "doesn't work when the user hasn't" do
@@ -32,7 +36,11 @@ describe ImagesController do
         i = FactoryGirl.create(:image, user: u, description: "")
         expect(i.description).to eq("")
         expect(i.user).to eq(u)
-        post :update, id: i.id, image: { description: "test" }
+        post :update,
+          params: {
+            id: i.id,
+            image: { description: "test" }
+          }
         expect(i.reload.description).to_not eq("test")
         expect(i.reload.description).to eq("")
       end
@@ -42,11 +50,11 @@ describe ImagesController do
         let(:atrs) { FactoryGirl.attributes_for(:image) }
         it "creates a new image" do
           expect do
-            post :create, image: atrs
+            post :create, params: { image: atrs }
           end.to change { Image.count }.by(1)
         end
         it "Redirects to the image" do
-          post :create, image: atrs
+          post :create, params: { image: atrs }
           expect(response).to redirect_to(Image.last)
         end
       end
@@ -54,10 +62,12 @@ describe ImagesController do
     describe "POST #favorite" do
       let(:i) { FactoryGirl.create(:image) }
       it "makes a new favorite for a user" do
-        expect { post :favorite, id: i }.to change { @user.favorites.images.count }.by(1)
+        expect do
+          post :favorite, params: { id: i }
+        end.to change { @user.favorites.images.count }.by(1)
       end
       it "adds the image to the user's favorite" do
-        post :favorite, id: i
+        post :favorite, params: { id: i }
         expect(@user.favorites.images).to include(i)
       end
     end
@@ -65,11 +75,11 @@ describe ImagesController do
       let(:i) { FactoryGirl.create(:image) }
       it "makes a new creation for a user" do
         expect do
-          post :created, id: i
+          post :created, params: { id: i }
         end.to change { @user.creations.count }.by(1)
       end
       it "adds the image to the user's creation" do
-        post :created, id: i
+        post :created, params: { id: i }
         expect(@user.creations).to include(i)
       end
     end
@@ -84,7 +94,7 @@ describe ImagesController do
     end
     describe "GET #show" do
       it "redirects to the login page" do
-        get :show, id: FactoryGirl.create(:image)
+        get :show, params: { id: FactoryGirl.create(:image) }
         expect(response).to be_success
       end
     end
@@ -93,7 +103,11 @@ describe ImagesController do
       it "doesn't do anything" do
         @images = FactoryGirl.create(:image)
         expect do
-          post :new, id: @image, image: FactoryGirl.attributes_for(:image)
+          post :new,
+            params: {
+              id: @image,
+              image: FactoryGirl.attributes_for(:image)
+            }
         end.to_not change { Image.count }
       end
     end

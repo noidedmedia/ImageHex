@@ -35,7 +35,7 @@ RSpec.describe NotificationsController, type: :controller do
       it "marks a notification as read" do
         n = FactoryGirl.create(:notification, user: @user)
         expect(n.read).to eq(false)
-        post :read, id: n.id
+        post :read, params: { id: n.id }
         n.reload
         expect(n.read).to eq(true)
       end

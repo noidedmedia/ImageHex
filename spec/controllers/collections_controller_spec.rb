@@ -6,26 +6,26 @@ RSpec.describe CollectionsController, type: :controller do
     it "renders the index page" do
       user = FactoryGirl.create(:user)
       user.collections << [FactoryGirl.create(:collection)]
-      get :index, user_id: user
+      get :index, params: { user_id: user }
       expect(response).to render_template("index")
     end
   end
   describe "get #show" do
     let(:c) { FactoryGirl.create(:collection) }
     it "is success" do
-      get :show, id: c.id
+      get :show, params: { id: c.id }
       expect(response).to be_success
     end
     it "sets the images variable" do
-      get :show, id: c.id
+      get :show, params: { id: c.id }
       expect(assigns(:images)).to eq(c.images)
     end
     it "sets the collection variable" do
-      get :show, id: c.id
+      get :show, params: { id: c.id }
       expect(assigns(:collection)).to eq(c)
     end
     it "sets the curators variable" do
-      get :show, id: c.id
+      get :show, params: { id: c.id }
       expect(assigns(:curators)).to eq(c.curators)
     end
   end
@@ -44,7 +44,11 @@ RSpec.describe CollectionsController, type: :controller do
       end
 
       it "works" do
-        put :edit, id: c, collection: FactoryGirl.attributes_for(:collection)
+        put :edit,
+          params: {
+            id: c,
+            collection: FactoryGirl.attributes_for(:collection)
+          }
         expect(response).to be_success
       end
     end
@@ -58,7 +62,7 @@ RSpec.describe CollectionsController, type: :controller do
       end
       it "allows deletion" do
         expect do
-          delete :destroy, id: c.id
+          delete :destroy, params: { id: c.id }
         end.to change { Collection.count }.by(-1)
       end
     end
@@ -69,7 +73,7 @@ RSpec.describe CollectionsController, type: :controller do
         @user.subscribed_collections << c
         expect(@user.subscribed_collections).to include(c)
         expect do
-          delete(:unsubscribe, id: c)
+          delete :unsubscribe, params: { id: c }
         end.to change { @user.subscribed_collections.count }.by(-1)
         expect(@user.subscribed_collections.reload).to_not include(c)
       end
@@ -79,7 +83,7 @@ RSpec.describe CollectionsController, type: :controller do
       let(:c) { FactoryGirl.create(:collection) }
       it "adds the collection to a users subscribed collections" do
         expect do
-          post "subscribe", id: c
+          post "subscribe", params: { id: c }
         end.to change { @user.subscribed_collections.count }.by(1)
       end
     end
@@ -95,12 +99,12 @@ RSpec.describe CollectionsController, type: :controller do
         end
         it "makes a new collection of the proper type with an admin user" do
           expect do
-            post :create, collection: subjective_atrs
+            post :create, params: { collection: subjective_atrs }
           end.to change { Subjective.count }.by(1)
           expect(Curatorship.last.level).to eq("admin")
         end
         it "redirects to the collection" do
-          post :create, collection: subjective_atrs
+          post :create, params: { collection: subjective_atrs }
           expect(response).to redirect_to(collection_path(Collection.last))
         end
       end

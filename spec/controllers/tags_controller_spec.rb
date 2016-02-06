@@ -6,7 +6,7 @@ RSpec.describe TagsController, type: :controller do
     it "suggests properly" do
       names = %w(boddy billy broke)
       allow(Tag).to receive(:suggest).and_return(names)
-      get :suggest, name: "b"
+      get :suggest, params: { name: "b" }
       expect(JSON.parse(response.body)).to eq(names)
     end
   end
@@ -19,12 +19,20 @@ RSpec.describe TagsController, type: :controller do
     describe "put #edit" do
       let(:tag) { FactoryGirl.create(:tag) }
       it "updates with valid params" do
-        put :update, id: tag, tag: { description: "test" }
+        put :update,
+          params: {
+            id: tag,
+            tag: { description: "test" }
+          }
         expect(tag.reload.description).to eq("test")
       end
       it "makes a new tracker" do
         expect do
-          put :update, id: tag, tag: { description: "test" }
+          put :update,
+            params: {
+              id: tag,
+              tag: { description: "test" }
+            }
         end.to change { TagChange.count }.by(1)
         expect(TagChange.last.tag.id).to eq(tag.id)
       end

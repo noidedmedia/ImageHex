@@ -12,11 +12,19 @@ RSpec.describe TagGroupChangesController, type: :controller do
   end
   describe "get #index" do
     it "displays all tag groups" do
-      get :index, tag_group_id: group.id, image_id: image.id
+      get :index,
+        params: {
+          tag_group_id: group.id,
+          image_id: image.id
+        }
       expect(assigns(:changes)).to eq([change])
     end
     it "is successful" do
-      get :index, tag_group_id: group.id, image_id: image.id
+      get :index,
+        params: {
+          tag_group_id: group.id,
+          image_id: image.id
+        }
       expect(response).to be_success
     end
   end
