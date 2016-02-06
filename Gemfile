@@ -315,6 +315,11 @@ group :test do
   # https://github.com/colszowka/simplecov
   # See how much coverage our tests have
   gem 'simplecov'
+
+  ##
+  # https://github.com/rails/rails-controller-testing
+  # Extracting `assigns` and `assert_template` from ActionDispatch.
+  gem 'rails-controller-testing'
 end
 
 ##

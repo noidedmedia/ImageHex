@@ -60,8 +60,7 @@ class ApplicationController < ActionController::Base
   ##
   # Allow devise to add a user's name on creation.
   def configure_devise_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :name
-    devise_parameter_sanitizer.for(:sign_up) << :subscribed_to_newsletter
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :subscribed_to_newsletter])
   end
 
   DEFAULT_CONTENT = {
