@@ -1,5 +1,5 @@
 <%# This space intentionally left blank. No title needed for the home page. %>
-<% cache "frontpages-images-no-user", expires_in: 15.minutes do %>
+<% cache ["f-images-no-user", @page, @per_page], expires_in: 15.minutes do %>
   <div class="home-container">
     <div class="frontpage-logo">
       <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
