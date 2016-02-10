@@ -1,0 +1,7 @@
+{
+  "ecmaFeatures": {
+    "blockBindings": true,
+    "classes": true,
+    "jsx": true
+    }
+}
