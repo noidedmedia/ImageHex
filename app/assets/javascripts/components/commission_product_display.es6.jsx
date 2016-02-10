@@ -6,7 +6,7 @@ class CommissionProductDisplay extends React.Component{
   render(){
     var cost = this.props.product.calculateCost(this.props);
     var costInfo = "";
-    if(cost){
+    if (cost){
       costInfo = <span className="commission-product-total-cost">
         Total Cost of ${(cost / 100).toFixed(2)}
       </span>;

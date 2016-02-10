@@ -9,7 +9,7 @@ class CommissionProductPicker extends React.Component{
     this.fetchData(props);
   }
   render(){
-    if(this.state.fetched){
+    if (this.state.fetched){
       var products = this.state.products.map((p) => {
         return <CommissionProductDisplay
             product={p}
@@ -20,7 +20,7 @@ class CommissionProductPicker extends React.Component{
         {products}
       </ul>;
     }
-    else{ 
+    else { 
       return <div>
         <progress></progress>
       </div>;
@@ -28,7 +28,7 @@ class CommissionProductPicker extends React.Component{
   }
   componentWillReceiveProps(nextProps){
     console.log("Commission product picker is receiving new props",nextProps);
-    if((this.props.subjectsCount == nextProps.subjectsCount &&
+    if ((this.props.subjectsCount == nextProps.subjectsCount &&
         this.props.hasBackground == nextProps.hasBackgroud)){
       console.log("subjectsCount or hasBackground has not changed.");
       return;

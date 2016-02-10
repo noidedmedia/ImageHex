@@ -21,5 +21,5 @@ var ready = function() {
   checkIfEmpty();
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);
 

@@ -13,7 +13,7 @@ class UserComponent extends React.Component{
     </div>;
   }
   moreInfo(){
-    if(this.state.fully_loaded){
+    if (this.state.fully_loaded){
       console.log("Fully loaded already");
       return <div className="react-user-additional-info">
         <div className="react-user-description">
@@ -22,7 +22,7 @@ class UserComponent extends React.Component{
         {this.userCreations()}
       </div>;
     }
-    else{
+    else {
       console.log("not fully loaded");
       return <div onClick={this.loadInfo.bind(this)}>Info</div>;
     }
@@ -39,10 +39,10 @@ class UserComponent extends React.Component{
     });
   }
   userCreations(){
-    if(this.state.showCreations){
+    if (this.state.showCreations){
       return <ImageCollectionComponent collection={this.props.user.creations()} />;
     }
-    else{
+    else {
       return <div onClick={this.toggleCreations.bind(this)}>
         Show creations
       </div>;

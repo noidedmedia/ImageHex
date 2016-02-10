@@ -5,7 +5,7 @@ class ConversationComponent extends React.Component{
   }
   render(){
     var className= "conversation focused";
-    if(this.props.conversation.hasUnreadMessages()){
+    if (this.props.conversation.hasUnreadMessages()){
       className = className + " has-unread";
     }
     return <div className={className}>
@@ -30,10 +30,10 @@ class ConversationComponent extends React.Component{
   }
 
   keydown(event){
-    if(event.shiftKey){
+    if (event.shiftKey){
       return;
     }
-    if(event.keyCode === 13){
+    if (event.keyCode === 13){
       this.submitMessage();
     }
   }

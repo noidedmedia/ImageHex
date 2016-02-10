@@ -7,7 +7,7 @@ class ExampleImagePicker extends React.Component{
   }
   render(){
     var inputs = this.state.selectedImages.map((img, index) => {
-      var name = `commission_product[example_image_ids][]`;
+      var name = "commission_product[example_image_ids][]";
       return <input type="hidden"
         name={name}
         value={img.id}
@@ -31,8 +31,8 @@ class ExampleImagePicker extends React.Component{
   }
   removeImage(img){
     var index;
-    for(let i = 0; i < this.state.selectedImages.length; i++){
-      if(this.state.selectedImages[i].id == img.id){
+    for (let i = 0; i < this.state.selectedImages.length; i++){
+      if (this.state.selectedImages[i].id == img.id){
         index = i;
         break;
       }

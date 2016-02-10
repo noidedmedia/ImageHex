@@ -116,12 +116,12 @@ class NotificationItem extends React.Component {
         {username} has started following you
       </p>;
     }
-    if(kind == "commission_offer_confirmed"){
+    if (kind == "commission_offer_confirmed"){
       return <p className="notification-message">
         {username} just submitted a commission offer to you!
       </p>;
     }
-    if(kind == "commission_offer_accepted"){
+    if (kind == "commission_offer_accepted"){
       return <p className="notification-message">
         {username} just accepted your offer!
       </p>;

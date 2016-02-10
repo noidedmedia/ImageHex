@@ -11,14 +11,14 @@ class Chat extends React.Component{
   }
 
   render(){
-    if(this.state.active){
-      if(! this.state.conversationCollection){
+    if (this.state.active){
+      if (! this.state.conversationCollection){
         return <div>
           <progress></progress>
         </div>;
       }
       var c = this.state.conversationCollection.map((conv, ind) => {
-        if(ind === this.state.focusedIndex){
+        if (ind === this.state.focusedIndex){
           return <ConversationComponent
             conversation={conv}
             key={conv.id}
@@ -39,7 +39,7 @@ class Chat extends React.Component{
         {c}
       </div>;
     }
-    else{
+    else {
       var unreadCount = this.unreadMessageCount();
       return <div onClick={this.activate.bind(this)}>
         Chat ({unreadCount} messages unread)
@@ -71,13 +71,13 @@ class Chat extends React.Component{
   }
 
   unreadMessageCount(){
-    if(this.state.unread){
+    if (this.state.unread){
       return this.state.unread.length;
     }
-    else if(this.state.conversationsCollection){
+    else if (this.state.conversationsCollection){
       return this.state.conversationCollection.unreadMessageCount();
     }
-    else{
+    else {
       return "";
     }
   }
@@ -89,7 +89,7 @@ class Chat extends React.Component{
         lastFetchedAt: new Date(),
         conversationsCollection: this.state.conversationsCollection
       };
-      if(messages){
+      if (messages){
         console.log("Got new messages, updating last recieved at.");
         state.lastRecievedAt = new Date();
         this.state.conversationCollection.addMessages(messages);
@@ -112,17 +112,17 @@ class Chat extends React.Component{
       console.log(`Determining how long to poll.
                   Last sent: ${this.state.lastSentAt}
                   LastRecieved: ${this.state.lastRecievedAt}`);
-      if(this.state.lastSentAt &&
+      if (this.state.lastSentAt &&
                      new Date() - this.state.lastSentAt < 10 * 1000){
         console.log("Sent within the last ten seconds.");
         return window.setTimeout(poll.bind(this), 1000);
       }
-                  else if(this.state.lastRecievedAt && 
+                  else if (this.state.lastRecievedAt && 
                           new Date() - this.state.lastRecievedAt < 10 * 100){
                     console.log("Recieved in the last ten seconds.");
                     return window.setTimeout(poll.bind(this), 1.5 * 1000);
                   }
-                  else{
+                  else {
                     console.log("Using default time.");
                     return window.setTimeout(poll.bind(this), 10 * 1000);
                   }
@@ -133,9 +133,9 @@ class Chat extends React.Component{
   activate(){
     console.log("Chat linked is clicked, activating...");
     this.beginPolling();
-    if(! this.state.conversationCollection){
+    if (! this.state.conversationCollection){
       ConversationCollection.getCurrent((conv) => {
-        if(this.state.unread){
+        if (this.state.unread){
           conv.addMessages(this.state.unread);
         }
         this.readConversation(conv.conversations[0]);
@@ -146,7 +146,7 @@ class Chat extends React.Component{
       });
     }
     var obj = {active: true};
-    if(this.state.unread && this.state.conversationCollection){
+    if (this.state.unread && this.state.conversationCollection){
       obj[unread] = [];
       this.state.conversationCollection.addMessages(this.state.unread);
     }
@@ -166,7 +166,7 @@ class Chat extends React.Component{
 document.addEventListener("page:change", function(){
   var elem = document.getElementById("chatbox");
   console.log("Got element",elem,"for chat");
-  if(elem){
+  if (elem){
     Message.unread((msg) => {
       ReactDOM.render(<Chat initialUnread={msg} 
         currentUserId={USER_ID}
@@ -174,7 +174,7 @@ document.addEventListener("page:change", function(){
           elem);
     });
   }
-  else{
+  else {
     console.log("no chat to get");
   }
 });

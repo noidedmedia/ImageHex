@@ -1,5 +1,4 @@
 rules:
-  "no-undef": fa
   indent:
     - 2
     - 2
@@ -9,6 +8,11 @@ rules:
   linebreak-style:
     - 2
     - unix
+  "keyword-spacing":
+    - 2
+    -
+      before: true
+      after: true
   semi:
     - 2
     - always
@@ -19,11 +23,10 @@ globals:
   React: true
   ReactDOM: true
 env:
-  es6: true
-  browser: true
+parserOptions:
+  ecmaVersion: 6
+  ecmaFeatures:
+    jsx: true
 extends: 'eslint:recommended'
-ecmaFeatures:
-  jsx: true
-  experimentalObjectRestSpread: true
 plugins:
   - react

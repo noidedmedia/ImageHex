@@ -10,19 +10,19 @@ class ImagePickerView extends React.Component{
 
   render(){
     var images = this.state.images.map((img) => {
-      if(this.imageIsSelected(img)){
+      if (this.imageIsSelected(img)){
         return <ImagePickerView.SelectedImageItem
           deselect={this.removeImage.bind(this, img)}
           image={img} />;
       }
-      else{
+      else {
         return <ImagePickerView.NonselectedImageItem
           select={this.addImage.bind(this, img)}
           image={img} />;
       }
     });
     var progressBar;
-    if(this.state.fetchingImages){
+    if (this.state.fetchingImages){
       progressBar = <progress></progress>;
     }
     return <div>
@@ -45,8 +45,8 @@ class ImagePickerView extends React.Component{
 
   imageIsSelected(img){
     var imgs = this.props.selectedImages;
-    for(var i = 0; i < imgs.length; i++){
-      if(imgs[i].id == img.id){
+    for (var i = 0; i < imgs.length; i++){
+      if (imgs[i].id == img.id){
         return true;
       }
     }

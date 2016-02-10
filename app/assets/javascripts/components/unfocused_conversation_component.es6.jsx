@@ -5,7 +5,7 @@ class UnfocusedConversationComponent extends React.Component{
   }
   render(){
     var className = "conversation unfocused";
-    if(this.props.conversation.hasUnreadMessages()){
+    if (this.props.conversation.hasUnreadMessages()){
       className = className + " has-unread";
     }
     return <div className={className}

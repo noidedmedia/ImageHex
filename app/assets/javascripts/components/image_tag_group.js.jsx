@@ -17,16 +17,16 @@ class ImageTagGroup extends React.Component {
 
   render() {
     var submit;
-    if(this.state.showSubmit){
+    if (this.state.showSubmit){
       submit =  <button onClick={this.submit.bind(this)}>
         Submit
       </button>;
     }
-    else{
+    else {
       submit = <div></div>;
     }
     var className = "image-group-editor";
-    if(! this.state.group.id ){
+    if (! this.state.group.id ){
       className += " new-group";
     }
     return <div className={className}>

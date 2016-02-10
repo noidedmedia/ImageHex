@@ -20,7 +20,7 @@ class MessageComponent extends React.Component{
 
   containerClassName(){
     var t = "message-item";
-    if(this.sentBySelf()){
+    if (this.sentBySelf()){
       t = t + " sent-by-self";
     }
     return t;

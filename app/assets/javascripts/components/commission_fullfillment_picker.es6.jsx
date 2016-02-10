@@ -9,7 +9,7 @@ class CommissionFullfillmentPicker extends React.Component{
   render(){
     var input;
     var list = [];
-    if(this.state.selectedImage){
+    if (this.state.selectedImage){
       list = [this.state.selectedImage];
       input = <input type="hidden"
         name="image_id"
@@ -31,7 +31,7 @@ class CommissionFullfillmentPicker extends React.Component{
     });
   }
   removeImage(img){
-    if(this.state.selectedImage && this.state.selectedImage.id == img.id){
+    if (this.state.selectedImage && this.state.selectedImage.id == img.id){
       this.setState({
         selectedImage: null
       });
