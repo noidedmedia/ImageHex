@@ -42,25 +42,25 @@ class ConversationCollection{
   // in this collection will be discarded.
   addMessages(messages){
     var tmp = {};
-    for(var i = 0; i < messages.length; i++){
+    for (var i = 0; i < messages.length; i++){
       var message = messages[i];
-      if(tmp.hasOwnProperty(message.conversation_id)){
+      if (tmp.hasOwnProperty(message.conversation_id)){
         tmp[message.conversation_id].push(message);
       }
-      else{
+      else {
         tmp[message.conversation_id] = [message];
       }
     }
-    for(var key in tmp){
+    for (var key in tmp){
       var conv = this.conversationWithId(key);
-      if(conv){
+      if (conv){
         conv.addMessages(tmp[key]);
       }
     }
   }
   conversationWithId(id){
-    for(var i = 0; i < this.conversations.length; i++){
-      if(this.conversations[i].id == id){
+    for (var i = 0; i < this.conversations.length; i++){
+      if (this.conversations[i].id == id){
         return this.conversations[i];
       }
     }

@@ -1,6 +1,6 @@
 class Message{
   constructor(obj){
-    for(var prop in obj){
+    for (var prop in obj){
       this[prop] = obj[prop];
     }
   }

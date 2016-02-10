@@ -2,25 +2,25 @@ class Conversation{
   constructor(obj){
     this.messages = [];
     this.users = [];
-    for(var prop in obj){
-      if(prop === "users" && Array.isArray(obj.users)){
+    for (var prop in obj){
+      if (prop === "users" && Array.isArray(obj.users)){
         obj.users.forEach((user) => {
           this.users.push(new User(user));
         });
       }
-      else if(prop === "messages" && Array.isArray(obj.messages)){
+      else if (prop === "messages" && Array.isArray(obj.messages)){
         obj.messages.forEach((msg) => {
           this.messages.push(msg);
         });
       }
-      else{
+      else {
         this[prop] = obj[prop];
       }
     }
   }
 
   hasOlderMessages(){
-    if("_hasOlder" in this){
+    if ("_hasOlder" in this){
       return this._hasOlder;
     }
     return true;
@@ -32,12 +32,12 @@ class Conversation{
   }
 
   unreadMessageCount(){
-    if(this.messages === []){
+    if (this.messages === []){
       return 0;
     }
     var init = 0;
-    for(var i = this.messages.length - 1; i >= 0; i--){
-      if(this.messages[i].read){
+    for (var i = this.messages.length - 1; i >= 0; i--){
+      if (this.messages[i].read){
         return init;
       }
       init++;
@@ -75,26 +75,26 @@ class Conversation{
   }
 
   fetchOlderMessages(callback){
-    if(this.hasOlderMessages()){
+    if (this.hasOlderMessages()){
       var url = this.baseURL() + "/messages";
       var msg;
-      if(msg = this.oldestMessage()){
+      if (msg = this.oldestMessage()){
         url = url + "?before=" + msg.created_at;
       }
       console.log(`Fetching older messages for conversation ${this.id}`);
       NM.getJSON(url, (data) => {
-        if(data.length == 0){
+        if (data.length == 0){
           this._hasOlder = false;
           callback(false);
         }
-        else{
+        else {
           var d = data.map((da) => new Message(da));
           this.addMessages(d);
           callback(this);
         }
       });
     }
-    else{
+    else {
       callback(false);
     }
   }
@@ -132,8 +132,8 @@ class Conversation{
   }
   
   associateUser(msg){
-    for(var i = 0; i < this.users.length; i++){
-      if(this.users[i].id == msg.user_id){
+    for (var i = 0; i < this.users.length; i++){
+      if (this.users[i].id == msg.user_id){
         msg.user = this.users[i];
         return this;
       }

@@ -1,6 +1,6 @@
 class CommissionProduct{
   constructor(json){
-    for(var prop in json){
+    for (var prop in json){
       this[prop] = json[prop];
     }
   }
@@ -15,19 +15,19 @@ class CommissionProduct{
                 background value of ${hasBackground}`);
     var basePrice = this.base_price;
     basePrice += this.subject_price * (subjectsCount - this.included_subjects);
-    if(this.offer_background && hasBackground){
+    if (this.offer_background && hasBackground){
       basePrice += this.background_price;
     }
     return basePrice;
   }
   validOffer(props){
     var {subjectsCount, hasBackground} = props;
-    if(subjectsCount > this.maximumSubjects()){
+    if (subjectsCount > this.maximumSubjects()){
       console.log(`Offer's subject count of ${subjectsCount} is too high.
                   Offer is invalid.`);
       return false;
     }
-    else if(this.disallowBackground() && hasBackground){
+    else if (this.disallowBackground() && hasBackground){
       console.log(`Offer has a background, which it cannot have.
                   Offer is invalid.`);
     }
@@ -42,10 +42,10 @@ class CommissionProduct{
     return ! this.disallowBackground();
   }
   maximumSubjects(){
-    if(this.offer_subjects){
+    if (this.offer_subjects){
       return this.maximum_subjects;
     }
-    else{
+    else {
       return this.included_subjects;
     }
   }

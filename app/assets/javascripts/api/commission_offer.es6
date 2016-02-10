@@ -1,10 +1,10 @@
 class CommissionOffer{
   constructor(json){
-    for(var prop in json){
-      if(prop === "product"){
+    for (var prop in json){
+      if (prop === "product"){
         this.product = new CommissionProduct(json.product);
       }
-      else{
+      else {
         this[prop] = json[prop];
       }
     }

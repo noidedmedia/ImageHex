@@ -8,7 +8,7 @@ ss.setItem = function(key, value){
 
 ss.getItem = function(key){
   var item = sessionStorage.getItem(key);
-  if(item){
+  if (item){
     return JSON.parse(item);
   }
   return item;
@@ -22,7 +22,7 @@ ls.setItem = function(key, value){
 
 ls.getItem = function(key){
   var item = localStorage.get(key);
-  if(item){
+  if (item){
     return JSON.parse(item);
   }
   return item;

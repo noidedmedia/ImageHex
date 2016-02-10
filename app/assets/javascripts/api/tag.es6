@@ -1,6 +1,6 @@
 class Tag{
   constructor(json){
-    for(var prop in json){
+    for (var prop in json){
       this[prop] = json[prop];
     }
   }
@@ -15,10 +15,10 @@ class Tag{
                 c);
   }
   getFullData(callback){
-    if("description" in this){
+    if ("description" in this){
       callback(this);
     }
-    else{
+    else {
       Tag.find(this.id, callback);
     }
   }
@@ -47,7 +47,7 @@ class Tag{
     var uri = "/tags/suggest/?"+ $.param({name: prefix});
     $.getJSON(uri, (d) => {
       var a = [];
-      for(var t of d){
+      for (var t of d){
         a.push(new Tag(t));
       }
       callback(a);

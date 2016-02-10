@@ -18,8 +18,8 @@ class Collection {
     NM.postJSON("/collections/" + this.id + "/images", 
       {
         collection_image: {
-                    image_id: id
-                  }
+          image_id: id
+        }
       }, 
                 (c) => {
                   callback(true);

@@ -34,7 +34,7 @@ class ImageCollection {
   }
 
   previousPage(){
-    if(this.hasPreviousPage()){
+    if (this.hasPreviousPage()){
       this.page = this.page - 1;
       return this;
     } else {

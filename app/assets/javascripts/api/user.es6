@@ -1,13 +1,13 @@
 class User{
   constructor(json){
-    for(var prop in json){
-      if(prop == "collections"){
+    for (var prop in json){
+      if (prop == "collections"){
         this.collections = [];
-        for(var collection of json.collections){
+        for (var collection of json.collections){
           this.collections.push(new Collection(collection));
         }
       }
-      else{
+      else {
         this[prop] = json[prop];
       }
     }
@@ -18,10 +18,10 @@ class User{
     return "description" in this;
   }
   getFullData(callback){
-    if(this.hasFullData()){
+    if (this.hasFullData()){
       callback(this);
     }
-    else{
+    else {
       User.find(this.id, callback);
     }
   }

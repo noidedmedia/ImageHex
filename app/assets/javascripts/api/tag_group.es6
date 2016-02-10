@@ -1,13 +1,13 @@
 class TagGroup{
   constructor(json){
     this.tags = [];
-    for(var prop in json){
-      if(prop == "tags"){
-        for(var tag of json.tags){
+    for (var prop in json){
+      if (prop == "tags"){
+        for (var tag of json.tags){
           this.tags.push(new Tag(tag)); 
         }
       }
-      else{
+      else {
         this[prop] = json[prop];
       }
     }
@@ -16,8 +16,8 @@ class TagGroup{
     this.tags.push(tag);
   }
   removeTag(tag){
-    for(var t in this.tags){
-      if(this.tags[t].id == tag.id){
+    for (var t in this.tags){
+      if (this.tags[t].id == tag.id){
         this.tags.splice(t, 1);
       }
     }
