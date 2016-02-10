@@ -17,7 +17,7 @@ class ImageTagGroup extends React.Component {
 
   render() {
     var submit;
-    if (this.state.showSubmit){
+    if (this.state.showSubmit) {
       submit =  <button onClick={this.submit.bind(this)}>
         Submit
       </button>;
@@ -26,7 +26,7 @@ class ImageTagGroup extends React.Component {
       submit = <div></div>;
     }
     var className = "image-group-editor";
-    if (! this.state.group.id ){
+    if (! this.state.group.id ) {
       className += " new-group";
     }
     return <div className={className}>
@@ -46,12 +46,12 @@ class ImageTagGroup extends React.Component {
     </div>;
   }
 
-  hideSubmit(){
+  hideSubmit() {
     this.setState({
       showSubmit: false
     });
   }
-  showSubmit(){
+  showSubmit() {
     this.setState({
       showSubmit: true
     });
@@ -87,7 +87,7 @@ class ImageTagGroup extends React.Component {
           tag_ids: tag_ids
         }
       };
-      NM.putJSON(url, data, function(){
+      NM.putJSON(url, data, function() {
         console.log("Successfully edited.");
         window.location.reload();
       });
@@ -101,7 +101,7 @@ class ImageTagGroup extends React.Component {
         }
       };
       var url = "/images/" + this.props.imageId + "/tag_groups";
-      NM.postJSON(url, data, function(){
+      NM.postJSON(url, data, function() {
         console.log("That should have created another tag group");
         window.location.reload();
       });

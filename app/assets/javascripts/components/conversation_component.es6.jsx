@@ -1,15 +1,20 @@
-class ConversationComponent extends React.Component{
-  constructor(props){
+/**
+ * This component displays a single conversation. It is rendered inside of a
+ * larger chat component.
+ */
+class ConversationComponent extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {};
   }
-  render(){
+  render() {
     var className= "conversation focused";
-    if (this.props.conversation.hasUnreadMessages()){
+    if (this.props.conversation.hasUnreadMessages()) {
       className = className + " has-unread";
     }
     return <div className={className}>
       <h2>{this.conversationTitle()}</h2>
+      {/* Use another component to manage messages */}
       <MessageListComponent messages={this.props.conversation.messages}
         fetchOlderMessages={this.props.fetchOlderMessages}
         hasOlderMessages={this.hasOlderMessages.bind(this)} 
@@ -22,23 +27,23 @@ class ConversationComponent extends React.Component{
     </div>;
   }
 
-  onChange(event){
+  onChange(event) {
     console.log("Change event detected");
     this.setState({
       inputValue: event.target.value
     });
   }
 
-  keydown(event){
-    if (event.shiftKey){
+  keydown(event) {
+    if (event.shiftKey) {
       return;
     }
-    if (event.keyCode === 13){
+    if (event.keyCode === 13) {
       this.submitMessage();
     }
   }
 
-  submitMessage(){
+  submitMessage() {
     console.log("Submitting a new message with body:",this.state.inputValue);
     this.props.createMessage(this.state.inputValue);
     this.setState({
@@ -46,11 +51,11 @@ class ConversationComponent extends React.Component{
     });
   }
 
-  hasOlderMessages(){
+  hasOlderMessages() {
     return this.props.conversation.hasOlderMessages();
   }
 
-  conversationTitle(){
+  conversationTitle() {
     var users = this.props.conversation.users
       .filter((u) => u.id !== this.props.currentUserId)
       .map((u) => u.name)

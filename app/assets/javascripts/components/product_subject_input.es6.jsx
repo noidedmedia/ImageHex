@@ -1,5 +1,5 @@
 class ProductSubjectInput extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       offerSubjects: props.offerSubjects,
@@ -7,7 +7,7 @@ class ProductSubjectInput extends React.Component {
       maximumSubjects: props.maximumSubjects
     };
   }
-  render(){
+  render() {
     var includedInput = <span>
       <input type="number"
         step="1"
@@ -32,13 +32,13 @@ class ProductSubjectInput extends React.Component {
       {this.state.allowAdditional ? chargeSection : disallowChargeSection}
     </div>;
   }
-  toggleAdditional(event){
+  toggleAdditional(event) {
     console.log(`Targeting additional to ${event.target.checked}`);
     this.setState({
       allowAdditional: event.target.checked
     });
   }
-  findMinimumIncluded(){
+  findMinimumIncluded() {
     return this.state.allowAdditional ? 0 : 1;
   }
 

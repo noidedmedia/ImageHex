@@ -1,5 +1,9 @@
-class Chat extends React.Component{
-  constructor(props){
+/**
+ * This component handles the entire chat, including all conversations.
+ * It's loosely modeled after Facebook's chat.
+ */
+class Chat extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       unread: props.initialUnread,
@@ -10,15 +14,19 @@ class Chat extends React.Component{
 
   }
 
-  render(){
-    if (this.state.active){
-      if (! this.state.conversationCollection){
+  render() {
+    if (this.state.active) {
+      if (! this.state.conversationCollection) {
+        /**
+         * Don't have conversations apparently, so display a progress bar while
+         * we load them
+         */
         return <div>
           <progress></progress>
         </div>;
       }
       var c = this.state.conversationCollection.map((conv, ind) => {
-        if (ind === this.state.focusedIndex){
+        if (ind === this.state.focusedIndex) {
           return <ConversationComponent
             conversation={conv}
             key={conv.id}
@@ -47,7 +55,7 @@ class Chat extends React.Component{
     }
   }
 
-  createMessage(conversation, body){
+  createMessage(conversation, body) {
     console.log("Creating message in chat component");
     conversation.createMessage(body, (message) => {
       this.setState({
@@ -58,7 +66,7 @@ class Chat extends React.Component{
     this.fetchNewMessages();
   }
 
-  fetchOlderMessages(index, callback){
+  fetchOlderMessages(index, callback) {
     var conv = this.state.conversationCollection.conversations[index];
     console.log(`Told to fetch older messages for ${conv.id}, doing so.`);
     conv.fetchOlderMessages((msg) => {
@@ -70,11 +78,11 @@ class Chat extends React.Component{
     });
   }
 
-  unreadMessageCount(){
-    if (this.state.unread){
+  unreadMessageCount() {
+    if (this.state.unread) {
       return this.state.unread.length;
     }
-    else if (this.state.conversationsCollection){
+    else if (this.state.conversationsCollection) {
       return this.state.conversationCollection.unreadMessageCount();
     }
     else {
@@ -82,14 +90,14 @@ class Chat extends React.Component{
     }
   }
 
-  fetchNewMessages(){
+  fetchNewMessages() {
     console.log("Fetching messages in chat.");
     Message.createdSince(this.state.lastFetchedAt, (messages) => {
       var state = {
         lastFetchedAt: new Date(),
         conversationsCollection: this.state.conversationsCollection
       };
-      if (messages){
+      if (messages) {
         console.log("Got new messages, updating last recieved at.");
         state.lastRecievedAt = new Date();
         this.state.conversationCollection.addMessages(messages);
@@ -98,7 +106,7 @@ class Chat extends React.Component{
     });
   }
 
-  focusConversation(index){
+  focusConversation(index) {
     this.setState({
       focusedIndex: index
     });
@@ -106,19 +114,19 @@ class Chat extends React.Component{
     this.readConversation(conv);
   }
   // Start listening periodically for changes 
-  beginPolling(){
-    function poll(){
+  beginPolling() {
+    function poll() {
       this.fetchNewMessages();
       console.log(`Determining how long to poll.
                   Last sent: ${this.state.lastSentAt}
                   LastRecieved: ${this.state.lastRecievedAt}`);
       if (this.state.lastSentAt &&
-                     new Date() - this.state.lastSentAt < 10 * 1000){
+                     new Date() - this.state.lastSentAt < 10 * 1000) {
         console.log("Sent within the last ten seconds.");
         return window.setTimeout(poll.bind(this), 1000);
       }
                   else if (this.state.lastRecievedAt && 
-                          new Date() - this.state.lastRecievedAt < 10 * 100){
+                          new Date() - this.state.lastRecievedAt < 10 * 100) {
                     console.log("Recieved in the last ten seconds.");
                     return window.setTimeout(poll.bind(this), 1.5 * 1000);
                   }
@@ -130,12 +138,12 @@ class Chat extends React.Component{
     window.setTimeout(poll.bind(this), 10000);
   }
 
-  activate(){
+  activate() {
     console.log("Chat linked is clicked, activating...");
     this.beginPolling();
-    if (! this.state.conversationCollection){
+    if (! this.state.conversationCollection) {
       ConversationCollection.getCurrent((conv) => {
-        if (this.state.unread){
+        if (this.state.unread) {
           conv.addMessages(this.state.unread);
         }
         this.readConversation(conv.conversations[0]);
@@ -146,14 +154,14 @@ class Chat extends React.Component{
       });
     }
     var obj = {active: true};
-    if (this.state.unread && this.state.conversationCollection){
+    if (this.state.unread && this.state.conversationCollection) {
       obj[unread] = [];
       this.state.conversationCollection.addMessages(this.state.unread);
     }
     this.setState(obj);
   }
 
-  readConversation(conv){
+  readConversation(conv) {
     console.log("Marking all messages in conversation #",conv.id,"as read");
     conv.markRead(() => {
       this.setState({
@@ -163,10 +171,10 @@ class Chat extends React.Component{
   }
 }
 
-document.addEventListener("page:change", function(){
+document.addEventListener("page:change", function() {
   var elem = document.getElementById("chatbox");
   console.log("Got element",elem,"for chat");
-  if (elem){
+  if (elem) {
     Message.unread((msg) => {
       ReactDOM.render(<Chat initialUnread={msg} 
         currentUserId={USER_ID}

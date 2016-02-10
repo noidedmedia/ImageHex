@@ -56,7 +56,7 @@ class NotificationItem extends React.Component {
     } else {
       className += " unread";
     }
-    var handler = this.state.read ? function(){} : this.readSelf.bind(this);
+    var handler = this.state.read ? function() {} : this.readSelf.bind(this);
     return <li className={className} onClick={handler}>
       <a href={this.link()}>
         {this.message()}
@@ -86,7 +86,7 @@ class NotificationItem extends React.Component {
     else if (this.props.subject.type == "user") {
       return "/users/" + this.props.subject.id;
     }
-    else if (this.props.subject.type == "commission_offer"){
+    else if (this.props.subject.type == "commission_offer") {
       return "/commission_offers/" + this.props.subject.id;
     }
   }
@@ -116,12 +116,12 @@ class NotificationItem extends React.Component {
         {username} has started following you
       </p>;
     }
-    if (kind == "commission_offer_confirmed"){
+    if (kind == "commission_offer_confirmed") {
       return <p className="notification-message">
         {username} just submitted a commission offer to you!
       </p>;
     }
-    if (kind == "commission_offer_accepted"){
+    if (kind == "commission_offer_accepted") {
       return <p className="notification-message">
         {username} just accepted your offer!
       </p>;

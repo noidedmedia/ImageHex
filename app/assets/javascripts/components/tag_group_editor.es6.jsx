@@ -231,7 +231,7 @@ class TagGroupEditor extends React.Component {
    * the first 3-4 characters, and to filter the existing suggestions from that
    * point on. Right now, though, we're 2agile4that, or something.
    */
-  onInputChange(event){ 
+  onInputChange(event) { 
     var value = event.target.value;
     if (event.target.value !== "") {
       this.fetchSuggestions(event.target.value);

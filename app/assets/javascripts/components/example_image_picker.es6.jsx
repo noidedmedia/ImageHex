@@ -1,11 +1,11 @@
-class ExampleImagePicker extends React.Component{
-  constructor(props){
+class ExampleImagePicker extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       selectedImages: props.initialSelected || []
     };
   }
-  render(){
+  render() {
     var inputs = this.state.selectedImages.map((img, index) => {
       var name = "commission_product[example_image_ids][]";
       return <input type="hidden"
@@ -23,16 +23,16 @@ class ExampleImagePicker extends React.Component{
       />
     </div>;
   }
-  addImage(img){
+  addImage(img) {
     this.state.selectedImages.push(img);
     this.setState({
       selectedImages: this.state.selectedImages
     });
   }
-  removeImage(img){
+  removeImage(img) {
     var index;
-    for (let i = 0; i < this.state.selectedImages.length; i++){
-      if (this.state.selectedImages[i].id == img.id){
+    for (let i = 0; i < this.state.selectedImages.length; i++) {
+      if (this.state.selectedImages[i].id == img.id) {
         index = i;
         break;
       }

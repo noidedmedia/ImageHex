@@ -1,19 +1,19 @@
-class UserComponent extends React.Component{
-  constructor(props){
+class UserComponent extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       fully_loaded: this.props.user.hasFullData()
     };
   }
-  render(){
+  render() {
     return <div className="react-user">
       <img src={this.props.user.avatar_path} />
       <h3>{this.props.user.name}</h3>
       {this.moreInfo()}
     </div>;
   }
-  moreInfo(){
-    if (this.state.fully_loaded){
+  moreInfo() {
+    if (this.state.fully_loaded) {
       console.log("Fully loaded already");
       return <div className="react-user-additional-info">
         <div className="react-user-description">
@@ -27,7 +27,7 @@ class UserComponent extends React.Component{
       return <div onClick={this.loadInfo.bind(this)}>Info</div>;
     }
   }
-  loadInfo(){
+  loadInfo() {
     console.log("Trying to load info");
     console.log("Oour user property is",this.props.user);
     this.props.user.getFullData((u) => {
@@ -38,8 +38,8 @@ class UserComponent extends React.Component{
       });
     });
   }
-  userCreations(){
-    if (this.state.showCreations){
+  userCreations() {
+    if (this.state.showCreations) {
       return <ImageCollectionComponent collection={this.props.user.creations()} />;
     }
     else {
@@ -48,7 +48,7 @@ class UserComponent extends React.Component{
       </div>;
     }
   }
-  toggleCreations(){
+  toggleCreations() {
     this.setState({
       showCreations: true
     });

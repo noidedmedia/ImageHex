@@ -1,6 +1,6 @@
 var NM = {};
 
-NM.getJSON = function(url, callback){
+NM.getJSON = function(url, callback) {
   aja()
   .url(url)
   .header("Accept", "application/json")
@@ -8,7 +8,7 @@ NM.getJSON = function(url, callback){
   .go();
 };
 
-NM.deleteJSON = function(url, success, failure){
+NM.deleteJSON = function(url, success, failure) {
   aja()
   .url(url)
   .method("delete")
@@ -19,17 +19,17 @@ NM.deleteJSON = function(url, success, failure){
   .go();
 };
 
-NM.getCSRFToken = function(){
+NM.getCSRFToken = function() {
   var metas = document.getElementsByTagName("meta");
   var token;
-  for (var m = 0; m < metas.length; m++){
+  for (var m = 0; m < metas.length; m++) {
     var meta = metas[m];
-    if (meta.getAttribute("name") == "csrf-token"){
+    if (meta.getAttribute("name") == "csrf-token") {
       return meta.getAttribute("content");
     }
   }
 };
-NM.putJSON = function(url, data, callback, error){
+NM.putJSON = function(url, data, callback, error) {
   
   data.authenticity_token = NM.getCSRFToken();
   aja()
@@ -43,7 +43,7 @@ NM.putJSON = function(url, data, callback, error){
   .go();
 };
 
-NM.postJSON = function(url, data, callback, error){
+NM.postJSON = function(url, data, callback, error) {
   data.authenticity_token = NM.getCSRFToken();
   aja()
     .method("post")

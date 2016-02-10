@@ -1,12 +1,12 @@
-class CommissionProductDisplay extends React.Component{
-  constructor(props){
+class CommissionProductDisplay extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {};
   }
-  render(){
+  render() {
     var cost = this.props.product.calculateCost(this.props);
     var costInfo = "";
-    if (cost){
+    if (cost) {
       costInfo = <span className="commission-product-total-cost">
         Total Cost of ${(cost / 100).toFixed(2)}
       </span>;

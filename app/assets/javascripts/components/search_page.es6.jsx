@@ -52,7 +52,7 @@ class SearchPage extends React.Component {
       </div>
     </div>;
   }
-  removeTagGroup(index){
+  removeTagGroup(index) {
     this.state.tagGroups.splice(index, 1);
     this.setState({
       tagGroups: this.state.tagGroups

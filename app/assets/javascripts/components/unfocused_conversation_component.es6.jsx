@@ -1,11 +1,11 @@
-class UnfocusedConversationComponent extends React.Component{
-  constructor(props){
+class UnfocusedConversationComponent extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {};
   }
-  render(){
+  render() {
     var className = "conversation unfocused";
-    if (this.props.conversation.hasUnreadMessages()){
+    if (this.props.conversation.hasUnreadMessages()) {
       className = className + " has-unread";
     }
     return <div className={className}
@@ -13,13 +13,13 @@ class UnfocusedConversationComponent extends React.Component{
       {this.title()}
     </div>;
   }
-  userNameList(){
+  userNameList() {
     var users = this.props.conversation.users;
     return users.filter((u) => u.id !== this.props.currentUserId)
       .map((u) => u.name)
       .join(", ");
   }
-  title(){
+  title() {
     var base = this.userNameList();
     var count = this.props.conversation.unreadMessageCount();
     base += ` (${count} unread)`;

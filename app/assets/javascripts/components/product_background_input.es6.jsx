@@ -1,11 +1,11 @@
-class ProductBackgroundInput extends React.Component{
-  constructor(props){
+class ProductBackgroundInput extends React.Component {
+  constructor(props) {
     super(props);
     var type;
-    if (! props.offerBackground && ! props.includeBackground){
+    if (! props.offerBackground && ! props.includeBackground) {
       type = "no-background";
     }
-    else if (props.offerBackground){
+    else if (props.offerBackground) {
       type = "charged-background";
     }
     else {
@@ -18,15 +18,15 @@ class ProductBackgroundInput extends React.Component{
       type: type
     };
   }
-  render(){
+  render() {
     var body;
-    if (this.state.type === "no-background"){
+    if (this.state.type === "no-background") {
       body = <ProductBackgroundInput.NoneBackground />;
     }
-    else if (this.state.type === "free-background"){
+    else if (this.state.type === "free-background") {
       body = <ProductBackgroundInput.FreeBackground />;
     }
-    else if (this.state.type === "charged-background"){
+    else if (this.state.type === "charged-background") {
       body = <ProductBackgroundInput.ChargedBackground 
         price={this.state.price} />;
     }
@@ -54,17 +54,17 @@ class ProductBackgroundInput extends React.Component{
       </div>
     </div>;
   }
-  moveToCharged(){
+  moveToCharged() {
     this.setState({
       type: "charged-background"
     });
   }
-  moveToFree(){
+  moveToFree() {
     this.setState({
       type: "free-background"
     });
   }
-  moveToNone(){
+  moveToNone() {
     this.setState({
       type: "no-background"
     });

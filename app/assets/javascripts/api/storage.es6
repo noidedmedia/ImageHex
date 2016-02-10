@@ -2,13 +2,13 @@
 
 var ss = {};
 
-ss.setItem = function(key, value){
+ss.setItem = function(key, value) {
   sessionStorage.setItem(key, JSON.stringify(value));
 };
 
-ss.getItem = function(key){
+ss.getItem = function(key) {
   var item = sessionStorage.getItem(key);
-  if (item){
+  if (item) {
     return JSON.parse(item);
   }
   return item;
@@ -16,13 +16,13 @@ ss.getItem = function(key){
 
 var ls = {};
 
-ls.setItem = function(key, value){
+ls.setItem = function(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-ls.getItem = function(key){
+ls.getItem = function(key) {
   var item = localStorage.get(key);
-  if (item){
+  if (item) {
     return JSON.parse(item);
   }
   return item;
