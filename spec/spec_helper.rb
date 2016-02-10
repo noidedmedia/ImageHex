@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start
+if ENV["COVERAGE"]
+  SimpleCov.start
+end
 
 ENV["RAILS_ENV"] ||= 'test'
 
