@@ -3,7 +3,7 @@ class UserComponent extends React.Component{
     super(props);
     this.state = {
       fully_loaded: this.props.user.hasFullData()
-    }
+    };
   }
   render(){
     return <div className="react-user">
@@ -20,11 +20,11 @@ class UserComponent extends React.Component{
           {this.state.user.description}
         </div>
         {this.userCreations()}
-      </div>
+      </div>;
     }
     else{
       console.log("not fully loaded");
-      return <div onClick={this.loadInfo.bind(this)}>Info</div>
+      return <div onClick={this.loadInfo.bind(this)}>Info</div>;
     }
   }
   loadInfo(){

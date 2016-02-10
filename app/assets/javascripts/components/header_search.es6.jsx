@@ -36,7 +36,7 @@ class HeaderSearch extends React.Component {
       return {
         id: tag.id,
         name: tag.name
-      }
+      };
     });
     query.tag_groups = [{
       tags: tags
@@ -45,7 +45,7 @@ class HeaderSearch extends React.Component {
   }
 }
 
-document.addEventListener('page:change', function() {
+document.addEventListener("page:change", function() {
   var hs = document.getElementById("header-search");
   console.log("header search container:", hs);
   ReactDOM.render(<HeaderSearch />,

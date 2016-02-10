@@ -3,7 +3,7 @@ class CommissionCalculatorResults extends React.Component {
     super(props);
     this.state = {
       value: "10"
-    }
+    };
   }
 
   render() {
@@ -73,4 +73,4 @@ var ready = function() {
   }
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);

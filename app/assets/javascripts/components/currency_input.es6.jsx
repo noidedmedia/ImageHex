@@ -11,7 +11,7 @@ class CurrencyInput extends React.Component{
       min={this.props.min}
       step="0.01"
       value={this.state.value}
-      onChange={this.handleChange.bind(this)} />
+      onChange={this.handleChange.bind(this)} />;
   }
   handleChange(event){
     var value = event.target.value;
@@ -26,7 +26,7 @@ class CurrencyInput extends React.Component{
       console.log("Changing value because it was changed on us");
       this.setState({
         value: props.centValue / 100
-      })
+      });
     }
   }
 }

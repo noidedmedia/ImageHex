@@ -14,7 +14,7 @@ class UnfocusedConversationComponent extends React.Component{
     </div>;
   }
   userNameList(){
-    var users = this.props.conversation.users
+    var users = this.props.conversation.users;
     return users.filter((u) => u.id !== this.props.currentUserId)
       .map((u) => u.name)
       .join(", ");

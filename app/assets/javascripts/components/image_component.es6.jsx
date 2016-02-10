@@ -28,7 +28,7 @@ class ImageComponent extends React.Component {
 
         return <li key={group.id}>
           <TagGroupComponent group={group} />
-        </li>
+        </li>;
       });
       var creators = this.state.imgInfo.creators.map((creator) => {
         return <li key={creator.id}>
@@ -46,7 +46,7 @@ class ImageComponent extends React.Component {
           {tagGroups}
         </ul>
       </div>
-    </div>
+    </div>;
     } else {
       return <div onClick={this.fetchMoreInfo.bind(this)}>
         Get More Information
@@ -92,7 +92,7 @@ class ImageComponent extends React.Component {
         <li className={this.props.img.nsfw_sexuality ? "" : "hidden"}>
           NSFW Sexuality
         </li>
-      </ul>
+      </ul>;
     } else {
       return <div />;
     }

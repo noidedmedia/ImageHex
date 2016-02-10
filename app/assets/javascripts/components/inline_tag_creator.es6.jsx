@@ -3,7 +3,7 @@ class InlineTagCreator extends React.Component {
     super(props);
     this.state = {
       name: props.initialTagName
-    }
+    };
   }
 
   render() {

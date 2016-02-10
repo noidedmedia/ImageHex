@@ -1,6 +1,6 @@
 class ProductBackgroundInput extends React.Component{
   constructor(props){
-    super(props)
+    super(props);
     var type;
     if(! props.offerBackground && ! props.includeBackground){
       type = "no-background";
@@ -57,7 +57,7 @@ class ProductBackgroundInput extends React.Component{
   moveToCharged(){
     this.setState({
       type: "charged-background"
-    })
+    });
   }
   moveToFree(){
     this.setState({
@@ -96,7 +96,7 @@ ProductBackgroundInput.FreeBackground = () => {
       name="commission_product[offer_backgroud]"
       value="false" />
   </div>;
-}
+};
 
 ProductBackgroundInput.ChargedBackground = (props) => {
   return <div>
@@ -113,7 +113,7 @@ ProductBackgroundInput.ChargedBackground = (props) => {
     <input type="hidden"
       name="commission_product[include_background]"
       value="false" />
-  </div>
-}
+  </div>;
+};
 
 

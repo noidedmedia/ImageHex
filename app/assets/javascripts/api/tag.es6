@@ -9,7 +9,7 @@ class Tag{
     var c = (tag) => {
       console.log("Create gave us a new tag");
       callback(new Tag(tag));
-    }
+    };
     NM.postJSON("/tags/",
                 props,
                 c);
@@ -19,14 +19,14 @@ class Tag{
       callback(this);
     }
     else{
-      Tag.find(this.id, callback)
+      Tag.find(this.id, callback);
     }
   }
   /**
    * Get an ImageCollection representing all images with this tag.
    */
   images(){
-    return new ImageCollection('/tags/' + this.id, 'images');
+    return new ImageCollection("/tags/" + this.id, "images");
   }
   /**
    * Find a tag by an ID or a slug.

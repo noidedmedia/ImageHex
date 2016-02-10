@@ -8,7 +8,7 @@ class TagGroup{
         }
       }
       else{
-        this[prop] = json[prop]
+        this[prop] = json[prop];
       }
     }
   }

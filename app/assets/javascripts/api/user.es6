@@ -19,7 +19,7 @@ class User{
   }
   getFullData(callback){
     if(this.hasFullData()){
-      callback(this)
+      callback(this);
     }
     else{
       User.find(this.id, callback);

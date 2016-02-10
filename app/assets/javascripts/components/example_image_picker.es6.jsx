@@ -21,7 +21,7 @@ class ExampleImagePicker extends React.Component{
         addImage={this.addImage.bind(this)}
         removeImage={this.removeImage.bind(this)}
       />
-    </div>
+    </div>;
   }
   addImage(img){
     this.state.selectedImages.push(img);

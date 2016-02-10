@@ -62,7 +62,7 @@ class NotificationItem extends React.Component {
         {this.message()}
         {this.timeStamp()}
       </a>
-    </li>
+    </li>;
   }
   readSelf() {
     NM.postJSON("/notifications/" + this.props.id + "/read", 
@@ -119,7 +119,7 @@ class NotificationItem extends React.Component {
     if(kind == "commission_offer_confirmed"){
       return <p className="notification-message">
         {username} just submitted a commission offer to you!
-      </p>
+      </p>;
     }
     if(kind == "commission_offer_accepted"){
       return <p className="notification-message">
@@ -133,7 +133,7 @@ class NotificationItem extends React.Component {
     }
   }
   timeStamp() {
-    return <p className="notification-time-ago">{this.props.time_ago_in_words} ago</p>
+    return <p className="notification-time-ago">{this.props.time_ago_in_words} ago</p>;
   }
 }
 

@@ -32,7 +32,7 @@ class TagGroupEditor extends React.Component {
           key={"tag-" + sug.id}
           tag={sug}
           isActive={index == this.state.activeSuggestion} 
-          onAdd={this.onTagAdd.bind(this)} />
+          onAdd={this.onTagAdd.bind(this)} />;
       });
     }
     // If our input isn't blank and we allow tag creation, then display
@@ -62,7 +62,7 @@ class TagGroupEditor extends React.Component {
       removalButton = <div className="remove-tag-group"
         onClick={this.props.onRemove}>
         Remove
-      </div>
+      </div>;
     }
     // Determine how the input field is going to look
     // Used for styling purposes.
@@ -415,6 +415,6 @@ TagBox.propTypes = {
   // tag: React.PropTypes.instanceOf(Tag),
   // Call this function when the user clicks our `remove` button
   onRemove: React.PropTypes.func
-}
+};
 
 

@@ -50,7 +50,7 @@ class SearchPage extends React.Component {
           Search
         </button>
       </div>
-    </div>
+    </div>;
   }
   removeTagGroup(index){
     this.state.tagGroups.splice(index, 1);
@@ -79,7 +79,7 @@ class SearchPage extends React.Component {
     this.setState({
       tagGrops: this.state.tagGroups.push(new EtherealTagGroup()),
       focusedGroup: this.state.tagGroups.size - 1
-    })
+    });
   }
 
   removeTagFromGroup(groupIndex, tag) {

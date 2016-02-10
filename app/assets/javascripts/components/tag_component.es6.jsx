@@ -20,7 +20,7 @@ class TagComponent extends React.Component {
         <div className="tag-name">
           {this.props.tag.name}
         </div>
-      </li>
+      </li>;
     }
   }
   fetchInfo() {

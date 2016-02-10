@@ -9,7 +9,7 @@ class CommissionProductDisplay extends React.Component{
     if(cost){
       costInfo = <span className="commission-product-total-cost">
         Total Cost of ${(cost / 100).toFixed(2)}
-      </span>
+      </span>;
     }
     var examples = this.props.product.example_images.map((img) => {
       return <li className="product-example-images-item"
@@ -44,5 +44,5 @@ CommissionProductDisplay.UserBox = (props) => {
         {props.name}
       </a>
     </span>
-  </span>
-}
+  </span>;
+};

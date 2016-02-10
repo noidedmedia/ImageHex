@@ -127,7 +127,7 @@ class Conversation{
   }
   
   trim(num){
-    var ind = num | 5
+    var ind = num | 5;
     this.messages = this.messages.slice(0 - ind);
   }
   

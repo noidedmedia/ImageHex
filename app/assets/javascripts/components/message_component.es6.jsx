@@ -4,7 +4,7 @@ class MessageComponent extends React.Component{
     this.state = {};
   }
   render(){
-    var msg = this.props.message
+    var msg = this.props.message;
     return <li className={this.containerClassName()}>
       <div className="message-user-info">
         <a href={"/@" + msg.user.slug}>

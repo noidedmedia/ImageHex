@@ -1,7 +1,7 @@
 class ConversationComponent extends React.Component{
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {};
   }
   render(){
     var className= "conversation focused";
