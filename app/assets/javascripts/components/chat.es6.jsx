@@ -15,6 +15,10 @@ class Chat extends React.Component {
   }
 
   render() {
+    /**
+     * If chat is active we display it
+     * Otherwise we just display a list of conversations
+     */
     if (this.state.active) {
       if (! this.state.conversationCollection) {
         /**
@@ -26,6 +30,9 @@ class Chat extends React.Component {
         </div>;
       }
       var c = this.state.conversationCollection.map((conv, ind) => {
+        /**
+         * If this is the focused converation, we use this
+         */
         if (ind === this.state.focusedIndex) {
           return <ConversationComponent
             conversation={conv}
@@ -34,7 +41,8 @@ class Chat extends React.Component {
             fetchOlderMessages={this.fetchOlderMessages.bind(this, ind)}
             createMessage={this.createMessage.bind(this, conv)}
           />;
-        } else {
+        } 
+        else {
           return <UnfocusedConversationComponent
             key={conv.id}
             conversation={conv}
@@ -47,6 +55,9 @@ class Chat extends React.Component {
         {c}
       </div>;
     }
+    /**
+     * Display a stub when the conversation is not active
+     */
     else {
       var unreadCount = this.unreadMessageCount();
       return <div onClick={this.activate.bind(this)}>
@@ -55,6 +66,9 @@ class Chat extends React.Component {
     }
   }
 
+  /**
+   * Create a new message in a conversation
+   */
   createMessage(conversation, body) {
     console.log("Creating message in chat component");
     conversation.createMessage(body, (message) => {
