@@ -1,3 +1,6 @@
+/**
+ * Models one `subject` which has been added to a commission
+ */
 class CommissionSubjectForm extends React.Component {
   constructor(props){
     super(props);
@@ -6,11 +9,12 @@ class CommissionSubjectForm extends React.Component {
       references: initialReferences,
       currentRefKey: 0
     };
-    console.log("Creating a subject field for subject", props.subj);
   }
+
   render(){
+    // Get a list of reference images
     var refs = this.state.references.map((ref, index) => {
-      var id = ref.id ? ref.id : ref.key;
+      var id = ref.id ? ref.id : ref.key; // see backgrounds to clarify
       var b = this.baseFieldName() + "[references_attributes][" + index + "]";
       if(ref.removed){
         return <CommissionSubjectForm.RemovedReferenceFields
@@ -30,11 +34,14 @@ class CommissionSubjectForm extends React.Component {
         type="button">
         Add a Reference Image
       </button>;
+    // Disallow creation of a reference image if we have too many
     if(refs.filter(r => ! r.deleted).length > 4){
       refButton = undefined;
     }
     return <div className="commission-subject-form-fields">
       <div>
+        {/* Grab the form field to model this subject's id */}
+        {/* will obviously be nonexistant if we aren't persisted */}
         {this.idField()}
         Description
         <textarea name={this.descriptionFieldName()}
@@ -43,20 +50,28 @@ class CommissionSubjectForm extends React.Component {
         <input type="hidden"
           name={this.baseFieldName() + "[id]"}
           value={this.props.subj.id} />
+        {/* Add tags to commissions, wow */}
         <SubjectTagSelector
           initialTags = {this.props.subj.tags ? this.props.subj.tags : []}
           baseFieldName={this.baseFieldName()} />
       </div>
+      {/* list of reference images */}
       <ul className="subject-references-form">
         {refs}
       </ul>
+      {/* Button to add another reference */}
       {refButton}
       <br/>
+      {/* Button to get rid of this subject */}
       <button onClick={this.removeSelf.bind(this)} type="button">
         Remove
       </button>
     </div>
   }
+  /**
+   * Returns form field to indicate to rails that we're modifying an
+   * existing subject, if we actually are 
+   */
   idField(){
     if(this.props.subj.id){
       return <input name="id"
@@ -66,6 +81,10 @@ class CommissionSubjectForm extends React.Component {
     }
     return "";
   }
+
+  /**
+   * Add a new reference image
+   */
   addReference(event){
     event.preventDefault();
     var ref = this.state.references;

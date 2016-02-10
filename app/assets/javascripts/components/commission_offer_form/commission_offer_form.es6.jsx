@@ -11,6 +11,9 @@ class CommissionOfferForm extends React.Component{
   render(){
     var productBox;
     if(this.state.product){
+      /**
+       * If the user has selected a product, render it here...
+       */
       productBox = <CommissionOfferForm.ProductBox
         totalCost={this.calculateCost()}
         removeProduct={this.removeProduct.bind(this)}
@@ -19,12 +22,16 @@ class CommissionOfferForm extends React.Component{
         product={this.state.product} />
     }
     else{
+      /**
+       * Otherwise, display a view where the user can pick a new product
+       */
       productBox = <CommissionProductPicker
         subjectsCount={this.subjectsCount()}
         hasBackground={this.state.hasBackground}
         onAdd={this.addProduct.bind(this)} />;
     }
     return <div className="commission-offer-form-react">
+      {/* Split the various parts of this long form into sections */}
       {this.backgroundSection()}
       {this.subjectSection()}
       {productBox}
@@ -34,12 +41,22 @@ class CommissionOfferForm extends React.Component{
       </button>
     </div>;
   }
+
+  /**
+   * User has changed their mind and wants to use a different product, how
+   * sad. So we just remove the product reference here.
+   */
   removeProduct(event){
     event.preventDefault();
     this.setState({
       product: undefined
     });
   }
+  /**
+   * Check if this offer is invalid
+   * It may be invlaid if it has a background on a product that doesn't allow
+   * one, too many subjects, etc...
+   */
   isInvalid(){
     if(this.state.product){
       return ! this.state.product.validOffer({
@@ -51,7 +68,16 @@ class CommissionOfferForm extends React.Component{
       return true;
     }
   }
-
+  /**
+   * Render the background section of the form
+   * This has 4 states, basically:
+   *  Backgrounds included. Form always visible.
+   *  Backgrounds charged and this offer doesn't have one. Display a button
+   *    to add one
+   *  Backgrounds charged and this has one. Display the relevant form.
+   *  Background on an offer to a product that doesn't allow backgrounds.
+   *    Display an error of some type.
+   */
   backgroundSection(){
     var backgroundForm = <CommissionBackgroundForm
       product={this.state.product} 
@@ -86,7 +112,12 @@ class CommissionOfferForm extends React.Component{
       </div>
     }
   }
-  // Returns the HTML for the subject section
+  /**
+   * Subjects section. Basically, just a list of subject form elements.
+   * This also handles the buttons to add another subject, and if that
+   * button should be visible (depending on the max subjects left in the 
+   * product)
+   */
   subjectSection(){
     var subjects = this.state.subjects.map((subj, index) => {
       // We set the `key` manually on items that are not persisted yet
@@ -110,6 +141,8 @@ class CommissionOfferForm extends React.Component{
     });
 
     var newButton = "";
+    // Display a button to add another subject if its okay that the user
+    // can add more
     if(this.canAddSubjects()){
       newButton = <button onClick={this.addSubject.bind(this)}>
         Add a Subject
@@ -131,10 +164,19 @@ class CommissionOfferForm extends React.Component{
     </div>
   }
 
+  /**
+   * Can we add more subjects?
+   * ...
+   * Look, it's not a difficult concept, okay?
+   */
   canAddSubjects(){
     return this.subjectsLeft() > 0;
   }
 
+  /**
+   * How many subjects we currently have
+   * Removes the subjects that have the `removed` flag set
+   */
   subjectsCount(){
     return this.state.subjects.filter(s => ! s.removed).length;
   }
@@ -218,6 +260,10 @@ class CommissionOfferForm extends React.Component{
   }
 }
 
+/**
+ * Display info about the product, as well as buttons to use another 
+ * and stuff like that.
+ */
 CommissionOfferForm.ProductBox = (props) => {
   return <div>
     <CommissionProductDisplay

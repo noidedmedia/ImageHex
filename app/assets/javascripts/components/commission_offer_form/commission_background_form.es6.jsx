@@ -1,3 +1,6 @@
+/**
+ * Form for the background field
+ */
 class CommissionBackgroundForm extends React.Component{
   constructor(props){
     super(props);
@@ -6,12 +9,15 @@ class CommissionBackgroundForm extends React.Component{
       initialRefs = props.background.references;
     }
     this.state = {
-      refs: initialRefs,
-      refKey: 0
+      refs: initialRefs, // reference images
+      refKey: 0 // Lets use set the `key` on the ref component
     }
   }
   render(){
+    // Create a list of reference images to use
     var refs = this.state.refs.map((ref, index) => {
+      // Use the id if this is an existing reference (that we're editing),
+      // or the set key otherwise
       var key = ref.id || ref.key;
       return <CommissionBackgroundForm.ReferenceField
         {...ref}
@@ -19,15 +25,19 @@ class CommissionBackgroundForm extends React.Component{
         index={index}
         key={key} />;
     });
+    // Button to add another reference image
     var button = <button onClick={this.addReference.bind(this)} type="button">
       Add a Reference Image
     </button>;
+    // We only allow 9 reference images, so remove the button if we have more
     if(this.state.refs.filter(r => ! r.removed).length > 9){
       console.log("Maximum refs in background reached");
       button = "";
     }
     var idField;
     if(this.props.background && this.props.background.id){
+      // IF we're editing stuff, we gotta pass in the ID to rails so it
+      // doesn't create an entirely new background record
       idField = <input
         type="hidden"
         name="commission_offer[background_attributes][id]"
@@ -44,13 +54,23 @@ class CommissionBackgroundForm extends React.Component{
       {button}
     </div>
   }
+  /**
+   * Callback to remove a reference
+   * Actually just sets the `removed` property to `true`, since
+   * we gotta tell rails that we got rid of it
+   */
   removeReference(index){
     this.state.refs[index].removed = true;
     this.setState({
       refs: this.state.refs
     });
   }
-
+  /**
+   * Add a new reference
+   * We do some weird stuff with keys here to insure each one has a unique
+   * key - basically, we use *negative* keys, so they can't clash with the `id`
+   * of a already-persisted reference
+   */
   addReference(){
     this.state.refs.push({
       key: this.state.refKey
@@ -63,6 +83,11 @@ class CommissionBackgroundForm extends React.Component{
 
 }
 
+/**
+ * Stateless component that just renders a reference
+ * Will show the input field and such. if it's removed, just render
+ * invisible form fields to indicate that to Rails
+ */
 CommissionBackgroundForm.ReferenceField = (props) => {
   console.log("In background reference field, got props",props);
   var fieldName = `commission_offer[background_attributes]`;
