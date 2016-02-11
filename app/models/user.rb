@@ -142,6 +142,10 @@ class User < ActiveRecord::Base
   # INSTANCE METHODS #
   ####################
 
+  def admin?
+    self.role == "admin"
+  end
+
   def has_filled_commissions?
     count = commission_products
       .joins(:offers)
