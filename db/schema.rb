@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202225205) do
+ActiveRecord::Schema.define(version: 20160211024429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,6 +183,20 @@ ActiveRecord::Schema.define(version: 20160202225205) do
 
   add_index "curatorships", ["collection_id"], name: "index_curatorships_on_collection_id", using: :btree
   add_index "curatorships", ["user_id"], name: "index_curatorships_on_user_id", using: :btree
+
+  create_table "disputes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "commission_offer_id"
+    t.integer  "commission_product_id"
+    t.text     "description"
+    t.boolean  "resolved",              default: false, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "disputes", ["commission_offer_id"], name: "index_disputes_on_commission_offer_id", using: :btree
+  add_index "disputes", ["commission_product_id"], name: "index_disputes_on_commission_product_id", using: :btree
+  add_index "disputes", ["user_id"], name: "index_disputes_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -420,6 +434,9 @@ ActiveRecord::Schema.define(version: 20160202225205) do
   add_foreign_key "conversations", "commission_offers", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
+  add_foreign_key "disputes", "commission_offers"
+  add_foreign_key "disputes", "commission_products"
+  add_foreign_key "disputes", "users"
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
