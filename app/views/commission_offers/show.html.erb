@@ -36,6 +36,9 @@
 
       <p class="commission-offer-fill-date">Filled <%= time_ago_in_words @offer.filled_at %> ago</p>
     </div>
+    <% if @offer.user == current_user %>
+      <%= link_to "Dispute", new_dispute_path(commission_offer_id: @offer.id) %>
+    <% end %>
   <% end %>
 
   <% if @offer.has_background? %> 

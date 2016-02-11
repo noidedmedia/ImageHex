@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
+  resources :disputes
+
   resources :conversations do
     resources :messages, only: [:index, :new, :create]
     post :read, on: :member
