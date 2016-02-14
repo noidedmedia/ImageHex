@@ -23,7 +23,7 @@ class CommissionSubjectForm extends React.Component {
           reference={ref}
         />;
       }
-      return <SubjectReferenceField
+      return <ReferenceImageField
         baseFieldName={b}
         reference={ref}
         index={index}
