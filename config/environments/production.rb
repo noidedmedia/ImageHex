@@ -28,9 +28,10 @@ Rails.application.configure do
     bucket: ENV['S3_BUCKET_NAME']
     s3_region: "us-standard"
   }
+
   # Settings specified here will take precedence over those in config/application.rb.
-  #
   config.action_mailer.default_url_options = { host: "www.imagehex.com" }
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -83,7 +84,6 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-
   config.cache_store = :dalli_store,
                        (ENV["MEMCACHIER_SERVERS"] || "").split(","),
                        { username: ENV["MEMCACHIER_USERNAME"],
