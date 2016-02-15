@@ -7,11 +7,14 @@ class ReferenceImageField extends React.Component {
     // Peristed 
     if(this.props.reference.id){
       return <div className="reference-image">
-        <div className="reference-inner">
-          <img src={this.props.reference.url}
-            className="reference-image-thumbnail" />
+        <div class="reference-inner">
+          <div className="reference-inner">
+            <img src={this.props.reference.url}
+              className="reference-image-thumbnail" />
+          </div>
         </div>
-        <button onClick={this.removeSelf.bind(this)}>
+        <button onClick={this.removeSelf.bind(this)}
+          className="reference-remove-button">
           Remove
         </button>
       </div>;
@@ -19,27 +22,47 @@ class ReferenceImageField extends React.Component {
     if(this.state.fileURL) {
       return <div className="reference-image">
         <div className="reference-inner">
+          <input
+            type="file" 
+            className="reference-image-file-field"
+            onChange={this.addFile.bind(this)}/>
           <img src={this.state.fileURL}
             className="reference-image-thumbnail" />
         </div>
-        <button onClick={this.removeSelf.bind(this)}>
+        <button onClick={this.removeSelf.bind(this)}
+          className="reference-remove-button">
           Remove
         </button>
       </div>;
     }
+
     return <div className="reference-image">
-      <div className="reference-drop-zone"
-        onDrop={this.dropFile.bind(this)}
-        ref="dropZone"
-        onDragLeave={this.dragLeave.bind(this)}
-        onDragOver={this.dragOver.bind(this)}
-        onClick={this.openBrowser.bind(this)}>
-        <h1>Drop a File</h1>
+      <div className="reference-inner dropzone">
+        <div className="reference-drop-zone"
+          ref="dropZone"
+          onDragLeave={this.dragLeave.bind(this)}
+          onDragOver={this.dragOver.bind(this)}
+          onClick={this.openBrowser.bind(this)}>
+          <input
+            type="file" 
+            className="reference-image-file-field"
+            onChange={this.addFile.bind(this)}/>
+          <h1>Drop a File</h1>
+        </div>
       </div>
-      <button onClick={this.removeSelf.bind(this)}>
+      <button onClick={this.removeSelf.bind(this)}
+        className="reference-remove-button">
         Remove
       </button>
     </div>
+  }
+
+  addFile(event) {
+    if(event.target.files && event.target.files[0]) {
+      this.setState({
+        fileURL: URL.createObjectURL(event.target.files[0])
+      });
+    }
   }
 
   dragLeave(event) {
@@ -54,14 +77,6 @@ class ReferenceImageField extends React.Component {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
     console.log("Draging something over");
-  }
-
-  dropFile(event) {
-    console.log("Dropped a file in a drop zone");
-    console.log(event.dataTransfer.files);
-    event.preventDefault();
-
-    return false;
   }
 
   openBrowser(event){

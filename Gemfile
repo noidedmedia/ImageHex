@@ -161,13 +161,6 @@ gem 'apipony'
 gem 'dalli'
 
 ##
-# https://github.com/ai/autoprefixer-rails
-# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
-# View what Autoprefixer will change with `rake autoprefixer:info`.
-# Config file: `config/autoprefixer.yml`
-gem 'autoprefixer-rails'
-
-##
 # https://github.com/brigade/scss-lint
 # Configurable tool for writing clean and consistent SCSS
 # Config file: `config/scss_lint.yml`
@@ -177,150 +170,158 @@ gem 'scss_lint', require: false
 ##
 # Development-only gems
 group :development do
-  ##
-  # https://github.com/bbatsov/rubocop
-  # A Ruby static code analyzer based on the community Ruby style guide.
-  # Config file: `.rubocop.yml`
-  # Run Rubocop with `rake rubocop`
-  gem 'rubocop'
+##
+# https://github.com/bbatsov/rubocop
+# A Ruby static code analyzer based on the community Ruby style guide.
+# Config file: `.rubocop.yml`
+# Run Rubocop with `rake rubocop`
+gem 'rubocop'
 
-  ##
-  # https://github.com/rweng/pry-rails
-  # Use Pry as your Rails console.
-  gem 'pry-rails'
+##
+# https://github.com/rweng/pry-rails
+# Use Pry as your Rails console.
+gem 'pry-rails'
 
-  ##
-  # https://github.com/banister/binding_of_caller
-  # Retrieve the binding of a method's caller in MRI 1.9.2+.
-  gem 'binding_of_caller'
+##
+# https://github.com/banister/binding_of_caller
+# Retrieve the binding of a method's caller in MRI 1.9.2+.
+gem 'binding_of_caller'
 
-  ##
-  # https://github.com/railsbp/rails_best_practices
-  # A code metric tool for rails projects.
-  gem 'rails_best_practices'
+##
+# https://github.com/railsbp/rails_best_practices
+# A code metric tool for rails projects.
+gem 'rails_best_practices'
 
-  ##
-  # Mutes asset pipeline log messages.
-  # https://github.com/evrone/quiet_assets
-  gem 'quiet_assets'
+##
+# Mutes asset pipeline log messages.
+# https://github.com/evrone/quiet_assets
+gem 'quiet_assets'
 
-  ##
-  # https://github.com/charliesome/better_errors
-  # Better error page for Rack apps.
-  gem 'better_errors'
+##
+# https://github.com/charliesome/better_errors
+# Better error page for Rack apps.
+gem 'better_errors'
 
-  ##
-  # https://github.com/ctran/annotate_models
-  # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
-  gem 'annotate'
+##
+# https://github.com/ctran/annotate_models
+# Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
+gem 'annotate'
 
-  ##
-  # https://github.com/flyerhzm/bullet
-  # Help to kill N+1 queries and unused eager loading.
-  gem 'bullet'
+##
+# https://github.com/flyerhzm/bullet
+# Help to kill N+1 queries and unused eager loading.
+gem 'bullet'
 
-  ##
-  # https://github.com/rails/spring
-  # Spring speeds up development by keeping your application running in the background.
-  gem 'spring'
+##
+# https://github.com/rails/spring
+# Spring speeds up development by keeping your application running in the background.
+gem 'spring'
 
-  ##
-  # https://github.com/ngs/hanna-bootstrap
-  # Use Hanna Bootstrap theme for RDoc documentation.
-  gem 'hanna-bootstrap'
+##
+# https://github.com/ngs/hanna-bootstrap
+# Use Hanna Bootstrap theme for RDoc documentation.
+gem 'hanna-bootstrap'
 
-  ##
-  # http://fontcustom.com
-  # Use FontCustom for generating the icon font.
-  # See the README.md for more on how this works.
-  gem 'fontcustom'
+##
+# http://fontcustom.com
+# Use FontCustom for generating the icon font.
+# See the README.md for more on how this works.
+gem 'fontcustom'
 end
 
 ##
 # Development/test gems
 group :development, :test do
-  ##
-  # https://github.com/rspec/rspec-rails
-  # A testing framework for Rails.
-  gem 'rspec-rails'
+##
+# https://github.com/rspec/rspec-rails
+# A testing framework for Rails.
+gem 'rspec-rails'
 
-  ##
-  # https://github.com/pry/pry
-  # An IRB alternative and runtime developer console.
-  gem 'pry'
+##
+# https://github.com/pry/pry
+# An IRB alternative and runtime developer console.
+gem 'pry'
 
-  ##
-  # https://github.com/thoughtbot/factory_girl_rails
-  # A library for setting up Ruby objects as test data.
-  gem 'factory_girl_rails'
+##
+# https://github.com/thoughtbot/factory_girl_rails
+# A library for setting up Ruby objects as test data.
+gem 'factory_girl_rails'
 
-  ##
-  # https://github.com/stympy/faker
-  # Faker produces fake data for testing/development.
-  gem 'faker'
+##
+# https://github.com/stympy/faker
+# Faker produces fake data for testing/development.
+gem 'faker'
 
-  ##
-  # https://github.com/sj26/mailcatcher
-  # Mailcatcher for confirming that mails work.
-  # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
-  gem 'mailcatcher', require: false
+##
+# https://github.com/sj26/mailcatcher
+# Mailcatcher for confirming that mails work.
+# Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
+gem 'mailcatcher', require: false
 
-  ##
-  # https://github.com/bkeepers/dotenv
-  # Use .env files for development secret keys
-  # Our real key is set in production
-  gem 'dotenv-rails'
+##
+# https://github.com/bkeepers/dotenv
+# Use .env files for development secret keys
+# Our real key is set in production
+gem 'dotenv-rails'
 
-  ##
-  # https://github.com/presidentbeef/brakeman
-  # A static analysis security vulnerability scanner for Ruby on Rails applications
-  gem 'brakeman'
+##
+# https://github.com/presidentbeef/brakeman
+# A static analysis security vulnerability scanner for Ruby on Rails applications
+gem 'brakeman'
 
-  ##
-  # https://github.com/rubysec/bundler-audit
-  # Patch-level verification for Bundler
-  gem 'bundler-audit'
+##
+# https://github.com/rubysec/bundler-audit
+# Patch-level verification for Bundler
+gem 'bundler-audit'
 
-  ##
-  # https://github.com/jnicklas/capybara
-  # Acceptance test framework for web applications
-  gem 'capybara'
+##
+# https://github.com/jnicklas/capybara
+# Acceptance test framework for web applications
+gem 'capybara'
 
-  ##
-  # https://github.com/mattheworiordan/capybara-screenshot
-  # Automatically save screen shots when a Capybara scenario fails
-  gem 'capybara-screenshot'
+##
+# https://github.com/mattheworiordan/capybara-screenshot
+# Automatically save screen shots when a Capybara scenario fails
+gem 'capybara-screenshot'
 
-  ##
-  # https://github.com/teampoltergeist/poltergeist
-  # A PhantomJS driver for Capybara
-  gem 'poltergeist'
+##
+# https://github.com/teampoltergeist/poltergeist
+# A PhantomJS driver for Capybara
+gem 'poltergeist'
 end
 
 ##
 # Test-only gems
 group :test do
-  ##
-  # https://github.com/travisjeffery/timecop
-  # A gem providing "time travel", "time freezing", and "time acceleration" capabilities.
-  gem 'timecop'
+##
+# https://github.com/travisjeffery/timecop
+# A gem providing "time travel", "time freezing", and "time acceleration" capabilities.
+gem 'timecop'
 
-  ##
-  # https://github.com/thoughtbot/shoulda-matchers
-  # Continue to make tests good
-  gem 'shoulda-matchers'
+##
+# https://github.com/thoughtbot/shoulda-matchers
+# Continue to make tests good
+gem 'shoulda-matchers'
 
-  ##
-  # https://github.com/colszowka/simplecov
-  # See how much coverage our tests have
-  gem 'simplecov'
+##
+# https://github.com/colszowka/simplecov
+# See how much coverage our tests have
+gem 'simplecov'
 end
 
 ##
 # Production-only gems
 group :production do
-  ##
-  # https://github.com/heroku/rails_12factor
-  #
-  gem 'rails_12factor'
+##
+# https://github.com/ai/autoprefixer-rails
+# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
+# View what Autoprefixer will change with `rake autoprefixer:info`.
+# Config file: `config/autoprefixer.yml`
+gem 'autoprefixer-rails'
+
+
+##
+# https://github.com/heroku/rails_12factor
+#
+gem 'rails_12factor'
 end
