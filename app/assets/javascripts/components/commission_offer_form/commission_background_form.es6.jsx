@@ -16,14 +16,22 @@ class CommissionBackgroundForm extends React.Component{
   render(){
     // Create a list of reference images to use
     var refs = this.state.refs.map((ref, index) => {
+      var fname = "commission_offer[backgrounds_attributes]";
+      fname += `[references_attributes][${index}]`
       // Use the id if this is an existing reference (that we're editing),
       // or the set key otherwise
       var key = ref.id || ref.key;
-      return <CommissionBackgroundForm.ReferenceField
-        {...ref}
-        remove={this.removeReference.bind(this, index)}
-        index={index}
-        key={key} />;
+      if(ref.removed) {
+
+      }
+      else {
+        return <ReferenceImageField
+          baseFieldName={fname}
+          reference={ref}
+          remove={this.removeReference.bind(this, index)}
+          index={index}
+          key={key} />;
+      }
     });
     // Button to add another reference image
     var button = <button onClick={this.addReference.bind(this)} type="button">
@@ -60,6 +68,7 @@ class CommissionBackgroundForm extends React.Component{
    * we gotta tell rails that we got rid of it
    */
   removeReference(index){
+    console.log("Removing a reference image from a bacground");
     this.state.refs[index].removed = true;
     this.setState({
       refs: this.state.refs

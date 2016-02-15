@@ -43,13 +43,16 @@ class CommissionSubjectForm extends React.Component {
         {/* Grab the form field to model this subject's id */}
         {/* will obviously be nonexistant if we aren't persisted */}
         {this.idField()}
-        Description
-        <textarea name={this.descriptionFieldName()}
-          type="text"
-          defaultValue={this.defaultDescription()} />
-        <input type="hidden"
-          name={this.baseFieldName() + "[id]"}
-          value={this.props.subj.id} />
+        <div className="field-container">
+          <label className="label">
+            Description
+          </label>
+          <textarea name={this.descriptionFieldName()}
+            type="text"
+            className="input"
+            defaultValue={this.defaultDescription()} />
+        </div>
+        
         {/* Add tags to commissions, wow */}
         <SubjectTagSelector
           initialTags = {this.props.subj.tags ? this.props.subj.tags : []}
@@ -60,12 +63,13 @@ class CommissionSubjectForm extends React.Component {
         {refs}
       </ul>
       {/* Button to add another reference */}
-      {refButton}
-      <br/>
-      {/* Button to get rid of this subject */}
-      <button onClick={this.removeSelf.bind(this)} type="button">
-        Remove
-      </button>
+      <div className="subject-button-action">
+        {refButton}
+        {/* Button to get rid of this subject */}
+        <button onClick={this.removeSelf.bind(this)} type="button">
+          Remove Subject
+        </button>
+      </div>
     </div>
   }
   /**
@@ -175,7 +179,7 @@ class SubjectTagSelector extends React.Component {
         value={tag.id}
         key={tag.id} />
     });
-    return <div>
+    return <div className="subject-tag-field"> 
       {tagInputs}
       <TagGroupEditor
         group={this.state.group}

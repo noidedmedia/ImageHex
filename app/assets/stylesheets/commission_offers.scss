@@ -25,29 +25,40 @@
   padding: 5px;
 }
 
+.reference-image-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .reference-image-thumbnail {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 250px;
+  max-height: 250px;
   height: auto;
   width: auto;
 }
 
 .reference-remove-button {
-  width: 100%;
+  width: 250px;
+
+  &.dropzone {
+    width: 500px;
+  }
 }
 
 .reference-inner {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   &.dropzone {
     width: 500px;
     height: 500px;
   }
 
-  &:not(.dropzone) { 
-    max-width: 250px;
-    max-height: 250px;
-  }
 }
 
 .reference-drop-zone { 
@@ -80,6 +91,30 @@
   margin: 5px;
   text-align: center;
   font-size: 2.4rem;
+}
+
+.subject-button-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: space-between;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  button {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
+
+.subject-tag-field {
+  max-width: 250px;
+  margin: auto;
+
+  input {
+    width: 100%;
+  }
+
 }
 
 .commission-offer-form {

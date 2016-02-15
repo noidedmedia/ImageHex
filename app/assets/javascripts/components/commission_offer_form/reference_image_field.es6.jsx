@@ -6,7 +6,7 @@ class ReferenceImageField extends React.Component {
   render(){
     // Peristed 
     if(this.props.reference.id){
-      return <div className="reference-image">
+      return <div className="reference-image-field">
         <div class="reference-inner">
           <div className="reference-inner">
             <img src={this.props.reference.url}
@@ -14,29 +14,32 @@ class ReferenceImageField extends React.Component {
           </div>
         </div>
         <button onClick={this.removeSelf.bind(this)}
+          type="button"
           className="reference-remove-button">
           Remove
         </button>
       </div>;
     }
     if(this.state.fileURL) {
-      return <div className="reference-image">
+      return <div className="reference-image-field">
         <div className="reference-inner">
           <input
             type="file" 
             className="reference-image-file-field"
+            name={this.props.baseFieldName + "[file]"}
             onChange={this.addFile.bind(this)}/>
           <img src={this.state.fileURL}
             className="reference-image-thumbnail" />
         </div>
         <button onClick={this.removeSelf.bind(this)}
+          type="button"
           className="reference-remove-button">
           Remove
         </button>
       </div>;
     }
 
-    return <div className="reference-image">
+    return <div className="reference-image-field">
       <div className="reference-inner dropzone">
         <div className="reference-drop-zone"
           ref="dropZone"
@@ -46,12 +49,13 @@ class ReferenceImageField extends React.Component {
           <input
             type="file" 
             className="reference-image-file-field"
+            name={this.props.baseFieldName + "[file]"}
             onChange={this.addFile.bind(this)}/>
           <h1>Drop a File</h1>
         </div>
       </div>
       <button onClick={this.removeSelf.bind(this)}
-        className="reference-remove-button">
+        className="reference-remove-button dropzone">
         Remove
       </button>
     </div>
@@ -83,7 +87,9 @@ class ReferenceImageField extends React.Component {
     console.log("Opening a file browser");
   }
 
-  removeSelf(){
+  removeSelf(event){
+    event.preventDefault();
+    console.log("Removing a reference image");
     this.props.remove();
   }
 }
