@@ -38,10 +38,12 @@
 
 .reference-inner {
   position: relative;
+
   &.dropzone {
     width: 500px;
     height: 500px;
   }
+
   &:not(.dropzone) { 
     max-width: 250px;
     max-height: 250px;
@@ -49,18 +51,19 @@
 }
 
 .reference-drop-zone { 
-  background-color: #DDD;
+  background-color: #ddd;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
+
   h1 {
     font-size: 30px;
   }
 
   &.active {
-    background-color: green;
+    background-color: #008000;
   }
 }
 
