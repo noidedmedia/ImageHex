@@ -34,13 +34,15 @@ class CommissionBackgroundForm extends React.Component{
       }
     });
     // Button to add another reference image
-    var button = <button onClick={this.addReference.bind(this)} type="button">
+    var refButton = <button 
+      onClick={this.addReference.bind(this)} 
+      type="button">
       Add a Reference Image
     </button>;
     // We only allow 9 reference images, so remove the button if we have more
     if(this.state.refs.filter(r => ! r.removed).length > 9){
       console.log("Maximum refs in background reached");
-      button = "";
+      refButton = <span></span>;
     }
     var idField;
     if(this.props.background && this.props.background.id){
@@ -51,15 +53,24 @@ class CommissionBackgroundForm extends React.Component{
         name="commission_offer[background_attributes][id]"
         value={this.props.background.id} />;
     }
-    return <div>
-      <button onClick={this.props.removeBackground}>
-        Remove Background
-      </button>
+    return <div className="offer-fields-section background-fields">
       {idField}
-      <textarea name="commission_offer[background_attributes][description]">
-      </textarea>
+      <div className="field-container">
+        <label className="label">
+          Description
+        </label> 
+        <textarea 
+          className="input"
+          name="commission_offer[background_attributes][description]">
+        </textarea>
+      </div>
       {refs}
-      {button}
+      <div className="offer-action-buttons">
+        {refButton}
+        <button onClick={this.props.removeBackground}>
+          Remove Background
+        </button>
+      </div>
     </div>
   }
   /**

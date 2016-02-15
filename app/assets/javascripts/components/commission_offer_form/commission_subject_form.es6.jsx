@@ -38,7 +38,7 @@ class CommissionSubjectForm extends React.Component {
     if(refs.filter(r => ! r.deleted).length > 4){
       refButton = undefined;
     }
-    return <div className="commission-subject-form-fields">
+    return <div className="offer-fields-section subject-fields">
       <div>
         {/* Grab the form field to model this subject's id */}
         {/* will obviously be nonexistant if we aren't persisted */}
@@ -63,7 +63,7 @@ class CommissionSubjectForm extends React.Component {
         {refs}
       </ul>
       {/* Button to add another reference */}
-      <div className="subject-button-action">
+      <div className="offer-action-buttons">
         {refButton}
         {/* Button to get rid of this subject */}
         <button onClick={this.removeSelf.bind(this)} type="button">
