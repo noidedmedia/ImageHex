@@ -2,8 +2,5 @@
 // Icon Font: <%= font_name %>
 //
 
-<%= font_face(url: "font-url", path: @font_path_alt) %>
-
-<%= glyphs %>
 <% @glyphs.each do |name, value| %>
 $icon-<%= name.to_s %>: "\<%= value[:codepoint].to_s(16) %>";<% end %>
