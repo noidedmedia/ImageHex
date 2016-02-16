@@ -3,33 +3,33 @@
 <% cache "about", expires_in: 1.day do %>
   <%= render "static_stuff/company_nav" %>
 
-  <div class="about-page-container">
-    <div class="company-page-main-column">
-      <div class="about-page-logo">
-        <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %>>
-      </div>
+  <div class="imagehex-static-page-container about-page-container">
+    <div class="about-page-logo">
+      <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %>>
+    </div>
 
-     <div id="about-page-description">
-        <p>
-          ImageHex is a website for artists to expand their audience and take commissions.
-        </p>
-        <p>
-          We make it easy to find artists you love.
-          Our search makes it easy to find content you're interested in, no matter how oddly specific it is.
-          Our tags are grouped together based on the subjects in the image, so a search for "Clown, swimming" is guaranteed to only get you pictures of swimming clowns.
-          You can follow individual artists you like, so you can easily see all their images in one place.
-          You can also follow curated collections created by other users, so discovering new art is easy.
-        </p>
-        <p>
-          For artists, ImageHex provides a place to share their art, and to gain new fans.
-          We're also a great place to meet other artists to collaborate with.
-        </p>
-        <p>
-          The team at ImageHex is hard at work creating the best commissions marketplace on the internet.
-          We make it easier than ever for users to buy a commission, without sacrificing the power over pricing that artists have come to expect.
-          Read the <a href="/commissions">full outline</a> for more information, or to sign up for our newsletter, so we can notify you immediately when it's ready.
-        </p>
-      </div>
+   <div class="imagehex-static-text">
+      <p>
+        ImageHex is a website for artists to expand their audience and take commissions.
+      </p>
+      <p>
+        We make it easy to find artists you love.
+        Our search makes it easy to find content you're interested in, no matter how oddly specific it is.
+        Our tags are grouped together based on the subjects in the image, so a search for "Clown, swimming" is guaranteed to only get you pictures of swimming clowns.
+        You can follow individual artists you like, so you can easily see all their images in one place.
+        You can also follow curated collections created by other users, so discovering new art is easy.
+      </p>
+      <p>
+        For artists, ImageHex provides a place to share their art, and to gain new fans.
+        We're also a great place to meet other artists to collaborate with.
+      </p>
+      <p>
+        The team at ImageHex is hard at work creating the best commissions marketplace on the internet.
+        We make it easier than ever for users to buy a commission, without sacrificing the power over pricing that artists have come to expect.
+        We've put together a page <%= link_to "describing our plans", commissions_path %>.
+        Also feel free to <%= link_to "sign up for an account", new_user_registration_path %> and subscribe to our newsletter so we can notify you immediately when we're ready for you to try it out.
+        We'll only be sending newsletters out monthly - if that - so there's no need to worry about spam.
+      </p>
     </div>
   </div>
 <% end %>

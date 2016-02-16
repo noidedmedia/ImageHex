@@ -17,7 +17,7 @@
 }
 
 .offer-fields-section {
-  border: 1px solid black;
+  border: 1px solid $black;
   padding: 5px;
   width: 500px;
   margin-top: 5px;
@@ -52,16 +52,18 @@
   font-size: 1.2rem;
   width: 20%;
   background-color: $color-danger;
+  flex-grow: 1;
+
   &:active {
     flex-grow: 1;
     box-shadow: inset 0 0 10px #222;
   }
-  flex-grow: 1;
 }
 
 .reference-inner {
   max-height: 300px;
   max-width: 80%;
+
   &.dropzone {
     flex-grow: 4;
     height: 300px;
@@ -76,6 +78,7 @@
   justify-content: center;
   position: relative;
   height: 100%;
+
   h1 {
     font-size: 30px;
   }
