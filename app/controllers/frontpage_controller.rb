@@ -10,6 +10,7 @@ class FrontpageController < ApplicationController
   def index
     if current_user && !current_user.image_feed.blank?
       @images = current_user.image_feed
+        .includes(:creators)
         .paginate(page: page, per_page: per_page)
       @page = page
       @per_page = per_page
