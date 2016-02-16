@@ -7,11 +7,11 @@ class ReferenceImageField extends React.Component {
     // Peristed 
     if(this.props.reference.id){
       return <div className="reference-image-field">
-        <div class="reference-inner">
-          <div className="reference-inner">
-            <img src={this.props.reference.url}
-              className="reference-image-thumbnail" />
-          </div>
+        <div className="reference-inner">
+            <div className="reference-input-container">
+              <img src={this.props.reference.url}
+                className="reference-image-thumbnail" />
+            </div>
         </div>
         <button onClick={this.removeSelf.bind(this)}
           type="button"
