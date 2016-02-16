@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionOffersController < ApplicationController
   include Pundit
   after_action :verify_authorized

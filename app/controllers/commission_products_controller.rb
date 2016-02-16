@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionProductsController < ApplicationController
   include Pundit
   after_action :verify_authorized, except: [:index, :show, :search]
@@ -5,6 +6,7 @@ class CommissionProductsController < ApplicationController
 
   def search
     @products = CommissionProduct.all
+      .confirmed
       .joins(:example_images)
       .paginate(page: page, per_page: per_page)
       .preload(:example_images)
@@ -15,6 +17,7 @@ class CommissionProductsController < ApplicationController
 
   def index
     @products = CommissionProduct.all
+      .confirmed
       .joins(:example_images)
       .preload(:example_images)
       .merge(Image.for_content(content_pref))
@@ -25,6 +28,16 @@ class CommissionProductsController < ApplicationController
   def new
     @product = CommissionProduct.new
     authorize(@product)
+  end
+
+  def confirm
+    @product = CommissionProduct.find(params[:id])
+    authorize @product
+    @product.update(confirmed: true)
+    redirect_to @product
+  rescue Pundit::NotAuthorizedError
+    redirect_to "/stripe/authorize",
+                warning: "Confirm your stripe first"
   end
 
   def show

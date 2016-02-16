@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A notification is a way to alert the user of something, generally the action of a different user.
 # Notifications which aren't read are displayed to the user when they log in.

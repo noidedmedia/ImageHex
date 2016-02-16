@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A Favorite is a type of collection that holds a users favorite images.
 # A favorites collection is rather special:

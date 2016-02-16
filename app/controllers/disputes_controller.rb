@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 class DisputesController < ApplicationController
   include Pundit
-  before_filter :ensure_user
+  before_action :ensure_user
   def index
     @disputes = Dispute.all.unresolved
     raise Pundit::NotAuthorizedError unless current_user.admin?
@@ -30,12 +31,14 @@ class DisputesController < ApplicationController
         format.html { render 'edit' }
         format.json do
           render json: @dispute.errors,
-            status: :unprocessable_entity
+                 status: :unprocessable_entity
         end
       end
     end
   end
+
   protected
+
   def dispute_params
     params.require(:dispute)
       .permit(:description,

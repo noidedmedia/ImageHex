@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.extract! image, :id, :description,
               :user_id,
               :created_at,

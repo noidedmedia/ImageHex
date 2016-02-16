@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SubscriptionQuery
   def initialize(user)
     @user = user

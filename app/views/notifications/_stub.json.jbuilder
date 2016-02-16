@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.extract! notification,
               :kind,
               :created_at,

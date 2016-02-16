@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionOffer < ActiveRecord::Base
   belongs_to :commission_product
   belongs_to :user

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Represents a tag in the ImageHex database.
 # Tags must have a unique name, and are not case sensative.

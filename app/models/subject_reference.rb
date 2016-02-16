@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SubjectReference < ActiveRecord::Base
   belongs_to :commission_subject
   has_attached_file :file,

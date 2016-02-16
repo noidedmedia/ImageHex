@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class BackgroundReference < ActiveRecord::Base
   belongs_to :commission_background
   has_attached_file :file,

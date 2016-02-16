@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # See notifications a user has.
 # This entire controller requires login, as it doesn't really make sense for

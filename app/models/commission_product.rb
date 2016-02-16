@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionProduct < ActiveRecord::Base
   belongs_to :user
   has_many :offers, class_name: "CommissionOffer"
@@ -38,6 +39,11 @@ class CommissionProduct < ActiveRecord::Base
   scope :allows_background, lambda {
     where(offer_background: true)
   }
+
+  scope :confirmed, lambda {
+    where(confirmed: true)
+  }
+
   def self.for_search(params)
     c = self
     c = c.allows_background if params["has_background"].to_s == "true"

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A policy to see if a user can modify a  curatorship
 class CuratorshipPolicy < ApplicationPolicy

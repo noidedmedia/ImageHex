@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionOfferPolicy < ApplicationPolicy
   def initialize(user, offer)
     @user = user

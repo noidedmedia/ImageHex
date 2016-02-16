@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Controller for things related to Users.
 # Uses friendly_id for ids.

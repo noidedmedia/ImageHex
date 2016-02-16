@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   end
   resources :commission_products do
     get 'search', on: :collection
+    post 'confirm', on: :member
   end
 
   resources :commission_offers do

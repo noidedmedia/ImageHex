@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A single-action controller used for tag suggestion.
 class TagsController < ApplicationController

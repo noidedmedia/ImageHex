@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TagTracker < ApplicationTracker
   def create
     make_change

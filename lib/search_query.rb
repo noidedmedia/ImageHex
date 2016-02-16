@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SearchQuery
   def initialize(q)
     @q = q.nil? ? {} : (q.is_a?(Hash) ? q : JSON.parse(q))

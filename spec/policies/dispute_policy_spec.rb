@@ -1,12 +1,11 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe DisputePolicy do
-
-
   subject { described_class }
 
   permissions :show? do
-    let(:dispute){ create(:dispute) }
+    let(:dispute) { create(:dispute) }
     it "allows admins" do
       u = create(:user,
                  role: :admin)
@@ -21,14 +20,14 @@ RSpec.describe DisputePolicy do
   end
 
   permissions :create? do
-    let(:offer){ create(:commission_offer) }
-    let(:dispute){ build(:dispute, commission_offer: offer) }
+    let(:offer) { create(:commission_offer) }
+    let(:dispute) { build(:dispute, commission_offer: offer) }
     it "allows the user who made the offer" do
       expect(subject).to permit(offer.user, dispute)
     end
 
     it "does not allow randoms" do
-      expect(subject).to_not permit(create(:user), dispute) 
+      expect(subject).to_not permit(create(:user), dispute)
     end
   end
 

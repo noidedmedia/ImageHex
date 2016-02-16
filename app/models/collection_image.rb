@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A join table, Image <-> Collection
 # If the image is destroyed, this will also be destroyed, meaning that the

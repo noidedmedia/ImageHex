@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #
 # Image is sort of the fundamental concept of ImageHex, as the name
 # implies.

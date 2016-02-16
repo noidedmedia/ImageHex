@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class DisputePolicy < ApplicationPolicy
   def initialize(user, d)
     @user = user
@@ -13,9 +14,8 @@ class DisputePolicy < ApplicationPolicy
   end
 
   protected
+
   def is_commissioner?
     @dispute.commission_offer.try(:user) == @user
   end
-
-
 end

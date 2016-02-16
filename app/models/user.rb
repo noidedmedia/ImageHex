@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A user is exactly what it says on the tin: somebody who uses imagehex under a name.
 # There are (curently) two types of users: an admin and a normal user.
@@ -143,7 +144,7 @@ class User < ActiveRecord::Base
   ####################
 
   def admin?
-    self.role == "admin"
+    role == "admin"
   end
 
   def has_filled_commissions?

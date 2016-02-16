@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ConversationsController < ApplicationController
   before_action :ensure_user
   rescue_from Conversation::UserNotInConversation, with: :unauthorized

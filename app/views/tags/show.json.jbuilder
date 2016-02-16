@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.extract! @tag, :name, :description, :id
 if @images.blank?
   json.images []

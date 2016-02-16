@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A curatorship is a join table between a user who curates a collection and the
 # collections they curate.

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # This is a plain-jane join table. It maps tags <-> tag_groups.
 # Not very exciting, never interacted with directly (at the moment, we may

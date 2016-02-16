@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Helpers for devise things
 module DeviseHelper

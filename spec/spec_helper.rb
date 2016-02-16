@@ -1,7 +1,6 @@
+# frozen_string_literal: true
 require 'simplecov'
-if ENV["COVERAGE"]
-  SimpleCov.start
-end
+SimpleCov.start if ENV["COVERAGE"]
 
 ENV["RAILS_ENV"] ||= 'test'
 
