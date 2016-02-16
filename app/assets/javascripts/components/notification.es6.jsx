@@ -126,7 +126,13 @@ class NotificationItem extends React.Component {
         {username} just accepted your offer!
       </p>;
     }
+    if(kind === "commission_offer_filled") {
+      return <p className="notification-message">
+        {username} just filled your offer!
+      </p>;
+    }
     else {
+      console.error("Got a bad notification",this.props,this.state);
       return <p className="notification-message">
         Something in our javascript has gone horribly wrong.
       </p>;
