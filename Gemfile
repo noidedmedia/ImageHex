@@ -260,12 +260,6 @@ group :development, :test do
   gem 'faker'
 
   ##
-  # https://github.com/sj26/mailcatcher
-  # Mailcatcher for confirming that mails work.
-  # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
-  # gem 'mailcatcher'
-
-  ##
   # https://github.com/bkeepers/dotenv
   # Use .env files for development secret keys
   # Our real key is set in production
