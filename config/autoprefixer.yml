@@ -4,3 +4,5 @@ browsers:
   - "last 3 Firefox versions"
   - "IE >= 11"
   - "last 2 versions"
+cascade: false
+remove: false

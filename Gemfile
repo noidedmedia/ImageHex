@@ -169,13 +169,6 @@ gem 'dalli'
 gem 'scss_lint', require: false
 
 ##
-# https://github.com/ai/autoprefixer-rails
-# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
-# View what Autoprefixer will change with `rake autoprefixer:info`.
-# Config file: `config/autoprefixer.yml`
-gem 'autoprefixer-rails'
-
-##
 # Development-only gems
 group :development do
   ##
@@ -324,4 +317,11 @@ group :production do
   # https://github.com/heroku/rails_12factor
   #
   gem 'rails_12factor'
+
+  ##
+  # https://github.com/ai/autoprefixer-rails
+  # Automatically adds vendor prefixes to CSS with the Asset Pipeline.
+  # View what Autoprefixer will change with `rake autoprefixer:info`.
+  # Config file: `config/autoprefixer.yml`
+  gem 'autoprefixer-rails'
 end
