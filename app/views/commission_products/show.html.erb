@@ -5,6 +5,20 @@
   <%= link_to "Make an offer", new_commission_offer_path(commission_product_id: @product.id) %>
 <% end %>
 
+<% if ! @product.confirmed %>
+  <div class="confirmation-stuff">
+    This product is not confirmed and is not visible in searches
+
+    <% if policy(@product).confirm? %>
+      <%= link_to "Confirm it Now", confirm_commission_product_path(@product) %>
+    <% elsif @product.user == current_user %>
+      <a href="/stripe/authorize">
+        Add your stripe to confirm
+      </a>
+    <% end %>
+  </div>
+<% end %>
+
 <div id="offer-base-price">
   Base price: <%= price(@product.base_price) %>
 </div>
@@ -27,8 +41,8 @@
 <ul class="product-example-images all-example-images">
   <% @example_images.each do |img| %>
     <li class="product-example-images-item">
-    <%= link_to img do %>
-      <% image_tag img.f.url(:medium) %> 
+      <%= link_to img do %>
+        <% image_tag img.f.url(:medium) %> 
+      <% end %>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
