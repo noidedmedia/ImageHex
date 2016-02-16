@@ -17,7 +17,7 @@ class CommissionSubjectForm extends React.Component {
       var id = ref.id ? ref.id : ref.key; // see backgrounds to clarify
       var b = this.baseFieldName() + "[references_attributes][" + index + "]";
       if(ref.removed){
-        return <CommissionSubjectForm.RemovedReferenceFields
+        return <RemovedReferenceField
           key={id}
           baseFieldName={b}
           reference={ref}
@@ -78,7 +78,7 @@ class CommissionSubjectForm extends React.Component {
    */
   idField(){
     if(this.props.subj.id){
-      return <input name="id"
+      return <input name={this.baseFieldName() + "[id]"}
         type="hidden"
         value={this.props.subj.id}
       />;
@@ -126,20 +126,7 @@ class CommissionSubjectForm extends React.Component {
   }
 }
 
-CommissionSubjectForm.RemovedReferenceFields = (props) => {
-  console.log("Removed reference field gets props:",props);
-  if(! props.reference.id){
-    return <span></span>;
-  }
-  return <div>
-    <input name={props.baseFieldName + "[id]"}
-      type="hidden"
-      value={props.reference.id} />
-    <input name={props.baseFieldName + "[_destroy]"}
-      type="hidden"
-      value="true" />
-  </div>;
-};
+
 
 // Stateless component that shows removed subjects
 CommissionSubjectForm.RemovedSubjectFields = (props) => {

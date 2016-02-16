@@ -16,13 +16,15 @@ class CommissionBackgroundForm extends React.Component{
   render(){
     // Create a list of reference images to use
     var refs = this.state.refs.map((ref, index) => {
-      var fname = "commission_offer[backgrounds_attributes]";
+      var fname = "commission_offer[background_attributes]";
       fname += `[references_attributes][${index}]`
       // Use the id if this is an existing reference (that we're editing),
       // or the set key otherwise
       var key = ref.id || ref.key;
       if(ref.removed) {
-
+        return <RemovedReferenceField
+          baseFieldName={fname}
+          reference={ref} />
       }
       else {
         return <ReferenceImageField

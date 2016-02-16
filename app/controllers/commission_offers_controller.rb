@@ -121,6 +121,7 @@ class CommissionOffersController < ApplicationController
         format.html { redirect_to @offer }
         format.json { render 'show' }
       else
+        puts "Errors: #{@offer.errors.inspect}"
         format.html { render 'edit' }
         format.json { render @offer.errors, status: :unproccessible_entity }
       end
