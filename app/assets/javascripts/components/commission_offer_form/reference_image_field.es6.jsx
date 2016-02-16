@@ -15,7 +15,7 @@ class ReferenceImageField extends React.Component {
         </div>
         <button onClick={this.removeSelf.bind(this)}
           type="button"
-          className="reference-remove-button">
+          className="reference-remove-button offer-remove-button">
           Remove
         </button>
       </div>;
@@ -23,17 +23,19 @@ class ReferenceImageField extends React.Component {
     if(this.state.fileURL) {
       return <div className="reference-image-field">
         <div className="reference-inner">
-          <input
-            type="file" 
-            className="reference-image-file-field"
-            name={this.props.baseFieldName + "[file]"}
-            onChange={this.addFile.bind(this)}/>
-          <img src={this.state.fileURL}
-            className="reference-image-thumbnail" />
+          <div className="reference-input-container">
+            <input
+              type="file" 
+              className="reference-image-file-field"
+              name={this.props.baseFieldName + "[file]"}
+              onChange={this.addFile.bind(this)}/>
+            <img src={this.state.fileURL}
+              className="reference-image-thumbnail" />
+          </div>
         </div>
         <button onClick={this.removeSelf.bind(this)}
           type="button"
-          className="reference-remove-button">
+          className="reference-remove-button offer-remove-button">
           Remove
         </button>
       </div>;
@@ -41,7 +43,7 @@ class ReferenceImageField extends React.Component {
 
     return <div className="reference-image-field">
       <div className="reference-inner dropzone">
-        <div className="reference-drop-zone"
+        <div className="reference-input-container"
           ref="dropZone"
           onDragLeave={this.dragLeave.bind(this)}
           onDragOver={this.dragOver.bind(this)}
@@ -55,7 +57,7 @@ class ReferenceImageField extends React.Component {
         </div>
       </div>
       <button onClick={this.removeSelf.bind(this)}
-        className="reference-remove-button dropzone">
+        className="reference-remove-button dropzone offer-remove-button">
         Remove
       </button>
     </div>
