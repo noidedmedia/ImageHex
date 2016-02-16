@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211030311) do
+ActiveRecord::Schema.define(version: 20160216030938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20160211030311) do
     t.boolean  "offer_background",    default: true,  null: false
     t.boolean  "offer_subjects",      default: true,  null: false
     t.integer  "weeks_to_completion", default: 4,     null: false
+    t.boolean  "confirmed",           default: false, null: false
   end
 
   add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree
