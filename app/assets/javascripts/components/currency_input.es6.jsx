@@ -15,6 +15,21 @@ class CurrencyInput extends React.Component {
   }
   handleChange(event) {
     var value = event.target.value;
+    if(value === "") {
+      return;
+    }
+    var parse = value;
+    console.log(value, parse);
+    if(value.endsWith(".")) {
+      parse = parse.substring(0, parse.length - 1);
+    }
+    else if(! value.match(/\d$/)) {
+      console.log("Last thing is not a digit");
+      value = value.substring(0, value.length - 1);
+      parse = parse.substring(0, parse.length - 1);
+      console.log("New value:", value);
+      console.log("New parse:",parse);
+    }
     var centValue = Math.round(parseFloat(value) * 100);
     this.setState({
       value: value
