@@ -3,11 +3,11 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :offers, class_name: "CommissionOffer"
 
-  has_many :product_example_images,
+  has_many :listing_example_images,
            inverse_of: :listing
 
   has_many :example_images,
-           through: :product_example_images,
+           through: :listing_example_images,
            class_name: "Image",
            source: :image
 
