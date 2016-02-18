@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218174608) do
+ActiveRecord::Schema.define(version: 20160218174943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,15 +224,15 @@ ActiveRecord::Schema.define(version: 20160218174608) do
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "listing_example_images", force: :cascade do |t|
-    t.integer  "commission_product_id"
+    t.integer  "listing_id"
     t.integer  "image_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "listing_example_images", ["commission_product_id", "image_id"], name: "unique_examples_images", unique: true, using: :btree
-  add_index "listing_example_images", ["commission_product_id"], name: "index_listing_example_images_on_commission_product_id", using: :btree
   add_index "listing_example_images", ["image_id"], name: "index_listing_example_images_on_image_id", using: :btree
+  add_index "listing_example_images", ["listing_id", "image_id"], name: "unique_examples_images", unique: true, using: :btree
+  add_index "listing_example_images", ["listing_id"], name: "index_listing_example_images_on_listing_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id",                             null: false
@@ -436,7 +436,7 @@ ActiveRecord::Schema.define(version: 20160218174608) do
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
   add_foreign_key "listing_example_images", "images", on_delete: :cascade
-  add_foreign_key "listing_example_images", "listings", column: "commission_product_id", on_delete: :cascade
+  add_foreign_key "listing_example_images", "listings", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"

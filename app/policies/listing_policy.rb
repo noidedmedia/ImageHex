@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class CommissionProductPolicy < ApplicationPolicy
+class ListingPolicy < ApplicationPolicy
   def initialize(user, product)
     @user = user
     @product = product
@@ -20,6 +20,6 @@ class CommissionProductPolicy < ApplicationPolicy
   protected
 
   def verified_user_info?
-    @user.stripe_user_id && @user.stripe_publishable_key
+    @user&.stripe_user_id && @user&.stripe_publishable_key
   end
 end
