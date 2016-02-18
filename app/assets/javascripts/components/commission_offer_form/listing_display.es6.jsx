@@ -2,6 +2,7 @@ class ListingDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    console.log("Displaying a listing",props.listing);
   }
   render() {
     var cost = this.props.listing.calculateCost(this.props);
@@ -19,6 +20,7 @@ class ListingDisplay extends React.Component {
         </a>
       </li>;
     });
+    console.log("UserBox",ListingDisplay.UserBox);
     return <li className="commission-products-list-item">
       <a onClick={this.props.clickTitle}>
         <h2>
@@ -45,4 +47,9 @@ ListingDisplay.UserBox = (props) => {
       </a>
     </span>
   </span>;
+};
+
+ListingDisplay.UserBox.propTypes = {
+  avatar_path: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired
 };
