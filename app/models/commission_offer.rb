@@ -18,7 +18,7 @@ class CommissionOffer < ActiveRecord::Base
   validates :user, presence: true
 
   validates :listing, presence: true,
-                                 if: :confirmed
+                      if: :confirmed
 
   validate :has_acceptable_subject_count
   validate :background_is_acceptable

@@ -87,8 +87,8 @@ class CommissionOffersController < ApplicationController
   end
 
   def new
-    @offer = if id = params["commission_product_id"]
-               CommissionOffer.new(commission_product_id: id)
+    @offer = if id = params["listing_id"]
+               CommissionOffer.new(listing_id: id)
              else
                CommissionOffer.new
     end
@@ -134,16 +134,22 @@ class CommissionOffersController < ApplicationController
   def commission_offer_params
     params.require(:commission_offer)
       .permit(:description,
-              :commission_product_id,
+              :listing_id,
               subjects_attributes: [:description,
                                     :id,
                                     :_destroy,
                                     { tag_ids: [] },
-                                    { references_attributes: [:file, :id, :_destroy] }],
+                                    { references_attributes: [:file,
+                                                              :id,
+                                                              :_destroy]
+              }],
               background_attributes: [:description,
                                       :id,
                                       :_destroy,
-                                      { references_attributes: [:file, :id, :_destroy] }])
+                                      { references_attributes: [:file,
+                                                                :id,
+                                                                :_destroy]
+              }])
       .merge(user_id: current_user.id)
   end
 end

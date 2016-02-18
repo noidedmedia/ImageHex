@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe CommissionProductsController, type: :controller do
+RSpec.describe ListingsController, type: :controller do
   include Devise::TestHelpers
   context "when logged in" do
     before(:each) do
@@ -15,14 +15,14 @@ RSpec.describe CommissionProductsController, type: :controller do
       sign_in @user
     end
     describe "POST #create" do
-      let(:commission_product_params) do
-        FactoryGirl.attributes_for(:commission_product)
+      let(:listing_params) do
+        FactoryGirl.attributes_for(:listing)
       end
       it "creates a new commission offer" do
         expect do
           post :create,
-               commission_product: commission_product_params
-        end.to change { @user.commission_products.count }.by(1)
+               listing: listing_params
+        end.to change { @user.listings.count }.by(1)
       end
     end
   end

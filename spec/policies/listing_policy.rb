@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-describe CommissionProductPolicy do
+describe ListingPolicy do
   let(:user) { User.new }
 
   subject { described_class }

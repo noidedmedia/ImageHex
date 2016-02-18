@@ -1,4 +1,4 @@
-class ProductSubjectInput extends React.Component {
+class ListingSubjectInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,20 +11,20 @@ class ProductSubjectInput extends React.Component {
     var includedInput = <span>
       <input type="number"
         step="1"
-        name="commission_product[included_subjects]"
+        name="listing[included_subjects]"
         defaultValue="0"
         min={this.findMinimumIncluded()} />
     </span>;
-    var chargeSection = <ProductSubjectInput.ChargedSubjectSection />;
+    var chargeSection = <ListingSubjectInput.ChargedSubjectSection />;
     var disallowChargeSection = <input type="hidden"
-      name="commission_product[offer_subjects]"
+      name="listing[offer_subjects]"
       value="false" />;
     return <div>
       <h3>Included Subjects</h3>
       This commission will include {includedInput} subjects, free of charge.
       <div className="checkbox-container">
         <input type="checkbox"
-          name="commission_product[offer_subjects]"
+          name="listing[offer_subjects]"
           value={this.state.allowAdditional}
           onChange={this.toggleAdditional.bind(this)} />
         <label>Charge for additional subjects</label>
@@ -44,17 +44,17 @@ class ProductSubjectInput extends React.Component {
 
 }
 
-ProductSubjectInput.ChargedSubjectSection = () => {
+ListingSubjectInput.ChargedSubjectSection = () => {
   return <div>
     Charge 
     <CurrencyInputField
       min={1.00}
       initialValue="5.0"
-      name="commission_product[subject_price]" />
+      name="listing[subject_price]" />
     for each additional subject, to a max of
     <input type="number"
       step="1.0"
-      name="commission_product[maximum_subjects]"
+      name="listing[maximum_subjects]"
       initialValue="1"
       min="1" />
   </div>;

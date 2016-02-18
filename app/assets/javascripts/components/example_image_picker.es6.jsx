@@ -7,7 +7,7 @@ class ExampleImagePicker extends React.Component {
   }
   render() {
     var inputs = this.state.selectedImages.map((img, index) => {
-      var name = "commission_product[example_image_ids][]";
+      var name = "listing[example_image_ids][]";
       return <input type="hidden"
         name={name}
         value={img.id}

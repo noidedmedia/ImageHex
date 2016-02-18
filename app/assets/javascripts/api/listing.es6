@@ -1,11 +1,11 @@
-class CommissionProduct {
+class Listing {
   constructor(json) {
     for (var prop in json) {
       this[prop] = json[prop];
     }
   }
   static find(id, callback) {
-    NM.getJSON("/commission_products/" + id, (j) => {
+    NM.getJSON("/listsings/" + id, (j) => {
       callback(new CommissionProduct(j));
     });
   }

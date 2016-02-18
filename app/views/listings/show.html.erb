@@ -2,7 +2,7 @@
 <h3>A product from <%= link_to @product.user.name, @product.user %></h3>
 
 <% if policy(@product.offers.build).create? %>
-  <%= link_to "Make an offer", new_commission_offer_path(commission_product_id: @product.id) %>
+  <%= link_to "Make an offer", new_commission_offer_path(listing_id: @product.id) %>
 <% end %>
 
 <% if ! @product.confirmed %>
@@ -10,7 +10,7 @@
     This product is not confirmed and is not visible in searches
 
     <% if policy(@product).confirm? %>
-      <%= link_to "Confirm it Now", confirm_commission_product_path(@product) %>
+      <%= link_to "Confirm it Now", confirm_listing_path(@product), method: :post  %>
     <% elsif @product.user == current_user %>
       <a href="/stripe/authorize">
         Add your stripe to confirm
