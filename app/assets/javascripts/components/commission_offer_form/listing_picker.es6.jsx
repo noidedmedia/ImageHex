@@ -10,14 +10,14 @@ class ListingPicker extends React.Component {
   }
   render() {
     if (this.state.fetched) {
-      var products = this.state.products.map((p) => {
+      var listings = this.state.listings.map((l) => {
         return <ListingDisplay
-            product={p}
-            clickTitle={this.onAdd.bind(this, p)}
+            listing={l}
+            clickTitle={this.onAdd.bind(this, l)}
             {...this.props} />;
       });
       return <ul className="commission-products-list">
-        {products}
+        {listings}
       </ul>;
     }
     else { 
@@ -38,17 +38,23 @@ class ListingPicker extends React.Component {
     });
     this.fetchData(nextProps);
   }
-  onAdd(product) {
-    this.props.onAdd(product);
+
+  onAdd(listing) {
+    this.props.onAdd(listing);
   }
+
   // Get a new list products we can use
   fetchData(props) {
     console.log("Fetching new data");
-    Listing.withCriteria(props, this.state.page, (products) => {
+    Listing.withCriteria(props, this.state.page, (listings) => {
       this.setState({
         fetched: true,
-        products: products
+        listings: listings
       });
     });
   }
 }
+
+ListingPicker.propTypes = {
+  onAdd: React.PropTypes.func
+};

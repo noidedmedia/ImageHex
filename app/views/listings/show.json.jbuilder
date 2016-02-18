@@ -1,2 +1,2 @@
 # frozen_string_literal: true
-json.partial! "product", product: @product
+json.partial! "listing", listing: @product

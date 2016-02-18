@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-json.extract! product,
+json.extract! listing,
               :id,
               :name,
               :description,
@@ -13,8 +13,8 @@ json.extract! product,
               :offer_subjects,
               :maximum_subjects,
               :include_background
-json.user product.user, partial: "users/stub", as: :user
-json.example_images product.example_images.take(3) do |i|
+json.user listing.user, partial: "users/stub", as: :user
+json.example_images listing.example_images.take(3) do |i|
   json.extract! i, :id, :created_at
   json.thumbnail path_to_image(i.f :medium)
 end

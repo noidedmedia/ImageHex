@@ -4,15 +4,15 @@ class ListingDisplay extends React.Component {
     this.state = {};
   }
   render() {
-    var cost = this.props.product.calculateCost(this.props);
+    var cost = this.props.listing.calculateCost(this.props);
     var costInfo = "";
     if (cost) {
-      costInfo = <span className="commission-product-total-cost">
+      costInfo = <span className="commission-listing-total-cost">
         Total Cost of ${(cost / 100).toFixed(2)}
       </span>;
     }
-    var examples = this.props.product.example_images.map((img) => {
-      return <li className="product-example-images-item"
+    var examples = this.props.listing.example_images.map((img) => {
+      return <li className="listing-example-images-item"
         key={img.id}>
         <a href={`/images/${img.id}`} target="_blank">
           <img src={img.thumbnail} />
@@ -22,10 +22,10 @@ class ListingDisplay extends React.Component {
     return <li className="commission-products-list-item">
       <a onClick={this.props.clickTitle}>
         <h2>
-          {this.props.product.name}
+          {this.props.listing.name}
         </h2>
       </a>
-      <ListingDisplay.UserBox {...this.props.product.user} />
+      <ListingDisplay.UserBox {...this.props.listing.user} />
       {costInfo}
       <ul className="product-example-images">
         {examples}

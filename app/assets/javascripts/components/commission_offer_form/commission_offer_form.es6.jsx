@@ -19,7 +19,7 @@ class CommissionOfferForm extends React.Component{
         removeProduct={this.removeProduct.bind(this)}
         subjectsCount={this.subjectsCount()}
         hasBackground={this.state.hasBackground}
-        product={this.state.product} />
+        listing={this.state.product} />
     }
     else{
       /**
@@ -272,8 +272,8 @@ CommissionOfferForm.ListingBox = (props) => {
       Chose A Different Product
     </button>
     <input type="hidden"
-      name="commission_offer[commission_product_id]"
-      value={props.product.id} />
+      name="commission_offer[listing_id]"
+      value={props.listing.id} />
   </div>;
 }
 
