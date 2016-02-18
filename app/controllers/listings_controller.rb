@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-class CommissionProductsController < ApplicationController
+class ListingsController < ApplicationController
   include Pundit
   after_action :verify_authorized, except: [:index, :show, :search]
   before_action :ensure_user, except: [:index, :show]
 
   def search
-    @products = CommissionProduct.all
+    @products = Listing.all
       .confirmed
       .joins(:example_images)
       .paginate(page: page, per_page: per_page)
@@ -16,7 +16,7 @@ class CommissionProductsController < ApplicationController
   end
 
   def index
-    @products = CommissionProduct.all
+    @products = Listing.all
       .confirmed
       .joins(:example_images)
       .preload(:example_images)
@@ -26,12 +26,12 @@ class CommissionProductsController < ApplicationController
   end
 
   def new
-    @product = CommissionProduct.new
+    @product = Listing.new
     authorize(@product)
   end
 
   def confirm
-    @product = CommissionProduct.find(params[:id])
+    @product = Listing.find(params[:id])
     authorize @product
     @product.update(confirmed: true)
     redirect_to @product
@@ -41,13 +41,13 @@ class CommissionProductsController < ApplicationController
   end
 
   def show
-    @product = CommissionProduct.find(params[:id])
+    @product = Listing.find(params[:id])
     @example_images = @product.example_images
       .for_content(content_pref)
   end
 
   def create
-    @product = CommissionProduct.new(commission_product_params)
+    @product = Listing.new(listing_params)
     authorize @product
     respond_to do |format|
       if @product.save
@@ -61,15 +61,15 @@ class CommissionProductsController < ApplicationController
   end
 
   def edit
-    @product = CommissionProduct.find(params[:id])
+    @product = Listing.find(params[:id])
     authorize @product
   end
 
   def update
-    @product = CommissionProduct.find(params[:id])
+    @product = Listing.find(params[:id])
     authorize @product
     respond_to do |format|
-      if @product.update(commission_product_params)
+      if @product.update(listing_params)
         format.html { redirect_to @product }
         format.json { render action: "show" }
       else
@@ -81,8 +81,8 @@ class CommissionProductsController < ApplicationController
 
   protected
 
-  def commission_product_params
-    params.require(:commission_product)
+  def listing_params
+    params.require(:listing)
       .permit(:name,
               :description,
               :base_price,

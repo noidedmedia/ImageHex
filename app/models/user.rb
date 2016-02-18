@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   ##
   # Join table: users -> collections
-  has_many :commission_products
+  has_many :listings
   has_many :commission_offers
   has_many :conversation_users
   has_many :conversations,
@@ -148,7 +148,7 @@ class User < ActiveRecord::Base
   end
 
   def has_filled_commissions?
-    count = commission_products
+    count = listings
       .joins(:offers)
       .where(commission_offers: { filled: true })
       .count

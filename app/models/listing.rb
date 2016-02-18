@@ -1,10 +1,10 @@
 # frozen_string_literal: true
-class CommissionProduct < ActiveRecord::Base
+class Listing < ActiveRecord::Base
   belongs_to :user
   has_many :offers, class_name: "CommissionOffer"
 
   has_many :product_example_images,
-           inverse_of: :commission_product
+           inverse_of: :listing
 
   has_many :example_images,
            through: :product_example_images,

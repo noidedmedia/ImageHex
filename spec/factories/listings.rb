@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 FactoryGirl.define do
-  factory :commission_product do
+  factory :listing do
     user
     name "Sketch"
     description "EZ Product, EZ Life"

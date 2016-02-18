@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216030938) do
+ActiveRecord::Schema.define(version: 20160218173806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,26 +114,6 @@ ActiveRecord::Schema.define(version: 20160216030938) do
 
   add_index "commission_offers", ["commission_product_id"], name: "index_commission_offers_on_commission_product_id", using: :btree
   add_index "commission_offers", ["user_id"], name: "index_commission_offers_on_user_id", using: :btree
-
-  create_table "commission_products", force: :cascade do |t|
-    t.integer  "user_id",                             null: false
-    t.string   "name"
-    t.text     "description"
-    t.integer  "base_price",          default: 1000,  null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "included_subjects",   default: 0,     null: false
-    t.boolean  "include_background",  default: false, null: false
-    t.integer  "subject_price"
-    t.integer  "background_price"
-    t.integer  "maximum_subjects"
-    t.boolean  "offer_background",    default: true,  null: false
-    t.boolean  "offer_subjects",      default: true,  null: false
-    t.integer  "weeks_to_completion", default: 4,     null: false
-    t.boolean  "confirmed",           default: false, null: false
-  end
-
-  add_index "commission_products", ["user_id"], name: "index_commission_products_on_user_id", using: :btree
 
   create_table "commission_subject_tags", force: :cascade do |t|
     t.integer  "tag_id",                null: false
@@ -243,6 +223,37 @@ ActiveRecord::Schema.define(version: 20160216030938) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
+  create_table "listing_example_images", force: :cascade do |t|
+    t.integer  "commission_product_id"
+    t.integer  "image_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "listing_example_images", ["commission_product_id", "image_id"], name: "unique_examples_images", unique: true, using: :btree
+  add_index "listing_example_images", ["commission_product_id"], name: "index_listing_example_images_on_commission_product_id", using: :btree
+  add_index "listing_example_images", ["image_id"], name: "index_listing_example_images_on_image_id", using: :btree
+
+  create_table "listings", force: :cascade do |t|
+    t.integer  "user_id",                             null: false
+    t.string   "name"
+    t.text     "description"
+    t.integer  "base_price",          default: 1000,  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "included_subjects",   default: 0,     null: false
+    t.boolean  "include_background",  default: false, null: false
+    t.integer  "subject_price"
+    t.integer  "background_price"
+    t.integer  "maximum_subjects"
+    t.boolean  "offer_background",    default: true,  null: false
+    t.boolean  "offer_subjects",      default: true,  null: false
+    t.integer  "weeks_to_completion", default: 4,     null: false
+    t.boolean  "confirmed",           default: false, null: false
+  end
+
+  add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
+
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "conversation_id"
@@ -264,17 +275,6 @@ ActiveRecord::Schema.define(version: 20160216030938) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
-
-  create_table "product_example_images", force: :cascade do |t|
-    t.integer  "commission_product_id"
-    t.integer  "image_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "product_example_images", ["commission_product_id", "image_id"], name: "unique_examples_images", unique: true, using: :btree
-  add_index "product_example_images", ["commission_product_id"], name: "index_product_example_images_on_commission_product_id", using: :btree
-  add_index "product_example_images", ["image_id"], name: "index_product_example_images_on_image_id", using: :btree
 
   create_table "subject_references", force: :cascade do |t|
     t.integer  "commission_subject_id"
@@ -423,7 +423,7 @@ ActiveRecord::Schema.define(version: 20160216030938) do
   add_foreign_key "commission_backgrounds", "commission_offers"
   add_foreign_key "commission_images", "commission_offers", on_delete: :cascade
   add_foreign_key "commission_images", "images", on_delete: :cascade
-  add_foreign_key "commission_offers", "commission_products"
+  add_foreign_key "commission_offers", "listings", column: "commission_product_id"
   add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
   add_foreign_key "commission_subjects", "commission_offers"
   add_foreign_key "conversation_users", "conversations", on_delete: :cascade
@@ -435,11 +435,11 @@ ActiveRecord::Schema.define(version: 20160216030938) do
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
+  add_foreign_key "listing_example_images", "images", on_delete: :cascade
+  add_foreign_key "listing_example_images", "listings", column: "commission_product_id", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
-  add_foreign_key "product_example_images", "commission_products", on_delete: :cascade
-  add_foreign_key "product_example_images", "images", on_delete: :cascade
   add_foreign_key "subject_references", "commission_subjects", on_delete: :cascade
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
