@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218173806) do
+ActiveRecord::Schema.define(version: 20160218174608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,25 +94,25 @@ ActiveRecord::Schema.define(version: 20160218173806) do
   add_index "commission_images", ["image_id"], name: "index_commission_images_on_image_id", using: :btree
 
   create_table "commission_offers", force: :cascade do |t|
-    t.integer  "commission_product_id"
-    t.integer  "user_id",                               null: false
+    t.integer  "listing_id"
+    t.integer  "user_id",                          null: false
     t.integer  "total_price"
     t.text     "description"
     t.datetime "charged_at"
     t.boolean  "accepted"
     t.datetime "accepted_at"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "confirmed",             default: false, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "confirmed",        default: false, null: false
     t.datetime "confirmed_at"
-    t.boolean  "charged",               default: false, null: false
+    t.boolean  "charged",          default: false, null: false
     t.datetime "due_at"
     t.text     "stripe_charge_id"
-    t.boolean  "filled",                default: false, null: false
+    t.boolean  "filled",           default: false, null: false
     t.datetime "filled_at"
   end
 
-  add_index "commission_offers", ["commission_product_id"], name: "index_commission_offers_on_commission_product_id", using: :btree
+  add_index "commission_offers", ["listing_id"], name: "index_commission_offers_on_listing_id", using: :btree
   add_index "commission_offers", ["user_id"], name: "index_commission_offers_on_user_id", using: :btree
 
   create_table "commission_subject_tags", force: :cascade do |t|
@@ -423,7 +423,7 @@ ActiveRecord::Schema.define(version: 20160218173806) do
   add_foreign_key "commission_backgrounds", "commission_offers"
   add_foreign_key "commission_images", "commission_offers", on_delete: :cascade
   add_foreign_key "commission_images", "images", on_delete: :cascade
-  add_foreign_key "commission_offers", "listings", column: "commission_product_id"
+  add_foreign_key "commission_offers", "listings"
   add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
   add_foreign_key "commission_subjects", "commission_offers"
   add_foreign_key "conversation_users", "conversations", on_delete: :cascade
