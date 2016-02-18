@@ -1,4 +1,4 @@
-class CommissionProductDisplay extends React.Component {
+class ListingDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,7 +25,7 @@ class CommissionProductDisplay extends React.Component {
           {this.props.product.name}
         </h2>
       </a>
-      <CommissionProductDisplay.UserBox {...this.props.product.user} />
+      <ListingDisplay.UserBox {...this.props.product.user} />
       {costInfo}
       <ul className="product-example-images">
         {examples}
@@ -34,7 +34,7 @@ class CommissionProductDisplay extends React.Component {
   }
 }
 
-CommissionProductDisplay.UserBox = (props) => {
+ListingDisplay.UserBox = (props) => {
   return <span className="product-user-container">
     <span className="product-user-avatar">
       <img src={props.avatar_path} />

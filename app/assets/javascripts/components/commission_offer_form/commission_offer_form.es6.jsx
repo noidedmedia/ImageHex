@@ -4,7 +4,7 @@ class CommissionOfferForm extends React.Component{
     this.state = {
       subjects: props.initialSubjects || [],
       currentSubjectKey: 0,
-      product: props.initialProduct,
+      product: props.initialListing,
       hasBackground: !! props.background
     };
   }
@@ -14,7 +14,7 @@ class CommissionOfferForm extends React.Component{
       /**
        * If the user has selected a product, render it here...
        */
-      productBox = <CommissionOfferForm.ProductBox
+      productBox = <CommissionOfferForm.ListingBox
         totalCost={this.calculateCost()}
         removeProduct={this.removeProduct.bind(this)}
         subjectsCount={this.subjectsCount()}
@@ -25,7 +25,7 @@ class CommissionOfferForm extends React.Component{
       /**
        * Otherwise, display a view where the user can pick a new product
        */
-      productBox = <CommissionProductPicker
+      productBox = <ListingPicker
         subjectsCount={this.subjectsCount()}
         hasBackground={this.state.hasBackground}
         onAdd={this.addProduct.bind(this)} />;
@@ -264,9 +264,9 @@ class CommissionOfferForm extends React.Component{
  * Display info about the product, as well as buttons to use another 
  * and stuff like that.
  */
-CommissionOfferForm.ProductBox = (props) => {
+CommissionOfferForm.ListingBox = (props) => {
   return <div>
-    <CommissionProductDisplay
+    <ListingDisplay
       {...props} />
     <button onClick={props.removeProduct}>
       Chose A Different Product
@@ -287,7 +287,7 @@ document.addEventListener("page:change", function(){
         console.log("Found offer:",c);
         ReactDOM.render(<CommissionOfferForm
           background={c.background}
-          initialProduct={c.product}
+          initialListingt={c.listing}
           initialSubjects={c.subjects}
         />, d);
       });
@@ -297,7 +297,7 @@ document.addEventListener("page:change", function(){
       if(pid){
         CommissionProduct.find(pid, (c) => {
           console.log("Found product", c);
-          ReactDOM.render(<CommissionOfferForm initialProduct={c} />,
+          ReactDOM.render(<CommissionOfferForm initialListing={c} />,
                           d);
         });
       }

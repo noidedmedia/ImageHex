@@ -1,4 +1,4 @@
-class CommissionProductPicker extends React.Component {
+class ListingPicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class CommissionProductPicker extends React.Component {
   render() {
     if (this.state.fetched) {
       var products = this.state.products.map((p) => {
-        return <CommissionProductDisplay
+        return <ListingDisplay
             product={p}
             clickTitle={this.onAdd.bind(this, p)}
             {...this.props} />;
@@ -44,7 +44,7 @@ class CommissionProductPicker extends React.Component {
   // Get a new list products we can use
   fetchData(props) {
     console.log("Fetching new data");
-    CommissionProduct.withCriteria(props, this.state.page, (products) => {
+    Listing.withCriteria(props, this.state.page, (products) => {
       this.setState({
         fetched: true,
         products: products

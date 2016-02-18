@@ -51,7 +51,7 @@ class Listing {
   }
   static withCriteria(criteria, page, callback) {
     console.log("Finding products with criteria",criteria);
-    var baseURL = "/commission_products/search";
+    var baseURL = "/listings/search";
     var {subjectsCount, hasBackground} = criteria;
     baseURL += `?subjects_count=${encodeURIComponent(subjectsCount)}`;
     baseURL += `&has_background=${encodeURIComponent(hasBackground)}`;
@@ -59,7 +59,7 @@ class Listing {
     console.log(`Fetching with URL: ${baseURL}`);
     NM.getJSON(baseURL, (d) => {
       console.log("Got products meeting some criteria",d);
-      callback(d.map(e => new CommissionProduct(e)));
+      callback(d.map(e => new Listing(e)));
     });
   }
 }
