@@ -1,11 +1,11 @@
 /**
  * Form for the background field
  */
-class CommissionBackgroundForm extends React.Component{
-  constructor(props){
+class CommissionBackgroundForm extends React.Component {
+  constructor(props) {
     super(props);
     var initialRefs = [];
-    if(props.background && props.background.references){
+    if (props.background && props.background.references) {
       initialRefs = props.background.references;
     }
     this.state = {
@@ -13,7 +13,7 @@ class CommissionBackgroundForm extends React.Component{
       refKey: 0 // Lets use set the `key` on the ref component
     }
   }
-  render(){
+  render() {
     // Create a list of reference images to use
     var refs = this.state.refs.map((ref, index) => {
       var fname = "commission_offer[background_attributes]";
@@ -21,7 +21,7 @@ class CommissionBackgroundForm extends React.Component{
       // Use the id if this is an existing reference (that we're editing),
       // or the set key otherwise
       var key = ref.id || ref.key;
-      if(ref.removed) {
+      if (ref.removed) {
         return <RemovedReferenceField
           baseFieldName={fname}
           reference={ref} />
@@ -42,12 +42,12 @@ class CommissionBackgroundForm extends React.Component{
       Add a Reference Image
     </button>;
     // We only allow 9 reference images, so remove the button if we have more
-    if(this.state.refs.filter(r => ! r.removed).length > 9){
+    if (this.state.refs.filter(r => ! r.removed).length > 9) {
       console.log("Maximum refs in background reached");
       refButton = <span></span>;
     }
     var idField;
-    if(this.props.background && this.props.background.id){
+    if (this.props.background && this.props.background.id) {
       // IF we're editing stuff, we gotta pass in the ID to rails so it
       // doesn't create an entirely new background record
       idField = <input
@@ -80,7 +80,7 @@ class CommissionBackgroundForm extends React.Component{
    * Actually just sets the `removed` property to `true`, since
    * we gotta tell rails that we got rid of it
    */
-  removeReference(index){
+  removeReference(index) {
     console.log("Removing a reference image from a bacground");
     this.state.refs[index].removed = true;
     this.setState({
@@ -93,7 +93,7 @@ class CommissionBackgroundForm extends React.Component{
    * key - basically, we use *negative* keys, so they can't clash with the `id`
    * of a already-persisted reference
    */
-  addReference(){
+  addReference() {
     this.state.refs.push({
       key: this.state.refKey
     });
@@ -114,8 +114,8 @@ CommissionBackgroundForm.ReferenceField = (props) => {
   console.log("In background reference field, got props",props);
   var fieldName = `commission_offer[background_attributes]`;
   fieldName += `[references_attributes][${props.index}]`;
-  if(props.removed){
-    if(props.id){
+  if (props.removed) {
+    if (props.id) {
       return <div>
         <input type="hidden"
           name={fieldName + "[id]"}
@@ -126,12 +126,12 @@ CommissionBackgroundForm.ReferenceField = (props) => {
       </div>;
     }
     // No need for a delete attribute
-    else{
+    else {
       return <div></div>;
     }
   }
   //
-  else if(props.id){
+  else if (props.id) {
     return <div className="background-reference-input persisted">
       <img src={props.url} />
       <button onClick={props.remove} type="button">
@@ -139,7 +139,7 @@ CommissionBackgroundForm.ReferenceField = (props) => {
       </button>
     </div>;
   }
-  else{
+  else {
     return <div className="background-reference-input">
       <input type="file"
         name={fieldName + "[file]"} />
@@ -152,7 +152,7 @@ CommissionBackgroundForm.ReferenceField = (props) => {
 
 CommissionBackgroundForm.BackgroundRemovalFields = (props) => {
   var fieldName = "commission_offer[background_attributes]";
-  if(! props.background){
+  if (! props.background) {
     return <div></div>;
   }
   return <div>

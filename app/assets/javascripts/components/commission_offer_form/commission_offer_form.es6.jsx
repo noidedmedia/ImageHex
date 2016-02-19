@@ -1,5 +1,5 @@
-class CommissionOfferForm extends React.Component{
-  constructor(props){
+class CommissionOfferForm extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       subjects: props.initialSubjects || [],
@@ -8,9 +8,9 @@ class CommissionOfferForm extends React.Component{
       hasBackground: !! props.background
     };
   }
-  render(){
+  render() {
     var productBox;
-    if(this.state.product){
+    if (this.state.product) {
       /**
        * If the user has selected a product, render it here...
        */
@@ -21,7 +21,7 @@ class CommissionOfferForm extends React.Component{
         hasBackground={this.state.hasBackground}
         listing={this.state.product} />
     }
-    else{
+    else {
       /**
        * Otherwise, display a view where the user can pick a new product
        */
@@ -46,7 +46,7 @@ class CommissionOfferForm extends React.Component{
    * User has changed their mind and wants to use a different product, how
    * sad. So we just remove the product reference here.
    */
-  removeProduct(event){
+  removeProduct(event) {
     event.preventDefault();
     this.setState({
       product: undefined
@@ -57,14 +57,14 @@ class CommissionOfferForm extends React.Component{
    * It may be invlaid if it has a background on a product that doesn't allow
    * one, too many subjects, etc...
    */
-  isInvalid(){
-    if(this.state.product){
+  isInvalid() {
+    if (this.state.product) {
       return ! this.state.product.validOffer({
         subjectsCount: this.subjectsCount(),
         hasBackground: this.state.hasBackground
       });
     }
-    else{
+    else {
       return true;
     }
   }
@@ -78,17 +78,17 @@ class CommissionOfferForm extends React.Component{
    *  Background on an offer to a product that doesn't allow backgrounds.
    *    Display an error of some type.
    */
-  backgroundSection(){
+  backgroundSection() {
     var backgroundForm = <CommissionBackgroundForm
       product={this.state.product} 
       removeBackground={this.removeBackground.bind(this)}
       background={this.props.background}
     />;
-    if(this.state.hasBackground){
-      if( (! this.state.product) || this.state.product.allowBackground){
+    if (this.state.hasBackground) {
+      if ( (! this.state.product) || this.state.product.allowBackground) {
         return backgroundForm;
       }
-      else{
+      else {
         return <div className="error">
           This product does not allow backgrounds.
           Remove this background before submitting.
@@ -96,10 +96,10 @@ class CommissionOfferForm extends React.Component{
         </div>;
       }
     }
-    else{
+    else {
       console.log("We do not have a background.");
       var button = "";
-      if((! this.state.product) || (this.state.product.allowBackground)){
+      if ((! this.state.product) || (this.state.product.allowBackground)) {
         button = <button type="button"
           onClick={this.addBackground.bind(this)}>
           Add a background
@@ -118,12 +118,12 @@ class CommissionOfferForm extends React.Component{
    * button should be visible (depending on the max subjects left in the 
    * product)
    */
-  subjectSection(){
+  subjectSection() {
     var subjects = this.state.subjects.map((subj, index) => {
       // We set the `key` manually on items that are not persisted yet
       var id = subj.id ? subj.id : subj.key;
       console.log("Creating a subject display for subject",subj);
-      if(subj.removed){
+      if (subj.removed) {
         console.log("Subject is removed, rendering proper form...");
         return <CommissionSubjectForm.RemovedSubjectFields
           subj={subj}
@@ -131,7 +131,7 @@ class CommissionOfferForm extends React.Component{
           key={id}
         />;
       }
-      else{
+      else {
         return <CommissionSubjectForm 
           subj={subj}
           index={index}
@@ -143,13 +143,13 @@ class CommissionOfferForm extends React.Component{
     var newButton = "";
     // Display a button to add another subject if its okay that the user
     // can add more
-    if(this.canAddSubjects()){
+    if (this.canAddSubjects()) {
       newButton = <button onClick={this.addSubject.bind(this)}>
         Add a Subject
       </button>;
     }
     var subjectsLimit = "";
-    if(this.subjectsLeft() < Infinity){
+    if (this.subjectsLeft() < Infinity) {
       subjectsLimit = `You may add ${this.subjectsLeft()} more`; 
     }
     return <div className="offer-form-subjects-section">
@@ -169,7 +169,7 @@ class CommissionOfferForm extends React.Component{
    * ...
    * Look, it's not a difficult concept, okay?
    */
-  canAddSubjects(){
+  canAddSubjects() {
     return this.subjectsLeft() > 0;
   }
 
@@ -177,47 +177,48 @@ class CommissionOfferForm extends React.Component{
    * How many subjects we currently have
    * Removes the subjects that have the `removed` flag set
    */
-  subjectsCount(){
+  subjectsCount() {
     return this.state.subjects.filter(s => ! s.removed).length;
   }
 
-  addProduct(product){
+  addProduct(product) {
     this.setState({
       product: product
     });
   }
 
-  addBackground(){
+  addBackground() {
     this.setState({
       hasBackground: true
     });
   }
 
-  canAddBackground(){
-    if(! this.state.product){
+  canAddBackground() {
+    if (! this.state.product) {
       return true;
     }
-    else{
+    else {
       return (this.state.product.includes_background 
         || this.state.product.offer_background);
     }
   }
 
-  removeBackground(){
+  removeBackground() {
     this.setState({
       hasBackground: false
     });
   }
 
-  subjectsLeft(){
-    if(! this.state.product){
+  subjectsLeft() {
+    if (! this.state.product) {
       console.log("Found no product, can add infinite subjects");
       return Infinity;
     }
-    if(this.state.product.offer_subjects){
+    
+    if (this.state.product.offer_subjects) {
       return this.state.product.maximum_subjects - this.subjectsCount();
     }
-    else{
+    else {
       return this.state.product.included_subjects - this.subjectsCount();
     }
   }
@@ -241,10 +242,10 @@ class CommissionOfferForm extends React.Component{
     var prod = this.state.product;
     var cost = prod.base_price;
     var paidSubjects = this.state.subjects.length - prod.included_subjects;
-    if(paidSubjects > 0){
+    if (paidSubjects > 0) {
       cost += paidSubjects * prod.subject_price;
     }
-    if(! prod.includes_background && this.state.background){
+    if (! prod.includes_background && this.state.background) {
       cost += prod.background_price 
     }
     return cost;
@@ -280,9 +281,9 @@ CommissionOfferForm.ListingBox = (props) => {
 document.addEventListener("page:change", function(){
   console.log("Commission offer form listener fires");
   var d = document.getElementById("offer-form-react-container");
-  if(d){
+  if (d) {
     var cid = d.dataset.offerId;
-    if(cid){
+    if (cid) {
       CommissionOffer.find(cid, (c) => {
         console.log("Found offer:",c);
         ReactDOM.render(<CommissionOfferForm
@@ -292,16 +293,16 @@ document.addEventListener("page:change", function(){
         />, d);
       });
     }
-    else{
+    else {
       var pid = d.dataset.productId;
-      if(pid){
+      if (pid) {
         CommissionProduct.find(pid, (c) => {
           console.log("Found product", c);
           ReactDOM.render(<CommissionOfferForm initialListing={c} />,
                           d);
         });
       }
-      else{
+      else {
         console.log("No product associated");
         ReactDOM.render(<CommissionOfferForm />,
                         d);
