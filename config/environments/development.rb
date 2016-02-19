@@ -49,9 +49,6 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  # Disables Autoprefixer for the development environment.
-  config.assets.unregister_postprocessor('text/css', :autoprefixer)
-
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
 end
