@@ -90,34 +90,11 @@
 
   input[type=checkbox] {
     display: inline-block;
-    appearance: none;
-    border: 1px solid #aaaab2;
-    border-radius: 2px;
-    height: 22px;
-    width: 22px;
-    margin: 5px 2px 0 1px;
-
-    &::after {
-      content: $icon-checkmark;
-      position: relative;
-      top: 1px;
-      left: 2px;
-      color: transparent;
-      font-size: 1.6rem;
-    }
-
-    // Semi-transparent square on-hover.
-    &:hover {
-      color: #333;
-    }
+    margin: 8px 2px 8px 1px;
 
     &:focus {
       outline: transparent;
       border-color: #333;
-    }
-
-    &:checked::after {
-      color: #333;
     }
 
     + label {
