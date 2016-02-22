@@ -28,9 +28,8 @@ class InlineTagCreator extends React.Component {
       </div>;
     } else {
       return <div className="tag-creation inactive">
-        Could not find any tags with that name. 
         <span onClick={this.startCreation.bind(this)}>
-          Create one?
+          Create a tag?
         </span>
       </div>;
     }

@@ -35,14 +35,12 @@ class TagGroupEditor extends React.Component {
           isActive={index == this.state.activeSuggestion} 
           onAdd={this.onTagAdd.bind(this)} />;
       });
-    }
-    // If our input isn't blank and we allow tag creation, then display
-    // a prompt to let the user initiate inline tag creation.
-    else if (!this.state.hasBlankInput && this.props.allowTagCreation) {
-      suggestions = <InlineTagCreator 
-        hideSubmit={this.props.hideSubmit}
-        onAdd={this.onTagAdd.bind(this)}
-        initialTagName={this.state.inputValue} />;
+      if (!this.state.hasBlankInput && this.props.allowTagCreation) {
+        suggestions.push(<InlineTagCreator 
+          hideSubmit={this.props.hideSubmit}
+          onAdd={this.onTagAdd.bind(this)}
+          initialTagName={this.state.inputValue} />);
+      }
     }
     // Now, if we do want to show the user suggestions, display a notification
     // that there aren't any to show.
@@ -75,7 +73,7 @@ class TagGroupEditor extends React.Component {
         goButton = <span className="search-side-button"
           onClick={this.props.submit}>
           <span>Go</span>
-          </span>;
+        </span>;
       }
       inputField = <div>
         <label title="Search" htmlFor="search-input">
@@ -320,11 +318,11 @@ TagGroupEditor.propTypes = {
   // loaded in the proper order, so this errors out. We can probably fix that
   // using ES6 require at some point.
   /* 
-  group: React.PropTypes.oneOfType([
-    React.PropTypes.instanceOf(TagGroup),
-    React.PropTypes.instanceOf(EtherealTagGroup)
-    ]),
-  */
+     group: React.PropTypes.oneOfType([
+     React.PropTypes.instanceOf(TagGroup),
+     React.PropTypes.instanceOf(EtherealTagGroup)
+     ]),
+     */
   // Autofocus this editor's input when we have new suggestions if true
   autofocus: React.PropTypes.bool,
   // A function called when an InlineTagEditor wants to hide the form's 
