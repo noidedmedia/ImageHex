@@ -41,7 +41,7 @@ class HeaderSearch extends React.Component {
     query.tag_groups = [{
       tags: tags
     }];
-    window.location.href = "/search?query=" + JSON.stringify(query);
+    window.location.href = "/search?" + $.param({query: query});
   }
 }
 

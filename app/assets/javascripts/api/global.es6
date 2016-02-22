@@ -30,7 +30,7 @@ NM.getCSRFToken = function() {
   }
 };
 NM.putJSON = function(url, data, callback, error) {
-  
+
   data.authenticity_token = NM.getCSRFToken();
   aja()
   .method("put")
@@ -46,12 +46,12 @@ NM.putJSON = function(url, data, callback, error) {
 NM.postJSON = function(url, data, callback, error) {
   data.authenticity_token = NM.getCSRFToken();
   aja()
-    .method("post")
-    .url(url)
-    .header("Content-Type", "application/json")
-    .header("Accept", "application/json")
-    .body(data)
-    .on("200", callback)
-    .on("40*",error)
-    .go();
+  .method("post")
+  .url(url)
+  .header("Content-Type", "application/json")
+  .header("Accept", "application/json")
+  .body(data)
+  .on("200", callback)
+  .on("40*",error)
+  .go();
 };

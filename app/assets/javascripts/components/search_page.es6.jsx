@@ -72,7 +72,7 @@ class SearchPage extends React.Component {
       };
     });
     console.log("Query is", query);
-    window.location.href = "/search?query=" + JSON.stringify(query);
+    window.location.href = "/search?" + $.param({query: query});
   }
 
   addGroup() {

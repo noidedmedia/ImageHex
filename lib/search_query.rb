@@ -7,16 +7,24 @@ class SearchQuery
   def each_group(&_block)
     raise ArgumentError("Must take a block") unless block_given?
     return unless @q["tag_groups"]
-    @q["tag_groups"].each do |group|
+    tag_groups.each do |group|
       yield group
     end
+  end
+
+  def tag_groups
+    @q["tag_groups"].is_a?(Hash) ? @q["tag_groups"].values : @q["tag_groups"]
   end
 
   def each_group_tag_ids(&_block)
     raise ArgumentError("Must take a block") unless block_given?
     each_group do |g|
-      yield g["tags"].map { |t| t["id"] }
+      yield tags(g).map { |t| t["id"] }
     end
+  end
+
+  def tags(g)
+    g["tags"].is_a?(Hash) ? g["tags"].values : g["tags"]
   end
 
   def to_h
@@ -24,7 +32,12 @@ class SearchQuery
   end
 
   def to_page_h
-    { query: to_h }
+    ar = tag_groups.map do |t|
+      {
+        tags: tags(t)
+      }
+    end
+    {query: {tag_groups: ar}}
   end
 
   private

@@ -12,7 +12,8 @@ class TagGroupEditor extends React.Component {
     this.state = {
       inputValue: "",
       activeSuggestion: undefined,
-      hasBlankInput: true
+      hasBlankInput: true,
+      isActive: false
     };
   }
 
@@ -68,19 +69,31 @@ class TagGroupEditor extends React.Component {
     // Used for styling purposes.
     var inputField;
     if (this.props.isSearch) {
+      var goButton = "";
+      if (this.state.isActive) {
+        // Golly gee I love centering stuff in CSS
+        goButton = <span className="search-side-button"
+          onClick={this.props.submit}>
+          <span>Go</span>
+          </span>;
+      }
       inputField = <div>
         <label title="Search" htmlFor="search-input">
           <span className="icon icon-small icon-search"></span>
         </label>
-        <input type="text" 
-          id="search-input"
-          name="suggestions" 
-          onChange={this.onInputChange.bind(this)}
-          onKeyDown={this.onKeyUp.bind(this)}
-          value={this.state.inputValue}
-          ref="groupInput"
-          placeholder="Search"
-        />
+        <span className="search-input-container">
+          <input type="text" 
+            id="search-input"
+            name="suggestions" 
+            onChange={this.onInputChange.bind(this)}
+            onKeyDown={this.onKeyUp.bind(this)}
+            value={this.state.inputValue}
+            ref="groupInput"
+            placeholder="Search"
+            onFocus={this.focus.bind(this)}
+          />
+          {goButton}
+        </span>
       </div>;
     } else {
       inputField = <input type="text" 
@@ -113,6 +126,9 @@ class TagGroupEditor extends React.Component {
     }
   }
 
+  focus() {
+    this.setState({isActive: true});
+  }
   /**
    * Tell our parent that we are adding a tag, and do our own bookkeeping.
    * Notably, we clear suggestions and our input field.
