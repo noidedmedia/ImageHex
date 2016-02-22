@@ -28,12 +28,11 @@ class Tag < ActiveRecord::Base
   # Usage:
   #   Tag.suggest("ha") => ["hack", "halloween"]
   def self.suggest(n)
-    query = '
+    query = %Q{
     SELECT tags.name, tags.id, tags.importance  FROM tags
     WHERE tags.name LIKE ?
     ORDER BY importance ASC
-    LIMIT 10
-    '
+    }
     finder = "#{n.delete('%').downcase.strip.squish}%"
     find_by_sql([query, finder])
   end

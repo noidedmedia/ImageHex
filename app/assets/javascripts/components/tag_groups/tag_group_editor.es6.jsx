@@ -35,12 +35,7 @@ class TagGroupEditor extends React.Component {
           isActive={index == this.state.activeSuggestion} 
           onAdd={this.onTagAdd.bind(this)} />;
       });
-      if (!this.state.hasBlankInput && this.props.allowTagCreation) {
-        suggestions.push(<InlineTagCreator 
-          hideSubmit={this.props.hideSubmit}
-          onAdd={this.onTagAdd.bind(this)}
-          initialTagName={this.state.inputValue} />);
-      }
+
     }
     // Now, if we do want to show the user suggestions, display a notification
     // that there aren't any to show.
@@ -54,6 +49,15 @@ class TagGroupEditor extends React.Component {
     // and can probably be refactored out.
     else {
       suggestions = "";
+    }
+
+    var inlineCreator = "";
+    if (!this.state.hasBlankInput && this.props.allowTagCreation) {
+      inlineCreator = <InlineTagCreator 
+        hideSubmit={this.props.hideSubmit}
+        onAdd={this.onTagAdd.bind(this)}
+        initialTagName={this.state.inputValue} />;
+
     }
     var removalButton = "";
     // If we allow removal, add a button to do so.
@@ -112,6 +116,7 @@ class TagGroupEditor extends React.Component {
       <ul className="tag-group-editor-tags-suggestions">
         {suggestions}
       </ul>
+      {inlineCreator}
     </div>;
   }
   /**
@@ -270,15 +275,17 @@ class TagGroupEditor extends React.Component {
    */
   fetchSuggestions(value) {
     Tag.withPrefix(value, (tags) => {
-      if (tags.length > 0) {
-        var ntags = tags.filter( (tag) => {
-          for (var i = 0; i < this.props.tags.length; i++) {
-            if (this.props.tags[i].id === tag.id) {
-              return false;
-            }
+      // Filter tags already in this group
+      tags = tags.filter( (tag) => {
+        for (var i = 0; i < this.props.tags.length; i++) {
+          if (this.props.tags[i].id === tag.id) {
+            return false;
           }
-          return true;
-        });
+        }
+        return true;
+      });
+      if (tags.length > 0) {
+
         /**
          * We also set the `active` suggestion to 0. This may result in weird
          * behavior if the user hits the down arrow key to change the active
@@ -293,7 +300,7 @@ class TagGroupEditor extends React.Component {
           hasBlankInput: false,
           hasSuggestions: true,
           showSuggestions: true,
-          suggestions: ntags,
+          suggestions: tags,
           activeSuggestion: 0
         });
       }
@@ -304,7 +311,7 @@ class TagGroupEditor extends React.Component {
           hasBlankInput: false,
         });
       }
-    });
+    }, value.length > 1);
   }
 }
 
