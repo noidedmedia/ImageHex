@@ -68,7 +68,7 @@ class TagGroupEditor extends React.Component {
     // Determine how the input field is going to look
     // Used for styling purposes.
     var inputField;
-    if (this.props.isSearch) {
+    if (this.props.isHeaderSearch) {
       var goButton = "";
       if (this.state.isActive) {
         // Golly gee I love centering stuff in CSS

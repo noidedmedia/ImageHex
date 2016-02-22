@@ -14,6 +14,7 @@ class HeaderSearch extends React.Component {
         onTagRemove={this.removeTag.bind(this)}
         onTagAdd={this.addTag.bind(this)}
         isSearch={true}
+        isHeaderSearch={true}
         submit={this.submit.bind(this)}
       />
     </div>;
