@@ -20,34 +20,31 @@ class ListingBackgroundInput extends React.Component {
   }
   render() {
     var body;
-    if (this.state.type === "no-background") {
+    if (this.isNone) {
       body = <ListingBackgroundInput.NoneBackground />;
     }
-    else if (this.state.type === "free-background") {
+    else if (this.isFree) {
       body = <ListingBackgroundInput.FreeBackground />;
     }
-    else if (this.state.type === "charged-background") {
+    else if (this.isCharged) {
       body = <ListingBackgroundInput.ChargedBackground 
         price={this.state.price} />;
     }
+    var btype = "background-type ";
     return <div className="product-background-input">
-      <div className="radio-container">
-        <input type="radio"
-          checked={this.state.type === "no-background"}
-          onChange={this.moveToNone.bind(this)}/>
-        <label>No Background</label>
-      </div>
-      <div className="radio-container">
-        <input type="radio"
-          checked={this.state.type === "free-background"}
-          onChange={this.moveToFree.bind(this)} />
-        <label>Free Background</label>
-      </div>
-      <div className="radio-container">
-        <input type="radio"
-          checked={this.state.type === "charged-background"}
-          onChange={this.moveToCharged.bind(this)} />
-        <label>Paid Background</label>
+      <div className="background-type-section">
+        <div className={this.isNone ? btype + "active" : btype}
+          onClick={this.moveToNone.bind(this)}>
+          No Background
+        </div>
+        <div className={this.isFree ? btype + "active" : btype}
+          onClick={this.moveToFree.bind(this)}>
+          Free Background
+        </div>
+        <div className={this.isCharged ? btype + " active" : btype}
+          onClick={this.moveToCharged.bind(this)}>
+          Charged Background
+        </div>
       </div>
       <div className="background-input-body">
         {body}
@@ -69,12 +66,22 @@ class ListingBackgroundInput extends React.Component {
       type: "no-background"
     });
   }
+  get isFree() {
+    return this.state.type === "free-background";
+  }
+
+  get isCharged() {
+    return this.state.type === "charged-background";
+  }
+
+  get isNone() {
+    return this.state.type === "no-background";
+  }
 }
 
 
 ListingBackgroundInput.NoneBackground = () => {
   return <div>
-    <h3>No Background</h3>
     Customers cannot add a background to this image.
     <input type="hidden"
       name="listing[offer_background]"
@@ -87,7 +94,6 @@ ListingBackgroundInput.NoneBackground = () => {
 
 ListingBackgroundInput.FreeBackground = () => {
   return <div>
-    <h3>Free Background</h3>
     Customers will recieve a background included in the base price of the image.
     <input type="hidden"
       name="listing[include_background]"
@@ -100,7 +106,6 @@ ListingBackgroundInput.FreeBackground = () => {
 
 ListingBackgroundInput.ChargedBackground = (props) => {
   return <div>
-    <h3>Charged Backgrounds</h3>
     Customers will pay a fee of
     <CurrencyInputField
       min={1.00}
