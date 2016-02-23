@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MessagesController < ApplicationController
   include Pundit
   before_action :ensure_user
@@ -44,7 +45,7 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
     # Gotta do this manually, sadly
     unless ConversationPolicy.new(current_user, @conversation).show?
-      fail Punit::NotAuthorizedError
+      raise Punit::NotAuthorizedError
     end
   end
 

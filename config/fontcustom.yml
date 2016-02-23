@@ -15,12 +15,14 @@ quiet: false
 
 input:
   vectors: app/assets/icons
-  templates: app/assets/icons/templates
+  templates: app/assets/fonts/templates
 
 output:
   fonts: app/assets/fonts
   css: app/assets/stylesheets
   _imagehexicons.scss: app/assets/stylesheets
+  _imagehexiconvariables.scss: app/assets/stylesheets
 
 templates:
   - _imagehexicons.scss
+  - _imagehexiconvariables.scss

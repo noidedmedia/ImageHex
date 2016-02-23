@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionSubject < ActiveRecord::Base
   belongs_to :commission_offer
   has_many :commission_subject_tags

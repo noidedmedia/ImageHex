@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe ImagePolicy do
@@ -8,7 +9,7 @@ describe ImagePolicy do
                              allow_new_creators: false)
       u = FactoryGirl.create(:user)
       expect(subject).to_not permit(u, i)
-      i.update(allow_new_creators: true)
+      i[:allow_new_creators] = true
       expect(subject).to permit(u, i)
     end
   end

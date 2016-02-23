@@ -1,5 +1,5 @@
-class ImagePickerView extends React.Component{
-  constructor(props){
+class ImagePickerView extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       images: [],
@@ -8,21 +8,21 @@ class ImagePickerView extends React.Component{
     this.fetchImages();
   }
 
-  render(){
+  render() {
     var images = this.state.images.map((img) => {
-      if(this.imageIsSelected(img)){
+      if (this.imageIsSelected(img)) {
         return <ImagePickerView.SelectedImageItem
           deselect={this.removeImage.bind(this, img)}
           image={img} />;
       }
-      else{
+      else {
         return <ImagePickerView.NonselectedImageItem
           select={this.addImage.bind(this, img)}
           image={img} />;
       }
     });
     var progressBar;
-    if(this.state.fetchingImages){
+    if (this.state.fetchingImages) {
       progressBar = <progress></progress>;
     }
     return <div>
@@ -43,27 +43,27 @@ class ImagePickerView extends React.Component{
     </div>;
   }
 
-  imageIsSelected(img){
+  imageIsSelected(img) {
     var imgs = this.props.selectedImages;
-    for(var i = 0; i < imgs.length; i++){
-      if(imgs[i].id == img.id){
+    for (var i = 0; i < imgs.length; i++) {
+      if (imgs[i].id == img.id) {
         return true;
       }
     }
     return false;
   }
 
-  addImage(img){
+  addImage(img) {
     console.log("Attempting to add image",img);
     this.props.addImage(img);
   }
 
-  removeImage(img){
+  removeImage(img) {
     console.log("Attemping to remove image", img);
     this.props.removeImage(img);
   }
 
-  fetchImages(){
+  fetchImages() {
     this.props.imageListDelegate.getPageImages((imgs) => {
       this.setState({
         images: imgs,
@@ -75,12 +75,12 @@ class ImagePickerView extends React.Component{
     });
   }
 
-  getNextPage(){
+  getNextPage() {
     this.props.imageListDelegate.nextPage();
     this.fetchImages();
   }
 
-  getPreviousPage(){
+  getPreviousPage() {
     this.props.imageListDelegate.previousPage();
     this.fetchImages();
   }

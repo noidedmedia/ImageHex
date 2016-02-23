@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A policy to see if a user can modify a  curatorship
 class CuratorshipPolicy < ApplicationPolicy
@@ -7,8 +8,9 @@ class CuratorshipPolicy < ApplicationPolicy
   def initialize(user, curatorship)
     @user = user
     @curatorship = curatorship
+    c_id = curatorship.collection_id
     @user_curatorship = Curatorship.where(user_id: @user.id,
-                                          collection_id: curatorship.collection.id)
+                                          collection_id: c_id)
       .first
   end
 

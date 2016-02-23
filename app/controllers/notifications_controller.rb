@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # See notifications a user has.
 # This entire controller requires login, as it doesn't really make sense for
@@ -25,7 +26,7 @@ class NotificationsController < ApplicationController
   # Returns a JSON response indicating success.
   def read
     n = current_user.notifications.where(id: params[:id]).first
-    fail ActiveRecord::RecordNotFound unless n
+    raise ActiveRecord::RecordNotFound unless n
     n.read = true
     worked = n.save
     render json: (worked ? worked : notifications.errors.full_messages)

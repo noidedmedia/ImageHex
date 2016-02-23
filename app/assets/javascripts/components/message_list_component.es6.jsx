@@ -1,10 +1,10 @@
-class MessageListComponent extends React.Component{
-  constructor(props){
+class MessageListComponent extends React.Component {
+  constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
-  render(){
+  render() {
     var messages = this.props.messages.map((msg) => {
       return <MessageComponent key={msg.id}
         message={msg} 
@@ -17,7 +17,7 @@ class MessageListComponent extends React.Component{
     </ul>;
   }
 
-  componentDidMount(){
+  componentDidMount() {
     window.requestAnimationFrame(() => {
       var node = ReactDOM.findDOMNode(this);
       // keep scrolled to bottom initially
@@ -26,7 +26,7 @@ class MessageListComponent extends React.Component{
     });
   }
 
-  componentWillUpdate(){
+  componentWillUpdate() {
     var node = ReactDOM.findDOMNode(this);
     var h = node.scrollTop + node.offsetHeigh;
     this.shouldScrollBottom = h === node.scrollHeight;
@@ -34,12 +34,12 @@ class MessageListComponent extends React.Component{
     this.scrollTop = node.scrollTop;
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     var node = ReactDOM.findDOMNode(this);
-    if(this.shouldScrollBottom){
+    if (this.shouldScrollBottom) {
       node.scrollTop = node.scrollHeight;
     }
-    else{
+    else {
       node.scrollTop = this.scrollTop + (node.scrollHeight - this.scrollHeight);
     }
     window.requestAnimationFrame(() => {
@@ -47,21 +47,21 @@ class MessageListComponent extends React.Component{
     });
   }
 
-  scrollMessages(event){
+  scrollMessages(event) {
     console.log("Scrolling messages");
     this.checkForOlderMessageFetch();
   }
 
-  checkForOlderMessageFetch(){
+  checkForOlderMessageFetch() {
     console.group("Checking if we need to fetch older messages...");
-    if(this.state.fetchingMessages){
+    if (this.state.fetchingMessages) {
       console.log("We are already fetching messages, stopping check");
       console.groupEnd();
       return;
     }
     var node = ReactDOM.findDOMNode(this);
     console.log("Scrolltop of node:",node.scrollTop);
-    if(node.scrollTop < 100 && this.props.hasOlderMessages()){
+    if (node.scrollTop < 100 && this.props.hasOlderMessages()) {
       console.log("Older message fetch needed. Starting now");
       this.props.fetchOlderMessages(() => {
         this.setState({
@@ -74,7 +74,7 @@ class MessageListComponent extends React.Component{
         scrollPosition: node.scrollHeight - node.scrollTop
       });
     } 
-    else{
+    else {
       console.log("Older message fetch is not needed.");
     }
     console.groupEnd();

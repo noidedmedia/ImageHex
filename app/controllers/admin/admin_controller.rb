@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # The root controller for the Admin namespace.
 # Ensures only admins can access actions within.

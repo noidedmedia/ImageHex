@@ -1,0 +1,11 @@
+<div class="fields-page-container">
+  <%= form_for @dispute do |f| %>
+    <div class="field-container">
+      <%= f.label :description, class: "label input-empty" %>
+      <%= f.text_area :description, class: "input" %>
+    </div>
+
+    <%= f.hidden_field :commission_offer_id %>
+    <%= f.submit class: "btn-minimal btn-minimal-green" %>
+  <% end %>
+</div>

@@ -14,6 +14,7 @@ class HeaderSearch extends React.Component {
         onTagRemove={this.removeTag.bind(this)}
         onTagAdd={this.addTag.bind(this)}
         isSearch={true}
+        isHeaderSearch={true}
         submit={this.submit.bind(this)}
       />
     </div>;
@@ -36,16 +37,16 @@ class HeaderSearch extends React.Component {
       return {
         id: tag.id,
         name: tag.name
-      }
+      };
     });
     query.tag_groups = [{
       tags: tags
     }];
-    window.location.href = "/search?query=" + JSON.stringify(query);
+    window.location.href = "/search?" + $.param({query: query});
   }
 }
 
-document.addEventListener('page:change', function() {
+document.addEventListener("page:change", function() {
   var hs = document.getElementById("header-search");
   console.log("header search container:", hs);
   ReactDOM.render(<HeaderSearch />,

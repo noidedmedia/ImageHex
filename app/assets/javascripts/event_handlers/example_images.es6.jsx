@@ -1,6 +1,6 @@
-document.addEventListener("page:change", function(){
+document.addEventListener("page:change", function() {
   var view = document.getElementById("example-image-picker");
-  if(! view){
+  if (! view) {
     return;
   }
   console.log("Got example image picker",view);

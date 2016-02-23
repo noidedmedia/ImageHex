@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # All factories must be valid
 #
 

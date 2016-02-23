@@ -33,8 +33,8 @@ class ImageCollection {
     }
   }
 
-  previousPage(){
-    if(this.hasPreviousPage()){
+  previousPage() {
+    if (this.hasPreviousPage()) {
       this.page = this.page - 1;
       return this;
     } else {
@@ -42,7 +42,7 @@ class ImageCollection {
     }
   }
 
-  currentPage(){
+  currentPage() {
     return this.page;
   }
 

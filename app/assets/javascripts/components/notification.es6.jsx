@@ -56,13 +56,13 @@ class NotificationItem extends React.Component {
     } else {
       className += " unread";
     }
-    var handler = this.state.read ? function(){} : this.readSelf.bind(this);
+    var handler = this.state.read ? function() {} : this.readSelf.bind(this);
     return <li className={className} onClick={handler}>
       <a href={this.link()}>
         {this.message()}
         {this.timeStamp()}
       </a>
-    </li>
+    </li>;
   }
   readSelf() {
     NM.postJSON("/notifications/" + this.props.id + "/read", 
@@ -86,7 +86,7 @@ class NotificationItem extends React.Component {
     else if (this.props.subject.type == "user") {
       return "/users/" + this.props.subject.id;
     }
-    else if (this.props.subject.type == "commission_offer"){
+    else if (this.props.subject.type == "commission_offer") {
       return "/commission_offers/" + this.props.subject.id;
     }
   }
@@ -116,24 +116,30 @@ class NotificationItem extends React.Component {
         {username} has started following you
       </p>;
     }
-    if(kind == "commission_offer_confirmed"){
+    if (kind == "commission_offer_confirmed") {
       return <p className="notification-message">
         {username} just submitted a commission offer to you!
-      </p>
+      </p>;
     }
-    if(kind == "commission_offer_accepted"){
+    if (kind == "commission_offer_accepted") {
       return <p className="notification-message">
         {username} just accepted your offer!
       </p>;
     }
+    if(kind === "commission_offer_filled") {
+      return <p className="notification-message">
+        {username} just filled your offer!
+      </p>;
+    }
     else {
+      console.error("Got a bad notification",this.props,this.state);
       return <p className="notification-message">
         Something in our javascript has gone horribly wrong.
       </p>;
     }
   }
   timeStamp() {
-    return <p className="notification-time-ago">{this.props.time_ago_in_words} ago</p>
+    return <p className="notification-time-ago">{this.props.time_ago_in_words} ago</p>;
   }
 }
 

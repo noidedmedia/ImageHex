@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TagGroupTracker < ApplicationTracker
   def create
     TagGroupChange.create(tag_group: @record,

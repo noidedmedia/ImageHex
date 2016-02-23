@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Sends mail to users.
 class UserMailer < ApplicationMailer

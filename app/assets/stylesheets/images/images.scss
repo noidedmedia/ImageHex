@@ -41,11 +41,17 @@
   }
 }
 
+// Columns vendor prefixes for development
+// scss-lint:disable VendorPrefix
 .image-page-information {
   columns: 450px auto;
   column-gap: 20px;
   column-fill: balance;
+  -webkit-columns: 450px auto;
+  -webkit-column-gap: 20px;
+  -webkit-column-fill: balance;
 }
+// scss-lint:enable VendorPrefix
 
 
 // ==============================================

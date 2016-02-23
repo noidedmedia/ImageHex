@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
+  resources :disputes
+
   resources :conversations do
     resources :messages, only: [:index, :new, :create]
     post :read, on: :member
@@ -46,8 +48,9 @@ Rails.application.routes.draw do
       get :callback
     end
   end
-  resources :commission_products do
+  resources :listings do
     get 'search', on: :collection
+    post 'confirm', on: :member
   end
 
   resources :commission_offers do

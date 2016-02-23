@@ -8,16 +8,16 @@ function favoriteImage() {
 
 function toggleFavoriteActive() {
   var imageActionFavorite = document.querySelector("#img-action-favorite").classList,
-      imageActionFavorited = document.querySelector("#img-action-favorited").classList;
+    imageActionFavorited = document.querySelector("#img-action-favorited").classList;
 
-  imageActionFavorite.toggle('active');
-  imageActionFavorite.toggle('inactive');
-  imageActionFavorited.toggle('active');
-  imageActionFavorited.toggle('inactive');
+  imageActionFavorite.toggle("active");
+  imageActionFavorite.toggle("inactive");
+  imageActionFavorited.toggle("active");
+  imageActionFavorited.toggle("inactive");
 }
 
 var ready = function() {
   favoriteImage();
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);

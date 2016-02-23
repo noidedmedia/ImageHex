@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe CommissionOffersController, type: :controller do
@@ -10,12 +11,12 @@ RSpec.describe CommissionOffersController, type: :controller do
     end
     describe "POST #create" do
       before(:each) do
-        @product = FactoryGirl.create(:commission_product)
+        @product = FactoryGirl.create(:listing)
       end
       context "with valid attributes" do
         let(:commission_offer_params) do
           {
-            commission_product_id: @product.id,
+            listing_id: @product.id,
             description: "test",
             subjects_attributes: [
               {
@@ -31,7 +32,6 @@ RSpec.describe CommissionOffersController, type: :controller do
         it "makes a new offer" do
           expect do
             post :create,
-                 commission_product_id: @product,
                  commission_offer: commission_offer_params
           end.to change { @product.offers.count }.by(1)
           offer = @product.offers.last

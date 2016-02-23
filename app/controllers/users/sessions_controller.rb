@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # BEWARE
 # MOST OF THIS CODE IS COPY/PASTE, I BARELY UNDERSTAND IT, AND IT SUCKS

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A Pundit policy to see if users can add an image to a colletion
 class CollectionImagePolicy < ApplicationPolicy
@@ -5,7 +6,7 @@ class CollectionImagePolicy < ApplicationPolicy
   # user:: the user trying to add an image
   # record:: the collection_image the user is trying to make
   def initialize(user, record)
-    fail Pundit::NotAuthorizedError, "must be logged in" unless user
+    raise Pundit::NotAuthorizedError, "must be logged in" unless user
     @user = user
     @record = record
   end

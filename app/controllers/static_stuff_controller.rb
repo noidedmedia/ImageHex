@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # This controller, essentially, is pointless.
 # It serves to render completely static pages.

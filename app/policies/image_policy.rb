@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ImagePolicy < ApplicationPolicy
   def initialize(user, image)
     @user = user

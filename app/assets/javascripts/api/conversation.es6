@@ -1,43 +1,43 @@
-class Conversation{
-  constructor(obj){
+class Conversation {
+  constructor(obj) {
     this.messages = [];
     this.users = [];
-    for(var prop in obj){
-      if(prop === "users" && Array.isArray(obj.users)){
+    for (var prop in obj) {
+      if (prop === "users" && Array.isArray(obj.users)) {
         obj.users.forEach((user) => {
           this.users.push(new User(user));
         });
       }
-      else if(prop === "messages" && Array.isArray(obj.messages)){
+      else if (prop === "messages" && Array.isArray(obj.messages)) {
         obj.messages.forEach((msg) => {
           this.messages.push(msg);
         });
       }
-      else{
+      else {
         this[prop] = obj[prop];
       }
     }
   }
 
-  hasOlderMessages(){
-    if("_hasOlder" in this){
+  hasOlderMessages() {
+    if ("_hasOlder" in this) {
       return this._hasOlder;
     }
     return true;
   }
 
   // The oldest message we have is the last message in our array
-  oldestMessage(){
+  oldestMessage() {
     return this.messages[0];
   }
 
-  unreadMessageCount(){
-    if(this.messages === []){
+  unreadMessageCount() {
+    if (this.messages === []) {
       return 0;
     }
     var init = 0;
-    for(var i = this.messages.length - 1; i >= 0; i--){
-      if(this.messages[i].read){
+    for (var i = this.messages.length - 1; i >= 0; i--) {
+      if (this.messages[i].read) {
         return init;
       }
       init++;
@@ -45,11 +45,11 @@ class Conversation{
     return init;
   }
 
-  hasUnreadMessages(){
+  hasUnreadMessages() {
     return this.unreadMessageCount() === 0;
   }
 
-  markRead(callback){
+  markRead(callback) {
     console.log(`Conversation ${this.id} told to mark self as read.`);
     NM.postJSON(this.baseURL() + "/read", {}, () => {
       this.messages.forEach((msg) => msg.read = true);
@@ -58,7 +58,7 @@ class Conversation{
     });
   }
 
-  createMessage(body, callback, error){
+  createMessage(body, callback, error) {
     var url = this.baseURL() + "/messages";
     console.log(`Conversation ${this.id} informed to create a message.`);
     console.log(`Message createion gives us a body string of ${body}`);
@@ -70,40 +70,40 @@ class Conversation{
     NM.postJSON(url, {message: {body: body}}, success, error);
   }
 
-  baseURL(){
+  baseURL() {
     return "/conversations/" + this.id;
   }
 
-  fetchOlderMessages(callback){
-    if(this.hasOlderMessages()){
+  fetchOlderMessages(callback) {
+    if (this.hasOlderMessages()) {
       var url = this.baseURL() + "/messages";
       var msg;
-      if(msg = this.oldestMessage()){
+      if (msg = this.oldestMessage()) {
         url = url + "?before=" + msg.created_at;
       }
       console.log(`Fetching older messages for conversation ${this.id}`);
       NM.getJSON(url, (data) => {
-        if(data.length == 0){
+        if (data.length == 0) {
           this._hasOlder = false;
           callback(false);
         }
-        else{
+        else {
           var d = data.map((da) => new Message(da));
           this.addMessages(d);
           callback(this);
         }
       });
     }
-    else{
+    else {
       callback(false);
     }
   }
-  static find(id, callback){
+  static find(id, callback) {
     NM.getJSON("/conversations/" + id, (data) => {
       callback(new Conversation(data));
     });
   }
-  addMessage(msg){
+  addMessage(msg) {
     this.messages.push(msg);
     this.associateUser(msg);
     this.sortMessages();
@@ -111,7 +111,7 @@ class Conversation{
   }
   // Add messages lets you add many messages at once in a more efficient
   // way
-  addMessages(messages){
+  addMessages(messages) {
     messages.forEach((msg) => {
       this.messages.push(msg);
       this.associateUser(msg);
@@ -120,20 +120,20 @@ class Conversation{
     return this;
   }
 
-  sortMessages(){
-    this.messages.sort(function(a, b){
+  sortMessages() {
+    this.messages.sort(function(a, b) {
       return new Date(a.created_at) - new Date(b.created_at);
     });
   }
   
-  trim(num){
-    var ind = num | 5
+  trim(num) {
+    var ind = num | 5;
     this.messages = this.messages.slice(0 - ind);
   }
   
-  associateUser(msg){
-    for(var i = 0; i < this.users.length; i++){
-      if(this.users[i].id == msg.user_id){
+  associateUser(msg) {
+    for (var i = 0; i < this.users.length; i++) {
+      if (this.users[i].id == msg.user_id) {
         msg.user = this.users[i];
         return this;
       }

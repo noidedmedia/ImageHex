@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # This class tracks changes to a tag_group.
 #

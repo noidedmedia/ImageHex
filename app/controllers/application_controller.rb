@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # The root application controller for Imagehex.
 # Any functionality we have to access from all controllers goes here.

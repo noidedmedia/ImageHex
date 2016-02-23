@@ -1,15 +1,15 @@
-class CommissionFullfillmentPicker extends React.Component{
-  constructor(props){
+class CommissionFullfillmentPicker extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       selectedImage: null
     };
   }
 
-  render(){
+  render() {
     var input;
     var list = [];
-    if(this.state.selectedImage){
+    if (this.state.selectedImage) {
       list = [this.state.selectedImage];
       input = <input type="hidden"
         name="image_id"
@@ -25,13 +25,13 @@ class CommissionFullfillmentPicker extends React.Component{
         removeImage={this.removeImage.bind(this)} />
     </div>;
   }
-  addImage(img){
+  addImage(img) {
     this.setState({
       selectedImage: img
     });
   }
-  removeImage(img){
-    if(this.state.selectedImage && this.state.selectedImage.id == img.id){
+  removeImage(img) {
+    if (this.state.selectedImage && this.state.selectedImage.id == img.id) {
       this.setState({
         selectedImage: null
       });

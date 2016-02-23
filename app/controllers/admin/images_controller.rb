@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Administrative actions relating to images.
 class Admin::ImagesController < Admin::AdminController

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Collection is a way to organize images outside of the content within.
 # An example of this might be all images that happened at a particular place

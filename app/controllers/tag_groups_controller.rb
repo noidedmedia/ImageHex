@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A controller that handles TagGroups.
 # Only doesn't allow login on show.

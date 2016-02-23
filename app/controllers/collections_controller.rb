@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A controller for actions relating to collections
 class CollectionsController < ApplicationController

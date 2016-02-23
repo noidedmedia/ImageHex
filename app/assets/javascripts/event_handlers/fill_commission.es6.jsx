@@ -1,6 +1,6 @@
-document.addEventListener("page:change", function(){
-  var container = document.getElementById('fullfill-picker-container');
-  if(! container){
+document.addEventListener("page:change", function() {
+  var container = document.getElementById("fullfill-picker-container");
+  if (! container) {
     console.log("No fullfilment picker here");
     return;
   }

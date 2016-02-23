@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Groups together a bunch of images on a tag.
 #

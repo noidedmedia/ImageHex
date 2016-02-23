@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper

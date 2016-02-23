@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionBackground < ActiveRecord::Base
   belongs_to :commission_offer,
              inverse_of: :background

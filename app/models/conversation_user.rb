@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ConversationUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :conversation
@@ -18,6 +19,6 @@ class ConversationUser < ActiveRecord::Base
   protected
 
   def set_initial_read_date
-    self.last_read_at = Time.now
+    self.last_read_at = Time.zone.now
   end
 end

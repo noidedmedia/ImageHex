@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 FactoryGirl.define do
   factory :user do
     name { Faker::Internet.user_name(nil, %w(_)) }

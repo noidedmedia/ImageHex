@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommissionOfferPolicy < ApplicationPolicy
   def initialize(user, offer)
     @user = user
@@ -55,7 +56,7 @@ class CommissionOfferPolicy < ApplicationPolicy
   end
 
   def offeree?
-    @offer.commission_product&.user == @user
+    @offer.listing&.user == @user
   end
 
   def not_offering_self?

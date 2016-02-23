@@ -50,9 +50,9 @@ class SearchPage extends React.Component {
           Search
         </button>
       </div>
-    </div>
+    </div>;
   }
-  removeTagGroup(index){
+  removeTagGroup(index) {
     this.state.tagGroups.splice(index, 1);
     this.setState({
       tagGroups: this.state.tagGroups
@@ -72,14 +72,14 @@ class SearchPage extends React.Component {
       };
     });
     console.log("Query is", query);
-    window.location.href = "/search?query=" + JSON.stringify(query);
+    window.location.href = "/search?" + $.param({query: query});
   }
 
   addGroup() {
     this.setState({
       tagGrops: this.state.tagGroups.push(new EtherealTagGroup()),
       focusedGroup: this.state.tagGroups.size - 1
-    })
+    });
   }
 
   removeTagFromGroup(groupIndex, tag) {

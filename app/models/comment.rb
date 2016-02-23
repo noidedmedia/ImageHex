@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A comment is a model polymorphically related to other models which, as the name suggests, allows commenting.
 # In a comment, you can mention another user by putting an "@" and then their username.

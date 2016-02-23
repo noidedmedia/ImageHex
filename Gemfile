@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ruby '2.3.0'
 source 'https://rubygems.org'
 
@@ -161,18 +162,18 @@ gem 'apipony'
 gem 'dalli'
 
 ##
-# https://github.com/ai/autoprefixer-rails
-# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
-# View what Autoprefixer will change with `rake autoprefixer:info`.
-# Config file: `config/autoprefixer.yml`
-gem 'autoprefixer-rails'
-
-##
 # https://github.com/brigade/scss-lint
 # Configurable tool for writing clean and consistent SCSS
 # Config file: `config/scss_lint.yml`
 # Run linter with `rake scss:lint`
 gem 'scss_lint', require: false
+
+##
+# https://github.com/ai/autoprefixer-rails
+# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
+# View what Autoprefixer will change with `rake autoprefixer:info`.
+# Config file: `config/autoprefixer.yml`
+gem 'autoprefixer-rails'
 
 ##
 # Development-only gems
@@ -279,12 +280,12 @@ group :development, :test do
   # https://github.com/jnicklas/capybara
   # Acceptance test framework for web applications
   gem 'capybara'
-  
+
   ##
   # https://github.com/mattheworiordan/capybara-screenshot
   # Automatically save screen shots when a Capybara scenario fails
   gem 'capybara-screenshot'
-  
+
   ##
   # https://github.com/teampoltergeist/poltergeist
   # A PhantomJS driver for Capybara
@@ -320,6 +321,6 @@ end
 group :production do
   ##
   # https://github.com/heroku/rails_12factor
-  # 
+  #
   gem 'rails_12factor'
 end

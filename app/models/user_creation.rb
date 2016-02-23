@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UserCreation < ActiveRecord::Base
   belongs_to :user, touch: true
   belongs_to :creation, class_name: "Image", touch: true
