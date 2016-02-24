@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', '= 5.0.0.beta2'
+gem 'rails', '= 5.0.0.beta3'
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
