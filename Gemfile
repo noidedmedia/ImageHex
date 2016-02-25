@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', github: "rails/rails"
+gem 'rails', git: "https://github.com/rails/rails.git"
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home

@@ -1,5 +1,17 @@
 GIT
-  remote: git://github.com/rails/rails.git
+  remote: https://github.com/connorshea/devise-two-factor.git
+  revision: ba6c4c53efccba8501523b51efeca947dff0f215
+  branch: patch3
+  specs:
+    devise-two-factor (2.0.1)
+      activesupport
+      attr_encrypted (~> 2.0.0)
+      devise (>= 3.5.0)
+      railties
+      rotp (~> 2)
+
+GIT
+  remote: https://github.com/rails/rails.git
   revision: fcec068bf913d74146703a02388608aa54d4f3a8
   specs:
     actioncable (5.0.0.beta3)
@@ -57,18 +69,6 @@ GIT
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-
-GIT
-  remote: https://github.com/connorshea/devise-two-factor.git
-  revision: ba6c4c53efccba8501523b51efeca947dff0f215
-  branch: patch3
-  specs:
-    devise-two-factor (2.0.1)
-      activesupport
-      attr_encrypted (~> 2.0.0)
-      devise (>= 3.5.0)
-      railties
-      rotp (~> 2)
 
 GEM
   remote: https://rubygems.org/
