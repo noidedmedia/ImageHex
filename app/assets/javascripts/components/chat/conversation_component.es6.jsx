@@ -8,30 +8,22 @@ class ConversationComponent extends React.Component {
     this.state = {};
   }
   render() {
-    var className= "conversation focused";
+    var className= "conversation-active";
     if (this.props.conversation.hasUnreadMessages()) {
       className = className + " has-unread";
     }
     return <div className={className}>
-      <h2>{this.conversationTitle()}</h2>
+      <h2 className="conversation-header">{this.conversationTitle()}</h2>
       {/* Use another component to manage messages */}
       <MessageListComponent messages={this.props.conversation.messages}
         fetchOlderMessages={this.props.fetchOlderMessages}
         hasOlderMessages={this.hasOlderMessages.bind(this)} 
         currentUserId={this.props.currentUserId}
         />
-      <textarea className="chat-input"
-        value={this.state.inputValue}
-        onChange={this.onChange.bind(this)}
-        onKeyDown={this.keydown.bind(this)}></textarea>
+        <textarea className="chat-input"
+          ref="input"
+          onKeyDown={this.keydown.bind(this)}></textarea>
     </div>;
-  }
-
-  onChange(event) {
-    console.log("Change event detected");
-    this.setState({
-      inputValue: event.target.value
-    });
   }
 
   keydown(event) {
@@ -40,15 +32,14 @@ class ConversationComponent extends React.Component {
     }
     if (event.keyCode === 13) {
       this.submitMessage();
+      event.preventDefault();
     }
   }
 
   submitMessage() {
     console.log("Submitting a new message with body:",this.state.inputValue);
-    this.props.createMessage(this.state.inputValue);
-    this.setState({
-      inputValue: ""
-    });
+    this.props.createMessage(this.refs.input.value);
+    this.refs.input.value = "";
   }
 
   hasOlderMessages() {

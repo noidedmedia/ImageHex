@@ -41,6 +41,7 @@ class ConversationCollection {
   // proper conversation. Note that any messages for conversations not
   // in this collection will be discarded.
   addMessages(messages) {
+    // Associate messages into conversation ids
     var tmp = {};
     for (var i = 0; i < messages.length; i++) {
       var message = messages[i];
@@ -54,6 +55,7 @@ class ConversationCollection {
     for (var key in tmp) {
       var conv = this.conversationWithId(key);
       if (conv) {
+        // Add messages to conversation objects
         conv.addMessages(tmp[key]);
       }
     }

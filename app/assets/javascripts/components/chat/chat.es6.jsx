@@ -36,8 +36,8 @@ class Chat extends React.Component {
         />;
       
     }).filter(a => a);
-    return <div class="chat-container">
-      <div class="conversations-list">
+    return <div className="chat-container">
+      <div className="conversations-sidebar">
         {convs}
       </div>
       {active}
