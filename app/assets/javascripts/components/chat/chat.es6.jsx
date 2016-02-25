@@ -7,63 +7,41 @@ class Chat extends React.Component {
     super(props);
     this.state = {
       unread: props.initialUnread,
+      conversationCollection: new ConversationCollection(props.conversations),
       hasFetchedConversations: false,
-      lastFetchedAt: props.initialFetched,
+      lastFetchedAt: new Date(props.initialFetched),
       focusedIndex: 0
     };
-
+    this.beginPolling();
   }
 
   render() {
-    /**
-     * If chat is active we display it
-     * Otherwise we just display a list of conversations
-     */
-    if (this.state.active) {
-      if (! this.state.conversationCollection) {
-        /**
-         * Don't have conversations apparently, so display a progress bar while
-         * we load them
-         */
-        return <div>
-          <progress></progress>
-        </div>;
-      }
-      var c = this.state.conversationCollection.map((conv, ind) => {
-        /**
-         * If this is the focused converation, we use this
-         */
-        if (ind === this.state.focusedIndex) {
-          return <ConversationComponent
-            conversation={conv}
-            key={conv.id}
-            currentUserId={this.props.currentUserId}
-            fetchOlderMessages={this.fetchOlderMessages.bind(this, ind)}
-            createMessage={this.createMessage.bind(this, conv)}
-          />;
-        } 
-        else {
-          return <UnfocusedConversationComponent
-            key={conv.id}
-            conversation={conv}
-            currentUserId={this.props.currentUserId}
-            focus={this.focusConversation.bind(this, ind)}
-          />;
-        }
-      });
-      return <div>
-        {c}
-      </div>;
-    }
-    /**
-     * Display a stub when the conversation is not active
-     */
-    else {
-      var unreadCount = this.unreadMessageCount();
-      return <div onClick={this.activate.bind(this)}>
-        Chat ({unreadCount} messages unread)
-      </div>;
-    }
+    var index = this.state.focusedIndex;
+    var activeConv = this.state.conversationCollection.withIndex(index);
+    var active = <ConversationComponent
+          conversation={activeConv}
+          key={activeConv.id}
+          currentUserId={this.props.currentUserId}
+          fetchOlderMessages={this.fetchOlderMessages.bind(this, index)}
+          createMessage={this.createMessage.bind(this, activeConv)}
+        />;
+    var convs = this.state.conversationCollection.map((conv, ind) => {
+      
+        return <ConversationSidebarComponent
+          key={conv.id}
+          conversation={conv}
+          isActive={ind === index}
+          currentUserId={this.props.currentUserId}
+          focus={this.focusConversation.bind(this, ind)}
+        />;
+      
+    }).filter(a => a);
+    return <div class="chat-container">
+      <div class="conversations-list">
+        {convs}
+      </div>
+      {active}
+    </div>;
   }
 
   /**
@@ -134,15 +112,15 @@ class Chat extends React.Component {
       console.log(`Determining how long to poll.
                   Last sent: ${this.state.lastSentAt}
                   LastRecieved: ${this.state.lastRecievedAt}`);
-      if (this.state.lastSentAt &&
-                     new Date() - this.state.lastSentAt < 10 * 1000) {
-        console.log("Sent within the last ten seconds.");
-        return window.setTimeout(poll.bind(this), 1000);
-      }
+                  if (this.state.lastSentAt &&
+                      new Date() - this.state.lastSentAt < 10 * 1000) {
+                    console.log("Sent within the last ten seconds.");
+                  return window.setTimeout(poll.bind(this), 1000);
+                  }
                   else if (this.state.lastRecievedAt && 
-                          new Date() - this.state.lastRecievedAt < 10 * 100) {
+                           new Date() - this.state.lastRecievedAt < 10 * 100) {
                     console.log("Recieved in the last ten seconds.");
-                    return window.setTimeout(poll.bind(this), 1.5 * 1000);
+                  return window.setTimeout(poll.bind(this), 1.5 * 1000);
                   }
                   else {
                     console.log("Using default time.");
@@ -151,30 +129,6 @@ class Chat extends React.Component {
     }
     window.setTimeout(poll.bind(this), 10000);
   }
-
-  activate() {
-    console.log("Chat linked is clicked, activating...");
-    this.beginPolling();
-    if (! this.state.conversationCollection) {
-      ConversationCollection.getCurrent((conv) => {
-        if (this.state.unread) {
-          conv.addMessages(this.state.unread);
-        }
-        this.readConversation(conv.conversations[0]);
-        this.setState({
-          conversationCollection: conv,
-          unread: []
-        });
-      });
-    }
-    var obj = {active: true};
-    if (this.state.unread && this.state.conversationCollection) {
-      obj[unread] = [];
-      this.state.conversationCollection.addMessages(this.state.unread);
-    }
-    this.setState(obj);
-  }
-
   readConversation(conv) {
     console.log("Marking all messages in conversation #",conv.id,"as read");
     conv.markRead(() => {

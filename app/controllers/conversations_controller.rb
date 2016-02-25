@@ -5,6 +5,7 @@ class ConversationsController < ApplicationController
 
   def chat
     @messages = Message.unread_for(current_user).includes(:user)
+    @conversations = current_user.conversations
   end
 
   def index

@@ -65,4 +65,9 @@ class ConversationCollection {
       }
     }
   }
+
+  withIndex(index) {
+    return this.conversations[index];
+  }
+
 }
