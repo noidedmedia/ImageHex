@@ -259,6 +259,6 @@ class User < ActiveRecord::Base
   # All users have to have a Favorite collection and a Created collection.
   # This method makes both of those collections in a callback on user creation.
   def make_collections
-    Favorite.create!(curators: [self])
+    f = Favorite.create!(curators: [self])
   end
 end

@@ -10,6 +10,7 @@ class Curatorship < ActiveRecord::Base
   validates :collection, presence: true
   validates :level, presence: true
 
+  before_validation :set_default_level
   ##
   # Note that this is manually set in a callback on Collection
   # DO NOT MODIFY THIS WITHOUT ALSO MODIFYING THAT CALLBACK
@@ -18,7 +19,7 @@ class Curatorship < ActiveRecord::Base
   ##
   # Allow the curatorship to be created with a user_name
   attr_accessor :user_name
-  before_save :resolve_user_name
+  before_validation :resolve_user_name
 
   protected
 
@@ -28,4 +29,9 @@ class Curatorship < ActiveRecord::Base
   def resolve_user_name
     user ||= User.friendly.find(user_name) if user_name
   end
+
+  def set_default_level
+    self.level = :worker unless self.level
+  end
+
 end
