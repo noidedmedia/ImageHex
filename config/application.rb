@@ -14,7 +14,6 @@ Bundler.require(*Rails.groups)
 module ImageHex
   class Application < Rails::Application
     config.autoload_paths << Rails.root.join("lib")
-    config.active_record.raise_in_transactional_callbacks = true
     routes.default_url_options[:host] = "localhost"
 
     # Default host URL for links in emails.
