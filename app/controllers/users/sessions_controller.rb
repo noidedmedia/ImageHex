@@ -30,7 +30,6 @@
 #
 class Users::SessionsController < Devise::SessionsController
   prepend_before_action :two_factor_enabled?, only: :create
-  # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   # def new
