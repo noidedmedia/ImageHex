@@ -2,6 +2,11 @@
 class ConversationsController < ApplicationController
   before_action :ensure_user
   rescue_from Conversation::UserNotInConversation, with: :unauthorized
+
+  def chat
+    @messages = Message.unread_for(current_user).includes(:user)
+  end
+
   def index
     @conversations = current_user
       .conversations

@@ -184,19 +184,3 @@ class Chat extends React.Component {
     });
   }
 }
-
-document.addEventListener("page:change", function() {
-  var elem = document.getElementById("chatbox");
-  console.log("Got element",elem,"for chat");
-  if (elem) {
-    Message.unread((msg) => {
-      ReactDOM.render(<Chat initialUnread={msg} 
-        currentUserId={USER_ID}
-        initialFetched={new Date()} />,
-          elem);
-    });
-  }
-  else {
-    console.log("no chat to get");
-  }
-});
