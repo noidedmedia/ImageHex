@@ -19,6 +19,25 @@
   }
 }
 
+.background-type-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.background-type {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 2.0rem;
+  padding: 5px;
+  width: 33%;
+
+  &.active {
+    background-color: #0e0;
+    color: #fff;
+  }
+}
+
 .product-example-images {
   display: flex;
   flex-direction: row;
