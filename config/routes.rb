@@ -1,5 +1,9 @@
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   mount Apipony::Engine => '/api/documentation'
+
+  # Serve websocket cable requests in-process
+  # mount ActionCable.server => '/cable'
 
   get "/@:id" => 'users#show'
   patch "/@:id" => "users#update"
