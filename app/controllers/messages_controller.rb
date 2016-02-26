@@ -26,6 +26,8 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(message_params)
     respond_to do |format|
       if @message.save
+        # Assume the user had read this conversation if htey are chatting in it
+        @conversation.mark_read! current_user
         format.html { redirect_to messages_path(@message) }
         format.json { render 'show' }
       else

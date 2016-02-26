@@ -64,7 +64,6 @@ class Conversation {
     console.log(`Message createion gives us a body string of ${body}`);
     var success = (msg) => {
       console.log(`New message (${msg.id}) created on #${this.id}.`);
-      this.addMessage(new Message(msg));
       callback(this);
     };
     NM.postJSON(url, {message: {body: body}}, success, error);
@@ -123,6 +122,16 @@ class Conversation {
   sortMessages() {
     this.messages.sort(function(a, b) {
       return new Date(a.created_at) - new Date(b.created_at);
+    });
+    // Remove duplicates
+    this.messages = this.messages.filter((value, index, self) =>{
+      for(var i = index + 1; i < self.length; i++){
+        if(self[i].id === value.id) {
+          console.log("Found a duplicate message, removing!");
+          return false;
+        }
+      }
+      return true;
     });
   }
   

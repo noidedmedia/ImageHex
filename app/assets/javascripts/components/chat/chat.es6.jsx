@@ -1,6 +1,10 @@
 /**
  * This component handles the entire chat, including all conversations.
- * It's loosely modeled after Facebook's chat.
+ * It's kind of gross, mostly owing to how it constantly fetches all messages,
+ * then manually associates them. 
+ *
+ * The data storage on this needs a rewrite, but I am fairly certain that I 
+ * actually know how to do it. Kind of.
  */
 class Chat extends React.Component {
   constructor(props) {
@@ -129,6 +133,7 @@ class Chat extends React.Component {
     }
     window.setTimeout(poll.bind(this), 10000);
   }
+
   readConversation(conv) {
     console.log("Marking all messages in conversation #",conv.id,"as read");
     conv.markRead(() => {
