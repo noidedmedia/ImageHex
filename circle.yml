@@ -1,9 +1,10 @@
 machine:
   timezone:
     UTC
-test:
+dependencies:
   pre:
     - gem install scss_lint
+test:
   override:
     - bundle exec rspec
   post:
