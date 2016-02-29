@@ -1,9 +1,6 @@
 machine:
   timezone:
     UTC
-dependencies:
-  cache_directories:
-    - "/home/ubuntu/.rvm/"
 test:
   pre:
     - gem install scss_lint
