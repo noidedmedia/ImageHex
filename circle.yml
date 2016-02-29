@@ -10,5 +10,4 @@ test:
   post:
     - scss-lint -c config/scss-lint.yml
     - bundle exec brakeman -z
-    - bundle exec bundle-audit update
-    - bundle exec bundle-audit
+    - bundle exec bundle-audit check
