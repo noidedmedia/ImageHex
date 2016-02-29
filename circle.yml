@@ -3,6 +3,9 @@ machine:
     UTC
   ruby:
     version: 2.3.0
+dependencies:
+  cache_directories:
+    - "/home/ubuntu/.rvm/"
 test:
   pre:
     - gem install scss_lint
