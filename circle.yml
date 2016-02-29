@@ -10,7 +10,8 @@ test:
   pre:
     - gem install scss_lint
   override:
-    - bundle exec rspec
+    - bundle exec rspec --tag ~feature
+    - bundle exec rspec --tag feature
   post:
     - scss-lint -c config/scss-lint.yml
     - bundle exec brakeman -z
