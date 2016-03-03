@@ -74,6 +74,9 @@ gem 'sass-rails'
 gem 'uglifier'
 
 ##
+# https://github.com/TannerRogalsky/sprockets-es6
+# A Sprockets transformer that converts ES6 code into vanilla ES5 with Babel JS.
+gem 'sprockets-es6'
 
 ##
 # https://github.com/AnthonySuper/train_track
