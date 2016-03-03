@@ -235,6 +235,11 @@ group :development do
   # Use FontCustom for generating the icon font.
   # See the README.md for more on how this works.
   gem 'fontcustom'
+
+  ##
+  # https://github.com/ryanb/letter_opener
+  # Preview mail in the browser instead of sending.
+  gem 'letter_opener'
 end
 
 ##
