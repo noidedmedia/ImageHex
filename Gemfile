@@ -113,7 +113,7 @@ gem 'react-rails'
 # https://github.com/rails/turbolinks
 # Turbolinks makes following links in your web application faster.
 # Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '5.0.0.beta2'
+gem 'turbolinks'
 
 ##
 # https://github.com/kossnocorp/jquery.turbolinks

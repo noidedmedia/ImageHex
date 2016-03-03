@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: cd73632d9d47752013f46e775e59241215cfd8e9
+  revision: bbba0649f529626a076c4247047b60cfbe86d5e4
   specs:
     actioncable (5.0.0.beta3)
       actionpack (= 5.0.0.beta3)
@@ -142,6 +142,12 @@ GEM
     code_analyzer (0.4.5)
       sexp_processor
     coderay (1.1.1)
+    coffee-rails (4.1.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.1.x)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
     connection_pool (2.2.0)
@@ -410,9 +416,8 @@ GEM
     tins (1.8.2)
     train_track (0.3.0)
       activesupport (>= 4.0.0)
-    turbolinks (5.0.0.beta2)
-      turbolinks-source
-    turbolinks-source (5.0.0.beta2)
+    turbolinks (2.5.3)
+      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -494,7 +499,7 @@ DEPENDENCIES
   stripe
   timecop
   train_track
-  turbolinks (= 5.0.0.beta2)
+  turbolinks
   uglifier
   unicorn
   will_paginate
