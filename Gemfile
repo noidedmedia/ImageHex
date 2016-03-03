@@ -66,7 +66,7 @@ gem 'i18n-tasks'
 ##
 # https://github.com/rails/sass-rails
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '6.0.0.beta1'
 
 ##
 # https://github.com/lautis/uglifier
@@ -74,9 +74,14 @@ gem 'sass-rails'
 gem 'uglifier'
 
 ##
-# https://github.com/TannerRogalsky/sprockets-es6
-# A Sprockets transformer that converts ES6 code into vanilla ES5 with Babel JS.
-gem 'sprockets-es6'
+# https://github.com/rails/sprockets
+# Rack-based asset packaging system
+gem 'sprockets', '4.0.0.beta2'
+
+##
+# https://github.com/babel/ruby-babel-transpiler
+# A Babel Transpiler that converts ES6 code into vanilla ES5 with Babel JS.
+gem 'babel-transpiler'
 
 ##
 # https://github.com/AnthonySuper/train_track
@@ -113,7 +118,7 @@ gem 'react-rails'
 # https://github.com/rails/turbolinks
 # Turbolinks makes following links in your web application faster.
 # Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '5.0.0.beta2'
 
 ##
 # https://github.com/kossnocorp/jquery.turbolinks
