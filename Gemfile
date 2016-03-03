@@ -66,7 +66,7 @@ gem 'i18n-tasks'
 ##
 # https://github.com/rails/sass-rails
 # Use SCSS for stylesheets
-gem 'sass-rails', '6.0.0.beta1'
+gem 'sass-rails'
 
 ##
 # https://github.com/lautis/uglifier
@@ -74,14 +74,6 @@ gem 'sass-rails', '6.0.0.beta1'
 gem 'uglifier'
 
 ##
-# https://github.com/rails/sprockets
-# Rack-based asset packaging system
-gem 'sprockets', '4.0.0.beta2'
-
-##
-# https://github.com/babel/ruby-babel-transpiler
-# A Babel Transpiler that converts ES6 code into vanilla ES5 with Babel JS.
-gem 'babel-transpiler'
 
 ##
 # https://github.com/AnthonySuper/train_track
@@ -229,11 +221,6 @@ group :development do
   # https://github.com/rails/spring
   # Spring speeds up development by keeping your application running in the background.
   gem 'spring'
-
-  ##
-  # https://github.com/ngs/hanna-bootstrap
-  # Use Hanna Bootstrap theme for RDoc documentation.
-  gem 'hanna-bootstrap'
 
   ##
   # http://fontcustom.com
