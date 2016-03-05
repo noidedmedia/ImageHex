@@ -9,6 +9,9 @@ class ConversationComponent extends React.Component {
     if(this.state.id) {
       return <div className="conversation-component-container">
         <MessageGroupList messageGroups={this.state.messageGroups}/>
+        <div className="update-timing">
+          Updating in {this.state.timeToUpdate} seconds...
+        </div>
       </div>;
     }
     else {

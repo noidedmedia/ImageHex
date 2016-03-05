@@ -3,6 +3,8 @@ class ConversationStore{
     this.data = data;
     this.data.store = this;
     this.listeners = [];
+    window.setInterval(this.tick.bind(this), 1000);
+    this.timeToUpdate = 30;
   }
 
   addListener(func){
@@ -45,12 +47,45 @@ class ConversationStore{
   }
 
   sendChanges(){
+    // Shitty version of object.assign basically
     var data = {
       id: this.data.id,
       name: this.data.name,
       messageGroups: this.chunkMessages(this.data.messages),
-      users: this.data.users
+      users: this.data.users,
+      updating: this.updating,
+      timeToUpdate: this.timeToUpdate,
+      store: this,
     };
     this.listeners.forEach((list) => list(data));
+  }
+
+  // Avoid doing the entire message-grouping thing every time we want to just
+  // update the timer.
+  //
+  // This takes advantage of the fact that react's setState isn't just a 
+  // replacement.
+  sendTimingChanges() {
+    var data = {
+      updating: this.updating,
+      timeToUpdate: this.timeToUpdate
+    };
+    this.listeners.forEach((l) => l(data));
+  }
+
+  tick(){
+    console.log("Ticking...");
+    this.timeToUpdate = this.timeToUpdate - 1;
+    if(this.timeToUpdate <= 0) {
+      this.updating = true;
+      this.update();
+    }
+    this.sendTimingChanges();
+  }
+
+  update(){
+    console.log("Updating...");
+    this.timeToUpdate = 30;
+    this.sendChanges();
   }
 }
