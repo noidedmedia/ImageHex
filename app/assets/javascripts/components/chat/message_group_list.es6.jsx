@@ -24,9 +24,9 @@ MessageGroupList.MessageGroup = (group) => (
       </div>
       <ul className="message-group-messages">
         { 
-          group.messages.map((g) => (
-            <li>
-              {g.body}
+          group.messages.map((m) => (
+            <li key={m.id}>
+              {m.body}
             </li>
             ))
         }

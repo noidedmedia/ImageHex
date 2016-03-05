@@ -19,10 +19,12 @@ class ConversationStore{
         user: user,
         messages: [messages[i]]
       };
+      i++;
       while(i < messages.length && messages[i].user_id === user.id) {
         obj.messages.push(messages[i]);
         i++;
       }
+      i--;
       arr.push(obj);
     }
     return arr;
