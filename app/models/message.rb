@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 class Message < ActiveRecord::Base
   belongs_to :user
-  belongs_to :conversation
+  belongs_to :conversation,
+    touch: :last_message_at
 
   ##
   # The next two methods are kind of hacks
