@@ -1,5 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# This file should contain all the record creation needed to seed the database
+# with its default values. The data can then be loaded with the `rake db:seed`
+# (or created alongside the db with db:setup).
 
 fail "Should not seed in production" if Rails.env.production?
 
@@ -8,53 +9,95 @@ def img(filename)
   File.open(filename)
 end
 
-User.create!([{ name: "test",
-                email: "test@example.com",
-                password: "testtest",
-                password_confirmation: "testtest" },
-              { name: "foo",
-                email: "foo@example.com",
-                password: "foobarbaz",
-                password_confirmation: "foobarbaz" },
-              { name: "Moot",
-                email: "moot@example.com",
-                password: "lol4chanjoke",
-                password_confirmation: "lol4chanjoke" }])
+##
+# Seed Users
+#
+# Email                | Username | Password
+# ------------------------------------------
+# test@example.com     | test     | password
+# foo@example.com      | foo      | password
+# moot@example.com     | moot     | password
+# connor@noided.media  | connor   | password
+# anthony@noided.media | anthony  | password
+# 
+
+User.create!([
+  { 
+    name: "test",
+    email: "test@example.com",
+    password: "password",
+    password_confirmation: "password"
+  },
+  { name: "foo",
+    email: "foo@example.com",
+    password: "password",
+    password_confirmation: "password"
+  },
+  { name: "moot",
+    email: "moot@example.com",
+    password: "password",
+    password_confirmation: "password" 
+  },
+  { 
+    name: "connor",
+    email: "connor@noided.media",
+    password: "password",
+    password_confirmation: "password"
+  },
+  { 
+    name: "anthony",
+    email: "anthony@noided.media",
+    password: "password",
+    password_confirmation: "password"
+  }
+])
+
+# Confirm each user
 User.find_each(&:confirm)
 u1 = User.first
 u2 = User.second
 u3 = User.third
+u4 = User.fourth
+u5 = User.fifth
 
-Image.create!([{ f: img("tiamat.jpg"),
-                 user: u1,
-                 nsfw_gore: false,
-                 nsfw_sexuality: false,
-                 nsfw_language: false,
-                 nsfw_nudity: false,
-                 description: "A toy tiamat. Is adorable, no?",
-                 license: :public_domain,
-                 medium: :photograph,
-                 created_by_uploader: true },
-               { f: img("tiamat2.png"),
-                 user: u1,
-                 nsfw_gore: false,
-                 nsfw_nudity: false,
-                 nsfw_sexuality: false,
-                 nsfw_language: false,
-                 description: "A scarier tiamat model",
-                 medium: :photograph,
-                 license: :public_domain,
-                 created_by_uploader: true },
-               { f: img("planedragon.png"),
-                 user: u2,
-                 nsfw_gore: false,
-                 nsfw_nudity: false,
-                 nsfw_sexuality: false,
-                 nsfw_language: false,
-                 description: "A dragon I drew with fighter jets.",
-                 medium: :digital_paint,
-                 license: :public_domain,
-                 created_by_uploader: true }])
+Image.create!([
+  {
+    f: img("tiamat.jpg"),
+    user: u1,
+    nsfw_gore: false,
+    nsfw_sexuality: false,
+    nsfw_language: false,
+    nsfw_nudity: false,
+    description: "A toy tiamat. Is adorable, no?",
+    license: :public_domain,
+    medium: :photograph,
+    created_by_uploader: true
+  },
+  {
+    f: img("tiamat2.png"),
+    user: u1,
+    nsfw_gore: false,
+    nsfw_nudity: false,
+    nsfw_sexuality: false,
+    nsfw_language: false,
+    description: "A scarier tiamat model",
+    medium: :photograph,
+    license: :public_domain,
+    created_by_uploader: true
+  },
+  {
+    f: img("planedragon.png"),
+    user: u2,
+    nsfw_gore: false,
+    nsfw_nudity: false,
+    nsfw_sexuality: false,
+    nsfw_language: false,
+    description: "A dragon I drew with fighter jets.",
+    medium: :digital_paint,
+    license: :public_domain,
+    created_by_uploader: false
+  }
+])
 
 Image.first.comments.create!(user: u2,
                              body: "Wow, this actually is adorable.")
@@ -72,7 +115,6 @@ Still, you should continue to make these, they're great:
     while want_dragons?
       sculpt_dragons!
     end
-
 ```
 eos
 
