@@ -39,6 +39,11 @@ linters:
   DebugStatement:
     enabled: true
 
+  # `scss-lint:disable` control comments should be preceded by a comment
+  # explaining why these linters are being disabled for this file.
+  DisableLinterReason:
+    enabled: true
+
   # Reports when you define the same property twice in a single rule set.
   DuplicateProperty:
     enabled: true

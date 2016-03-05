@@ -3,6 +3,7 @@
 .icon::before {
   position: absolute;
   color: #aaaab2;
+  // The font-smoothing property doesn't have a generic version.
   // scss-lint:disable VendorPrefix
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -24,6 +25,7 @@
   text-decoration: inherit;
   text-rendering: optimizeLegibility;
   text-transform: none;
+  // The font-smoothing and user-select properties don't have generic versions.
   // scss-lint:disable VendorPrefix
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

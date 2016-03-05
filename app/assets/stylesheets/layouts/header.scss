@@ -183,7 +183,9 @@
 
   i::before {
     // Firefox hack to get the "+" icon to center within the header-create div.
-    -moz-transform: translateX(-13px); // scss-lint:disable VendorPrefix
+    // scss-lint:disable VendorPrefix
+    -moz-transform: translateX(-13px);
+    // scss-lint:enable VendorPrefix
   }
 
   &.active {
