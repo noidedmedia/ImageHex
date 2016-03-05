@@ -136,9 +136,11 @@
   // A dumb CSS hack to increase the specifity of this selector and 
   // override the .active class. This ensures that the element will not
   // be shown, without relying on an "!important" declaration.
+  // scss-lint:disable ChainedClasses
   &.not-signed-in.not-signed-in {
     display: none;
   }
+  // scss-lint:enable ChainedClasses
 
   &.active {
     display: block;
