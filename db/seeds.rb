@@ -20,7 +20,7 @@ end
 # connor@noided.media  | connor   | password
 # anthony@noided.media | anthony  | password
 # 
-
+# Array: [username, email, password, role, avatar]
 user_list = [
   ["test", "test@example.com", "password", :normal, false],
   ["foo", "foo@example.com", "password", :normal, false],
@@ -48,80 +48,33 @@ moot = User.third
 connor = User.fourth
 anthony = User.fifth
 
-Image.create!([
-  {
-    f: img("tiamat.jpg"),
-    user: test,
+##
+# Seed Images
+# 
+# Array: [image, uploader, description, medium, license, created_by_uploader]
+image_list = [
+  ["tiamat.jpg", test, "A toy tiamat. Is adorable, no?", :photograph, :public_domain, true],
+  ["tiamat2.png", test, "A scarier tiamat model", :photograph, :public_domain, true],
+  ["planedragon.png", foo, "A dragon I drew with fighter jets.", :digital_paint, :public_domain, false],
+  ["connor1.png", connor, "A piece from my school newspaper that I did for our 80's issue. I really liked the color scheme for this one.", :digital_paint, :all_rights_reserved, true],
+  ["connor2.png", connor, "A poster I created for a school project, I was learning to code :)", :digital_paint, :all_rights_reserved, true],
+  ["connor3.png", connor, "The logo for WavHead, a Noided Media project. We made a small application you can host on your local network that lets anyone connected vote on music to be played. Meant for parties and the like.", :digital_paint, :all_rights_reserved, true]
+]
+
+image_list.each do |image|
+  Image.create(
+    f: img(image[0]),
+    user: image[1],
     nsfw_gore: false,
     nsfw_sexuality: false,
     nsfw_language: false,
     nsfw_nudity: false,
-    description: "A toy tiamat. Is adorable, no?",
-    license: :public_domain,
-    medium: :photograph,
-    created_by_uploader: true
-  },
-  {
-    f: img("tiamat2.png"),
-    user: test,
-    nsfw_gore: false,
-    nsfw_nudity: false,
-    nsfw_sexuality: false,
-    nsfw_language: false,
-    description: "A scarier tiamat model",
-    medium: :photograph,
-    license: :public_domain,
-    created_by_uploader: true
-  },
-  {
-    f: img("planedragon.png"),
-    user: foo,
-    nsfw_gore: false,
-    nsfw_nudity: false,
-    nsfw_sexuality: false,
-    nsfw_language: false,
-    description: "A dragon I drew with fighter jets.",
-    medium: :digital_paint,
-    license: :public_domain,
-    created_by_uploader: false
-  },
-  {
-    f: img("connor1.png"),
-    user: connor,
-    nsfw_gore: false,
-    nsfw_nudity: false,
-    nsfw_sexuality: false,
-    nsfw_language: false,
-    description: "A piece from my school newspaper that I did for our 80's issue. I really liked the color scheme for this one.",
-    medium: :digital_paint,
-    license: :all_rights_reserved,
-    created_by_uploader: true
-  },
-  {
-    f: img("connor2.png"),
-    user: connor,
-    nsfw_gore: false,
-    nsfw_nudity: false,
-    nsfw_sexuality: false,
-    nsfw_language: false,
-    description: "A poster I created for a school project, I was learning to code :)",
-    medium: :digital_paint,
-    license: :all_rights_reserved,
-    created_by_uploader: true
-  },
-  {
-    f: img("connor3.png"),
-    user: connor,
-    nsfw_gore: false,
-    nsfw_nudity: false,
-    nsfw_sexuality: false,
-    nsfw_language: false,
-    description: "The logo for WavHead, a Noided Media project. We made a small application you can host on your local network that lets anyone connected vote on music to be played. Meant for parties and the like.",
-    medium: :digital_paint,
-    license: :all_rights_reserved,
-    created_by_uploader: true
-  }
-])
+    description: image[2],
+    medium: image[3],
+    license: image[4],
+    created_by_uploader: image[5]
+  )
+end
 
 Image.first.comments.create!(user: foo,
                              body: "Wow, this actually is adorable.")
