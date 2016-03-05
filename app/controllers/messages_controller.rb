@@ -2,7 +2,7 @@
 class MessagesController < ApplicationController
   include Pundit
   before_action :ensure_user
-  before_action :set_conversation, only: [:new, :create, :index]
+  before_action :set_conversation
 
   def index
     @messages = @conversation.messages
@@ -12,14 +12,6 @@ class MessagesController < ApplicationController
     if params[:before]
       @messages = @messages.where("messages.created_at < ?", params[:before])
     end
-  end
-
-  def by_time
-    @messages = Message.with_read_status_for(current_user)
-    if c = Time.parse(params[:after])
-      @messages = @messages.posted_since(c)
-    end
-    render 'index'
   end
 
   def create

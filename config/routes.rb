@@ -27,13 +27,10 @@ Rails.application.routes.draw do
   resources :disputes
 
   resources :conversations do
-    resources :messages, only: [:index, :new, :create]
+    resources :messages, only: [:index, :new, :create] do
+      get 'by_time', on: :collection
+    end
     post :read, on: :member
-  end
-
-  resources :messages, only: [] do
-    get 'unread', on: :collection
-    get 'by_time', on: :collection
   end
 
   resources :tags do
