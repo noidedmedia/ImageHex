@@ -186,8 +186,7 @@ linters:
     enabled: true
     spaces: 0
 
-  # TODO: Decide.
-  # I'm not sure which type of quotes to use yet.
+  # TODO: Decide which type of quotes to use.
   StringQuotes:
     enabled: false
 
