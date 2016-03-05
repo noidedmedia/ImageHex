@@ -7,7 +7,7 @@ class MessageGroupList extends React.Component {
     var groups = this.props.messageGroups.map((group) => {
       return <MessageGroupList.MessageGroup {...group} />;
     });
-    return <ul className="conversation-message-groups">
+    return <ul className="conversation-message-groups in-react">
       {groups}
     </ul>;
   }

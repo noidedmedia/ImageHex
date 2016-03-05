@@ -4,7 +4,8 @@ class ConversationStore{
     this.data.store = this;
     this.listeners = [];
     window.setInterval(this.tick.bind(this), 1000);
-    this.timeToUpdate = 30;
+    this.timeToUpdate = 5;
+    this.lastRecvAt = Date.now();
   }
 
   addListener(func){
@@ -41,9 +42,10 @@ class ConversationStore{
     return {};
   }
   sortMessages(m) {
-    return m.sort((a, b) => {
+    m.sort((a, b) => {
       return new Date(b.created_at) - new Date(b.created_at);
     });
+    return m;
   }
 
   sendChanges(){
@@ -75,6 +77,9 @@ class ConversationStore{
 
   tick(){
     console.log("Ticking...");
+    if(this.updating){
+      return;
+    }
     this.timeToUpdate = this.timeToUpdate - 1;
     if(this.timeToUpdate <= 0) {
       this.updating = true;
@@ -84,8 +89,26 @@ class ConversationStore{
   }
 
   update(){
-    console.log("Updating...");
+    console.log("Getting stuff after",this.lastRecvAt);
+    var url = `/conversations/${this.data.id}/messages.json`;
+    // JS uses miliseconds
+    var d = Math.floor(this.lastRecvAt / 1000);
+    url += `?after=${d}`;
+    var sentAt = Date.now();
+    NM.getJSON(url, (messages) => {
+      Array.prototype.push.apply(this.data.messages, messages);
+      this.recalcUpdate(messages);
+      var seen = {};
+      // Get unique, just in case weird things happened
+      this.data.messages = this.data.messages.filter((msg) => {
+        return seen.hasOwnProperty(msg.id) ? false : (seen[msg.id] = true);
+      });
+      this.lastRecvAt = sentAt;
+      this.sendChanges();
+    });
+  }
+  recalcUpdate(ary) {
+    this.updating = false;
     this.timeToUpdate = 30;
-    this.sendChanges();
   }
 }

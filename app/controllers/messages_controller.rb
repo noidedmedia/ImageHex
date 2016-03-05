@@ -9,8 +9,8 @@ class MessagesController < ApplicationController
       .with_read_status_for(current_user)
       .order(created_at: :desc)
       .limit(20)
-    if params[:before]
-      @messages = @messages.where("messages.created_at < ?", params[:before])
+    if params[:after]
+      @messages = @messages.where("messages.created_at > ?", Time.at(params[:after].to_i))
     end
   end
 
