@@ -5,13 +5,18 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
-      .includes(:messages)
   end
 
+  ##
+  # The HTML version of this generates an N+1 query to fetch messages.
+  # We do this on purpose.
+  # A bunch of small message fetches are probably better on our DB than
+  # fetching all messages in all conversations for this user.
   def index
     @conversations = current_user
       .conversations
       .with_unread_status_for(current_user)
+      .includes(:users)
       .uniq
   end
 

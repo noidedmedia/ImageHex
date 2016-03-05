@@ -1,0 +1,17 @@
+<li class="conversation-stub <%= conversation.has_unread? ? "unread" : "" %>">
+  <%# This code generates an N+1. It does this *on purpose.* %>
+  <%# See note in controller for why %>
+  <ul class="conversation-users-list">
+    <% conversation.users.each do |user| %>
+      <li class="conversation-users-list-item">
+        <%= image_tag user.avatar_img_thumb %>
+      </li>
+    <% end %>
+  </ul>
+  <div class="conversation-side-section">
+    <h1><%= link_to conversation.title, conversation %></h1>
+    <ul class="conversation-stub-messages-list">
+      <%= render "stub_message_section", conversation: conversation %>
+    </ul>
+  </div>
+</li>

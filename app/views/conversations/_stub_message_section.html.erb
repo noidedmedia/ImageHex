@@ -1,0 +1,14 @@
+<% conversation.messages.order(created_at: :desc).limit(5).includes(:user).chunk(&:user).each do |user, messages| %>
+  <li class="conversation-message-group">
+    <div class="message-group-user-section">
+      <%= user.name %>
+    </div>
+    <ul class="message-group-messages">
+      <% messages.each do |msg| %>
+        <li>
+          <%= msg.body %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>

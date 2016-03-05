@@ -17,8 +17,7 @@ class Conversation < ActiveRecord::Base
       })
   end
 
-
-  ##
+   ##
   # Hack because we do a custom thing in our SELECT sometimes
   def has_unread?
     attributes["has_unread"]

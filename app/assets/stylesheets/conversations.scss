@@ -1,0 +1,47 @@
+.conversation-stub {
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  &.unread {
+    border: 1px solid #00ee00;
+  }
+}
+
+.conversation-users-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.conversation-users-list-item {
+  height: 50px;
+  width: 50px;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.conversation-side-section {
+  margin-left: 5px;
+  flex-grow: 5;
+}
+
+.conversation-message-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-group-user-section {
+  padding: 5px;
+  font-weight: bold;
+}
+
+.message-group-messages {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
