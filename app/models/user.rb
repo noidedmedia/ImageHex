@@ -151,7 +151,6 @@ class User < ActiveRecord::Base
   # INSTANCE METHODS #
   ####################
 
-  # FIXME: Shouldn't this be a policy?
   def admin?
     role == "admin"
   end
