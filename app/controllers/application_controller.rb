@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :unauthorized
 
+  # Displays the 401 page.
+  # For when the user tries to access a page that they aren't able to access,
+  # e.g. admin pages.
   def unauthorized
     render 'shared/401', status: :unauthorized
   end

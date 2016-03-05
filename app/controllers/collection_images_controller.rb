@@ -52,7 +52,7 @@ class CollectionImagesController < ApplicationController
   protected
 
   ##
-  # Paramters, of the format:
+  # Parameters, of the format:
   #    collection_image:
   #        image_id: $image_id
   #
