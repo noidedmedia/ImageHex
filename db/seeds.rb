@@ -1,9 +1,10 @@
 # This file should contain all the record creation needed to seed the database
 # with its default values. The data can then be loaded with the `rake db:seed`
-# (or created alongside the db with db:setup).
+# (or created alongside the db with `db:setup`).
 
 fail "Should not seed in production" if Rails.env.production?
 
+# Helper method for using image assets from the `seed_assets` directory.
 def img(filename)
   filename = "#{Rails.root}/db/seed_assets/#{filename}"
   File.open(filename)
@@ -20,13 +21,13 @@ end
 # connor@noided.media  | connor   | password
 # anthony@noided.media | anthony  | password
 # 
-# Array: [username, email, password, role, avatar]
+# Array: [username, email, password, role, avatar, description]
 user_list = [
-  ["test", "test@example.com", "password", :normal, false],
-  ["foo", "foo@example.com", "password", :normal, false],
-  ["moot", "moot@example.com", "password", :normal, false],
-  ["connor", "connor@noided.media", "password", :admin, "avatars/connor.jpg"],
-  ["anthony", "anthony@noided.media", "password", :admin, false]
+  ["test", "test@example.com", "password", :normal, false, false],
+  ["foo", "foo@example.com", "password", :normal, false, false],
+  ["moot", "moot@example.com", "password", :normal, false, false],
+  ["connor", "connor@noided.media", "password", :admin, "avatars/connor.jpg", "Lead Designer for ImageHex."],
+  ["anthony", "anthony@noided.media", "password", :admin, false, false]
 ]
 
 user_list.each do |user|
@@ -36,12 +37,15 @@ user_list.each do |user|
     password: user[2],
     password_confirmation: user[2],
     role: user[3],
-    avatar: user[4] ? img(user[4]) : nil
+    avatar: user[4] ? img(user[4]) : nil,
+    description: user[5] ? user[5] : ""
   )
 end
 
 # Confirm each user
 User.find_each(&:confirm)
+
+# User variables
 test = User.first
 foo = User.second
 moot = User.third
@@ -76,6 +80,9 @@ image_list.each do |image|
   )
 end
 
+
+##
+# Seed Comments
 Image.first.comments.create!(user: foo,
                              body: "Wow, this actually is adorable.")
 Image.find(2).comments.create(user: foo,
@@ -102,6 +109,9 @@ I can see the headline now:
 ## US Military Somehow Manages to One-Up Itself
 eos
 
+
+##
+# Seed Collections
 Subjective.create(curators: [foo],
                   name: "Dragons",
                   description: <<-eos)
@@ -113,7 +123,9 @@ Subjective.first.collection_images.create([{ image_id: 1 },
                                            { image_id: 2 },
                                            { image_id: 3 }])
 
-## Tag some images
+
+##
+# Seed Tags
 dragon = Tag.create(name: "Dragon")
 tiamat = Tag.create(name: "Tiamat (D&D)")
 fighter = Tag.create(name: "Fighter Jet")
@@ -124,9 +136,15 @@ Image.find(2).tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
 Image.find(3).tag_groups.create!(tag_ids: [dragon.id])
 Image.find(3).tag_groups.create!(tag_ids: [fighter.id])
 Image.find(5).tag_groups.create!(tag_ids: [desk.id, brown.id])
+
+##
+# Seed Favorites
 test.favorite! Image.first
 foo.favorite! Image.first
 moot.favorite! Image.first
+
+##
+# Seed Subscriptions
 test.subscribe! foo
 foo.subscribe! test
 moot.subscribe! foo
