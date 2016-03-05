@@ -9,7 +9,7 @@
     <% end %>
   </ul>
   <div class="conversation-side-section">
-    <h1><%= link_to conversation.title, conversation %></h1>
+    <h1><%= link_to conversation.name, conversation %></h1>
     <ul class="conversation-stub-messages-list">
       <%= render "stub_message_section", conversation: conversation %>
     </ul>

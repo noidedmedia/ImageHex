@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305202341) do
+ActiveRecord::Schema.define(version: 20160305210817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 20160305202341) do
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
     t.datetime "last_message_at"
-    t.string   "title",               default: "Untitled Conversation", null: false
+    t.string   "name",                default: "Untitled Conversation", null: false
   end
 
   add_index "conversations", ["commission_offer_id"], name: "index_conversations_on_commission_offer_id", using: :btree
