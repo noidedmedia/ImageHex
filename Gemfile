@@ -226,11 +226,6 @@ group :development do
   gem 'spring'
 
   ##
-  # https://github.com/ngs/hanna-bootstrap
-  # Use Hanna Bootstrap theme for RDoc documentation.
-  gem 'hanna-bootstrap'
-
-  ##
   # http://fontcustom.com
   # Use FontCustom for generating the icon font.
   # See the README.md for more on how this works.

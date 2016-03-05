@@ -166,14 +166,6 @@ GEM
       activesupport (>= 4.1.0)
     haml (4.0.7)
       tilt
-    hanna-bootstrap (0.0.5)
-      bundler
-      coderay
-      coffee-script
-      haml
-      json
-      rake
-      sass
     highline (1.7.8)
     hitimes (1.2.3)
     http-cookie (1.0.2)
@@ -477,7 +469,6 @@ DEPENDENCIES
   faker
   fontcustom
   friendly_id
-  hanna-bootstrap
   i18n
   i18n-tasks
   jbuilder
