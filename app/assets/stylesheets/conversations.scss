@@ -1,3 +1,5 @@
+@import "variables";
+
 .conversation-stub {
   display: flex;
   flex-direction: row;
@@ -5,8 +7,9 @@
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+
   &.unread {
-    border: 1px solid #00ee00;
+    border: 1px solid #0e0;
   }
 }
 
@@ -19,6 +22,7 @@
 .conversation-users-list-item {
   height: 50px;
   width: 50px;
+
   img {
     max-height: 100%;
     max-width: 100%;
