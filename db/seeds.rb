@@ -42,13 +42,15 @@ User.create!([
     name: "connor",
     email: "connor@noided.media",
     password: "password",
-    password_confirmation: "password"
+    password_confirmation: "password",
+    role: :admin
   },
   { 
     name: "anthony",
     email: "anthony@noided.media",
     password: "password",
-    password_confirmation: "password"
+    password_confirmation: "password",
+    role: :admin
   }
 ])
 
@@ -57,8 +59,8 @@ User.find_each(&:confirm)
 u1 = User.first
 u2 = User.second
 u3 = User.third
-u4 = User.fourth
-u5 = User.fifth
+connor = User.fourth
+anthony = User.fifth
 
 Image.create!([
   {
@@ -96,6 +98,42 @@ Image.create!([
     medium: :digital_paint,
     license: :public_domain,
     created_by_uploader: false
+  },
+  {
+    f: img("connor1.png"),
+    user: connor,
+    nsfw_gore: false,
+    nsfw_nudity: false,
+    nsfw_sexuality: false,
+    nsfw_language: false,
+    description: "A piece from my school newspaper that I did for our 80's issue. I really liked the color scheme for this one.",
+    medium: :digital_paint,
+    license: :all_rights_reserved,
+    created_by_uploader: true
+  },
+  {
+    f: img("connor2.png"),
+    user: connor,
+    nsfw_gore: false,
+    nsfw_nudity: false,
+    nsfw_sexuality: false,
+    nsfw_language: false,
+    description: "A poster I created for a school project, I was learning to code :)",
+    medium: :digital_paint,
+    license: :all_rights_reserved,
+    created_by_uploader: true
+  },
+  {
+    f: img("connor3.png"),
+    user: connor,
+    nsfw_gore: false,
+    nsfw_nudity: false,
+    nsfw_sexuality: false,
+    nsfw_language: false,
+    description: "The logo for WavHead, a Noided Media project. We made a small application you can host on your local network that lets anyone connected vote on music to be played. Meant for parties and the like.",
+    medium: :digital_paint,
+    license: :all_rights_reserved,
+    created_by_uploader: true
   }
 ])
 
@@ -141,10 +179,13 @@ Subjective.first.collection_images.create([{ image_id: 1 },
 dragon = Tag.create(name: "Dragon")
 tiamat = Tag.create(name: "Tiamat (D&D)")
 fighter = Tag.create(name: "Fighter Jet")
+desk = Tag.create(name: "Desk", description: "A piece of furniture with a flat or sloped surface and typically with drawers, at which one can read, write, or do other work.")
+brown = Tag.create(name: "Brown")
 Image.first.tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
 Image.find(2).tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
 Image.find(3).tag_groups.create!(tag_ids: [dragon.id])
 Image.find(3).tag_groups.create!(tag_ids: [fighter.id])
+Image.find(5).tag_groups.create!(tag_ids: [desk.id, brown.id])
 u1.favorite! Image.first
 u2.favorite! Image.first
 u3.favorite! Image.first
