@@ -21,51 +21,37 @@ end
 # anthony@noided.media | anthony  | password
 # 
 
-User.create!([
-  { 
-    name: "test",
-    email: "test@example.com",
-    password: "password",
-    password_confirmation: "password"
-  },
-  { name: "foo",
-    email: "foo@example.com",
-    password: "password",
-    password_confirmation: "password"
-  },
-  { name: "moot",
-    email: "moot@example.com",
-    password: "password",
-    password_confirmation: "password" 
-  },
-  { 
-    name: "connor",
-    email: "connor@noided.media",
-    password: "password",
-    password_confirmation: "password",
-    role: :admin
-  },
-  { 
-    name: "anthony",
-    email: "anthony@noided.media",
-    password: "password",
-    password_confirmation: "password",
-    role: :admin
-  }
-])
+user_list = [
+  ["test", "test@example.com", "password", :normal, false],
+  ["foo", "foo@example.com", "password", :normal, false],
+  ["moot", "moot@example.com", "password", :normal, false],
+  ["connor", "connor@noided.media", "password", :admin, "avatars/connor.jpg"],
+  ["anthony", "anthony@noided.media", "password", :admin, false]
+]
+
+user_list.each do |user|
+  User.create(
+    name: user[0],
+    email: user[1],
+    password: user[2],
+    password_confirmation: user[2],
+    role: user[3],
+    avatar: user[4] ? img(user[4]) : nil
+  )
+end
 
 # Confirm each user
 User.find_each(&:confirm)
-u1 = User.first
-u2 = User.second
-u3 = User.third
+test = User.first
+foo = User.second
+moot = User.third
 connor = User.fourth
 anthony = User.fifth
 
 Image.create!([
   {
     f: img("tiamat.jpg"),
-    user: u1,
+    user: test,
     nsfw_gore: false,
     nsfw_sexuality: false,
     nsfw_language: false,
@@ -77,7 +63,7 @@ Image.create!([
   },
   {
     f: img("tiamat2.png"),
-    user: u1,
+    user: test,
     nsfw_gore: false,
     nsfw_nudity: false,
     nsfw_sexuality: false,
@@ -89,7 +75,7 @@ Image.create!([
   },
   {
     f: img("planedragon.png"),
-    user: u2,
+    user: foo,
     nsfw_gore: false,
     nsfw_nudity: false,
     nsfw_sexuality: false,
@@ -137,9 +123,9 @@ Image.create!([
   }
 ])
 
-Image.first.comments.create!(user: u2,
+Image.first.comments.create!(user: foo,
                              body: "Wow, this actually is adorable.")
-Image.find(2).comments.create(user: u2,
+Image.find(2).comments.create(user: foo,
                               body: <<-eos)
 This sculpture is both more detailed and more accurate to Tiamat as a character.
 
@@ -149,14 +135,13 @@ Oh well.
 Still, you should continue to make these, they're great:
 
 ```ruby
-
-    while want_dragons?
-      sculpt_dragons!
-    end
+  while want_dragons?
+    sculpt_dragons!
+  end
 ```
 eos
 
-Image.find(3).comments.create(user: u1,
+Image.find(3).comments.create(user: test,
                               body: <<-eos)
 This is a really cool drawing.
 I can see the headline now:
@@ -164,7 +149,7 @@ I can see the headline now:
 ## US Military Somehow Manages to One-Up Itself
 eos
 
-Subjective.create(curators: [u2],
+Subjective.create(curators: [foo],
                   name: "Dragons",
                   description: <<-eos)
 Flying lizards who breathe fire.
@@ -186,9 +171,9 @@ Image.find(2).tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
 Image.find(3).tag_groups.create!(tag_ids: [dragon.id])
 Image.find(3).tag_groups.create!(tag_ids: [fighter.id])
 Image.find(5).tag_groups.create!(tag_ids: [desk.id, brown.id])
-u1.favorite! Image.first
-u2.favorite! Image.first
-u3.favorite! Image.first
-u1.subscribe! u2
-u2.subscribe! u1
-u3.subscribe! u2
+test.favorite! Image.first
+foo.favorite! Image.first
+moot.favorite! Image.first
+test.subscribe! foo
+foo.subscribe! test
+moot.subscribe! foo
