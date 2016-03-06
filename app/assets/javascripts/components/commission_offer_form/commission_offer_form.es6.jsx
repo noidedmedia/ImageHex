@@ -52,6 +52,7 @@ class CommissionOfferForm extends React.Component {
       product: undefined
     });
   }
+
   /**
    * Check if this offer is invalid
    * It may be invlaid if it has a background on a product that doesn't allow
@@ -68,6 +69,7 @@ class CommissionOfferForm extends React.Component {
       return true;
     }
   }
+
   /**
    * Render the background section of the form
    * This has 4 states, basically:
@@ -112,6 +114,7 @@ class CommissionOfferForm extends React.Component {
       </div>
     }
   }
+  
   /**
    * Subjects section. Basically, just a list of subject form elements.
    * This also handles the buttons to add another subject, and if that
