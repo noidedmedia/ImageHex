@@ -82,10 +82,11 @@
           </div>
 
           <ul>
+            <li><%= link_to t(".profile"), current_user %>
+            <li><%= link_to t(".conversations"), conversations_path %>
             <li><%= link_to t(".upload"), new_image_path %>
             <li><%= link_to t(".new_collection"), new_collection_path %>
             <li><%= link_to t(".new_commission"), new_listing_path %>
-            <li><%= link_to t(".profile"), current_user %>
 
             <%# Admin, only displayed for admins. %>
             <% if current_user.admin? %>
