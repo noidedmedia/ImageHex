@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   post "/@:id/subscribe" => "users#subscribe"
   delete "/@:id/unsubscribe" => "users#unsubscribe"
 
-  get "/chat" => "conversations#chat"
   ############
   # CONCERNS #
   ############
