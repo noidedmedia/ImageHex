@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
     if params[:after]
       @messages = @messages.where("messages.created_at > ?", Time.at(params[:after].to_i))
     end
+    @conversation.mark_read! current_user
   end
 
   def create

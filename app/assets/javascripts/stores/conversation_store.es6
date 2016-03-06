@@ -114,6 +114,9 @@ class ConversationStore{
       this.processMessages();
       this.lastRecvAt = sentAt;
       this.sendChanges();
+      if(messages.length > 0) {
+        this.markRead();
+      }
     });
   }
 
@@ -139,5 +142,9 @@ class ConversationStore{
       this.processMessages();
       this.sendChanges();
     });
+  }
+
+  markRead() {
+
   }
 }
