@@ -2,6 +2,11 @@
 require 'rails_helper'
 
 RSpec.describe Conversation, type: :model do
+
+  describe "user_ids" do
+    let(:ua) { create(:user) }
+    let(:ub) { create(:user) }
+  end
   context "with an attached commission offer" do
     let(:o) do
       c = create(:commission_offer)

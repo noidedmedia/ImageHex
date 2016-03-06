@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 class ConversationsController < ApplicationController
+  include Pundit
   before_action :ensure_user
   rescue_from Conversation::UserNotInConversation, with: :unauthorized
-
   def show
     @conversation = Conversation.find(params[:id])
   end
@@ -27,5 +27,29 @@ class ConversationsController < ApplicationController
       format.html { redirect_to @conversation, notice: :success }
       format.json { render json: true }
     end
+  end
+
+  def edit
+    @conversation = Conversation.find(params[:id])
+    authorize @conversation
+  end
+
+  def update
+    @conversation = Conversation.find(params[:id])
+    authorize @conversation
+    respond_to do |format|
+      if @conversation.update(conversation_params)
+        format.html { redirect_to @conversation }
+        format.json { render 'show' }
+      else
+        format.html { render 'edit' }
+        format.json { render @conversation.errors, status: 422 }
+      end
+    end
+  end
+
+  def conversation_params
+    params.require(:conversation)
+      .permit(:name)
   end
 end
