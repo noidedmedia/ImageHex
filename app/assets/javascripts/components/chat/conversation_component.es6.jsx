@@ -9,6 +9,8 @@ class ConversationComponent extends React.Component {
     if(this.state.id) {
       return <div className="conversation-component-container">
         <MessageGroupList messageGroups={this.state.messageGroups}/>
+        <MessageInput
+          onAdd={this.addMessage.bind(this)} />
         <div className="update-timing">
           Updating in {this.state.timeToUpdate} seconds...
         </div>
@@ -17,6 +19,10 @@ class ConversationComponent extends React.Component {
     else {
       return <progress></progress>;
     }
+  }
+
+  addMessage(msg) {
+    this.state.store.addMessage(msg);
   }
 
   fetchInfo() {

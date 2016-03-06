@@ -20,7 +20,10 @@ MessageGroupList.MessageGroup = (group) => (
     </div>
     <div className="message-group-body">
       <div className="message-group-user-section">
-        {group.user.name}
+        <span className="user-name">{group.user.name}</span>
+        <time dateTime={group.lastMessageAt}>
+          {group.lastMessageAt.toLocaleString()}
+        </time>
       </div>
       <ul className="message-group-messages">
         { 

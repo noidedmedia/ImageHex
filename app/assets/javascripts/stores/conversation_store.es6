@@ -6,6 +6,18 @@ class ConversationStore{
     window.setInterval(this.tick.bind(this), 1000);
     this.timeToUpdate = 5;
     this.lastRecvAt = Date.now();
+    this.mapMessageDates();
+  }
+
+  processMessages() {
+    this.mapMessageDates();
+    this.removeDuplicateMessages();
+  }
+
+  mapMessageDates() {
+    this.data.messages.forEach((msg) => {
+      msg.created_at = new Date(msg.created_at);
+    });
   }
 
   addListener(func){
@@ -27,6 +39,7 @@ class ConversationStore{
         obj.messages.push(messages[i]);
         i++;
       }
+      obj.lastMessageAt = obj.messages[obj.messages.length-1].created_at;
       i--;
       arr.push(obj);
     }
@@ -41,11 +54,11 @@ class ConversationStore{
     }
     return {};
   }
+
   sortMessages(m) {
-    m.sort((a, b) => {
-      return new Date(b.created_at) - new Date(b.created_at);
+    return m.sort((a, b) => {
+      return new Date(a.created_at) - new Date(b.created_at);
     });
-    return m;
   }
 
   sendChanges(){
@@ -98,17 +111,33 @@ class ConversationStore{
     NM.getJSON(url, (messages) => {
       Array.prototype.push.apply(this.data.messages, messages);
       this.recalcUpdate(messages);
-      var seen = {};
-      // Get unique, just in case weird things happened
-      this.data.messages = this.data.messages.filter((msg) => {
-        return seen.hasOwnProperty(msg.id) ? false : (seen[msg.id] = true);
-      });
+      this.processMessages();
       this.lastRecvAt = sentAt;
       this.sendChanges();
     });
   }
+
+  removeDuplicateMessages() {
+    var seen = {};
+    // Get unique, just in case weird things happened
+    this.data.messages = this.data.messages.filter((msg) => {
+      return seen.hasOwnProperty(msg.id) ? false : (seen[msg.id] = true);
+    });
+  }
+
   recalcUpdate(ary) {
     this.updating = false;
     this.timeToUpdate = 30;
+  }
+
+  addMessage(msg) {
+    var url = `/conversations/${this.data.id}/messages/`;
+    console.log("Sending to url",url);
+    NM.postJSON(url, {message: {body: msg}}, (msg) => {
+      this.data.messages.push(msg);
+      console.log(this);
+      this.processMessages();
+      this.sendChanges();
+    });
   }
 }
