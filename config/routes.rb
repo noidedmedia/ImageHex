@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       get "suggest"
     end
   end
+
   ##
   # Not really resourceful at all but whatever yolo
   resources :stripe, only: [] do
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
       get :callback
     end
   end
+  
   resources :listings do
     get 'search', on: :collection
     post 'confirm', on: :member
@@ -153,12 +155,12 @@ Rails.application.routes.draw do
   ########################
   # SINGLE ACTION ROUTES #
   ########################
-  get 'settings', to: "users#edit"
+  get 'settings', to: 'users#edit'
+  post 'settings', to: 'users#update'
 
   #################
   # STATIC ROUTES #
   #################
-
   root to: "frontpage#index"
   get 'about', to: "static_stuff#about"
   get 'people', to: "static_stuff#people"
@@ -168,8 +170,6 @@ Rails.application.routes.draw do
   get 'help', to: "static_stuff#help"
   get 'press', to: "static_stuff#press"
   get 'commissions', to: "static_stuff#commissions_about"
-  get 'settings', to: 'users#edit'
-  post 'settings', to: 'users#update'
 
   get 'search', to: "images#search"
 end
