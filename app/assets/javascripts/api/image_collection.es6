@@ -1,4 +1,6 @@
 import NM from './global.es6';
+import Image from './image.es6';
+
 /**
  * Represents a collection of multiple images
  */

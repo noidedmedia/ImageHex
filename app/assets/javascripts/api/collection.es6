@@ -1,3 +1,5 @@
+import NM from './global.es6';
+
 class Collection {
   constructor(json) {
     for (var prop in json) {
@@ -73,3 +75,5 @@ class Collection {
     }
   }
 }
+
+export default Collection;

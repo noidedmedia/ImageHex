@@ -1,3 +1,6 @@
+import User from '../api/user.es6';
+import ExampleImagePicker from '../components/example_image_picker.es6.jsx';
+
 document.addEventListener("page:change", function() {
   var view = document.getElementById("example-image-picker");
   if (! view) {
