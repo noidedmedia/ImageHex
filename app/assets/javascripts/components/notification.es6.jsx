@@ -1,3 +1,5 @@
+import NM from '../api/global.es6';
+
 class NotificationList extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +52,7 @@ class NotificationItem extends React.Component {
     };
   }
   render() {
-    className = "notifications-list-item";
+    var className = "notifications-list-item";
     if (this.state.read) {
       className += " read";
     } else {

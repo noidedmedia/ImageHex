@@ -74,11 +74,6 @@ gem 'sass-rails'
 gem 'uglifier'
 
 ##
-# https://github.com/TannerRogalsky/sprockets-es6
-# A Sprockets transformer that converts ES6 code into vanilla ES5 with Babel JS.
-gem 'sprockets-es6'
-
-##
 # https://github.com/AnthonySuper/train_track
 # Use TrainTrack to track changes
 # NOIDED: We wrote this!
@@ -108,6 +103,13 @@ gem 'jquery-rails'
 # https://github.com/reactjs/react-rails
 # React.js for Rails
 gem 'react-rails'
+
+
+##
+# https://github.com/browserify-rails/browserify-rails
+# Use browserify and NPM modules on Rails
+gem 'browserify-rails'
+
 
 ##
 # https://github.com/rails/turbolinks

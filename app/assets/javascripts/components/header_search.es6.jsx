@@ -1,3 +1,6 @@
+import EtherealTagGroup from './../api/ethereal_tag_group.es6';
+import TagGroupEditor from './tag_groups/tag_group_editor.es6.jsx';
+
 class HeaderSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -52,3 +55,5 @@ document.addEventListener("page:change", function() {
   ReactDOM.render(<HeaderSearch />,
                hs);
 });
+
+export default HeaderSearch;

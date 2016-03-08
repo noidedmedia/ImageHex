@@ -1,3 +1,4 @@
+import NM from './global.es6';
 /**
  * Represents a collection of multiple images
  */
@@ -89,3 +90,5 @@ class ImageCollection {
     return this.url + "?" + this.pageQueryParams();
   }
 }
+
+export default ImageCollection;

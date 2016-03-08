@@ -55,3 +55,5 @@ NM.postJSON = function(url, data, callback, error) {
   .on("40*",error)
   .go();
 };
+
+export default NM;

@@ -13,6 +13,8 @@ Bundler.require(*Rails.groups)
 
 module ImageHex
   class Application < Rails::Application
+
+    config.browserify_rails.commandline_options = '-t babelify'
     config.autoload_paths << Rails.root.join("lib")
     routes.default_url_options[:host] = "localhost"
 

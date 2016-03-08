@@ -1,3 +1,5 @@
+import Tag from '../../api/tag.es6';
+import InlineTagCreator from './inline_tag_creator.es6.jsx';
 /**
  * Display an interface for editing tag groups.
  * Doesn't manage any state relating to an actual group, so you have to wrap
@@ -438,4 +440,4 @@ TagBox.propTypes = {
   onRemove: React.PropTypes.func
 };
 
-
+export default TagGroupEditor;

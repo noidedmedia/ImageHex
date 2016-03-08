@@ -1,3 +1,7 @@
+import EtherealTagGroup from '../api/ethereal_tag_group.es6';
+import Tag from '../api/tag.es6';
+import TagGroupEditor from './tag_groups/tag_group_editor.es6.jsx';
+
 class SearchPage extends React.Component {
   constructor(props) {
     super(props);
@@ -100,3 +104,6 @@ class SearchPage extends React.Component {
     });
   }
 }
+
+window.SearchPage = SearchPage;
+export default SearchPage;
