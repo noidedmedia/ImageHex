@@ -1,3 +1,5 @@
+import NM from '../api/global.es6';
+
 class ConversationStore{
   constructor(data) {
     this.data = data;
@@ -6,7 +8,7 @@ class ConversationStore{
     window.setInterval(this.tick.bind(this), 1000);
     this.timeToUpdate = 5;
     this.lastRecvAt = Date.now();
-    this.mapMessageDates();
+    
   }
 
   processMessages() {
@@ -109,6 +111,7 @@ class ConversationStore{
     url += `?after=${d}`;
     var sentAt = Date.now();
     NM.getJSON(url, (messages) => {
+      messages.forEach((msg) => msg.created_at = new Date(msg.created_at));
       Array.prototype.push.apply(this.data.messages, messages);
       this.recalcUpdate(messages);
       this.processMessages();
@@ -144,7 +147,10 @@ class ConversationStore{
     });
   }
 
+
   markRead() {
 
   }
 }
+
+export default ConversationStore;

@@ -1,3 +1,5 @@
+import Conversation from '../../api/conversation.es6';
+import ConversationStore from '../../stores/conversation_store.es6';
 class ConversationComponent extends React.Component {
   constructor(props){
     super(props);
@@ -34,3 +36,6 @@ class ConversationComponent extends React.Component {
     });
   }
 }
+
+window.ConversationComponent = ConversationComponent;
+export default ConversationComponent;
