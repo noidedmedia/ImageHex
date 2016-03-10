@@ -205,9 +205,16 @@
 }
 
 .create-dropdown {
-  position: absolute;
-  top: $header-height;
-  left: 0;
+  // remove padding from parent
+  margin-top: calc(#{$header-height} - 12px);
+
+  @media #{$mobile} {
+    // remove padding from parent
+    margin-top: calc(#{$header-height-mobile} - 12px);
+  }
+
+  // Remove padding from parent
+  margin-left: -12px;
   display: inline-block;
   background-color: $white;
   box-shadow: 0 6px 10px 1px rgba($black, 0.05);
