@@ -43,6 +43,9 @@
 
     @media #{$mobile} {
       width: auto;
+      p {
+        display: none;
+      }
     }
   }
 
