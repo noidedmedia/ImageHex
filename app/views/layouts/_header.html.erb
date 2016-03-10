@@ -15,8 +15,8 @@
       </div>
 
       <%# Browse button %>
-      <div class="header-item" id="header-browse">
-        <%= link_to t(".browse"), images_path %>
+      <div class="header-item header-item-center-text" id="header-browse">
+        <span><%= link_to t(".browse"), images_path %></span>
       </div>
     </div>
 
@@ -77,8 +77,8 @@
         <%# User dropdown %>
         <div class="user-bar">
           <%# Current user's username %>
-          <div class="header-item" id="username">
-            <%= current_user.name %>
+          <div id="username" class="header-item header-item-force-height">
+            <span><%= current_user.name %></span>
           </div>
 
           <ul>

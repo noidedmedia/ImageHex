@@ -4,7 +4,9 @@
 #header-container {
   background-color: $header-color;
   color: $white;
-  display: block;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   font-weight: 300;
   height: $header-height;
   left: 0;
@@ -15,24 +17,20 @@
   top: 0;
   width: 100vw;
   z-index: 1000;
+  padding-left: 50px;
+  padding-right: 50px;
 
   @media #{$mobile} {
-    width: 100vw;
     height: $header-height-mobile;
-    background-color: $header-color;
-    display: flex;
-    flex-flow: row nowrap;
-    position: fixed;
-    z-index: 1001;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
 // Items aligned to the left side of the header.
 #header-left {
   display: inline-block;
-  left: 50px;
   height: $header-height;
-  position: absolute;
   text-align: left;
 
   @media #{$mobile} {
@@ -42,7 +40,6 @@
   }
 
   #header-home {
-    padding: 12px 0;
     margin-right: 15px;
     width: 160px;
 
@@ -54,8 +51,6 @@
     .imagehex-header-logo {
       width: 160px;
       height: $header-height;
-      position: absolute;
-      top: 0;
       background: asset-url("#{$imagehex-header-logo-with-text}") 50% 50% / 110% 110% no-repeat;
       opacity: 0.75;
       transition: 200ms opacity;
@@ -68,7 +63,6 @@
       @media all and (min-width: $mobile-width) and (max-width: $laptop-width) {
         width: 40px;
         height: $header-height;
-        top: 0;
         background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
       }
 
@@ -76,15 +70,12 @@
       @media all and (max-width: $mobile-width) {
         width: 50px;
         height: $header-height-mobile;
-        top: 0;
         background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
       }
     }
   }
 
   #header-browse {
-    position: relative;
-
     // Prevent elements hitting each other.
     @media all and (max-width: $laptop-width) {
       display: none;
@@ -95,8 +86,6 @@
 // Items aligned to the right side of the header.
 #header-right {
   display: inline-block;
-  position: relative;
-  right: 40px;
   text-align: right;
   height: 100%;
 
@@ -132,13 +121,6 @@
         padding: 12px 25px;
       }
     }
-
-    #username {
-      position: absolute;
-      bottom: 0;
-      left: 30px;
-      padding: 12px 20px;
-    }
   }
 }
 
@@ -148,9 +130,9 @@
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
-  padding: 12px 15px 0;
   transition: color 300ms ease-in-out;
   vertical-align: top;
+  height: 100%;
 
   &:hover {
     color: $white;
@@ -167,10 +149,14 @@
       text-decoration: none;
     }
   }
-  
-  @media #{$mobile} {
-    padding: 15px;
-  }
+}
+
+// Force text to center itself vertically
+.header-item-center-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 #header-create.header-item {
@@ -200,6 +186,20 @@
   @media #{$mobile} {
     display: none;
   }
+}
+
+// A header item with centered text and an explicit height
+// Used entirely for the user bar label right now
+.header-item-force-height {
+  height: $header-height;
+
+  @media #{$mobile} {
+    height: $header-height-mobile;
+  }
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #header-create-button {
@@ -268,9 +268,6 @@
 }
 
 @media #{$mobile} {
-  #header-home {
-    padding: 0 15px;
-  }
 
   #mobile-menu-overlay {
     width: 100vw;
