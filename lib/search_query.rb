@@ -33,12 +33,14 @@ class SearchQuery
   end
 
   def to_page_h
+    return {query: {tag_groups: []}} unless tag_groups
     ar = tag_groups.map do |t|
       {
         tags: tags(t)
       }
     end
     {query: {tag_groups: ar}}
+    
   end
 
   private
