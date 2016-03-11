@@ -1,10 +1,12 @@
 @import "variables";
 
 .header-notifications {
+  text-align: center;
   background-color: $header-color-alt;
   display: inline-block;
   height: $header-height;
   vertical-align: top;
+  width: 48px;
 
   &.unread {
     background-color: #b70f3b;
@@ -47,9 +49,8 @@
     color: $off-black;
     height: auto;
     width: 300px;
-    position: absolute;
-    left: -100px;
-    top: $header-height;
+    // 150 - 48 (the width of notifications-unread-count)
+    margin-left: -126px;
     text-align: left;
     opacity: 0;
     display: inline-block;
@@ -166,23 +167,4 @@
   height: 150px;
   width: 100%;
   padding: 60px 0;
-}
-
-@media #{$mobile} {
-  .header-notifications {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: $header-color;
-    height: 45px;
-
-    .notifications-unread-count a {
-      font-size: 1.7rem;
-      padding: 12px 15px;
-    }
-  }
-
-  .notifications-container {
-    padding: 20px 0;
-  }
 }
