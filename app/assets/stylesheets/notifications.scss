@@ -8,6 +8,11 @@
   vertical-align: top;
   width: 48px;
 
+  @media #{$mobile} {
+    width: 100%;
+    height: auto;
+  }
+
   &.unread {
     background-color: #b70f3b;
 
@@ -58,6 +63,11 @@
     transition: max-height 400ms;
     overflow: auto;
 
+    @media #{$mobile} {
+      margin-left: 0;
+      width: 100%;
+    }
+
     .notifications-container {
       transition: opacity 200ms 400ms;
       opacity: 0;
@@ -69,6 +79,7 @@
     }
 
     &.active {
+      height: auto;
       visibility: visible;
       opacity: 1;
       max-height: 400px;

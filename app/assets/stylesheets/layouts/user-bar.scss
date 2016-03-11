@@ -94,6 +94,14 @@
 }
 
 @media #{$mobile} {
+  #username {
+    // Use of important is gross, but needed for now
+    // FIXME: remove the !important
+    // scss-lint:disable ImportantRule
+    display: none !important;
+    // scss-lint:enable ImportantRule
+  }
+
   .user-bar {
     position: initial;
     display: auto;
@@ -118,6 +126,7 @@
 
     ul {
       background: none;
+      background-color: #222;
       display: inline-block;
       border: 0;
       position: relative;

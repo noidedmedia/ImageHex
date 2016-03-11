@@ -289,19 +289,13 @@ label[for="header-search-input"] span {
 
   @media #{$mobile} {
     display: inline-block;
-    position: absolute;
-    right: 45px;
-    top: 12px;
   }
 }
 
 #mobile-search-icon {
   display: none;
   height: 50px;
-  position: absolute;
-  right: 50px;
-  top: 0;
-  width: 50px;
+  width: 40px;
 
   span::before {
     // Center icon within the tap target
@@ -309,7 +303,7 @@ label[for="header-search-input"] span {
   }
 
   @media #{$mobile} {
-    display: block;
+    display: inline-block;
   }
 }
 

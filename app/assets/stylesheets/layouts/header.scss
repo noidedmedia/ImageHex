@@ -32,8 +32,6 @@
   text-align: left;
 
   @media #{$mobile} {
-    position: relative;
-    left: 30px;
     height: $header-height-mobile;
   }
 
@@ -103,6 +101,7 @@
     padding-top: 10px;
 
     &.active {
+      height: auto;
       transform: translateX(0);
     }
 
@@ -247,24 +246,21 @@
 
 #mobile-menu-icon {
   display: none;
-  height: $header-height-mobile;
-  position: absolute;
-  right: 10px;
-  top: 0;
+  position: fixed;
+  right: 25px;
   width: 50px;
+  height: $header-height-mobile;
 
-  span::before {
-    // Center icon within the tap target
-    transform: translate(11px, 14px);
-    transition: color 300ms;
+  &::before {
+    transform: translate(-35px, 15px);
   }
 
-  &.active span::before {
+  &.active::before {
     color: $white;
   }
 
   @media #{$mobile} {
-    display: block;
+    display: inline-block;
   }
 }
 
@@ -275,12 +271,12 @@
 @media #{$mobile} {
 
   #mobile-menu-overlay {
-    width: 100vw;
-    height: calc(100vh - $header-height-mobile);
     position: fixed;
-    display: block;
     top: $header-height-mobile;
     left: 0;
+    width: 100vw;
+    height: calc(100vh - #{$header-height-mobile});
+    display: block;
     pointer-events: none;
     background-color: rgba($off-black, 0);
     z-index: 999;
