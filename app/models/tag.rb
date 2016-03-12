@@ -40,6 +40,10 @@ class Tag < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
+  
+  def should_generate_new_friendly_id?
+    name_changed?
+  end
 
   def often_seen_with
     g = tag_groups
