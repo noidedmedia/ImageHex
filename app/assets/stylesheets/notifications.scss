@@ -1,12 +1,14 @@
 @import "variables";
 
+$_notifications-unread-width: 36px;
+
 .header-notifications {
   text-align: center;
   background-color: $header-color-alt;
   display: inline-block;
   height: $header-height;
   vertical-align: top;
-  width: 48px;
+  width: $_notifications-unread-width;
 
   @media #{$mobile} {
     width: 100%;

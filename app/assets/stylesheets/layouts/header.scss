@@ -39,7 +39,7 @@
     margin-right: 15px;
     width: 160px;
 
-    @media all and (max-width: $laptop-width) {
+    @media #{$mobile} {
       width: 50px;
     }
 
@@ -73,7 +73,7 @@
 
   #header-browse {
     // Prevent elements hitting each other.
-    @media all and (max-width: $laptop-width) {
+    @media #{$mobile} {
       display: none;
     }
   }
@@ -189,14 +189,13 @@
 // Used entirely for the user bar label right now
 .header-item-force-height {
   height: $header-height;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
 
   @media #{$mobile} {
     height: $header-height-mobile;
   }
-
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
 }
 
 #header-create-button {
@@ -218,6 +217,7 @@
   background-color: $white;
   box-shadow: 0 6px 10px 1px rgba($black, 0.05);
   text-align: left;
+  white-space: nowrap;
 
   li {
     display: block;
@@ -269,7 +269,6 @@
 }
 
 @media #{$mobile} {
-
   #mobile-menu-overlay {
     position: fixed;
     top: $header-height-mobile;

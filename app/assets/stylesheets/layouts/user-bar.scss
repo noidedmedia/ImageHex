@@ -93,15 +93,19 @@
   }
 }
 
-@media #{$mobile} {
-  #username {
-    // Use of important is gross, but needed for now
-    // FIXME: remove the !important
-    // scss-lint:disable ImportantRule
-    display: none !important;
-    // scss-lint:enable ImportantRule
+.username {
+  display: flex;
+
+  span {
+    padding: 0 5px;
   }
 
+  @media #{$mobile} {
+    display: none;
+  }
+}
+
+@media #{$mobile} {
   .user-bar {
     position: initial;
     display: auto;
