@@ -152,8 +152,9 @@ document.addEventListener("page:change", function() {
     d.addEventListener("click", function(event) {
       event.preventDefault();
       document.querySelector(".header-notifications").classList.toggle("active");
-      console.log("Clicked");
+      console.log("Clicked on notification");
       NM.getJSON("/notifications/", (json) => {
+        console.log("Got object", json);
         document.querySelector(".notifications-dropdown").classList.toggle("active");
         ReactDOM.render(<NotificationList notifications={json} />,
             document.querySelector(".notifications-dropdown"));

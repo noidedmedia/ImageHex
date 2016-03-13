@@ -17,10 +17,10 @@ function name(state = "", action) {
 }
 
 function messages(state = [], action) {
-  if(action.type === "add_message") {
+  if(action.type === "add_messages") {
     return [
       ...state,
-      action.data.message
+      ...action.data.message
     ].sort((a, b) => a.created_at - b.created_at);
   }
   return state;

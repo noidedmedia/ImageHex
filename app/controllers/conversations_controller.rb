@@ -3,8 +3,11 @@ class ConversationsController < ApplicationController
   include Pundit
   before_action :ensure_user
   rescue_from Conversation::UserNotInConversation, with: :unauthorized
+
   def show
     @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.order(created_at: :desc)
+      .limit(25).reverse
   end
 
   ##

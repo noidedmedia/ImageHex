@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { chatApp } from './app.es6';
 import NM from '../../api/global.es6';
 import MessageGroupList from './message_group_list.es6.jsx';
@@ -21,7 +22,8 @@ class ConversationContainer extends React.Component {
   constructor(props) {
     console.log(chatApp);
     super(props);
-    let store = createStore(chatApp, normalizeData(this.props));
+    let store = applyMiddleware(thunk)(
+      createStore)(chatApp, normalizeData(this.props));
     this.state = store.getState();
     store.subscribe((store) => {
       this.setState(store.getState());

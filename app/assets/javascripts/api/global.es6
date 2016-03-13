@@ -1,3 +1,6 @@
+import { polyfill } from 'es6-promise';
+polyfill();
+import 'isomorphic-fetch';
 var NM = {};
 
 /**
@@ -30,22 +33,32 @@ NM.chunk = function(array, sel) {
 }
 
 NM.getJSON = function(url, callback) {
-  aja()
-  .url(url)
-  .header("Accept", "application/json")
-  .on("success", callback)
-  .go();
+  fetch(url, {
+    credentials: 'same-origin',
+    headers: {
+      'Accept': "application/json"
+    }
+  }).then(parseJSON)
+    .then(callback);
 };
 
+
+function parseJSON(resp) {
+  return resp.json();
+}
+
 NM.deleteJSON = function(url, success, failure) {
-  aja()
-  .url(url)
-  .method("delete")
-  .header("Accept", "application/json")
-  .header("X-CSRF-TOKEN", NM.getCSRFToken())
-  .on("success", success)
-  .on("failure", failure)
-  .go();
+  fetch(url, {
+    method: 'delete',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'X-CSRF-TOKEN': NM.getCSRFToken()
+    }
+  }).then(checkStatus)
+  .then(parseJSON)
+  .then(success)
+  .catch(failure);
 };
 
 NM.getCSRFToken = function() {
@@ -58,31 +71,50 @@ NM.getCSRFToken = function() {
     }
   }
 };
-NM.putJSON = function(url, data, callback, error) {
 
+NM.putJSON = function(url, data, callback, error) {
   data.authenticity_token = NM.getCSRFToken();
-  aja()
-  .method("put")
-  .url(url)
-  .header("Content-Type", "application/json")
-  .header("Accept", "application/json")
-  .body(data)
-  .on("200", callback)
-  .on("40*", error)
-  .go();
+  fetch(url, {
+    method: 'put',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(checkStatus)
+  .then(parseJSON)
+  .then(callback)
+  .catch(error); 
 };
+
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response
+  } else {
+    var error = new Error(response.statusText)
+    error.response = response
+    throw error
+  }
+}
+
 
 NM.postJSON = function(url, data, callback, error) {
   data.authenticity_token = NM.getCSRFToken();
-  aja()
-  .method("post")
-  .url(url)
-  .header("Content-Type", "application/json")
-  .header("Accept", "application/json")
-  .body(data)
-  .on("200", callback)
-  .on("40*",error)
-  .go();
+
+  fetch(url, {
+    method: 'post',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(checkStatus)
+  .then(parseJSON)
+  .then(callback)
+  .catch(error);
+
 };
 
 export default NM;
