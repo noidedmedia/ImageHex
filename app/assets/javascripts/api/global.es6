@@ -1,5 +1,34 @@
 var NM = {};
 
+/**
+ * Chunk an array. Works like the Ruby method of the same name, with one
+ * difference: if you pass a string, it will do elem[string] for each object.
+ */
+NM.chunk = function(array, sel) {
+  var checkFunc = null;
+  if(typeof(sel) == "function") {
+    checkFunc = sel;
+  }
+  else {
+    checkFunc = function(elem) {
+      return elem[sel];
+    }
+  }
+  var chunked = [];
+  for(var i = 0; i < array.length; i++) {
+    var elem = array[i];
+    var value = checkFunc(elem);
+    var tmp = [];
+    while(i < array.length && checkFunc(array[i]) === value) {
+      tmp.push(array[i]);
+      i++;
+    }
+    chunked.push([value, tmp]);
+    i--;
+  }
+  return chunked;
+}
+
 NM.getJSON = function(url, callback) {
   aja()
   .url(url)

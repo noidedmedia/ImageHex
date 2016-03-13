@@ -5,7 +5,16 @@ class MessageGroupList extends React.Component {
   }
   render() {
     var groups = this.props.messageGroups.map((group) => {
-      return <MessageGroupList.MessageGroup {...group} />;
+      var user = this.props.users[group[0]];
+      var messages = group[1];
+      var key = messages.map((m) => m.id).join("-");
+      var lastMessageAt = messages[messages.length - 1].created_at;
+      return <MessageGroupList.MessageGroup  
+        user={user}
+        messages={messages} 
+        lastMessageAt={lastMessageAt}
+        key={key}
+        />;
     });
     return <ul className="conversation-message-groups in-react">
       {groups}
@@ -13,8 +22,8 @@ class MessageGroupList extends React.Component {
   }
 }
 
-MessageGroupList.MessageGroup = (group) => (
-  <li className="conversation-message-group">
+MessageGroupList.MessageGroup = (group) => {
+  return <li className="conversation-message-group">
     <div className="message-group-avatar">
       <img src={group.user.avatar_path} />
     </div>
@@ -26,14 +35,17 @@ MessageGroupList.MessageGroup = (group) => (
         </time>
       </div>
       <ul className="message-group-messages">
-        { 
-          group.messages.map((m) => (
-            <li key={m.id}>
-              {m.body}
-            </li>
-            ))
-        }
+        {group.messages.map((m) => <MessageGroupList.Message {...m} 
+          key={m.id} />)}
       </ul>
     </div>
   </li>
-  );
+}
+
+MessageGroupList.Message = (m) => {
+  return <li>
+    {m.body}
+  </li>
+}
+
+export default MessageGroupList;
