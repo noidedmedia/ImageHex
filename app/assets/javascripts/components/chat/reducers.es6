@@ -8,6 +8,16 @@ function users(state = {}, action) {
   return state;
 }
 
+function isFetching(state = false, action) {
+  if(action.type === "start_fetching") {
+    return true;
+  }
+  if(action.type === "end_fetching") {
+    return false;
+  }
+  return state;
+}
+
 function id(state = 0, action){
   return state;
 }
@@ -33,4 +43,4 @@ function lastRead(state = 0, action) {
   return state;
 }
 
-export {users, messages, lastRead, name, id};
+export {users, messages, lastRead, name, id, isPolling};

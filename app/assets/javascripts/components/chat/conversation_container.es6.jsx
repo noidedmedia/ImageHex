@@ -38,6 +38,9 @@ class ConversationContainer extends React.Component {
         users={this.state.users} />
     </div>;
   }
+
+  componentDidMount() {
+  }
 }
 
 window.ConversationContainer = ConversationContainer;
