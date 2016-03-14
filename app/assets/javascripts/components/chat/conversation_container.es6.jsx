@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { chatApp } from './app.es6';
 import NM from '../../api/global.es6';
 import MessageGroupList from './message_group_list.es6.jsx';
+import MessageInput from './message_input.es6.jsx';
 
 function normalizeData(props) {
   var users = {};
@@ -24,18 +25,23 @@ class ConversationContainer extends React.Component {
     super(props);
     let store = applyMiddleware(thunk)(
       createStore)(chatApp, normalizeData(this.props));
+    this.store = store;
     this.state = store.getState();
-    store.subscribe((store) => {
+    store.subscribe(() => {
       this.setState(store.getState());
     });
   }
 
   render() {
     var messageGroups = NM.chunk(this.state.messages, "user_id");
-    return <div>
+    return <div className="conversation-component-container">
+      <h1>{this.state.name}</h1>
       <MessageGroupList
         messageGroups={messageGroups} 
         users={this.state.users} />
+      <MessageInput
+        dispatch={this.store.dispatch}
+        sending={this.state.isSending} />
     </div>;
   }
 
@@ -44,5 +50,4 @@ class ConversationContainer extends React.Component {
 }
 
 window.ConversationContainer = ConversationContainer;
-
 export default ConversationContainer;

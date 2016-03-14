@@ -3,6 +3,7 @@ polyfill();
 import 'isomorphic-fetch';
 var NM = {};
 
+window.NM = NM;
 /**
  * Chunk an array. Works like the Ruby method of the same name, with one
  * difference: if you pass a string, it will do elem[string] for each object.
@@ -101,8 +102,7 @@ function checkStatus(response) {
 
 NM.postJSON = function(url, data, callback, error) {
   data.authenticity_token = NM.getCSRFToken();
-
-  fetch(url, {
+  var f = fetch(url, {
     method: 'post',
     credentials: 'same-origin',
     headers: {
@@ -112,9 +112,14 @@ NM.postJSON = function(url, data, callback, error) {
     body: JSON.stringify(data)
   }).then(checkStatus)
   .then(parseJSON)
-  .then(callback)
-  .catch(error);
-
+  if(callback) {
+    f.then(callback)
+  }
+  if(error) {
+    f.catch(error);
+  }
+  return f;
 };
+
 
 export default NM;

@@ -1,3 +1,5 @@
+import { sendMessage } from './actions.es6';
+
 class MessageInput extends React.Component {
   constructor(props) {
     super(props);
@@ -6,6 +8,10 @@ class MessageInput extends React.Component {
     };
   }
   render(){
+    var isSending = <span></span>
+    if(this.props.sending) {
+      isSending = <progress></progress>;
+    }
     return <div className="message-input-container">
       <textarea
         onChange={this.change.bind(this)}
@@ -14,6 +20,7 @@ class MessageInput extends React.Component {
         onClick={this.submit.bind(this)}>
         Submit
       </button>
+      {isSending}
     </div>;
   }
   change(event) {
@@ -23,9 +30,11 @@ class MessageInput extends React.Component {
   }
 
   submit(event) {
-    this.props.onAdd(this.state.inputValue);
+    this.props.dispatch(sendMessage(this.state.inputValue));
     this.setState({
       inputValue: ""
     });
   }
 }
+
+export default MessageInput;
