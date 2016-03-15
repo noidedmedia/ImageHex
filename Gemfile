@@ -30,7 +30,7 @@ gem 'oauth2'
 # https://github.com/plataformatec/devise
 # Devise is "a flexible authentication solution for Rails based on Warden".
 # Includes the bcrypt gem for securely storing passwords.
-gem 'devise', '>= 4.0.0.rc1'
+gem 'devise', '>= 4.0.0.rc2'
 
 ##
 # https://github.com/tinfoil/devise-two-factor
