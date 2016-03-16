@@ -4,7 +4,7 @@ import { chatApp } from './app.es6';
 import NM from '../../api/global.es6';
 import MessageGroupList from './message_group_list.es6.jsx';
 import MessageInput from './message_input.es6.jsx';
-
+import { pollUpdate } from './actions.es6';
 function normalizeData(props) {
   var users = {};
   props.users.forEach((u) => users[u.id] = u);
@@ -39,6 +39,7 @@ class ConversationContainer extends React.Component {
       <MessageGroupList
         messageGroups={messageGroups} 
         users={this.state.users} />
+      <PollDisplay {...this.state} />
       <MessageInput
         dispatch={this.store.dispatch}
         sending={this.state.isSending} />
@@ -46,6 +47,16 @@ class ConversationContainer extends React.Component {
   }
 
   componentDidMount() {
+    this.store.dispatch(pollUpdate(5));
+  }
+}
+
+const PollDisplay = ({timeToPoll, isFetching}) => {
+  if(isFetching) {
+    return <progress></progress>;
+  }
+  else {
+    return <span>Fetching in {timeToPoll}</span>;
   }
 }
 

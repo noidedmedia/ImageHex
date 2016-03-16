@@ -33,6 +33,13 @@ function lastRead(state = 0, action) {
   return state;
 }
 
+function timeToPoll(state = 5, action) {
+  if(action.type === "set_poll_time") {
+    return action.time;
+  }
+  return state;
+}
+
 function isFetching(state = false, action) {
   if(action.type === "start_fetching") {
     return true;
@@ -53,4 +60,4 @@ function isSending(state = false, action) {
   return state;
 }
 
-export {users, messages, lastRead, name, id, isFetching, isSending};
+export {users, messages, lastRead, name, id, isFetching, isSending, timeToPoll};
