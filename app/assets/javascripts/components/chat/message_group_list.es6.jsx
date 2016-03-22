@@ -7,6 +7,17 @@ class MessageGroupList extends React.Component {
   }
   render() {
     var groups = this.props.messageGroups.map((group) => {
+      // We make a read divider by putting in an element with a user_id
+      // of "divider"
+      if(group[0] == "divider") {
+        return <div ref="divider">
+          <hr />
+          Unread since <time dateTime={this.props.lastRead}>
+            {this.props.lastRead.toLocaleString()}
+          </time>
+          <hr />
+        </div>
+      }
       var user = this.props.users[group[0]];
       var messages = group[1];
       var key = messages.map((m) => m.id).join("-");

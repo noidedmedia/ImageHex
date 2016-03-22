@@ -6,6 +6,7 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
+    @last_read = @conversation.last_read_for(current_user)
     @messages = @conversation.messages.order(created_at: :desc)
       .limit(25).reverse
   end

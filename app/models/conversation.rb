@@ -53,4 +53,8 @@ class Conversation < ActiveRecord::Base
   def conversation_user_for(user)
     conversation_users.find_by(user: user)
   end
+
+  def last_read_for(user)
+    conversation_user_for(user).last_read_at
+  end
 end
