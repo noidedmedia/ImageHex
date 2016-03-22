@@ -1,3 +1,5 @@
+import { fetchBefore } from './actions.es6';
+
 class MessageGroupList extends React.Component {
   constructor(props){
     super(props);
@@ -16,9 +18,38 @@ class MessageGroupList extends React.Component {
         key={key}
         />;
     });
-    return <ul className="conversation-message-groups in-react">
+    return <ul className="conversation-message-groups in-react"
+      onScroll={this.scroll.bind(this)}
+      ref="scrollBox">
       {groups}
     </ul>;
+  }
+
+  componentDidMount( ){
+    this.refs.scrollBox.scrollTop = this.refs.scrollBox.scrollHeight;
+  }
+
+  scroll(event) {
+    this.checkScroll();
+  }
+
+  checkScroll() {
+    if(this.refs.scrollBox.scrollTop < 100 && ! this.props.fetching) {
+      this.props.dispatch(fetchBefore());
+    }
+  }
+
+  // Preserve scroll position
+  componentWillUpdate() {
+    var node = this.refs.scrollBox;
+    this.scrollHeight = node.scrollHeight;
+    this.scrollTop = node.scrollTop;
+  }
+
+  // Preserve scroll position
+  componentDidUpdate() {
+    var node = this.refs.scrollBox;
+    node.scrollTop = this.scrollTop + (node.scrollHeight - this.scrollHeight);
   }
 }
 

@@ -38,11 +38,14 @@ class ConversationContainer extends React.Component {
       <h1>{this.state.name}</h1>
       <MessageGroupList
         messageGroups={messageGroups} 
-        users={this.state.users} />
+        users={this.state.users} 
+        fetching={this.state.isFetching}
+        dispatch={this.store.dispatch} />
       <PollDisplay {...this.state} />
       <MessageInput
         dispatch={this.store.dispatch}
-        sending={this.state.isSending} />
+        sending={this.state.isSending}
+        fetching={this.state.isFetching} />
     </div>;
   }
 

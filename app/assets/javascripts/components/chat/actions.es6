@@ -70,6 +70,25 @@ function fetchAfter(date) {
   }
 }
 
+function fetchBefore(date) {
+  return function(dispatch, getState) {
+    console.log("Fetching before");
+    dispatch(startFetch());
+    var { messages, id } = getState();
+    if(date === undefined) {
+      date = messages[0].created_at;
+      date = new Date(date.getTime() - 1000);
+    }
+    var time = Math.round(date.getTime() / 1000);
+    return NM.getJSON(`/conversations/${id}/messages?before=${time}`)
+      .then(json => {
+        dispatch(endFetch());
+        json.forEach(m => m.created_at = new Date(m.created_at));
+        dispatch(addMessages(json));
+      });
+  };
+}
+
 function setTimeToPoll(time) {
   return {
     type: "set_poll_time",
@@ -92,4 +111,4 @@ function pollUpdate(time) {
     }
   }
 }
-export { sendMessage, fetchAfter, pollUpdate }
+export { sendMessage, fetchAfter, pollUpdate, fetchBefore }

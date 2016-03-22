@@ -10,7 +10,10 @@ class MessagesController < ApplicationController
       .order(created_at: :desc)
       .limit(20)
     if params[:after]
-      @messages = @messages.where("messages.created_at > ?", Time.at(params[:after].to_i))
+      @messages = @messages.created_after(Time.at(params[:after].to_i))
+    end
+    if params[:before]
+      @messages = @messages.created_before(Time.at(params[:before].to_i))
     end
     @conversation.mark_read! current_user
   end
