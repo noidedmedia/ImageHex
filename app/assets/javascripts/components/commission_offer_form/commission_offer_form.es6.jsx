@@ -1,4 +1,5 @@
 import ListingPicker from './listing_picker.es6.jsx';
+import CommissionSubjectForm from './commission_subject_form.es6.jsx';
 
 class CommissionOfferForm extends React.Component {
   constructor(props) {

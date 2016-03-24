@@ -1,3 +1,6 @@
+import TagGroup from '../../api/tag_group.es6';
+import TagGroupEditor from '../tag_groups/tag_group_editor.es6.jsx';
+
 /**
  * Models one `subject` which has been added to a commission
  */
@@ -229,3 +232,4 @@ class SubjectReferenceField extends React.Component{
   }
 }
 
+export default CommissionSubjectForm;
