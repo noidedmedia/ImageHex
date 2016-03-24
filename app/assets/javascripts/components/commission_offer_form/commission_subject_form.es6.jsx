@@ -197,39 +197,4 @@ class SubjectTagSelector extends React.Component {
   }
 }
 
-class SubjectReferenceField extends React.Component{
-  constructor(props){
-    super(props);
-    console.log("Subject reference field gets props:",props);
-  }
-  render(){
-    if(this.props.reference.id){
-      return <div className="subject-reference-item persisted">
-        <img src={this.props.reference.url} />
-        <button type="button"
-          onClick={this.removeSelf.bind(this)}>
-          Remove
-        </button>
-      </div>;
-    }
-    else{
-      return <div className="subject-reference-item">
-        <input type="file"
-          name={this.fileFieldName()}
-        />
-        <button type="button"
-          onClick={this.removeSelf.bind(this)}>
-          Remove Reference
-        </button>
-      </div>;
-    }
-  }
-  fileFieldName(){
-    return this.props.baseFieldName + "[file]"
-  }
-  removeSelf(){
-    this.props.remove();
-  }
-}
-
 export default CommissionSubjectForm;
