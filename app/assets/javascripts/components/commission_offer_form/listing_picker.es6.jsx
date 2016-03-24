@@ -1,3 +1,5 @@
+import Listing from '../../api/listing.es6';
+
 class ListingPicker extends React.Component {
   constructor(props) {
     super(props);
@@ -58,3 +60,5 @@ class ListingPicker extends React.Component {
 ListingPicker.propTypes = {
   onAdd: React.PropTypes.func
 };
+
+export default ListingPicker;
