@@ -1,8 +1,6 @@
 <%= form_for @offer, html: {class: "commission-offer-form", id: "commission-offer-form", multipart: true} do |f| %>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  
+
   <div id="offer-form-react-container"
     data-product-id="<%= @offer.listing_id %>"
     data-offer-id="<%= @offer.id %>">
@@ -13,4 +11,7 @@
       This form requires JavaScript to work. Please enable it!
     </noscript>
   </div>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
 <% end %>
