@@ -1,16 +1,5 @@
 <%= form_for @offer, html: {class: "commission-offer-form", id: "commission-offer-form", multipart: true} do |f| %>
-
-
-  <div id="offer-form-react-container"
-    data-product-id="<%= @offer.listing_id %>"
-    data-offer-id="<%= @offer.id %>">
-    <span>
-      One moment...
-    </span>
-    <noscript>
-      This form requires JavaScript to work. Please enable it!
-    </noscript>
-  </div>
+  <%= react_component("CommissionOfferForm", render(file: "commission_offers/show.json.jbuilder")) %> 
   <%= f.label :description %>
   <%= f.text_area :description %>
 
