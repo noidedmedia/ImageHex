@@ -4,22 +4,24 @@
     <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
   </div>
 
-  <div class="frontpage-subscription-container">
+  <ul class="frontpage-subscription-container">
     <% @images.each do |img| %>
-      <div class="subscription-item generic-container">
+      <li class="subscription-item generic-container">
         <div class="subscription-item-header">
           <%= link_to img.reason, frontpage_reason_path(img) %>
         </div>
-        <%= link_to image_tag(img.f :medium), image_path(img), {class: "subscription-item-image"} %>
+        <%= link_to image_path(img), {class: "subscription-item-image"} do %>
+          <%= render 'shared/responsive_image', img: img %>
+        <% end %> 
         <% unless img.creators.empty? %>
           <div class="subscription-item-footer">
             <%= t(".created_by_html",
               creators_list: img.creators.collect { |creator| link_to(creator.name, creator) }.join(",").html_safe ) %>
           </div>
         <% end %>
-      </div>
+      </li>
     <% end %>
-  </div>
+  </ul>
 
   <%= will_paginate @images %>
 </div>
