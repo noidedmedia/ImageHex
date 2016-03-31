@@ -25,7 +25,7 @@ Rails.application.configure do
     # prevents a permanent redirect error on images:
     url: ":s3_alias_url",
     s3_host_alias: "i.imagehex.com",
-    bucket: ENV['S3_BUCKET_NAME']
+    bucket: ENV['S3_BUCKET_NAME'],
     s3_region: "us-standard"
   }
 
