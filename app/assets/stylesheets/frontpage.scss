@@ -43,7 +43,6 @@
   overflow: hidden;
   font-size: 1.2rem;
   color: #333;
-  max-height: 75vh;
 
   picture {
     display: block;
@@ -83,5 +82,23 @@
 
   .subscription-item-footer {
     padding: 8px 10px;
+  }
+
+}
+
+.subscription-avatar {
+  max-width: 25px !important;
+  max-height: 25px !important;
+  margin-right: 5px !important;
+}
+
+.subscription-creators-item {
+  display: inline-block;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 }

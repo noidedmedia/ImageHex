@@ -14,10 +14,17 @@
           <%= render 'shared/responsive_image', img: img %>
         <% end %> 
         <% unless img.creators.empty? %>
-          <div class="subscription-item-footer">
-            <%= t(".created_by_html",
-              creators_list: img.creators.collect { |creator| link_to(creator.name, creator) }.join(",").html_safe ) %>
-          </div>
+          <ul class="subscription-item-footer">
+            <% img.creators.each do |c| %>
+              <li class="subscription-creators-item">
+                <%= link_to c do %>
+                  <%= image_tag c.avatar_img_thumb, 
+                    :class => "subscription-avatar" %>
+                  <span><%= c.name %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         <% end %>
       </li>
     <% end %>
