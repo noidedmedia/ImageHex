@@ -111,6 +111,7 @@
       display: block;
       padding: 0;
       font-size: 1.8rem;
+
       a {
         width: 100%;
         display: block;
@@ -200,8 +201,9 @@
 
 #header-create-button {
   display: block;
+
   i {
-    &:before {
+    &::before {
       color: #fff;
     }
   }

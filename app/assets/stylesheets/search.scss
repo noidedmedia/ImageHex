@@ -31,19 +31,20 @@
       color: #333;
     }
 
-    &:placeholder {
+    &::placeholder {
       color: #eee;
     }
   }
 
   @media #{$mobile} {
     background-color: $header-color-alt;
+    margin: 0;
+    border: 0;
+    order: 1000;
+
     input {
       background-color: $header-color-alt;
     }
-    order: 1000;
-    margin: 0px;
-    border: 0px;
   }
 }
 
@@ -190,12 +191,13 @@
 
 label[for="search-input"] span {
   position: absolute;
-  left: 0px;
+  left: 0;
   cursor: pointer;
 
-  &:before {
-    color: white;
+  &::before {
+    color: #fff;
   }
+
 }
 
 .search-outer-container {

@@ -101,6 +101,8 @@
   }
 
   @media #{$mobile} {
+    // Disabled because I am lazy
+    // scss-lint:disable ImportantRule
     display: none !important;
   }
 }
