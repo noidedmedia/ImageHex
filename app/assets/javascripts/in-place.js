@@ -14,7 +14,7 @@ var showon = function() {
   });
   showondiv.each(function() {
     var _this = this;
-    $(_this).addClass('inactive').removeClass('active');
+    $(_this).addClass("inactive").removeClass("active");
     
     // "data-showon" should have a value with the name (e.g. class or id) of
     // the button that toggles the element with the "data-showon" property.
@@ -23,14 +23,14 @@ var showon = function() {
     var toggle = $( $(_this).data("showon") );
     $(toggle).on("click", function() {
       $(toggle).toggleClass("active");
-      $(_this).toggleClass('active').toggleClass('inactive');
+      $(_this).toggleClass("active").toggleClass("inactive");
 
       // If the element being pressed is an "image-action" (or is the child of 
       // such an element, for compatibility reasons) in the image page sidebar,
       // all other open image-action tooltips will be closed when the element
       // is pressed.
       if ( $(toggle).hasClass("image-actions") || $(toggle).children().hasClass("image-actions") ) {
-        $(".image-actions-tooltip").not(_this).removeClass('active').addClass('inactive');
+        $(".image-actions-tooltip").not(_this).removeClass("active").addClass("inactive");
       }
 
       // If data-clickoutside="true" then the clickoutside event is binded to the
@@ -50,7 +50,7 @@ var showon = function() {
         // the toggle is technically outside the dialog and the dialog's
         // active classes are removed before it's able to display.
         $(toggle).bind("clickoutside", function() {
-          $(_this).removeClass('active').addClass('inactive');
+          $(_this).removeClass("active").addClass("inactive");
           $(_this).unbind("clickoutside");
         });
       }
@@ -62,7 +62,7 @@ var loadform = function(node) {
   return function() {
     node.load(node.data("editform"), function() {
       console.log(this);
-      $('form').fadeIn("normal");
+      $("form").fadeIn("normal");
     });
   };
 };
@@ -87,4 +87,4 @@ var ready = function() {
   formprep();
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A subjective collection is a type of collection which holds images with a subjective quality.
 # Examples:

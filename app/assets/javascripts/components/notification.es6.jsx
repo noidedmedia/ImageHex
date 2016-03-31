@@ -1,3 +1,5 @@
+import NM from '../api/global.es6';
+
 class NotificationList extends React.Component {
   constructor(props) {
     super(props);
@@ -50,19 +52,19 @@ class NotificationItem extends React.Component {
     };
   }
   render() {
-    className = "notifications-list-item";
+    var className = "notifications-list-item";
     if (this.state.read) {
       className += " read";
     } else {
       className += " unread";
     }
-    var handler = this.state.read ? function(){} : this.readSelf.bind(this);
+    var handler = this.state.read ? function() {} : this.readSelf.bind(this);
     return <li className={className} onClick={handler}>
       <a href={this.link()}>
         {this.message()}
         {this.timeStamp()}
       </a>
-    </li>
+    </li>;
   }
   readSelf() {
     NM.postJSON("/notifications/" + this.props.id + "/read", 
@@ -85,6 +87,9 @@ class NotificationItem extends React.Component {
     }
     else if (this.props.subject.type == "user") {
       return "/users/" + this.props.subject.id;
+    }
+    else if (this.props.subject.type == "commission_offer") {
+      return "/commission_offers/" + this.props.subject.id;
     }
   }
   message() {
@@ -113,14 +118,30 @@ class NotificationItem extends React.Component {
         {username} has started following you
       </p>;
     }
+    if (kind == "commission_offer_confirmed") {
+      return <p className="notification-message">
+        {username} just submitted a commission offer to you!
+      </p>;
+    }
+    if (kind == "commission_offer_accepted") {
+      return <p className="notification-message">
+        {username} just accepted your offer!
+      </p>;
+    }
+    if(kind === "commission_offer_filled") {
+      return <p className="notification-message">
+        {username} just filled your offer!
+      </p>;
+    }
     else {
+      console.error("Got a bad notification",this.props,this.state);
       return <p className="notification-message">
         Something in our javascript has gone horribly wrong.
       </p>;
     }
   }
   timeStamp() {
-    return <p className="notification-time-ago">{this.props.time_ago_in_words} ago</p>
+    return <p className="notification-time-ago">{this.props.time_ago_in_words} ago</p>;
   }
 }
 
@@ -131,8 +152,9 @@ document.addEventListener("page:change", function() {
     d.addEventListener("click", function(event) {
       event.preventDefault();
       document.querySelector(".header-notifications").classList.toggle("active");
-      console.log("Clicked");
+      console.log("Clicked on notification");
       NM.getJSON("/notifications/", (json) => {
+        console.log("Got object", json);
         document.querySelector(".notifications-dropdown").classList.toggle("active");
         ReactDOM.render(<NotificationList notifications={json} />,
             document.querySelector(".notifications-dropdown"));

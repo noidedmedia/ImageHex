@@ -1,0 +1,107 @@
+@import "variables";
+
+.conversation-stub {
+  display: flex;
+  flex-direction: row;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  &.unread {
+    border: 1px solid #0e0;
+  }
+}
+
+.conversation-users-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.conversation-users-list-item {
+  height: 50px;
+  width: 50px;
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.conversation-side-section {
+  margin-left: 5px;
+  flex-grow: 5;
+}
+
+.conversation-message-group {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+}
+
+.message-group-avatar {
+  height: 50px;
+  width: 50px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+  }
+}
+
+.message-group-body {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+}
+
+.message-group-user-section {
+  font-weight: bold;
+  
+  span {
+    display: block;
+  }
+
+  time {
+    font-weight: lighter;
+  }
+}
+
+.message-group-messages {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation-message-groups {
+  height: 75%;
+  overflow: scroll;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.conversation-component-container {
+  height: 80vh;
+  max-width: 700px;
+  margin: auto;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-input-container {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+
+  textarea {
+    flex-grow: 5;
+  }
+
+  button {
+    flex-grow: 1;
+  }
+}

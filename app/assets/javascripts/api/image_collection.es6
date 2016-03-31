@@ -1,3 +1,6 @@
+import NM from './global.es6';
+import Image from './image.es6';
+
 /**
  * Represents a collection of multiple images
  */
@@ -11,6 +14,7 @@ class ImageCollection {
     this.url = url;
     this.current_page = 1;
     this.prefix = prefix;
+    this.page = 1;
   }
   
   iteratePageImages(callback) {
@@ -32,8 +36,27 @@ class ImageCollection {
     }
   }
 
+  previousPage() {
+    if (this.hasPreviousPage()) {
+      this.page = this.page - 1;
+      return this;
+    } else {
+      return undefined;
+    }
+  }
+
+  currentPage() {
+    return this.page;
+  }
+
   hasNextPage() {
+    console.log("Check if we ahve a next page with page",this.page);
     return !!(this.total_pages && ! this.page + 1  > this.total_pages);
+  }
+
+  hasPreviousPage() {
+    console.log("Checking if we have a previous page with page",this.page);
+    return (this.page > 1);
   }
 
   getPageImages(callback) {
@@ -69,3 +92,5 @@ class ImageCollection {
     return this.url + "?" + this.pageQueryParams();
   }
 }
+
+export default ImageCollection;

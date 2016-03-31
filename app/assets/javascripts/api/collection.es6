@@ -1,3 +1,5 @@
+import NM from './global.es6';
+
 class Collection {
   constructor(json) {
     for (var prop in json) {
@@ -16,14 +18,14 @@ class Collection {
   addImageWithId(id, callback) {
     console.log("Trying to add image with id",id);
     NM.postJSON("/collections/" + this.id + "/images", 
-                {
-                  collection_image: {
-                    image_id: id
-                  }
-                }, 
+      {
+        collection_image: {
+          image_id: id
+        }
+      }, 
                 (c) => {
-                    callback(true);
-                  });
+                  callback(true);
+                });
   }
 
   /**
@@ -66,10 +68,12 @@ class Collection {
    * a fully-formed collection.
    */
   getFull(callback) {
-    if ('curators' in this) {
+    if ("curators" in this) {
       callback(this);
     } else {
       Collection.find(this.id, callback);
     }
   }
 }
+
+export default Collection;

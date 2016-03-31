@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A Favorite is a type of collection that holds a users favorite images.
 # A favorites collection is rather special:
@@ -24,6 +25,7 @@ class Favorite < Collection
   def self.model_name
     Collection.model_name
   end
+
   ##
   # since this will only ever have 1 curator, we make a helpful
   # alias method
@@ -32,20 +34,24 @@ class Favorite < Collection
   end
 
   protected
+
   ##
   # Fill the name for the collection, so they are uniform.
   # As a side-effect of translation, this will produce a description in
   # the users' favorite language.
   def fill_name
-    self.name = I18n.t "activerecord.models.favorite.favorites_collection_title", usernames: "#{self.curator.name.possessive}"
+    p = "activerecord.models.favorite.favorites_collection_title"
+    self.name = I18n.t(p, usernames: curator.name.possessive.to_s)
   end
 
   protected
+
   ##
   # Fill the description for the collection, so they are uniform.
   # As a side-effect of translation, this will produce a description in
   # the users' native language.
   def fill_desc
-    self.description = I18n.t "activerecord.models.favorite.favorites_collection_description", username: "#{self.curator.name}"
+    p = "activerecord.models.favorite.favorites_collection_description"
+    self.description = I18n.t(p, username: curator.name.to_s)
   end
 end

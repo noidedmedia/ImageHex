@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A curatorship is a join table between a user who curates a collection and the
 # collections they curate.
@@ -20,6 +21,7 @@ class Curatorship < ActiveRecord::Base
   before_save :resolve_user_name
 
   protected
+
   ##
   # Allow this to be created with a user_name
   # Makes the interface just a little bit nicer

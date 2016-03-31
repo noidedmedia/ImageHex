@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TagGroupTracker < ApplicationTracker
   def create
     TagGroupChange.create(tag_group: @record,
@@ -6,6 +7,7 @@ class TagGroupTracker < ApplicationTracker
                           after: @record.tags.pluck(:id),
                           kind: :created)
   end
+
   def update_before
     @old_tags = @record.tags.pluck(:id)
   end
@@ -18,5 +20,4 @@ class TagGroupTracker < ApplicationTracker
                           after: @new_tags,
                           kind: :created)
   end
-
 end

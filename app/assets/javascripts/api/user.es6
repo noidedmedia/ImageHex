@@ -1,39 +1,65 @@
-class User{
-  constructor(json){
-    for(var prop in json){
-      if(prop == "collections"){
+import NM from './global.es6';
+import ImageCollection from './image_collection.es6';
+
+class User {
+  constructor(json) {
+    for (var prop in json) {
+      if (prop == "collections") {
         this.collections = [];
-        for(var collection of json.collections){
+        for (var collection of json.collections) {
           this.collections.push(new Collection(collection));
         }
       }
-      else{
+      else {
         this[prop] = json[prop];
       }
     }
+    this.creations = this.getCreationsCollection();
+    this.favorites = this.getFavoritesCollection();
   }
-  hasFullData(){
+  hasFullData() {
     return "description" in this;
   }
-  getFullData(callback){
-    if(this.hasFullData()){
-      callback(this)
+  getFullData(callback) {
+    if (this.hasFullData()) {
+      callback(this);
     }
-    else{
+    else {
       User.find(this.id, callback);
     }
   }
-  favorites(){
-    return new ImageCollection("/users/" + this.id + " /favorites", "images");
+
+  get favoritesCollection() {
+    return this.getFavoritesCollection();
   }
-  creations(){
-    return new ImageCollection("/users/" + this.id + "/creations", "images");
+  // todo: refactor this out
+  getFavoritesCollection() {
+    return User.favoritesCollectionFor(this.id);
   }
-  static find(id, callback){
+
+  get creationsCollection() {
+    return this.getCreationsCollection();
+  }
+
+  // todo: refactor this out
+  getCreationsCollection() {
+    User.creationsCollectionFor(this.id);
+  }
+
+  static find(id, callback) {
     NM.getJSON("/users/" + id, (j) => {
       callback(new User(j));
     });
   }
+
+  static favoritesCollectionFor(id) {
+    return new ImageCollection("/users/" + id + " /favorites", "images");
+  }
+
+  static creationsCollectionFor(id) {
+    return new ImageCollection("/users/" + id + "/creations", null);
+  }
+
 }
 
-
+export default User;

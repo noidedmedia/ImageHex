@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # All factories must be valid
 #
 
@@ -9,4 +10,3 @@ FactoryGirl.factories.map(&:name).each do |fname|
     end
   end
 end
-

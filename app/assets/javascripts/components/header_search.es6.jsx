@@ -1,3 +1,6 @@
+import EtherealTagGroup from './../api/ethereal_tag_group.es6';
+import TagGroupEditor from './tag_groups/tag_group_editor.es6.jsx';
+
 class HeaderSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +17,7 @@ class HeaderSearch extends React.Component {
         onTagRemove={this.removeTag.bind(this)}
         onTagAdd={this.addTag.bind(this)}
         isSearch={true}
+        isHeaderSearch={true}
         submit={this.submit.bind(this)}
       />
     </div>;
@@ -36,18 +40,20 @@ class HeaderSearch extends React.Component {
       return {
         id: tag.id,
         name: tag.name
-      }
+      };
     });
     query.tag_groups = [{
       tags: tags
     }];
-    window.location.href = "/search?query=" + JSON.stringify(query);
+    window.location.href = "/search?" + $.param({query: query});
   }
 }
 
-document.addEventListener('page:change', function() {
+document.addEventListener("page:change", function() {
   var hs = document.getElementById("header-search");
   console.log("header search container:", hs);
   ReactDOM.render(<HeaderSearch />,
                hs);
 });
+
+export default HeaderSearch;

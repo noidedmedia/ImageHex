@@ -1,23 +1,28 @@
+# frozen_string_literal: true
 ##
 # A single-action controller used for tag suggestion.
 class TagsController < ApplicationController
   include TrainTrack
-  before_filter :ensure_user, only: [:edit, :update]
+  before_action :ensure_user, only: [:edit, :update]
+
   ##
   # Given a partial tag name in "params['name']", suggests ten possible
   # completed tags in alphabetical order.
   # Renders a JSON data type.
   def suggest
-    if params["name"] then
+    if params["name"]
       suggestions = Tag.suggest(params["name"].downcase)
       render json: suggestions
     else
       render status: 422, body: nil
     end
   end
-  
+
   ##
-  # Show a page with info about the tags
+  # Show a page with info about the tags.
+  # @tag:: The tag in question.
+  # @neighbors:: Related tags.
+  # @images:: Images tagged with the given tag.
   def show
     @tag = Tag.friendly.find(params[:id])
     @neighbors = @tag.neighbors.limit(10)
@@ -27,16 +32,23 @@ class TagsController < ApplicationController
   end
 
   ##
-  # Get a list of all tags
-  # Maybe somebody will find this usefull?
+  # Get a list of all tags.
+  # Maybe somebody will find this useful?
+  # @tags:: All the tags.
   def index
     @tags = Tag.all.paginate(page: page, per_page: per_page)
   end
 
+  ##
+  # Create a new tag.
+  # @tag:: The tag being created.
   def new
     @tag = Tag.new
   end
 
+  ##
+  # Creates a tag.
+  # @tag:: The tag being created.
   def create
     @tag = Tag.new(tag_params)
     respond_to do |format|
@@ -46,14 +58,15 @@ class TagsController < ApplicationController
         format.json { render 'show' }
       else
         format.html { render 'edit' }
-        format.json { render json: @tag.errors, status: :unproccessible_entity}
+        format.json { render json: @tag.errors, status: :unproccessible_entity }
       end
     end
-
   end
+
   ##
-  # Edit this tag's description
-  # We really should admin-restrict this at some point
+  # Edit this tag's description.
+  # FIXME: We really should admin-restrict this at some point.
+  # @tag:: The tag being edited.
   def edit
     @tag = Tag.friendly.find(params[:id])
   end
@@ -71,11 +84,12 @@ class TagsController < ApplicationController
       flash[:warning] = tag.errors.full_messages
       redirect_to action: :edit
     end
-
   end
+
   protected
+
   ##
-  # Paramters.
+  # Parameters.
   #
   # Of format:
   #     tag:

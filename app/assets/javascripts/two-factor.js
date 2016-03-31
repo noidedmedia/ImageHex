@@ -3,7 +3,7 @@
 function twoFactorBackup() {
   // When clicking "Use a Two-Factor backup code.", hide the 2FA code field and
   // show the 2FA backup code field.
-  document.getElementById("two-factor-backup-code-button").addEventListener('click', function(e) {
+  document.getElementById("two-factor-backup-code-button").addEventListener("click", function(e) {
     e.preventDefault();
     document.getElementById("two-factor-authentication-code-input").setAttribute("hidden", true);
     document.getElementById("two-factor-authentication-backup-code-input").removeAttribute("hidden");
@@ -14,7 +14,7 @@ function twoFactorBackup() {
 // On Settings page, display Password Dialog to confirm the user definitely
 // wants to disable Two-Factor Authentication.
 function twoFactorDisablePasswordDialog() {
-  document.getElementById("disable-two-factor-button").addEventListener('click', function(e) {
+  document.getElementById("disable-two-factor-button").addEventListener("click", function(e) {
     e.preventDefault();
     document.getElementById("disable-two-factor-dialog").removeAttribute("hidden");
   });
@@ -30,4 +30,4 @@ var ready = function() {
   }
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);

@@ -1,11 +1,12 @@
-json.extract! @image, 
-  :id, 
-  :user_id, 
-  :created_at, 
-  :updated_at, 
-  :description,
-  :license,
-  :medium
+# frozen_string_literal: true
+json.extract! @image,
+              :id,
+              :user_id,
+              :created_at,
+              :updated_at,
+              :description,
+              :license,
+              :medium
 json.nsfw_gore @image.nsfw_gore
 json.nsfw_language @image.nsfw_language
 json.nsfw_nudity @image.nsfw_nudity

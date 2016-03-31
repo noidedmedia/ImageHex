@@ -1,10 +1,10 @@
 <%- title @collection.name %>
 
-<div id="collection-page-container">
-  <div id="collection-page-header">
+<div class="collection-page-container">
+  <div class="collection-page-header">
     <% cache ["info", @collection] do %>
       <%# Collection info %>
-      <div id="collection-page-info-container">
+      <div class="collection-page-info-container">
 
         <%# Collection title %>
         <p class="collection-page-title"><%= @collection.name %>
@@ -61,7 +61,7 @@
   
   <% cache ["images", @collection] do %>
     <%# Render collection's images  %>
-    <div id="collection-images-container">
+    <div class="collection-images-container">
       <%= render 'images/show_stub', images: @images %>
     </div>
   <% end %>

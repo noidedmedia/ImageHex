@@ -8,11 +8,15 @@
 
   <%# UTF-8 Character Set %>
   <meta charset="utf-8">
-
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+    // Set stripe PK
+    Stripe.setPublishableKey("<%= Rails.configuration.stripe[:publishable_key] %>")
+  </script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
+  
   <%# Google Analytics %>
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -71,17 +75,18 @@
 
 <body class="<% if user_signed_in? %>signed-in<% end %>">
   <%= render 'layouts/header' %>
+
   <% flash.each do |name, msg| -%>
     <div class="alert alert-<%= name %>">
       <p><%= msg %></p>
-      <div id="alert-close"></div>
+      <div id="alert-close" class="alert-close"></div>
     </div>
   <% end %>
 
   <div class="masthead" id="masthead">
     <%= yield %>
   </div>
-
+  
   <%= render 'layouts/footer' %>
 
   <%# This script can be parsed by web crawlers to enable Google's in-results search box. %>

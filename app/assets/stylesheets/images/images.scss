@@ -1,4 +1,4 @@
-@import "scss-variables";
+@import "variables";
 
 // Padding for images in image pages.
 // Adding properties to this can have unintended consequences effecting all images across the site.
@@ -26,8 +26,12 @@
 
 #image-page-top-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
   background-color: #444;
+
+  @media #{$mobile} {
+    flex-wrap: wrap;
+  }
 }
 
 #image-page-bottom-container {
@@ -41,11 +45,17 @@
   }
 }
 
-#image-page-information {
+// Columns vendor prefixes for development
+// scss-lint:disable VendorPrefix
+.image-page-information {
   columns: 450px auto;
   column-gap: 20px;
   column-fill: balance;
+  -webkit-columns: 450px auto;
+  -webkit-column-gap: 20px;
+  -webkit-column-fill: balance;
 }
+// scss-lint:enable VendorPrefix
 
 
 // ==============================================
@@ -103,7 +113,7 @@
     content: $icon-plus;
     position: absolute;
     display: inline-block;
-    transform: translate(-24px,-2px);
+    transform: translate(-24px, -2px);
     font-size: 1.8rem;
     -webkit-font-smoothing: antialiased;
   }
@@ -179,7 +189,8 @@
   transform: translateX(-90%);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 
-  &::before, &::after {
+  &::before,
+  &::after {
     content: '';
     width: 0;
     height: 0;

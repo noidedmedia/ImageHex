@@ -1,65 +1,91 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# This file should contain all the record creation needed to seed the database
+# with its default values. The data can then be loaded with the `rake db:seed`
+# (or created alongside the db with `db:setup`).
 
-raise "Should not seed in production" if Rails.env.production?
+fail "Should not seed in production" if Rails.env.production?
 
+# Helper method for using image assets from the `seed_assets` directory.
 def img(filename)
   filename = "#{Rails.root}/db/seed_assets/#{filename}"
   File.open(filename)
 end
 
-User.create!([{name: "test",
-              email: "test@example.com",
-              password: "testtest",
-              password_confirmation: "testtest"},
-             {name: "foo", 
-              email: "foo@example.com",
-              password: "foobarbaz",
-              password_confirmation: "foobarbaz"},
-             {name: "Moot",
-              email: "moot@example.com",
-              password: "lol4chanjoke",
-              password_confirmation: "lol4chanjoke"}])
-User.find_each{|u| u.confirm}
-u1 = User.first
-u2 = User.second
-u3 = User.third
+##
+# Seed Users
+#
+# Email                | Username | Password
+# ------------------------------------------
+# test@example.com     | test     | password
+# foo@example.com      | foo      | password
+# moot@example.com     | moot     | password
+# connor@noided.media  | connor   | password
+# anthony@noided.media | anthony  | password
+# 
+# Array: [username, email, password, role, avatar, description]
+user_list = [
+  ["test", "test@example.com", "password", :normal, false, false],
+  ["foo", "foo@example.com", "password", :normal, false, false],
+  ["moot", "moot@example.com", "password", :normal, false, false],
+  ["connor", "connor@noided.media", "password", :admin, "avatars/connor.jpg", "Lead Designer for ImageHex."],
+  ["anthony", "anthony@noided.media", "password", :admin, false, false]
+]
 
-Image.create!([{f: img("tiamat.jpg"),
-               user: u1,
-               nsfw_gore: false,
-               nsfw_sexuality: false,
-               nsfw_language: false,
-               nsfw_nudity: false,
-               description: "A toy tiamat. Is adorable, no?",
-               license: :public_domain,
-               medium: :photograph,
-               created_by_uploader: true},
-              {f: img("tiamat2.png"),
-                user: u1,
-                nsfw_gore: false,
-                nsfw_nudity: false,
-                nsfw_sexuality: false,
-                nsfw_language: false,
-                description: "A scarier tiamat model",
-                medium: :photograph,
-                license: :public_domain,
-                created_by_uploader: true},
-              {f: img("planedragon.png"),
-               user: u2,
-               nsfw_gore: false,
-               nsfw_nudity: false,
-               nsfw_sexuality: false,
-               nsfw_language: false,
-               description: "A dragon I drew with fighter jets.",
-               medium: :digital_paint,
-               license: :public_domain,
-               created_by_uploader: true}])
-               
+user_list.each do |user|
+  User.create(
+    name: user[0],
+    email: user[1],
+    password: user[2],
+    password_confirmation: user[2],
+    role: user[3],
+    avatar: user[4] ? img(user[4]) : nil,
+    description: user[5] ? user[5] : ""
+  )
+end
 
-Image.first.comments.create!(user: u2,
+# Confirm each user
+User.find_each(&:confirm)
+
+# User variables
+test = User.first
+foo = User.second
+moot = User.third
+connor = User.fourth
+anthony = User.fifth
+
+##
+# Seed Images
+# 
+# Array: [image, uploader, description, medium, license, created_by_uploader]
+image_list = [
+  ["tiamat.jpg", test, "A toy tiamat. Is adorable, no?", :photograph, :public_domain, true],
+  ["tiamat2.png", test, "A scarier tiamat model", :photograph, :public_domain, true],
+  ["planedragon.png", foo, "A dragon I drew with fighter jets.", :digital_paint, :public_domain, false],
+  ["connor1.png", connor, "A piece from my school newspaper that I did for our 80's issue. I really liked the color scheme for this one.", :digital_paint, :all_rights_reserved, true],
+  ["connor2.png", connor, "A poster I created for a school project, I was learning to code :)", :digital_paint, :all_rights_reserved, true],
+  ["connor3.png", connor, "The logo for WavHead, a Noided Media project. We made a small application you can host on your local network that lets anyone connected vote on music to be played. Meant for parties and the like.", :digital_paint, :all_rights_reserved, true]
+]
+
+image_list.each do |image|
+  Image.create(
+    f: img(image[0]),
+    user: image[1],
+    nsfw_gore: false,
+    nsfw_sexuality: false,
+    nsfw_language: false,
+    nsfw_nudity: false,
+    description: image[2],
+    medium: image[3],
+    license: image[4],
+    created_by_uploader: image[5]
+  )
+end
+
+
+##
+# Seed Comments
+Image.first.comments.create!(user: foo,
                              body: "Wow, this actually is adorable.")
-Image.find(2).comments.create(user: u2,
+Image.find(2).comments.create(user: foo,
                               body: <<-eos)
 This sculpture is both more detailed and more accurate to Tiamat as a character.
 
@@ -69,15 +95,13 @@ Oh well.
 Still, you should continue to make these, they're great:
 
 ```ruby
-
-    while want_dragons?
-      sculpt_dragons!
-    end
-
+  while want_dragons?
+    sculpt_dragons!
+  end
 ```
 eos
 
-Image.find(3).comments.create(user: u1,
+Image.find(3).comments.create(user: test,
                               body: <<-eos)
 This is a really cool drawing.
 I can see the headline now:
@@ -85,28 +109,42 @@ I can see the headline now:
 ## US Military Somehow Manages to One-Up Itself
 eos
 
-Subjective.create(curators: [u2],
+
+##
+# Seed Collections
+Subjective.create(curators: [foo],
                   name: "Dragons",
                   description: <<-eos)
 Flying lizards who breathe fire.
 Note: Dragons that breathe other things are cool too.
 eos
 
-Subjective.first.collection_images.create([{image_id: 1},
-                                          {image_id: 2},
-                                          {image_id: 3}])
+Subjective.first.collection_images.create([{ image_id: 1 },
+                                           { image_id: 2 },
+                                           { image_id: 3 }])
 
-## Tag some images
+
+##
+# Seed Tags
 dragon = Tag.create(name: "Dragon")
 tiamat = Tag.create(name: "Tiamat (D&D)")
 fighter = Tag.create(name: "Fighter Jet")
+desk = Tag.create(name: "Desk", description: "A piece of furniture with a flat or sloped surface and typically with drawers, at which one can read, write, or do other work.")
+brown = Tag.create(name: "Brown")
 Image.first.tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
 Image.find(2).tag_groups.create!(tag_ids: [dragon, tiamat].map(&:id))
 Image.find(3).tag_groups.create!(tag_ids: [dragon.id])
 Image.find(3).tag_groups.create!(tag_ids: [fighter.id])
-u1.favorite! Image.first
-u2.favorite! Image.first
-u3.favorite! Image.first
-u1.subscribe! u2
-u2.subscribe! u1
-u3.subscribe! u2
+Image.find(5).tag_groups.create!(tag_ids: [desk.id, brown.id])
+
+##
+# Seed Favorites
+test.favorite! Image.first
+foo.favorite! Image.first
+moot.favorite! Image.first
+
+##
+# Seed Subscriptions
+test.subscribe! foo
+foo.subscribe! test
+moot.subscribe! foo

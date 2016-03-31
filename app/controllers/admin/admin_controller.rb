@@ -1,10 +1,12 @@
+# frozen_string_literal: true
 ##
 # The root controller for the Admin namespace.
 # Ensures only admins can access actions within.
 class Admin::AdminController < ApplicationController
-  before_filter :ensure_admin
+  before_action :ensure_admin
+
   protected
-  
+
   ##
   # Verify that the user is an admin. Redirects to the login page if they
   # are't.
@@ -22,8 +24,7 @@ class Admin::AdminController < ApplicationController
       return true
       # We're good
     else
-      redirect_to("/users/sign_in")
-      return false
+      return render 'shared/401'
     end
   end
 end

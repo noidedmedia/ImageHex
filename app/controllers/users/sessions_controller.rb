@@ -1,5 +1,35 @@
+# frozen_string_literal: true
+##
+# BEWARE
+# MOST OF THIS CODE IS COPY/PASTE, I BARELY UNDERSTAND IT, AND IT SUCKS
+# ABANDON HOPE, ALL YE WHO ENTER HERE
+#
+#       .ed"""" """$$$$be.
+#     -"           ^""**$$$e.
+#   ."                   '$$$c
+#  /                      "4$$b
+# d  3                      $$$$
+# $  *                   .$$$$$$
+# .$  ^c           $$$$$e$$$$$$$$.
+# d$L  4.         4$$$$$$$$$$$$$$b
+# $$$$b ^ceeeee.  4$$ECL.F*$$$$$$$
+# $$$$P d$$$$F $ $$$$$$$$$- $$$$$$
+# $$$F "$$$$b   $"$$$$$$$  $$$$*"
+# $$P"  "$$b   .$ $$$$$...e$$
+#  *c    ..    $$ 3$$$$$$$$$$eF
+#    %ce""    $$$  $$$$$$$$$$*
+#     *$e.    *** d$$$$$"L$$
+#      $$$      4J$$$$$% $$$
+#     $"'$=e....$*$$**$cz$$"
+#     $  *=%4.$ L L$ P3$$$F
+#     $   "%*ebJLzb$e$$$$$b
+#      %..      4$$$$$$$$$$
+#       $$$e   z$$$$$$$$$$
+#        "*$c  "$$$$$$$P"
+#          """*$$$$$$$"
+#
 class Users::SessionsController < Devise::SessionsController
-  prepend_before_filter :two_factor_enabled?, only: :create
+  prepend_before_action :two_factor_enabled?, only: :create
   # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -8,6 +38,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
+  # FIXME HACK WTF: This is disgusting.
   def create
     if params[:user][:otp_attempt] && params[:user][:otp_attempt] != ""
       self.resource = User.find(params[:user][:id])
@@ -25,8 +56,8 @@ class Users::SessionsController < Devise::SessionsController
       end
     elsif params[:user][:otp_backup_attempt] && params[:user][:otp_backup_attempt] != ""
       self.resource = User.find(params[:user][:id])
-      # Prevent hackzors 
-      render_weirdness! if resource.id != session[:_otp_password_id] 
+      # Prevent hackzors
+      render_weirdness! if resource.id != session[:_otp_password_id]
       if resource.invalidate_otp_backup_code!(params[:user][:otp_backup_attempt])
         resource.save
         set_flash_message(:notice, :signed_in) if is_flashing_format?
@@ -52,10 +83,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   protected
-  
+
   def two_factor_enabled?
     @user = User.find_by(email: params[:user][:email])
-    unless params[:user][:otp_attempt].present? || params[:user][:otp_backup_attempt].present? 
+    unless params[:user][:otp_attempt].present? || params[:user][:otp_backup_attempt].present?
       if @user && @user.valid_password?(params[:user][:password])
         self.resource = @user
         if resource.otp_required_for_login

@@ -32,7 +32,7 @@ function handleFiles(files) {
     var uploadcontainerid = "upload-container-" + i;
 
     $(uploadcontainer)
-      .attr('id', uploadcontainerid)
+      .attr("id", uploadcontainerid)
       .insertBefore(".new-upload-container");
 
     uploadcontainer = $("#upload-container-" + i).clone();
@@ -65,4 +65,4 @@ var ready = function() {
   }
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);

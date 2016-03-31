@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A Pundit policy to see if users can add an image to a colletion
 class CollectionImagePolicy < ApplicationPolicy
@@ -9,6 +10,7 @@ class CollectionImagePolicy < ApplicationPolicy
     @user = user
     @record = record
   end
+
   ##
   # People can add images if they curate the collection
   def create?
@@ -18,8 +20,8 @@ class CollectionImagePolicy < ApplicationPolicy
   ##
   # People can remove images if they are an admin or a mod
   def destroy?
-    user_curatorship && 
-      (user_curatorship.level == "admin" || user_curatorship.level  == "mod")
+    user_curatorship &&
+      (user_curatorship.level == "admin" || user_curatorship.level == "mod")
   end
 
   ##

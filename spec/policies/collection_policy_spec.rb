@@ -1,13 +1,13 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe CollectionPolicy do
-
   let(:user) { User.new }
 
   subject { described_class }
 
-  let(:collection){FactoryGirl.create(:collection)}
-  let(:user){FactoryGirl.create(:user)}
+  let(:collection) { FactoryGirl.create(:collection) }
+  let(:user) { FactoryGirl.create(:user) }
   permissions :update? do
     it "allows admins" do
       FactoryGirl.create(:curatorship,

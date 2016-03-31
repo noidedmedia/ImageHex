@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Shared functionality for all our TrainTrack trackers
 class ApplicationTracker
@@ -16,4 +17,3 @@ class ApplicationTracker
     @record = record
   end
 end
-

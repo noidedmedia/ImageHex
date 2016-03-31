@@ -15,7 +15,7 @@
  *= require_self
  */
 
-@import "scss-variables";
+@import "variables";
 
 // Selector for all elements, don't put anything here without a lot of thought first.
 // Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height.
@@ -117,4 +117,19 @@ input, textarea, keygen, select, button {
 // Fix Firefox's ugly default select styling.
 select {
   -moz-appearance: none;
+}
+
+// Parent container applied to most pages to prevent clipping of content with the header, footer.
+.masthead {
+  display: block;
+  margin-top: $header-height;
+  // This forces the footer down to the bottom of the page regardless of whether or not the page content takes up the full vertical width of the user's browser window.
+  min-height: calc(100vh - 200px);
+  position: relative;
+  width: 100vw;
+
+  // Header is larger on mobile.
+  @media #{$mobile} {
+    margin-top: $header-height-mobile;
+  }
 }

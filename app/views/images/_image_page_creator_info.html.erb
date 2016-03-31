@@ -5,7 +5,7 @@
     <h3><%= t(".creators", count: @image.creators.count) %></h3>
     <ul class="image-creator-list">
       <% @image.creators.each do |creator| %>
-        <li class="image-creator-item">
+        <li class="image-creator-item image-creator-info">
           <div class="creator-avatar">
             <%= link_to image_tag(creator.avatar_img_thumb), user_path(creator) %>
           </div>

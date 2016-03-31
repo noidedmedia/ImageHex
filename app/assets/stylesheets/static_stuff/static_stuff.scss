@@ -1,4 +1,4 @@
-@import "scss-variables";
+@import "variables";
 
 .imagehex-static-page-container {
   display: flex;
@@ -85,8 +85,8 @@
   &.alt-background {
     width: 100%;
     background-color: #f9fafb;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     padding: 30px 0;
   }
 }
@@ -161,7 +161,8 @@
     font-weight: 500;
   }
 
-  ul, ol {
+  ul,
+  ol {
     font-size: 1.6rem;
     line-height: 2.2rem;
     padding-top: 15px;
@@ -302,7 +303,12 @@ $color2: #00e676;
 
     img {
       pointer-events: none;
-      -webkit-user-select: none; // scss-lint:disable VendorPrefix
+      // Force being unable to select the image for WebKit users.
+      // Disables the SCSS Linter rule because the non-prefixed user-select
+      // property don't real.
+      // scss-lint:disable VendorPrefix
+      -webkit-user-select: none;
+       // scss-lint:enable VendorPrefix
       height: 100%;
 
       @media #{$mobile} {
@@ -313,7 +319,8 @@ $color2: #00e676;
       &.commissions-artwork {
         position: absolute;
         
-        // The exact measurements of the distance between the canvas and the image edges.
+        // The exact measurements of the distance between the canvas in the
+        // image and the image edges.
         top: 1.35%;
         left: 18.8%;
         height: 54.2%;
@@ -328,15 +335,15 @@ $color2: #00e676;
       margin-top: 15px;
       font-size: 1.6rem;
       font-weight: 300;
+    }
 
-      a {
-        font-weight: 500;
-        color: #fff;
-        text-decoration: none;
+    a {
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
 
-        &:hover {
-          text-decoration: underline;
-        }
+      &:hover {
+        text-decoration: underline;
       }
     }
 

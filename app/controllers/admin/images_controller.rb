@@ -1,8 +1,8 @@
+# frozen_string_literal: true
 ##
-# Administrative actions relating to images. 
+# Administrative actions relating to images.
 class Admin::ImagesController < Admin::AdminController
   def live
-
   end
 
   ##
@@ -21,7 +21,7 @@ class Admin::ImagesController < Admin::AdminController
     @image = Image.find(params[:id]).destroy
     redirect_to "/admin/images"
   end
-  
+
   ##
   # Remove all reports on the image in params[:id].
   # Used if people are reporting stuff they shouldn't.
@@ -31,5 +31,4 @@ class Admin::ImagesController < Admin::AdminController
     @image.image_reports.update_all(active: false)
     redirect_to "/admin/images"
   end
-
 end

@@ -1,6 +1,6 @@
-@import "scss-variables";
+@import "variables";
 
-#comment-container {
+.comment-container {
   display: inline-block;
   width: 100%;
   max-width: 600px;
@@ -32,7 +32,7 @@
   }
 }
 
-#upload-info {
+.upload-info {
   width: 100%;
   margin: 0;
   position: relative;
@@ -116,14 +116,14 @@
   &:first-of-type {
     margin-top: 0;
   }
-}
 
-// Anchor links bring the user's browser window to that exact point,
-// where the top of the browser window is the location of the anchor.
-// This prevents the fixed header from blocking the comment.
-.comment + a {
-  top: 20px;
-  position: absolute;
+  // Anchor links bring the user's browser window to that exact point,
+  // where the top of the browser window is the location of the anchor.
+  // This prevents the fixed header from blocking the comment.
+  + a {
+    top: 20px;
+    position: absolute;
+  }
 }
 
 // The "comment" element (profile picture, username, comment body, etc.) is

@@ -1,4 +1,4 @@
-@import "scss-variables";
+@import "variables";
 
 // ==============================================
 //  Account Dropdown
@@ -44,11 +44,7 @@
   }
 
   > div {
-    padding-bottom: 10px;
-    padding-left: 10px;
-
-    // Compensating for the dropdown arrow. 
-    padding-right: 40px;
+    padding-left: 5px;
   }
 
   > ul {
@@ -97,6 +93,18 @@
   }
 }
 
+.header-username {
+  display: flex;
+
+  span {
+    padding: 0 5px;
+  }
+
+  @media #{$mobile} {
+    display: none !important;
+  }
+}
+
 @media #{$mobile} {
   .user-bar {
     position: initial;
@@ -122,6 +130,7 @@
 
     ul {
       background: none;
+      background-color: $header-color-alt;
       display: inline-block;
       border: 0;
       position: relative;
@@ -139,14 +148,14 @@
       li a {
         padding: 15px 25px;
         font-size: 1.8rem;
-        color: $gray;
+        color: $white;
         width: 100%;
       }
 
       li:hover input[type=submit],
       li:hover a {
         background-color: transparent;
-        color: $gray;
+        color: $white;
       }
     }
   }

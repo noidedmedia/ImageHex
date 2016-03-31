@@ -1,11 +1,12 @@
+# frozen_string_literal: true
 ##
 # A controller that handles TagGroups.
 # Only doesn't allow login on show.
 class TagGroupsController < ApplicationController
-  before_filter :ensure_user, except: :show
-  before_filter :get_image
+  before_action :ensure_user, except: :show
+  before_action :get_image
   include TrainTrack
-  
+
   ##
   # Create a new TagGroup.
   # Sets:
@@ -17,7 +18,7 @@ class TagGroupsController < ApplicationController
   ##
   # POST to create a new TagGroup.
   # If successful, it redirects to the image.
-  # Otherwise, it puts errors in flash[:errors] and renders the new 
+  # Otherwise, it puts errors in flash[:errors] and renders the new
   # action.
   # TODO: make this redirect to the new action
   def create
@@ -29,7 +30,7 @@ class TagGroupsController < ApplicationController
         format.json { render 'show' }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
-        format.json { render json: @tag_group.errors, status: :unproccessible_entity} 
+        format.json { render json: @tag_group.errors, status: :unproccessible_entity }
       end
     end
   end
@@ -56,12 +57,13 @@ class TagGroupsController < ApplicationController
         format.json { render 'show' }
       else
         format.html { redirect_to @image, warning: @tag_group.errors.full_messages.join(', ') }
-        format.json { render json: @tag_group.errors, status: :unproccessible_entity } 
+        format.json { render json: @tag_group.errors, status: :unproccessible_entity }
       end
     end
   end
 
   protected
+
   ##
   # Parameters to make a tag group.
   # Currently, it's essentially just at tag_group_string.
@@ -72,7 +74,7 @@ class TagGroupsController < ApplicationController
       .merge(image_id: params[:image_id]) # Add in the image id automatically
   end
 
-  ## 
+  ##
   # Sets the image on every action.
   def get_image
     @image = Image.find(params[:image_id])

@@ -1,11 +1,11 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe Collection do
-
   describe "scopes" do
-   let(:i){ FactoryGirl.create(:image)}
-   let(:c1){FactoryGirl.create(:collection)}
-   let(:c2){FactoryGirl.create(:collection)}
+    let(:i) { FactoryGirl.create(:image) }
+    let(:c1) { FactoryGirl.create(:collection) }
+    let(:c2) { FactoryGirl.create(:collection) }
     it "has a scope for collections without a given image" do
       c1.images << i
       c2
@@ -28,20 +28,19 @@ describe Collection do
       end
     end
   end
-  it {should have_many(:collection_images)}
+  it { should have_many(:collection_images) }
   ##
   # Due to what I believe to be a bug in shoulda_mathcers, this test
   # will not work. I have verified with manual testing that a collection
   # does, indeed, have many collectiosn through collection_images.
   # it {should have_many(:images).through(:collection_images)}
-  
 
   it "should not allow duplicate images" do
     c = FactoryGirl.create(:collection)
     i = FactoryGirl.create(:image)
-    expect{
-    c.images = [i, i]
-    }.to raise_error
+    expect do
+      c.images = [i, i]
+    end.to raise_error
   end
   describe "subscriptions" do
     it "lists all subscribed users with the subscribers method" do

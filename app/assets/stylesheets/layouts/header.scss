@@ -1,10 +1,12 @@
-@import "scss-variables";
+@import "variables";
 
 // Container for the header item, always fixed to the top of the screen.
 #header-container {
   background-color: $header-color;
   color: $white;
-  display: block;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   font-weight: 300;
   height: $header-height;
   left: 0;
@@ -15,38 +17,29 @@
   top: 0;
   width: 100vw;
   z-index: 1000;
+  padding-left: 20px;
+  padding-right: 20px;
 
   @media #{$mobile} {
-    width: 100vw;
     height: $header-height-mobile;
-    background-color: $header-color;
-    display: flex;
-    flex-flow: row nowrap;
-    position: fixed;
-    z-index: 1001;
   }
 }
 
 // Items aligned to the left side of the header.
 #header-left {
   display: inline-block;
-  left: 50px;
   height: $header-height;
-  position: absolute;
   text-align: left;
 
   @media #{$mobile} {
-    position: relative;
-    left: 30px;
     height: $header-height-mobile;
   }
 
   #header-home {
-    padding: 12px 0;
     margin-right: 15px;
     width: 160px;
 
-    @media all and (max-width: $laptop-width) {
+    @media #{$mobile} {
       width: 50px;
     }
 
@@ -54,8 +47,6 @@
     .imagehex-header-logo {
       width: 160px;
       height: $header-height;
-      position: absolute;
-      top: 0;
       background: asset-url("#{$imagehex-header-logo-with-text}") 50% 50% / 110% 110% no-repeat;
       opacity: 0.75;
       transition: 200ms opacity;
@@ -68,7 +59,6 @@
       @media all and (min-width: $mobile-width) and (max-width: $laptop-width) {
         width: 40px;
         height: $header-height;
-        top: 0;
         background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
       }
 
@@ -76,17 +66,14 @@
       @media all and (max-width: $mobile-width) {
         width: 50px;
         height: $header-height-mobile;
-        top: 0;
         background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
       }
     }
   }
 
   #header-browse {
-    position: relative;
-
     // Prevent elements hitting each other.
-    @media all and (max-width: $laptop-width) {
+    @media #{$mobile} {
       display: none;
     }
   }
@@ -95,8 +82,6 @@
 // Items aligned to the right side of the header.
 #header-right {
   display: inline-block;
-  position: relative;
-  right: 40px;
   text-align: right;
   height: 100%;
 
@@ -107,7 +92,8 @@
     width: calc(100vw - 90px);
     max-width: 250px;
     height: calc(100vh - $header-height-mobile);
-    display: block;
+    display: flex;
+    flex-direction: column;
     text-align: left;
     background-color: $header-color-alt;
     z-index: 1000;
@@ -116,6 +102,7 @@
     padding-top: 10px;
 
     &.active {
+      height: auto;
       transform: translateX(0);
     }
 
@@ -124,7 +111,6 @@
       display: block;
       padding: 0;
       font-size: 1.8rem;
-
       a {
         width: 100%;
         display: block;
@@ -132,45 +118,42 @@
         padding: 12px 25px;
       }
     }
-
-    #username {
-      position: absolute;
-      bottom: 0;
-      left: 30px;
-      padding: 12px 20px;
-    }
   }
 }
 
 // Header items, e.g. "Sign out", "Upload", etc.
 .header-item {
-  color: $gray;
+  color: $white;
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 400;
-  padding: 12px 15px 0;
   transition: color 300ms ease-in-out;
   vertical-align: top;
+  height: 100%;
 
   &:hover {
-    color: $white;
+    color: $gray;
     text-decoration: none;
   }
 
   a {
-    color: $gray;
+    color: $white;
     text-decoration: none;
     transition: color 300ms ease-in-out;
 
     &:hover {
-      color: $white;
+      color: $gray;
       text-decoration: none;
     }
   }
-  
-  @media #{$mobile} {
-    padding: 15px;
-  }
+}
+
+// Force text to center itself vertically
+.header-item-center-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 #header-create.header-item {
@@ -183,7 +166,9 @@
 
   i::before {
     // Firefox hack to get the "+" icon to center within the header-create div.
-    -moz-transform: translateX(-13px); // scss-lint:disable VendorPrefix
+    // scss-lint:disable VendorPrefix
+    -moz-transform: translateX(-13px);
+    // scss-lint:enable VendorPrefix
   }
 
   &.active {
@@ -200,18 +185,44 @@
   }
 }
 
+// A header item with centered text and an explicit height
+// Used entirely for the user bar label right now
+.header-item-force-height {
+  height: $header-height;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+
+  @media #{$mobile} {
+    height: $header-height-mobile;
+  }
+}
+
 #header-create-button {
   display: block;
+  i {
+    &:before {
+      color: #fff;
+    }
+  }
 }
 
 .create-dropdown {
-  position: absolute;
-  top: $header-height;
-  left: 0;
+  // remove padding from parent
+  margin-top: calc(#{$header-height} - 12px);
+
+  @media #{$mobile} {
+    // remove padding from parent
+    margin-top: calc(#{$header-height-mobile} - 12px);
+  }
+
+  // Remove padding from parent
+  margin-left: -12px;
   display: inline-block;
   background-color: $white;
   box-shadow: 0 6px 10px 1px rgba($black, 0.05);
   text-align: left;
+  white-space: nowrap;
 
   li {
     display: block;
@@ -239,25 +250,24 @@
 }
 
 #mobile-menu-icon {
+  cursor: pointer;
   display: none;
-  height: $header-height-mobile;
-  position: absolute;
-  right: 10px;
-  top: 0;
+  position: fixed;
+  right: 25px;
   width: 50px;
+  height: $header-height-mobile;
 
-  span::before {
-    // Center icon within the tap target
-    transform: translate(11px, 14px);
-    transition: color 300ms;
+  &::before {
+    color: $white;
+    transform: translate(-35px, 15px);
   }
 
-  &.active span::before {
+  &.active::before {
     color: $white;
   }
 
   @media #{$mobile} {
-    display: block;
+    display: inline-block;
   }
 }
 
@@ -266,17 +276,13 @@
 }
 
 @media #{$mobile} {
-  #header-home {
-    padding: 0 15px;
-  }
-
   #mobile-menu-overlay {
-    width: 100vw;
-    height: calc(100vh - $header-height-mobile);
     position: fixed;
-    display: block;
     top: $header-height-mobile;
     left: 0;
+    width: 100vw;
+    height: calc(100vh - #{$header-height-mobile});
+    display: block;
     pointer-events: none;
     background-color: rgba($off-black, 0);
     z-index: 999;

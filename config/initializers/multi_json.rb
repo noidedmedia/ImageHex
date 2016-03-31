@@ -1,5 +1,2 @@
 MultiJson.use :yajl
-unless Rails.env.production?
-  MultiJson.dump_options = { pretty: true }
-end
-
+MultiJson.dump_options = { pretty: true } unless Rails.env.production?

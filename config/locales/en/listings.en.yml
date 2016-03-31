@@ -1,0 +1,7 @@
+---
+en:
+  listings:
+    new:
+      new_listing: New Listing
+    form:
+      create_listing: Create Listing

@@ -1,0 +1,9 @@
+<%= link_to @dispute.commission_offer.images.first do %>
+  <%= image_tag @dispute.commission_offer.images.first.f(:large) %>
+<% end %>
+
+<% cache @dispute do %>
+  <div class="dispute-descrption">
+    <%= markdown_parse @dispute.description %>
+  </div>
+<% end %> 
