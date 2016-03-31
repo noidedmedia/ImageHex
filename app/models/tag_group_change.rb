@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 ##
-# This class tracks changes to a tag_group. 
+# This class tracks changes to a tag_group.
 #
 # == Members
 # kind:: an enum represtending what kind of change this is. Can be in
@@ -10,8 +11,8 @@
 # user:: the user who made the edit
 # tag_group:: the tag_group we're tracking changes on
 class TagGroupChange < ActiveRecord::Base
-  scope :for_display, ->{ order("created_at DESC") }
-  
+  scope :for_display, -> { order("created_at DESC") }
+
   belongs_to :tag_group
   belongs_to :user
 
@@ -23,7 +24,7 @@ class TagGroupChange < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-  
+
   ##
   # The tags before the edit was made.
   # Memoized, so you can call it many times in a row.
@@ -38,7 +39,7 @@ class TagGroupChange < ActiveRecord::Base
     @_after_tags ||= Tag.where(id: after)
   end
 
-  ## 
+  ##
   # The tags which this edit added
   def added_tags
     after_tags - before_tags

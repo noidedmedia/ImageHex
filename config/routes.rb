@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   ############
   # CONCERNS #
   ############
-  
-  
+
   concern :reportable do
     post "report", on: :member
   end
@@ -23,16 +22,48 @@ Rails.application.routes.draw do
   ##################
   # RESTFUL ROUTES #
   ##################
-  
-  
+
+#  resources :disputes
+
+  resources :conversations do
+    resources :messages, only: [:index, :new, :create] do
+      get 'by_time', on: :collection
+    end
+    post :read, on: :member
+  end
+
   resources :tags do
     collection do
       get "suggest"
     end
   end
 
-  resources :tag_group_changes, only: [:show] do
+  ##
+  # Not really resourceful at all but whatever yolo
+#  resources :stripe, only: [] do
+#    collection do
+#      get :authorize
+#      get :callback
+#    end
+#  end
+  
+#  resources :listings do
+#    get 'search', on: :collection
+#    post 'confirm', on: :member
+#  end
 
+#  resources :commission_offers do
+#    member do
+#      post 'accept'
+#      post 'confirm'
+#      get 'pay'
+#      post 'charge'
+#      get 'fullfill'
+#      post 'fill'
+#    end
+#  end
+
+  resources :tag_group_changes, only: [:show] do
   end
 
   resources :images do
@@ -42,19 +73,18 @@ Rails.application.routes.draw do
       delete "unfavorite"
     end
 
-    resources :tag_groups do 
+    resources :tag_groups do
       resources :changes, only: [:index], controller: :tag_group_changes
     end
 
     concerns :reportable, :commentable
   end
 
-  devise_for :users, 
-    path: "accounts", 
-    controllers: { 
-      sessions: "users/sessions"
-    }
-
+  devise_for :users,
+             path: "accounts",
+             controllers: {
+               sessions: "users/sessions"
+             }
 
   resources :users, only: [:show, :edit, :update, :index] do
     ##
@@ -77,13 +107,13 @@ Rails.application.routes.draw do
     get :mine, on: :collection
     ##
     # OK we get non-REST here
-    resources :images, only: [:create, :destroy], controller: :collection_images  do
-    ##
-    # An action which sees if an image already exists in the collection
-    get "exists", on: :collection
-  end
+    resources :images, only: [:create, :destroy], controller: :collection_images do
+      ##
+      # An action which sees if an image already exists in the collection
+      get "exists", on: :collection
+    end
 
-  resources :curatorships, except: [:index, :show]
+    resources :curatorships, except: [:index, :show]
     member do
       post "subscribe"
       delete "unsubscribe"
@@ -95,7 +125,7 @@ Rails.application.routes.draw do
   end
 
   resources :notifications, only: [:index] do
-    collection do 
+    collection do
       get 'unread'
       post 'mark_all_read'
     end
@@ -125,15 +155,13 @@ Rails.application.routes.draw do
   ########################
   # SINGLE ACTION ROUTES #
   ########################
-  get 'settings', to: "users#edit"
-  
+  get 'settings', to: 'users#edit'
+  post 'settings', to: 'users#update'
 
   #################
   # STATIC ROUTES #
   #################
-
   root to: "frontpage#index"
-
   get 'about', to: "static_stuff#about"
   get 'people', to: "static_stuff#people"
   get 'contact', to: "static_stuff#contact"
@@ -142,9 +170,6 @@ Rails.application.routes.draw do
   get 'help', to: "static_stuff#help"
   get 'press', to: "static_stuff#press"
   get 'commissions', to: "static_stuff#commissions_about"
-  get 'settings', to: 'users#edit'
-  post 'settings', to: 'users#update'
 
   get 'search', to: "images#search"
-  
 end

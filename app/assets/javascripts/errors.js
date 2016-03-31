@@ -13,4 +13,4 @@ var ready = function() {
   }
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);

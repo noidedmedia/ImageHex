@@ -1,12 +1,14 @@
+# frozen_string_literal: true
 ##
-# See notifications a user has. 
+# See notifications a user has.
 # This entire controller requires login, as it doesn't really make sense for
 # people who aren't logged in to have notifications.
 class NotificationsController < ApplicationController
   before_action :ensure_user
 
   ##
-  # Obtain a list of all notifications for the current_user
+  # Obtain a list of all notifications for the current_user.
+  # @notifications:: The current user's notifications.
   def index
     @notifications = current_user.notifications.order("created_at DESC")
       .limit(10)
@@ -18,6 +20,7 @@ class NotificationsController < ApplicationController
   def mark_all_read
     render json: current_user.notifications.unread.update_all(read: true)
   end
+
   ##
   # Mark the notification in params[:id] as read.
   # Returns a JSON response indicating success.
@@ -28,6 +31,7 @@ class NotificationsController < ApplicationController
     worked = n.save
     render json: (worked ? worked : notifications.errors.full_messages)
   end
+
   ##
   # Obtain a list of unread notifications.
   # Returns JSON or HTML.
@@ -37,7 +41,7 @@ class NotificationsController < ApplicationController
     @notifications = current_user.notifications.unread
     respond_to do |format|
       format.html
-      format.json { render json: @notifications}
+      format.json { render json: @notifications }
     end
   end
 end

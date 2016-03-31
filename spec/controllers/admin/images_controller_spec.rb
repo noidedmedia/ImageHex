@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe Admin::ImagesController do
@@ -25,15 +26,14 @@ describe Admin::ImagesController do
       it "removes all reports on the image" do
         image = FactoryGirl.create(:image)
         FactoryGirl.create(:image_report, image: image)
-        expect{post :absolve, id: image}.to change{image.image_reports.active.count}.from(1).to(0)
+        expect { post :absolve, id: image }.to change { image.image_reports.active.count }.from(1).to(0)
       end
     end
     describe "post #destroy" do
       it "removes the image" do
         img = FactoryGirl.create(:image)
-        expect{post :destroy, id: img}.to change{Image.count}.by(-1)
+        expect { post :destroy, id: img }.to change { Image.count }.by(-1)
       end
-
     end
   end
 end

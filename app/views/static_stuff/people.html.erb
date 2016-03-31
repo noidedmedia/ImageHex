@@ -1,29 +1,29 @@
 <%- title t(".people") %>
+
 <% cache "people", expires_in: 1.day do %>
-<div id="people-page-container">
-  <%= render "static_stuff/company_nav" %>
+  <div class="people-page-container">
+    <%= render "static_stuff/company_nav" %>
 
-  <div class="company-page-main-column">
-    <div id="people-page-list-container">
+    <div class="company-page-main-column">
+      <div class="people-page-list-container">
 
-      <div class="people-page-list-item">
-        <div class="people-page-list-item-photo">
-          <img src=<%= asset_path("people/anthony-super.jpg") %>>
-
+        <div class="people-page-list-item">
+          <div class="people-page-list-item-photo">
+            <img src=<%= asset_path("people/anthony-super.jpg") %>>
+          </div>
+          <p class="people-page-list-item-name">Anthony Super
+          <p class="people-page-list-item-job-title">Founder, Developer
         </div>
-        <p class="people-page-list-item-name">Anthony Super
-        <p class="people-page-list-item-job-title">Founder, Developer
-      </div>
 
-      <div class="people-page-list-item">
-        <div class="people-page-list-item-photo">
-          <img src=<%= asset_path("people/connor-shea.jpg") %>>
+        <div class="people-page-list-item">
+          <div class="people-page-list-item-photo">
+            <img src=<%= asset_path("people/connor-shea.jpg") %>>
+          </div>
+          <p class="people-page-list-item-name">Connor Shea
+          <p class="people-page-list-item-job-title">Founder, Designer
         </div>
-        <p class="people-page-list-item-name">Connor Shea
-        <p class="people-page-list-item-job-title">Founder, Designer
-      </div>
 
+      </div>
     </div>
   </div>
-</div>
 <% end %> 

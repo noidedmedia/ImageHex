@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # The root application controller for Imagehex.
 # Any functionality we have to access from all controllers goes here.
@@ -10,19 +11,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :unauthorized
+
+  # Displays the 401 page.
+  # For when the user tries to access a page that they aren't able to access,
+  # e.g. admin pages.
   def unauthorized
     render 'shared/401', status: :unauthorized
   end
-  
+
   protected
 
   ##
   # Ensure that a user is logged in.
   # If one is not, redirect to a page where they can do that.
   def ensure_user
-    unless user_signed_in?
-      redirect_to("/accounts/sign_in")
-    end
+    redirect_to("/accounts/sign_in") unless user_signed_in?
   end
 
   ##
@@ -36,7 +39,7 @@ class ApplicationController < ActionController::Base
   ##
   # The number of things to display on each page.
   # Works like this:
-  # 1. If the user is signed in and has a preference, use that
+  # 1. If the user is signed in and has a preference, use that.
   # 2. If the user has added a query string specifying the page pref in
   #    "page_pref", use that if it's reasonable. We define a reasonable
   #    page_pref to be between 1 and 100.
@@ -44,7 +47,7 @@ class ApplicationController < ActionController::Base
   def per_page
     if user_signed_in? && current_user.page_pref
       current_user.page_pref
-    elsif (1..100).include? params["page_pref"]
+    elsif (1..100).cover? params["page_pref"]
       params["page_pref"]
     else
       20
@@ -52,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   ##
-  # Add a query string for the Locale if needed. 
+  # Add a query string for the Locale if needed.
   def default_url_options(options = {})
     return options if I18n.locale == I18n.default_locale
     { locale: I18n.locale }.merge options
@@ -67,14 +70,14 @@ class ApplicationController < ActionController::Base
 
   DEFAULT_CONTENT = {
     "nsfw_language" => true
-  }
+  }.freeze
 
   def content_pref
-    return (params["content_filter"] || current_user.try(:content_pref) or DEFAULT_CONTENT)
+    (params["content_filter"] || current_user.try(:content_pref) || DEFAULT_CONTENT)
   end
 
   ##
-  # Set the locale. 
+  # Set the locale.
   # Locales are either in the URL, or the default (English).
   # If they're in the URL, they should be in params[:locale]
   def set_locale

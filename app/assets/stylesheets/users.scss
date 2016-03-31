@@ -1,4 +1,4 @@
-@import "scss-variables";
+@import "variables";
 
 // ==============================================
 //  User page container
@@ -26,7 +26,7 @@
   color: $off-black;
   display: flex;
   flex-flow: row wrap;
-  box-shadow: 8px 0 5px 5px rgba(#000,.1);
+  box-shadow: 8px 0 5px 5px rgba(#000, .1);
   background-color: #fff;
 
   // Spacing for the user info and actions containers.
@@ -136,7 +136,8 @@
     position: absolute;
     width: auto;
 
-    > form, > a {
+    > form,
+    > a {
       display: inline-block;
     }
   }
@@ -206,7 +207,7 @@
       content: '';
       background-color: #17cd94;
       width: calc(100% + 30px);
-      transform: translate(-15px,6px);
+      transform: translate(-15px, 6px);
       height: 3px;
       display: block;
     }

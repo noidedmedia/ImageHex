@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.images images, partial: "images/stub", as: :image
 json.current_page images.current_page
 json.per_page images.per_page

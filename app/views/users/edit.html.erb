@@ -4,10 +4,10 @@
   <%= form_for @user do |f| %>
 
     <div class="field-container">
-      <div id="avatar-uploader-container">
-        <%= f.file_field :avatar, id: "avatar-uploader" %>
+      <div class="avatar-uploader-container">
+        <%= f.file_field :avatar, class: "avatar-uploader" %>
 
-        <div id="avatar-uploader-thumbnail">
+        <div class="avatar-uploader-thumbnail">
           <% if @user.avatar %>
             <%= image_tag @user.avatar_img %>
           <% end %>
@@ -90,7 +90,7 @@
 </div>
 
 <%# Dialog is shown if user attempts to disable Two-Factor Authentication. %>
-<div id="disable-two-factor-dialog" class="modal-dialog" hidden>
+<div id="disable-two-factor-dialog" class="modal-dialog disable-two-factor-dialog" hidden>
   <p><%= t(".please_confirm_your_password_to_disable_twofactor_authentication") %>
 
   <%= form_tag disable_twofactor_user_path(@user), method: :put do |f| %>

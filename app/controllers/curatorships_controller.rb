@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CuratorshipsController < ApplicationController
   ##
   # Use pundit for access control
@@ -5,32 +6,36 @@ class CuratorshipsController < ApplicationController
 
   ##
   # Only registered users can trouch this controller
-  before_filter :ensure_user
+  before_action :ensure_user
 
   ##
   # Make a new curatorship
+  # @curatorship:: Curatorship being created.
   def create
     @curatorship = Curatorship.new(curatorship_params)
     authorize @curatorship
     if @curatorship.save
       redirect_to @curatorship.collection
     else
-      flash[:warning] = @curatorship.errors.full_messages
-      redirect_to @curatorship.collection
+      format.html do
+        redirect_to @curatorship.collection,
+                    warning: @curatorship.errors.full_messages
+      end
     end
   end
 
   ##
-  # Remove a curatorship
+  # Remove a curatorship.
+  # @curatorship:: Curatorship being removed.
   def delete
     @curatorship = Curatorship.find(params[:id])
     authorize @curatorship
     @curatorship.delete
   end
 
-  ## 
-  # Modify a curatorship
-  # Can only be done by admins
+  ##
+  # Modify a curatorship.
+  # Can only be done by admins.
   #
   # Common use case is promoting or demoting a user
   def update
@@ -54,9 +59,9 @@ class CuratorshipsController < ApplicationController
   #         level
   def curatorship_params
     params.require(:curatorship)
-    .permit(:user_id,
-            :user_name,
-            :level)
-    .merge(collection_id: params[:collection_id])
+      .permit(:user_id,
+              :user_name,
+              :level)
+      .merge(collection_id: params[:collection_id])
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.extract! change, :created_at, :user_id
 json.before_tag_ids change.before
 json.after_tag_ids change.after

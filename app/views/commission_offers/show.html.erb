@@ -1,0 +1,82 @@
+<div class="commission-offer-container">
+  <div class="offer-meta-info">
+    <h1>Offer</h1>
+    <span>By <%= link_to @offer.user.name, @offer.user %></span>
+    <br>
+    
+    <% if @offer.total_price %>
+      Total cost of <%= price(@offer.total_price) %>
+    <% end %>
+
+    <% if @offer.accepted? && ! @offer.filled? %>
+      <p class="commission-offer-accept-date">Accepted <%= time_ago_in_words @offer.accepted_at %> ago</p>
+      
+      <% if @offer.charged? %>
+        <p class="commission-offer-charge-date">Charged <%= time_ago_in_words @offer.charged_at %> ago</p>
+
+        <% if policy(@offer).fill? %>
+          <%= link_to("Fill now", fullfill_commission_offer_path(@offer)) %>
+        <% end %>
+      <% else %>
+        <p class="commission-offer-awaiting-charge-info">Awaiting Payment</p>
+
+        <% if policy(@offer).charge? %>
+          <%= link_to("Pay Now", pay_commission_offer_path(@offer)) %>
+        <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if @offer.filled? %>
+    <div class="offer-fill-container">
+      <%= link_to @offer.images.first do %>
+        <%= image_tag @offer.images.first.f(:large) %> 
+      <% end %>
+
+      <p class="commission-offer-fill-date">Filled <%= time_ago_in_words @offer.filled_at %> ago</p>
+    </div>
+    <% if @offer.user == current_user %>
+      <%= link_to "Dispute", new_dispute_path(commission_offer_id: @offer.id) %>
+    <% end %>
+  <% end %>
+
+  <% if @offer.has_background? %> 
+    <div>
+      <h2>Background</h2>
+      <div class="background-description">
+        <%= markdown_parse @offer.background.description %> 
+      </div>
+
+      <ul class="reference-images">
+        <% @offer.background.references.each do |ref| %>
+          <li class="background-reference-item">
+            <%= image_tag ref.file.expiring_url(60) %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @offer.has_subjects? %>
+    <div class="offer-subjects">
+      <h2>Subjects</h2>
+      <ul class="subjects-list">
+        <%= render partial: "subject_stub", collection: @offer.subjects, as: :subject %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if policy(@offer).confirm? %>
+    <%= form_tag(confirm_commission_offer_path(@offer), method: :post) do %>
+      <%= button_tag("Confirm this Offer") %>
+    <% end %>
+  <% end %>
+
+  <% if policy(@offer).accept? %>
+    <%= link_to("Accept this offer", accept_commission_offer_path(@offer),
+                type: :post,
+                method: :post,
+                confirm: "Are you sure?") %>
+  <% end %>
+</div>

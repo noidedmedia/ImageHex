@@ -11,10 +11,10 @@
   </div>
 
   <div class="creator-images-gallery">
-    <% creator.creations.take(4).each do |i| %>
+    <% creator.creations.take(4).each do |image| %>
       <li class="creator-images-gallery-item">
-        <%= link_to i do %>
-          <%= image_tag i.f(:small) %>
+        <%= link_to image do %>
+          <%= image_tag image.f(:small) %>
         <% end %>
       </li>
     <% end %>

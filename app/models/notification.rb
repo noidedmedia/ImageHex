@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # A notification is a way to alert the user of something, generally the action of a different user.
 # Notifications which aren't read are displayed to the user when they log in.
@@ -7,21 +8,43 @@ class Notification < ActiveRecord::Base
   #############
   # RELATIONS #
   #############
+
   belongs_to :user, touch: true
-  ##
-  # SCOPES
-  scope :unread, ->{where(read: false)}
+
+  ##########
+  # SCOPES #
+  ##########
+
+  scope :unread, -> { where(read: false) }
 
   ###############
   # VALIDATIONS #
   ###############
+
   validates :user, presence: true
   validates :subject, presence: true
+
+  # Enum for the notification type.
+  # 
+  # uploaded_image_commented_on:: An image the user uploaded has a new comment.
+  # subscribed_image_commented_on:: An image the user is subscribed to has a
+  # new comment.
+  # comment_replied_to:: User comment has been replied to.
+  # mentioned:: User has been mentioned in a comment.
+  # new_subscriber:: User has a new subscriber.
+  # commission_offer_confirmed:: 
+  # commission_offer_accepted:: 
+  # commission_offer_charged:: 
+  # commission_offer_filled:: 
   enum kind: [:uploaded_image_commented_on,
-    :subscribed_image_commented_on,
-    :comment_replied_to,
-    :mentioned,
-    :new_subscriber]
+              :subscribed_image_commented_on,
+              :comment_replied_to,
+              :mentioned,
+              :new_subscriber,
+              :commission_offer_confirmed,
+              :commission_offer_accepted,
+              :commission_offer_charged,
+              :commission_offer_filled]
 
   def subject=(sub)
     to_write = nil
@@ -39,7 +62,13 @@ class Notification < ActiveRecord::Base
         id: sub.id,
         type: :user
       }
+    when CommissionOffer
+      to_write = {
+        id: sub.id,
+        type: :commission_offer,
+        user_name: sub.user.name
+      }
     end
-    write_attribute(:subject, to_write)
+    self[:subject] = to_write
   end
 end

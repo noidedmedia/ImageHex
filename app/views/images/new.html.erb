@@ -16,7 +16,7 @@
       </div>
 
       <div class="select-container">
-        <%= f.select :license, options_for_select(Image.license_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-license-select' } %>
+        <%= f.select :license, options_for_select(Image.license_attributes_for_select), {}, { class: 'custom-select', id: 'image-license-select' } %>
       </div>
       <%# Note that the above has a "{}" because %>
       <%# html-options needs to be invoked before %>
@@ -24,7 +24,7 @@
 
       <%# The Medium select input. %>
       <div class="select-container">
-        <%= f.select :medium, options_for_select(Image.medium_attributes_for_select), {}, { :class => 'custom-select', :id => 'image-media-select' } %>
+        <%= f.select :medium, options_for_select(Image.medium_attributes_for_select), {}, { class: 'custom-select', id: 'image-media-select' } %>
       </div>
 
       <div class="checkbox-container">

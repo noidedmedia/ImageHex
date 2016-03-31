@@ -8,8 +8,8 @@ function deleteButtonAlert() {
 // If the "Cancel" button is pressed in the Report tooltip, the tooltip will be closed.
 function cancelReportButton() {
   document.querySelector("#report-cancel-button").addEventListener("click", function() {
-    document.querySelector("#img-action-report-tooltip").classList.toggle('active');
-    document.querySelector("#img-action-report-tooltip").classList.toggle('inactive');
+    document.querySelector("#img-action-report-tooltip").classList.toggle("active");
+    document.querySelector("#img-action-report-tooltip").classList.toggle("inactive");
   });
 }
 
@@ -30,7 +30,7 @@ function addToCollection() {
         var tooltip = document.querySelector("#img-action-collection-tooltip");
 
         // Hides the Collection Tooltip once the request has completed.
-        tooltip.classList.remove("active")
+        tooltip.classList.remove("active");
         tooltip.classList.add("inactive");
       }
     });
@@ -49,4 +49,4 @@ var ready = function() {
   }
 };
 
-document.addEventListener('page:change', ready);
+document.addEventListener("page:change", ready);

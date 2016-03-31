@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe CuratorshipsController, type: :controller do
@@ -8,8 +9,8 @@ RSpec.describe CuratorshipsController, type: :controller do
       @user.confirm
       sign_in @user
     end
-    let(:collection){FactoryGirl.create(:collection)}
-    let(:other_user){FactoryGirl.create(:user)}
+    let(:collection) { FactoryGirl.create(:collection) }
+    let(:other_user) { FactoryGirl.create(:user) }
     describe "put #update" do
       it "works as an admin" do
         c = FactoryGirl.create(:curatorship,

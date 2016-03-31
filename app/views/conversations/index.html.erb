@@ -1,0 +1,7 @@
+<ul class="conversations-list">
+  <% if @conversations.empty? %>
+    <li>Start a conversation with someone.</li>
+  <% else %>
+    <%= render partial: "stub", collection: @conversations, as: :conversation %>
+  <% end %>
+</ul>

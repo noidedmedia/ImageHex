@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ##
 # Join table: User <-> Collection
 # Shows what collections a user is subscribed to.

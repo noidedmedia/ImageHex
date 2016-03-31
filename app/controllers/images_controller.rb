@@ -1,4 +1,5 @@
 
+# frozen_string_literal: true
 ##
 # As the name implies, this contorller handles all actions for images.
 class ImagesController < ApplicationController
@@ -131,13 +132,13 @@ class ImagesController < ApplicationController
   ##
   # GET to acquire a page where you can edit an image.
   # Does nothing currently.
+  # TODO: Make an Edit Image page.
   def edit
     authorize @image
   end
 
   ##
   # DELETE to remove an image.
-  # Does nothing currently.
   # @image:: The image being deleted.
   def destroy
     @image = Image.find(params[:id])
@@ -166,8 +167,9 @@ class ImagesController < ApplicationController
     @groups = TagGroup.where(image: @image).includes(:tags)
     @collections = current_user.try(:collections).try(:subjective)
   end
-  
+
   protected
+
   # Returns the right image collection, pased on params[:order]
   def get_index_collection
     case params[:order]
@@ -177,9 +179,9 @@ class ImagesController < ApplicationController
       Image.order('created_at DESC')
     end
   end
-  
+
   # Load the image with params[:id] into @image.
-  # should be refactored out.
+  # FIXME: Should be refactored out.
   def load_image
     @image = Image.find(params[:id])
   end
@@ -194,12 +196,11 @@ class ImagesController < ApplicationController
 
   ##
   # Protected parameters for the image.
-  #
   def image_params
     params.require(:image)
-      .permit(:f, 
-              :license, 
-              :medium, 
+      .permit(:f,
+              :license,
+              :medium,
               :replies_to_inbox,
               :source,
               :description,

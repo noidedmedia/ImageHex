@@ -1,7 +1,7 @@
-<div id="image-page-information">
+<div class="image-page-information">
   <% cache [@image, "comments"] do %>
-    <div id="comment-container">
-      <div id="upload-info">
+    <div class="comment-container">
+      <div class="upload-info">
         <div class="image-description-container">
           <div class="uploader-avatar">
             <%= link_to @image.user do %>
@@ -13,7 +13,7 @@
 
           <div class="uploader-information">
             <div class="image-uploader-container">
-              <p class="image-uploader"><%= t(".uploaded_by") %> <%= link_to @image.user.name, @image.user %>
+              <p class="image-uploader"><%= t(".uploaded_by_username_html", username: link_to(@image.user.name, @image.user)) %></p>
               <p class="image-upload-date"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span>
             </div>
 
@@ -39,7 +39,7 @@
 
       <%# Render the comments partial with @image.comments as the subject. %>
       <%= render "shared/comments", comments: @image.comments %>
-    <% end %> 
+    <% end %>
 
     <%# New comment section, only appears for users who are signed-in. %>
     <% if user_signed_in? %>

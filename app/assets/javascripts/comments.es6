@@ -1,4 +1,4 @@
-document.addEventListener("page:change", function(){
+document.addEventListener("page:change", function() {
   var comments = document.getElementsByClassName("comment-reply");
   if (comments.length == 0) {
     return;

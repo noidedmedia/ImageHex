@@ -1,4 +1,4 @@
-@import "scss-variables";
+@import "variables";
 
 //-------------------------//
 //       #Upload           //
@@ -93,7 +93,7 @@
       margin: auto;
       top: 50%;
       z-index: 10;
-      border: 1px solid rgba(#8e8e8e,.4);
+      border: 1px solid rgba(#8e8e8e, .4);
       pointer-events: none;
       background-color: #fff;
     }
@@ -183,8 +183,8 @@
 
       .image-file-name {
         font-size: 1.2rem;
-        color: rgba(#fff, .9);
-        background-color: rgba(#000,.6);
+        color: rgba($white, .9);
+        background-color: rgba($black, .6);
         width: 100%;
         text-align: center;
         position: absolute;
@@ -194,15 +194,15 @@
       }
     }
 
-    .checkbox-container ~ .checkbox-container {
-      padding-top: 0;
-    }
-
     .checkbox-container {
       padding: 10px 9px;
 
       p {
         margin-top: 5px;
+      }
+
+      ~ .checkbox-container {
+        padding-top: 0;
       }
     }
 
@@ -231,7 +231,7 @@
   &::after {
     content: $icon-dropdown;
     font-size: 1.8rem;
-    color: #aaaab2;
+    color: $gray;
     display: block;
     position: absolute;
     bottom: 8px;
@@ -245,11 +245,11 @@
 .custom-select {
   width: 100%;
   height: 40px;
-  background-color: #fff;
+  background-color: $white;
   color: #333;
   border: 0;
-  border-bottom: 1px solid #aaaab2;
-  -webkit-appearance: none;
+  border-bottom: 1px solid $gray;
+  appearance: none;
   padding: 5px 10px;
   border-radius: 0;
   font-size: 1.2rem;

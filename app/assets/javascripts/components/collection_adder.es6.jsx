@@ -1,3 +1,5 @@
+import Collection from '../api/collection.es6';
+
 class CollectionAdder extends React.Component {
   constructor(props) {
     super(props);
@@ -49,8 +51,8 @@ class CollectionAdderItem extends React.Component {
   addImage() {
     if (! this.state.performingAction) {
       this.state.collection.addImageWithId(this.props.image_id, (c) => {
-        var c = this.state.collection
-        c.contains_image = true
+        var c = this.state.collection;
+        c.contains_image = true;
         this.setState({
           collection: c,
           performingAction: false
@@ -65,8 +67,8 @@ class CollectionAdderItem extends React.Component {
   removeImage() {
     if (! this.state.performingAction) {
       this.state.collection.removeImageWithId(this.props.image_id, (c) => {
-        var collection = this.state.collection
-        collection.contains_image = false
+        var collection = this.state.collection;
+        collection.contains_image = false;
         this.setState({
           collection: collection,
           performingAction: false

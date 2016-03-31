@@ -1,10 +1,14 @@
+# frozen_string_literal: true
 ##
 # This controller, essentially, is pointless.
 # It serves to render completely static pages.
 # At some point we should replace this with an NGINX thing or something.
 class StaticStuffController < ApplicationController
+  ##
+  # Commissions "About" page
   def commissions_plan
   end
+
   ##
   # About page. Information about what ImageHex is.
   def about
@@ -37,6 +41,6 @@ class StaticStuffController < ApplicationController
 
   ##
   # Press resources and whatnot.
-  def press 
+  def press
   end
 end

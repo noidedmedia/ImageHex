@@ -13,8 +13,10 @@ Bundler.require(*Rails.groups)
 
 module ImageHex
   class Application < Rails::Application
-    config.autoload_paths << Rails.root.join("lib")
+
     config.active_record.raise_in_transactional_callbacks = true
+    config.browserify_rails.commandline_options = '-t babelify'
+    config.autoload_paths << Rails.root.join("lib")
     routes.default_url_options[:host] = "localhost"
 
     # Default host URL for links in emails.
@@ -22,7 +24,7 @@ module ImageHex
 
     # Use vanilla JavaScript for the JavaScript engine in generators.
     config.generators.javascript_engine :js
-    
+
     # Add the fonts folder to the paths used by the Asset Pipeline.
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
@@ -32,7 +34,7 @@ module ImageHex
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = "UTC"
 
     # Custom i18n routes.
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.extract! @user, :name, :id, :created_at
 json.avatar_url @user.avatar? ? @user.avatar(:medium) : nil
 json.uploads do

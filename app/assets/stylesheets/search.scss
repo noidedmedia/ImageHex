@@ -1,24 +1,27 @@
-@import "scss-variables";
+@import "variables";
+
+// We prefer selectors not be merged in this file because when merged the
+// header-search selector gets very big and the code is much less readable.
+// scss-lint:disable MergeableSelector
 
 #header-search {
-  background-color: #333;
-  
+  background-color: $header-color;
+  margin-right: 5px;
+
   input {
     font-size: 1.4rem;
+    background-color: $header-color;
     height: 40px;
-    width: 100%;
+    flex-grow: 1;
     padding: 0 4px 0 32px;
-    background-color: #333;
     border-top: 0;
     border-bottom: 0;
-    border-left: 1px solid rgba(#fff,0.3);
-    border-right: 1px solid rgba(#fff,0.3);
+    border-left: 1px solid rgba(#fff, 0.3);
+    border-right: 1px solid rgba(#fff, 0.3);
     border-radius: 0;
     color: #fff;
-    transition: color 400ms ease-in-out 300ms, background-color 400ms ease-in-out 300ms; /* 2 */
+    transition: color 400ms ease-in-out 300ms, background-color 400ms ease-in-out 300ms;
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
 
     &:focus {
       transition: color 400ms ease-in-out, background-color 400ms ease-in-out;
@@ -27,11 +30,41 @@
       background-color: #fff;
       color: #333;
     }
+
+    &::placeholder {
+      color: #eee;
+    }
   }
 
-  .tag-group-editor-tags {
-    background-color: #333;
+  @media #{$mobile} {
+    background-color: $header-color-alt;
+    margin: 0;
+    border: 0;
+    order: 1000;
+
+    input {
+      background-color: $header-color-alt;
+    }
   }
+}
+
+.tag-group-editor-tags-suggestions {
+  text-align: left;
+}
+
+.search-input-container { 
+  display: flex;
+  flex-direction: row;
+}
+
+.search-side-button { 
+  background-color: #008000;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
 }
 
 .search {
@@ -93,7 +126,7 @@
     display: inline-block;
     background-color: #fff;
     border: 0;
-    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.15);
+    box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.15);
     border-radius: 2px;
   }
 
@@ -120,44 +153,56 @@
 //  Header search box
 // ==============================================
 
-/**
- * Header search container
- *
- * This is used for the search box in the site's universal header.
- *
- * 1. Transition without delay because the transition shouldn't be
- *    delayed when the search dialog is collapsing.
- * 2. Delay here is to allow for the dialog to collapse before
- *    changing the color of the search box. The delays here should
- *    be equivalent to the length of the transition in comment #1.
- * 3. Overrides default styles for the search input in Firefox,
- *    Chrome, Opera, and Safari.
- */
+
+// Header search container
+//
+// This is used for the search box in the site's universal header.
+//
+// 1. Transition without delay because the transition shouldn't be
+//    delayed when the search dialog is collapsing.
+// 2. Delay here is to allow for the dialog to collapse before
+//    changing the color of the search box. The delays here should
+//    be equivalent to the length of the transition in comment #1.
+// 3. Overrides default styles for the search input in Firefox,
+//    Chrome, Opera, and Safari.
 
 #header-search {
   display: inline-block;
   position: relative;
   width: 300px;
   max-height: 40px;
-  background-color: #fff;
   transition: max-height 300ms ease-in-out; // 1
 
+  background-color: $header-color;
+
   @media #{$mobile} {
-    display: none;
+    background-color: $header-color-alt;
+    width: 100%;
   }
 }
 
-label[for="header-search-input"] span {
+#header-search-react {
+  background-color: $header-color;
+
+  @media #{$mobile} {
+    background-color: $header-color-alt;
+  }
+}
+
+label[for="search-input"] span {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 0;
   cursor: pointer;
 
-  @media #{$mobile} {
-    left: 15px;
+  &::before {
+    color: #fff;
   }
+
 }
 
+.search-outer-container {
+  position: relative;
+}
 
 // Header search suggestions
 // Suggestions for the search box (aka auto-complete).
@@ -183,16 +228,14 @@ label[for="header-search-input"] span {
 }
 
 
-/**
- * Active header search
- *
- * Styles for the header search box when a query is being entered or
- * the input box is otherwise in-focus.
- *
- * 1. Height of the header search when expanded with suggestions div.
- * 2. 600ms delay when the search suggestions transition to an
- *    expanded state.
- */
+// Active header search
+//
+// Styles for the header search box when a query is being entered or
+// the input box is otherwise in-focus.
+//
+// 1. Height of the header search when expanded with suggestions div.
+// 2. 600ms delay when the search suggestions transition to an
+//    expanded state.
 
 #header-search.active {
   height: auto;
@@ -264,33 +307,25 @@ label[for="header-search-input"] span {
 }
 
 
-/**
- * Mobile-specific styles
- *
- * Styles for making the search feature work properly on a
- * mobile device.
- *
- * 1. Close button unnecessary on desktop.
- */
+// Mobile-specific styles
+//
+// Styles for making the search feature work properly on a
+// mobile device.
+//
+// 1. Close button unnecessary on desktop.
 
 #close-mobile-search-icon {
   display: none; // 1
 
   @media #{$mobile} {
     display: inline-block;
-    position: absolute;
-    right: 45px;
-    top: 12px;
   }
 }
 
 #mobile-search-icon {
   display: none;
   height: 50px;
-  position: absolute;
-  right: 50px;
-  top: 0;
-  width: 50px;
+  width: 40px;
 
   span::before {
     // Center icon within the tap target
@@ -298,7 +333,7 @@ label[for="header-search-input"] span {
   }
 
   @media #{$mobile} {
-    display: block;
+    display: inline-block;
   }
 }
 

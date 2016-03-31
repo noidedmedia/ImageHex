@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 ruby '2.3.0'
 source 'https://rubygems.org'
 
@@ -5,7 +6,7 @@ source 'https://rubygems.org'
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.5.2'
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
@@ -15,7 +16,15 @@ gem 'pg'
 ##
 # https://github.com/aws/aws-sdk-ruby
 # Amazon Web Services SDK
-gem 'aws-sdk', '< 2.0'
+gem 'aws-sdk', '~> 2.0'
+
+##
+# Use Stripe
+gem 'stripe'
+
+##
+# Use Omniauth with Stripe
+gem 'oauth2'
 
 ##
 # https://github.com/plataformatec/devise
@@ -65,11 +74,6 @@ gem 'sass-rails'
 gem 'uglifier'
 
 ##
-# https://github.com/TannerRogalsky/sprockets-es6
-# A Sprockets transformer that converts ES6 code into vanilla ES5 with Babel JS.
-gem 'sprockets-es6'
-
-##
 # https://github.com/AnthonySuper/train_track
 # Use TrainTrack to track changes
 # NOIDED: We wrote this!
@@ -99,6 +103,13 @@ gem 'jquery-rails'
 # https://github.com/reactjs/react-rails
 # React.js for Rails
 gem 'react-rails'
+
+
+##
+# https://github.com/browserify-rails/browserify-rails
+# Use browserify and NPM modules on Rails
+gem 'browserify-rails'
+
 
 ##
 # https://github.com/rails/turbolinks
@@ -153,23 +164,29 @@ gem 'apipony'
 gem 'dalli'
 
 ##
-# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
-# View what Autoprefixer will change with `rake autoprefixer:info`.
-# Config file: `config/autoprefixer.yml`
-# https://github.com/ai/autoprefixer-rails
-gem 'autoprefixer-rails'
-
-##
+# https://github.com/brigade/scss-lint
 # Configurable tool for writing clean and consistent SCSS
 # Config file: `config/scss_lint.yml`
 # Run linter with `rake scss:lint`
-# https://github.com/brigade/scss-lint
-gem 'scss_lint', require: false  
+gem 'scss_lint', require: false
 
+##
+# https://github.com/ai/autoprefixer-rails
+# Automatically adds vendor prefixes to CSS with the Asset Pipeline.
+# View what Autoprefixer will change with `rake autoprefixer:info`.
+# Config file: `config/autoprefixer.yml`
+gem 'autoprefixer-rails'
 
 ##
 # Development-only gems
 group :development do
+  ##
+  # https://github.com/bbatsov/rubocop
+  # A Ruby static code analyzer based on the community Ruby style guide.
+  # Config file: `.rubocop.yml`
+  # Run Rubocop with `rake rubocop`
+  gem 'rubocop'
+
   ##
   # https://github.com/rweng/pry-rails
   # Use Pry as your Rails console.
@@ -179,17 +196,12 @@ group :development do
   # https://github.com/banister/binding_of_caller
   # Retrieve the binding of a method's caller in MRI 1.9.2+.
   gem 'binding_of_caller'
-  
-  ##
-  # https://github.com/troessner/reek
-  # Code smell detector for Ruby.
-  gem 'reek'
-  
+
   ##
   # https://github.com/railsbp/rails_best_practices
   # A code metric tool for rails projects.
   gem 'rails_best_practices'
-  
+
   ##
   # Mutes asset pipeline log messages.
   # https://github.com/evrone/quiet_assets
@@ -199,7 +211,7 @@ group :development do
   # https://github.com/charliesome/better_errors
   # Better error page for Rack apps.
   gem 'better_errors'
-  
+
   ##
   # https://github.com/ctran/annotate_models
   # Annotates Rails/ActiveRecord Models, routes, fixtures, and others based on the database schema.
@@ -211,19 +223,9 @@ group :development do
   gem 'bullet'
 
   ##
-  # https://github.com/presidentbeef/brakeman
-  # A static analysis security vulnerability scanner for Ruby on Rails applications
-  gem 'brakeman'
-
-  ##
   # https://github.com/rails/spring
   # Spring speeds up development by keeping your application running in the background.
   gem 'spring'
-
-  ##
-  # https://github.com/ngs/hanna-bootstrap
-  # Use Hanna Bootstrap theme for RDoc documentation.
-  gem 'hanna-bootstrap'
 
   ##
   # http://fontcustom.com
@@ -259,17 +261,48 @@ group :development, :test do
   # https://github.com/sj26/mailcatcher
   # Mailcatcher for confirming that mails work.
   # Run `mailcatcher` and visit localhost:1080 to view mail sent during the current session.
-  gem 'mailcatcher'
+  gem 'mailcatcher', require: false
 
   ##
+  # https://github.com/bkeepers/dotenv
   # Use .env files for development secret keys
   # Our real key is set in production
   gem 'dotenv-rails'
+
+  ##
+  # https://github.com/presidentbeef/brakeman
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
+  gem 'brakeman'
+
+  ##
+  # https://github.com/rubysec/bundler-audit
+  # Patch-level verification for Bundler
+  gem 'bundler-audit'
+
+  ##
+  # https://github.com/jnicklas/capybara
+  # Acceptance test framework for web applications
+  gem 'capybara'
+
+  ##
+  # https://github.com/mattheworiordan/capybara-screenshot
+  # Automatically save screen shots when a Capybara scenario fails
+  gem 'capybara-screenshot'
+
+  ##
+  # https://github.com/teampoltergeist/poltergeist
+  # A PhantomJS driver for Capybara
+  gem 'poltergeist'
 end
 
 ##
 # Test-only gems
 group :test do
+  ##
+  # https://github.com/travisjeffery/timecop
+  # A gem providing "time travel", "time freezing", and "time acceleration" capabilities.
+  gem 'timecop'
+
   ##
   # https://github.com/thoughtbot/shoulda-matchers
   # Continue to make tests good
@@ -286,5 +319,6 @@ end
 group :production do
   ##
   # https://github.com/heroku/rails_12factor
+  #
   gem 'rails_12factor'
 end
