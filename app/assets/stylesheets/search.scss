@@ -30,6 +30,10 @@
       background-color: #fff;
       color: #333;
     }
+
+    &:placeholder {
+      color: #eee;
+    }
   }
 
   @media #{$mobile} {
@@ -183,10 +187,15 @@
     background-color: $header-color-alt;
   }
 }
+
 label[for="search-input"] span {
   position: absolute;
   left: 0px;
   cursor: pointer;
+
+  &:before {
+    color: white;
+  }
 }
 
 .search-outer-container {

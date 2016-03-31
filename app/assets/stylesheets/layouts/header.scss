@@ -200,6 +200,11 @@
 
 #header-create-button {
   display: block;
+  i {
+    &:before {
+      color: #fff;
+    }
+  }
 }
 
 .create-dropdown {
@@ -245,6 +250,7 @@
 }
 
 #mobile-menu-icon {
+  cursor: pointer;
   display: none;
   position: fixed;
   right: 25px;
@@ -252,6 +258,7 @@
   height: $header-height-mobile;
 
   &::before {
+    color: $white;
     transform: translate(-35px, 15px);
   }
 
