@@ -245,6 +245,15 @@ class Image < ActiveRecord::Base
     end
   end
 
+  def reason
+    raise NoMethodError unless attributes["reason"]
+    if attributes["reason_type"] == "user"
+      "Created by #{attributes["reason"]}"
+    else
+      "Added to \"#{attributes["reason"]}\""
+    end
+  end
+
   protected
 
   def add_uploader_creation
@@ -272,4 +281,5 @@ class Image < ActiveRecord::Base
       errors.add(:f, I18n.t("notices.image_file_too_large"))
     end
   end
+
 end

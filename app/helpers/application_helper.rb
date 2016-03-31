@@ -2,6 +2,7 @@
 ##
 # Helpers used universally throughout ImageHex
 module ApplicationHelper
+
   ##
   # Number to currency helper.
   def price(num)

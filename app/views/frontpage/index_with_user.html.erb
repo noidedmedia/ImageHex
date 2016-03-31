@@ -6,27 +6,7 @@
 
   <ul class="frontpage-subscription-container">
     <% @images.each do |img| %>
-      <li class="subscription-item generic-container">
-        <div class="subscription-item-header">
-          <%= link_to img.reason, frontpage_reason_path(img) %>
-        </div>
-        <%= link_to image_path(img), {class: "subscription-item-image"} do %>
-          <%= render 'shared/responsive_image', img: img %>
-        <% end %> 
-        <% unless img.creators.empty? %>
-          <ul class="subscription-item-footer">
-            <% img.creators.each do |c| %>
-              <li class="subscription-creators-item">
-                <%= link_to c do %>
-                  <%= image_tag c.avatar_img_thumb, 
-                    :class => "subscription-avatar" %>
-                  <span><%= c.name %></span>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </li>
+      <%= render 'subscription_image', img: img %>
     <% end %>
   </ul>
 

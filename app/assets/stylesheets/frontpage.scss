@@ -33,6 +33,7 @@
 }
 
 .subscription-item {
+  border-radius: 3px;
   min-width: calc(50% - 14px);
   flex-grow: 1;
   flex-shrink: 1;
@@ -71,7 +72,16 @@
   }
 
   .subscription-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
     padding: 8px 10px;
+    background-color: $header-color-alt;
+
+    a {
+      color: #fff;
+    }
   }
 
   .subscription-item-image {
@@ -82,6 +92,11 @@
 
   .subscription-item-footer {
     padding: 8px 10px;
+    background-color: $header-color-alt;
+
+    a {
+      color: #fff;
+    }
   }
 
 }
