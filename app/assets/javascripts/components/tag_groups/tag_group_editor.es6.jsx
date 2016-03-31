@@ -81,7 +81,7 @@ class TagGroupEditor extends React.Component {
           <span>Go</span>
         </span>;
       }
-      inputField = <div>
+      inputField = <div className="search-outer-container">
         <label title="Search" htmlFor="search-input">
           <span className="icon icon-small icon-search"></span>
         </label>

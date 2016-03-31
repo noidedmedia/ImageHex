@@ -12,11 +12,7 @@
         <% end %>
       </div>
 
-      <%# Header search %>
-      <div id="header-search">
-        
-      </div>
-
+      
       <%# Browse button %>
       <div class="header-item header-item-center-text" id="header-browse">
         <span><%= link_to t(".browse"), images_path %></span>
@@ -32,6 +28,10 @@
     <div id="mobile-menu-overlay"></div>
 
     <div id="header-right">
+      <%# Header search %>
+      <div id="header-search">
+        
+      </div>
       <% if user_signed_in? %>
 
         <%# Upload %>

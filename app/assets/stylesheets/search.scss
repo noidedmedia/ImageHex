@@ -5,14 +5,15 @@
 // scss-lint:disable MergeableSelector
 
 #header-search {
-  background-color: #333;
-  
+  background-color: $header-color;
+  margin-right: 5px;
+
   input {
     font-size: 1.4rem;
+    background-color: $header-color;
     height: 40px;
     flex-grow: 1;
     padding: 0 4px 0 32px;
-    background-color: #333;
     border-top: 0;
     border-bottom: 0;
     border-left: 1px solid rgba(#fff, 0.3);
@@ -31,9 +32,19 @@
     }
   }
 
-  .tag-group-editor-tags {
-    background-color: #333;
+  @media #{$mobile} {
+    background-color: $header-color-alt;
+    input {
+      background-color: $header-color-alt;
+    }
+    order: 1000;
+    margin: 0px;
+    border: 0px;
   }
+}
+
+.tag-group-editor-tags-suggestions {
+  text-align: left;
 }
 
 .search-input-container { 
@@ -155,25 +166,32 @@
   position: relative;
   width: 300px;
   max-height: 40px;
-  background-color: #fff;
   transition: max-height 300ms ease-in-out; // 1
 
+  background-color: $header-color;
+
   @media #{$mobile} {
-    display: none;
+    background-color: $header-color-alt;
+    width: 100%;
   }
 }
 
-label[for="header-search-input"] span {
+#header-search-react {
+  background-color: $header-color;
+
+  @media #{$mobile} {
+    background-color: $header-color-alt;
+  }
+}
+label[for="search-input"] span {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 0px;
   cursor: pointer;
-
-  @media #{$mobile} {
-    left: 15px;
-  }
 }
 
+.search-outer-container {
+  position: relative;
+}
 
 // Header search suggestions
 // Suggestions for the search box (aka auto-complete).
