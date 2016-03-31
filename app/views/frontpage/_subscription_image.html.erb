@@ -4,7 +4,21 @@
     <span><%= time_tag img.sort_created_at %></span>
   </div>
   <%= link_to image_path(img), {class: "subscription-item-image"} do %>
-    <%= render 'shared/responsive_image', img: img %>
+    <picture>
+      <source
+      media="(min-width: 1200px)"
+      srcset="<%= img.f :huge %>">
+      <source
+      media="(min-width: 600px)"
+      srcset="<%= img.f :large %>">
+      <source
+      media="(min-width: 400px)"
+      srcset="<%= img.f :medium %>">
+      <source
+      media="(min-width: 240px)"
+      srcset="<%= img.f :small %>">
+      <%= image_tag(img.f :medium) %>
+    </picture>
   <% end %>
   <% unless img.creators.empty? %>
     <ul class="subscription-item-footer">
