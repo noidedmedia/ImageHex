@@ -29,6 +29,10 @@
       border-color: transparent;
       background-color: #fff;
       color: #333;
+
+      &::placeholder {
+        color: #000;
+      }
     }
 
     &::placeholder {
