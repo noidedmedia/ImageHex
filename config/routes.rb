@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
 
-#  resources :disputes
+  resources :disputes
 
   resources :conversations do
     resources :messages, only: [:index, :new, :create] do
@@ -40,28 +40,28 @@ Rails.application.routes.draw do
 
   ##
   # Not really resourceful at all but whatever yolo
-#  resources :stripe, only: [] do
-#    collection do
-#      get :authorize
-#      get :callback
-#    end
-#  end
+  resources :stripe, only: [] do
+    collection do
+      get :authorize
+      get :callback
+    end
+  end
   
-#  resources :listings do
-#    get 'search', on: :collection
-#    post 'confirm', on: :member
-#  end
+  resources :listings do
+    get 'search', on: :collection
+    post 'confirm', on: :member
+  end
 
-#  resources :commission_offers do
-#    member do
-#      post 'accept'
-#      post 'confirm'
-#      get 'pay'
-#      post 'charge'
-#      get 'fullfill'
-#      post 'fill'
-#    end
-#  end
+  resources :commission_offers do
+    member do
+      post 'accept'
+      post 'confirm'
+      get 'pay'
+      post 'charge'
+      get 'fullfill'
+      post 'fill'
+    end
+  end
 
   resources :tag_group_changes, only: [:show] do
   end
