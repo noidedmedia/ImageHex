@@ -91,18 +91,18 @@
     top: $header-height-mobile;
     width: calc(100vw - 90px);
     max-width: 250px;
-    height: calc(100vh - $header-height-mobile);
+    height: calc(100vh - #{$header-height-mobile});
     display: flex;
     flex-direction: column;
     text-align: left;
-    background-color: $header-color-alt;
+    background-color: $header-color;
     z-index: 1000;
     transition: transform 300ms;
     transform: translateX(calc(100vw + 90px));
     padding-top: 10px;
 
     &.active {
-      height: auto;
+      justify-content: flex-start;
       transform: translateX(0);
     }
 
@@ -121,6 +121,8 @@
     }
   }
 }
+
+
 
 // Header items, e.g. "Sign out", "Upload", etc.
 .header-item {
@@ -297,3 +299,18 @@
     }
   }
 }
+
+.boxy-item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: auto;
+  a {
+    height: 100%;
+  }
+}
+
+

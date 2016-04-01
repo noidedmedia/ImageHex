@@ -45,20 +45,19 @@
   justify-content: center;
   flex-flow: column;
   cursor: pointer;
-
+  background-color: $header-color;
+  color: white;
   span {
     text-overflow: ellipsis;
     overflow-x: hidden;
   }
   
   &.active {
-    background-color: darken(#fff, 10%);
-    color: #333;
+    background-color: $header-color-lighter;
   }
 
   &:hover {
-    background-color: #fff;
-    color: #333;
+    background-color: $header-color-lighter;
   }
 }
 
@@ -77,6 +76,13 @@
     text-overflow: ellipsis;
     overflow-x: hidden;
   }
+}
+
+.imagehex-empty-note {
+  color: #fff;
+  background-color: darken($header-color, 10%);
+  display: block;
+  width: 100%;
 }
 
 .tag-group-change-icon {
