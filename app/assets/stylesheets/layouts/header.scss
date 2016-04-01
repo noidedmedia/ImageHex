@@ -308,6 +308,12 @@
   padding-left: 5px;
   padding-right: 5px;
   height: auto;
+  margin-top: 10px;
+
+  @media #{$mobile} {
+    margin-top: 0;
+  }
+
   a {
     height: 100%;
   }

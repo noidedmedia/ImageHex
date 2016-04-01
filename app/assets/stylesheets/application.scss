@@ -17,6 +17,14 @@
 
 @import "variables";
 
+
+html.turbolinks-progress-bar::before {
+  /* Gotta overridge those styles
+   * scss-lint:disable ImportantRule
+   */
+  background-color: $logo-green !important;
+}
+
 // Selector for all elements, don't put anything here without a lot of thought first.
 // Box-sizing set to border-box so padding doesn't cause things to go past their defined width/height.
 *, *::before, *::after {
