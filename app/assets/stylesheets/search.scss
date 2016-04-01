@@ -41,13 +41,14 @@
   }
 
   @media #{$mobile} {
-    background-color: $header-color-alt;
+    background-color: $header-color;
     margin: 0;
     border: 0;
     order: 1000;
 
     input {
-      background-color: $header-color-alt;
+      color: white;
+      background-color: $header-color;
     }
   }
 }
@@ -180,7 +181,7 @@
   background-color: $header-color;
 
   @media #{$mobile} {
-    background-color: $header-color-alt;
+    background-color: $header-color;
     width: 100%;
   }
 }
@@ -189,7 +190,7 @@
   background-color: $header-color;
 
   @media #{$mobile} {
-    background-color: $header-color-alt;
+    background-color: $header-color;
   }
 }
 

@@ -45,7 +45,7 @@
   justify-content: center;
   flex-flow: column;
   cursor: pointer;
-  background-color: $header-color-alt;
+  background-color: $header-color;
   color: white;
   span {
     text-overflow: ellipsis;
@@ -53,11 +53,11 @@
   }
   
   &.active {
-    background-color: $header-color;
+    background-color: $header-color-lighter;
   }
 
   &:hover {
-    background-color: $header-color;
+    background-color: $header-color-lighter;
   }
 }
 
@@ -79,8 +79,8 @@
 }
 
 .imagehex-empty-note {
-  color: white;
-  background-color: darken($header-color-alt, 10%);
+  color: #fff;
+  background-color: darken($header-color, 10%);
   display: block;
   width: 100%;
 }

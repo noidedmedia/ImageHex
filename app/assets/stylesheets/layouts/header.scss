@@ -95,7 +95,7 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    background-color: $header-color-alt;
+    background-color: $header-color;
     z-index: 1000;
     transition: transform 300ms;
     transform: translateX(calc(100vw + 90px));
