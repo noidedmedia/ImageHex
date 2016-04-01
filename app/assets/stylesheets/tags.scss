@@ -2,11 +2,15 @@
 
 .tag-creation {
   &.inactive {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    display: block;
     color: #777;
-
+    padding: 5px;
     span {
       display: block;
+      text-align: center;
+      margin: auto;
+      cursor: pointer;
     }
   }
 }
