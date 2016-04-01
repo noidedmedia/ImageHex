@@ -4,6 +4,10 @@
 // header-search selector gets very big and the code is much less readable.
 // scss-lint:disable MergeableSelector
 
+.tag-group-editor-input {
+  width: 100%;
+}
+
 #header-search {
   background-color: $header-color;
   margin-right: 5px;
@@ -63,7 +67,7 @@
 }
 
 .search-side-button { 
-  background-color: #008000;
+  background-color: $header-color-lighter;
   color: #fff;
   cursor: pointer;
   display: flex;

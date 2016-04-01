@@ -86,7 +86,7 @@ class TagGroupEditor extends React.Component {
           <span className="icon icon-small icon-search"></span>
         </label>
         <span className="search-input-container">
-          <input type="text" 
+          <input type="text"
             id="search-input"
             name="suggestions" 
             onChange={this.onInputChange.bind(this)}
@@ -101,6 +101,7 @@ class TagGroupEditor extends React.Component {
       </div>;
     } else {
       inputField = <input type="text" 
+        className="tag-group-editor-input"
         name="suggestions" 
         onChange={this.onInputChange.bind(this)}
         onKeyDown={this.onKeyUp.bind(this)}
