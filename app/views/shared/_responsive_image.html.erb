@@ -8,5 +8,9 @@
   <source
   media="(min-width: 1500px)"
   srcset="<%= img.f :medium %>">
+  <source
+  media="(max-width: 750px)"
+  srcset="<%= img.f :large %>"
+  >
   <%= image_tag(img.f :medium) %>
 </picture>
