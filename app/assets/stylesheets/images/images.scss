@@ -6,12 +6,36 @@
   padding: 25px;
   text-align: center;
   flex-grow: 1;
-
+  transition: 0.5s ease-in-out;
+  overflow: scroll;
   // Width/height for the image element itself.
   img {
+    transition: 0.5s ease-in-out;
     max-height: 80vh;
     max-width: 75vw;
+    cursor: zoom-in;
   }
+
+  &.larger {
+    img {
+      max-height: calc(100vh - #{$header-height});
+      max-width: 100vw;
+    }
+  }
+
+  &.largest {
+    padding: 0;
+    background-color: #fff;
+    transition: none;
+
+    img {
+      max-width: none;
+      max-height: none;
+      transform: scale(1, 1);
+      cursor: zoom-out;
+    }
+  }
+  
 
   @media #{$mobile} {
     padding: 0;
@@ -22,6 +46,7 @@
       vertical-align: bottom;
     }
   }
+
 }
 
 #image-page-top-container {

@@ -57,9 +57,9 @@ class InlineTagCreator extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if (props.tagName) {
+    if (props.initialTagName.length > this.state.name.length) {
       this.setState({
-        name: props.tagName
+        name: props.initialTagName
       });
     }
   }

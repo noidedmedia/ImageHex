@@ -262,6 +262,9 @@ class TagGroupEditor extends React.Component {
       });
     } 
     else {
+      if(this.props.showSubmit){
+        this.props.showSubmit();
+      }
       this.setState({
         hasBlankInput: true,
         hasSuggestions: false,

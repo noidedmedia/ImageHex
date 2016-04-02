@@ -153,7 +153,7 @@ class ImagesController < ApplicationController
   # Sets the following varaibles:
   # @images:: the paginated list of images.
   def index
-    @images = get_index_collection
+    @images = Image.browse(params)
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
   end
@@ -169,16 +169,6 @@ class ImagesController < ApplicationController
   end
 
   protected
-
-  # Returns the right image collection, pased on params[:order]
-  def get_index_collection
-    case params[:order]
-    when 'popularity'
-      Image.by_popularity
-    else
-      Image.order('created_at DESC')
-    end
-  end
 
   # Load the image with params[:id] into @image.
   # FIXME: Should be refactored out.

@@ -37,8 +37,32 @@ function addToCollection() {
   });
 }
 
+function makeLarger(event) {
+  console.log("Making larger");
+  event.preventDefault();
+  $(".image").addClass("larger");
+  $(".image-actions-sidebar").addClass("hidden");
+  $(".image img").off("click");
+  $(".image img").on("click", makeEvenLarger);
+}
+
+function makeEvenLarger(event) {
+  event.preventDefault();
+  $(".image").addClass("largest");
+  $(".image img").off("click");
+  $(".image img").on("click", function(event) {
+    event.preventDefault();
+    $(".image").removeClass("largest larger");
+    $(".image img").off("click");
+    $(".image img").on("click", makeLarger);
+    $(".image-actions-sidebar").removeClass("hidden");
+  });
+}
+
 var ready = function() {
   deleteButtonAlert();
+
+  $(".image img").on("click", makeLarger);
 
   if (document.querySelector("#report-cancel-button")) {
     cancelReportButton();
