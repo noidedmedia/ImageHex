@@ -9,6 +9,7 @@
   background-color: #272727;
   display: flex;
   align-items: flex-end;
+  transition: width 0.5s ease-in-out;
 
   @media #{$mobile} {
     width: 100vw;
@@ -18,7 +19,6 @@
     width: 0;
   }
 
-  transition: width 0.5s ease-in-out;
 }
 
 .image-actions-container {
