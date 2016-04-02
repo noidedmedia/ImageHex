@@ -2,6 +2,11 @@
 
 <%= render partial: "shared/browse_tabs" %>
 
+<div id="image-brose-container">
+<%= react_component("ImageBrowserForm", params) %>
+
 <div id="image-list-container">
   <%= render 'images/show_stub', images: @images %>
+</div>
+
 </div>
