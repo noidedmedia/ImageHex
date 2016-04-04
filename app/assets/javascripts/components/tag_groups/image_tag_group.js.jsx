@@ -119,6 +119,7 @@ document.addEventListener("page:change", function() {
   var newButton = document.getElementById("add-tag-group-button");
   if (newButton) {
     newButton.addEventListener("click", function() {
+      $("#image-details-left").addClass("hide-mobile");
       console.log("Adding a new tag group");
       ReactDOM.render(<ImageTagGroup 
         isNew={true}
