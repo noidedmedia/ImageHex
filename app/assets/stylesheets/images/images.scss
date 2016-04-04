@@ -215,7 +215,8 @@
 
     .content-rating {
       display: inline;
-      &:not(:last-of-type):after {
+
+      &::not(:last-of-type):after {
         content: ", ";
       }
     }
@@ -251,7 +252,7 @@
     &.active {
       width: 100%;
 
-      &+ div {
+      + div {
         display: none;
       }
     }
@@ -278,6 +279,7 @@
 .image-uploader-info {
   display: flex;
   flex-direction: row;
+  margin-bottom: 5px;
 
   span {
     margin-left: 10px;
@@ -292,7 +294,6 @@
     }
   }
 
-  margin-bottom: 5px;
 
   img {
     max-height: 50px;
