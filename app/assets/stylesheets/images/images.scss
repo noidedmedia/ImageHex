@@ -216,7 +216,7 @@
     .content-rating {
       display: inline;
 
-      &::not(:last-of-type):after {
+      &:not(:last-of-type)::after {
         content: ", ";
       }
     }
