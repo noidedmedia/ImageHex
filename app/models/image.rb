@@ -270,6 +270,15 @@ class Image < ActiveRecord::Base
       "//#{source}"
     end
   end
+  
+  def content_warnings
+    a = []
+    a.push(:nsfw_gore) if nsfw_gore?
+    a.push(:nsfw_language) if nsfw_language?
+    a.push(:nsfw_nudity) if nsfw_nudity?
+    a.push(:nsfw_sexuality) if nsfw_sexuality?
+    return a
+  end
 
   def reason
     raise NoMethodError unless attributes["reason"]

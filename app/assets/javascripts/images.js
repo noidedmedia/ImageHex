@@ -37,6 +37,8 @@ function addToCollection() {
   });
 }
 
+
+
 function makeLarger(event) {
   console.log("Making larger");
   event.preventDefault();
@@ -59,11 +61,24 @@ function makeEvenLarger(event) {
   });
 }
 
+function showDetails() {
+  var info = $("#image-info");
+  $("#image-details-left").addClass("active");
+  info.addClass("active");
+  $("#image-details-button").off("click");
+  $("#image-details-button").on("click", function() {
+    info.removeClass("active");
+    $("#image-details-left").removeClass("active");
+    $("#image-details-button").off("click");
+    $("#image-details-button").on("click", showDetails);
+  });
+}
+
 var ready = function() {
   deleteButtonAlert();
 
   $(".image img").on("click", makeLarger);
-
+  $("#image-details-button").on("click", showDetails);
   if (document.querySelector("#report-cancel-button")) {
     cancelReportButton();
   }
