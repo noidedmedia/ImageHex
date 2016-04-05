@@ -126,9 +126,35 @@ class Image < ActiveRecord::Base
   #################
   # CLASS METHODS #
   #################
+  
+
+  def self.browse(params)
+    by_ordering(params[:order], 
+                params[:order_interval_start], 
+                params[:order_interval_end])
+  end
+
+  def self.by_ordering(order, st, nd)
+    case order
+    when 'popularity'
+      by_popularity
+    when 'creation_reverse'
+      by_creation_reverse
+    else
+      by_creation
+    end
+  end
+
+  def self.by_creation_reverse
+    order(created_at: :asc)
+  end
+
+  def self.by_creation
+    order(created_at: :desc)
+  end
 
   # rubocop:disable AbcSize
-  def self.by_popularity(interval = 2.weeks.ago..Time.zone.now)
+  def self.by_popularity(interval = 3.days.ago..Time.zone.now)
     imgs = Image.arel_table
     cimgs = CollectionImage.arel_table
     j = imgs.join(cimgs, Arel::Nodes::OuterJoin)
@@ -136,7 +162,7 @@ class Image < ActiveRecord::Base
       .join_sources
     joins(j)
       .group("images.id")
-      .order("COUNT (collection_images) DESC")
+      .order("COUNT (collection_images) DESC, created_at DESC")
   end
   # rubocop:enable AbcSize
 
@@ -243,6 +269,15 @@ class Image < ActiveRecord::Base
     else
       "//#{source}"
     end
+  end
+  
+  def content_warnings
+    a = []
+    a.push(:nsfw_gore) if nsfw_gore?
+    a.push(:nsfw_language) if nsfw_language?
+    a.push(:nsfw_nudity) if nsfw_nudity?
+    a.push(:nsfw_sexuality) if nsfw_sexuality?
+    return a
   end
 
   def reason

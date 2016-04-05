@@ -7,7 +7,15 @@
   z-index: 100;
 
   &.new-group {
-    width: 50%;
+    width: 500px;
+    margin: -12px;
+    border-radius: 2px;
+    padding: 10px;
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
+
+    @media #{$mobile} {
+      width: calc(100vw - 60px);
+    }
   }
 }
 
@@ -46,7 +54,8 @@
   flex-flow: column;
   cursor: pointer;
   background-color: $header-color;
-  color: white;
+  color: #fff;
+
   span {
     text-overflow: ellipsis;
     overflow-x: hidden;

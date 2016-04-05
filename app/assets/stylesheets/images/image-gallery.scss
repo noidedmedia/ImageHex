@@ -1,5 +1,59 @@
 @import "variables";
 
+
+.browse-form {
+  transform: 0.5s ease-in-out;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+
+  .order-select-container {
+    margin-left: 5px;
+    margin-right: 5px;
+
+    label {
+      margin-right: 5px;
+    }
+
+    select {
+      text-align: center;
+      padding-right: 10px;
+    }
+
+  }
+
+  input[type="submit"] {
+    border-radius: 1px;
+    background-color: $logo-green;
+    color: #fff;
+    border: 0;
+  }
+
+  @media #{$mobile} {
+    padding-left: 19px;
+    padding-right: 19px;
+    flex-flow: row nowrap;
+    font-size: 1.5rem;
+
+    .order-select-container {
+      display: flex; 
+      justify-content: center;
+      flex: 1 1 auto;
+      width: 50%;
+    }
+
+    input[type="submit"] {
+      flex: 1 1 auto;
+      width: 50%;
+    }
+  }
+}
+
+#image-browse-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .image-gallery {
   display: flex;
   flex-flow: row wrap;
@@ -12,7 +66,8 @@
 .image-gallery-item {
   margin: 4px;
   overflow: hidden;
-  width: calc(20% - 16px);
+  max-width: calc(20% - 16px);
+  max-height: 25vh;
   height: auto;
 
   a {
