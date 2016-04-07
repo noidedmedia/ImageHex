@@ -40,11 +40,8 @@ class Notification < ActiveRecord::Base
               :subscribed_image_commented_on,
               :comment_replied_to,
               :mentioned,
-              :new_subscriber,
-              :commission_offer_confirmed,
-              :commission_offer_accepted,
-              :commission_offer_charged,
-              :commission_offer_filled]
+              :new_subscriber]
+
 
   def subject=(sub)
     to_write = nil
@@ -61,12 +58,6 @@ class Notification < ActiveRecord::Base
         name: sub.name,
         id: sub.id,
         type: :user
-      }
-    when CommissionOffer
-      to_write = {
-        id: sub.id,
-        type: :commission_offer,
-        user_name: sub.user.name
       }
     end
     self[:subject] = to_write

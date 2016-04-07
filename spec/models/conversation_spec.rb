@@ -7,21 +7,6 @@ RSpec.describe Conversation, type: :model do
     let(:ua) { create(:user) }
     let(:ub) { create(:user) }
   end
-  context "with an attached commission offer" do
-    let(:o) do
-      c = create(:commission_offer)
-      c.confirm!
-      c
-    end
-    let(:c) { o.conversation }
-
-    it "exists" do
-      expect(c).to_not be(nil)
-    end
-    it "says it is #for_offer" do
-      expect(c).to be_for_offer
-    end
-  end
   describe "nested attributes" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
