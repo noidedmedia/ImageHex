@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 class Conversation < ActiveRecord::Base
-  belongs_to :commission_offer,
-             required: false
   has_many :conversation_users, inverse_of: :conversation
   has_many :users, through: :conversation_users
   has_many :messages
@@ -21,10 +19,6 @@ class Conversation < ActiveRecord::Base
   # Hack because we do a custom thing in our SELECT sometimes
   def has_unread?
     attributes["has_unread"]
-  end
-
-  def for_offer?
-    !commission_offer.nil?
   end
 
   class UserNotInConversation < StandardError
