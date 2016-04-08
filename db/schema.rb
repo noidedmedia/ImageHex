@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408180324) do
+ActiveRecord::Schema.define(version: 20160408181256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,19 @@ ActiveRecord::Schema.define(version: 20160408180324) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "options", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "price"
+    t.boolean  "reference_category", default: false, null: false
+    t.integer  "max_allowed",        default: 1,     null: false
+    t.string   "name",               default: "",    null: false
+    t.text     "description",                        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "options", ["listing_id"], name: "index_options_on_listing_id", using: :btree
+
   create_table "subject_references", force: :cascade do |t|
     t.integer  "commission_subject_id"
     t.datetime "created_at",            null: false
@@ -352,6 +365,7 @@ ActiveRecord::Schema.define(version: 20160408180324) do
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
+  add_foreign_key "options", "listings", on_delete: :cascade
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tag_changes", "tags", on_delete: :cascade
