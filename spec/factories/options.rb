@@ -1,10 +1,14 @@
 FactoryGirl.define do
   factory :option do
-    listing nil
-    price 1
+    listing 
+    price 100
     reference_category false
     max_allowed 1
-    name "MyString"
-    description "MyText"
+    name { Faker::Commerce.product_name }
+    description { Faker::Lorem.paragraph }
+    factory :reference_option do
+      reference_category true
+      max_allowed 100
+    end
   end
 end

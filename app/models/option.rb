@@ -1,3 +1,3 @@
 class Option < ActiveRecord::Base
-  belongs_to :listing
+  belongs_to :listing, required: true
 end
