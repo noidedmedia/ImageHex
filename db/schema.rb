@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408181256) do
+ActiveRecord::Schema.define(version: 20160408181929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,17 @@ ActiveRecord::Schema.define(version: 20160408181256) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
+  create_table "offers", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "offers", ["listing_id"], name: "index_offers_on_listing_id", using: :btree
+  add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
+
   create_table "options", force: :cascade do |t|
     t.integer  "listing_id"
     t.integer  "price"
@@ -365,6 +376,8 @@ ActiveRecord::Schema.define(version: 20160408181256) do
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
+  add_foreign_key "offers", "listings"
+  add_foreign_key "offers", "users"
   add_foreign_key "options", "listings", on_delete: :cascade
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
