@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408181929) do
+ActiveRecord::Schema.define(version: 20160408183153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20160408181929) do
   add_index "artist_subscriptions", ["artist_id", "user_id"], name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
   add_index "artist_subscriptions", ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
   add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
+
+  create_table "aspects", force: :cascade do |t|
+    t.integer  "offer_id"
+    t.integer  "option_id"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "aspects", ["offer_id"], name: "index_aspects_on_offer_id", using: :btree
+  add_index "aspects", ["option_id"], name: "index_aspects_on_option_id", using: :btree
 
   create_table "background_references", force: :cascade do |t|
     t.string   "file_file_name"
@@ -361,6 +372,8 @@ ActiveRecord::Schema.define(version: 20160408181929) do
 
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
+  add_foreign_key "aspects", "offers"
+  add_foreign_key "aspects", "options"
   add_foreign_key "collection_images", "collections", on_delete: :cascade
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"

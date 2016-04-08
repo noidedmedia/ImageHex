@@ -9,5 +9,15 @@ FactoryGirl.define do
       base_price nil
       quote_only true
     end
+
+    factory :listing_with_options do
+      transient do
+        options_count 5
+      end
+
+      after(:create) do |l, e|
+        create_list(:option, e.options_count, listing: l)
+      end
+    end
   end
 end
