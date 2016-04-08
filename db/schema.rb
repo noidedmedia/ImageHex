@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407234610) do
+ActiveRecord::Schema.define(version: 20160408180324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,18 @@ ActiveRecord::Schema.define(version: 20160407234610) do
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
+
+  create_table "listings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "base_price"
+    t.text     "description",                 null: false
+    t.string   "name",                        null: false
+    t.boolean  "quote_only",  default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
@@ -336,6 +348,7 @@ ActiveRecord::Schema.define(version: 20160407234610) do
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
+  add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
