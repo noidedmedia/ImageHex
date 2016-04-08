@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408183153) do
+ActiveRecord::Schema.define(version: 20160408195903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,7 @@ ActiveRecord::Schema.define(version: 20160408183153) do
     t.text     "description",                        null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.integer  "free_count",         default: 0,     null: false
   end
 
   add_index "options", ["listing_id"], name: "index_options_on_listing_id", using: :btree
