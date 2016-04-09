@@ -54,7 +54,7 @@ class CurrencyInputField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      centValue: this.props.initialValue
+      centValue: this.props.initialValue || 0
     };
   }
   render() {
@@ -70,9 +70,13 @@ class CurrencyInputField extends React.Component {
         value={this.state.centValue} />
     </div>;
   }
+
   changeCentValue(value) {
     this.setState({
       centValue: value
     });
   }
+
 }
+
+export { CurrencyInput, CurrencyInputField };

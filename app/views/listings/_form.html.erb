@@ -1,0 +1,16 @@
+<%= form_for @listing do |f| %>
+  <div class="field-container">
+    <%= f.label :name, :class => "label" %>
+    <%= f.text_field :name, :class => "input"  %>
+  </div>
+
+  <div class="field-container">
+    <%= f.label :description, :class => "label" %>
+    <%= f.text_area :description, :class => "input" %>
+  </div>
+
+  <%= react_component "ListingForm", 
+    render(file: "listings/show.json.jbuilder") %>
+
+  <%= f.submit %>
+<% end %>
