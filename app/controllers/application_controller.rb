@@ -73,9 +73,20 @@ class ApplicationController < ActionController::Base
   }.freeze
 
   def content_pref
-    (params["content_filter"] || current_user.try(:content_pref) || DEFAULT_CONTENT)
+    (find_content_pref(params["content_filter"]) ||
+     current_user.try(:content_pref) || DEFAULT_CONTENT)
   end
 
+  def find_content_pref(pref)
+    return nil unless pref.is_a? Hash
+    pref.inject({}) do |h, (k, v)|
+      if k.to_s.start_with? "nsfw"
+        h.merge(k => ActiveRecord::Type::Boolean.new.type_cast_from_user(v))
+      else
+        h
+      end
+    end
+  end
   ##
   # Set the locale.
   # Locales are either in the URL, or the default (English).
