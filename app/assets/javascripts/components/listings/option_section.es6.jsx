@@ -11,16 +11,16 @@ class OptionSection extends React.Component {
 
   render() {
     var options = this.state.options.map((o, i) => {
-      return <li id={i}>
-        <OptionFields
+      return <OptionFields
           option={o}
           index={i}
-          quoteOnly={this.props.quoteOnly} />
-      </li>;
+          quoteOnly={this.props.quoteOnly}
+          removeSelf={this.removeOption.bind(this, i)}
+          id={i} />
     });
 
     return <div>
-      <ul>
+      <ul className="options-container">
         {options}
       </ul>
       <button type="button"
@@ -34,6 +34,13 @@ class OptionSection extends React.Component {
     var n = [...this.state.options, {}];
     this.setState({
       options: n
+    });
+  }
+
+  removeOption(index) {
+    this.state.options.splice(index, 1);
+    this.setState({
+      options: this.state.options
     });
   }
 }

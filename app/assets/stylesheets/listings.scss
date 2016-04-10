@@ -1,3 +1,5 @@
+@import "variables";
+
 .base-price-container {
   transition: 0.5s ease-in-out;
   overflow: hidden; 
@@ -15,7 +17,55 @@
   transition: 0.5s ease-in-out;
   height: 50px;
   overflow: hidden;
+
   &.inactive {
     height: 0;
   }
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-fields-section {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid black;
+  }
+}
+
+.remove-option-button {
+  align-self: flex-end;
+  font-size: 16px;
+  color: $logo-red;
+  text-decoration: none;
+
+  &:before {
+    margin-right: 5px;
+    content: $icon-close;
+    color: $logo-red;
+  }
+}
+
+.fields-section {
+  display: flex;
+  flex-direction: column; 
+  label {
+    display: block;
+  }
+
+  input {
+    display: block;
+  }
+}
+
+.listing-form {
+  max-width: 700px;
+  margin: auto;
 }

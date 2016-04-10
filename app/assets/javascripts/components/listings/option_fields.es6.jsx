@@ -1,6 +1,6 @@
 import {CurrencyInputField} from '../currency_input.es6.jsx';
 
-var OptionFields = ({option, index, quoteOnly}) => {
+var OptionFields = ({option, index, quoteOnly, removeSelf}) => {
   function fieldName(name) {
     return `listing[options_attributes][${index}][${name}]`;
   }
@@ -16,7 +16,12 @@ var OptionFields = ({option, index, quoteOnly}) => {
     />;
   }
 
-  return <div className="option-fields-section">
+  return <li className="option-fields-section">
+    <a onClick={removeSelf}
+      className="remove-option-button"
+      href="#">
+      Remove
+    </a>
     <div className="fields-section">
       <label>
         Name
@@ -63,7 +68,7 @@ var OptionFields = ({option, index, quoteOnly}) => {
         initialValue={option.max_allowed || 1} />
     </div>
     {idField}
-  </div>;
+  </li>;
 };
 
 export default OptionFields;
