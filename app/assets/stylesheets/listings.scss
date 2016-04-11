@@ -9,7 +9,7 @@
   }
 
   &.active {
-    height: 50px;
+    height: 35px;
   }
 }
 
@@ -69,3 +69,25 @@
   max-width: 700px;
   margin: auto;
 }
+
+.row-fields-section {
+  display: flex;
+  flex-direction: row;
+
+  div {
+    display: block;
+    flex-grow: 1;
+  }
+
+  .price-field-section.active {
+    height: auto;
+    width: 32%;
+  }
+
+  .price-field-section.inactive {
+    height: auto;
+    width: 0;
+    flex-grow: 0;
+  }
+}
+

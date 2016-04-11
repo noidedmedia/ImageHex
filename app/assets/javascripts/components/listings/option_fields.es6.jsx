@@ -8,6 +8,9 @@ var OptionFields = ({option, index, quoteOnly, removeSelf}) => {
   if(quoteOnly) {
     priceFieldClass += " inactive";
   }
+  else {
+    priceFieldClass += " active";
+  }
   var idField = "";
   if(option.id) {
     idField = <input type="hidden"
@@ -38,34 +41,36 @@ var OptionFields = ({option, index, quoteOnly, removeSelf}) => {
         initialValue={option.description}
         name={fieldName("description")} />
     </div>
-    <div className={"fields-section " + priceFieldClass} >
-      <label>
-        Price
-      </label>
-      <CurrencyInputField
-        initialValue={option.price}
-        name={fieldName("price")} />
-    </div>
+    <div className="row-fields-section">
+      <div className={"fields-section " + priceFieldClass} >
+        <label>
+          Price
+        </label>
+        <CurrencyInputField
+          initialValue={option.price}
+          name={fieldName("price")} />
+      </div>
 
-    <div className="fields-section">
-      <label>
-        Number free
-      </label>
-      <input type="number"
-        name={fieldName("free_count")}
-        min={0}
-        step={1}
-        initialValue={option.free_count || 0} />
-    </div>
+      <div className="fields-section">
+        <label>
+          Number free
+        </label>
+        <input type="number"
+          name={fieldName("free_count")}
+          min={0}
+          step={1}
+          initialValue={option.free_count || "0"} />
+      </div>
 
-    <div className="fields-section">
-      <label>
-        Maximum Allowed
-      </label>
-      <input type="number"
-        name={fieldName("max_allowed")}
-        min={1}
-        initialValue={option.max_allowed || 1} />
+      <div className="fields-section">
+        <label>
+          Maximum Allowed
+        </label>
+        <input type="number"
+          name={fieldName("max_allowed")}
+          min={1}
+          initialValue={option.max_allowed || "50"} />
+      </div>
     </div>
     {idField}
   </li>;
