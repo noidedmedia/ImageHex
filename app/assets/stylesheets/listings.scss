@@ -29,14 +29,22 @@
 }
 
 .option-fields-section {
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
   padding: 5px;
+  padding-bottom: 15px;
   display: flex;
   flex-direction: column;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid black;
+  background-color: #ddd;
+
+  label {
+    font-size: 14px;
+    color: #333;
+  }
+
+  div {
+    margin-top: 5px;
   }
 }
 
@@ -81,7 +89,6 @@
 
   .price-field-section.active {
     height: auto;
-    width: 32%;
   }
 
   .price-field-section.inactive {
