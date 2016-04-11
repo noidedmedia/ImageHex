@@ -7,14 +7,16 @@ class PriceSection extends React.Component {
   }
 
   render() {
-    return <div className="price-section">
-      <label htmlFor="listing[quote_only]">
-        Quote only?
-      </label>
-      <input type="checkbox"
-        name="listing[quote_only]"
-        state={this.props.quote_only}
-        onChange={this.toggleCheck.bind(this)} />
+    return <div className="row-fields-section">
+      <div>
+        <label htmlFor="listing[quote_only]">
+          Quote only?
+        </label>
+        <input type="checkbox"
+          name="listing[quote_only]"
+          state={this.props.quote_only}
+          onChange={this.toggleCheck.bind(this)} />
+      </div>
       <div className={this.inputClassName}>
         <label htmlFor="listing[base_price]">
           Base Price

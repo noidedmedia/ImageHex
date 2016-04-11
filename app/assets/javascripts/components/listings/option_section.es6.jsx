@@ -12,21 +12,25 @@ class OptionSection extends React.Component {
   render() {
     var options = this.state.options.map((o, i) => {
       return <OptionFields
-          option={o}
-          index={i}
-          quoteOnly={this.props.quoteOnly}
-          removeSelf={this.removeOption.bind(this, i)}
-          id={i} />
+        option={o}
+        index={i}
+        quoteOnly={this.props.quoteOnly}
+        removeSelf={this.removeOption.bind(this, i)}
+        addRefCat={this.props.addRefCat}
+        removeRefCat={this.props.removeRefCat}
+        key={i} />
     });
 
-    return <div>
+    return <div className="options-section">
+      <a href="#"
+        className="add-option-button"
+        onClick={this.addOption.bind(this)}>
+        Add an Option
+      </a>
       <ul className="options-container">
         {options}
       </ul>
-      <button type="button"
-        onClick={this.addOption.bind(this)}>
-        Add an Option
-      </button>
+
     </div>;
   }
 

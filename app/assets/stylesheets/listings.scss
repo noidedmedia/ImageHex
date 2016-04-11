@@ -4,13 +4,23 @@
   transition: 0.5s ease-in-out;
   overflow: hidden; 
 
+  label {
+    white-space: nowrap;
+  }
+
   &.hidden {
-    height: 0;
+    width: 0;
+    flex-grow: 0;
   }
 
   &.active {
-    height: 35px;
+    flex-grow: 1;
   }
+
+}
+
+.button-side-label {
+  margin-right: 5px;
 }
 
 .price-field-section {
@@ -22,6 +32,30 @@
     height: 0;
   }
 }
+
+.options-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-option-button {
+  text-decoration: none;
+  background-color: $logo-green;
+  color: #fff;
+  font-size: 14px;
+  display: block;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 20%;
+  text-align: center;
+
+  &:before {
+    padding-right: 5px;
+    content: $icon-plus;
+  }
+}
+
 
 .options-container {
   display: flex;
@@ -43,16 +77,16 @@
     color: #333;
   }
 
-  div {
+  > div {
     margin-top: 5px;
   }
 }
 
 .remove-option-button {
-  align-self: flex-end;
-  font-size: 16px;
+  font-size: 14px;
   color: $logo-red;
   text-decoration: none;
+  flex-grow: 1;
 
   &:before {
     margin-right: 5px;
@@ -81,6 +115,8 @@
 .row-fields-section {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  font-size: 14px;
 
   div {
     display: block;
