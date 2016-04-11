@@ -12,21 +12,33 @@ class ListingForm extends React.Component {
   }
 
   render() {
+    var warningMessageClass = "warning-message";
+    if(this.state.refCatCount == 0) {
+      warningMessageClass += " active";
+    }
     return <div>
-      <PriceSection {...this.state} 
-        toggleCheck={this.toggleCheck.bind(this)}
+        <PriceSection {...this.state} 
+          toggleCheck={this.toggleCheck.bind(this)}
         />
-      <OptionSection options={this.props.options} 
-        quoteOnly={this.state.quote_only}
-        addRefCat={this.addRefCat.bind(this)}
-        removeRefCat={this.removeRefCat.bind(this)}
-      />
+        <OptionSection options={this.props.options} 
+          quoteOnly={this.state.quote_only}
+          addRefCat={this.addRefCat.bind(this)}
+          removeRefCat={this.removeRefCat.bind(this)}
+        />
 
-    <button type="submit"
-      disabled={this.state.refCatCount == 0}
-      >
-      Submit
-    </button>
+      <button type="submit"
+        disabled={this.state.refCatCount == 0}
+        >
+        Submit
+      </button>
+      <div className={warningMessageClass}>
+        <span className="warning-message-icon"/>
+
+        <span className="warning-message-inner">
+          You need at least one option which is a reference category, which ImageHex uses to organize reference material.
+          Typically, this is an object or character in the image.
+        </span>
+      </div>
     </div>;
   }
 

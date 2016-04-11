@@ -1,35 +1,17 @@
 @import "variables";
 
-.base-price-container {
-  transition: 0.5s ease-in-out;
-  overflow: hidden; 
-
-  label {
-    white-space: nowrap;
-  }
-
-  &.hidden {
-    width: 0;
-    flex-grow: 0;
-  }
-
-  &.active {
-    flex-grow: 1;
-  }
-
-}
-
 .button-side-label {
   margin-right: 5px;
 }
 
 .price-field-section {
   transition: 0.5s ease-in-out;
-  height: 50px;
+  max-height: 40px;
   overflow: hidden;
 
   &.inactive {
-    height: 0;
+    max-height: 0;
+    flex-basis: 0;
   }
 }
 
@@ -53,6 +35,12 @@
   &:before {
     padding-right: 5px;
     content: $icon-plus;
+  }
+
+  @media #{$mobile} {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
@@ -86,12 +74,16 @@
   font-size: 14px;
   color: $logo-red;
   text-decoration: none;
-  flex-grow: 1;
+  flex-basis: 200px;
 
   &:before {
     margin-right: 5px;
     content: $icon-close;
     color: $logo-red;
+  }
+
+  @media #{$mobile} {
+    flex-basis: unset;
   }
 }
 
@@ -125,12 +117,68 @@
 
   .price-field-section.active {
     height: auto;
+
+    @media #{$mobile} {
+      max-height: 60px;
+    }
   }
 
   .price-field-section.inactive {
     height: auto;
     width: 0;
     flex-grow: 0;
+
+    @media #{$mobile} {
+      max-height: 0;
+    }
+  }
+
+  justify-content: space-around;
+  @media #{$mobile} {
+    flex-direction: column;
+
+    &.around div {
+      flex-basis: unset;
+    }
   }
 }
 
+
+.warning-message {
+  color: white;
+  font-size: 14px;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  max-height: 0;
+
+  &.active {
+    padding: 10px;
+    margin: 10px;
+    max-height: 100px;
+    background-color: $logo-red;
+  }
+
+  .warning-message-icon:before {
+    content: $icon-warning;
+    margin-right: 10px;
+  }
+
+  .warning-message-inner {
+    max-width: 45%;
+    text-align: center;
+  }
+
+  @media #{$mobile} {
+    &.active {
+      max-height: 150px;
+    }
+
+    .warning-message-inner {
+      max-width: 90%;
+    }
+  }
+}

@@ -54,6 +54,7 @@ class OptionFields extends React.Component {
           </label>
           <CurrencyInputField
             initialValue={option.price}
+            minimum={0}
             name={fieldName("price")} />
         </div>
 
@@ -65,7 +66,7 @@ class OptionFields extends React.Component {
             name={fieldName("free_count")}
             min={0}
             step={1}
-            initialValue={option.free_count || "0"} />
+            defaultValue={option.free_count || "0"} />
         </div>
 
         <div className="fields-section">
@@ -75,10 +76,10 @@ class OptionFields extends React.Component {
           <input type="number"
             name={fieldName("max_allowed")}
             min={1}
-            initialValue={option.max_allowed || "50"} />
+            defaultValue={option.max_allowed || "1"} />
         </div>
       </div>
-      <div className="row-fields-section">
+      <div className="row-fields-section around">
         <div>
           <label htmlFor={fieldName("reference_category")}
             className="button-side-label">

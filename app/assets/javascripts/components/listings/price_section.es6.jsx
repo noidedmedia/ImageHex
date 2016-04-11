@@ -29,9 +29,9 @@ class PriceSection extends React.Component {
   }
 
   get inputClassName() {
-    var base = "base-price-container";
+    var base = "price-field-section";
     if(this.props.quote_only) {
-      return base + " hidden";
+      return base + " inactive";
     }
     else {
       return base + " active";

@@ -52,17 +52,6 @@ Rails.application.routes.draw do
     post 'confirm', on: :member
   end
 
-  resources :commission_offers do
-    member do
-      post 'accept'
-      post 'confirm'
-      get 'pay'
-      post 'charge'
-      get 'fullfill'
-      post 'fill'
-    end
-  end
-
   resources :tag_group_changes, only: [:show] do
   end
 
