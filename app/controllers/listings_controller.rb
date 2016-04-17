@@ -2,6 +2,10 @@ class ListingsController < ApplicationController
   include Pundit
   before_action :ensure_user, except: [:index, :show]
 
+  def show
+    @listing = Listing.find(params[:id])
+  end
+
   def new
     @listing = Listing.new
   end

@@ -36,7 +36,7 @@ class ListingForm extends React.Component {
 
         <span className="warning-message-inner">
           You need at least one option which is a reference category, which ImageHex uses to organize reference material.
-          Typically, this is an object or character in the image.
+          Typically, this will represent an object or character in the image.
         </span>
       </div>
     </div>;
