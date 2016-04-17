@@ -2,6 +2,13 @@
 <div class="home-container">
   <div class="frontpage-logo">
     <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
+    <div class="frontpage-links">
+      <%= link_to "Find", search_path %>,
+      <%= link_to "Share", new_image_path %>,
+      and 
+      <%= link_to "Buy", listings_path %>
+      Art.
+    </div>
   </div>
   <%= render 'images/show_stub', images: @images %>
 </div>

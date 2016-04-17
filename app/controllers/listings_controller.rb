@@ -2,6 +2,11 @@ class ListingsController < ApplicationController
   include Pundit
   before_action :ensure_user, except: [:index, :show]
 
+  def index
+    @listings = Listing.all.order(created_at: :desc)
+      .paginate(page: page, per_page: per_page)
+  end
+
   def show
     @listing = Listing.find(params[:id])
   end

@@ -1,4 +1,3 @@
-<div class="listing-header">
-  <h1><%= @listing.name %></h1>
-    by <%= link_to @listing.user.name, @listing.user %>
+<div class="listing-show-wrapper">
+  <%= render "listing", listing: @listing %>
 </div>

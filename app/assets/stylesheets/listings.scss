@@ -1,5 +1,109 @@
 @import "variables";
 
+// INDEX
+.listings-description {
+  max-width: 700px;
+  margin-top: 10px;
+  padding: 10px;
+  margin: auto;
+  font-size: 2.0rem;
+  text-align: center;
+}
+
+#listings-list {
+  max-width: 500px;
+  padding: 10px;
+  display: block;
+  margin: auto;
+}
+
+.listings-list-item {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+
+  &:not(:last-of-type) {
+    border-bottom: 3px solid $header-color;
+  }
+
+  a {
+    text-decoration: none;
+    color: $header-color;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 2.0rem;
+    font-weight: normal;
+  }
+}
+
+.listings-list-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  span {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: center;
+    font-size: 1.5rem;
+  }
+
+  img {
+    max-height: 40px;
+  }
+}
+
+.two-column-label {
+  color: #333;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    display: block;
+    flex-shrink: 1;
+  }
+}
+
+.options-item {
+  margin-top: 5px;
+
+  &:not(:last-of-type) {
+    margin-bottom: 5px;
+  }
+}
+
+.option-header {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    color: #666;
+  }
+}
+
+.option-inner {
+  padding-left: 5%;
+}
+
+// SHOW
+.listing-show-wrapper {
+  margin: auto;
+  max-width: 600px;
+  margin: 10px;
+}
+
+
+// FORMS
+
 .button-side-label {
   margin-right: 5px;
 }
