@@ -10,7 +10,7 @@
   text-align: center;
   flex-grow: 1;
   transition: 0.5s ease-in-out;
-  overflow: scroll;
+  overflow: auto;
   // Width/height for the image element itself.
   img {
     transition: 0.5s ease-in-out;
