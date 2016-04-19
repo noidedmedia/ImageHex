@@ -42,33 +42,6 @@
     @media #{$mobile} {
       width: 50px;
     }
-
-    // ImageHex logo with wordmark for desktop browsers.
-    .imagehex-header-logo {
-      width: 160px;
-      height: $header-height;
-      background: asset-url("#{$imagehex-header-logo-with-text}") 50% 50% / 110% 110% no-repeat;
-      opacity: 0.75;
-      transition: 200ms opacity;
-
-      &:hover {
-        opacity: 1;
-      }
-
-      // Show only the ImageHex logo, no wordmark, for browsers between mobile and laptop size.
-      @media all and (min-width: $mobile-width) and (max-width: $laptop-width) {
-        width: 40px;
-        height: $header-height;
-        background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
-      }
-
-      // Show only the ImageHex logo, no wordmark, for mobile browsers.
-      @media all and (max-width: $mobile-width) {
-        width: 50px;
-        height: $header-height-mobile;
-        background: asset-url("#{$imagehex-header-logo}") 50% 50% / 75% 75% no-repeat;
-      }
-    }
   }
 
   #header-browse {
@@ -79,6 +52,46 @@
   }
 }
 
+@keyframes rotating {
+  from { 
+    transform: rotate(0deg); 
+  }
+  to { 
+    transform: rotate(360deg);
+  }
+}
+
+#header-logo {
+  height: $header-height;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media all and (max-width: 800px) {
+    .wordmark {
+      display: none;
+    }
+  }
+
+  @media #{$mobile} {
+    height: $header-height-mobile;
+  }
+  .hexagons {
+    transition: 0.5s ease-out;
+    transform: rotate(360deg);
+    transform-origin: 674.6499938964844px 263.3500061035156px;
+  }
+
+  .hexagons.rotating {
+    transform-origin: 674.6499938964844px 263.3500061035156px;
+    animation-name: rotating;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
 // Items aligned to the right side of the header.
 #header-right {
   display: inline-block;
