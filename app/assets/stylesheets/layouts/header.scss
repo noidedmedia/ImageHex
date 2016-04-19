@@ -63,7 +63,7 @@
 
 #header-logo {
   height: $header-height;
-  opacity: 90%;
+  opacity: 0.9;
 
   &:hover {
     opacity: 1;
@@ -79,7 +79,8 @@
     height: $header-height-mobile;
   }
   .hexagons {
-    transition: 0.2s;
+    transition: 0.5s ease-out;
+    transform: rotate(360deg);
     transform-origin: 674.6499938964844px 263.3500061035156px;
   }
 
