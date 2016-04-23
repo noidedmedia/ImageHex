@@ -1,4 +1,4 @@
-class Offer < ActiveRecord::Base
+class Order < ActiveRecord::Base
   belongs_to :listing
   belongs_to :user
 end

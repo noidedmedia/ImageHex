@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :offer do
+  factory :order do
     listing
     user
     description { Faker::Lorem.paragraph } 

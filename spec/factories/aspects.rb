@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :aspect do
-    offer { create(:offer, listing: create(:listing)) }
-    option { offer.listing.options.first } 
-    description "MyText"
+    order { create(:order, listing: create(:listing)) }
+    option { order.listing.options.sample } 
+    description { Faker::Lorem.paragraph } 
   end
 end

@@ -40,7 +40,7 @@ describe Collection do
     i = FactoryGirl.create(:image)
     expect do
       c.images = [i, i]
-    end.to raise_error
+    end.to raise_error(ActiveRecord::RecordInvalid)
   end
   describe "subscriptions" do
     it "lists all subscribed users with the subscribers method" do

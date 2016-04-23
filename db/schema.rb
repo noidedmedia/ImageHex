@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423210333) do
+ActiveRecord::Schema.define(version: 20160423215736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,15 +29,15 @@ ActiveRecord::Schema.define(version: 20160423210333) do
   add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
 
   create_table "aspects", force: :cascade do |t|
-    t.integer  "offer_id"
+    t.integer  "order_id"
     t.integer  "option_id"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "aspects", ["offer_id"], name: "index_aspects_on_offer_id", using: :btree
   add_index "aspects", ["option_id"], name: "index_aspects_on_option_id", using: :btree
+  add_index "aspects", ["order_id"], name: "index_aspects_on_order_id", using: :btree
 
   create_table "background_references", force: :cascade do |t|
     t.string   "file_file_name"
@@ -218,17 +218,6 @@ ActiveRecord::Schema.define(version: 20160423210333) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
-  create_table "offers", force: :cascade do |t|
-    t.integer  "listing_id"
-    t.integer  "user_id"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "offers", ["listing_id"], name: "index_offers_on_listing_id", using: :btree
-  add_index "offers", ["user_id"], name: "index_offers_on_user_id", using: :btree
-
   create_table "options", force: :cascade do |t|
     t.integer  "listing_id"
     t.integer  "price"
@@ -242,6 +231,17 @@ ActiveRecord::Schema.define(version: 20160423210333) do
   end
 
   add_index "options", ["listing_id"], name: "index_options_on_listing_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "orders", ["listing_id"], name: "index_orders_on_listing_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "subject_references", force: :cascade do |t|
     t.integer  "commission_subject_id"
@@ -383,8 +383,8 @@ ActiveRecord::Schema.define(version: 20160423210333) do
 
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
-  add_foreign_key "aspects", "offers"
   add_foreign_key "aspects", "options"
+  add_foreign_key "aspects", "orders"
   add_foreign_key "collection_images", "collections", on_delete: :cascade
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
@@ -402,9 +402,9 @@ ActiveRecord::Schema.define(version: 20160423210333) do
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
-  add_foreign_key "offers", "listings"
-  add_foreign_key "offers", "users"
   add_foreign_key "options", "listings", on_delete: :cascade
+  add_foreign_key "orders", "listings"
+  add_foreign_key "orders", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tag_changes", "tags", on_delete: :cascade

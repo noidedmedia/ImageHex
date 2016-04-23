@@ -13,9 +13,11 @@ FactoryGirl.define do
     end
 
     after(:build) do |l, e|
-      build_list(:option, e.options_count, listing: l)
-      build_list(:option, e.reference_options_count, 
-                 listing: l, reference_category: true)
+      o1 = build_list(:option, e.options_count,
+                      listing: nil)
+      o2 = build_list(:option, e.reference_options_count, 
+                      reference_category: true, listing: nil)
+      l.options = [o1, o2].flatten
     end
     
     factory :quote_listing do
