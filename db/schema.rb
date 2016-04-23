@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408195903) do
+ActiveRecord::Schema.define(version: 20160423210333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,16 @@ ActiveRecord::Schema.define(version: 20160408195903) do
   end
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
+
+  create_table "listing_images", force: :cascade do |t|
+    t.integer  "image_id"
+    t.integer  "listing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "listing_images", ["image_id"], name: "index_listing_images_on_image_id", using: :btree
+  add_index "listing_images", ["listing_id"], name: "index_listing_images_on_listing_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
@@ -386,6 +396,8 @@ ActiveRecord::Schema.define(version: 20160408195903) do
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
+  add_foreign_key "listing_images", "images", on_delete: :cascade
+  add_foreign_key "listing_images", "listings", on_delete: :cascade
   add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
