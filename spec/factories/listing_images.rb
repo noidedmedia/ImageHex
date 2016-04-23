@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :listing_image do
-    image nil
-    listing nil
+    image
+    listing{ create(:listing, user: image.user) }
   end
 end

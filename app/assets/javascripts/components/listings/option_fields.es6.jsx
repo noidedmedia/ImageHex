@@ -5,7 +5,7 @@ class OptionFields extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: props.reference_category
+      checked: props.option.reference_category
     };
   }
 
@@ -36,7 +36,7 @@ class OptionFields extends React.Component {
           Name
         </label>
         <input type="text"
-          initialValue={option.name}
+          defaultValue={option.name}
           name={fieldName("name")} />
       </div>
       <div className="fields-section">
@@ -44,7 +44,7 @@ class OptionFields extends React.Component {
           Description
         </label>
         <textarea
-          initialValue={option.description}
+          defaultValue={option.description}
           name={fieldName("description")} />
       </div>
       <div className="row-fields-section">
@@ -89,7 +89,7 @@ class OptionFields extends React.Component {
             type="checkbox"
             name={fieldName("reference_category")}
             onChange={this.changeCheck.bind(this)}
-            value={this.state.checked} />
+            checked={this.state.checked} />
         </div>
         <a onClick={removeSelf}
           className="remove-option-button"
@@ -120,6 +120,7 @@ class OptionFields extends React.Component {
       this.props.removeRefCat();
     }
   }
+
 }
 
 export default OptionFields;

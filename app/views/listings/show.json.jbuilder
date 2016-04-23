@@ -14,3 +14,5 @@ json.options @listing.options do |option|
     :description,
     :free_count
 end
+
+json.images @listing.images, partial: "images/stub", as: :image

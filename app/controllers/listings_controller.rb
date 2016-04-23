@@ -15,6 +15,26 @@ class ListingsController < ApplicationController
     @listing = Listing.new
   end
 
+  def edit
+    @listing = Listing.find(params[:id])
+    authorize @listing
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    authorize @listing
+    respond_to do |format|
+      if @listing.update(listing_params)
+        format.html { redirect_to @listing }
+        format.json { render 'show' }
+      else
+        format.html { render 'edit', errors: @listing.errors }
+        format.html { render json: @listing.errors,
+          status: :unprocessible_entity }
+      end
+    end
+  end
+
   def create
     @listing = Listing.new(listing_params)
     respond_to do |format|
