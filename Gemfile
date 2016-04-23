@@ -321,4 +321,6 @@ group :production do
   # https://github.com/heroku/rails_12factor
   #
   gem 'rails_12factor'
+
+  gem 'newrelic_rpm'
 end
