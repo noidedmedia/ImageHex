@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   def per_page
     if user_signed_in? && current_user.page_pref
       current_user.page_pref
-    elsif (1..100).cover? params["page_pref"]
+    elsif (1..100).cover? params["page_pref"].to_i
       params["page_pref"]
     else
       20

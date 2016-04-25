@@ -31,6 +31,12 @@ class ImagesController < ApplicationController
     @comments = Image.find(params[:id]).comments
       .includes(:user)
       .paginate(page: page, per_page: 20)
+    case params[:sort]
+    when "desc"
+      @comments = @comments.order(created_at: :desc)
+    else
+      @comments = @comments.order(:created_at)
+    end
   end
 
   ##
