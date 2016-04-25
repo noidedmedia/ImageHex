@@ -61,12 +61,13 @@
   padding: 15px;
   justify-content: flex-start;
   align-items: center;
+  justify-content: space-around;
 }
 
 .image-gallery-item {
   margin: 4px;
   overflow: hidden;
-  max-width: calc(20% - 16px);
+  max-width: calc(20% - 30px);
   max-height: 25vh;
   height: auto;
 
