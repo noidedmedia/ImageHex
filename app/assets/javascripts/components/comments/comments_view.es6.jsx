@@ -13,7 +13,6 @@ class CommentsView extends React.Component {
       sortBy: "asc",
       comments: []
     }
-    this.sortBy = "asc";
   }
 
   render() {
@@ -48,37 +47,34 @@ class CommentsView extends React.Component {
   }
 
   changeSort(event) {
-    this.sortBy = event.target.value;
     if(this.state.sortBy !== event.target.value) {
-      console.log("Changing sort to",event.target.value);
       // For some reason this setState isn't finishing by the time we're in
       // the fetch, so set sort manually:
       this.setState({
         sortBy: event.target.value,
         currentPage: 1
-      });
-      this.fetchCurrent();
+      }, this.fetchCurrent.bind(this));
     }
   }
 
   changePage(page) {
     this.setState({
       currentPage: page
-    });
-    this.fetchCurrent();
+    }, this.fetchCurrent.bind(this));
   }
 
   componentDidMount() {
     console.log("Adding a scroll handler");
-    $("body").on("scroll.comments", (event) => {
+    $("body").on("scroll.comments touchmove.comments", (event) => {
+      console.log("Scroll event fires");
       var r = $(this.overallContainer)[0].getBoundingClientRect();
       if(r.bottom <= window.innerHeight && ! this.state.fetching) {
         this.setState({
           currentPage: 1,
           isVisible: true
-        });
+        }, this.fetchCurrent.bind(this));
         $("body").off("scroll.comments");
-        this.fetchCurrent();
+        $("body").off("touchmove.comments");
       }
     });
   }
@@ -92,7 +88,7 @@ class CommentsView extends React.Component {
     });
     console.log("Getting current with state",this.state);
     let url = this.props.url + `.json?page=${this.state.currentPage}`;
-    url += `&sort=${this.sortBy}`;
+    url += `&sort=${this.state.sortBy}`;
     var res = await NM.getJSON(url);
     this.setState({
       comments: res.comments,

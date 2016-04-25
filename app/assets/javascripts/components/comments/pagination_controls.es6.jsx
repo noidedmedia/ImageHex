@@ -1,5 +1,14 @@
+function onMobile() {
+  return window.innerWidth < 600;
+}
 function generateSpan(current, span, max) {
-  var rng = Math.round((span || 6) / 2);
+  if(onMobile() && ! span) {
+    span = 2;
+  }
+  else if(! span) {
+    span = 6;
+  }
+  var rng = Math.round(span / 2);
   var bottom = current - rng;
   if(bottom < 1){
     bottom = 1;
@@ -19,7 +28,7 @@ function makePageItem(a){
   var currentPage = (a == this.current);
   var c = "pagination-button";
   if(currentPage) {
-    c += " current-page";
+    c += " disabled";
   }
   return <li className={c}
     onClick={currentPage ? null : this.changeTo.bind(undefined, a)}
@@ -42,6 +51,22 @@ function addPrevious(props, ary, buttons) {
   if(ary[0] !== 1) {
     buttons.unshift(firstButton);
   }
+  var prevString = "";
+  if(! onMobile()) {
+    prevString += "Previous ";
+  }
+  prevString += "→";
+  if(props.current !== 1) {
+    buttons.unshift(<li className="pagination-button prev-page"
+      onClick={props.changeTo.bind(undefined, props.current - 1)}>
+      {prevString}
+    </li>);
+  }
+  else {
+    buttons.unshift(<li className="pagination-button prev-page disabled">
+      {prevString}
+    </li>);
+  }
 }
 
 function addNext(props, ary, buttons) {
@@ -58,8 +83,26 @@ function addNext(props, ary, buttons) {
     }
     buttons.push(makePageItem.call(props, props.totalPages - 1));
   }
+  var nextEnabled = false;
   if(ary[ary.length - 1] !== props.totalPages) {
     buttons.push(lastPage);
+    nextEnabled = true;
+  }
+  var nextString = "";
+  if(! onMobile()) {
+    nextString += "Next ";
+  }
+  nextString += "→";
+  if(props.current !== props.totalPages) {
+    buttons.push(<li className="next-page pagination-button"
+      onClick={props.changeTo.bind(undefined, props.current + 1)}>
+      {nextString}
+    </li>);
+  }
+  else {
+    buttons.push(<li className="next-page disabled pagination-button">
+      {nextString}
+    </li>);
   }
 }
 
