@@ -51,11 +51,10 @@ function addPrevious(props, ary, buttons) {
   if(ary[0] !== 1) {
     buttons.unshift(firstButton);
   }
-  var prevString = "";
+  var prevString = "←";
   if(! onMobile()) {
-    prevString += "Previous ";
+    prevString += " Previous"
   }
-  prevString += "→";
   if(props.current !== 1) {
     buttons.unshift(<li className="pagination-button prev-page"
       onClick={props.changeTo.bind(undefined, props.current - 1)}>
