@@ -1,4 +1,5 @@
 import NM from '../../api/global.es6';
+import PaginationControls from './pagination_controls.es6.jsx';
 import 'babel-polyfill';
 import Comment from './comment.es6.jsx';
 
@@ -25,11 +26,23 @@ class CommentsView extends React.Component {
     }
 
     var cmts = this.state.comments.map((c) => <Comment {...c} key={c.id} />);
-    return <div>
-      {cmts}
+    return <div className="comments-outer">
+      <div>
+        {cmts}
+      </div>
+      <PaginationControls
+        current={this.state.currentPage}
+        totalPages={this.state.totalPages}
+        changeTo={this.changePage.bind(this)} />
     </div>;
   }
 
+  changePage(page) {
+    this.setState({
+      currentPage: page
+    });
+    this.fetchCurrent();
+  }
   componentDidMount() {
     console.log("Adding a scroll handler");
     $("body").on("scroll.comments", (event) => {
@@ -53,9 +66,7 @@ class CommentsView extends React.Component {
       fetching: true
     });
     let url = this.props.url + `.json?page=${this.state.currentPage}`;
-    console.log("Url is ",url);
     var res = await NM.getJSON(url);
-    console.log("Got comments from fetch",res);
     this.setState({
       comments: res.comments,
       totalPages: res.total_pages,
