@@ -34,13 +34,16 @@ NM.chunk = function(array, sel) {
 }
 
 NM.getJSON = function(url, callback) {
-  return fetch(url, {
+  var f = fetch(url, {
     credentials: 'same-origin',
     headers: {
       'Accept': "application/json"
     }
   }).then(parseJSON)
-    .then(callback);
+  if(callback) {
+    f = f.then(callback);
+  }
+  return f;
 };
 
 

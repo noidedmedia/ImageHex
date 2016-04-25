@@ -29,7 +29,10 @@
     <hr>
 
     <%# Render the comments partial with @image.comments as the subject. %>
-    <%= render "shared/comments", comments: @image.comments %>
+    <div class="comments-container"
+      data-url="<%= comments_image_path @image %>">
+
+    </div>
 
     <%# New comment section, only appears for users who are signed-in. %>
     <% if user_signed_in? %>

@@ -1,5 +1,4 @@
 import Tag from '../../api/tag.es6';
-
 class InlineTagCreator extends React.Component {
   constructor(props) {
     super(props);
