@@ -8,7 +8,7 @@ class ImagesController < ApplicationController
   # Load the image via our id
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
-  before_action :ensure_user, except: [:index, :show, :search]
+  before_action :ensure_user, except: [:index, :show, :search, :comments]
 
   ##
   # Create a new comment on the image in params[:id]
@@ -25,6 +25,12 @@ class ImagesController < ApplicationController
         format.html { redirect_to @image, warning: @comment.errors.full_messages.join(', ') }
       end
     end
+  end
+
+  def comments
+    @comments = Image.find(params[:id]).comments
+      .includes(:user)
+      .paginate(page: page, per_page: 20)
   end
 
   ##

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   concern :commentable do
     post :comment, on: :member
+    get :comments, on: :member
   end
 
   ##################
