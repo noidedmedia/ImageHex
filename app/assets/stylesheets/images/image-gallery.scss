@@ -65,6 +65,9 @@
 
 .image-gallery-item {
   overflow: hidden;
+  flex: 1 1;
+  flex-basis: auto;
+  margin: 4px;
   a {
     display: block;
     height: 100%;
@@ -72,7 +75,7 @@
 
     img {
       object-fit: cover;
-      object-position: 50% 0;
+      object-position: 50% 0%;
       width: 100%;
       height: 100%;
     }
