@@ -4,7 +4,7 @@
       <% images.each_with_index do |img, i| %>
         <li class="image-gallery-item">
           <%= link_to image_path(img) do %>
-            <%= render 'shared/responsive_image', img: img %>
+            <%= image_tag img.f(:medium) %>
           <% end %>
         </li>
       <% end %> 
