@@ -206,7 +206,6 @@ GEM
     json (1.8.3)
     json_pure (1.8.3)
     jwt (1.5.1)
-    kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (2.10.1)
@@ -269,6 +268,7 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
+    puma (3.4.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     quiet_assets (1.1.0)
@@ -316,7 +316,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    raindrops (0.16.0)
     rake (10.5.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
@@ -437,9 +436,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     unicode-display_width (1.0.3)
-    unicorn (5.1.0)
-      kgio (~> 2.6)
-      raindrops (~> 0.7)
     uniform_notifier (1.9.0)
     warden (1.2.6)
       rack (>= 1.0)
@@ -491,6 +487,7 @@ DEPENDENCIES
   possessive
   pry
   pry-rails
+  puma
   pundit
   quiet_assets
   rails (= 4.2.5.2)
@@ -511,7 +508,6 @@ DEPENDENCIES
   train_track
   turbolinks!
   uglifier
-  unicorn
   will_paginate
   yajl-ruby
 

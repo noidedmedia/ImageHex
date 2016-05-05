@@ -84,10 +84,8 @@ gem 'train_track'
 # Markdown parsing.
 gem 'redcarpet'
 
-##
-# http://unicorn.bogomips.org/
-# Use Unicorn as the webserver.
-gem 'unicorn'
+
+gem 'puma'
 
 ##
 # https://github.com/thoughtbot/paperclip
