@@ -1,3 +1,5 @@
+import User from '../api/user.es6';
+
 class ExampleImagePicker extends React.Component {
   constructor(props) {
     super(props);
@@ -43,3 +45,5 @@ class ExampleImagePicker extends React.Component {
     });
   }
 }
+
+export default ExampleImagePicker;

@@ -1,3 +1,6 @@
+# Linter Documentation:
+# https://github.com/brigade/scss-lint/blob/master/lib/scss_lint/linter/README.md
+
 scss_files: 'app/assets/stylesheets/**/*.scss'
 
 exclude:
@@ -5,12 +8,44 @@ exclude:
   - '../app/assets/stylesheets/application.scss'
 
 linters:
-  # Always indent with 2 spaces.
-  Indentation:
-    width: 2
+  # Reports when you use improper spacing around ! (the "bang") in !default, 
+  # !global, !important, and !optional flags.
+  BangFormat:
+    enabled: true
+
+  # Prefer the terser `border: 0` over `border: none`.
+  BorderZero:
+    enabled: true
+
+  # Prefer using a distinct class over chained classes (e.g. `.new-class` over `.foo.bar`).
+  ChainedClasses:
+    enabled: true
 
   # Don't allow `color: white`, should be `color: #fff`.
   ColorKeyword:
+    enabled: true
+
+  # TODO: Enable ColorVariable rule.
+  # Prefer color literals (keywords or hexadecimal codes) to be used only in
+  # variable declarations.
+  ColorVariable:
+    enabled: false
+
+  # Prefer // comments over /* ... */.
+  Comment:
+    enabled: true
+
+  # Reports @debug statements (which you probably left behind accidentally).
+  DebugStatement:
+    enabled: true
+
+  # `scss-lint:disable` control comments should be preceded by a comment
+  # explaining why these linters are being disabled for this file.
+  DisableLinterReason:
+    enabled: true
+
+  # Reports when you define the same property twice in a single rule set.
+  DuplicateProperty:
     enabled: true
 
   # Require empty lines between selector blocks.
@@ -21,21 +56,55 @@ linters:
   EmptyRule:
     enabled: true
 
-  # If possible, hex colors should use 3 characters, e.g. `#fff` instead of `#ffffff`.
+  # Files should always have a final newline.
+  FinalNewline:
+    enabled: true
+
+  # If possible, hex colors should use 3 characters, e.g. `#fff` instead of
+  # `#ffffff`.
   HexLength:
     enabled: true
     style: short
 
-  # Color format should be lowercase to differentiate between numbers and letters (e.g. `#O0O` vs. `#o0o`).
+  # Color format should be lowercase to differentiate between numbers and
+  # letters (e.g. `#E3E` vs. `#e3e`).
   HexNotation:
     enabled: true
     style: lowercase
+
+  # Ensure hexadecimal colors are valid (either three or six digits).
+  HexValidation:
+    enabled: true
+
+  # TODO: Enable the IdSelector rule.
+  # Avoid using ID selectors.
+  IdSelector:
+    enabled: false
+
+  # The basenames of @imported SCSS partials should not begin with an underscore
+  # and should not include the filename extension.
+  ImportPath:
+    enabled: true
+
+  # Avoid using !important in properties.
+  ImportantRule:
+    enabled: true
+
+  # Always indent with 2 spaces.
+  Indentation:
+    width: 2
 
   # Don't complain about any leading zeroes.
   LeadingZero:
     enabled: false
 
-  # Allow up to 4 nesting depth
+  # Functions, mixins, variables, and placeholders should be declared with all
+  # lowercase letters and hyphens instead of underscores.
+  NameFormat:
+    enabled: true
+    convention: hyphenated_lowercase
+
+  # Allow up to 4 nesting depth.
   NestingDepth:
     max_depth: 4
 
@@ -43,7 +112,18 @@ linters:
   PropertySortOrder:
     enabled: false
 
-  # Allow up to 4 selector depth
+  # Configure which units are allowed for property values.
+  PropertyUnits:
+    enabled: true
+    properties:
+      margin: ['px', 'em', 'vw', 'vh']
+
+  # TODO: Enable QualifyingElement rule?
+  # Avoid qualifying elements in selectors (also known as "tag-qualifying").
+  QualifyingElement:
+    enabled: false
+
+  # Allow up to 4 selector depth.
   SelectorDepth:
     enabled: true
     max_depth: 4
@@ -53,31 +133,110 @@ linters:
     enabled: true
     convention: hyphenated_lowercase
 
-  # Require a single space before the brace for selector declarations, e.g. `.selector-name {`.
+  # Prefer the shortest shorthand form possible for properties that support it.
+  Shorthand:
+    enabled: true
+
+  # Properties within rule sets should each reside on their own line.
+  SingleLinePerProperty:
+    enbaled: true
+
+  # Split selectors onto separate lines after each comma, and have each
+  # individual selector occupy a single line.
+  SingleLinePerSelector:
+    enabled: true
+
+  # Commas in lists should be followed by a space.
+  SpaceAfterComma:
+    enabled: true
+
+  # Properties should be formatted with a single space separating the colon
+  # from the property's value.
+  SpaceAfterPropertyColon:
+    enabled: true
+
+  # Properties should be formatted with no space between the name and the
+  # colon.
+  SpaceAfterPropertyName:
+    enabled: true
+  
+  # Variables should be formatted with a single space separating the colon from
+  # the variable's value.
+  SpaceAfterVariableColon:
+    enabled: true
+  
+  # Variables should be formatted with no space between the name and the colon.
+  SpaceAfterVariableName:
+    enabled: true
+
+  # Operators should be formatted with a single space on both sides of an
+  # infix operator.
+  SpaceAroundOperator:
+    enabled: true
+    style: one_space
+
+  # Require a single space before the brace for selector declarations,
+  # e.g. `.selector-name {`.
   SpaceBeforeBrace:
     enabled: true
     style: space
 
-  # I'm not sure which type of quotes to use yet.
+  # Parentheses should not be padded with spaces.
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+
+  # TODO: Decide which type of quotes to use.
   StringQuotes:
     enabled: false
 
-  # Disable removal of trailing whitespace on lines.
+  # Property values; @extend, @include, and @import directives; and variable
+  # declarations should always end with a semicolon.
+  TrailingSemicolon:
+    enabled: true
+
+  # Disable reporting of trailing whitespace on lines.
   TrailingWhitespace:
     enabled: false
+  
+  # Trailing zeros for numeric values with a decimal point can be necessary
+  # at times, so we disable this rule.
+  TrailingZero:
+    enabled: false
+
+  # Don't use the "all" keyword to specify transition properties.
+  TransitionAll:
+    enabled: true
 
   # Disable "Numeric values should not contain unnecessary fractional portions".
   UnnecessaryMantissa:
     enabled: false
 
-  # Don't include units with 0 values, e.g. `0px` vs. just `0`, the latter is slightly more performant.
-  ZeroUnit:
+  # Do not use parent selector references (&) when they would otherwise be
+  # unnecessary.
+  UnnecessaryParentReference:
     enabled: true
 
+  # URLs should be valid and not contain protocols or domain names.
+  UrlFormat:
+    enabled: true
 
-  ColorVariable:
-    enabled: false
-  IdSelector:
-    enabled: false
-  QualifyingElement:
-    enabled: false
+  # URLs should always be enclosed within quotes.
+  UrlQuotes:
+    enabled: true
+
+  # Properties, like color and font, are easier to read and maintain when
+  # defined using variables rather than literals.
+  VariableForProperty:
+    enabled: true
+    properties:
+      - font
+
+  # Avoid vendor prefixes. Autoprefixer will add them for you.
+  VendorPrefix:
+    enabled: true
+
+  # Don't include units with 0 values, e.g. `0px` vs. just `0`, the latter is
+  # slightly more performant and leads to smaller files.
+  ZeroUnit:
+    enabled: true

@@ -1,3 +1,5 @@
+import Tag from '../../api/tag.es6';
+import InlineTagCreator from './inline_tag_creator.es6.jsx';
 /**
  * Display an interface for editing tag groups.
  * Doesn't manage any state relating to an actual group, so you have to wrap
@@ -79,12 +81,12 @@ class TagGroupEditor extends React.Component {
           <span>Go</span>
         </span>;
       }
-      inputField = <div>
+      inputField = <div className="search-outer-container">
         <label title="Search" htmlFor="search-input">
           <span className="icon icon-small icon-search"></span>
         </label>
         <span className="search-input-container">
-          <input type="text" 
+          <input type="text"
             id="search-input"
             name="suggestions" 
             onChange={this.onInputChange.bind(this)}
@@ -99,6 +101,7 @@ class TagGroupEditor extends React.Component {
       </div>;
     } else {
       inputField = <input type="text" 
+        className="tag-group-editor-input"
         name="suggestions" 
         onChange={this.onInputChange.bind(this)}
         onKeyDown={this.onKeyUp.bind(this)}
@@ -259,6 +262,9 @@ class TagGroupEditor extends React.Component {
       });
     } 
     else {
+      if(this.props.showSubmit){
+        this.props.showSubmit();
+      }
       this.setState({
         hasBlankInput: true,
         hasSuggestions: false,
@@ -438,4 +444,4 @@ TagBox.propTypes = {
   onRemove: React.PropTypes.func
 };
 
-
+export default TagGroupEditor;

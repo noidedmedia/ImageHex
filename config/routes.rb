@@ -21,22 +21,20 @@ Rails.application.routes.draw do
 
   concern :commentable do
     post :comment, on: :member
+    get :comments, on: :member
   end
 
   ##################
   # RESTFUL ROUTES #
   ##################
 
-  resources :disputes
+#  resources :disputes
 
   resources :conversations do
-    resources :messages, only: [:index, :new, :create]
+    resources :messages, only: [:index, :new, :create] do
+      get 'by_time', on: :collection
+    end
     post :read, on: :member
-  end
-
-  resources :messages, only: [] do
-    get 'unread', on: :collection
-    get 'by_time', on: :collection
   end
 
   resources :tags do
@@ -44,29 +42,31 @@ Rails.application.routes.draw do
       get "suggest"
     end
   end
+
   ##
   # Not really resourceful at all but whatever yolo
-  resources :stripe, only: [] do
-    collection do
-      get :authorize
-      get :callback
-    end
-  end
-  resources :listings do
-    get 'search', on: :collection
-    post 'confirm', on: :member
-  end
+#  resources :stripe, only: [] do
+#    collection do
+#      get :authorize
+#      get :callback
+#    end
+#  end
+  
+#  resources :listings do
+#    get 'search', on: :collection
+#    post 'confirm', on: :member
+#  end
 
-  resources :commission_offers do
-    member do
-      post 'accept'
-      post 'confirm'
-      get 'pay'
-      post 'charge'
-      get 'fullfill'
-      post 'fill'
-    end
-  end
+#  resources :commission_offers do
+#    member do
+#      post 'accept'
+#      post 'confirm'
+#      get 'pay'
+#      post 'charge'
+#      get 'fullfill'
+#      post 'fill'
+#    end
+#  end
 
   resources :tag_group_changes, only: [:show] do
   end
@@ -160,12 +160,12 @@ Rails.application.routes.draw do
   ########################
   # SINGLE ACTION ROUTES #
   ########################
-  get 'settings', to: "users#edit"
+  get 'settings', to: 'users#edit'
+  post 'settings', to: 'users#update'
 
   #################
   # STATIC ROUTES #
   #################
-
   root to: "frontpage#index"
   get 'about', to: "static_stuff#about"
   get 'people', to: "static_stuff#people"
@@ -175,8 +175,6 @@ Rails.application.routes.draw do
   get 'help', to: "static_stuff#help"
   get 'press', to: "static_stuff#press"
   get 'commissions', to: "static_stuff#commissions_about"
-  get 'settings', to: 'users#edit'
-  post 'settings', to: 'users#update'
 
   get 'search', to: "images#search"
 end

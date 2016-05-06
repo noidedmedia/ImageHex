@@ -6,6 +6,15 @@ class ConversationPolicy < ApplicationPolicy
   end
 
   def show?
-    @conv.users.include?(@user)
+    in_conversation?
+  end
+
+  def update?
+    in_conversation?
+  end
+
+  protected
+  def in_conversation?
+    @conv.users.include? @user
   end
 end

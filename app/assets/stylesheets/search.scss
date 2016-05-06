@@ -4,15 +4,20 @@
 // header-search selector gets very big and the code is much less readable.
 // scss-lint:disable MergeableSelector
 
+.tag-group-editor-input {
+  width: 100%;
+}
+
 #header-search {
-  background-color: #333;
-  
+  background-color: $header-color;
+  margin-right: 5px;
+
   input {
     font-size: 1.4rem;
+    background-color: $header-color;
     height: 40px;
     flex-grow: 1;
     padding: 0 4px 0 32px;
-    background-color: #333;
     border-top: 0;
     border-bottom: 0;
     border-left: 1px solid rgba(#fff, 0.3);
@@ -28,12 +33,32 @@
       border-color: transparent;
       background-color: #fff;
       color: #333;
+
+      &::placeholder {
+        color: #000;
+      }
+    }
+
+    &::placeholder {
+      color: #eee;
     }
   }
 
-  .tag-group-editor-tags {
-    background-color: #333;
+  @media #{$mobile} {
+    background-color: $header-color;
+    margin: 0;
+    border: 0;
+    order: 1000;
+
+    input {
+      color: #fff;
+      background-color: $header-color;
+    }
   }
+}
+
+.tag-group-editor-tags-suggestions {
+  text-align: left;
 }
 
 .search-input-container { 
@@ -42,8 +67,9 @@
 }
 
 .search-side-button { 
-  background-color: #008000;
+  background-color: $header-color-lighter;
   color: #fff;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,25 +180,38 @@
   position: relative;
   width: 300px;
   max-height: 40px;
-  background-color: #fff;
   transition: max-height 300ms ease-in-out; // 1
 
+  background-color: $header-color;
+
   @media #{$mobile} {
-    display: none;
+    background-color: $header-color;
+    width: 100%;
   }
 }
 
-label[for="header-search-input"] span {
+#header-search-react {
+  background-color: $header-color;
+
+  @media #{$mobile} {
+    background-color: $header-color;
+  }
+}
+
+label[for="search-input"] span {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 0;
   cursor: pointer;
 
-  @media #{$mobile} {
-    left: 15px;
+  &::before {
+    color: #fff;
   }
+
 }
 
+.search-outer-container {
+  position: relative;
+}
 
 // Header search suggestions
 // Suggestions for the search box (aka auto-complete).
@@ -289,19 +328,13 @@ label[for="header-search-input"] span {
 
   @media #{$mobile} {
     display: inline-block;
-    position: absolute;
-    right: 45px;
-    top: 12px;
   }
 }
 
 #mobile-search-icon {
   display: none;
   height: 50px;
-  position: absolute;
-  right: 50px;
-  top: 0;
-  width: 50px;
+  width: 40px;
 
   span::before {
     // Center icon within the tap target
@@ -309,7 +342,7 @@ label[for="header-search-input"] span {
   }
 
   @media #{$mobile} {
-    display: block;
+    display: inline-block;
   }
 }
 

@@ -2,30 +2,28 @@
 class MessagesController < ApplicationController
   include Pundit
   before_action :ensure_user
-  before_action :set_conversation, only: [:new, :create, :index]
+  before_action :set_conversation
 
   def index
     @messages = @conversation.messages
       .with_read_status_for(current_user)
       .order(created_at: :desc)
       .limit(20)
+    if params[:after]
+      @messages = @messages.created_after(Time.at(params[:after].to_i))
+    end
     if params[:before]
-      @messages = @messages.where("messages.created_at < ?", params[:before])
+      @messages = @messages.created_before(Time.at(params[:before].to_i))
     end
-  end
-
-  def by_time
-    @messages = Message.with_read_status_for(current_user)
-    if c = Time.parse(params[:after])
-      @messages = @messages.posted_since(c)
-    end
-    render 'index'
+    @conversation.mark_read! current_user
   end
 
   def create
     @message = @conversation.messages.build(message_params)
     respond_to do |format|
       if @message.save
+        # Assume the user had read this conversation if htey are chatting in it
+        @conversation.mark_read! current_user
         format.html { redirect_to messages_path(@message) }
         format.json { render 'show' }
       else

@@ -37,9 +37,48 @@ function addToCollection() {
   });
 }
 
+
+
+function makeLarger(event) {
+  console.log("Making larger");
+  event.preventDefault();
+  $(".image").addClass("larger");
+  $(".image-actions-sidebar").addClass("hidden");
+  $(".image img").off("click");
+  $(".image img").on("click", makeEvenLarger);
+}
+
+function makeEvenLarger(event) {
+  event.preventDefault();
+  $(".image").addClass("largest");
+  $(".image img").off("click");
+  $(".image img").on("click", function(event) {
+    event.preventDefault();
+    $(".image").removeClass("largest larger");
+    $(".image img").off("click");
+    $(".image img").on("click", makeLarger);
+    $(".image-actions-sidebar").removeClass("hidden");
+  });
+}
+
+function showDetails() {
+  var info = $("#image-info");
+  $("#image-details-left").addClass("active");
+  info.addClass("active");
+  $("#image-details-button").off("click");
+  $("#image-details-button").on("click", function() {
+    info.removeClass("active");
+    $("#image-details-left").removeClass("active");
+    $("#image-details-button").off("click");
+    $("#image-details-button").on("click", showDetails);
+  });
+}
+
 var ready = function() {
   deleteButtonAlert();
 
+  $(".image img").on("click", makeLarger);
+  $("#image-details-button").on("click", showDetails);
   if (document.querySelector("#report-cancel-button")) {
     cancelReportButton();
   }

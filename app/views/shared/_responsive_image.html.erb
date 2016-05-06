@@ -1,0 +1,16 @@
+<picture>
+  <source
+  media="(min-width: 5000px)"
+  srcset="<%= img.f :huge %>">
+  <source
+  media="(min-width: 2500px)"
+  srcset="<%= img.f :large %>">
+  <source
+  media="(min-width: 1500px)"
+  srcset="<%= img.f :medium %>">
+  <source
+  media="(max-width: 750px)"
+  srcset="<%= img.f :large %>"
+  >
+  <%= image_tag(img.f :medium) %>
+</picture>

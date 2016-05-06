@@ -1,3 +1,8 @@
+import EtherealTagGroup from '../../api/ethereal_tag_group.es6';
+import TagGroupEditor from './tag_group_editor.es6.jsx';
+import Image from '../../api/image.es6';
+import NM from '../../api/global.es6';
+
 class ImageTagGroup extends React.Component {
   constructor(props) {
     super(props);
@@ -114,6 +119,7 @@ document.addEventListener("page:change", function() {
   var newButton = document.getElementById("add-tag-group-button");
   if (newButton) {
     newButton.addEventListener("click", function() {
+      $("#image-details-left").addClass("hide-mobile");
       console.log("Adding a new tag group");
       ReactDOM.render(<ImageTagGroup 
         isNew={true}

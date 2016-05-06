@@ -8,7 +8,7 @@ class ImagesController < ApplicationController
   # Load the image via our id
   before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
   # Ensure a user is logged in. Defined in the application controller
-  before_action :ensure_user, except: [:index, :show, :search]
+  before_action :ensure_user, except: [:index, :show, :search, :comments]
 
   ##
   # Create a new comment on the image in params[:id]
@@ -24,6 +24,18 @@ class ImagesController < ApplicationController
       else
         format.html { redirect_to @image, warning: @comment.errors.full_messages.join(', ') }
       end
+    end
+  end
+
+  def comments
+    @comments = Image.find(params[:id]).comments
+      .includes(:user)
+      .paginate(page: page, per_page: 20)
+    case params[:sort]
+    when "desc"
+      @comments = @comments.order(created_at: :desc)
+    else
+      @comments = @comments.order(:created_at)
     end
   end
 
@@ -132,7 +144,7 @@ class ImagesController < ApplicationController
   ##
   # GET to acquire a page where you can edit an image.
   # Does nothing currently.
-  # FIXME
+  # TODO: Make an Edit Image page.
   def edit
     authorize @image
   end
@@ -153,7 +165,7 @@ class ImagesController < ApplicationController
   # Sets the following varaibles:
   # @images:: the paginated list of images.
   def index
-    @images = get_index_collection
+    @images = Image.browse(params)
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
   end
@@ -170,19 +182,8 @@ class ImagesController < ApplicationController
 
   protected
 
-  # Returns the right image collection, pased on params[:order]
-  def get_index_collection
-    case params[:order]
-    when 'popularity'
-      Image.by_popularity
-    else
-      Image.order('created_at DESC')
-    end
-  end
-
   # Load the image with params[:id] into @image.
-  # should be refactored out.
-  # FIXME
+  # FIXME: Should be refactored out.
   def load_image
     @image = Image.find(params[:id])
   end
@@ -197,7 +198,6 @@ class ImagesController < ApplicationController
 
   ##
   # Protected parameters for the image.
-  #
   def image_params
     params.require(:image)
       .permit(:f,

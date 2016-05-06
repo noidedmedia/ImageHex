@@ -2,6 +2,9 @@
 See our [About page](/about) for more information.
 
 
+### Do you have Rules?
+Yes. Those are [here](/rules).
+
 ### Why should someone use ImageHex?
 #### For artists
 We made ImageHex to make handling commissions a better experience for artists.

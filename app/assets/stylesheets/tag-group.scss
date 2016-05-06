@@ -7,7 +7,15 @@
   z-index: 100;
 
   &.new-group {
-    width: 50%;
+    width: 500px;
+    margin: -12px;
+    border-radius: 2px;
+    padding: 10px;
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
+
+    @media #{$mobile} {
+      width: calc(100vw - 60px);
+    }
   }
 }
 
@@ -45,15 +53,20 @@
   justify-content: center;
   flex-flow: column;
   cursor: pointer;
+  background-color: $header-color;
+  color: #fff;
+
+  span {
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
   
   &.active {
-    background-color: darken(#fff, 10%);
-    color: #333;
+    background-color: $header-color-lighter;
   }
 
   &:hover {
-    background-color: #fff;
-    color: #333;
+    background-color: $header-color-lighter;
   }
 }
 
@@ -67,6 +80,18 @@
   &:not(:last-of-type) {
     border-bottom: 1px solid #e4e4e4;
   }
+
+  span {
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+  }
+}
+
+.imagehex-empty-note {
+  color: #fff;
+  background-color: darken($header-color, 10%);
+  display: block;
+  width: 100%;
 }
 
 .tag-group-change-icon {

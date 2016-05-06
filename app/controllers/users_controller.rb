@@ -219,7 +219,10 @@ class UsersController < ApplicationController
   # Parameters to update a user.
   # page_pref:: The amount of images per page.
   # avatar:: The user's avatar image.
+  # otp_required_for_login:: Two-Factor Authentication boolean.
   # description:: The user's description.
+  # subscribed_to_newsletter:: User subscribed to newsletter boolean.
+  # content_pref:: What types of content the user is alright with seeing.
   def user_params
     params
       .require(:user)

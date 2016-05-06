@@ -2,6 +2,11 @@
 require 'rails_helper'
 
 RSpec.describe Conversation, type: :model do
+
+  describe "user_ids" do
+    let(:ua) { create(:user) }
+    let(:ub) { create(:user) }
+  end
   context "with an attached commission offer" do
     let(:o) do
       c = create(:commission_offer)
@@ -55,6 +60,27 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
+  describe ".with_unread_status_for" do
+    let(:user_a) { create(:user) }
+    let(:user_b) { create(:user) }
+    let(:user_c) { create(:user) }
+    let(:conv_a) { create(:conversation,
+                          users: [user_a, user_b]) }
+    let(:conv_b) { create(:conversation,
+                          users: [user_a, user_c]) }
+    it "shows the unread status for users" do
+      conv_b.messages.create(user: user_c,
+                             body: "Test")
+      conv_b.mark_read!(user_a)
+      conv_a.messages.create(user: user_b,
+                             body: "test")
+      convs = user_a.conversations.with_unread_status_for(user_a).uniq
+      ca = convs.to_a.select(&:has_unread).first
+      cb = convs.to_a.reject(&:has_unread).first
+      expect(ca.id).to eq(conv_a.id)
+      expect(cb.id).to eq(conv_b.id)
+    end
+  end
   describe ".messages_for_user" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }

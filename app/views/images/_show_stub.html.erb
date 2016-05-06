@@ -1,12 +1,14 @@
 <div id="image-show-stub" data-page="<%= images.try(:current_page) %>">
-  <div class="image-gallery">
+  <ul class="image-gallery">
     <% if images %>
       <% images.each_with_index do |img, i| %>
-        <div class="image-gallery-item">
-          <%= link_to image_tag(img.f :medium), image_path(img) %>
-        </div>
+        <li class="image-gallery-item">
+          <%= link_to image_path(img) do %>
+            <%= image_tag img.f(:medium) %>
+          <% end %>
+        </li>
       <% end %> 
     <% end %>
-  </div>
+  </ul>
   <%= will_paginate images if images && !images.empty? %>
 </div>

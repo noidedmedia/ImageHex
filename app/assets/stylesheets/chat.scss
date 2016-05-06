@@ -1,0 +1,30 @@
+.chat-react-container {
+  width: 100%;
+  height: calc(100% - 40px);
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.conversations-sidebar {
+  flex-grow: 1;
+}
+
+.conversation-active { 
+  padding-right: 10px;
+  flex-grow: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.conversation-header {
+  flex-grow: 1;
+}
+
+.conversation-message-list {
+  flex-grow: 7;
+  overflow: scroll;
+  max-height: 70vh;
+}

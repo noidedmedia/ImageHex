@@ -1,3 +1,5 @@
+import NM from './global.es6';
+
 class Tag {
   constructor(json) {
     for (var prop in json) {
@@ -82,3 +84,5 @@ class Tag {
 }
 
 Tag.prefix_buffer = {};
+
+export default Tag;

@@ -1,3 +1,4 @@
+import Tag from '../../api/tag.es6';
 class InlineTagCreator extends React.Component {
   constructor(props) {
     super(props);
@@ -55,9 +56,9 @@ class InlineTagCreator extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if (props.tagName) {
+    if (props.initialTagName.length > this.state.name.length) {
       this.setState({
-        name: props.tagName
+        name: props.initialTagName
       });
     }
   }
@@ -91,3 +92,5 @@ InlineTagCreator.propTypes = {
   // we want that name to be in the form already. 
   initialTagname: React.PropTypes.string
 };
+
+export default InlineTagCreator;

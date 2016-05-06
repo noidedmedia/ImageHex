@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# TODO: Comment this file.
 class ImageSearchResults
   def initialize(arel)
     @arel = arel

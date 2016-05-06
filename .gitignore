@@ -32,3 +32,5 @@ git_stats/
 /spec/test_files/images/*
 
 .fontcustom-manifest.json
+
+browserify-cache.json

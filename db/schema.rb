@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218174943) do
+ActiveRecord::Schema.define(version: 20160324153735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160218174943) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "commission_background_id", null: false
+    t.text     "description"
   end
 
   add_index "background_references", ["commission_background_id"], name: "index_background_references_on_commission_background_id", using: :btree
@@ -148,8 +149,10 @@ ActiveRecord::Schema.define(version: 20160218174943) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "commission_offer_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.datetime "last_message_at"
+    t.string   "name",                default: "Untitled Conversation", null: false
   end
 
   add_index "conversations", ["commission_offer_id"], name: "index_conversations_on_commission_offer_id", using: :btree
@@ -284,6 +287,7 @@ ActiveRecord::Schema.define(version: 20160218174943) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.text     "description"
   end
 
   add_index "subject_references", ["commission_subject_id"], name: "index_subject_references_on_commission_subject_id", using: :btree

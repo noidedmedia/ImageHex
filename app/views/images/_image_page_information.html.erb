@@ -1,45 +1,38 @@
 <div class="image-page-information">
-  <% cache [@image, "comments"] do %>
-    <div class="comment-container">
-      <div class="upload-info">
-        <div class="image-description-container">
-          <div class="uploader-avatar">
-            <%= link_to @image.user do %>
-              <% if @image.user.avatar %>
-                <%= image_tag @image.user.avatar_img_thumb %>
-              <% end %>
-            <% end %>
+  <div class="comment-container">
+
+    <h3>Uploader</h3>
+    <div class="image-uploader-info">
+      <%= image_tag(@image.user.avatar_img_thumb) %>
+      <span>
+        <%= link_to @image.user.name, @image.user %>
+        on <%= time_tag(@image.created_at) %>
+        <% unless @image.source.blank? %> 
+          <div class="image-source-link">
+            <span>Source:</span>
+            <%= link_to @image.source_display, @image.source_link %>
           </div>
-
-          <div class="uploader-information">
-            <div class="image-uploader-container">
-              <p class="image-uploader"><%= t(".uploaded_by_username_html", username: link_to(@image.user.name, @image.user)) %></p>
-              <p class="image-upload-date"><span title="<%= @image.created_at %>"><%= @image.created_at.strftime("%B %e, %Y") %></span>
-            </div>
-
-            <% unless @image.description.blank? %>
-              <p class="image-description"><%= @image.description %>
-            <% end %>
-
-            <% if @image.source && !@image.source.blank? %>
-              <p class="image-source-link">
-                <%= t(".source") %> 
-                <%= link_to @image.source_display, @image.source_link %>
-              </p>
-            <% end %>
-          </div>
-        </div>
-
-        <% unless @image.creators.blank? %>
-          <%= render 'image_page_creator_info' %>
         <% end %>
-      </div>
+      </span>
+    </div>
 
+    <% unless @image.description.blank? %>
       <hr>
-
-      <%# Render the comments partial with @image.comments as the subject. %>
-      <%= render "shared/comments", comments: @image.comments %>
+      <h3>Description</h3>
+      <div class="image-description">
+        <%= markdown_parse @image.description %>
+      </div>
     <% end %>
+    <% unless @image.creators.blank? %>
+      <%= render 'image_page_creator_info' %>
+    <% end %>
+    <hr>
+
+    <%# Render the comments partial with @image.comments as the subject. %>
+    <div class="comments-container"
+      data-url="<%= comments_image_path @image %>">
+
+    </div>
 
     <%# New comment section, only appears for users who are signed-in. %>
     <% if user_signed_in? %>

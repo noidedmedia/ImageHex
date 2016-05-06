@@ -1,3 +1,6 @@
+import NM from './global.es6';
+import ImageCollection from './image_collection.es6';
+
 class User {
   constructor(json) {
     for (var prop in json) {
@@ -59,4 +62,4 @@ class User {
 
 }
 
-
+export default User;

@@ -4,6 +4,8 @@
 # It serves to render completely static pages.
 # At some point we should replace this with an NGINX thing or something.
 class StaticStuffController < ApplicationController
+  ##
+  # Commissions "About" page
   def commissions_plan
   end
 

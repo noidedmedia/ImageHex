@@ -1,3 +1,6 @@
+import NM from './global.es6';
+import User from './user.es6';
+import TagGroup from './tag_group.es6';
 /**
  * Represent a single image
  */
@@ -86,3 +89,5 @@ class Image {
   }
 
 }
+
+export default Image;

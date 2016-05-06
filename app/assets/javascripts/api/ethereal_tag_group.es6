@@ -1,3 +1,4 @@
+import Tag from './tag.es6';
 class EtherealTagGroup {
   /**
    * Optionally takes a JSON describing an ethereal group
@@ -33,3 +34,5 @@ class EtherealTagGroup {
     this.tags.push(tag);
   }
 }
+
+export default EtherealTagGroup;

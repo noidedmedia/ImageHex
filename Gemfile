@@ -74,11 +74,6 @@ gem 'sass-rails'
 gem 'uglifier'
 
 ##
-# https://github.com/TannerRogalsky/sprockets-es6
-# A Sprockets transformer that converts ES6 code into vanilla ES5 with Babel JS.
-gem 'sprockets-es6'
-
-##
 # https://github.com/AnthonySuper/train_track
 # Use TrainTrack to track changes
 # NOIDED: We wrote this!
@@ -89,10 +84,8 @@ gem 'train_track'
 # Markdown parsing.
 gem 'redcarpet'
 
-##
-# http://unicorn.bogomips.org/
-# Use Unicorn as the webserver.
-gem 'unicorn'
+
+gem 'puma'
 
 ##
 # https://github.com/thoughtbot/paperclip
@@ -109,11 +102,18 @@ gem 'jquery-rails'
 # React.js for Rails
 gem 'react-rails'
 
+
+##
+# https://github.com/browserify-rails/browserify-rails
+# Use browserify and NPM modules on Rails
+gem 'browserify-rails'
+
+
 ##
 # https://github.com/rails/turbolinks
 # Turbolinks makes following links in your web application faster.
 # Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', github: 'turbolinks/turbolinks-classic'
 
 ##
 # https://github.com/kossnocorp/jquery.turbolinks
@@ -226,11 +226,6 @@ group :development do
   gem 'spring'
 
   ##
-  # https://github.com/ngs/hanna-bootstrap
-  # Use Hanna Bootstrap theme for RDoc documentation.
-  gem 'hanna-bootstrap'
-
-  ##
   # http://fontcustom.com
   # Use FontCustom for generating the icon font.
   # See the README.md for more on how this works.
@@ -323,4 +318,6 @@ group :production do
   # https://github.com/heroku/rails_12factor
   #
   gem 'rails_12factor'
+
+  gem 'newrelic_rpm'
 end

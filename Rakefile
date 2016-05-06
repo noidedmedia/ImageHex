@@ -3,15 +3,11 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be
 # available to Rake.
 require 'rdoc/task'
-require 'rubocop/rake_task'
-
-RuboCop::RakeTask.new
 
 RDoc::Task.new :documentation do |rdoc|
   rdoc.rdoc_files.include("README.rdoc", "app/**/*.rb", "lib/**/*.rb", "config/locales/**/*.rdoc")
   rdoc.rdoc_dir  = "doc"
   rdoc.main      = "README.rdoc"
-  rdoc.generator = "bootstrap"
   rdoc.title     = "ImageHex Documentation"
   rdoc.options << "--all"
 end

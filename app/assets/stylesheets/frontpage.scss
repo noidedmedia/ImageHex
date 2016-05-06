@@ -16,7 +16,10 @@
 
 .frontpage-subscription-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
+  justify-content: center;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .frontpage-logo {
@@ -30,22 +33,30 @@
 }
 
 .subscription-item {
+  border-radius: 3px;
+  min-width: calc(50% - 14px);
+  flex-grow: 1;
+  flex-shrink: 1;
   width: auto;
   text-align: left;
   background-color: #fff;
   margin: 6px;
-  height: 250px;
   overflow: hidden;
-  max-width: 300px;
-  flex: 3 1 250px;
   font-size: 1.2rem;
   color: #333;
 
-  img {
-    object-fit: cover;
-    object-position: 50% 0;
+  picture {
+    display: block;
     width: 100%;
-    height: 100%;
+  }
+
+  img {
+    margin: auto;
+    max-height: calc(75vh - 60px);
+    max-width: 100%;
+    display: inherit;
+    height: auto;
+    width: auto;
   }
 
   a {
@@ -61,16 +72,50 @@
   }
 
   .subscription-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
     padding: 8px 10px;
+    background-color: $header-color;
+
+    a {
+      color: #fff;
+    }
   }
 
   .subscription-item-image {
     height: calc(100% - 60px);
-    display: block;
+    display: flex;
     overflow: hidden;
   }
 
   .subscription-item-footer {
     padding: 8px 10px;
+    background-color: $header-color;
+
+    a {
+      color: #fff;
+    }
+  }
+
+}
+
+.subscription-avatar {
+  // I am lazy
+  // scss-lint:disable ImportantRule
+  max-width: 25px !important;
+  max-height: 25px !important;
+  margin-right: 5px !important;
+}
+
+.subscription-creators-item {
+  display: inline-block;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 }

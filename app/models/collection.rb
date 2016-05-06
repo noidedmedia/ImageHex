@@ -50,6 +50,9 @@ class Collection < ActiveRecord::Base
   scope :creations, -> { where(type: "Creation") }
   scope :subjective, -> { where(type: "Subjective") }
 
+  ##
+  # Get a list of collections ordered by how popular they are, in terms of
+  # subscribers.
   def self.by_popularity(inter = 2.weeks.ago..Time.now)
     subs = Subscription.arel_table
     col = arel_table
@@ -61,6 +64,10 @@ class Collection < ActiveRecord::Base
       .order("COUNT(subscriptions) DESC")
   end
 
+  ##
+  # Get this scope, but with an additional column representing if this
+  # collection contains the passed image
+  # @param [Image] i the image
   def self.with_image_inclusion(i)
     ##
     # Using string interpolation is SQL is scary.

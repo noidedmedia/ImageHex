@@ -303,7 +303,12 @@ $color2: #00e676;
 
     img {
       pointer-events: none;
-      -webkit-user-select: none; // scss-lint:disable VendorPrefix
+      // Force being unable to select the image for WebKit users.
+      // Disables the SCSS Linter rule because the non-prefixed user-select
+      // property don't real.
+      // scss-lint:disable VendorPrefix
+      -webkit-user-select: none;
+       // scss-lint:enable VendorPrefix
       height: 100%;
 
       @media #{$mobile} {

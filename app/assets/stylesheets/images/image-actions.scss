@@ -9,10 +9,16 @@
   background-color: #272727;
   display: flex;
   align-items: flex-end;
+  transition: width 0.5s ease-in-out;
 
   @media #{$mobile} {
     width: 100vw;
   }
+
+  &.hidden {
+    width: 0;
+  }
+
 }
 
 .image-actions-container {
@@ -43,6 +49,10 @@
 
     @media #{$mobile} {
       width: auto;
+
+      p {
+        display: none;
+      }
     }
   }
 
@@ -136,9 +146,11 @@
   // A dumb CSS hack to increase the specifity of this selector and 
   // override the .active class. This ensures that the element will not
   // be shown, without relying on an "!important" declaration.
+  // scss-lint:disable ChainedClasses
   &.not-signed-in.not-signed-in {
     display: none;
   }
+  // scss-lint:enable ChainedClasses
 
   &.active {
     display: block;

@@ -1,3 +1,5 @@
+import Collection from '../api/collection.es6';
+
 class CollectionAdder extends React.Component {
   constructor(props) {
     super(props);

@@ -16,7 +16,7 @@ end
 json.user @offer.user, partial: "users/stub", as: :user
 
 if @offer.listing
-  json.product @offer.listings,
+  json.listing @offer.listing,
     partial: "listings/listing",
     as: :listing
 end

@@ -1,12 +1,18 @@
 @import "variables";
 
 .tag-creation {
+
   &.inactive {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    display: block;
     color: #777;
+    padding: 5px;
 
     span {
       display: block;
+      text-align: center;
+      margin: auto;
+      cursor: pointer;
     }
   }
 }
@@ -49,9 +55,9 @@
 
 .tag-edit-link {
   text-decoration: none;
-  padding: 2px 5px;
-  border: 1px solid #aaa;
-  color: #333;
+  padding: 4px 7px;
+  color: #fff;
+  background-color: $logo-green;
 }
 
 .related-tags {
@@ -72,8 +78,9 @@
     li {
       display: block;
       margin: 0 3px 3px 0;
-      padding: 2px 3px;
+      padding: 4px 7px;
       border: 1px solid #aaa;
+      font-size: 1.4rem;
 
       a {
         display: block;

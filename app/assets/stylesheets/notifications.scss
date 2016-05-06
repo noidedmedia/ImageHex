@@ -1,10 +1,19 @@
 @import "variables";
 
+$_notifications-unread-width: 36px;
+
 .header-notifications {
-  background-color: $header-color-alt;
+  text-align: center;
+  background-color: $header-color;
   display: inline-block;
   height: $header-height;
   vertical-align: top;
+  width: $_notifications-unread-width;
+
+  @media #{$mobile} {
+    width: 100%;
+    height: auto;
+  }
 
   &.unread {
     background-color: #b70f3b;
@@ -47,15 +56,19 @@
     color: $off-black;
     height: auto;
     width: 300px;
-    position: absolute;
-    left: -100px;
-    top: $header-height;
+    // 150 - 48 (the width of notifications-unread-count)
+    margin-left: -126px;
     text-align: left;
     opacity: 0;
     display: inline-block;
     box-shadow: 0 6px 10px 1px rgba($black, 0.05);
     transition: max-height 400ms;
     overflow: auto;
+
+    @media #{$mobile} {
+      margin-left: 0;
+      width: 100%;
+    }
 
     .notifications-container {
       transition: opacity 200ms 400ms;
@@ -68,6 +81,7 @@
     }
 
     &.active {
+      height: auto;
       visibility: visible;
       opacity: 1;
       max-height: 400px;
@@ -78,9 +92,11 @@
     }
 
     // Unfortunately this selector is necessary for CSS specificity reasons.
-    > .notifications-container ul > li:last-of-type { // scss-lint:disable SelectorDepth
+    // scss-lint:disable SelectorDepth
+    > .notifications-container ul > li:last-of-type {
       border-bottom: 0;
     }
+    // scss-lint:enable SelectorDepth
   }
 }
 
@@ -164,23 +180,4 @@
   height: 150px;
   width: 100%;
   padding: 60px 0;
-}
-
-@media #{$mobile} {
-  .header-notifications {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: $header-color;
-    height: 45px;
-
-    .notifications-unread-count a {
-      font-size: 1.7rem;
-      padding: 12px 15px;
-    }
-  }
-
-  .notifications-container {
-    padding: 20px 0;
-  }
 }

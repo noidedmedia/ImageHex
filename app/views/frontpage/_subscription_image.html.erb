@@ -1,0 +1,35 @@
+<li class="subscription-item">
+  <div class="subscription-item-header">
+    <%= link_to img.reason, frontpage_reason_path(img) %>
+    <span><%= time_tag img.sort_created_at %></span>
+  </div>
+  <%= link_to image_path(img), {class: "subscription-item-image"} do %>
+    <picture>
+      <source
+      media="(min-width: 1200px)"
+      srcset="<%= img.f :huge %>">
+      <source
+      media="(min-width: 600px)"
+      srcset="<%= img.f :large %>">
+      <source
+      media="(min-width: 400px)"
+      srcset="<%= img.f :medium %>">
+      <source
+      media="(min-width: 240px)"
+      srcset="<%= img.f :small %>">
+      <%= image_tag(img.f :medium) %>
+    </picture>
+  <% end %>
+  <% unless img.creators.empty? %>
+    <ul class="subscription-item-footer">
+      <% img.creators.each do |c| %>
+        <li class="subscription-creators-item">
+          <%= link_to c do %>
+            <%= image_tag(c.avatar_img_thumb, class: "subscription-avatar") %>
+            <span><%= c.name %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</li>

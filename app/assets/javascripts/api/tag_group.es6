@@ -1,3 +1,5 @@
+import Tag from './tag.es6';
+
 class TagGroup {
   constructor(json) {
     this.tags = [];
@@ -24,3 +26,4 @@ class TagGroup {
   }
 }
 
+export default TagGroup;

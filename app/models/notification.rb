@@ -23,6 +23,19 @@ class Notification < ActiveRecord::Base
 
   validates :user, presence: true
   validates :subject, presence: true
+
+  # Enum for the notification type.
+  # 
+  # uploaded_image_commented_on:: An image the user uploaded has a new comment.
+  # subscribed_image_commented_on:: An image the user is subscribed to has a
+  # new comment.
+  # comment_replied_to:: User comment has been replied to.
+  # mentioned:: User has been mentioned in a comment.
+  # new_subscriber:: User has a new subscriber.
+  # commission_offer_confirmed:: 
+  # commission_offer_accepted:: 
+  # commission_offer_charged:: 
+  # commission_offer_filled:: 
   enum kind: [:uploaded_image_commented_on,
               :subscribed_image_commented_on,
               :comment_replied_to,
