@@ -4,6 +4,7 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all.order(created_at: :desc)
+      .includes(:images)
       .paginate(page: page, per_page: per_page)
   end
 

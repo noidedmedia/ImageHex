@@ -10,19 +10,21 @@
   <div class="listing-description">
     <%= markdown_parse listing.description %>
   </div>
-
+  <ul class="listing-example-images">
+    <% listing.images.take(3).each do |img| %>
+      <li>
+        <%= image_tag img.f(:medium) %>
+      </li>
+    <% end %>
+  </ul>
   <% if listing.quote_only? %>
     <span class="listings-list-quote-only">
       Price decided on a case-by-case basis
     </span>
   <% else %>
     <span class="two-column-label">
-      <span>Base Price:</span> 
+      <span>Starting at</span> 
       <span><%= price listing.base_price %></span>
     </span>
   <% end %>
-
-  <ul class="listings-list-options-list">
-    <%= render partial: "option", collection: listing.options, as: :option %>
-  </ul>
 </li>
