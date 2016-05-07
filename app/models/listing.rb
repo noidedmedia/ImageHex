@@ -7,4 +7,5 @@ class Listing < ActiveRecord::Base
   has_many :images, through: :listing_images
   accepts_nested_attributes_for :options
 
+  has_many :orders
 end
