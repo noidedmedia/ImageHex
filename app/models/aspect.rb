@@ -1,6 +1,6 @@
 class Aspect < ActiveRecord::Base
-  belongs_to :order
-  belongs_to :option
+  belongs_to :order, required: true
+  belongs_to :option, required: true
   validate :to_listing_option
 
   protected

@@ -2,27 +2,32 @@ require 'rails_helper'
 
 RSpec.describe OrderPolicy do
 
-  let(:user) { User.new }
+  let(:user) { create(:user) }
 
   subject { described_class }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
   permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "works with the order's listing" do
+      listing = create(:listing,
+                       user: user)
+      order = create(:order,
+                     listing: listing)
+      expect(subject).to permit(user, order)
+    end
+
+    it "works with an order's creator" do
+      order = create(:order,
+                     user: user)
+      expect(subject).to permit(user, order)
+    end
   end
 
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
   end
 
   permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
   end
 end
