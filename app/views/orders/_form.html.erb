@@ -1,0 +1,4 @@
+<%= form_for [@listing, @order] do |f| %>
+  <%= react_component "OrderForm",
+    render(file: "orders/show.json.jbuilder") %>
+<% end %>
