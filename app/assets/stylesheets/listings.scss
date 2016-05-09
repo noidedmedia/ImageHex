@@ -96,7 +96,6 @@
 
 // SHOW
 .listing-show-wrapper {
-  margin: auto;
   max-width: 600px;
   margin: 10px;
 }
@@ -136,7 +135,7 @@
   width: 20%;
   text-align: center;
 
-  &:before {
+  &::before {
     padding-right: 5px;
     content: $icon-plus;
   }
@@ -180,7 +179,7 @@
   text-decoration: none;
   flex-basis: 200px;
 
-  &:before {
+  &::before {
     margin-right: 5px;
     content: $icon-close;
     color: $logo-red;
@@ -194,6 +193,7 @@
 .fields-section {
   display: flex;
   flex-direction: column; 
+
   label {
     display: block;
   }
@@ -213,31 +213,33 @@
   flex-direction: row;
   align-items: center;
   font-size: 14px;
+  justify-content: space-around;
 
   div {
     display: block;
     flex-grow: 1;
   }
 
-  .price-field-section.active {
-    height: auto;
+  .price-field-section {
+    .active {
+      height: auto;
 
-    @media #{$mobile} {
-      max-height: 60px;
+      @media #{$mobile} {
+        max-height: 60px;
+      }
+    }
+
+    .inactive {
+      height: auto;
+      width: 0;
+      flex-grow: 0;
+
+      @media #{$mobile} {
+        max-height: 0;
+      }
     }
   }
 
-  .price-field-section.inactive {
-    height: auto;
-    width: 0;
-    flex-grow: 0;
-
-    @media #{$mobile} {
-      max-height: 0;
-    }
-  }
-
-  justify-content: space-around;
   @media #{$mobile} {
     flex-direction: column;
 
@@ -249,7 +251,7 @@
 
 
 .warning-message {
-  color: white;
+  color: #fff;
   font-size: 14px;
   transition: 0.5s ease-in-out;
   display: flex;
@@ -266,7 +268,7 @@
     background-color: $logo-red;
   }
 
-  .warning-message-icon:before {
+  .warning-message-icon::before {
     content: $icon-warning;
     margin-right: 10px;
   }

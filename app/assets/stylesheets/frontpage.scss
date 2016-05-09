@@ -16,10 +16,12 @@
 
 .frontpage-links {
   font-size: 1.7rem;
+
   a {
     color: $header-color;
     text-decoration: none;
     cursor: pointer;
+
     &:hover {
       text-decoration: underline;
     }
