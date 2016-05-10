@@ -9,7 +9,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    ! listing_owner?
   end
 
   protected

@@ -8,12 +8,12 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
+    @order = @listing.orders.build(user: current_user)
     authorize @order
   end
 
-  def edit
-    @order = @listing.orders.new(user: current_user)
+  def create
+    @order = @listing.orders.build(user: current_user)
     authorize @order
   end
 

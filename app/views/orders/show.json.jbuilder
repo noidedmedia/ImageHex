@@ -8,6 +8,7 @@ json.listing do
 
   json.options @listing.options do |option|
     json.extract! option,
+      :id,
       :price,
       :reference_category,
       :max_allowed,

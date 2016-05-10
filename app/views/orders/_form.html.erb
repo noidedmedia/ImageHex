@@ -1,4 +1,9 @@
 <%= form_for [@listing, @order] do |f| %>
+  <div class="field-container">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
   <%= react_component "OrderForm",
     render(file: "orders/show.json.jbuilder") %>
 <% end %>
