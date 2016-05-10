@@ -18,7 +18,7 @@ class CommissionCalculatorResults extends React.Component {
     total = this.state.value * 100;
 
     var stripeFees = Math.floor((total * 0.029) + 30);
-    var imagehexFees = Math.floor((total * 0.091));
+    var imagehexFees = Math.floor(total * (0.10 - 0.029));
     var artistEarnings = total - stripeFees - imagehexFees;
 
     if (total >= 300) {
