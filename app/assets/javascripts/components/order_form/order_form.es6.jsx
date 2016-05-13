@@ -31,6 +31,25 @@ class OrderForm extends React.Component {
       <div className="options-container">
         {options}
       </div>
+      <div className="total-price-container">
+        {this.totalPrice()}
+      </div>
+    </div>;
+  }
+
+  totalPrice() {
+    if(this.props.listing.quote_only) {
+      return <div>
+        Artist will decide price
+      </div>;
+    }
+    var price = this.props.listing.options.map((o) => {
+      var listings = this.state.aspects.filter(a => a.option_id == o.id);
+      return Math.max(listings.length - o.free_count,0) * o.price;
+    }).reduce((a, b) => a + b, 0);
+    price += this.props.listing.base_price;
+    return <div>
+      ${price/100}
     </div>;
   }
 
