@@ -9,7 +9,8 @@ class OrderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      aspects: (props.aspects || [])
+      aspects: (props.aspects || []),
+      aspectKey: -1
     };
   }
 
@@ -54,8 +55,14 @@ class OrderForm extends React.Component {
   }
 
   addAspect(option) {
+    var k = this.state.aspectKey;
+    var n = {
+      option_id: option.id,
+      key: k
+    };
     this.setState({
-      aspects: [...this.state.aspects, {option_id: option.id}]
+      aspects: [...this.state.aspects, n],
+      aspectKey: k - 1
     });
   }
 }

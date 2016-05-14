@@ -5,9 +5,19 @@ class AspectForm extends React.Component {
   }
 
   render() {
-    return <div>
-      I'm an aspect for option {this.props.option_id}
+    return <div className="aspect-form">
+      <div className="description-container textarea-container">
+        <label htmlFor={this.param("description")}>
+          Description
+        </label>
+        <textarea name={this.param("description")}>
+        </textarea>
+      </div>
     </div>;
+  }
+
+  param(str) {
+    return `order[aspects_attributes][${this.props.index}][${str}]`;
   }
 }
 

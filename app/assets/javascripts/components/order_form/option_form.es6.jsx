@@ -27,7 +27,8 @@ class OptionForm extends React.Component {
   render() {
     var aspects = this.props.aspects.map((a, i) => {
       return <AspectForm
-        key={i}
+        key={a.key || a.id}
+        index={i}
         {...a} />
     });
 

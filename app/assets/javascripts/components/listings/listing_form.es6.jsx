@@ -1,10 +1,12 @@
 import PriceSection from './price_section.es6.jsx';
 import OptionSection from './option_section.es6.jsx'; 
+import ReferenceCategorySection from './reference_category_section.es6.jsx';
 
 class ListingForm extends React.Component {
   constructor(props) {
     super(props);
     var rcount = props.options.filter((o) => o.reference_category).length;
+    console.log("rcount is", rcount);
     this.state = {
       ...props,
       refCatCount: rcount
@@ -16,19 +18,20 @@ class ListingForm extends React.Component {
     if(this.state.refCatCount == 0) {
       warningMessageClass += " active";
     }
+    var options = this.state.options.filter((o) => ! o.reference_category);
+    var categories = this.state.options.filter((o) => o.reference_category);
     return <div>
-        <PriceSection {...this.state} 
-          toggleCheck={this.toggleCheck.bind(this)}
-        />
-        <OptionSection options={this.props.options} 
-          quoteOnly={this.state.quote_only}
-          addRefCat={this.addRefCat.bind(this)}
-          removeRefCat={this.removeRefCat.bind(this)}
-        />
-
+      <PriceSection {...this.state} 
+        toggleCheck={this.toggleCheck.bind(this)} />
+      <OptionSection options={this.props.options} 
+        quoteOnly={this.state.quote_only}
+        options={options} />
+      <ReferenceCategorySection
+        addRefCat={this.addRefCat.bind(this)}
+        removeRefCat={this.removeRefCat.bind(this)}
+        catories={categories} />
       <button type="submit"
-        disabled={this.state.refCatCount == 0}
-        >
+        disabled={this.state.refCatCount == 0}>
         Submit
       </button>
       <div className={warningMessageClass}>
@@ -49,13 +52,14 @@ class ListingForm extends React.Component {
   }
 
   addRefCat() {
+    console.log("Adding a ref cat");
     this.setState({
       refCatCount: this.state.refCatCount + 1
     });
   }
 
   removeRefCat() {
-    console.log(`Removing a refcat with a current count of ${this.state.refCatCount}`);
+    console.log("Removing a ref cat");
     this.setState({
       refCatCount: this.state.refCatCount - 1
     });
