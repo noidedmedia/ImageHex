@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ListingImage, type: :model do
+RSpec.describe Listing::Image, type: :model do
   describe "validation" do
     it "requires the image and listing to share an owner" do
       user_a = create(:user)

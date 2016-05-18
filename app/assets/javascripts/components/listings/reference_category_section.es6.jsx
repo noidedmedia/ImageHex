@@ -11,13 +11,17 @@ class ReferenceCategorySection extends React.Component {
 
   render() {
     var categories = this.state.categories.map((c, i) => {
+      // We pretend that the index is much larger than it actually is
+      // to avoid over-writing the fields from options
+      // if a user has over 10K options this breaks, but...
+      // that should never happen
       return <ReferenceCategoryFields
         category={c}
         key={c.id || c.key}
         quoteOnly={this.props.quoteOnly}
         addRefCat={this.props.addRefCat}
         removeRefCat={this.props.removeRefCat}
-        index={i}
+        index={i + 10000}
         removeSelf={this.removeCategory.bind(this, i)} />;
     });
     return <div>

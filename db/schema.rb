@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423215736) do
+ActiveRecord::Schema.define(version: 20160518191443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,17 +27,6 @@ ActiveRecord::Schema.define(version: 20160423215736) do
   add_index "artist_subscriptions", ["artist_id", "user_id"], name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
   add_index "artist_subscriptions", ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
   add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
-
-  create_table "aspects", force: :cascade do |t|
-    t.integer  "order_id"
-    t.integer  "option_id"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "aspects", ["option_id"], name: "index_aspects_on_option_id", using: :btree
-  add_index "aspects", ["order_id"], name: "index_aspects_on_order_id", using: :btree
 
   create_table "background_references", force: :cascade do |t|
     t.string   "file_file_name"
@@ -174,6 +163,17 @@ ActiveRecord::Schema.define(version: 20160423215736) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
+  create_table "listing_categories", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "price",      null: false
+    t.integer  "max_count",  null: false
+    t.integer  "free_count", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "listing_categories", ["listing_id"], name: "index_listing_categories_on_listing_id", using: :btree
+
   create_table "listing_images", force: :cascade do |t|
     t.integer  "image_id"
     t.integer  "listing_id"
@@ -221,13 +221,10 @@ ActiveRecord::Schema.define(version: 20160423215736) do
   create_table "options", force: :cascade do |t|
     t.integer  "listing_id"
     t.integer  "price"
-    t.boolean  "reference_category", default: false, null: false
-    t.integer  "max_allowed",        default: 1,     null: false
-    t.string   "name",               default: "",    null: false
-    t.text     "description",                        null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.integer  "free_count",         default: 0,     null: false
+    t.string   "name",        default: "", null: false
+    t.text     "description",              null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "options", ["listing_id"], name: "index_options_on_listing_id", using: :btree
@@ -383,8 +380,6 @@ ActiveRecord::Schema.define(version: 20160423215736) do
 
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
-  add_foreign_key "aspects", "options"
-  add_foreign_key "aspects", "orders"
   add_foreign_key "collection_images", "collections", on_delete: :cascade
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
@@ -396,6 +391,7 @@ ActiveRecord::Schema.define(version: 20160423215736) do
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
+  add_foreign_key "listing_categories", "listings", on_delete: :cascade
   add_foreign_key "listing_images", "images", on_delete: :cascade
   add_foreign_key "listing_images", "listings", on_delete: :cascade
   add_foreign_key "listings", "users", on_delete: :cascade

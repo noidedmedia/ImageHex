@@ -6,20 +6,19 @@ FactoryGirl.define do
     name { Faker::Commerce.product_name }
     quote_only false
 
-
     transient do
       options_count 2
-      reference_options_count 2
+      categories_count 2
     end
 
     after(:build) do |l, e|
-      o1 = build_list(:option, e.options_count,
-                      listing: nil)
-      o2 = build_list(:option, e.reference_options_count, 
-                      reference_category: true, listing: nil)
-      l.options = [o1, o2].flatten
+      l.options = build_list(:option, e.options_count,
+                             listing: nil)
+      l.categories = build_list(:listing_category,
+                                e.categories_count,
+                                listing: nil)
     end
-    
+
     factory :quote_listing do
       base_price nil
       quote_only true

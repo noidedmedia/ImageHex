@@ -1,23 +1,3 @@
-import AspectForm from './aspect_form.es6.jsx';
-
-const AddButton = ({aspects, max_allowed, free_count, price, addAspect}) => {
-  if(aspects.length >= max_allowed) {
-    return <div></div>;
-  }
-
-  if(aspects.length < free_count) {
-    return <button type="button"
-      onClick={addAspect}>
-      Add Another (Free)
-    </button>;
-  }
-
-  return <button type="button"
-    onClick={addAspect}>
-    Add Another (${price / 100})
-  </button>;
-};
-
 class OptionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -25,23 +5,54 @@ class OptionForm extends React.Component {
   }
 
   render() {
-    var aspects = this.props.aspects.map((a, i) => {
-      return <AspectForm
-        key={a.key || a.id}
-        index={i}
-        {...a} />
-    });
-
-    return <div>
-      <div className="option-info">
-        <h1>{this.props.name}</h1>
+    return <div className="option-form">
+      <div className="header">
+        <input type="checkbox"
+          checked={this.props.checked}
+          onChange={this.props.toggleCheck} />
+        <div>
+          <h1>{this.props.name}</h1>
+          <h2>${this.props.price / 100}</h2>
+        </div>
       </div>
 
-      <div className="option-aspects">
-        {aspects}
+      <div className="description">
+        {this.description}
       </div>
-      <AddButton {...this.props} />
+
+      {this.aspectFields()}
     </div>;
+  }
+
+  /**
+   * Grab the actual fields that create an aspect on this order
+   */
+  aspectFields() {
+    var fieldName = (name) => (
+      `order[aspects_attributes][${this.props.index}][${name}]`
+    );
+    if(this.props.originallyChecked) {
+      // no longer checked, destroy aspect
+      if(! this.props.checked) {
+        var id = props.originalAspects[0].id;
+        return <div>
+          <input name={fieldName("id")}
+            value={id} />
+          <input name={fieldName("_destroy")}
+            value="1" />
+        </div>
+      }
+    }
+    // Now checked, create aspect
+    else if(this.props.checked) {
+      return <div>
+        <input name={fieldName("description")}
+          value="t" />
+        <input name={fieldName("option_id")}
+          value={o.id} />
+      </div>;
+    }
+    return <div></div>;
   }
 }
 

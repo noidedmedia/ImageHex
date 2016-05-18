@@ -16,7 +16,11 @@ class CurrencyInput extends React.Component {
   handleChange(event) {
     var value = event.target.value;
     if(value === "") {
-      return;
+      this.setState({
+        value: "",
+        centValue: 0
+      });
+        
     }
     var parse = value;
     console.log(value, parse);
