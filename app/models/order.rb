@@ -15,5 +15,4 @@ class Order < ActiveRecord::Base
       errors.add(:user, "created this listing")
     end
   end
-
 end

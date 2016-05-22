@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160518191443) do
+ActiveRecord::Schema.define(version: 20160522183403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,17 @@ ActiveRecord::Schema.define(version: 20160518191443) do
   add_index "listing_images", ["image_id"], name: "index_listing_images_on_image_id", using: :btree
   add_index "listing_images", ["listing_id"], name: "index_listing_images_on_listing_id", using: :btree
 
+  create_table "listing_options", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "price"
+    t.string   "name",        default: "", null: false
+    t.text     "description",              null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "listing_options", ["listing_id"], name: "index_listing_options_on_listing_id", using: :btree
+
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "base_price"
@@ -218,16 +229,15 @@ ActiveRecord::Schema.define(version: 20160518191443) do
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
-  create_table "options", force: :cascade do |t|
-    t.integer  "listing_id"
-    t.integer  "price"
-    t.string   "name",        default: "", null: false
-    t.text     "description",              null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+  create_table "order_options", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "listing_option_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  add_index "options", ["listing_id"], name: "index_options_on_listing_id", using: :btree
+  add_index "order_options", ["listing_option_id"], name: "index_order_options_on_listing_option_id", using: :btree
+  add_index "order_options", ["order_id"], name: "index_order_options_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "listing_id"
@@ -394,11 +404,13 @@ ActiveRecord::Schema.define(version: 20160518191443) do
   add_foreign_key "listing_categories", "listings", on_delete: :cascade
   add_foreign_key "listing_images", "images", on_delete: :cascade
   add_foreign_key "listing_images", "listings", on_delete: :cascade
+  add_foreign_key "listing_options", "listings", on_delete: :cascade
   add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
-  add_foreign_key "options", "listings", on_delete: :cascade
+  add_foreign_key "order_options", "listing_options"
+  add_foreign_key "order_options", "orders"
   add_foreign_key "orders", "listings"
   add_foreign_key "orders", "users"
   add_foreign_key "subscriptions", "collections"

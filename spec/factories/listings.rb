@@ -12,7 +12,7 @@ FactoryGirl.define do
     end
 
     after(:build) do |l, e|
-      l.options = build_list(:option, e.options_count,
+      l.options = build_list(:listing_option, e.options_count,
                              listing: nil)
       l.categories = build_list(:listing_category,
                                 e.categories_count,

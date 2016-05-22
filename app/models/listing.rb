@@ -8,7 +8,9 @@ class Listing < ActiveRecord::Base
 
   accepts_nested_attributes_for :categories
 
-  has_many :options, inverse_of: :listing,
+  has_many :options, 
+    class_name: 'Listing::Option',
+    inverse_of: :listing,
     autosave: true
 
   accepts_nested_attributes_for :options
@@ -18,10 +20,14 @@ class Listing < ActiveRecord::Base
 
   has_many :orders
 
-  validate :validate_has_categories
+  validate :listing_has_categories
 
   private
-  def validate_has_categories
-    
+  def listing_has_categories
+    if categories.blank?
+      errors.add(:categories, "need at least one")
+    end
   end
 end
+
+require_dependency 'listing/image'
