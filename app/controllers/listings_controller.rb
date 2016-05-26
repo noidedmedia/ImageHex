@@ -49,22 +49,29 @@ class ListingsController < ApplicationController
     end
   end
 
+  protected
   def listing_params
     params.require(:listing)
       .permit(:name,
               :description,
               :base_price,
               :quote_only,
-              options_attributes: [option_attributes])
+              options_attributes: [option_attributes],
+              categories_attributes: [categories_attributes])
       .merge(user_id: current_user.id)
   end
 
   def option_attributes
     [:price,
-      :reference_category,
-      :max_allowed,
       :name,
-      :description,
+      :description]
+  end
+
+
+  def categories_attributes
+    [:price,
+      :max_count,
       :free_count]
   end
+
 end
