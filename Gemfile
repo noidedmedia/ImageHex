@@ -90,7 +90,7 @@ gem 'puma'
 ##
 # https://github.com/thoughtbot/paperclip
 # Use Paperclip to upload images.
-gem 'paperclip'
+gem 'paperclip', '~> 5.0.0.beta2'
 
 ##
 # https://github.com/rails/jquery-rails
