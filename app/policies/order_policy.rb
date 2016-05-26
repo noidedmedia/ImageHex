@@ -5,7 +5,11 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def show?
-    owned? or listing_owner?
+    if @order.confirmed?
+      owned? or listing_owner?
+    else
+      owned?
+    end
   end
 
   def create?
@@ -13,14 +17,11 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def confirm?
-    owned? && unconfirmed?
+    owned? && ! @order.confirmed?
   end
 
   protected
-  def unconfirmed?
-    ! @order.confirmed?
-  end
-
+  
   def owned?
     @order.user == @user
   end
