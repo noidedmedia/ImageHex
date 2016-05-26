@@ -12,7 +12,15 @@ class OrderPolicy < ApplicationPolicy
     ! listing_owner?
   end
 
+  def confirm?
+    owned? && unconfirmed?
+  end
+
   protected
+  def unconfirmed?
+    ! @order.confirmed?
+  end
+
   def owned?
     @order.user == @user
   end

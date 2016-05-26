@@ -12,6 +12,22 @@ class OrdersController < ApplicationController
     authorize @order
   end
 
+  def confirm
+    @order = Order.find(params[:id])
+    authorize @order
+    respond_to do |format|
+      if @order.update(confirmed: true)
+        format.html { redirect_to [@listing, @order], notice: "Confirmed" }
+        format.json { render json: {success: true} }
+      else
+        format.html do 
+          redirect_to [@listing, @order], warning: "Couldn't confirm!"
+        end
+        format.json { render json: {success: false} }
+      end
+    end
+  end
+
   def create
     @order = @listing.orders.build(user: current_user)
     authorize @order

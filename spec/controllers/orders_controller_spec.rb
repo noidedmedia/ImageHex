@@ -10,6 +10,19 @@ RSpec.describe OrdersController, type: :controller do
       sign_in @user
     end
 
+    describe "POST #confirm" do
+      let(:order) { create(:order,
+                           listing: listing,
+                           user: @user) }
+      it "confirms the order" do
+        expect do
+          post :confirm,
+            listing_id: listing.id,
+            id: order.id
+        end.to change{order.reload.confirmed}.from(false).to(true)
+      end
+    end
+
     describe "GET new" do
       it "returns success" do
         get :new, listing_id: listing.id

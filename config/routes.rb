@@ -51,7 +51,9 @@ Rails.application.routes.draw do
   resources :listings do
     get 'search', on: :collection
     post 'confirm', on: :member
-    resources :orders
+    resources :orders do
+      post 'confirm', on: :member
+    end
   end
 
   resources :tag_group_changes, only: [:show] do
