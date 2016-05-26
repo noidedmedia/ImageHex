@@ -15,8 +15,13 @@ class Listing < ActiveRecord::Base
 
   accepts_nested_attributes_for :options
 
-  has_many :listing_images
+  has_many :listing_images,
+    class_name: 'Listing::Image',
+    inverse_of: :listing
+
   has_many :images, through: :listing_images
+
+  accepts_nested_attributes_for :listing_images
 
   has_many :orders
 
