@@ -10,7 +10,11 @@ class Order < ActiveRecord::Base
     class_name: "Listing::Option",
     through: :order_options
 
-  accepts_nested_attributes_for :options
+  has_many :references,
+    class_name: "Order::Reference",
+    inverse_of: :order
+
+  accepts_nested_attributes_for :order_options
 
   validates :user, presence: true
   validates :listing, presence: true

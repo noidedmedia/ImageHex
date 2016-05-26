@@ -6,7 +6,8 @@ class Order::Reference < ActiveRecord::Base
 
   has_many :images,
     class_name: "Order::Reference::Image",
-    foreign_key: :order_reference_id
+    foreign_key: :order_reference_id,
+    dependent: :destroy
 
   validates :description,
     presence: true
