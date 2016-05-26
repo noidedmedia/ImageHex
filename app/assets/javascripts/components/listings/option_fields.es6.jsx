@@ -1,4 +1,4 @@
-import * as Common from './option_common.es6.jsx';
+import * as Common from './common_fields.es6.jsx';
 
 class OptionFields extends React.Component {
   constructor(props) {

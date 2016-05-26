@@ -64,14 +64,18 @@ class ListingsController < ApplicationController
   def option_attributes
     [:price,
       :name,
-      :description]
+      :description,
+      :id]
   end
 
 
   def categories_attributes
     [:price,
       :max_count,
-      :free_count]
+      :free_count,
+      :name,
+      :description,
+      :id]
   end
 
 end

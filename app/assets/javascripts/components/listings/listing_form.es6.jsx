@@ -1,35 +1,29 @@
 import PriceSection from './price_section.es6.jsx';
 import OptionSection from './option_section.es6.jsx'; 
-import ReferenceCategorySection from './reference_category_section.es6.jsx';
+import CategorySection from './category_section.es6.jsx';
 
 class ListingForm extends React.Component {
   constructor(props) {
     super(props);
-    var rcount = props.options.filter((o) => o.reference_category).length;
-    console.log("rcount is", rcount);
     this.state = {
-      ...props,
-      refCatCount: rcount
+      ...props
     };
   }
 
   render() {
     var warningMessageClass = "warning-message";
-    if(this.state.refCatCount == 0) {
-      warningMessageClass += " active";
-    }
-    var options = this.state.options.filter((o) => ! o.reference_category);
-    var categories = this.state.options.filter((o) => o.reference_category);
     return <div>
       <PriceSection {...this.state} 
         toggleCheck={this.toggleCheck.bind(this)} />
-      <OptionSection options={this.props.options} 
+      <OptionSection
         quoteOnly={this.state.quote_only}
-        options={options} />
-      <ReferenceCategorySection
-        addRefCat={this.addRefCat.bind(this)}
-        removeRefCat={this.removeRefCat.bind(this)}
-        catories={categories} />
+        addOption={this.addOption.bind(this)}
+        removeOption={this.removeOption.bind(this)}
+        options={this.state.options} />
+      <CategorySection
+        categories={this.state.categories}
+        addCategory={this.addCategory.bind(this)}
+        removeCategory={this.removeCategory.bind(this)} />
       <button type="submit"
         disabled={this.state.refCatCount == 0}>
         Submit
@@ -51,17 +45,29 @@ class ListingForm extends React.Component {
     });
   }
 
-  addRefCat() {
-    console.log("Adding a ref cat");
+  addOption() {
     this.setState({
-      refCatCount: this.state.refCatCount + 1
+      options: [...this.state.options, {}]
     });
   }
 
-  removeRefCat() {
-    console.log("Removing a ref cat");
+  removeOption(index) {
+    this.state.options.splice(index, 1);
     this.setState({
-      refCatCount: this.state.refCatCount - 1
+      options: this.state.options
+    });
+  }
+
+  addCategory() {
+    this.setState({
+      categories: [...this.state.categories, {}]
+    });
+  }
+
+  removeCategory(index) {
+    this.state.categories.splice(index, 1);
+    this.setState({
+      categories: this.state.categories
     });
   }
 }
