@@ -4,11 +4,17 @@ class Order::Reference < ActiveRecord::Base
     class_name: "Listing::Category",
     foreign_key: :listing_category_id
 
+  has_many :images,
+    class_name: "Order::Reference::Image",
+    foreign_key: :order_reference_id
+
   validates :description,
     presence: true
 
   validates :order,
     presence: true
+
+  accepts_nested_attributes_for :images
 
   validates :category,
     presence: true

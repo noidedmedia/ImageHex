@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526160511) do
+ActiveRecord::Schema.define(version: 20160526183838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,6 +241,19 @@ ActiveRecord::Schema.define(version: 20160526160511) do
   add_index "order_options", ["listing_option_id"], name: "index_order_options_on_listing_option_id", using: :btree
   add_index "order_options", ["order_id"], name: "index_order_options_on_order_id", using: :btree
 
+  create_table "order_reference_images", force: :cascade do |t|
+    t.integer  "order_reference_id"
+    t.text     "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
+  end
+
+  add_index "order_reference_images", ["order_reference_id"], name: "index_order_reference_images_on_order_reference_id", using: :btree
+
   create_table "order_references", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "listing_category_id"
@@ -424,6 +437,7 @@ ActiveRecord::Schema.define(version: 20160526160511) do
   add_foreign_key "notifications", "users"
   add_foreign_key "order_options", "listing_options"
   add_foreign_key "order_options", "orders"
+  add_foreign_key "order_reference_images", "order_references"
   add_foreign_key "order_references", "listing_categories"
   add_foreign_key "order_references", "orders"
   add_foreign_key "orders", "listings"
