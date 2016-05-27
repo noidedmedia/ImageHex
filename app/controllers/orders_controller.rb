@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = @listing.orders.build(user: current_user)
+    @order = @listing.orders.build(order_params)
     authorize @order
     respond_to do |format|
       if @order.save
@@ -51,12 +51,12 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
       .permit(:description,
-              option_attributes: [option_params],
-              reference_attributes: [reference_params])
-              
+              order_options_attributes: [order_options_params],
+              references_attributes: [reference_params])
+      .merge(user: current_user)
   end
 
-  def option_params
+  def order_options_params
     [:listing_option_id,
       :id,
       :_destroy]
@@ -64,6 +64,7 @@ class OrdersController < ApplicationController
 
   def reference_params
     [:description,
+      :listing_category_id,
       images_attributes: [reference_image_params]]
   end
 

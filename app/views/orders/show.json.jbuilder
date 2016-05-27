@@ -23,6 +23,8 @@ json.listing do
       :description,
       :max_count,
       :free_count
+
+    json.html_description markdown_parse(category.description)
   end
 end
 

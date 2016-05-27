@@ -37,20 +37,20 @@ RSpec.describe OrdersController, type: :controller do
           attributes_for(:order_reference_image)
         end
 
-        let(:reference_attributes) do
+        let(:references_attributes) do
           {listing_category_id: listing.categories.sample.id,
             description: "This is a test"}
             .merge(images_attributes: [images_attributes])
         end
 
-        let(:option_attributes) do
+        let(:options_attributes) do
           {listing_option_id: listing.options.sample.id}
         end
 
         let(:order_params) do
           attributes_for(:order)
-            .merge(option_attributes: [option_attributes])
-            .merge(reference_attributes: [reference_attributes])
+            .merge(options_attributes: [options_attributes])
+            .merge(references_attributes: [references_attributes])
         end
 
         it "creates a new order" do
@@ -58,7 +58,7 @@ RSpec.describe OrdersController, type: :controller do
             post(:create,
               listing_id: listing.id,
               order: order_params)
-          end.to change{listing.reload.orders.count}.by(1)
+          end.to change{Order.count}.by(1)
         end
       end
     end

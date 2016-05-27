@@ -1,5 +1,7 @@
 class Order::Reference < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :order,
+    inverse_of: :references
+
   belongs_to :category,
     class_name: "Listing::Category",
     foreign_key: :listing_category_id

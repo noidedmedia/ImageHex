@@ -15,6 +15,7 @@ class Order < ActiveRecord::Base
     inverse_of: :order
 
   accepts_nested_attributes_for :order_options
+  accepts_nested_attributes_for :references
 
   validates :user, presence: true
   validates :listing, presence: true
