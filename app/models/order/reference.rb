@@ -30,6 +30,6 @@ class Order::Reference < ActiveRecord::Base
       errors.add(:category, "must be on this order's listing")
     end
   end
-
-
 end
+
+require_dependency("order/reference/image.rb")

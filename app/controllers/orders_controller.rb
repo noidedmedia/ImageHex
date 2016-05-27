@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
 
   def reference_params
     [:description,
-      image_attributes: [reference_image_params]]
+      images_attributes: [reference_image_params]]
   end
 
   def reference_image_params

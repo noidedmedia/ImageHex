@@ -8,5 +8,11 @@ RSpec.describe Order, type: :model do
                    user: listing.user,
                    listing: listing)).to_not be_valid
     end
+
+    it "requires itself to have some references" do
+      o = build(:order)
+      o.references = []
+      expect(o).to_not be_valid
+    end
   end
 end

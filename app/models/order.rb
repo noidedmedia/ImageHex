@@ -20,8 +20,15 @@ class Order < ActiveRecord::Base
   validates :listing, presence: true
 
   validate :not_order_to_self
+  validate :order_has_references
 
   private
+
+  def order_has_references
+    if references.blank?
+      errors.add(:references, "need at least 1")
+    end
+  end
 
   def not_order_to_self
     unless user != listing.user

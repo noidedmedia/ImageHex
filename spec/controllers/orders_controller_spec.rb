@@ -33,14 +33,14 @@ RSpec.describe OrdersController, type: :controller do
     describe "POST create" do
       context "with valid attributes" do
 
-        let(:image_attributes) do
+        let(:images_attributes) do
           attributes_for(:order_reference_image)
         end
 
         let(:reference_attributes) do
           {listing_category_id: listing.categories.sample.id,
             description: "This is a test"}
-            .merge(image_attributes: [image_attributes])
+            .merge(images_attributes: [images_attributes])
         end
 
         let(:option_attributes) do
