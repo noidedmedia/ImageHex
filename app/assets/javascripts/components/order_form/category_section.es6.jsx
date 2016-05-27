@@ -17,13 +17,13 @@ class CategorySection extends React.Component {
         />;
     });
 
-    return <div>
+    return <div className="category-section">
       <div className="category-header">
         <h3>{category.name}</h3>
         <div className="category-description"
           dangerouslySetInnerHTML={this.descriptionHTML()} />
+        {this.addButton()}
       </div>
-      {this.addButton()}
       <ul className="reference-group-list">
         {refs}
       </ul>

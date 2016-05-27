@@ -1,5 +1,33 @@
+@import "variables";
+
+#order-form {
+  margin: 5px 20px;
+
+  @media #{$mobile} {
+    margin: 5px 5px;
+  }
+}
+
 .option-fields {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.category-header {
+  margin-bottom: 10px;
+}
+
+.category-description {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.category-section {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #333;
+}
+
+.reference-group-list {
+  margin-left: 10px;
 }
