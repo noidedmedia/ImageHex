@@ -1,27 +1,5 @@
-.aspect-form {
+.option-fields {
   display: flex;
-  flex-direction: column;
-  .textarea-container {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.option-form {
-  display: flex;
-  flex-direction: column;
-  
-  .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    h1 {
-      margin-right: 15px;
-    }
-
-    h2 {
-      font-weight: normal;
-      font-size: 1.3rem;
-    }
-  }
+  flex-direction: row;
+  align-items: center;
 }
