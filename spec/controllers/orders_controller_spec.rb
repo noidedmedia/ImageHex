@@ -54,11 +54,20 @@ RSpec.describe OrdersController, type: :controller do
         end
 
         it "creates a new order" do
+          p = order_params
           expect do
             post(:create,
               listing_id: listing.id,
-              order: order_params)
+              order: p)
           end.to change{Order.count}.by(1)
+        end
+        it "creates a new order on the listing" do
+          p = order_params
+          expect do
+            post(:create,
+                 listing_id: listing.id,
+                 order: p)
+          end.to change{listing.orders.count}.by(1)
         end
       end
     end

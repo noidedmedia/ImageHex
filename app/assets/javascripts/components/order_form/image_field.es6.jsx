@@ -34,6 +34,12 @@ class ImageField extends React.Component {
           name={fieldName("img")}
           onChange={this.change.bind(this)} />
       </div>
+      <div className="fields-section">
+        <label htmlFor={fieldName("description")}>
+          Description (optional)
+        </label>
+        <textarea name={fieldName("description")} />
+      </div>
       {removeButton}
     </li>;
   }
