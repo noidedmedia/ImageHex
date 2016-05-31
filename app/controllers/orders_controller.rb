@@ -7,6 +7,11 @@ class OrdersController < ApplicationController
     @orders = @listing.orders  
   end
 
+  def show
+    @order = @listing.orders.find(params[:id])
+  end
+
+
   def new
     @order = @listing.orders.build(user: current_user)
     authorize @order

@@ -23,6 +23,14 @@ class Order < ActiveRecord::Base
   validate :not_order_to_self
   validate :order_has_references
 
+   def references_by_category
+    h = Hash.new{|hash, key| hash[key] = []}
+    self.references.each do |ref|
+      h[ref.category] << ref
+    end
+    h
+  end
+
   private
 
   def order_has_references

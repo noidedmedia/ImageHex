@@ -23,16 +23,12 @@ class CurrencyInput extends React.Component {
         
     }
     var parse = value;
-    console.log(value, parse);
     if(value.endsWith(".")) {
       parse = parse.substring(0, parse.length - 1);
     }
     else if(! value.match(/\d$/)) {
-      console.log("Last thing is not a digit");
       value = value.substring(0, value.length - 1);
       parse = parse.substring(0, parse.length - 1);
-      console.log("New value:", value);
-      console.log("New parse:",parse);
     }
     var centValue = Math.round(parseFloat(value) * 100);
     this.setState({
@@ -40,9 +36,9 @@ class CurrencyInput extends React.Component {
     });
     this.props.onChange(centValue);
   }
+
   componentWillReceiveProps(props) {
     if (props.centValue !== Math.round(parseFloat(this.state.value) * 100)) {
-      console.log("Changing value because it was changed on us");
       this.setState({
         value: props.centValue / 100
       });
@@ -79,6 +75,9 @@ class CurrencyInputField extends React.Component {
     this.setState({
       centValue: value
     });
+    if(this.props.onChange) {
+      this.props.onChange(value);
+    }
   }
 
 }

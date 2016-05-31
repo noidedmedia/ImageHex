@@ -1,0 +1,23 @@
+<li class="order-reference-item">
+  <div class="description-outer">
+    <h3>Description</h3>
+    <div class="description">
+      <%= markdown_parse reference.description %>
+    </div>
+  </div>
+  <div class="references-outer">
+    <h3>Reference Images</h3>
+    <ul class="reference-images-list">
+      <% reference.images.each do |img| %>
+        <li class="reference-image-item">
+          <div class="img-wrapper">
+            <%= image_tag img.img(:medium) %>
+          </div>
+          <div class="description">
+            <%= markdown_parse img.description %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</li>

@@ -1,0 +1,6 @@
+<li class="order-category-item">
+  <h2><%= category.name %></h2>
+  <ul class="order-references-list">
+    <%= render partial: "reference", collection: references, as: :reference %>
+  </ul>
+</li>

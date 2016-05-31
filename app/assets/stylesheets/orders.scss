@@ -117,3 +117,29 @@
     display: block;
   }
 }
+
+.reference-images-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.reference-image-item {
+  flex-grow: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.order-reference-item {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+
+  &:not(:last-of-type) {
+    border-bottom: 2px solid $logo-blue;
+  }
+}

@@ -1,0 +1,16 @@
+<div class="order-description">
+  <%= markdown_parse @order.description %>
+</div>
+
+<ul class="order-category-list">
+  <% @order.references_by_category.each do |k, v| %>
+    <%= render 'category', category: k, references: v %>
+  <% end %>
+</ul>
+
+<% if current_user == @order.listing.user %>
+  <% if @order.listing.quote_only? %>
+    <%= react_component("QuotePicker") %>
+  <% end %>
+
+<% end %> 
