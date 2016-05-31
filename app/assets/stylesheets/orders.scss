@@ -31,3 +31,89 @@
 .reference-group-list {
   margin-left: 10px;
 }
+
+.reference-image-list {
+  transition: 0.5s ease-in-out;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+@keyframes add-reference-item {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 500px;
+  }
+}
+
+.reference-image-fields {
+  transition: 0.5s ease-in-out;
+  animation: add-reference-item 0.5s linear forwards;
+  width: 20%;
+  padding: 5px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @media #{$mobile} {
+    width: 90vw;
+    height: 400px;
+  }
+
+  &.removed {
+    height: 0;
+    width: 0;
+  }
+}
+
+.reference-preview-section {
+  position: relative;
+  background-color: #fff;
+  height: 90%;
+
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 9;
+    opacity: 0;
+  }
+}
+
+.reference-image-preview { 
+  z-index: 10;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  div {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    margin: auto;
+    display: block;
+  }
+}

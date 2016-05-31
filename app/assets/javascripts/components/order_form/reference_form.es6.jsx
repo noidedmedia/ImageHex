@@ -6,6 +6,7 @@ class ReferenceForm extends React.Component {
     this.state = {
       images: props.images || []
     };
+    this.imageKey = 0;
   }
 
   render() {
@@ -18,7 +19,7 @@ class ReferenceForm extends React.Component {
         image={img}
         baseFieldName={fieldName("images_attributes") + index}
         removeSelf={this.removeImage.bind(this, index)}
-        key={index} />;
+        key={img.id || img.key}/>;
 
     });
     return <div className="reference-group-fields">
@@ -49,8 +50,9 @@ class ReferenceForm extends React.Component {
 
   addImage() {
     this.setState({
-      images: [...this.state.images, {}]
+      images: [...this.state.images, {key: this.imageKey}]
     });
+    this.imageKey = this.imageKey - 1;
   }
 
   removeImage(index) {

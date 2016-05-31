@@ -2,7 +2,8 @@ class ImageField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgUrl: props.url
+      imgUrl: props.url,
+      containerClass: "reference-image-fields"
     };
   }
 
@@ -12,15 +13,54 @@ class ImageField extends React.Component {
     );
     const removeButton = <button
       type="button"
-      onClick={this.props.removeSelf}>
+      onClick={this.remove.bind(this)}>
       Remove
     </button>;
-
-    return <div>
-      <input type="file"
-        name={fieldName("img")} />
+    var preview;
+    if(this.state.imgURL) {
+      preview = <div>
+        <img src={this.state.imgURL} />
+      </div>;
+    }
+    else {
+      preview = <div>Click or drag to upload</div>;
+    }
+    return <li className={this.state.containerClass}>
+      <div className="reference-preview-section">
+        <div className="reference-image-preview">
+          {preview}
+        </div>
+        <input type="file"
+          name={fieldName("img")}
+          onChange={this.change.bind(this)} />
+      </div>
       {removeButton}
-    </div>;
+    </li>;
+  }
+
+  change(event) {
+    const file = event.target.files[0];
+    var reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.setState({
+        imgURL: reader.result
+      });
+    }, false);
+
+    if(file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
+  remove() {
+    this.setState({
+      containerClass: this.state.containerClass + " removed"
+    }, () => {
+      // Kill after animation finishes
+      window.setTimeout(() => {
+        this.props.removeSelf();
+      }, 500);
+    });
   }
 }
 
