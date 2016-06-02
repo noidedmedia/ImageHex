@@ -1,0 +1,46 @@
+@import "variables";
+
+.green-add-button {
+  text-decoration: none;
+  background-color: $logo-green;
+  color: #fff;
+  font-size: 14px;
+  display: block;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 20%;
+  text-align: center;
+
+  &::before {
+    font-family: 'imagehexicons';
+    padding-right: 5px;
+    content: $icon-plus;
+  }
+
+  @media #{$mobile} {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.larger-label {
+  font-size: 1.2rem;
+}
+
+.remove-text-red {
+  font-size: 14px;
+  color: $logo-red;
+  text-decoration: none;
+
+  &::before {
+    margin-right: 5px;
+    content: $icon-close;
+    color: $logo-red;
+  }
+
+  @media #{$mobile} {
+    flex-basis: unset;
+  }
+}

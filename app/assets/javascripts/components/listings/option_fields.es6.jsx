@@ -22,7 +22,7 @@ class OptionFields extends React.Component {
           defaultValue={option.price}
           index={index} />
         <a onClick={removeSelf}
-          className="remove-option-button"
+          className="remove-text-red remove-option-button"
           href="#">
           Remove
         </a>

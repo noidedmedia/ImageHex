@@ -20,7 +20,7 @@ class CategorySection extends React.Component {
         removeSelf={this.props.removeCategory.bind(null, i)} />;
     });
     return <div>
-      <a className="add-option-button"
+      <a className="green-add-button add-category-button"
         href="#"
         onClick={this.props.addCategory}>
         Add a Reference Category

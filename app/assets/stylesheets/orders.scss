@@ -1,13 +1,5 @@
 @import "variables";
 
-#order-form {
-  margin: 5px 20px;
-
-  @media #{$mobile} {
-    margin: 5px 5px;
-  }
-}
-
 .option-fields {
   display: flex;
   flex-direction: row;
@@ -24,12 +16,18 @@
 }
 
 .category-section {
-  margin-bottom: 5px;
-  border-bottom: 1px solid #333;
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 8px 5px 5px 5px rgba(0,0,0,0.1);
+  padding: 5px;
 }
 
-.reference-group-list {
-  margin-left: 10px;
+.reference-group-fields {
+  margin: 6px;
+  padding: 6px;
+  box-shadow: inset 8px 5px 5px 5px rgba(0,0,0,0.1);
+  background-color: #f0f0f0;
 }
 
 .reference-image-list {
@@ -50,16 +48,30 @@
   }
 }
 
+@keyframes remove-reference-item {
+  from {
+    width: 20%;
+    max-height: 600px;
+  }
+  to {
+    width: 0px;
+    max-height: 0px;
+  }
+}
+
 .reference-image-fields {
+  margin: 8px;
   transition: 0.5s ease-in-out;
   animation: add-reference-item 0.5s linear forwards;
-  width: 20%;
-  padding: 5px;
-  height: 400px;
+  width: calc(20% - 16px);
+  padding: 6px;
+  box-shadow: 8px 5px 5px rgba(0,0,0,0.1);
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: #fff;
+  max-height: 600px;
 
   @media #{$mobile} {
     width: 90vw;
@@ -67,16 +79,23 @@
   }
 
   &.removed {
-    height: 0;
-    width: 0;
+    white-space: nowrap;
+    animation: remove-reference-item 0.5s linear;
+    color: white;
+
+    .fields-section {
+      transition: 0.5s ease-in-out;
+      opacity: 0;
+    }
   }
 }
 
 .reference-preview-section {
   position: relative;
   background-color: #fff;
-  height: 70%;
-
+  height: 300px;
+  margin-bottom: 5px;
+  font-size: 20px;
   input {
     position: absolute;
     width: 100%;
@@ -141,5 +160,41 @@
 
   &:not(:last-of-type) {
     border-bottom: 2px solid $logo-blue;
+  }
+}
+
+.remove-reference-button {
+  margin-top: 4px;
+  padding: 2px;
+  background-color: $logo-red;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+
+  &::before {
+    margin-right: 4px;
+    color: #fff;
+    content: $icon-plus;
+  }
+}
+
+.reference-description {
+  max-width: 600px;
+}
+
+.reference-image-header {
+  font-weight: normal;
+  margin-left: 8px;
+}
+
+.add-icon-link {
+  margin-right: 6px;
+  text-decoration: none;
+
+    &::before {
+    content: $icon-plus;
+    color: $logo-green;
   }
 }

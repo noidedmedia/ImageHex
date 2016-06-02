@@ -20,7 +20,7 @@ class CategorySection extends React.Component {
     return <div className="category-section">
       <div className="category-header">
         <h3>{category.name}</h3>
-        <div className="category-description"
+        <blockquote className="category-description"
           dangerouslySetInnerHTML={this.descriptionHTML()} />
         {this.addButton()}
       </div>
@@ -32,11 +32,12 @@ class CategorySection extends React.Component {
 
   addButton() {
     if(this.props.references.length < this.props.category.max_count) {
-      return <button
+      return <a
+        href="#"
         onClick={this.props.addReference}
-        type="button">
+        className="green-add-button">
         Add Another
-      </button>;
+      </a>;
     }
     return <div></div>;
   }

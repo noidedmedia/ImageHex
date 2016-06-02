@@ -57,7 +57,7 @@ class CategoryFields extends React.Component {
             defaultValue={category.max_count || "10"} />
         </Common.FieldsSection>
         <a onClick={removeSelf}
-          className="remove-option-button"
+          className="remove-text-red remove-option-button"
           href="#">
           Remove
         </a>

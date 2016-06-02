@@ -23,7 +23,7 @@ class OptionSection extends React.Component {
 
     return <div className="options-section">
       <a href="#"
-        className="add-option-button"
+        className="add-option-button green-add-button"
         onClick={this.addOption.bind(this)}>
         Add an Option
       </a>

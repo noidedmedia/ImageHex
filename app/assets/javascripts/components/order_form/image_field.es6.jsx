@@ -11,11 +11,12 @@ class ImageField extends React.Component {
     const fieldName = (name) => (
       `${this.props.baseFieldName}[${name}]`
     );
-    const removeButton = <button
-      type="button"
-      onClick={this.remove.bind(this)}>
+    const removeButton = <a
+      href="#"
+      onClick={this.remove.bind(this)}
+      className="remove-reference-button">
       Remove
-    </button>;
+    </a>;
     var preview;
     if(this.state.imgURL) {
       preview = <div>
@@ -35,7 +36,8 @@ class ImageField extends React.Component {
           onChange={this.change.bind(this)} />
       </div>
       <div className="fields-section">
-        <label htmlFor={fieldName("description")}>
+        <label htmlFor={fieldName("description")}
+          className="larger-label">
           Description (optional)
         </label>
         <textarea name={fieldName("description")} />
