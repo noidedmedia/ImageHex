@@ -29,5 +29,10 @@ RSpec.describe Order, type: :model do
         }.to_not change{order.final_cost}
       end
     end
+
+    context "on normal listings" do
+      let(:listing) { create(:listing) }
+
+    end
   end
 end

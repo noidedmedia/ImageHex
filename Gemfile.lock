@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/turbolinks/turbolinks-classic.git
+  remote: https://github.com/turbolinks/turbolinks-classic.git
   revision: 37a7c296232d20a61bd1946f600da7f2009189db
   specs:
     turbolinks (3.0.0)

@@ -113,8 +113,7 @@ gem 'browserify-rails'
 # https://github.com/rails/turbolinks
 # Turbolinks makes following links in your web application faster.
 # Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', github: 'turbolinks/turbolinks-classic'
-
+gem 'turbolinks', git: "https://github.com/turbolinks/turbolinks-classic.git"
 ##
 # https://github.com/kossnocorp/jquery.turbolinks
 # Fixes issues with JQuery and Turbolinks.
