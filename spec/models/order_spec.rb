@@ -15,4 +15,8 @@ RSpec.describe Order, type: :model do
       expect(o).to_not be_valid
     end
   end
+
+  describe "cost calculation" do
+
+  end
 end
