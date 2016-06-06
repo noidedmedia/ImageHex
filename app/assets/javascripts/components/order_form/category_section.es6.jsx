@@ -12,7 +12,7 @@ class CategorySection extends React.Component {
       return <ReferenceForm
         removeSelf={this.props.removeReference.bind(ref.index)}
         reference={ref} 
-        key={ref.index}
+        key={ref.key}
         category={category}
         />;
     });
@@ -20,7 +20,7 @@ class CategorySection extends React.Component {
     return <div className="category-section">
       <div className="category-header">
         <h3>{category.name}</h3>
-        <blockquote className="category-description"
+        <div className="category-description markdown-description"
           dangerouslySetInnerHTML={this.descriptionHTML()} />
         {this.addButton()}
       </div>

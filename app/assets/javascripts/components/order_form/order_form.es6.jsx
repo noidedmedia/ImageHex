@@ -8,6 +8,7 @@ class OrderForm extends React.Component {
       orderOptions: (props.order_options) || [],
       references: (props.references) || []
     };
+    this.refKey = 0;
   }
 
   render() {
@@ -23,8 +24,10 @@ class OrderForm extends React.Component {
         references={this.state.references}
         addReference={this.addReference.bind(this)}
         removeReference={this.removeReference.bind(this)} />
-      {this.getPrice()}
-      {this.submitButton()}
+      <div className="order-form-footer">
+        {this.getPrice()}
+        {this.submitButton()}
+      </div>
     </div>
   }
 
@@ -35,9 +38,10 @@ class OrderForm extends React.Component {
         Submit
       </button>;
     }
-    return <div>
+    return <button
+      disabled="true">
       Add some reference material to submit
-    </div>;
+    </button>;
   }
 
   addOrderOption(option_id) {
@@ -55,8 +59,11 @@ class OrderForm extends React.Component {
   }
 
   addReference(category_id) {
-    console.log("Adding a reference with category id",category_id);
-    const n = {listing_category_id: category_id}
+    const n = {
+      listing_category_id: category_id,
+      key: this.refKey
+    };
+    this.refKey = this.refKey - 1;
     this.setState({
       references: [...this.state.references, n]
     });
@@ -72,7 +79,7 @@ class OrderForm extends React.Component {
 
   getPrice() {
     if(this.props.listing.quote_only) {
-      return <div>
+      return <div className="quoted-price">
         Artist will give a quote on the price
       </div>;
     }
@@ -81,7 +88,7 @@ class OrderForm extends React.Component {
     const refprice = this.referencesPrice();
     console.log("Prices:",{price, oprice, refprice});
     price += oprice + refprice;
-    return <div>
+    return <div className="price">
       Price: ${price / 100}
     </div>;
   }

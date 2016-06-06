@@ -21,7 +21,7 @@ class OptionSection extends React.Component {
         key={i} />
     });
 
-    return <div className="options-section">
+    return <div className="listing-form-options-section">
       <a href="#"
         className="add-option-button green-add-button"
         onClick={this.addOption.bind(this)}>

@@ -23,34 +23,34 @@ class ReferenceForm extends React.Component {
 
     });
     return <li className="reference-group-fields">
-      <div className="fields-section">
-        <label htmlFor={fieldName("description")}
-          className="larger-label">
-          Description
-        </label>
-        <textarea name={fieldName("description")}
-          defaultValue={reference.description} 
-          className="reference-description" />
+      <div className="reference-group-fields-header">
+        <div className="fields-section">
+          <label htmlFor={fieldName("description")}
+            className="larger-label">
+            Description
+          </label>
+          <textarea name={fieldName("description")}
+            defaultValue={reference.description} 
+            className="reference-description" />
+        </div>
+        <a onClick={this.props.removeSelf}
+          className="reference-remove-button">
+          <span>Remove</span>
+        </a>
       </div>
       <input type="hidden"
         name={fieldName("listing_category_id")}
         value={this.props.category.id} />
-      <h3 className="reference-image-header">
-        <a onClick={this.addImage.bind(this)}
-          href="#"
-          className="add-icon-link">
-        </a>
-        Reference Images
-        
-      </h3>
+      <a onClick={this.addImage.bind(this)}
+        href="#"
+        className="green-add-button">
+        Add Reference Image
+      </a>
       <ul className="reference-image-list">
         {imgs}
       </ul>
 
-      <a onClick={this.props.removeSelf}
-        className="remove-button">
-        Remove
-      </a>
+    
     </li>;
   }
 

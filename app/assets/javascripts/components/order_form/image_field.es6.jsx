@@ -14,7 +14,7 @@ class ImageField extends React.Component {
     const removeButton = <a
       href="#"
       onClick={this.remove.bind(this)}
-      className="remove-reference-button">
+      className="remove-reference-image-button">
       Remove
     </a>;
     var preview;

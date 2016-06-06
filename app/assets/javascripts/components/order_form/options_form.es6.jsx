@@ -14,9 +14,12 @@ class OptionsForm extends React.Component {
         info={info}
         key={i} />;
     });
-    return <ul className="options">
-      {o}
-    </ul>
+    return <div className="options-section">
+      <h3>Options</h3>
+      <ul className="option-fields-list">
+        {o}
+      </ul>
+    </div>;
   }
 
   optionContainedInfo(option_id) {
@@ -52,12 +55,14 @@ const OptionSection = ({info, option, add, remove}) => {
       onChange={add.bind(null, option.id)} />;
   }
   return <li className="option-fields">
-    {checkbox}
-    <div>
+    <div className="option-fields-header">
+      <div>
+        {checkbox}
+      </div>
       <h3>{option.name}</h3>
-      <div className="description"
-        dangerouslySetInnerHTML={descHTML} />
     </div>
+    <div className="description markdown-description"
+      dangerouslySetInnerHTML={descHTML} />
   </li>;
 };
 
