@@ -17,6 +17,17 @@ RSpec.describe Order, type: :model do
   end
 
   describe "cost calculation" do
-
+    context "on quote listings" do
+      let(:listing) { create(:quote_listing) }
+      let(:order) do
+        build(:order,
+              listing: listing)
+      end
+      it "does not set on creation" do
+        expect{
+          order.save
+        }.to_not change{order.final_cost}
+      end
+    end
   end
 end
