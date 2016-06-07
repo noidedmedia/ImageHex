@@ -26,7 +26,7 @@ RSpec.describe Order, type: :model do
       it "does not set on creation" do
         expect{
           order.save
-        }.to_not change{order.final_cost}
+        }.to_not change{order.final_price}
       end
     end
 
@@ -46,27 +46,37 @@ RSpec.describe Order, type: :model do
                price: 500)
       end
 
-      let(:options_attributes) do
-        {listing_option_id: shading_option.id}
-      end
-
-      let(:references_attributes) do
-        2.times.map do
+      let(:character_reference) do
           {
             listing_category_id: character_category.id,
             description: "This is a test"
           }
-        end
+      end
+      let(:order_attributes) do
+        {
+          user: create(:user),
+          description: "This is a test",
+          confirmed: true
+        }
+      end
+      
+      it "calculates the cost with a free reference" do
+        attrs = {
+          description: "test",
+          references_attributes: [character_reference]
+        }
+        o = listing.orders.create!(order_attributes.merge(attrs))
+        expect(o.send(:options_price)).to eq(0)
+        expect(o.final_price).to eq(400)
       end
 
-      let(:order) do
-        Order.new(description: "This is a test",
-                  references_attributes: references_attributes,
-                  options_attributes: options_attributes)
-      end
-      it "calculates the cost properly" do
-        o = order.save!
-        expect(o.price).to eq(400 + 100 + 500)
+      it "calculates the cost with a nonfree reference" do
+        attrs = {
+          description: "test",
+          references_attributes: 2.times.map{character_reference}
+        }
+        o = listing.orders.create!(order_attributes.merge(attrs))
+        expect(o.final_price).to eq(400 + 100)
       end
     end
   end

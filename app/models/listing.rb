@@ -25,6 +25,11 @@ class Listing < ActiveRecord::Base
 
   has_many :orders
 
+  validates :base_price, presence: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 },
+    unless: :quote_only?
+
+
   validate :listing_has_categories
 
   private
