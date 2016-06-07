@@ -15,5 +15,4 @@ class Order::Reference::Image < ActiveRecord::Base
                        content_type: { content_type: %r{\Aimage\/.*\Z} },
                        presence: true
 
-    validates :description, presence: true
 end
