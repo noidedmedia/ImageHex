@@ -43,13 +43,14 @@ RSpec.describe OrdersController, type: :controller do
             .merge(images_attributes: [images_attributes])
         end
 
-        let(:options_attributes) do
-          {listing_option_id: listing.options.sample.id}
+        let(:order_option_ids) do
+          # obtain a randomly sized sample
+          listing.options.sample(1 + rand(listing.options.count)).map(&:id)
         end
 
         let(:order_params) do
           attributes_for(:order)
-            .merge(options_attributes: [options_attributes])
+            .merge(option_ids: order_option_ids)
             .merge(references_attributes: [references_attributes])
         end
 
@@ -60,6 +61,7 @@ RSpec.describe OrdersController, type: :controller do
               listing_id: listing.id,
               order: p)
           end.to change{Order.count}.by(1)
+          expect(Order.last.options.pluck(:id)).to match_array(order_option_ids)
         end
         it "creates a new order on the listing" do
           p = order_params

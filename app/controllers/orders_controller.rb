@@ -56,15 +56,9 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
       .permit(:description,
-              order_options_attributes: [order_options_params],
+              option_ids: [],
               references_attributes: [reference_params])
       .merge(user: current_user)
-  end
-
-  def order_options_params
-    [:listing_option_id,
-      :id,
-      :_destroy]
   end
 
   def reference_params

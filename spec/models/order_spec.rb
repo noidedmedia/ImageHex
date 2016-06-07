@@ -31,8 +31,43 @@ RSpec.describe Order, type: :model do
     end
 
     context "on normal listings" do
-      let(:listing) { create(:listing) }
+      let(:listing) { create(:listing, base_price: 400) }
 
+      let(:character_category) do 
+        create(:listing_category,
+               listing: listing,
+               price: 100,
+               free_count: 1)
+      end
+
+      let(:shading_option) do
+        create(:listing_option,
+               listing: listing,
+               price: 500)
+      end
+
+      let(:options_attributes) do
+        {listing_option_id: shading_option.id}
+      end
+
+      let(:references_attributes) do
+        2.times.map do
+          {
+            listing_category_id: character_category.id,
+            description: "This is a test"
+          }
+        end
+      end
+
+      let(:order) do
+        Order.new(description: "This is a test",
+                  references_attributes: references_attributes,
+                  options_attributes: options_attributes)
+      end
+      it "calculates the cost properly" do
+        o = order.save!
+        expect(o.price).to eq(400 + 100 + 500)
+      end
     end
   end
 end
