@@ -5,48 +5,47 @@ class OptionsForm extends React.Component {
   }
 
   render() {
+    let contained = this.getObtainedOptions();
     let o = this.props.options.map((opt, i) => {
-      let info = this.optionContainedInfo(opt.id);
       return <OptionSection
         option={opt}
-        add={this.props.addOrderOption}
-        remove={this.props.removeOrderOption}
-        info={info}
+        add={this.props.addOption}
+        remove={this.props.removeOption}
+        contained={contained[opt.id]}
         key={i} />;
+    });
+    let fields = this.props.optionIds.map((id) => {
+      return <input
+        type="hidden"
+        name="order[option_ids][]"
+        value={id} />;
     });
     return <div className="options-section">
       <h3>Options</h3>
+      {fields}
       <ul className="option-fields-list">
         {o}
       </ul>
     </div>;
   }
 
-  optionContainedInfo(option_id) {
-    for(var i = 0; i < this.props.orderOptions.length; i++) {
-      const oo = this.props.orderOptions[i];
-      if(oo.listing_option_id === option_id) {
-        return {
-          contained: true,
-          index: i
-        };
-      }
-    }
-    return {
-      contained: false,
-      index: null
-    };
+  getObtainedOptions() {
+    var dict = {};
+    this.props.options.forEach((o) => {
+      dict[o.id] = this.props.optionIds.indexOf(o.id) != -1;
+    });
+    return dict;
   }
 }
 
-const OptionSection = ({info, option, add, remove}) => {
+const OptionSection = ({contained, option, add, remove}) => {
   const descHTML = {__html: option.html_description};
   var checkbox;
-  if(info.contained) {
+  if(contained) {
     checkbox = <input
       type="checkbox"
       checked={true}
-      onChange={remove.bind(null, info.index)} />;
+      onChange={remove.bind(null, option.id)} />;
   }
   else {
     checkbox = <input

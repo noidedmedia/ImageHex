@@ -4,8 +4,9 @@ import ReferenceSection from './reference_section.es6.jsx';
 class OrderForm extends React.Component {
   constructor(props) {
     super(props);
+    var optionIds = (props.order_options || []).map(o => o.listing_option_id);
     this.state = {
-      orderOptions: (props.order_options) || [],
+      optionIds,
       references: (props.references) || []
     };
     this.refKey = 0;
@@ -15,9 +16,9 @@ class OrderForm extends React.Component {
     return <div>
       <OptionsForm
         options={this.props.listing.options}
-        orderOptions={this.state.orderOptions}
-        addOrderOption={this.addOrderOption.bind(this)}
-        removeOrderOption={this.removeOrderOption.bind(this)}
+        optionIds={this.state.optionIds}
+        addOption={this.addOption.bind(this)}
+        removeOption={this.removeOption.bind(this)}
       />
       <ReferenceSection
         categories={this.props.listing.categories}
@@ -44,17 +45,18 @@ class OrderForm extends React.Component {
     </button>;
   }
 
-  addOrderOption(option_id) {
-    const n = {listing_option_id: option_id}
+  addOption(option_id) {
+    var ar = [...this.state.optionIds, option_id];
+    var uniq = ar.filter((item, pos) => ar.indexOf(item) == pos);
     this.setState({
-      orderOptions: [...this.state.orderOptions, n]
+      optionIds: uniq
     });
   }
 
-  removeOrderOption(index) {
-    this.state.orderOptions.splice(index, 1);
+  removeOption(option_id) {
+    var o = this.state.optionIds.filter((id) => id != option_id);
     this.setState({
-      orderOptions: this.state.orderOptions
+      optionIds: o
     });
   }
 
@@ -95,10 +97,8 @@ class OrderForm extends React.Component {
 
   optionsPrice() {
     var prices = this.props.listing.options.map((option) => {
-      var o = this.state.orderOptions.filter((oo) => (
-        oo.listing_option_id === option.id
-      ));
-      if(o.length != 0) {
+      var selected = this.state.optionIds.indexOf(option.id) != -1;
+      if(selected) {
         return option.price;
       }
       else {
