@@ -13,7 +13,9 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def accept?
-    @order.confirmed? && listing_owner?
+    (@order.confirmed? && 
+     listing_owner? && 
+     ! @order.accepted?)
   end
 
   def create?

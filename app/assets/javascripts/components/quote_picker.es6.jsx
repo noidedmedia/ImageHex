@@ -14,12 +14,16 @@ class QuotePicker extends React.Component {
     const imagehexFees = Math.floor(centValue * (0.10 - 0.029));
     const earnings = centValue - (imagehexFees + stripeFees);
 
-    return <div>
-      <CurrencyInputField
-        onChange={this.changeValue.bind(this)}
-        initialValue={500}
-        min={3}
-        name="quote_value" />
+    return <div className="quote-picker-inner">
+      <span className="quote-picker-inputbar">
+        Quote: $
+        <CurrencyInputField
+          onChange={this.changeValue.bind(this)}
+          initialValue={500}
+          min={3}
+          name="quote_price" />
+      </span>
+
       <div>
         (You get ${earnings / 100})
       </div>

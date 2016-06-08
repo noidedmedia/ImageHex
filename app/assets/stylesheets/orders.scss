@@ -409,3 +409,40 @@
     margin-right: 5px;
   }
 }
+
+.quote-picker-container {
+  margin-bottom: 10px;
+}
+
+.quote-picker-inner {
+  font-size: 14px;
+  padding: 15px;
+}
+
+.quote-picker-inputbar {
+  display: flex;
+
+  span {
+    display: inline-block;
+    padding-top: 2px;
+  }
+
+  div {
+    display: inline;
+  }
+}
+
+.order-confirm-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  button {
+    padding: 15px;
+    border: 0;
+    background-color: $logo-green;
+    color: white;
+    font-size: 14px;
+    height: 75%;
+  }
+}

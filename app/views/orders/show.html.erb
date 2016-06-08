@@ -44,11 +44,13 @@
     <% end %>
   <% end %>
 
-  <% if @order.final_price %>
-    <%= price @order.final_price %>
-  <% elsif @order.listing.quote_only? %>
-    <% if current_user == @order.listing.user %>
-      <%= react_component("QuotePicker") %>
+  <% if policy(@order).accept? %>
+    <%= form_tag accept_listing_order_path(@listing, @order),
+      method: :post, class: "order-confirm-form" do %>
+      <% if @listing.quote_only? %>
+        <%= react_component("QuotePicker") %>
+      <% end %>
+      <%= button_tag("Confirm Order") %>
     <% end %>
   <% end %>
 </div>
