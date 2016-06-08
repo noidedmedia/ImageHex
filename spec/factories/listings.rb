@@ -5,6 +5,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     name { Faker::Commerce.product_name }
     quote_only false
+    confirmed true
 
     transient do
       options_count 2
@@ -22,6 +23,10 @@ FactoryGirl.define do
     factory :quote_listing do
       base_price nil
       quote_only true
+    end
+
+    factory :unconfirmed_listing do
+      confirmed false
     end
   end
 end

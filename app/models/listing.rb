@@ -1,4 +1,8 @@
 class Listing < ActiveRecord::Base
+
+  scope :confirmed, -> { where(confirmed: true) }
+
+
   belongs_to :user, required: true
 
   has_many :categories,

@@ -12,6 +12,10 @@ class OrderPolicy < ApplicationPolicy
     end
   end
 
+  def purchase?
+    @order.confirmed && owned?
+  end
+
   def accept?
     (@order.confirmed? && 
      listing_owner? && 

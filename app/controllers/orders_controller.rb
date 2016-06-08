@@ -11,6 +11,11 @@ class OrdersController < ApplicationController
     @order = @listing.orders.find(params[:id])
   end
 
+  def purchase
+    @order = @listing.orders.find(params[:id])
+    authorize @order
+  end
+
   def accept
     @order = @listing.orders.find(params[:id])
     authorize @order
@@ -98,6 +103,7 @@ class OrdersController < ApplicationController
   protected
   def load_listing
     @listing = Listing.find(params[:listing_id])
+    raise Pundit::NotAuthorizedError unless @listing.confirmed?
   end
 
   def order_params

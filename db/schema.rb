@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608200916) do
+ActiveRecord::Schema.define(version: 20160608214239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 20160608200916) do
     t.boolean  "quote_only",  default: false, null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.boolean  "confirmed",   default: false, null: false
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
@@ -276,6 +277,8 @@ ActiveRecord::Schema.define(version: 20160608200916) do
     t.boolean  "accepted",     default: false, null: false
     t.datetime "confirmed_at"
     t.datetime "accepted_at"
+    t.text     "charge_id"
+    t.datetime "charged_at"
   end
 
   add_index "orders", ["listing_id"], name: "index_orders_on_listing_id", using: :btree

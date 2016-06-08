@@ -16,6 +16,10 @@ class ListingPolicy < ApplicationPolicy
     owned?
   end
 
+  def confirm?
+    ! @user.stripe_user_id.nil?
+  end
+
   def create?
     true
   end

@@ -3,9 +3,18 @@ class ListingsController < ApplicationController
   before_action :ensure_user, except: [:index, :show]
 
   def index
-    @listings = Listing.all.order(created_at: :desc)
+    @listings = Listing.all
+      .confirmed
+      .order(created_at: :desc)
       .includes(:images)
       .paginate(page: page, per_page: per_page)
+  end
+
+  def confirm
+    @listing = Listing.find(params[:id])
+    authorize @listing
+    @listing.update(confirmed: true)
+    redirect_to @listing
   end
 
   def show
