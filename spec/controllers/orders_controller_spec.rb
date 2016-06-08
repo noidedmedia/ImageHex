@@ -26,6 +26,14 @@ RSpec.describe OrdersController, type: :controller do
               id: order.id
           end.to change{order.reload.accepted}.from(false).to(true)
         end
+
+        it "changes the accepted_at time" do
+          expect do
+            post :accept,
+              listing_id: listing.id,
+              id: order.id
+          end.to change{order.reload.accepted_at}
+        end
       end
       context "with quote listings" do
         let(:listing) { create(:quote_listing, user: @user) }
@@ -52,6 +60,15 @@ RSpec.describe OrdersController, type: :controller do
               quote_price: 500
           end.to change{Notification.count}.by(1)
         end
+
+        it "updates #accepted_at" do
+          expect do
+            post :accept,
+              listing_id: listing.id,
+              id: order.id,
+              quote_price: 500
+          end.to change{order.reload.accepted_at}
+        end
       end
     end
 
@@ -73,6 +90,14 @@ RSpec.describe OrdersController, type: :controller do
             listing_id: listing.id,
             id: order.id
         end.to change{Notification.count}.by(1)
+      end
+
+      it "changes confirmed_at" do
+        expect do
+          post :confirm,
+            listing_id: listing.id,
+            id: order.id
+        end.to change{order.reload.confirmed_at}
       end
     end
 

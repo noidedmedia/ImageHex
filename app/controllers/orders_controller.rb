@@ -14,7 +14,10 @@ class OrdersController < ApplicationController
   def accept
     @order = @listing.orders.find(params[:id])
     authorize @order
-    attrs = {accepted: true}
+    attrs = {
+      accepted: true,
+      accepted_at: Time.current
+    }
     if @listing.quote_only?
       attrs[:final_price] = params[:quote_price]
     end
@@ -54,7 +57,8 @@ class OrdersController < ApplicationController
     result = true
     begin
       Order.transaction do
-        @order.update!(confirmed: true)
+        @order.update!(confirmed: true,
+                       confirmed_at: Time.current)
         Notification.create!(user: @listing.user,
                              kind: :order_confirmed,
                              subject: @order)
