@@ -59,27 +59,30 @@
   flex-flow: row wrap;
   width: 100%;
   padding: 15px;
-  align-items: stretch;
-  justify-content: center;
+  align-items: center;
 }
 
 .image-gallery-item {
   overflow: hidden;
-  flex: 1 1;
   flex-basis: auto;
   margin: 4px;
-  max-width: 300px;
+  width: calc(33.3333% - 8px);
+  max-height: 33vw;
 
   a {
     display: block;
-    height: 100%;
     width: 100%;
+    height: 100%;
 
     img {
       object-fit: cover;
       object-position: 50% 0%;
-      width: 100%;
-      height: 100%;
+      width: auto;
     }
+  }
+
+  @media #{$mobile} {
+    width: calc(100% - 8px);
+    max-height: 200vh;
   }
 }
