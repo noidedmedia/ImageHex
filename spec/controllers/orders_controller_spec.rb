@@ -10,6 +10,51 @@ RSpec.describe OrdersController, type: :controller do
       sign_in @user
     end
 
+    describe "POST #accept" do 
+      context "with priced listings" do
+        let(:listing) { create(:listing, user: @user) }
+        let(:order) do
+          create(:order,
+                 listing: listing,
+                 confirmed: true)
+        end
+
+        it "allows the user to accept the order" do
+          expect do
+            post :accept,
+              listing_id: listing.id,
+              id: order.id
+          end.to change{order.reload.accepted}.from(false).to(true)
+        end
+      end
+      context "with quote listings" do
+        let(:listing) { create(:quote_listing, user: @user) }
+        let(:order) do
+          create(:order,
+                 listing: listing,
+                 confirmed: true)
+        end
+
+        it "allows the user to give a price" do
+          expect do
+            post :accept,
+              listing_id: listing.id,
+              id: order.id,
+              quote_price: 500
+          end.to change{order.reload.final_price}.to(500)
+        end
+
+        it "gives the user a notification" do 
+          expect do
+            post :accept,
+              listing_id: listing.id,
+              id: order.id,
+              quote_price: 500
+          end.to change{Notification.count}.by(1)
+        end
+      end
+    end
+
     describe "POST #confirm" do
       let(:order) { create(:order,
                            listing: listing,
@@ -20,6 +65,14 @@ RSpec.describe OrdersController, type: :controller do
             listing_id: listing.id,
             id: order.id
         end.to change{order.reload.confirmed}.from(false).to(true)
+      end
+      
+      it "gives the artist a notification" do
+        expect do
+          post :confirm,
+            listing_id: listing.id,
+            id: order.id
+        end.to change{Notification.count}.by(1)
       end
     end
 

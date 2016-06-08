@@ -53,6 +53,7 @@ Rails.application.routes.draw do
     post 'confirm', on: :member
     resources :orders do
       post 'confirm', on: :member
+      post 'accept', on: :member
     end
   end
 

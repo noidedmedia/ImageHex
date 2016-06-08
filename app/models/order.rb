@@ -32,6 +32,11 @@ class Order < ActiveRecord::Base
     h
   end
 
+  def calculated_final_price
+    raise "Cannot calculate quote price" if self.listing.quote_only?
+    self.listing.base_price + options_price + references_price
+  end
+
   private
 
   def order_has_references
@@ -48,9 +53,7 @@ class Order < ActiveRecord::Base
 
   def calculate_final_price
     return unless final_price_needs_calculation?
-    self.final_price = (self.listing.base_price + 
-                        options_price +
-                        references_price)
+    self.final_price = calculated_final_price
   end
 
   def final_price_needs_calculation?

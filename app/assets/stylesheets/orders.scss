@@ -391,3 +391,21 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+.order-confirm-button {
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: $logo-green;
+  color: #fff;
+  display: block;
+  width: 25%;
+  text-align: center;
+
+  &::before {
+    font-size: 16px;
+    content: $icon-checkmark;
+    margin-right: 5px;
+  }
+}

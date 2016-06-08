@@ -11,6 +11,37 @@ class OrdersController < ApplicationController
     @order = @listing.orders.find(params[:id])
   end
 
+  def accept
+    @order = @listing.orders.find(params[:id])
+    authorize @order
+    attrs = {accepted: true}
+    if @listing.quote_only?
+      attrs[:final_price] = params[:quote_price]
+    end
+    result = true
+    begin
+      Order.transaction do
+        @order.update(attrs)
+        Notification.create(kind: :order_accepted,
+                            user: @order.user,
+                            subject: @order)
+      end
+    rescue ActiveRecord::RecordInvalid
+      result = false
+    end
+    respond_to do |format|
+      if result
+        format.html { redirect_to [@listing, @order] }
+        format.json { render json: {success: true} }
+      else
+        format.html do
+          edirect_to [@listing, @order], notice: "Could not confirm"
+        end
+        format.json { render json: {success: false} }
+      end
+    end
+  end
+
 
   def new
     @order = @listing.orders.build(user: current_user)
@@ -20,8 +51,20 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.find(params[:id])
     authorize @order
+    result = true
+    begin
+      Order.transaction do
+        @order.update!(confirmed: true)
+        Notification.create!(user: @listing.user,
+                             kind: :order_confirmed,
+                             subject: @order)
+      end
+    rescue ActiveRecord::RecordInvalid
+      result = false
+    end
+
     respond_to do |format|
-      if @order.update(confirmed: true)
+      if result
         format.html { redirect_to [@listing, @order], notice: "Confirmed" }
         format.json { render json: {success: true} }
       else

@@ -32,10 +32,23 @@
     <% end %>
   </ul>
 
-  <% if current_user == @order.listing.user %>
-    <% if @order.listing.quote_only? %>
+  <% if policy(@order).confirm? %>
+    <%= link_to confirm_listing_order_path(@listing, @order), 
+      method: :post, 
+      confirm: "Are you sure?",
+      class: "order-confirm-button" do %>
+      Confirm order
+      <% unless @order.listing.quote_only? %>
+        for $<%= price @order.calculated_final_price %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if @order.final_price %>
+    <%= price @order.final_price %>
+  <% elsif @order.listing.quote_only? %>
+    <% if current_user == @order.listing.user %>
       <%= react_component("QuotePicker") %>
     <% end %>
-
-  <% end %> 
+  <% end %>
 </div>

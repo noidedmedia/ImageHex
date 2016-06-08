@@ -12,6 +12,10 @@ class OrderPolicy < ApplicationPolicy
     end
   end
 
+  def accept?
+    @order.confirmed? && listing_owner?
+  end
+
   def create?
     ! listing_owner?
   end
