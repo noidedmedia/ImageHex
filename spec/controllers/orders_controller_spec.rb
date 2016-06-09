@@ -35,6 +35,7 @@ RSpec.describe OrdersController, type: :controller do
           end.to change{order.reload.accepted_at}
         end
       end
+
       context "with quote listings" do
         let(:listing) { create(:quote_listing, user: @user) }
         let(:order) do

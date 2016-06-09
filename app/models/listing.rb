@@ -36,7 +36,9 @@ class Listing < ActiveRecord::Base
 
   validate :listing_has_categories
 
+
   private
+
   def listing_has_categories
     if categories.blank?
       errors.add(:categories, "need at least one")

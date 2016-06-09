@@ -18,11 +18,14 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :listing, presence: true
+  validates :final_price,
+    presence: true,
+    :if => :accepted?
 
   validate :not_order_to_self
   validate :order_has_references
 
-  after_save :calculate_final_price
+  before_validation :calculate_final_price, if: :final_price_needs_calculation?
 
   def references_by_category
     h = Hash.new{|hash, key| hash[key] = []}

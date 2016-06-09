@@ -53,4 +53,18 @@
       <%= button_tag("Confirm Order") %>
     <% end %>
   <% end %>
+
+  <% if policy(@order).purchase? %>
+    <%= form_tag purchase_listing_order_path(@listing, @order),
+        method: :post do %>
+      <script
+        src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+        data-amount="<%= @order.final_price %>"
+        data-name="Commission from <%= escape_javascript(@listing.user.name) %>"
+        data-image="<%= @listing.user.avatar(:tiny) %>"
+        data-locale="auto"> </script>
+    <% end %>
+  <% end %>
 </div>

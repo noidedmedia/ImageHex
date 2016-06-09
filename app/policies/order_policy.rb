@@ -13,7 +13,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def purchase?
-    @order.confirmed && owned?
+    @order.confirmed? && @order.accepted? && owned?
   end
 
   def accept?

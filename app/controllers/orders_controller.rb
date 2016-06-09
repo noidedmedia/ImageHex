@@ -14,6 +14,17 @@ class OrdersController < ApplicationController
   def purchase
     @order = @listing.orders.find(params[:id])
     authorize @order
+    fee = FeeCalculator.new(@listing, @order).fee
+    c = Stripe::Charge.create({
+      amount: @order.final_price,
+      currency: "usd",
+      source: params[:stripeToken],
+      application_fee: fee,
+      destination: @listing.user.stripe_user_id
+    })
+    @order.update(charge_id: c["id"],
+      charged_at: Time.at(c["created"]).utc.to_datetime)
+    redirect_to [@listing, @order]
   end
 
   def accept

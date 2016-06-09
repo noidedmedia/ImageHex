@@ -11,10 +11,14 @@ class ListingsController < ApplicationController
   end
 
   def confirm
-    @listing = Listing.find(params[:id])
-    authorize @listing
-    @listing.update(confirmed: true)
-    redirect_to @listing
+    begin
+      @listing = Listing.find(params[:id])
+      authorize @listing
+      @listing.update(confirmed: true)
+      redirect_to @listing
+    rescue Pundit::NotAuthorizedError
+      redirect_to "/stripe/authorize"
+    end
   end
 
   def show
