@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608214239) do
+ActiveRecord::Schema.define(version: 20160610215523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -279,6 +279,8 @@ ActiveRecord::Schema.define(version: 20160608214239) do
     t.datetime "accepted_at"
     t.text     "charge_id"
     t.datetime "charged_at"
+    t.integer  "image_id"
+    t.datetime "filled_at"
   end
 
   add_index "orders", ["listing_id"], name: "index_orders_on_listing_id", using: :btree
@@ -448,6 +450,7 @@ ActiveRecord::Schema.define(version: 20160608214239) do
   add_foreign_key "order_reference_images", "order_references"
   add_foreign_key "order_references", "listing_categories"
   add_foreign_key "order_references", "orders"
+  add_foreign_key "orders", "images", on_delete: :restrict
   add_foreign_key "orders", "listings"
   add_foreign_key "orders", "users"
   add_foreign_key "subscriptions", "collections"

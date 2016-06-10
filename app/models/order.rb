@@ -2,6 +2,9 @@ class Order < ActiveRecord::Base
   belongs_to :listing
   belongs_to :user
 
+  belongs_to :image,
+    required: false
+
   has_many :order_options,
     class_name: "Order::Option",
     inverse_of: :order
@@ -24,6 +27,7 @@ class Order < ActiveRecord::Base
 
   validate :not_order_to_self
   validate :order_has_references
+  validate :image_is_eligable
 
   before_validation :calculate_final_price, if: :final_price_needs_calculation?
 
@@ -41,6 +45,14 @@ class Order < ActiveRecord::Base
   end
 
   private
+
+  def image_is_eligable
+    return unless self.image
+    unless self.image.created_at > self.charged_at
+      errors.add(:image,
+                 "was created before this order was charged")
+    end
+  end
 
   def order_has_references
     if references.blank?
