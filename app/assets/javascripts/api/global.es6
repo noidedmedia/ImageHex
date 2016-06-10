@@ -37,7 +37,8 @@ NM.getJSON = function(url, callback) {
   var f = fetch(url, {
     credentials: 'same-origin',
     headers: {
-      'Accept': "application/json"
+      'Accept': "application/json",
+      'Content-Type': "application/json"
     }
   }).then(parseJSON)
   if(callback) {
