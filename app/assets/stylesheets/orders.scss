@@ -229,6 +229,7 @@
   overflow: hidden;
   background-color: #fff;
   max-height: 600px;
+  border: 1px solid #ddd;
 
   @media #{$mobile} {
     width: 90vw;

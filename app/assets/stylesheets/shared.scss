@@ -44,3 +44,23 @@
     flex-basis: unset;
   }
 }
+
+.fields-section {
+  display: flex;
+  flex-direction: column; 
+
+  label {
+    display: block;
+  }
+
+  input {
+    border-radius: 3px;
+    display: block;
+    border: 1px solid #ddd;
+  }
+
+  textarea {
+    border-radius: 3px;
+    border: 1px solid #ddd;
+  }
+}
