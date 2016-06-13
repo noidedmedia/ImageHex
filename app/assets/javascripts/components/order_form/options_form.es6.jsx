@@ -53,7 +53,7 @@ const OptionSection = ({contained, option, add, remove}) => {
       checked={false}
       onChange={add.bind(null, option.id)} />;
   }
-  return <li className="option-fields">
+  return <li className="option-fields third-box">
     <div className="option-fields-header">
       <div>
         {checkbox}

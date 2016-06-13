@@ -3,7 +3,7 @@ class ImageField extends React.Component {
     super(props);
     this.state = {
       imgUrl: props.url,
-      containerClass: "reference-image-fields"
+      containerClass: "reference-image-fields third-box"
     };
   }
 

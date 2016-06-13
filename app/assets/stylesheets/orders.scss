@@ -45,12 +45,8 @@
 }
 
 .option-fields {
-  border: 1px solid #ddd;
-  border-radius: 3px;
   display: flex;
   flex-direction: column;
-  width: calc(33.33333% - 16px);
-  margin: 8px;
   padding: 15px;
   background-color: #fff;
 
@@ -121,7 +117,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 15px;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
 
 .reference-group-fields {
@@ -129,6 +125,10 @@
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 3px;
+
+  hr {
+    margin-top: 20px;
+  }
 }
 
 .reference-group-fields-header {
@@ -158,9 +158,26 @@
   flex-direction: column;
 }
 
+.add-reference-image-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 390px;
+  cursor: pointer;
+
+  span {
+    font-size: 72px;
+    text-align: center;
+    display: block;
+  }
+}
+
 .reference-remove-button {
   text-align: center;
-  min-width: 33.3333%;
+  width: calc(100% + 30px);
+  margin: 20px 0 -15px -15px;
+  border-radius: 0 0 3px 3px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -217,19 +234,14 @@
 }
 
 .reference-image-fields {
-  border-radius: 3px;
-  margin: 10px;
+  padding: 10px;
   transition: 0.5s ease-in-out;
   animation: add-reference-item 0.5s linear forwards;
-  width: calc(33.3333% - 20px);
-  padding: 10px;
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: #fff;
   max-height: 600px;
-  border: 1px solid #ddd;
 
   @media #{$mobile} {
     width: 90vw;
@@ -302,9 +314,14 @@
   align-items: baseline;
 }
 
-.reference-image-item {
-  width: calc(33.333333% - 16px);
+.third-box {
+  width: calc(33.33333% - 16px);
   margin: 8px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+}
+
+.reference-image-item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -322,14 +339,15 @@
 }
 
 .remove-reference-image-button {
-  margin-top: 4px;
-  padding: 2px;
+  padding: 5px;
+  margin: 10px 0px -10px -10px;
+  width: calc(100% + 20px);
   background-color: $logo-red;
   color: #fff;
-  width: 100%;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 14px;
   text-decoration: none;
+  border-radius: 0 0 3px 3px;
 
   &::before {
     margin-right: 4px;

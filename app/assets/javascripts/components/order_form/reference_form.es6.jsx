@@ -23,22 +23,26 @@ class ReferenceForm extends React.Component {
             defaultValue={reference.description} 
             className="reference-description" />
         </div>
-        <a onClick={this.props.removeSelf}
-          className="reference-remove-button">
-          <span>Remove</span>
-        </a>
       </div>
       <input type="hidden"
         name={fieldName("listing_category_id")}
         value={this.props.category.id} />
-      <a onClick={this.addImage.bind(this)}
-        href="#"
-        className="green-add-button">
-        Add Reference Image
-      </a>
+      <h3>Reference Images</h3>
+      <span>
+        Provide images that will help the artist fullfil this commission.
+      </span>
       <ul className="reference-image-list">
         {this.referenceImageFields()}
+        <li onClick={this.addImage.bind(this)}
+          className="add-reference-image-button third-box">
+          <span>+</span>
+        </li>
       </ul>
+      <hr/>
+      <a onClick={this.props.removeSelf}
+        className="reference-remove-button">
+        <span>Remove</span>
+      </a>
     </li>;
   }
 
