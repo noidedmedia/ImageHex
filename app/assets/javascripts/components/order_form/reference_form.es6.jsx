@@ -10,18 +10,8 @@ class ReferenceForm extends React.Component {
   }
 
   render() {
-    const {reference} = this.props;
-    const fieldName = (name) => (
-      `order[references_attributes][${reference.index}][${name}]`
-    );
-    const imgs = this.state.images.map((img, index) => {
-      return <ImageField
-        image={img}
-        baseFieldName={fieldName("images_attributes") + index}
-        removeSelf={this.removeImage.bind(this, index)}
-        key={img.id || img.key}/>;
-
-    });
+    const reference = this.props.reference;
+    const fieldName = this.fieldName.bind(this);
     return <li className="reference-group-fields">
       <div className="reference-group-fields-header">
         <div className="fields-section">
@@ -47,11 +37,32 @@ class ReferenceForm extends React.Component {
         Add Reference Image
       </a>
       <ul className="reference-image-list">
-        {imgs}
+        {this.referenceImageFields()}
       </ul>
-
-    
     </li>;
+  }
+
+  fieldName(name) {
+    const {reference} = this.props;
+    return `order[references_attributes][${reference.index}][${name}]`
+  }
+
+  referenceImageFields() {
+    const reference = this.props.reference;
+    const fieldName = this.fieldName.bind(this);
+    if(this.state.images.length !== 0) {
+      return this.state.images.map((img, index) => {
+        return <ImageField
+          image={img}
+          baseFieldName={fieldName("images_attributes") + index}
+          removeSelf={this.removeImage.bind(this, index)}
+          key={img.id || img.key}/>;
+
+      });
+    }
+    else {
+      return <div></div>;
+    }
   }
 
   addImage() {

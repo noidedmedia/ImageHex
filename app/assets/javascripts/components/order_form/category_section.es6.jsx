@@ -8,26 +8,36 @@ class CategorySection extends React.Component {
 
   render() {
     const {category} = this.props;
-    const refs = this.props.references.map((ref) => {
-      return <ReferenceForm
-        removeSelf={this.props.removeReference.bind(ref.index)}
-        reference={ref} 
-        key={ref.key}
-        category={category}
-        />;
-    });
 
     return <div className="category-section">
       <div className="category-header">
         <h3>{category.name}</h3>
         <div className="category-description markdown-description"
           dangerouslySetInnerHTML={this.descriptionHTML()} />
-        {this.addButton()}
       </div>
+      {this.addButton()}
       <ul className="reference-group-list">
-        {refs}
+        {this.refFields()}
       </ul>
     </div>
+  }
+
+  refFields() {
+    const {category} = this.props;
+    if(this.props.references.length == 0) {
+      // TODO: maybe add a "nothing here" thing?
+      return <div></div>; 
+    }
+    else {
+      return this.props.references.map((ref) => {
+        return <ReferenceForm
+          removeSelf={this.props.removeReference.bind(ref.index)}
+          reference={ref} 
+          key={ref.key}
+          category={category}
+          />;
+      });
+    }
   }
 
   addButton() {

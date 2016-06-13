@@ -1,6 +1,7 @@
 json.images @images do |img|
   json.extract! img,
     :reason,
+    :id,
     :sort_created_at
 
   json.huge_url img.f(:huge)
