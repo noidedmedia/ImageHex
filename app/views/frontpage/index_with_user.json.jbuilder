@@ -1,6 +1,8 @@
 json.images @images do |img|
   json.extract! img,
     :reason,
+    :reason_id,
+    :reason_type,
     :id,
     :sort_created_at
 

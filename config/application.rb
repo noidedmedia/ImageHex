@@ -13,7 +13,7 @@ Bundler.require(*Rails.groups)
 
 module ImageHex
   class Application < Rails::Application
-
+    config.react.addons = true
     config.active_record.raise_in_transactional_callbacks = true
     config.browserify_rails.commandline_options = %{-t [babelify --presets [es2015 react stage-3] ] --extension es6 --extension jsx}
   
