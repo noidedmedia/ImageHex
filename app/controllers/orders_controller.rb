@@ -128,6 +128,7 @@ class OrdersController < ApplicationController
   def reference_params
     [:description,
       :listing_category_id,
+      tag_ids: [],
       images_attributes: [reference_image_params]]
   end
 

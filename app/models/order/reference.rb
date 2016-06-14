@@ -17,7 +17,7 @@ class Order::Reference < ActiveRecord::Base
     dependent: :destroy
 
   has_many :tags,
-    class_name: "Tag",
+    class_name: "::Tag",
     through: :reference_tags
 
   validates :description,
