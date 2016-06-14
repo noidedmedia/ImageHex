@@ -18,6 +18,7 @@ class OptionsForm extends React.Component {
       return <input
         type="hidden"
         name="order[option_ids][]"
+        key={id}
         value={id} />;
     });
     return <div className="options-section">

@@ -11,6 +11,15 @@ class Order::Reference < ActiveRecord::Base
     foreign_key: :order_reference_id,
     dependent: :destroy
 
+  has_many :reference_tags,
+    class_name: "Order::Reference::Tag",
+    foreign_key: :order_reference_id,
+    dependent: :destroy
+
+  has_many :tags,
+    class_name: "Tag",
+    through: :reference_tags
+
   validates :description,
     presence: true
 
@@ -35,3 +44,4 @@ class Order::Reference < ActiveRecord::Base
 end
 
 require_dependency("order/reference/image.rb")
+require_dependency("order/reference/tag.rb")

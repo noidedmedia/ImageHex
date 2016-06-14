@@ -23,6 +23,10 @@ class ReferenceForm extends React.Component {
             defaultValue={reference.description} 
             className="reference-description" />
         </div>
+        <a onClick={this.props.removeSelf}
+          className="reference-remove-button">
+        <span>Remove</span>
+      </a>
       </div>
       <input type="hidden"
         name={fieldName("listing_category_id")}
@@ -34,15 +38,10 @@ class ReferenceForm extends React.Component {
       <ul className="reference-image-list">
         {this.referenceImageFields()}
         <li onClick={this.addImage.bind(this)}
-          className="add-reference-image-button third-box">
+          className="add-reference-image-button">
           <span>+</span>
         </li>
       </ul>
-      <hr/>
-      <a onClick={this.props.removeSelf}
-        className="reference-remove-button">
-        <span>Remove</span>
-      </a>
     </li>;
   }
 

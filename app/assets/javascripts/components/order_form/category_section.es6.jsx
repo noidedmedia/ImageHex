@@ -14,8 +14,11 @@ class CategorySection extends React.Component {
         <h3>{category.name}</h3>
         <div className="category-description markdown-description"
           dangerouslySetInnerHTML={this.descriptionHTML()} />
+        <div>Describe each {category.name} individually.</div>
+        {this.addButton()}
+
       </div>
-      {this.addButton()}
+      
       <ul className="reference-group-list">
         {this.refFields()}
       </ul>
@@ -46,7 +49,7 @@ class CategorySection extends React.Component {
         href="#"
         onClick={this.props.addReference}
         className="green-add-button">
-        Add Another
+        Add a {this.props.category.name}
       </a>;
     }
     return <div></div>;

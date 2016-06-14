@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610215523) do
+ActiveRecord::Schema.define(version: 20160614160945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,6 +255,13 @@ ActiveRecord::Schema.define(version: 20160610215523) do
 
   add_index "order_reference_images", ["order_reference_id"], name: "index_order_reference_images_on_order_reference_id", using: :btree
 
+  create_table "order_reference_tags", force: :cascade do |t|
+    t.integer  "order_reference_id", null: false
+    t.integer  "tag_id",             null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "order_references", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "listing_category_id"
@@ -448,6 +455,8 @@ ActiveRecord::Schema.define(version: 20160610215523) do
   add_foreign_key "order_options", "listing_options"
   add_foreign_key "order_options", "orders"
   add_foreign_key "order_reference_images", "order_references"
+  add_foreign_key "order_reference_tags", "order_references", on_delete: :cascade
+  add_foreign_key "order_reference_tags", "tags", on_delete: :cascade
   add_foreign_key "order_references", "listing_categories"
   add_foreign_key "order_references", "orders"
   add_foreign_key "orders", "images", on_delete: :restrict

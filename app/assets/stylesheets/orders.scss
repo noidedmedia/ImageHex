@@ -47,7 +47,7 @@
 .option-fields {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 16px;
 
   @media #{$mobile} {
     width: calc(100% - 16px);
@@ -75,8 +75,9 @@
 }
 
 .category-header {
-  margin-bottom: 10px;
   font-size: 14px;
+  background-color: #f9f9f9;
+  padding: 16px;
 
   h3 {
     font-size: 3.0rem;
@@ -87,8 +88,9 @@
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 14px;
-  margin-left: 30px;
-  max-width: 600px;
+  margin-left: 8px;
+  border-left: 2px solid #ddd;
+  padding-left: 8px;
 }
 
 .markdown-description {
@@ -111,17 +113,31 @@
 }
 
 .category-section {
-  box-shadow: 8px 5px 5px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.add-reference-group-button {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin: 8px;
   padding: 15px;
-  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+
+  span {
+    display: block;
+    font-size: 72px;
+    text-align: center;
+   
+  }
 }
 
 .reference-group-fields {
-  margin: 8px;
-  padding: 15px;
-  border: 1px solid #ddd;
+  padding: 16px;
   border-radius: 3px;
 
   hr {
@@ -161,7 +177,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-height: 390px;
+  height: 300px;
+  margin: 18px;
+  width: calc(33.3333% - 36px);
+  background-color: #fff;
   cursor: pointer;
 
   span {
@@ -172,28 +191,15 @@
 }
 
 .reference-remove-button {
+  font-size: 14px;
+  padding: 8px;
   text-align: center;
-  width: calc(100% + 30px);
-  margin: 20px 0 -15px -15px;
-  border-radius: 0 0 3px 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
-  span {
-    width: 100%;
-    display: block;
-    color: #fff;
-    background-color: $logo-red;
-    font-size: 14px;
-    padding: 5px;
-
-    &::before {
+  &::before {
       content: $icon-close;
       margin-right: 10px;
-    }
   }
+
 }
 
 .reference-image-list {
@@ -313,8 +319,8 @@
 }
 
 .third-box {
-  width: calc(33.33333% - 16px);
-  margin: 8px;
+  width: calc(33.33333% - 32px);
+  margin: 16px;
   border-radius: 3px;
   border: 1px solid #ddd;
 }
