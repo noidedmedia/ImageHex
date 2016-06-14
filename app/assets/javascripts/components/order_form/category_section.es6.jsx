@@ -34,12 +34,12 @@ class CategorySection extends React.Component {
     else {
       return this.props.references.map((ref) => {
         return <ReferenceForm
-          removeSelf={this.props.removeReference.bind(ref.index)}
+          removeSelf={this.props.removeReference.bind(null, ref.index)}
           reference={ref} 
           key={ref.key}
           category={category}
           />;
-      });
+      }).reverse();
     }
   }
 

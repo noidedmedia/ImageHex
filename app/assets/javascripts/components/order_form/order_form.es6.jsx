@@ -14,17 +14,17 @@ class OrderForm extends React.Component {
 
   render() {
     return <div>
+      <ReferenceSection
+        categories={this.props.listing.categories}
+        references={this.state.references}
+        addReference={this.addReference.bind(this)}
+        removeReference={this.removeReference.bind(this)} />
       <OptionsForm
         options={this.props.listing.options}
         optionIds={this.state.optionIds}
         addOption={this.addOption.bind(this)}
         removeOption={this.removeOption.bind(this)}
       />
-      <ReferenceSection
-        categories={this.props.listing.categories}
-        references={this.state.references}
-        addReference={this.addReference.bind(this)}
-        removeReference={this.removeReference.bind(this)} />
       <div className="order-form-footer">
         {this.getPrice()}
         {this.submitButton()}

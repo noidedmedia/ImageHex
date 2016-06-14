@@ -1,48 +1,76 @@
 import ImageField from './image_field.es6.jsx';
+import TagGroupFieldsEditor from '../tag_groups/fields_editor.es6.jsx';
 
 class ReferenceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: props.images || []
+      images: [...(props.images || []), {key: 0}],
+      className: "reference-group-fields",
+      style: undefined
     };
-    this.imageKey = 0;
+    this.imageKey = -1;
   }
 
   render() {
+    const categoryName = this.props.category.name;
     const reference = this.props.reference;
     const fieldName = this.fieldName.bind(this);
-    return <li className="reference-group-fields">
-      <div className="reference-group-fields-header">
-        <div className="fields-section">
-          <label htmlFor={fieldName("description")}
-            className="larger-label">
-            Description
-          </label>
-          <textarea name={fieldName("description")}
-            defaultValue={reference.description} 
-            className="reference-description" />
+    return <li className={this.state.className}>
+      <div className="fields-section">
+        <label htmlFor={fieldName("description")}
+          className="reference-group-section-header">
+          Description
+        </label>
+        <div className="reference-group-section-description">
+          Describe this {categoryName}
         </div>
-        <a onClick={this.props.removeSelf}
-          className="reference-remove-button">
-        <span>Remove</span>
-      </a>
+        <textarea name={fieldName("description")}
+          defaultValue={reference.description} 
+          className="reference-description" />
       </div>
       <input type="hidden"
         name={fieldName("listing_category_id")}
         value={this.props.category.id} />
-      <h3>Reference Images</h3>
-      <span>
-        Provide images that will help the artist fullfil this commission.
-      </span>
+      <div className="reference-group-section-header">
+        Reference Images
+      </div>
+      <div className="reference-group-section-description">
+        Provide images that will help the artist depict this {categoryName}
+      </div>
       <ul className="reference-image-list">
         {this.referenceImageFields()}
-        <li onClick={this.addImage.bind(this)}
-          className="add-reference-image-button">
-          <span>+</span>
-        </li>
       </ul>
+      <div className="reference-group-section-header">
+        Tags
+      </div>
+      <div className="reference-group-section-description">
+        Provide tags to describe this {categoryName}
+      </div>
+      <div className="reference-tag-group-editor">
+        <TagGroupFieldsEditor
+          initialTags={this.props.tags}
+          fieldName={fieldName("tag_ids")} />
+      </div>
+      <div className="column-right-align">
+        <a onClick={this.removeSelf.bind(this)}
+          href="#"
+          className="commission-remove-button">
+          Remove {categoryName}
+        </a>
+      </div>
     </li>;
+  }
+
+  removeSelf() {
+    const cb = () => {
+      setTimeout(() => {
+        this.props.removeSelf();
+      }, 1000);
+    };
+    this.setState({
+      className: "reference-group-fields removed"
+    }, cb);
   }
 
   fieldName(name) {
@@ -59,7 +87,9 @@ class ReferenceForm extends React.Component {
           image={img}
           baseFieldName={fieldName("images_attributes") + index}
           removeSelf={this.removeImage.bind(this, index)}
-          key={img.id || img.key}/>;
+          key={img.id || img.key}
+          addImage={this.addImage.bind(this)}
+          />;
 
       });
     }

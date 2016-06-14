@@ -3,46 +3,55 @@ class ImageField extends React.Component {
     super(props);
     this.state = {
       imgUrl: props.url,
-      containerClass: "reference-image-fields third-box"
+      containerClass: "reference-image-fields"
     };
   }
 
   render() {
-    const fieldName = (name) => (
-      `${this.props.baseFieldName}[${name}]`
-    );
-    const removeButton = <a
-      href="#"
-      onClick={this.remove.bind(this)}
-      className="remove-reference-image-button">
-      Remove
-    </a>;
+    const fieldName = (name) => {
+      if(this.props.imgURL) {
+        return `${this.props.baseFieldName}[${name}]`;
+      }
+      else {
+        return "";
+      }
+    }
+    var className = this.state.containerClass;
     var preview;
     if(this.state.imgURL) {
-      preview = <div>
+      className = className + " active";
+      preview = <div className="preview-inner">
         <img src={this.state.imgURL} />
       </div>;
     }
     else {
-      preview = <div>Click or drag to upload</div>;
+      className = className + " inactive";
+      preview = <div className="preview-inner">
+        <div>Click or drag to upload</div>
+      </div>;
     }
-    return <li className={this.state.containerClass}>
-      <div className="reference-preview-section">
-        <div className="reference-image-preview">
-          {preview}
-        </div>
-        <input type="file"
-          name={fieldName("img")}
-          onChange={this.change.bind(this)} />
+    return <li className={className}>
+      <div className="reference-image-preview-section">
+       {preview}
+        <input name={fieldName("img")}
+          onChange={this.change.bind(this)}
+          type="file" />
       </div>
-      <div className="fields-section">
-        <label htmlFor={fieldName("description")}
-          className="larger-label">
-          Description (optional)
+      <div className="reference-image-info-section">
+        <label 
+          className="larger-label"
+          for={fieldName("description")}>
+          Description
         </label>
         <textarea name={fieldName("description")} />
+        <div className="column-right-align">
+          <a href="#"
+            onClick={this.remove.bind(this)}
+            className="commission-remove-button">
+            Remove Reference Image
+          </a>
+        </div>
       </div>
-      {removeButton}
     </li>;
   }
 
@@ -56,6 +65,7 @@ class ImageField extends React.Component {
     }, false);
 
     if(file) {
+      this.props.addImage();
       reader.readAsDataURL(file);
     }
   }
@@ -67,7 +77,7 @@ class ImageField extends React.Component {
       // Kill after animation finishes
       window.setTimeout(() => {
         this.props.removeSelf();
-      }, 500);
+      }, 990);
     });
   }
 }
