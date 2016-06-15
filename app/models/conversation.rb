@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 class Conversation < ActiveRecord::Base
   has_many :conversation_users, inverse_of: :conversation
+
   has_many :users, through: :conversation_users
+
   has_many :messages
+
   accepts_nested_attributes_for :conversation_users
+
+  belongs_to :order,
+    required: false
 
   def self.with_unread_status_for(u)
     raise "Not a user" unless u.is_a? User

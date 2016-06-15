@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614160945) do
+ActiveRecord::Schema.define(version: 20160615155806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20160614160945) do
     t.datetime "updated_at",                                        null: false
     t.datetime "last_message_at"
     t.string   "name",            default: "Untitled Conversation", null: false
+    t.integer  "order_id"
   end
 
   create_table "curatorships", force: :cascade do |t|
@@ -439,6 +440,7 @@ ActiveRecord::Schema.define(version: 20160614160945) do
   add_foreign_key "comments", "users"
   add_foreign_key "conversation_users", "conversations", on_delete: :cascade
   add_foreign_key "conversation_users", "users", on_delete: :cascade
+  add_foreign_key "conversations", "orders", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
   add_foreign_key "image_reports", "images", on_delete: :cascade

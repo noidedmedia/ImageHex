@@ -17,6 +17,8 @@ class Order < ActiveRecord::Base
     class_name: "Order::Reference",
     inverse_of: :order
 
+  has_one :conversation
+
   accepts_nested_attributes_for :references
 
   validates :user, presence: true
@@ -30,6 +32,8 @@ class Order < ActiveRecord::Base
   validate :image_is_eligable
 
   before_validation :calculate_final_price, if: :final_price_needs_calculation?
+
+  after_save :create_conversation, if: :needs_conversation_creation
 
   def references_by_category
     h = Hash.new{|hash, key| hash[key] = []}
@@ -45,6 +49,16 @@ class Order < ActiveRecord::Base
   end
 
   private
+
+  def needs_conversation_creation
+    self.conversation.nil? && self.confirmed?
+  end
+
+  def create_conversation
+    Conversation.create(name: "Order Conversation",
+                        users: [self.user, self.listing.user],
+                        order: self)
+  end
 
   def image_is_eligable
     return unless self.image

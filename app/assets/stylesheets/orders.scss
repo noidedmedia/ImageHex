@@ -108,7 +108,7 @@ $fields-text-color: rgba(255, 255, 255, 0.9);
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
-  padding: ($standard-padding/2);
+  padding: ($standard-padding / 2);
   margin-top: $standard-padding;
   color: #000;
   text-decoration: none;
@@ -287,7 +287,7 @@ $fields-text-color: rgba(255, 255, 255, 0.9);
   div {
     display: flex;
     align-items: center;
-    jusitfy-content: center;
+    justify-content: center;
     width: 10%;
   }
 

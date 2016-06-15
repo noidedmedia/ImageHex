@@ -34,6 +34,16 @@ RSpec.describe OrdersController, type: :controller do
               id: order.id
           end.to change{order.reload.accepted_at}
         end
+
+        it "creates a conversation" do
+          expect do
+            post :accept,
+              listing_id: listing.id,
+              id: order.id
+          end.to change{Conversation.count}.by(1)
+          expect(Conversation.last.user_ids).to contain_exactly(@user.id,
+                                                                order.user.id)
+        end
       end
 
       context "with quote listings" do
