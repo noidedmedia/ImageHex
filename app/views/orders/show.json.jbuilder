@@ -6,6 +6,8 @@ json.listing do
     :quote_only,
     :created_at
 
+  json.username @listing.user.name
+
   json.options @listing.options do |option|
     json.extract! option,
       :id,

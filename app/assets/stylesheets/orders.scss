@@ -1,6 +1,10 @@
 @import "variables";
 
 $standard-padding: 20px;
+$heading-background-color: #272727;
+$heading-text-color: rgba(255, 255, 255, 0.8);
+$fields-background-color: #444;
+$fields-text-color: rgba(255, 255, 255, 0.9);
 
 #order-form {
   min-height: calc(100vh - 200px);
@@ -28,14 +32,40 @@ $standard-padding: 20px;
   }
 }
 
+.order-form-overall-description {
+  margin-bottom: $standard-padding;
+
+  .heading {
+    padding: $standard-padding;
+    background-color: $heading-background-color;
+    color: $heading-text-color;
+    font-size: 14px;
+
+    label {
+      font-weight: bold;
+      font-size: 2.4rem;
+    }
+  }
+
+  .lower-section {
+    padding: $standard-padding;
+    background-color: $fields-background-color;
+    color: $fields-text-color;
+
+    textarea {
+      width: 100%;
+    }
+  }
+}
+
 .category-section {
   margin-bottom: $standard-padding;
 }
 
 .category-header {
-  background-color: #272727;
-  color: rgba(255, 255, 255, 0.8);
+  background-color: $heading-background-color;
   padding: $standard-padding;
+  color: $heading-text-color;
 }
 
 .markdown-description {
@@ -43,11 +73,10 @@ $standard-padding: 20px;
 }
 
 .reference-group-fields {
-  background-color: #444;
-  color: rgba(255, 255, 255, 0.9);
+  background-color: $fields-background-color;
+  color: $fields-text-color;
   padding: calc(#{$standard-padding} / 2) #{$standard-padding};
   position: relative;
-  margin: $standard-padding $standard-padding;
   opacity: 1;
 
   &.removed {
@@ -223,24 +252,26 @@ $standard-padding: 20px;
 
 .options-section-header {
   padding: $standard-padding;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: #272727;
+  color: $heading-text-color;
+  background-color: $heading-background-color;
 }
 
 .option-fields-list {
-  margin-left: $standard-padding;
-  margin-right: $standard-padding;
   display: flex;
   flex-flow: row wrap;
+  color: $fields-text-color;
+  background-color: $fields-background-color;
 }
 
 .option-fields {
-  color: rgba(255, 255, 255, 0.9);
-  background-color: #444;
-  margin: $standard-padding 0;
+  
   padding: $standard-padding;
   flex-basis: 0 0 50%;
-  width: calc(50% - (#{$standard-padding} * 2));
+  width: calc(50% - (#{$standard-padding} / 2));
+
+  &:nth-child(odd) {
+    margin-right: $standard-padding;
+  }
 
   .description {
     width: 90%;

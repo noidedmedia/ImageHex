@@ -14,6 +14,22 @@ class OrderForm extends React.Component {
 
   render() {
     return <div>
+      <div className="order-form-overall-description">
+        <div className="heading">
+          <label htmlFor="order[description]">
+            Description
+          </label>
+          <div className="description-squared">
+            Provide an overall description of what you would like
+            {" " + this.props.listing.username} to create. 
+          </div>
+        </div>
+        <div className="lower-section">
+          <textarea 
+            name="order[description]"
+            defaultValue={this.props.description} />
+        </div>
+      </div>
       <ReferenceSection
         categories={this.props.listing.categories}
         references={this.state.references}
