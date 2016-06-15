@@ -2,6 +2,8 @@
 Rails.application.routes.draw do
   mount Apipony::Engine => '/api/documentation'
 
+  mount ActionCable.server => '/cable'
+
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
 
