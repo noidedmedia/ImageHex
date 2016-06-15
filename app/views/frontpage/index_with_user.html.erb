@@ -4,11 +4,6 @@
     <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
   </div>
 
-  <ul class="frontpage-subscription-container">
-    <% @images.each do |img| %>
-      <%= render 'subscription_image', img: img %>
-    <% end %>
-  </ul>
-
-  <%= will_paginate @images %>
+  <%= react_component("Dashboard",
+      render(file: "frontpage/index_with_user.json.jbuilder")) %>
 </div>

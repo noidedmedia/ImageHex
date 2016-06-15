@@ -1,72 +1,236 @@
 @import "variables";
 
-.commission-products-list {
+// INDEX
+.listings-description {
+  max-width: 700px;
+  margin-top: 10px;
+  padding: 10px;
+  margin: auto;
+  font-size: 2.0rem;
+  text-align: center;
+}
+
+#listings-list {
+  max-width: 500px;
+  padding: 10px;
+  display: block;
+  margin: auto;
+}
+
+.listings-list-item {
+  font-size: 14px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 5px;
-}
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 
-.commission-products-list-item {
-  padding: 5px;
-  margin: 5px;
-  flex-grow: 1;
-  flex-basis: 0;
+  &:not(:last-of-type) {
+    border-bottom: 3px solid $header-color;
+  }
 
-  > a {
+  a {
     text-decoration: none;
-    color: $black;
+    color: $header-color;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 2.0rem;
+    font-weight: normal;
   }
 }
 
-.background-type-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.background-type {
-  flex-grow: 1;
-  text-align: center;
-  font-size: 2.0rem;
-  padding: 5px;
-  width: 33%;
-
-  &.active {
-    background-color: #0e0;
-    color: #fff;
-  }
-}
-
-.product-example-images {
+.listings-list-user {
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  span {
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: center;
+    font-size: 1.5rem;
+  }
+
+  img {
+    max-height: 40px;
+  }
 }
 
-.all-example-images {
-  flex-wrap: wrap;
-  justify-content: space-around;
+.two-column-label {
+  color: #333;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    display: block;
+    flex-shrink: 1;
+  }
 }
 
-.product-example-images-item {
-  height: 200px;
-  max-width: 30vw;
+.options-item {
+  margin-top: 5px;
+
+  &:not(:last-of-type) {
+    margin-bottom: 5px;
+  }
+}
+
+.option-header {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    color: #666;
+  }
+}
+
+.option-inner {
+  padding-left: 5%;
+}
+
+// SHOW
+.listing-show-wrapper {
+  max-width: 600px;
+  margin: 10px;
+}
+
+
+// FORMS
+
+.button-side-label {
+  margin-right: 5px;
+}
+
+.price-field-section {
+  transition: 0.5s ease-in-out;
+  max-height: 40px;
   overflow: hidden;
+
+  &.inactive {
+    max-height: 0;
+    flex-basis: 0;
+  }
+}
+
+.options-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-fields-section {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+
+  background-color: #ddd;
+
+  label {
+    font-size: 14px;
+    color: #333;
+  }
+
+  > div {
+    margin-top: 5px;
+  }
+}
+
+
+.listing-form {
+  max-width: 700px;
+  margin: auto;
+}
+
+.row-fields-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  justify-content: space-around;
+
+  div {
+    display: block;
+    flex-grow: 1;
+  }
+
+  .price-field-section {
+    .active {
+      height: auto;
+
+      @media #{$mobile} {
+        max-height: 60px;
+      }
+    }
+
+    .inactive {
+      height: auto;
+      width: 0;
+      flex-grow: 0;
+
+      @media #{$mobile} {
+        max-height: 0;
+      }
+    }
+  }
+
+  @media #{$mobile} {
+    flex-direction: column;
+
+    &.around div {
+      flex-basis: unset;
+    }
+  }
+}
+
+
+.warning-message {
+  color: #fff;
+  font-size: 14px;
+  transition: 0.5s ease-in-out;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 5px;
-}
+  overflow: hidden;
+  max-height: 0;
 
-.product-user-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
+  &.active {
+    padding: 10px;
+    margin: 10px;
+    max-height: 100px;
+    background-color: $logo-red;
+  }
 
-.product-user-avatar {
-  width: 50px;
-  height: auto;
+  .warning-message-icon::before {
+    content: $icon-warning;
+    margin-right: 10px;
+  }
+
+  .warning-message-inner {
+    max-width: 45%;
+    text-align: center;
+  }
+
+  @media #{$mobile} {
+    &.active {
+      max-height: 150px;
+    }
+
+    .warning-message-inner {
+      max-width: 90%;
+    }
+  }
 }

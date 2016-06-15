@@ -1,0 +1,11 @@
+<li class="category-section">
+  <div class="category-header">
+    <h2><%= category.name %></h2>
+    <div class="categroy-description markdown-description">
+      <%= markdown_parse category.description %>
+    </div>
+  </div>
+  <ul class="reference-group-list">
+    <%= render partial: "reference", collection: references, as: :reference %>
+  </ul>
+</li>

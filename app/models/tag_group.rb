@@ -29,15 +29,6 @@ class TagGroup < ActiveRecord::Base
   validates :image, presence: true
   validates :tags, presence: true
 
-  ##############
-  # ATTRIBUTES #
-  ##############
-  attr_accessor :tag_ids
-
-  #############
-  # CALLBACKS #
-  #############
-  before_validation :save_tag_ids
   #################
   # CLASS METHODS #
   #################
@@ -48,9 +39,5 @@ class TagGroup < ActiveRecord::Base
 
   private
 
-  ##
-  # Converts a comma-seperated list of tags into the actual tags
-  def save_tag_ids
-    self.tags = Tag.where(id: tag_ids)
-  end
+  
 end

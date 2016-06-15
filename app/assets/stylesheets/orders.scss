@@ -1,0 +1,297 @@
+@import "variables";
+
+$standard-padding: 20px;
+$heading-background-color: #272727;
+$heading-text-color: rgba(255, 255, 255, 0.8);
+$fields-background-color: #444;
+$fields-text-color: rgba(255, 255, 255, 0.9);
+
+#order-form {
+  min-height: calc(100vh - 200px);
+  padding-top: $standard-padding;
+}
+
+#order-form-inner {
+  max-width: 750px;
+  margin: auto;
+}
+
+.order-form-header {
+  padding: $standard-padding;
+  margin-bottom: $standard-padding;
+  font-weight: normal;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.order-form-overall-description {
+  margin-bottom: $standard-padding;
+
+  .heading {
+    padding: $standard-padding;
+    background-color: $heading-background-color;
+    color: $heading-text-color;
+    font-size: 14px;
+
+    label {
+      font-weight: bold;
+      font-size: 2.4rem;
+    }
+  }
+
+  .lower-section {
+    padding: $standard-padding;
+    background-color: $fields-background-color;
+    color: $fields-text-color;
+
+    textarea {
+      width: 100%;
+    }
+  }
+}
+
+.category-section {
+  margin-bottom: $standard-padding;
+}
+
+.category-header {
+  background-color: $heading-background-color;
+  padding: $standard-padding;
+  color: $heading-text-color;
+}
+
+.markdown-description {
+  font-size: 14px;
+}
+
+.reference-group-fields {
+  background-color: $fields-background-color;
+  color: $fields-text-color;
+  padding: calc(#{$standard-padding} / 2) #{$standard-padding};
+  position: relative;
+  opacity: 1;
+
+  &.removed {
+    opacity: 0;
+    transition: 1s ease-in-out;
+  }
+
+}
+
+.reference-group-section-header {
+  font-size: 18px;
+  margin-bottom: 1px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.reference-group-section-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 5px;
+}
+
+.column-right-align {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.commission-remove-button {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  padding: ($standard-padding / 2);
+  margin-top: $standard-padding;
+  color: #000;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@keyframes remove-reference-image {
+  0% {
+    max-width: 100%;
+    max-height: 240px;
+  }
+
+  50% {
+    max-width: 0;
+    max-height: 240px;
+  }
+
+  100% {
+    max-height: 0;
+    max-width: 0;
+  }
+}
+
+.reference-image-fields {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $standard-padding;
+  overflow: hidden;
+
+  @media #{$mobile} {
+    flex-direction: column;
+  }
+
+  &.inactive {
+    max-width: 233px;
+
+    @media #{$mobile} {
+      max-width: none;
+    }
+
+    .reference-image-info-section {
+      max-width: 0;
+      overflow: hidden;
+    }
+  }
+
+  &.active {
+    max-width: 100%;
+
+    .reference-image-info-section {
+      padding-left: $standard-padding;
+      max-width: 100%;
+      flex-grow: 1;
+
+      @media #{$mobile} {
+        padding: 0;
+
+        textarea {
+          min-height: 250px;
+        }
+      }
+    }
+  }
+
+  &.removed {
+    animation: 1s linear remove-reference-image;
+    animation-iteration-count: 1;
+  }
+}
+
+.reference-image-info-section {
+  transition: 1s ease-in-out;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .larger-label {
+    padding-bottom: 5px;
+  }
+
+  textarea {
+    flex-grow: 1;
+  }
+}
+
+.reference-image-preview-section {
+  width: 233px;
+  height: 233px;
+  position: relative;
+  cursor: pointer;
+
+  @media #{$mobile} {
+    width: 100%;
+    height: calc(100vw - (2 * #{$standard-padding}));
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+}
+
+.preview-inner {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  background-color: #f2f2f2;
+  color: #000;
+  cursor: pointer;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.reference-tag-group-editor {
+  background-color: #ddd;
+  color: #000;
+  max-width: 500px;
+  margin: auto;
+
+  input {
+    height: 40px;
+    font-size: 1.4rem;
+  }
+}
+
+.options-section-header {
+  padding: $standard-padding;
+  color: $heading-text-color;
+  background-color: $heading-background-color;
+}
+
+.option-fields-list {
+  display: flex;
+  flex-flow: row wrap;
+  color: $fields-text-color;
+  background-color: $fields-background-color;
+}
+
+.option-fields {
+  
+  padding: $standard-padding;
+  flex-basis: 0 0 50%;
+  width: calc(50% - (#{$standard-padding} / 2));
+
+  &:nth-child(odd) {
+    margin-right: $standard-padding;
+  }
+
+  .description {
+    width: 90%;
+    margin-left: auto;
+  }
+}
+
+.option-fields-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+  }
+
+  h3 {
+    flex-grow: 1;
+  }
+}

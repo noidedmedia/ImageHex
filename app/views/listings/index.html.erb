@@ -1,4 +1,7 @@
-<ul class="commission-products-list">
-  <%= render partial: "stub", collection: @products, as: :product %>
+<div class="listings-description">
+  Commission art from artists around the world, simply, easily, and safely.
+</div>
+
+<ul id="listings-list">
+  <%= render @listings %>
 </ul>
-<%= will_paginate @products %> 

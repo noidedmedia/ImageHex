@@ -14,5 +14,8 @@ FactoryGirl.define do
     nsfw_language false
     source { Faker::Internet.url }
     allow_new_creators true
+    factory :image_with_creator do
+      created_by_uploader true
+    end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324153735) do
+ActiveRecord::Schema.define(version: 20160615155806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,66 +75,6 @@ ActiveRecord::Schema.define(version: 20160324153735) do
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "commission_backgrounds", force: :cascade do |t|
-    t.integer  "commission_offer_id", null: false
-    t.text     "description"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "commission_backgrounds", ["commission_offer_id"], name: "index_commission_backgrounds_on_commission_offer_id", using: :btree
-
-  create_table "commission_images", force: :cascade do |t|
-    t.integer  "image_id"
-    t.integer  "commission_offer_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "commission_images", ["commission_offer_id"], name: "index_commission_images_on_commission_offer_id", using: :btree
-  add_index "commission_images", ["image_id"], name: "index_commission_images_on_image_id", using: :btree
-
-  create_table "commission_offers", force: :cascade do |t|
-    t.integer  "listing_id"
-    t.integer  "user_id",                          null: false
-    t.integer  "total_price"
-    t.text     "description"
-    t.datetime "charged_at"
-    t.boolean  "accepted"
-    t.datetime "accepted_at"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.boolean  "confirmed",        default: false, null: false
-    t.datetime "confirmed_at"
-    t.boolean  "charged",          default: false, null: false
-    t.datetime "due_at"
-    t.text     "stripe_charge_id"
-    t.boolean  "filled",           default: false, null: false
-    t.datetime "filled_at"
-  end
-
-  add_index "commission_offers", ["listing_id"], name: "index_commission_offers_on_listing_id", using: :btree
-  add_index "commission_offers", ["user_id"], name: "index_commission_offers_on_user_id", using: :btree
-
-  create_table "commission_subject_tags", force: :cascade do |t|
-    t.integer  "tag_id",                null: false
-    t.integer  "commission_subject_id", null: false
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "commission_subject_tags", ["commission_subject_id"], name: "index_commission_subject_tags_on_commission_subject_id", using: :btree
-  add_index "commission_subject_tags", ["tag_id"], name: "index_commission_subject_tags_on_tag_id", using: :btree
-
-  create_table "commission_subjects", force: :cascade do |t|
-    t.integer  "commission_offer_id", null: false
-    t.text     "description"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "commission_subjects", ["commission_offer_id"], name: "index_commission_subjects_on_commission_offer_id", using: :btree
-
   create_table "conversation_users", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "conversation_id"
@@ -148,14 +88,12 @@ ActiveRecord::Schema.define(version: 20160324153735) do
   add_index "conversation_users", ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
 
   create_table "conversations", force: :cascade do |t|
-    t.integer  "commission_offer_id"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.datetime "last_message_at"
-    t.string   "name",                default: "Untitled Conversation", null: false
+    t.string   "name",            default: "Untitled Conversation", null: false
+    t.integer  "order_id"
   end
-
-  add_index "conversations", ["commission_offer_id"], name: "index_conversations_on_commission_offer_id", using: :btree
 
   create_table "curatorships", force: :cascade do |t|
     t.integer  "user_id"
@@ -226,33 +164,49 @@ ActiveRecord::Schema.define(version: 20160324153735) do
 
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
-  create_table "listing_example_images", force: :cascade do |t|
+  create_table "listing_categories", force: :cascade do |t|
     t.integer  "listing_id"
+    t.integer  "price",       null: false
+    t.integer  "max_count",   null: false
+    t.integer  "free_count",  null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "name",        null: false
+    t.text     "description", null: false
+  end
+
+  add_index "listing_categories", ["listing_id"], name: "index_listing_categories_on_listing_id", using: :btree
+
+  create_table "listing_images", force: :cascade do |t|
     t.integer  "image_id"
+    t.integer  "listing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "listing_example_images", ["image_id"], name: "index_listing_example_images_on_image_id", using: :btree
-  add_index "listing_example_images", ["listing_id", "image_id"], name: "unique_examples_images", unique: true, using: :btree
-  add_index "listing_example_images", ["listing_id"], name: "index_listing_example_images_on_listing_id", using: :btree
+  add_index "listing_images", ["image_id"], name: "index_listing_images_on_image_id", using: :btree
+  add_index "listing_images", ["listing_id"], name: "index_listing_images_on_listing_id", using: :btree
+
+  create_table "listing_options", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "price"
+    t.string   "name",        default: "", null: false
+    t.text     "description",              null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "listing_options", ["listing_id"], name: "index_listing_options_on_listing_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
-    t.integer  "user_id",                             null: false
-    t.string   "name"
-    t.text     "description"
-    t.integer  "base_price",          default: 1000,  null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "included_subjects",   default: 0,     null: false
-    t.boolean  "include_background",  default: false, null: false
-    t.integer  "subject_price"
-    t.integer  "background_price"
-    t.integer  "maximum_subjects"
-    t.boolean  "offer_background",    default: true,  null: false
-    t.boolean  "offer_subjects",      default: true,  null: false
-    t.integer  "weeks_to_completion", default: 4,     null: false
-    t.boolean  "confirmed",           default: false, null: false
+    t.integer  "user_id"
+    t.integer  "base_price"
+    t.text     "description",                 null: false
+    t.string   "name",                        null: false
+    t.boolean  "quote_only",  default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "confirmed",   default: false, null: false
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
@@ -278,6 +232,67 @@ ActiveRecord::Schema.define(version: 20160324153735) do
   end
 
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
+
+  create_table "order_options", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "listing_option_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "order_options", ["listing_option_id"], name: "index_order_options_on_listing_option_id", using: :btree
+  add_index "order_options", ["order_id"], name: "index_order_options_on_order_id", using: :btree
+
+  create_table "order_reference_images", force: :cascade do |t|
+    t.integer  "order_reference_id"
+    t.text     "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
+  end
+
+  add_index "order_reference_images", ["order_reference_id"], name: "index_order_reference_images_on_order_reference_id", using: :btree
+
+  create_table "order_reference_tags", force: :cascade do |t|
+    t.integer  "order_reference_id", null: false
+    t.integer  "tag_id",             null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "order_references", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "listing_category_id"
+    t.text     "description",         null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "order_references", ["listing_category_id"], name: "index_order_references_on_listing_category_id", using: :btree
+  add_index "order_references", ["order_id"], name: "index_order_references_on_order_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "confirmed",    default: false, null: false
+    t.integer  "final_price"
+    t.boolean  "accepted",     default: false, null: false
+    t.datetime "confirmed_at"
+    t.datetime "accepted_at"
+    t.text     "charge_id"
+    t.datetime "charged_at"
+    t.integer  "image_id"
+    t.datetime "filled_at"
+  end
+
+  add_index "orders", ["listing_id"], name: "index_orders_on_listing_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "subject_references", force: :cascade do |t|
     t.integer  "commission_subject_id"
@@ -419,32 +434,36 @@ ActiveRecord::Schema.define(version: 20160324153735) do
 
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade
-  add_foreign_key "background_references", "commission_backgrounds", on_delete: :cascade
   add_foreign_key "collection_images", "collections", on_delete: :cascade
   add_foreign_key "collection_images", "images", on_delete: :cascade
   add_foreign_key "collection_images", "users"
   add_foreign_key "comments", "users"
-  add_foreign_key "commission_backgrounds", "commission_offers"
-  add_foreign_key "commission_images", "commission_offers", on_delete: :cascade
-  add_foreign_key "commission_images", "images", on_delete: :cascade
-  add_foreign_key "commission_offers", "listings"
-  add_foreign_key "commission_subject_tags", "commission_subjects", on_delete: :cascade
-  add_foreign_key "commission_subjects", "commission_offers"
   add_foreign_key "conversation_users", "conversations", on_delete: :cascade
   add_foreign_key "conversation_users", "users", on_delete: :cascade
-  add_foreign_key "conversations", "commission_offers", on_delete: :nullify
+  add_foreign_key "conversations", "orders", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
-  add_foreign_key "disputes", "commission_offers"
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"
-  add_foreign_key "listing_example_images", "images", on_delete: :cascade
-  add_foreign_key "listing_example_images", "listings", on_delete: :cascade
+  add_foreign_key "listing_categories", "listings", on_delete: :cascade
+  add_foreign_key "listing_images", "images", on_delete: :cascade
+  add_foreign_key "listing_images", "listings", on_delete: :cascade
+  add_foreign_key "listing_options", "listings", on_delete: :cascade
+  add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
-  add_foreign_key "subject_references", "commission_subjects", on_delete: :cascade
+  add_foreign_key "order_options", "listing_options"
+  add_foreign_key "order_options", "orders"
+  add_foreign_key "order_reference_images", "order_references"
+  add_foreign_key "order_reference_tags", "order_references", on_delete: :cascade
+  add_foreign_key "order_reference_tags", "tags", on_delete: :cascade
+  add_foreign_key "order_references", "listing_categories"
+  add_foreign_key "order_references", "orders"
+  add_foreign_key "orders", "images", on_delete: :restrict
+  add_foreign_key "orders", "listings"
+  add_foreign_key "orders", "users"
   add_foreign_key "subscriptions", "collections"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "tag_changes", "tags", on_delete: :cascade

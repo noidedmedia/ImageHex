@@ -26,7 +26,7 @@ Rails.application.configure do
     url: ":s3_alias_url",
     s3_host_alias: "i.imagehex.com",
     bucket: ENV['S3_BUCKET_NAME'],
-    s3_region: "us-standard"
+    s3_region: "us-east-1"
   }
 
   # Settings specified here will take precedence over those in config/application.rb.

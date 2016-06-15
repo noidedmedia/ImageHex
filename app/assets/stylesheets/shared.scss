@@ -1,0 +1,65 @@
+@import "variables";
+
+.green-add-button {
+  text-decoration: none;
+  background-color: $logo-green;
+  color: #fff;
+  font-size: 14px;
+  display: block;
+  margin-top: 10px;
+  padding: 5px;
+  width: 33.3333%;
+  text-align: center;
+
+  &::before {
+    font-family: 'imagehexicons';
+    padding-right: 5px;
+    content: $icon-plus;
+  }
+
+  @media #{$mobile} {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.larger-label {
+  font-size: 14px;
+}
+
+.remove-text-red {
+  font-size: 14px;
+  color: $logo-red;
+  text-decoration: none;
+
+  &::before {
+    margin-right: 5px;
+    content: $icon-close;
+    color: $logo-red;
+  }
+
+  @media #{$mobile} {
+    flex-basis: unset;
+  }
+}
+
+.fields-section {
+  display: flex;
+  flex-direction: column; 
+
+  label {
+    display: block;
+  }
+
+  input {
+    border-radius: 3px;
+    display: block;
+    border: 1px solid #ddd;
+  }
+
+  textarea {
+    border-radius: 3px;
+    border: 1px solid #ddd;
+  }
+}

@@ -1,91 +1,49 @@
-# frozen_string_literal: true
 class Listing < ActiveRecord::Base
-  belongs_to :user
-  has_many :offers, class_name: "CommissionOffer"
 
-  has_many :listing_example_images,
-           inverse_of: :listing
+  scope :confirmed, -> { where(confirmed: true) }
 
-  has_many :example_images,
-           through: :listing_example_images,
-           class_name: "Image",
-           source: :image
 
-  validates :base_price, numericality: { greater_than: 300 }
+  belongs_to :user, required: true
 
-  validates :subject_price,
-            presence: true,
-            numericality: { greater_than: 0 },
-            if: :offer_subjects?
+  has_many :categories,
+    class_name: 'Listing::Category',
+    inverse_of: :listing,
+    autosave: true
 
-  validates :background_price,
-            presence: true,
-            numericality: { greater_than: 0 },
-            if: :charge_for_background?
+  accepts_nested_attributes_for :categories
 
-  validates :user, presence: true
+  has_many :options, 
+    class_name: 'Listing::Option',
+    inverse_of: :listing,
+    autosave: true
 
-  validates :weeks_to_completion,
-            presence: true,
-            numericality: { greater_than: 0, less_than: 52 }
+  accepts_nested_attributes_for :options
 
-  validates :maximum_subjects,
-            numericality: { greater_than: 1 },
-            allow_nil: true,
-            unless: :offer_subjects?
+  has_many :listing_images,
+    class_name: 'Listing::Image',
+    inverse_of: :listing
 
-  validate :example_images_created_by_user
+  has_many :images, through: :listing_images
 
-  scope :allows_background, lambda {
-    where(offer_background: true)
-  }
+  accepts_nested_attributes_for :listing_images
 
-  scope :confirmed, lambda {
-    where(confirmed: true)
-  }
+  has_many :orders
 
-  def self.for_search(params)
-    c = self
-    c = c.allows_background if params["has_background"].to_s == "true"
-    c
-  end
+  validates :base_price, presence: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 },
+    unless: :quote_only?
 
-  ##
-  # Small hack to make example images easier
-  def example_image_ids
-    example_images.pluck(:id)
-  end
 
-  def example_image_ids=(ar)
-    raise ArgumentError.new("must be passed an array") unless ar.is_a? Array
-    self.example_images = Image.where(id: ar)
-  end
+  validate :listing_has_categories
 
-  def allow_further_subjects?
-    offer_subjects?
-  end
 
-  def includes_subjects?
-    included_subjects > 0
-  end
+  private
 
-  def allow_background?
-    include_background? || offer_background?
-  end
-
-  ##
-  # You have to pay for backgrounds if they are allowed
-  # but not free
-  def charge_for_background?
-    allow_background? && !include_background?
-  end
-
-  ##
-  # TODO: refactor this so it's faster
-  def example_images_created_by_user
-    user = self.user
-    unless example_images.all? { |i| i.created_by?(user) }
-      errors.add(:example_images, "must be created by you")
+  def listing_has_categories
+    if categories.blank?
+      errors.add(:categories, "need at least one")
     end
   end
 end
+
+require_dependency 'listing/image'

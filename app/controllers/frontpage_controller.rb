@@ -8,12 +8,16 @@ class FrontpageController < ApplicationController
   ##
   # Root of our site.
   def index
-    if current_user && !current_user.image_feed.blank?
+    if current_user
+      after = if params[:fetch_after]
+                Time.at(params[:fetch_after].to_f)
+              else
+                Time.zone.now
+              end
       @images = current_user.image_feed
         .includes(:creators)
-        .paginate(page: page, per_page: per_page)
-      @page = page
-      @per_page = per_page
+        .where("sort_created_at < ?", after)
+        .limit(5)
       render "index_with_user"
     else
       @images = Image.all

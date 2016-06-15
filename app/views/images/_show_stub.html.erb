@@ -4,7 +4,13 @@
       <% images.each_with_index do |img, i| %>
         <li class="image-gallery-item">
           <%= link_to image_path(img) do %>
-            <%= image_tag img.f(:medium) %>
+            <picture>
+              <source srcset="<%= img.f(:large) %>"
+                media="(min-width: 1550px)">
+              <source srcset="<%= img.f(:medium) %>" 
+                media="(min-width: 930px)"> 
+              <%= image_tag img.f(:medium) %>
+            </picture>
           <% end %>
         </li>
       <% end %> 

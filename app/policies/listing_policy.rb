@@ -1,25 +1,32 @@
-# frozen_string_literal: true
 class ListingPolicy < ApplicationPolicy
-  def initialize(user, product)
+  def initialize(user, listing)
+    @listing = listing
     @user = user
-    @product = product
   end
 
-  def create?
-    @user
+  def show?
+    true
   end
 
-  def confirm?
-    verified_user_info?
+  def new?
+    true
   end
 
   def update?
-    @product.user == @user
+    owned?
+  end
+
+  def confirm?
+    ! @user.stripe_user_id.nil?
+  end
+
+  def create?
+    true
   end
 
   protected
-
-  def verified_user_info?
-    @user&.stripe_user_id && @user&.stripe_publishable_key
+  def owned?
+    @listing.user == @user
   end
+
 end

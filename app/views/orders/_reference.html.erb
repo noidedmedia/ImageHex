@@ -1,0 +1,25 @@
+<li class="reference-group-fields">
+  <div class="reference-group-header">
+    <h3>Description</h3>
+    <div class="description markdown-description">
+      <%= markdown_parse reference.description %>
+    </div>
+  </div>
+  <div class="references-outer">
+    <h3>Reference Images</h3>
+    <ul class="reference-images-list">
+      <% reference.images.each do |img| %>
+        <li class="reference-image-item">
+          <div class="img-wrapper">
+            <%= link_to img.img.url do %>
+              <%= image_tag img.img(:medium) %>
+            <% end %>
+          </div>
+          <div class="description">
+            <%= markdown_parse img.description %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</li>

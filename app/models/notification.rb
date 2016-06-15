@@ -32,19 +32,15 @@ class Notification < ActiveRecord::Base
   # comment_replied_to:: User comment has been replied to.
   # mentioned:: User has been mentioned in a comment.
   # new_subscriber:: User has a new subscriber.
-  # commission_offer_confirmed:: 
-  # commission_offer_accepted:: 
-  # commission_offer_charged:: 
-  # commission_offer_filled:: 
   enum kind: [:uploaded_image_commented_on,
               :subscribed_image_commented_on,
               :comment_replied_to,
               :mentioned,
               :new_subscriber,
-              :commission_offer_confirmed,
-              :commission_offer_accepted,
-              :commission_offer_charged,
-              :commission_offer_filled]
+              :order_confirmed,
+              :order_accepted,
+              :order_charged]
+
 
   def subject=(sub)
     to_write = nil
@@ -62,11 +58,15 @@ class Notification < ActiveRecord::Base
         id: sub.id,
         type: :user
       }
-    when CommissionOffer
+    when Order
       to_write = {
-        id: sub.id,
-        type: :commission_offer,
-        user_name: sub.user.name
+        listing_id: sub.listing.id,
+        listing_name: sub.listing.name,
+        type: :order,
+        customer_id: sub.user.id,
+        customer_name: sub.user.name,
+        seller_id: sub.listing.user.id,
+        seller_name: sub.listing.user.name
       }
     end
     self[:subject] = to_write

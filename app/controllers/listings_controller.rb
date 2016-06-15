@@ -1,100 +1,94 @@
-# frozen_string_literal: true
 class ListingsController < ApplicationController
   include Pundit
-  after_action :verify_authorized, except: [:index, :show, :search]
   before_action :ensure_user, except: [:index, :show]
 
-  def search
-    @products = Listing.all
-      .confirmed
-      .joins(:example_images)
-      .paginate(page: page, per_page: per_page)
-      .preload(:example_images)
-      .merge(Image.for_content(content_pref))
-      .for_search(params)
-      .uniq
-  end
-
   def index
-    @products = Listing.all
+    @listings = Listing.all
       .confirmed
-      .joins(:example_images)
-      .preload(:example_images)
-      .merge(Image.for_content(content_pref))
+      .order(created_at: :desc)
+      .includes(:images)
       .paginate(page: page, per_page: per_page)
-      .uniq
-  end
-
-  def new
-    @product = Listing.new
-    authorize(@product)
   end
 
   def confirm
-    @product = Listing.find(params[:id])
-    authorize @product
-    @product.update(confirmed: true)
-    redirect_to @product
-  rescue Pundit::NotAuthorizedError
-    redirect_to "/stripe/authorize",
-                warning: "Confirm your stripe first"
+    begin
+      @listing = Listing.find(params[:id])
+      authorize @listing
+      @listing.update(confirmed: true)
+      redirect_to @listing
+    rescue Pundit::NotAuthorizedError
+      redirect_to "/stripe/authorize"
+    end
   end
 
   def show
-    @product = Listing.find(params[:id])
-    @example_images = @product.example_images
-      .for_content(content_pref)
+    @listing = Listing.find(params[:id])
   end
 
-  def create
-    @product = Listing.new(listing_params)
-    authorize @product
+  def new
+    @listing = Listing.new
+  end
+
+  def edit
+    @listing = Listing.find(params[:id])
+    authorize @listing
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    authorize @listing
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product }
-        format.json { render action: 'show' }
+      if @listing.update(listing_params)
+        format.html { redirect_to @listing }
+        format.json { render 'show' }
       else
-        format.html { render 'new' }
-        format.json { render json: @product.errors, status: 422 }
+        format.html { render 'edit', errors: @listing.errors }
+        format.html { render json: @listing.errors,
+          status: :unprocessible_entity }
       end
     end
   end
 
-  def edit
-    @product = Listing.find(params[:id])
-    authorize @product
-  end
-
-  def update
-    @product = Listing.find(params[:id])
-    authorize @product
+  def create
+    @listing = Listing.new(listing_params)
     respond_to do |format|
-      if @product.update(listing_params)
-        format.html { redirect_to @product }
-        format.json { render action: "show" }
+      if @listing.save
+        format.json { render 'show' }
+        format.html { redirect_to @listing }
       else
-        format.html { render "edit" }
-        format.json { render json: @product.errors, status: 422 }
+        format.html { render 'new' }
+        format.json { render json: @listing.errors, status: 422 }
       end
     end
   end
 
   protected
-
   def listing_params
     params.require(:listing)
       .permit(:name,
               :description,
               :base_price,
-              :included_subjects,
-              :subject_price,
-              :include_background,
-              :background_price,
-              :offer_background,
-              :offer_subjects,
-              :maximum_subjects,
-              :weeks_to_completion,
-              example_image_ids: [])
+              :quote_only,
+              options_attributes: [option_attributes],
+              categories_attributes: [categories_attributes])
       .merge(user_id: current_user.id)
   end
+
+  def option_attributes
+    [:price,
+      :name,
+      :description,
+      :id]
+  end
+
+
+  def categories_attributes
+    [:price,
+      :max_count,
+      :free_count,
+      :name,
+      :description,
+      :id]
+  end
+
 end

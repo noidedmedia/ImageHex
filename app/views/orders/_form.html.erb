@@ -1,0 +1,21 @@
+<% unless @order.errors.empty? %>
+  <div class="order-errors">
+    There <%= @order.errors.count > 1 ? "were some errors" : "was an error" %> proccessing your order:
+    <ul class="order-errors">
+      <% @order.errors.full_messages.each do |err| %>
+        <li><%= err %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for [@listing, @order], html: {id: "order-form", multipart: true} do |f| %>
+  <div id="order-form-inner">
+    <h3 class="order-form-header">
+      Order For <%= link_to @listing.name, @listing %>
+    </h3>
+
+    <%= react_component "OrderForm",
+      render(file: "orders/show.json.jbuilder") %>
+  </div>
+<% end %>

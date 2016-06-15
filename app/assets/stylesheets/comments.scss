@@ -10,10 +10,11 @@
 .pagination-button {
   cursor: pointer;
   background-color: $header-color;
-  color: white;
+  color: #fff;
   padding: 3px;
   margin: 3px;
   font-size: 1.5rem;
+
   &.disabled {
     background-color: #333;
     cursor: default;
@@ -24,8 +25,8 @@
   text-align: center;
   align-self: flex-end;
   font-size: 1.5rem;
-  padding: 3px 5px 3px 5px;
-  margin: 3px 5px 3px 5px;
+  padding: 3px 5px;
+  margin: 3px 5px;
 }
 
 

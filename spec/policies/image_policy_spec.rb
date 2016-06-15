@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_lsteral: true
 require 'spec_helper'
 
 describe ImagePolicy do
