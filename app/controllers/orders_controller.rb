@@ -27,6 +27,20 @@ class OrdersController < ApplicationController
     redirect_to [@listing, @order]
   end
 
+  def fill
+    @order = @listing.orders.find(params[:id])
+    authorize @order
+    respond_to do |format|
+      if @order.update(image_id: params[:image_id])
+        format.html { redirect_to @order }
+        format.json { render 'show' }
+      else
+        format.html { render 'show', errors: @order.errors }
+        format.json { render json: @order.errors, status: 401 }
+      end
+    end
+  end
+
   def accept
     @order = @listing.orders.find(params[:id])
     authorize @order

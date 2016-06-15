@@ -55,6 +55,7 @@ Rails.application.routes.draw do
       post 'confirm', on: :member
       post 'accept', on: :member
       post 'purchase', on: :member
+      post 'fill', on: :member
     end
   end
 

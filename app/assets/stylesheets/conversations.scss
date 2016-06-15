@@ -3,7 +3,7 @@
 .conversation-stub {
   display: flex;
   flex-direction: row;
-  max-width: 600px;
+  max-width: 1000px;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -41,8 +41,8 @@
 }
 
 .message-group-avatar {
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
 
   img {
     max-width: 100%;
