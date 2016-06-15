@@ -59,13 +59,16 @@ class ImageField extends React.Component {
     const file = event.target.files[0];
     var reader = new FileReader();
     reader.addEventListener("load", () => {
+      if(! this.state.imgURL) {
+        this.props.addImage();
+      }
+
       this.setState({
         imgURL: reader.result
       });
     }, false);
 
     if(file) {
-      this.props.addImage();
       reader.readAsDataURL(file);
     }
   }

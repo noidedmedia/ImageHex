@@ -107,6 +107,7 @@ class TagGroupEditor extends React.Component {
         onKeyDown={this.onKeyUp.bind(this)}
         value={this.state.inputValue}
         ref="groupInput"
+        placeholder="Add a tag"
       />;
     }
 

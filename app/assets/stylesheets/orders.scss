@@ -1,7 +1,10 @@
 @import "variables";
 
+$standard-padding: 20px;
+
 #order-form {
   min-height: calc(100vh - 200px);
+  padding-top: $standard-padding;
 }
 
 #order-form-inner {
@@ -10,7 +13,8 @@
 }
 
 .order-form-header {
-  padding: 10px;
+  padding: $standard-padding;
+  margin-bottom: $standard-padding;
   font-weight: normal;
   text-align: center;
 
@@ -25,23 +29,25 @@
 }
 
 .category-section {
-  margin-bottom: 10px;
+  margin-bottom: $standard-padding;
 }
 
 .category-header {
   background-color: #272727;
   color: rgba(255, 255, 255, 0.8);
-  padding: 10px;
+  padding: $standard-padding;
 }
 
-.reference-group-list {
-  background-color: #444;
-  color: rgba(255, 255, 255, 0.9);
+.markdown-description {
+  font-size: 14px;
 }
 
 .reference-group-fields {
-  padding: 5px 10px;
+  background-color: #444;
+  color: rgba(255, 255, 255, 0.9);
+  padding: calc(#{$standard-padding} / 2) #{$standard-padding};
   position: relative;
+  margin: $standard-padding $standard-padding;
   opacity: 1;
 
   &.removed {
@@ -49,14 +55,10 @@
     transition: 1s ease-in-out;
   }
 
-  &:not(:last-of-type) {
-    border-bottom: 10px solid #272727;
-  }
 }
 
 .reference-group-section-header {
   font-size: 18px;
-  margin-top: 10px;
   margin-bottom: 1px;
   color: rgba(255, 255, 255, 0.95);
 }
@@ -77,8 +79,8 @@
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
-  padding: 10px;
-  margin-top: 10px;
+  padding: ($standard-padding/2);
+  margin-top: $standard-padding;
   color: #000;
   text-decoration: none;
   white-space: nowrap;
@@ -104,7 +106,7 @@
 .reference-image-fields {
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin-bottom: $standard-padding;
   overflow: hidden;
 
   @media #{$mobile} {
@@ -112,7 +114,7 @@
   }
 
   &.inactive {
-    max-width: 240px;
+    max-width: 233px;
 
     @media #{$mobile} {
       max-width: none;
@@ -128,7 +130,7 @@
     max-width: 100%;
 
     .reference-image-info-section {
-      padding-left: 10px;
+      padding-left: $standard-padding;
       max-width: 100%;
       flex-grow: 1;
 
@@ -163,14 +165,14 @@
 }
 
 .reference-image-preview-section {
-  width: 240px;
-  height: 240px;
+  width: 233px;
+  height: 233px;
   position: relative;
   cursor: pointer;
 
   @media #{$mobile} {
     width: 100%;
-    height: calc(100vw - 20px);
+    height: calc(100vw - (2 * #{$standard-padding}));
   }
 
   input {
@@ -204,5 +206,61 @@
     width: auto;
     height: auto;
     object-fit: cover;
+  }
+}
+
+.reference-tag-group-editor {
+  background-color: #ddd;
+  color: #000;
+  max-width: 500px;
+  margin: auto;
+
+  input {
+    height: 40px;
+    font-size: 1.4rem;
+  }
+}
+
+.options-section-header {
+  padding: $standard-padding;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #272727;
+}
+
+.option-fields-list {
+  margin-left: $standard-padding;
+  margin-right: $standard-padding;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.option-fields {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: #444;
+  margin: $standard-padding 0;
+  padding: $standard-padding;
+  flex-basis: 0 0 50%;
+  width: calc(50% - (#{$standard-padding} * 2));
+
+  .description {
+    width: 90%;
+    margin-left: auto;
+  }
+}
+
+.option-fields-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    jusitfy-content: center;
+    width: 10%;
+  }
+
+  h3 {
+    flex-grow: 1;
   }
 }

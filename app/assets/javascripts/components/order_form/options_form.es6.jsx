@@ -22,7 +22,9 @@ class OptionsForm extends React.Component {
         value={id} />;
     });
     return <div className="options-section">
-      <h3>Options</h3>
+      <div className="options-section-header">
+        <h3>Options</h3>
+      </div>
       {fields}
       <ul className="option-fields-list">
         {o}
@@ -54,7 +56,7 @@ const OptionSection = ({contained, option, add, remove}) => {
       checked={false}
       onChange={add.bind(null, option.id)} />;
   }
-  return <li className="option-fields third-box">
+  return <li className="option-fields">
     <div className="option-fields-header">
       <div>
         {checkbox}

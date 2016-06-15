@@ -14,7 +14,6 @@ class CategorySection extends React.Component {
         <h3>{category.name}</h3>
         <div className="category-description markdown-description"
           dangerouslySetInnerHTML={this.descriptionHTML()} />
-        <div>Describe each {category.name} individually.</div>
         {this.addButton()}
 
       </div>
@@ -49,7 +48,8 @@ class CategorySection extends React.Component {
         href="#"
         onClick={this.props.addReference}
         className="green-add-button">
-        Add a {this.props.category.name}
+        Add {this.props.references.length > 0 ? " another " : " a "} 
+        {this.props.category.name}
       </a>;
     }
     return <div></div>;
