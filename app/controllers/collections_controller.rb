@@ -39,11 +39,7 @@ class CollectionsController < ApplicationController
   # to the homepage.
   def subscribe
     current_user.subscribe! Collection.find(params[:id])
-    redirect_to :back
-
-    ## in case our session doesn't have a back
-  rescue ActionController::RedirectBackError
-    redirect_to root_path
+    redirect_back fallback_location: root_path
   end
 
   ##

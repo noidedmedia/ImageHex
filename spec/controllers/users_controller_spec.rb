@@ -104,12 +104,12 @@ RSpec.describe UsersController, type: :controller do
       it "only works if the user has twofactor enabled" do
         @user[:otp_required_for_login] = false
         @user[:encrypted_otp_secret] = nil
-        get :verify_twofactor, id: @user
+        get :verify_twofactor, params: { id: @user } 
         expect(response).to_not be_success
       end
       it "only works if the user hasn't verified" do
         @user[:two_factor_verified] = true
-        get :verify_twofactor, id: @user
+        get :verify_twofactor, params: { id: @user } 
         expect(response).to_not be_success
       end
     end

@@ -1,6 +1,7 @@
 class Order::Reference < ActiveRecord::Base
   belongs_to :order,
-    inverse_of: :references
+    inverse_of: :references,
+    required: true
 
   belongs_to :category,
     class_name: "Listing::Category",
@@ -37,7 +38,7 @@ class Order::Reference < ActiveRecord::Base
   private
 
   def reference_on_applicable_category
-    unless order.listing == category.listing
+    unless self.order&.listing == self.category&.listing
       errors.add(:category, "must be on this order's listing")
     end
   end

@@ -21,9 +21,11 @@ RSpec.describe ListingsController, type: :controller do
 
     describe "#post create" do
       it "makes a new listing" do
-        expect {
-          post :create, listing: listing_attributes
-        }.to change{@user.listings.count}.by(1)
+        expect do
+          post :create, params: {
+            listing: listing_attributes
+          }
+        end.to change{@user.listings.count}.by(1)
       end
     end
   end

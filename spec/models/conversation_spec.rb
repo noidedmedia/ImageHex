@@ -59,7 +59,7 @@ RSpec.describe Conversation, type: :model do
       conv_b.mark_read!(user_a)
       conv_a.messages.create(user: user_b,
                              body: "test")
-      convs = user_a.conversations.with_unread_status_for(user_a).uniq
+      convs = user_a.conversations.with_unread_status_for(user_a).distinct
       ca = convs.to_a.select(&:has_unread).first
       cb = convs.to_a.reject(&:has_unread).first
       expect(ca.id).to eq(conv_a.id)
