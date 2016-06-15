@@ -1,12 +1,12 @@
 # frozen_string_literal: true
-ruby '2.3.0'
+ruby '2.3.1'
 source 'https://rubygems.org'
 
 ##
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', git: "https://github.com/rails/rails.git"
+gem 'rails', "~> 5.0.0.beta4"
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
@@ -35,7 +35,7 @@ gem 'devise', '>= 4.0.0.rc1'
 ##
 # https://github.com/tinfoil/devise-two-factor
 # Two-factor authentication support for devise
-gem 'devise-two-factor', git: 'https://github.com/connorshea/devise-two-factor.git', branch: 'patch3'
+gem 'devise-two-factor', '~> 3.0.0'
 
 ##
 # https://github.com/samvincent/rqrcode-rails3
