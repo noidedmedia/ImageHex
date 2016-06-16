@@ -5,10 +5,6 @@ class ConversationsController < ApplicationController
   rescue_from Conversation::UserNotInConversation, with: :unauthorized
 
   def show
-    @conversation = Conversation.find(params[:id])
-    @last_read = @conversation.last_read_for(current_user)
-    @messages = @conversation.messages.order(created_at: :desc)
-      .limit(25).reverse
   end
 
   ##
@@ -20,8 +16,6 @@ class ConversationsController < ApplicationController
     @conversations = current_user
       .conversations
       .with_unread_status_for(current_user)
-      .includes(:users)
-      .uniq
   end
 
   def read

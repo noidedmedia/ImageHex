@@ -96,14 +96,10 @@ class CommentsView extends React.Component {
       fetching: false
     });
   }
+
+  componentWillUnmount() {
+    console.log("Removing the comments");
+  }
 }
 
-$(document).on("page:change", function() {
-  var box = $(".comments-container");
-  if(box.length === 0) {
-    console.log("Length zero, returning.");
-    return;
-  }
-  ReactDOM.render(<CommentsView
-    url={box.data("url")} />, box[0]);
-});
+window.CommentsView = CommentsView;

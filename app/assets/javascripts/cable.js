@@ -7,8 +7,8 @@
 
 (function() {
   this.App || (this.App = {});
-
-  App.cable = ActionCable.createConsumer();
-  console.log("We have a cable I think?");
+  if(window.USER_SIGNED_IN) {
+    App.cable = ActionCable.createConsumer();
+  }
 
 }).call(this);

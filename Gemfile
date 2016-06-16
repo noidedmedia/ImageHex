@@ -26,6 +26,8 @@ gem 'stripe'
 # Use Omniauth with Stripe
 gem 'oauth2'
 
+
+gem 'coffee-rails'
 ##
 # https://github.com/plataformatec/devise
 # Devise is "a flexible authentication solution for Rails based on Warden".
@@ -110,10 +112,8 @@ gem 'browserify-rails'
 
 
 ##
-# https://github.com/rails/turbolinks
-# Turbolinks makes following links in your web application faster.
-# Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', git: "https://github.com/turbolinks/turbolinks-classic.git"
+# https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5.0.0.beta'
 ##
 # https://github.com/kossnocorp/jquery.turbolinks
 # Fixes issues with JQuery and Turbolinks.

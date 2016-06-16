@@ -49,11 +49,6 @@ class HeaderSearch extends React.Component {
   }
 }
 
-document.addEventListener("page:change", function() {
-  var hs = document.getElementById("header-search");
-  console.log("header search container:", hs);
-  ReactDOM.render(<HeaderSearch />,
-               hs);
-});
+window.HeaderSearch = HeaderSearch;
 
 export default HeaderSearch;

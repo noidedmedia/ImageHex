@@ -1,114 +1,69 @@
+import * as Types from './action_types.es6';
 import NM from '../../api/global.es6';
+import {normalizeConversations, normalizeUsers} from './normalizers.es6';
 
-function startSending(){
+export function goOffline() {
   return {
-    type: "start_sending"
+    type: Types.GO_OFFLINE
   };
 }
 
-function endSending() {
+export function goOnline() {
   return {
-    type: "end_sending"
+    type: Types.GO_ONLINE
   };
 }
 
-function addMessages(messages) {
+export function addUsersNormalized(users) {
   return {
-    type: "add_messages",
-    messages: messages
+    type: Types.ADD_USERS,
+    data: users
   };
 }
 
-function sendMessage(message) {
-  return function(dispatch, getState) {
-    dispatch(startSending());
-    var {messages, id} = getState();
-    var lastUpdate = messages[messages.length - 1].created_at;
+export function getConversations() {
+  return async function(dispatch, getState) {
+    const convs = await NM.getJSON("/conversations/");
+    let normalized = normalizeConversations(convs);
 
-    return NM.postJSON(`/conversations/${id}/messages`, {
-                      message: {body: message}})
-      .then(response => {
-        dispatch(endSending());
-        var fetchTime = new Date(lastUpdate.getTime() + 1000);
-        dispatch(fetchAfter(fetchTime));
-      });
-  }
+    dispatch({
+      type: Types.ADD_CONVERSATIONS,
+      data: normalized
+    });
+
+    let userExtract = NM.flatten(convs.conversations.map((c) => c.users));
+    let userNormalized = normalizeUsers(userExtract);
+
+    dispatch(addUsersNormalized(userNormalized));
+
+    let readTimes = {};
+    convs.conversations.forEach((c) => {
+      readTimes[c.id] = new Date(c.last_read_time);
+    });
+
+    dispatch({
+      type: Types.READ_CONVERSATIONS,
+      data: readTimes
+    });
+  };
 }
 
-function startFetch() {
+export function activate() {
   return {
-    type: "start_fetching"
+    type: Types.ACTIVATE
   };
 }
 
-function endFetch() {
+export function deactivate() {
   return {
-    type: "end_fetching"
+    type: Types.DEACTIVATE
   };
 }
 
-/**
- * Async action to fetch all messages created after a given date.
- * If no date passed, fetch all messages created after the most recent message.
- */
-function fetchAfter(date) {
-  return function(dispatch, getState) {
-    console.log("NM is",NM);
-    dispatch(startFetch());
-    var { messages, id } = getState();
-    if(date === undefined) {
-      date = messages[messages.length - 1].created_at;
-      date = new Date(date.getTime() + 1000);
-    }
-    var time = date.getTime() / 1000;
-    return NM.getJSON(`/conversations/${id}/messages?after=${time}`)
-      .then(json => {
-        dispatch(endFetch());
-        json.forEach(m => m.created_at = new Date(m.created_at));
-        dispatch(addMessages(json));
-      });
-  }
-}
-
-function fetchBefore(date) {
-  return function(dispatch, getState) {
-    console.log("Fetching before");
-    dispatch(startFetch());
-    var { messages, id } = getState();
-    if(date === undefined) {
-      date = messages[0].created_at;
-      date = new Date(date.getTime() - 1000);
-    }
-    var time = Math.round(date.getTime() / 1000);
-    return NM.getJSON(`/conversations/${id}/messages?before=${time}`)
-      .then(json => {
-        dispatch(endFetch());
-        json.forEach(m => m.created_at = new Date(m.created_at));
-        dispatch(addMessages(json));
-      });
-  };
-}
-
-function setTimeToPoll(time) {
+export function changeConversation(id) {
+  console.log("Change conversation to",id);
   return {
-    type: "set_poll_time",
-    time: time
+    type: Types.CHANGE_ACTIVE_CONVERSATION,
+    conversation_id: id
   };
 }
-
-function pollUpdate(time) {
-  return function(dispatch, getState) {
-    var newTime = time - 1;
-    if(newTime <= 0) {
-      dispatch(fetchAfter())
-      dispatch(pollUpdate(30));
-    }
-    else {
-      dispatch(setTimeToPoll(newTime));
-      window.setTimeout(() => {
-        dispatch(pollUpdate(newTime));
-      }, 1000);
-    }
-  }
-}
-export { sendMessage, fetchAfter, pollUpdate, fetchBefore }

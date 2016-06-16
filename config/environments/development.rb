@@ -1,4 +1,5 @@
 Rails.application.configure do
+  config.active_job.queue_adapter = :async
   Bullet.enable = true
   Bullet.alert = false
   Bullet.console = true

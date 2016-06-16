@@ -4,9 +4,6 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
-  # Serve websocket cable requests in-process
-  # mount ActionCable.server => '/cable'
-
   get "/@:id" => 'users#show'
   patch "/@:id" => "users#update"
   delete "/@:id" => "users#destroy"
@@ -29,6 +26,7 @@ Rails.application.routes.draw do
   ##################
   # RESTFUL ROUTES #
   ##################
+  
 
   resources :disputes
 

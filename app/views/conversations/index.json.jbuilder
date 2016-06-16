@@ -1,2 +1,4 @@
 # frozen_string_literal: true
-json.partial! "conversation", collection: @conversations, as: :conversation
+json.conversations do
+  json.partial! "conversation", collection: @conversations, as: :conversation
+end

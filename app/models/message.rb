@@ -4,6 +4,8 @@ class Message < ActiveRecord::Base
   belongs_to :conversation,
     touch: :last_message_at
 
+  after_create :notify_cables
+
   ##
   # The next two methods are kind of hacks
   # Basically, we somtimes select a calcualted READ value in SQL, and
@@ -40,4 +42,11 @@ class Message < ActiveRecord::Base
   def self.created_before(timestamp)
     where("messages.created_at < ?",timestamp)
   end
+
+  private
+
+  def notify_cables
+    NewMessageJob.perform_now(self)
+  end
+
 end

@@ -4,6 +4,20 @@ import 'isomorphic-fetch';
 var NM = {};
 
 window.NM = NM;
+
+NM.flatten = function(array) {
+  var ret = [];
+  array.forEach((elem) => {
+    if(Array.isArray(elem)) {
+      ret = ret.concat(NM.flatten(elem));
+    }
+    else {
+      ret.push(elem);
+    }
+  });
+  return ret;
+}
+
 /**
  * Chunk an array. Works like the Ruby method of the same name, with one
  * difference: if you pass a string, it will do elem[string] for each object.

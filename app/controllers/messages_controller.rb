@@ -18,13 +18,17 @@ class MessagesController < ApplicationController
     @conversation.mark_read! current_user
   end
 
+  def new
+    @message = @conversation.messages.new
+  end
+
   def create
     @message = @conversation.messages.build(message_params)
     respond_to do |format|
       if @message.save
         # Assume the user had read this conversation if htey are chatting in it
         @conversation.mark_read! current_user
-        format.html { redirect_to messages_path(@message) }
+        format.html { head :ok }
         format.json { render 'show' }
       else
         format.html { render 'new', errors: @message.errors }

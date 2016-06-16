@@ -1,63 +1,62 @@
-function users(state = {}, action) {
-  if(action.type === "add_user") {
-    var usr = action.data.user;
-    var obj = {};
-    obj[usr.id] = usr;
-    return Object.assign({},state,obj);
+import * as ActionTypes from './action_types.es6';
+
+export function conversations(state = {}, action) {
+  if(action.type === ActionTypes.ADD_CONVERSATIONS) {
+    return Object.assign({},
+                         state,
+                         action.data);
   }
   return state;
 }
 
-function id(state = 0, action){
-  return state;
-}
-
-function name(state = "", action) {
-  return name;
-}
-
-function messages(state = [], action) {
-  if(action.type === "add_messages") {
-    return [
-      ...state,
-      ...action.messages
-    ].sort((a, b) => a.created_at - b.created_at);
+export function users(state = {}, action) {
+  if(action.type === ActionTypes.ADD_USERS) {
+    return Object.assign({},
+                         state,
+                         action.data);
   }
   return state;
 }
 
-function lastRead(state = 0, action) {
-  if(action.type === "read_messages") {
-    return action.data.date;
+export function messages(state = {}, action) {
+  if(action.type === ActionTypes.ADD_MESSAGES) {
+    return Object.assign({},
+                         state,
+                         action.data);
   }
   return state;
 }
 
-function timeToPoll(state = 5, action) {
-  if(action.type === "set_poll_time") {
-    return action.time;
+export function activeConversation(state = null, action) {
+  if(action.type === ActionTypes.CHANGE_ACTIVE_CONVERSATION) {
+    return action.conversation_id
   }
   return state;
 }
 
-function isFetching(state = false, action) {
-  if(action.type === "start_fetching") {
+export function online(state = false, action) {
+  if(action.type === ActionTypes.GO_ONLINE) {
     return true;
   }
-  if(action.type === "end_fetching") {
+  if(action.type === ActionTypes.GO_OFFLINE) {
     return false;
   }
   return state;
 }
 
-function isSending(state = false, action) {
-  if(action.type === "start_sending") {
+export function active(state = false, action) {
+  if(action.type === ActionTypes.ACTIVATE) {
     return true;
   }
-  if(action.type === "end_sending") {
+  if(action.type === ActionTypes.DEACTIVATE) {
     return false;
   }
   return state;
 }
 
-export {users, messages, lastRead, name, id, isFetching, isSending, timeToPoll};
+export function readTimes(state = {}, action) {
+  if(action.type === ActionTypes.READ_CONVERSATIONS) {
+    return Object.assign({}, state, action.data);
+  }
+  return state;
+}

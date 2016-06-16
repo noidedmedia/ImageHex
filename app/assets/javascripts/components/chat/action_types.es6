@@ -1,0 +1,9 @@
+export const ADD_CONVERSATIONS = "add_conversation";
+export const ADD_MESSAGES = "add_messages";
+export const ADD_USERS = "add_users";
+export const CHANGE_ACTIVE_CONVERSATION = "change_active_conversation";
+export const GO_ONLINE = "go_online";
+export const GO_OFFLINE = "go_offline";
+export const ACTIVATE = "activate";
+export const DEACTIVATE = "decativate";
+export const READ_CONVERSATIONS = "read-conversations";

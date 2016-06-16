@@ -29,9 +29,8 @@
     <hr>
 
     <%# Render the comments partial with @image.comments as the subject. %>
-    <div class="comments-container"
-      data-url="<%= comments_image_path @image %>">
-
+    <div class="comments-container">
+      <%= react_component("CommentsView", {url: comments_image_url}) %>
     </div>
 
     <%# New comment section, only appears for users who are signed-in. %>
