@@ -1,6 +1,6 @@
 import { polyfill } from 'es6-promise';
 polyfill();
-import 'isomorphic-fetch';
+import 'whatwg-fetch';
 var NM = {};
 
 window.NM = NM;
@@ -48,7 +48,7 @@ NM.chunk = function(array, sel) {
 }
 
 NM.getJSON = function(url, callback) {
-  var f = fetch(url, {
+  var f = window.fetch(url, {
     credentials: 'same-origin',
     headers: {
       'Accept': "application/json",
@@ -67,7 +67,7 @@ function parseJSON(resp) {
 }
 
 NM.deleteJSON = function(url, success, failure) {
-  fetch(url, {
+  window.fetch(url, {
     method: 'delete',
     credentials: 'same-origin',
     headers: {
@@ -93,7 +93,7 @@ NM.getCSRFToken = function() {
 
 NM.putJSON = function(url, data, callback, error) {
   data.authenticity_token = NM.getCSRFToken();
-  fetch(url, {
+  window.fetch(url, {
     method: 'put',
     credentials: 'same-origin',
     headers: {
@@ -120,7 +120,7 @@ function checkStatus(response) {
 
 NM.postJSON = function(url, data, callback, error) {
   data.authenticity_token = NM.getCSRFToken();
-  var f = fetch(url, {
+  var f = window.fetch(url, {
     method: 'post',
     credentials: 'same-origin',
     headers: {

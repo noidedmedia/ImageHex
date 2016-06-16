@@ -25,7 +25,7 @@ export default class StatusDisplay extends React.Component {
       className += " inactive"
       click = this.activate.bind(this);
     }
-    return <div class={className}
+    return <div className={className}
       onClick={click}>
         {msg}
       </div>;

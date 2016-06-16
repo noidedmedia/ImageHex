@@ -28,21 +28,18 @@ export default class ConversationList extends React.Component {
     for(var i in this.props.conversations) {
       let conv = this.props.conversations[i];
       let users = this.usersForConversation(conv);
-      console.log("Got users for conversation",users);
       c.push(<ConversationItem
         key={i}
         conversation={conv}
         hasUnread={this.props.unreadMap[i]}
         users={users}
-        acitvate={this.activate.bind(this, i)}
+        activate={this.activate.bind(this, i)}
         active={i === this.props.activeConversation} />);
     }
     return c;
   }
 
   usersForConversation(conv) {
-    console.log("Got users",this.props.users);
-    console.log("Got user ids",conv.userIds);
     return conv.userIds.map((id) => this.props.users[id]);
   }
 
@@ -63,7 +60,6 @@ const ConversationItem = (props) => {
     className += " active";
   }
   else {
-    console.log("Setting click to activation");
     click = props.activate;
   }
   if(props.hasUnread) {

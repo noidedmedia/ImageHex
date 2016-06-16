@@ -1,13 +1,16 @@
+@import "variables";
+
 #chat-container {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
-  width: 400px;
-  background-color: #f9f9f9;
-  z-index: 100;
+  min-width: 100px;
+  background-color: #eee;
+  z-index: 1001;
 }
 
 .conversation-list {
+  width: 300px;
   overflow: hidden;
   transition: 1s linear;
   max-height: 50vh;
@@ -17,19 +20,49 @@
   }
 }
 
+.conversation-item {
+  padding: 10px;
+  h4 {
+    font-weight: normal;
+  }
+
+  &.active {
+    background-color: #fff;
+  }
+}
+
+
 .conversation-users-list {
   display: flex;
   flex-direction: row;
+}
 
-  li {
-    height: 30px;
-    width: 30px;
+.conversation-users-list {
+  height: 30px;
+  width: 30px;
 
-    img {
-      max-height: 100%;
-      max-width: 100%;
-      height: auto;
-      width: auto;
-    }
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
   }
+}
+
+
+.status-display {
+  text-align: right;
+  padding: 10px 20px 10px 10px;
+  font-size: 16px;
+  width: 300px;
+  background-color: #fff;
+
+  &.online {
+    color: $logo-green;
+  }
+
+  &.offline {
+    color: $logo-red;
+  }
+
 }

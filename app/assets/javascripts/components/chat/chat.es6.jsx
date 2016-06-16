@@ -21,16 +21,18 @@ class Chat extends React.Component {
   }
 
   render() {
-    const unreadMap = this.getUnreadMap();
+    const {unreadMap, activeMessages} = this.getMessageInfo();
 
     return <div id="chat">
-      <ConversationList
-        unreadMap={unreadMap}
-        conversations={this.state.conversations}
-        messages={this.state.messages}
-        active={this.state.active}
-        users={this.state.users} 
-        activeConversation={this.state.activeConversation} />
+      <div className="conversations-top">
+        <ConversationList
+          unreadMap={unreadMap}
+          conversations={this.state.conversations}
+          messages={this.state.messages}
+          active={this.state.active}
+          users={this.state.users} 
+          activeConversation={this.state.activeConversation} />
+      </div>
       <StatusDisplay
         online={this.state.online}
         active={this.state.active} />
@@ -42,8 +44,9 @@ class Chat extends React.Component {
     this.store.dispatch(Actions.getConversations());
   }
 
-  getUnreadMap() {
+  getMessageInfo() {
     var unreadMap = {};
+    var activeMessages = [];
     // First, by default everything is false
     for(var i in this.state.conversations) {
       unreadMap[i] = false;
@@ -52,7 +55,9 @@ class Chat extends React.Component {
     for(var i in this.state.messages) {
       let msg = this.state.messages[i];
       let cid = msg.conversation_id;
-      // No need to check again
+      if(cid === this.state.activeConversation) {
+        activeMessages.push(msg);
+      }
       if(unreadMap[cid]) {
         continue;
       }
@@ -61,7 +66,11 @@ class Chat extends React.Component {
         unreadMap[cid] = true;
       }
     }
-    return unreadMap;
+
+    return {
+      unreadMap: unreadMap,
+      activeMessage: activeMessages
+    };
   }
 
   getChildContext() {

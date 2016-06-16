@@ -70,31 +70,12 @@
             </ul>
           </div>
         </div>
-
+      <% if current_user %>
         <%# Displays the number of unread notifications %>
-        <% if current_user.notifications.unread.size > 0 %>
-
-          <div class="header-notifications unread">
-            <div class="notifications-unread-count">
-              <%= link_to notifications_path do %>
-                <%= current_user.notifications.unread.size %>
-              <% end %>
-            </div>
-        
-        <% else %>
-
-          <div class="header-notifications">
-            <div class="notifications-unread-count">
-              <%= link_to notifications_path do %>
-                <%= current_user.notifications.unread.size %>
-              <% end %>
-            </div>
-
-        <% end %>
-          <div class="notifications-dropdown inactive">
-          </div>
-        </div>
-
+        <%= react_component("HeaderNotifications", 
+                            {unread: current_user.notifications.unread.count}, 
+                            id: "header-notes") %>
+      <% end %>
         <%# User dropdown %>
         <div class="user-bar">
           <%# Current user's username %>
