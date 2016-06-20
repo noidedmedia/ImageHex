@@ -14,7 +14,6 @@ export default function BindChatChannel(store) {
     },
 
     received: function(data) {
-      console.log("From server, got data",data);
       store.dispatch(data);
     }
   });

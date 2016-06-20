@@ -56,7 +56,9 @@
         <%= react_component("HeaderSearch") %>
       </div>
       <% if user_signed_in? %>
+        <div id="chat-container" data-turbolinks-permanent>
 
+        </div>
         <%# Upload %>
         <div class="header-item" id="header-create">
           <div id="header-create-button">
@@ -70,12 +72,10 @@
             </ul>
           </div>
         </div>
-      <% if current_user %>
         <%# Displays the number of unread notifications %>
         <%= react_component("HeaderNotifications", 
                             {unread: current_user.notifications.unread.count}, 
                             id: "header-notes") %>
-      <% end %>
         <%# User dropdown %>
         <div class="user-bar">
           <%# Current user's username %>

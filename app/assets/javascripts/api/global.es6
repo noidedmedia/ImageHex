@@ -19,6 +19,17 @@ NM.flatten = function(array) {
 }
 
 /**
+ * Turn an array into a normalized object.
+ * Will use the `sel` parameter of each object as the key, and the object
+ * as the value.
+ */
+NM.shallowNormalize = function(array, sel) {
+  var obj = {};
+  array.forEach(o => obj[o[sel]] = o);
+  return obj;
+}
+
+/**
  * Chunk an array. Works like the Ruby method of the same name, with one
  * difference: if you pass a string, it will do elem[string] for each object.
  */

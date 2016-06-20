@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import BindChatChannel from './chat_channel.es6';
 import ConversationList from './components/conversation_list.es6.jsx';
 import StatusDisplay from './components/status_display.es6.jsx';
+import Conversation from './components/conversation.es6.jsx';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -22,20 +23,32 @@ class Chat extends React.Component {
 
   render() {
     const {unreadMap, activeMessages} = this.getMessageInfo();
-
+    var conversation = <div></div>;
+    if(this.state.activeConversation) {
+      var cid = this.state.activeConversation;
+      conversation = <Conversation
+        updating={this.state.updating}
+        messages={activeMessages}
+        conversation={this.state.conversations[cid]}
+        users={this.state.users}
+        depletedHistory={this.state.depletedHistory[cid]}
+      />;
+    }
     return <div id="chat">
-      <div className="conversations-top">
-        <ConversationList
-          unreadMap={unreadMap}
-          conversations={this.state.conversations}
-          messages={this.state.messages}
-          active={this.state.active}
-          users={this.state.users} 
-          activeConversation={this.state.activeConversation} />
-      </div>
       <StatusDisplay
         online={this.state.online}
         active={this.state.active} />
+      <ConversationList
+        updating={this.state.updating}
+        unreadMap={unreadMap}
+        conversations={this.state.conversations}
+        messages={this.state.messages}
+        active={this.state.active}
+        users={this.state.users} 
+        activeConversation={this.state.activeConversation} />
+
+      {conversation}
+
     </div>;
   }
 
@@ -55,7 +68,7 @@ class Chat extends React.Component {
     for(var i in this.state.messages) {
       let msg = this.state.messages[i];
       let cid = msg.conversation_id;
-      if(cid === this.state.activeConversation) {
+      if(cid == this.state.activeConversation) {
         activeMessages.push(msg);
       }
       if(unreadMap[cid]) {
@@ -67,9 +80,13 @@ class Chat extends React.Component {
       }
     }
 
+    let sorted = activeMessages.sort((a, b) => (
+      new Date(a.created_at) > new Date(b.created_at)
+    ));
+
     return {
       unreadMap: unreadMap,
-      activeMessage: activeMessages
+      activeMessages: sorted
     };
   }
 

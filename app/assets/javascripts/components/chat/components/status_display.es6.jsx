@@ -20,6 +20,7 @@ export default class StatusDisplay extends React.Component {
     }
     if(this.props.active) {
       className += " active";
+      click = this.deactivate.bind(this);
     }
     else {
       className += " inactive"
@@ -27,12 +28,17 @@ export default class StatusDisplay extends React.Component {
     }
     return <div className={className}
       onClick={click}>
-        {msg}
-      </div>;
+        <i className="status-quote">
+        </i>
+    </div>;
   }
 
   activate() {
     this.context.dispatch(activate());
+  }
+
+  deactivate() {
+    this.context.dispatch(deactivate());
   }
 }
 

@@ -21,30 +21,51 @@ export function addUsersNormalized(users) {
   };
 }
 
+export function startUpdate() {
+  return {
+    type: Types.START_UPDATE
+  };
+}
+
+export function endUpdate() {
+  return {
+    type: Types.END_UPDATE
+  };
+}
+
 export function getConversations() {
   return async function(dispatch, getState) {
-    const convs = await NM.getJSON("/conversations/");
-    let normalized = normalizeConversations(convs);
+    dispatch(startUpdate());
+    try {
+      const convs = await NM.getJSON("/conversations/");
+      let normalized = normalizeConversations(convs);
 
-    dispatch({
-      type: Types.ADD_CONVERSATIONS,
-      data: normalized
-    });
+      dispatch({
+        type: Types.ADD_CONVERSATIONS,
+        data: normalized
+      });
 
-    let userExtract = NM.flatten(convs.conversations.map((c) => c.users));
-    let userNormalized = normalizeUsers(userExtract);
+      let userExtract = NM.flatten(convs.conversations.map((c) => c.users));
+      let userNormalized = normalizeUsers(userExtract);
 
-    dispatch(addUsersNormalized(userNormalized));
+      dispatch(addUsersNormalized(userNormalized));
 
-    let readTimes = {};
-    convs.conversations.forEach((c) => {
-      readTimes[c.id] = new Date(c.last_read_time);
-    });
+      let readTimes = {};
+      convs.conversations.forEach((c) => {
+        readTimes[c.id] = new Date(c.last_read_time);
+      });
 
-    dispatch({
-      type: Types.READ_CONVERSATIONS,
-      data: readTimes
-    });
+      dispatch({
+        type: Types.READ_CONVERSATIONS,
+        data: readTimes
+      });
+    }
+    catch(err) {
+      console.error("Got error",err);
+    }
+    finally {
+      dispatch(endUpdate());
+    }
   };
 }
 
@@ -61,9 +82,44 @@ export function deactivate() {
 }
 
 export function changeConversation(id) {
-  console.log("Change conversation to",id);
   return {
     type: Types.CHANGE_ACTIVE_CONVERSATION,
     conversation_id: id
+  };
+}
+
+export function getHistoryBefore(date, cid) {
+  return async function(dispatch, getState) {
+    dispatch(startUpdate());
+    try {
+      let beforeSeconds = date.getTime() / 1000;
+      let url = `/conversations/${cid}/messages?before=${beforeSeconds}`;
+      console.log("Getting history with url",url);
+      let j = await NM.getJSON(url);
+      let norm = NM.shallowNormalize(j, "id");
+
+      if(j.length === 0) {
+        dispatch(markDepletedHistory(cid));
+      }
+      else {
+        dispatch({
+          type: Types.ADD_MESSAGES,
+          data: norm
+        });
+      }
+    }
+    catch(err) {
+      console.error(err);
+    }
+    finally {
+      dispatch(endUpdate());
+    }
+  }
+}
+
+export function markDepletedHistory(cid) {
+  return {
+    type: Types.MARK_DEPLETED_HISTORY,
+    id: cid
   };
 }

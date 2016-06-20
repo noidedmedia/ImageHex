@@ -60,3 +60,22 @@ export function readTimes(state = {}, action) {
   }
   return state;
 }
+
+export function depletedHistory(state = {}, action) {
+  if(action.type === ActionTypes.MARK_DEPLETED_HISTORY) {
+    var obj = {};
+    obj[action.id] = true;
+    return Object.assign({}, state, obj);
+  }
+  return state;
+}
+
+export function updating(state = false, action) {
+  if(action.type === ActionTypes.START_UPDATE) {
+    return true;
+  }
+  else if(action.type === ActionTypes.END_UPDATE) {
+    return false;
+  }
+  return state;
+}

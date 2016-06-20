@@ -87,4 +87,4 @@ var ready = function() {
   formprep();
 };
 
-document.addEventListener("page:change", ready);
+document.addEventListener("turbolinks:load", ready);
