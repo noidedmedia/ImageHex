@@ -88,6 +88,28 @@ export function changeConversation(id) {
   };
 }
 
+export function markRead(cid) {
+  return async function(dispatch, getState) {
+    try {
+      let url = `/conversations/${cid}/read`;
+      let q = await NM.postJSON(url, {});
+      console.log("Server#read response:",q);
+      let v = new Date(q);
+      console.log("From reading conversation, got date",v);
+      let o = {};
+      o[cid] = v;
+      dispatch({
+        type: Types.READ_CONVERSATIONS,
+        data: o
+      });
+    }
+    catch(err) {
+      console.error(err);
+    }
+  }
+}
+
+
 export function getHistoryBefore(date, cid) {
   return async function(dispatch, getState) {
     dispatch(startUpdate());

@@ -1,4 +1,5 @@
 import * as Actions from './actions.es6';
+import * as Types from './action_types.es6';
 
 export default function BindChatChannel(store) {
   if(! App.cable) {
@@ -14,6 +15,12 @@ export default function BindChatChannel(store) {
     },
 
     received: function(data) {
+      console.info("Cable got data",data);
+      if(data.type === Types.READ_CONVERSATIONS) {
+        for(var i in data.data) {
+          data.data[i] = new Date(data.data[i]);
+        }
+      }
       store.dispatch(data);
     }
   });

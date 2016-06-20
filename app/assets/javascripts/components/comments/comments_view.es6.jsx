@@ -1,6 +1,5 @@
 import NM from '../../api/global.es6';
 import PaginationControls from './pagination_controls.es6.jsx';
-import 'babel-polyfill';
 import Comment from './comment.es6.jsx';
 
 class CommentsView extends React.Component {

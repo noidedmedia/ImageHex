@@ -29,6 +29,7 @@ class Chat extends React.Component {
       conversation = <Conversation
         updating={this.state.updating}
         messages={activeMessages}
+        hasUnread={unreadMap[cid]}
         conversation={this.state.conversations[cid]}
         users={this.state.users}
         depletedHistory={this.state.depletedHistory[cid]}
@@ -64,14 +65,27 @@ class Chat extends React.Component {
     for(var i in this.state.conversations) {
       unreadMap[i] = false;
     }
+    let activeId = this.state.activeConversation;
+    let foundUnreadActive = false;
     // Now, go through all messages, and see if something is unread
     for(var i in this.state.messages) {
       let msg = this.state.messages[i];
       let cid = msg.conversation_id;
-      if(cid == this.state.activeConversation) {
+      if(cid == activeId) {
+        // this is the first active unread message
+        // put a seperator in there to be sure
+        if(new Date(msg.created_at) > this.state.readTimes[activeId] &&
+            ! foundUnreadActive) {
+          // Put in a seperator with a bogus user ID
+          // Prevents chunking from crossing a read boundary later on
+          activeMessages.push({user_id: "unread_active",
+                              last_active_at: new Date(msg.created_at),
+                              is_unread_flag: true});
+          foundUnreadActive = true;
+        }
         activeMessages.push(msg);
       }
-      if(unreadMap[cid]) {
+      else if(unreadMap[cid]) {
         continue;
       }
       // if message is unread

@@ -13,6 +13,7 @@
 //= require jquery2
 //= require jquery_ujs
 //= require jquery.turbolinks
+//= require_self
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require turbolinks
 //= require react
@@ -20,3 +21,5 @@
 //= require components
 //= require_tree .
 //= require_tree ./channels/
+
+import 'babel-polyfill';

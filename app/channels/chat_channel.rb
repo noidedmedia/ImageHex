@@ -7,4 +7,18 @@ class ChatChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
+
+  def read(data)
+    cid = data['cid']
+    conv = Conversation.find(cid)
+    conv.mark_read! current_user
+    h = {}
+    h[cid] = conv.last_read_for(current_user)
+    data = {
+      type: "read_conversations",
+      data: h
+    }
+    ActionCable.server.broadcast("chat_#{current_user.id}",data)
+  end
+
 end

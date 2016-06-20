@@ -1,24 +1,37 @@
 import NM from '../../../api/global.es6';
 import MessageGroup from './message_group.es6.jsx';
-import {getHistoryBefore, startUpdate, endUpdate} from '../actions.es6';
-import 'babel-polyfill';
+import {
+  getHistoryBefore, 
+  startUpdate, 
+  endUpdate, 
+  markRead
+} from '../actions.es6';
 
 class Conversation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue: ""
-    };
+    this.state = {};
   }
 
   render() {
     let chunked = NM.chunk(this.props.messages, "user_id");
-    let mapped = chunked.map((chunk) => (
-      <MessageGroup
-        messages={chunk[1]}
-        user={this.props.users[chunk[0]]} 
-        key={chunk[1][0].id} />
-    ));
+    let mapped = chunked.map((chunk) => {
+      if(chunk[0] !== "unread_active") {
+        return <MessageGroup
+          messages={chunk[1]}
+          user={this.props.users[chunk[0]]} 
+          key={chunk[1][0].id} />
+      }
+      else {
+        let lastRead = chunk[1][0].last_active_at;
+        return <div className="read-seperator" key="seperator">
+          Unread since <span> </span>
+          <date dateTime={lastRead}>
+            {lastRead.toLocaleString()}
+          </date>
+        </div>
+      }
+    });
     var upperSuffix = "";
     if(this.props.updating) {
       upperSuffix = " updating";
@@ -33,15 +46,13 @@ class Conversation extends React.Component {
         {mapped}
       </ul>
       <input className="message-input"
-        onChange={this.changeInput.bind(this)}
-        onKeyUp={this.keyUp.bind(this)}
-        value={this.state.inputValue} />
-
+        ref={(e) => this._input = e}
+        onKeyUp={this.keyUp.bind(this)} />
     </div>;
   }
 
   componentDidMount() {
-    if(this.props.messages.length === 0) {
+    if(this.props.messages.length < 15) {
       this.fetchOlder();
     }
   }
@@ -59,9 +70,10 @@ class Conversation extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if(this.props.conversation.id !== prevProps.conversation.id) {
       if(this.props.messages.length < 15) {
-        console.log("We don't have enough stuff in update, failing");
+        console.log("We don't have enough stuff in update, fetching older");
         this.fetchOlder();
       }
+      this.checkForRead();
     }
     else {
       let list = this._list;
@@ -73,9 +85,7 @@ class Conversation extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props.conversation.id !== nextProps.conversation.id) {
-      this.setState({
-        inputValue: ""
-      });
+      this.clearInput();
     }
   }
 
@@ -95,21 +105,39 @@ class Conversation extends React.Component {
       return new Date();
     }
     else {
-      return new Date(this.props.messages[0].created_at);
+      let eldestMessage = this.props.messages[0];
+      if(eldestMessage.user_id === "unread_active") {
+        eldestMessage = this.props.messages[1];
+      }
+      console.log("Eldest message:",eldestMessage);
+      return new Date(eldestMessage.created_at);
     }
   }
 
   onScroll(event) {
-    var t = event.target;
-    if(t.scrollTop < 50) {
+    let list = event.target;
+    if(list.scrollTop < 50) {
       this.fetchOlder();
     }
+    this.checkForRead();
   }
 
-  changeInput(event) {
-    this.setState({
-      inputValue: event.target.value
-    });
+  checkForRead() {
+    if(! this.props.hasUnread || this.checkingForUnread) {
+      console.log("We either have no unread messages or are checking already");
+      return;
+    }
+    let list = this._list;
+    let sT = list.scrollTop;
+    let oH = list.offsetHeight;
+    let sH = list.scrollHeight;
+    // If we're not at the bottom, return
+    if(sT > 0 && Math.abs(((sT + oH) - sH)) > 4) {
+      return;
+    }
+    this.checkingForUnread = true;
+    App.chat.perform("read", {cid: 1});
+    window.setTimeout(() => {this.checkingForUnread = false}, 1000);
   }
 
   keyUp(event) {
@@ -126,22 +154,24 @@ class Conversation extends React.Component {
 
   async sendMessage() {
     var cid = this.props.conversation.id;
-    var data = {message: {body: this.state.inputValue}};
-    console.log("Sending data:",data);
+    var data = {message: {body: this._input.value}};
     this.context.dispatch(startUpdate());
     try {
       let cb = NM.postJSON(`/conversations/${cid}/messages`, data);
-      console.log("Posted Json?");
     }
     catch(err) {
       console.log("Got an erorr while posting:",err);
     }
     finally {
-      console.log("Finally block runs");
+ 
       this.context.dispatch(endUpdate());
-      this.setState({
-        inputValue: ""
-      });
+      this.clearInput();
+    }
+  }
+
+  clearInput() {
+    if(this._input) {
+      this._input.value = "";
     }
   }
 }

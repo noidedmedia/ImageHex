@@ -116,6 +116,8 @@
   background-color: $logo-blue;
   color: #fff;
   padding: 10px;
+  // Weird spooky CSS thing
+  min-height: 42px;
 
   h5 {
     font-weight: normal;
@@ -140,6 +142,8 @@
 
 .message-group-list {
   padding: 10px;
+  word-break: break-all;
+  word-wrap: break-all;
 }
 
 .message-group {
@@ -180,4 +184,17 @@
   border-radius: 5px;
   border: 1px solid #eee;
   padding: 10px;
+}
+
+@keyframes foldOpen {
+  from { max-height: 0;}
+  to { max-height: 50px; }
+}
+
+.read-seperator {
+  text-align: center;
+  padding: 10px;
+  color: #333;
+  animation: foldOpen 0.5s linear;
+  animation-iteration-count: 1;
 }

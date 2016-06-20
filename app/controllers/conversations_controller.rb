@@ -23,7 +23,7 @@ class ConversationsController < ApplicationController
     @conversation.mark_read!(current_user)
     respond_to do |format|
       format.html { redirect_to @conversation, notice: :success }
-      format.json { render json: true }
+      format.json { render json: @conversation.last_read_for(current_user) }
     end
   end
 
