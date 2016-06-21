@@ -54,6 +54,8 @@ gem 'mini_magick'
 # Use Pundit for authorization.
 gem 'pundit'
 
+gem 'sidekiq'
+
 ##
 # https://github.com/svenfuchs/i18n
 # Internationalization for Rails.

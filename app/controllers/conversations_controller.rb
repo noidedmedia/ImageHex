@@ -15,6 +15,7 @@ class ConversationsController < ApplicationController
   def index
     @conversations = current_user
       .conversations
+      .preload(conversation_users: :user)
       .with_unread_status_for(current_user)
   end
 

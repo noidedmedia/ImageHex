@@ -13,6 +13,8 @@ ActionMailer::Base.smtp_settings = {
 }
 
 Rails.application.configure do
+
+  config.active_job.queue_adapter = :sidekiq
   # Use AWS for paperclip
   config.paperclip_defaults = {
     storage: :s3,
