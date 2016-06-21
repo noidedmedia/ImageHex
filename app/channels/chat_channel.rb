@@ -9,11 +9,14 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def read(data)
+    time = Time.zone.now
     cid = data['cid']
-    conv = Conversation.find(cid)
-    conv.mark_read! current_user
     h = {}
-    h[cid] = conv.last_read_for(current_user)
+    ConversationUser
+      .where(conversation_id: cid,
+             user_id: current_user.id)
+      .update_all(last_read_at: time)
+    h[cid] = time
     data = {
       type: "read_conversations",
       data: h

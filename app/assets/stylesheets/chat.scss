@@ -46,11 +46,11 @@
 .conversation-users-list {
   display: flex;
   flex-direction: row;
-}
 
-.conversation-users-list {
-  height: 30px;
-  width: 30px;
+  li {
+    width: 30px;
+    height: 30px;
+  }
 
   img {
     max-height: 100%;
@@ -87,8 +87,22 @@
   content: $icon-quote;
 }
 
+@keyframes rollUpwards {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 60vh;
+  }
+}
+
 .active-conversation {
+  border: 1px solid $logo-blue;
+  border-bottom: 0;
+  border-radius: 4px 4px 0px 0px;
   position: fixed;
+  animation: rollUpwards 1s linear;
   bottom: 0;
   right: 10%;
   background-color: #fff;
@@ -98,6 +112,11 @@
   font-size: 14px;
   display: flex;
   flex-direction: column;
+
+  @media #{$mobile} {
+    width: 95vw;
+    right: 2.5vw;
+  }
 }
 
 @keyframes shimmerBackground {
@@ -118,6 +137,9 @@
   padding: 10px;
   // Weird spooky CSS thing
   min-height: 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   h5 {
     font-weight: normal;
@@ -176,7 +198,7 @@
 }
 
 .message-group-list {
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .message-input {
@@ -197,4 +219,13 @@
   color: #333;
   animation: foldOpen 0.5s linear;
   animation-iteration-count: 1;
+}
+
+.close-chat {
+  text-decoration: none;
+  color: #fff;
+
+  &::before {
+    content: $icon-close;
+  }
 }

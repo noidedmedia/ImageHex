@@ -44,4 +44,4 @@ var ready = function() {
   }
 };
 
-document.addEventListener("page:change", ready);
+document.addEventListener("turbolinks:load", ready);

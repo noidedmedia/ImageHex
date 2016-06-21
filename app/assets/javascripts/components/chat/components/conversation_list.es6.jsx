@@ -1,4 +1,4 @@
-import { changeConversation } from '../actions.es6';
+import { changeConversation, deactivate } from '../actions.es6';
 
 export default class ConversationList extends React.Component {
   constructor(props) {
@@ -45,6 +45,7 @@ export default class ConversationList extends React.Component {
 
   activate(id) {
     this.context.dispatch(changeConversation(id));
+    this.context.dispatch(deactivate());
   }
 }
 

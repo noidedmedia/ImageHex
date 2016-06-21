@@ -341,4 +341,8 @@
   width: 36px;
   display: inline-block;
   vertical-align: top;
+
+  @media #{$mobile} {
+    width: 100%;
+  }
 }
