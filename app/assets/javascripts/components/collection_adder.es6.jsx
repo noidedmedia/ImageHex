@@ -81,13 +81,10 @@ class CollectionAdderItem extends React.Component {
   }
 }
 
-document.addEventListener("page:change", function(e) {
+document.addEventListener("turbolinks:load", function(e) {
   var d = document.getElementById("img-action-collection");
-  console.log("event handler fires");
   if (d) {
     d.addEventListener("click", function(e) {
-      console.log("Clicked!");
-      console.log(this.dataset);
       Collection.inspectForImage(this.dataset.imageId, (c) => {
         var filtered = c.filter((q) => {
           if (q.type == "Creation" || q.type == "Favorite") {
