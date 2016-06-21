@@ -114,7 +114,7 @@ class ImageTagGroup extends React.Component {
   }
 }
 
-document.addEventListener("page:change", function() {
+document.addEventListener("turbolinks:load", function() {
   console.log("Event fires");
   var newButton = document.getElementById("add-tag-group-button");
   if (newButton) {
@@ -139,4 +139,10 @@ document.addEventListener("page:change", function() {
       });
     }.bind(element));
   }
+});
+
+document.addEventListener("turbolinks:before-render", function() {
+  $(".image-group-editor").toArray().forEach(o => {
+    ReactDOM.unmountComponentAtNode(o.parentNode);
+  });
 });
