@@ -76,7 +76,9 @@ function groupChunk(messages, users) {
 class Conversation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      containerClass: "active-conversation downwards"
+    };
   }
 
   render() {
@@ -85,7 +87,7 @@ class Conversation extends React.Component {
     if(this.props.updating) {
       upperSuffix = " updating";
     }
-    return <div className="active-conversation">
+    return <div className={this.state.containerClass}>
       <div className={"conversation-upper" + upperSuffix} >
         <h5>{this.props.conversation.name}</h5>
         <a href="#"
@@ -105,9 +107,13 @@ class Conversation extends React.Component {
   }
 
   componentDidMount() {
+    console.log("Active conversation component mounted");
     if(this.props.messages.length < 15) {
       this.fetchOlder();
     }
+    this.setState({
+      containerClass: "active-conversation"
+    });
   }
 
   componentWillUpdate(nextProps, nextState) {

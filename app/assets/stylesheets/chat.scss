@@ -98,11 +98,11 @@
 }
 
 .active-conversation {
+  transition: max-height 1s linear;
   border: 1px solid $logo-blue;
   border-bottom: 0;
   border-radius: 4px 4px 0 0;
   position: fixed;
-  animation: rollUpwards 1s linear;
   bottom: 0;
   right: 10%;
   background-color: #fff;
@@ -116,6 +116,10 @@
   @media #{$mobile} {
     width: 95vw;
     right: 2.5vw;
+  }
+
+  &.downwards {
+    max-height: 0;
   }
 }
 
