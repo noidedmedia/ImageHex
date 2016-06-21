@@ -2,7 +2,7 @@ machine:
   timezone:
     UTC
   ruby:
-    version: 2.3.0
+    version: 2.3.1
 test:
   pre:
     - gem install scss_lint

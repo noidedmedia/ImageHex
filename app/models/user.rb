@@ -261,6 +261,10 @@ class User < ActiveRecord::Base
     Curatorship.find_by(user: self, collection: c)
   end
 
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
   protected
 
   ##
