@@ -13,13 +13,15 @@ class Conversation < ActiveRecord::Base
 
   def self.with_unread_status_for(u)
     raise "Not a user" unless u.is_a? User
-    joins(:conversation_users)
+    includes(:conversation_users)
+      .includes(:users)
       .where(conversation_users: { user_id: u.id})
       .select(%{
   conversations.*,
   (conversations.last_message_at > conversation_users.last_read_at) AS has_unread,
   (conversation_users.last_read_at) AS last_read_time
       })
+      .references(:conversation_users)
   end
 
    ##

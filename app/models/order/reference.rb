@@ -21,9 +21,6 @@ class Order::Reference < ActiveRecord::Base
     class_name: "::Tag",
     through: :reference_tags
 
-  validates :description,
-    presence: true
-
   validates :order,
     presence: true
 

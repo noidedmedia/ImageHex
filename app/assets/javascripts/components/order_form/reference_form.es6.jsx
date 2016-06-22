@@ -54,7 +54,7 @@ class ReferenceForm extends React.Component {
       </div>
       <div className="column-right-align">
         <a onClick={this.removeSelf.bind(this)}
-          href="#"
+          eref="#"
           className="commission-remove-button">
           Remove {categoryName}
         </a>
@@ -62,7 +62,8 @@ class ReferenceForm extends React.Component {
     </li>;
   }
 
-  removeSelf() {
+  removeSelf(e) {
+    e.preventDefault();
     const cb = () => {
       setTimeout(() => {
         this.props.removeSelf();

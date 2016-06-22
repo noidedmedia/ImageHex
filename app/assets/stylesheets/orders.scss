@@ -295,3 +295,26 @@ $fields-text-color: rgba(255, 255, 255, 0.9);
     flex-grow: 1;
   }
 }
+
+.order-form-footer {
+  font-size: 16px;
+  background-color: $heading-background-color;
+  color: $heading-text-color;
+  display: flex;
+  flex-direction: row;
+  padding: $standard-padding;
+  margin: $standard-padding 0;
+  justify-content: space-between;
+
+  button {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    font-size: 16px;
+    color: $heading-text-color;
+
+    &:disabled {
+      color: darken($heading-text-color, 20%);
+    }
+  }
+}

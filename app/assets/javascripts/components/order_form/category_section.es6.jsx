@@ -45,7 +45,6 @@ class CategorySection extends React.Component {
   addButton() {
     if(this.props.references.length < this.props.category.max_count) {
       return <a
-        href="#"
         onClick={this.props.addReference}
         className="green-add-button">
         Add {this.props.references.length > 0 ? " another " : " a "} 

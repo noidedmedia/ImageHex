@@ -73,7 +73,8 @@ class ImageField extends React.Component {
     }
   }
 
-  remove() {
+  remove(e) {
+    e.preventDefault();
     this.setState({
       containerClass: this.state.containerClass + " removed"
     }, () => {
