@@ -22,7 +22,7 @@ class Chat extends React.Component {
   }
 
   render() {
-    const {unreadMap, activeMessages} = this.getMessageInfo();
+    const {unreadMap, activeMessages, unreadCount} = this.getMessageInfo();
     var conversation = <div></div>;
     if(this.state.activeConversation) {
       var cid = this.state.activeConversation;
@@ -38,7 +38,8 @@ class Chat extends React.Component {
     return <div id="chat">
       <StatusDisplay
         online={this.state.online}
-        active={this.state.active} />
+        active={this.state.active} 
+        unreadCount={unreadCount} />
       <ConversationList
         updating={this.state.updating}
         unreadMap={unreadMap}
@@ -60,6 +61,7 @@ class Chat extends React.Component {
 
   getMessageInfo() {
     var unreadMap = {};
+    var unreadCount = 0;
     var activeMessages = [];
     // First, by default everything is false
     for(var i in this.state.conversations) {
@@ -85,12 +87,10 @@ class Chat extends React.Component {
         }
         activeMessages.push(msg);
       }
-      else if(unreadMap[cid]) {
-        continue;
-      }
       // if message is unread
       if(new Date(msg.created_at) > this.state.readTimes[cid]) {
         unreadMap[cid] = true;
+        unreadCount++;
       }
     }
 
@@ -100,7 +100,8 @@ class Chat extends React.Component {
 
     return {
       unreadMap: unreadMap,
-      activeMessages: sorted
+      activeMessages: sorted,
+      unreadCount: unreadCount
     };
   }
 

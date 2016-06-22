@@ -7,29 +7,45 @@ export default class StatusDisplay extends React.Component {
   }
 
   render() {
-    var className = "status-display";
+    var color;
     var click = () => {};
-    var msg;
     if(this.props.online) {
-      className += " online";
-      msg = "Online";
+      color = "#7CBA5B";
     }
     else {
-      className += " offline ";
-      msg = "Offline";
+      color = "#E72244";
     }
     if(this.props.active) {
-      className += " active";
       click = this.deactivate.bind(this);
     }
     else {
-      className += " inactive"
+
       click = this.activate.bind(this);
     }
-    return <div className={className}
+    return <div className="status-display"
       onClick={click}>
-        <i className="status-quote">
-        </i>
+      <svg id="chat-svg"
+        viewBox="0 0 228.87575 180.80291"
+        version="1.1">
+        <g id="layer1" 
+          transform="matrix(.87768 0 0 1 -195.54 -152.52)">
+          <path id="path3338" 
+            fillRule="evenodd"
+            fill={color}
+            d="m222.79 234.51 60 81.981h120l80.775 16.841-20.778-98.822-60-81.981h-120z"/>
+        </g>
+        <text id="text3342" font-size="40px" 
+          y="107.89626" x="100.377853" 
+          fontFamily="sans-serif"
+          textAnchor="middle"
+          lineHeight="125%" fill="#000000">
+          <tspan id="tspan3344" 
+            fontSize="80px" 
+            fill="#ffffff">
+            {this.props.unreadCount}
+          </tspan>
+        </text>
+      </svg>
     </div>;
   }
 
