@@ -9,7 +9,7 @@ class ImageField extends React.Component {
 
   render() {
     const fieldName = (name) => {
-      if(this.props.imgURL) {
+      if(this.state.imgURL) {
         return `${this.props.baseFieldName}[${name}]`;
       }
       else {

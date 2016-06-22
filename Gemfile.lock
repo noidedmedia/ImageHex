@@ -112,6 +112,8 @@ GEM
     connection_pool (2.2.0)
     dalli (2.7.6)
     debug_inspector (0.0.2)
+    delayed_paperclip (2.10.0)
+      paperclip (>= 3.3)
     devise (4.1.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -431,6 +433,7 @@ DEPENDENCIES
   capybara-screenshot
   coffee-rails
   dalli
+  delayed_paperclip
   devise (>= 4.0.0.rc1)
   devise-two-factor (~> 3.0.0)
   dotenv-rails

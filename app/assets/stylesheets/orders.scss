@@ -318,3 +318,45 @@ $fields-text-color: rgba(255, 255, 255, 0.9);
     }
   }
 }
+
+.reference-image-item {
+  &:not(:last-of-type) {
+    margin-bottom: $standard-padding;
+  }
+
+  .flex-column {
+    flex-grow: 1;
+  }
+
+  .img-wrapper {
+    width: 233px;
+    height: 233px;
+    margin-right: $standard-padding;
+    background-color: #fff;
+
+    a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+    }
+
+    img {
+      object-fit: scale-down;
+      object-position: 50% 50%;
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+  }
+
+  .description {
+    flex-grow: 1;
+    background-color: #fff;
+    color: #000;
+    padding: ($standard-padding/2);
+
+    &:empty {
+      padding: 0;
+    }
+  }
+}

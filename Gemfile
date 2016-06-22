@@ -96,6 +96,8 @@ gem 'puma'
 # Use Paperclip to upload images.
 gem 'paperclip', '~> 5.0.0.beta2'
 
+gem 'delayed_paperclip' 
+
 ##
 # https://github.com/rails/jquery-rails
 # Use jQuery as the JavaScript library.

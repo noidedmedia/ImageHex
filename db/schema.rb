@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615155806) do
+ActiveRecord::Schema.define(version: 20160622170942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,10 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.integer  "artist_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["artist_id", "user_id"], name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
+    t.index ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
+    t.index ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
   end
-
-  add_index "artist_subscriptions", ["artist_id", "user_id"], name: "index_artist_subscriptions_on_artist_id_and_user_id", unique: true, using: :btree
-  add_index "artist_subscriptions", ["artist_id"], name: "index_artist_subscriptions_on_artist_id", using: :btree
-  add_index "artist_subscriptions", ["user_id"], name: "index_artist_subscriptions_on_user_id", using: :btree
 
   create_table "background_references", force: :cascade do |t|
     t.string   "file_file_name"
@@ -37,9 +36,8 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "updated_at",               null: false
     t.integer  "commission_background_id", null: false
     t.text     "description"
+    t.index ["commission_background_id"], name: "index_background_references_on_commission_background_id", using: :btree
   end
-
-  add_index "background_references", ["commission_background_id"], name: "index_background_references_on_commission_background_id", using: :btree
 
   create_table "collection_images", force: :cascade do |t|
     t.integer  "collection_id"
@@ -47,12 +45,11 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.index ["collection_id", "image_id"], name: "index_collection_images_on_collection_id_and_image_id", unique: true, using: :btree
+    t.index ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
+    t.index ["image_id"], name: "index_collection_images_on_image_id", using: :btree
+    t.index ["user_id"], name: "index_collection_images_on_user_id", using: :btree
   end
-
-  add_index "collection_images", ["collection_id", "image_id"], name: "index_collection_images_on_collection_id_and_image_id", unique: true, using: :btree
-  add_index "collection_images", ["collection_id"], name: "index_collection_images_on_collection_id", using: :btree
-  add_index "collection_images", ["image_id"], name: "index_collection_images_on_image_id", using: :btree
-  add_index "collection_images", ["user_id"], name: "index_collection_images_on_user_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -70,10 +67,9 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "user_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
-
-  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "conversation_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -81,11 +77,10 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.datetime "last_read_at"
+    t.index ["conversation_id"], name: "index_conversation_users_on_conversation_id", using: :btree
+    t.index ["user_id", "conversation_id"], name: "index_conversation_users_on_user_id_and_conversation_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
   end
-
-  add_index "conversation_users", ["conversation_id"], name: "index_conversation_users_on_conversation_id", using: :btree
-  add_index "conversation_users", ["user_id", "conversation_id"], name: "index_conversation_users_on_user_id_and_conversation_id", unique: true, using: :btree
-  add_index "conversation_users", ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
 
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at",                                        null: false
@@ -101,10 +96,9 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "level",         default: 0, null: false
+    t.index ["collection_id"], name: "index_curatorships_on_collection_id", using: :btree
+    t.index ["user_id"], name: "index_curatorships_on_user_id", using: :btree
   end
-
-  add_index "curatorships", ["collection_id"], name: "index_curatorships_on_collection_id", using: :btree
-  add_index "curatorships", ["user_id"], name: "index_curatorships_on_user_id", using: :btree
 
   create_table "disputes", force: :cascade do |t|
     t.integer  "commission_offer_id"
@@ -112,9 +106,8 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.boolean  "resolved",            default: false, null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["commission_offer_id"], name: "index_disputes_on_commission_offer_id", using: :btree
   end
-
-  add_index "disputes", ["commission_offer_id"], name: "index_disputes_on_commission_offer_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -122,12 +115,11 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "image_reports", force: :cascade do |t|
     t.integer  "image_id"
@@ -137,10 +129,9 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "updated_at",                null: false
     t.text     "message"
     t.boolean  "active",     default: true, null: false
+    t.index ["image_id"], name: "index_image_reports_on_image_id", using: :btree
+    t.index ["user_id"], name: "index_image_reports_on_user_id", using: :btree
   end
-
-  add_index "image_reports", ["image_id"], name: "index_image_reports_on_image_id", using: :btree
-  add_index "image_reports", ["user_id"], name: "index_image_reports_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "user_id"
@@ -160,9 +151,8 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.integer  "f_file_size"
     t.string   "source"
     t.boolean  "allow_new_creators",             default: false, null: false
+    t.index ["user_id"], name: "index_images_on_user_id", using: :btree
   end
-
-  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "listing_categories", force: :cascade do |t|
     t.integer  "listing_id"
@@ -173,19 +163,17 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "updated_at",  null: false
     t.text     "name",        null: false
     t.text     "description", null: false
+    t.index ["listing_id"], name: "index_listing_categories_on_listing_id", using: :btree
   end
-
-  add_index "listing_categories", ["listing_id"], name: "index_listing_categories_on_listing_id", using: :btree
 
   create_table "listing_images", force: :cascade do |t|
     t.integer  "image_id"
     t.integer  "listing_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_listing_images_on_image_id", using: :btree
+    t.index ["listing_id"], name: "index_listing_images_on_listing_id", using: :btree
   end
-
-  add_index "listing_images", ["image_id"], name: "index_listing_images_on_image_id", using: :btree
-  add_index "listing_images", ["listing_id"], name: "index_listing_images_on_listing_id", using: :btree
 
   create_table "listing_options", force: :cascade do |t|
     t.integer  "listing_id"
@@ -194,9 +182,8 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.text     "description",              null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["listing_id"], name: "index_listing_options_on_listing_id", using: :btree
   end
-
-  add_index "listing_options", ["listing_id"], name: "index_listing_options_on_listing_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
@@ -207,9 +194,8 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "confirmed",   default: false, null: false
+    t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
   end
-
-  add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
@@ -217,10 +203,9 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.text     "body"
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
-
-  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"
@@ -229,19 +214,17 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "updated_at",                 null: false
     t.integer  "kind"
     t.jsonb    "subject",    default: {},    null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
-
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "order_options", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "listing_option_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.index ["listing_option_id"], name: "index_order_options_on_listing_option_id", using: :btree
+    t.index ["order_id"], name: "index_order_options_on_order_id", using: :btree
   end
-
-  add_index "order_options", ["listing_option_id"], name: "index_order_options_on_listing_option_id", using: :btree
-  add_index "order_options", ["order_id"], name: "index_order_options_on_order_id", using: :btree
 
   create_table "order_reference_images", force: :cascade do |t|
     t.integer  "order_reference_id"
@@ -252,9 +235,9 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.string   "img_content_type"
     t.integer  "img_file_size"
     t.datetime "img_updated_at"
+    t.boolean  "img_processing"
+    t.index ["order_reference_id"], name: "index_order_reference_images_on_order_reference_id", using: :btree
   end
-
-  add_index "order_reference_images", ["order_reference_id"], name: "index_order_reference_images_on_order_reference_id", using: :btree
 
   create_table "order_reference_tags", force: :cascade do |t|
     t.integer  "order_reference_id", null: false
@@ -269,10 +252,9 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.text     "description",         null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.index ["listing_category_id"], name: "index_order_references_on_listing_category_id", using: :btree
+    t.index ["order_id"], name: "index_order_references_on_order_id", using: :btree
   end
-
-  add_index "order_references", ["listing_category_id"], name: "index_order_references_on_listing_category_id", using: :btree
-  add_index "order_references", ["order_id"], name: "index_order_references_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "listing_id"
@@ -289,10 +271,9 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "charged_at"
     t.integer  "image_id"
     t.datetime "filled_at"
+    t.index ["listing_id"], name: "index_orders_on_listing_id", using: :btree
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
-
-  add_index "orders", ["listing_id"], name: "index_orders_on_listing_id", using: :btree
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "subject_references", force: :cascade do |t|
     t.integer  "commission_subject_id"
@@ -303,19 +284,17 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
     t.text     "description"
+    t.index ["commission_subject_id"], name: "index_subject_references_on_commission_subject_id", using: :btree
   end
-
-  add_index "subject_references", ["commission_subject_id"], name: "index_subject_references_on_commission_subject_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "collection_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["collection_id"], name: "index_subscriptions_on_collection_id", using: :btree
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
-
-  add_index "subscriptions", ["collection_id"], name: "index_subscriptions_on_collection_id", using: :btree
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "tag_changes", force: :cascade do |t|
     t.integer  "tag_id"
@@ -325,9 +304,8 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "importance",  default: 1, null: false
+    t.index ["tag_id"], name: "index_tag_changes_on_tag_id", using: :btree
   end
-
-  add_index "tag_changes", ["tag_id"], name: "index_tag_changes_on_tag_id", using: :btree
 
   create_table "tag_group_changes", force: :cascade do |t|
     t.integer  "tag_group_id"
@@ -337,29 +315,26 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.datetime "updated_at",                null: false
     t.integer  "before",       default: [],              array: true
     t.integer  "after",        default: [],              array: true
+    t.index ["tag_group_id"], name: "index_tag_group_changes_on_tag_group_id", using: :btree
+    t.index ["user_id"], name: "index_tag_group_changes_on_user_id", using: :btree
   end
-
-  add_index "tag_group_changes", ["tag_group_id"], name: "index_tag_group_changes_on_tag_group_id", using: :btree
-  add_index "tag_group_changes", ["user_id"], name: "index_tag_group_changes_on_user_id", using: :btree
 
   create_table "tag_group_members", force: :cascade do |t|
     t.integer  "tag_group_id"
     t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["tag_group_id", "tag_id"], name: "index_tag_group_members_on_tag_group_id_and_tag_id", unique: true, using: :btree
+    t.index ["tag_group_id"], name: "index_tag_group_members_on_tag_group_id", using: :btree
+    t.index ["tag_id"], name: "index_tag_group_members_on_tag_id", using: :btree
   end
-
-  add_index "tag_group_members", ["tag_group_id", "tag_id"], name: "index_tag_group_members_on_tag_group_id_and_tag_id", unique: true, using: :btree
-  add_index "tag_group_members", ["tag_group_id"], name: "index_tag_group_members_on_tag_group_id", using: :btree
-  add_index "tag_group_members", ["tag_id"], name: "index_tag_group_members_on_tag_id", using: :btree
 
   create_table "tag_groups", force: :cascade do |t|
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
   end
-
-  add_index "tag_groups", ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.citext   "name"
@@ -368,21 +343,19 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.text     "description"
     t.string   "slug"
     t.integer  "importance",  default: 1, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+    t.index ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
   end
-
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
-  add_index "tags", ["slug"], name: "index_tags_on_slug", unique: true, using: :btree
 
   create_table "user_creations", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.integer  "creation_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["creation_id"], name: "index_user_creations_on_creation_id", using: :btree
+    t.index ["user_id", "creation_id"], name: "index_user_creations_on_user_id_and_creation_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_user_creations_on_user_id", using: :btree
   end
-
-  add_index "user_creations", ["creation_id"], name: "index_user_creations_on_creation_id", using: :btree
-  add_index "user_creations", ["user_id", "creation_id"], name: "index_user_creations_on_user_id_and_creation_id", unique: true, using: :btree
-  add_index "user_creations", ["user_id"], name: "index_user_creations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                     limit: 255, default: "",    null: false
@@ -426,11 +399,10 @@ ActiveRecord::Schema.define(version: 20160615155806) do
     t.text     "stripe_user_id"
     t.boolean  "subscribed_to_newsletter",              default: false, null: false
     t.boolean  "use_infinite_scroll",                   default: true,  null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   add_foreign_key "artist_subscriptions", "users", column: "artist_id", on_delete: :cascade
   add_foreign_key "artist_subscriptions", "users", on_delete: :cascade

@@ -11,6 +11,9 @@ class Order::Reference::Image < ActiveRecord::Base
     },
     path: ($REF_PATH ? $REF_PATH : "ref_images/:id_:style.:extension")
 
+    process_in_background :img
+
+
     validates_attachment :img,
                        content_type: { content_type: %r{\Aimage\/.*\Z} },
                        presence: true
