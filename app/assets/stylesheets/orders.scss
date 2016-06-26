@@ -353,7 +353,7 @@ $fields-text-color: rgba(255, 255, 255, 0.9);
     flex-grow: 1;
     background-color: #fff;
     color: #000;
-    padding: ($standard-padding/2);
+    padding: ($standard-padding / 2);
 
     &:empty {
       padding: 0;
