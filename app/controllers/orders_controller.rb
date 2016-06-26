@@ -22,8 +22,7 @@ class OrdersController < ApplicationController
       application_fee: fee,
       destination: @listing.user.stripe_user_id
     })
-    @order.update(charge_id: c["id"],
-      charged_at: Time.at(c["created"]).utc.to_datetime)
+    @order.charge(c)
     redirect_to [@listing, @order]
   end
 
@@ -44,24 +43,7 @@ class OrdersController < ApplicationController
   def accept
     @order = @listing.orders.find(params[:id])
     authorize @order
-    attrs = {
-      accepted: true,
-      accepted_at: Time.current
-    }
-    if @listing.quote_only?
-      attrs[:final_price] = params[:quote_price]
-    end
-    result = true
-    begin
-      Order.transaction do
-        @order.update(attrs)
-        Notification.create(kind: :order_accepted,
-                            user: @order.user,
-                            subject: @order)
-      end
-    rescue ActiveRecord::RecordInvalid
-      result = false
-    end
+    result = @order.accept(params)
     respond_to do |format|
       if result
         format.html { redirect_to [@listing, @order] }
@@ -84,19 +66,7 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.find(params[:id])
     authorize @order
-    result = true
-    begin
-      Order.transaction do
-        @order.update!(confirmed: true,
-                       confirmed_at: Time.current)
-        Notification.create!(user: @listing.user,
-                             kind: :order_confirmed,
-                             subject: @order)
-      end
-    rescue ActiveRecord::RecordInvalid
-      result = false
-    end
-
+    result = @order.confirm
     respond_to do |format|
       if result
         format.html { redirect_to [@listing, @order], notice: "Confirmed" }

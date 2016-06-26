@@ -8,6 +8,9 @@
   color: #222;
 }
 
+#chat-svg {
+  width: ($header-height * 0.9);
+}
 
 .conversation-list {
   white-space: nowrap;

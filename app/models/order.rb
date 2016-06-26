@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   belongs_to :listing
+
   belongs_to :user
 
   belongs_to :image,
@@ -22,18 +23,69 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :references
 
   validates :user, presence: true
+
   validates :listing, presence: true
+
   validates :final_price,
     presence: true,
     :if => :accepted?
 
   validate :not_order_to_self
+
   validate :order_has_references
+
   validate :image_is_eligable
 
-  before_validation :calculate_final_price, if: :final_price_needs_calculation?
+  before_validation :calculate_final_price, 
+    :if => :final_price_needs_calculation?
 
-  after_save :create_conversation, if: :needs_conversation_creation
+  after_save :create_conversation, 
+    :if => :needs_conversation_creation
+
+  def fill(img)
+    fail TypeError, "That's not an image" unless img.is_a? Image
+    update!(image: img,
+            filled_at: Time.zone.now)
+  end
+
+  def charge(charge)
+    update(charge_id: charge["id"],
+           charged_at: Time.at(charge["created"]).utc.to_datetime)
+  end
+
+  def accept(params)
+    attrs = {
+      accepted: true,
+      accepted_at: Time.current
+    }
+    if self.listing.quote_only?
+      attrs[:final_price] = params[:quote_price]
+    end
+    result = true
+    begin
+      Order.transaction do
+        self.update!(attrs)
+        notify_acceptance!
+      end
+    rescue ActiveRecord::RecordInvalid
+      result = false
+    end
+    result
+  end
+
+  def confirm
+    result = true
+    begin
+      Order.transaction do 
+        update(confirmed: true,
+               confirmed_at: Time.current)
+        notify_confirmation!
+      end
+    rescue ActiveRecord::RecordInvalid
+      result = false
+    end
+    result
+  end
 
   def references_by_category
     h = Hash.new{|hash, key| hash[key] = []}
@@ -49,6 +101,18 @@ class Order < ActiveRecord::Base
   end
 
   private
+
+  def notify_acceptance!
+    Notification.create!(kind: :order_accepted,
+                         user: self.user,
+                         subject: self)
+  end
+
+  def notify_confirmation!
+    Notification.create!(kind: :order_confirmed,
+                         user: self.listing.user,
+                         subject: self)
+  end
 
   def needs_conversation_creation
     self.conversation.nil? && self.confirmed?
