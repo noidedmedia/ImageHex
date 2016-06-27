@@ -22,13 +22,16 @@ class OptionFields extends React.Component {
           defaultValue={option.price}
           index={index} />
         <a onClick={removeSelf}
-          className="remove-text-red remove-option-button"
-          href="#">
+          className="remove-text-red remove-option-button">
           Remove
         </a>
       </div>
     </li>;
   }
 }
+
+OptionFields.contextTypes = {
+  quoteOnly: React.PropTypes.bool
+};
 
 export default OptionFields;

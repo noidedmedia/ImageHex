@@ -12,7 +12,7 @@ class ListingForm extends React.Component {
 
   render() {
     var warningMessageClass = "warning-message";
-    return <div>
+    return <div id="listing-form">
       <PriceSection {...this.state} 
         toggleCheck={this.toggleCheck.bind(this)} />
       <OptionSection
@@ -37,6 +37,12 @@ class ListingForm extends React.Component {
         </span>
       </div>
     </div>;
+  }
+
+  getChildContext() {
+    return {
+      quoteOnly: this.state.quote_only
+    };
   }
 
   toggleCheck() {
@@ -71,6 +77,11 @@ class ListingForm extends React.Component {
     });
   }
 }
+
+ListingForm.childContextTypes = {
+  quoteOnly: React.PropTypes.bool
+};
+
 
 window.ListingForm = ListingForm;
 

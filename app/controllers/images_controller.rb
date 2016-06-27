@@ -3,12 +3,24 @@
 ##
 # As the name implies, this contorller handles all actions for images.
 class ImagesController < ApplicationController
+
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :unauthorized
   # Load the image via our id
-  before_action :load_image, only: [:comment, :favorite, :created, :update, :edit, :destroy, :show]
+  before_action :load_image, 
+    only: [:comment, 
+      :favorite, 
+      :created, 
+      :update, 
+      :edit, 
+      :destroy, 
+      :show]
   # Ensure a user is logged in. Defined in the application controller
-  before_action :ensure_user, except: [:index, :show, :search, :comments]
+  before_action :ensure_user, 
+    except: [:index, 
+      :show, 
+      :search, 
+      :comments]
 
   ##
   # Create a new comment on the image in params[:id]
@@ -20,9 +32,15 @@ class ImagesController < ApplicationController
     @comment = Comment.new(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @image, notice: I18n.t("notices.your_comment_was_submitted_successfully") }
+        format.html do 
+          redirect_to @image, 
+            notice: I18n.t("notices.your_comment_was_submitted_successfully")
+        end
       else
-        format.html { redirect_to @image, warning: @comment.errors.full_messages.join(', ') }
+        format.html do 
+          redirect_to @image, 
+            warning: @comment.errors.full_messages.join(', ')
+        end
       end
     end
   end
@@ -106,9 +124,15 @@ class ImagesController < ApplicationController
     @report = ImageReport.new(report_params)
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @image, notice: I18n.t("notices.report_submitted_thank_you") }
+        format.html do
+          redirect_to @image, 
+            notice: I18n.t("notices.report_submitted_thank_you")
+        end
       else
-        format.html { redirect_to @image, warning: @report.errors.full_messages.join(", ") }
+        format.html do
+          redirect_to @image, 
+            warning: @report.errors.full_messages.join(", ")
+        end
       end
     end
   end
@@ -123,11 +147,17 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: I18n.t("notices.image_uploaded_successfully") }
+        format.html do
+          redirect_to @image, 
+            notice: I18n.t("notices.image_uploaded_successfully")
+        end
         format.json { render :show }
       else
         # If their image is incorrect, redirect_to the new page again.
-        format.html { redirect_to new_image_path, warning: @image.errors.full_messages.join(', ') }
+        format.html do 
+          redirect_to new_image_path, 
+            warning: @image.errors.full_messages.join(', ')
+        end
       end
     end
   end

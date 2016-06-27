@@ -21,7 +21,6 @@ class CategorySection extends React.Component {
     });
     return <div>
       <a className="green-add-button add-category-button"
-        href="#"
         onClick={this.props.addCategory}>
         Add a Reference Category
       </a>
@@ -31,5 +30,10 @@ class CategorySection extends React.Component {
     </div>
   }
 }
+
+CategorySection.contextTypes = {
+  quoteOnly: React.PropTypes.bool
+};
+
 
 export default CategorySection;

@@ -86,18 +86,9 @@
   content: $icon-quote;
 }
 
-@keyframes rollUpwards {
-  from {
-    max-height: 0;
-  }
-
-  to {
-    max-height: 60vh;
-  }
-}
 
 .active-conversation {
-  transition: max-height 1s linear;
+  transition: height 1s linear;
   border: 1px solid $logo-blue;
   border-bottom: 0;
   border-radius: 4px 4px 0 0;
@@ -105,7 +96,7 @@
   bottom: 0;
   right: 10%;
   background-color: #fff;
-  max-height: 60vh;
+  height: 60vh;
   text-align: left;
   width: 400px;
   font-size: 14px;
@@ -118,7 +109,7 @@
   }
 
   &.downwards {
-    max-height: 0;
+    height: 0;
   }
 }
 
@@ -203,6 +194,7 @@
 
 
 .message-input {
+  margin-top: auto;
   margin: 10px;
   border-radius: 5px;
   border: 1px solid #eee;

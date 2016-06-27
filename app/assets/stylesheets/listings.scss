@@ -1,5 +1,27 @@
 @import "variables";
 
+$standard-padding: 15px;
+
+#listing-form {
+  .price-relevant {
+    transition: 1s linear;
+    overflow: hidden;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 50%;
+    max-height: 100%;
+    white-space: nowrap;
+
+    &.inactive {
+      flex-grow: 0;
+      flex-shrink: 0;
+      max-width: 0;
+      max-height: 0;
+      overflow: hidden;
+    }
+  }
+}
+
 // INDEX
 .listings-description {
   max-width: 700px;
@@ -131,20 +153,14 @@
 .option-fields-section {
   margin-top: 10px;
   margin-bottom: 5px;
-  padding: 5px;
-  padding-bottom: 15px;
+  padding: $standard-padding;
   display: flex;
   flex-direction: column;
-
   background-color: #ddd;
+  transition: 1s ease-in-out;
 
   label {
-    font-size: 14px;
-    color: #333;
-  }
-
-  > div {
-    margin-top: 5px;
+    font-size: 16px;
   }
 }
 
@@ -160,30 +176,10 @@
   align-items: center;
   font-size: 14px;
   justify-content: space-around;
+  min-height: 50px;
 
   div {
-    display: block;
     flex-grow: 1;
-  }
-
-  .price-field-section {
-    .active {
-      height: auto;
-
-      @media #{$mobile} {
-        max-height: 60px;
-      }
-    }
-
-    .inactive {
-      height: auto;
-      width: 0;
-      flex-grow: 0;
-
-      @media #{$mobile} {
-        max-height: 0;
-      }
-    }
   }
 
   @media #{$mobile} {

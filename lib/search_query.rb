@@ -2,7 +2,20 @@
 # TODO: Comment this file.
 class SearchQuery
   def initialize(q)
-    @q = q.nil? ? {} : (q.is_a?(Hash) ? q : JSON.parse(q))
+    @q = convert_to_hash(q)
+  end
+
+  def convert_to_hash(obj)
+    case obj
+    when NilClass
+      {}
+    when String
+      JSON.parse(obj)
+    when ActionController::Parameters, Hash
+      obj
+    else
+      fail TypeError, "must be a hashlike object"
+    end
   end
 
   def each_group(&_block)
@@ -14,7 +27,11 @@ class SearchQuery
   end
 
   def tag_groups
-    @q["tag_groups"].is_a?(Hash) ? @q["tag_groups"].values : @q["tag_groups"]
+    if @q["tag_groups"].is_a? Array
+      @q["tag_groups"]
+    else
+      @q["tag_groups"].values
+    end
   end
 
   def each_group_tag_ids(&_block)

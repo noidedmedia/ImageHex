@@ -5,11 +5,22 @@ function optionFieldName(index, name) {
 }
 
 
-const FieldsSection = ({children}) => (
-  <div className="fields-section">
+const FieldsSection = ({children, priceRelevant}, {quoteOnly}) => {
+  let cn = "fields-section";
+  if(priceRelevant) {
+    cn += " price-relevant";
+    if(quoteOnly) {
+      cn += " inactive";
+    }
+  }
+  return <div className={cn}>
     {children}
-  </div>
-);
+  </div>;
+}
+
+FieldsSection.contextTypes = {
+  quoteOnly: React.PropTypes.bool
+};
 
 
 const NameField = ({defaultValue, index}) => (
@@ -35,27 +46,23 @@ const DescriptionField = ({defaultValue, index}) => (
   </FieldsSection>
 );
 
-function priceFieldClass(qo) {
-  var c = "fields-section price-fields-section";
-  if(qo) {
-    return c + " active";
-  }
-  else {
-    return c + " inactive";
-  }
-}
-
-const PriceField = ({defaultValue, index, quoteOnly}) => (
-  <div className={priceFieldClass(quoteOnly)}>
+const PriceField = ({defaultValue, index}) => (
+  <FieldsSection
+    priceRelevant={true}>
     <label>
       Price
     </label>
     <CurrencyInputField
       initialValue={defaultValue}
       minimum={0}
+      priceRelevant={true}
       name={optionFieldName(index, "price")} />
-  </div>
+  </FieldsSection>
 );
+
+PriceField.contextTypes = {
+  quoteOnly: React.PropTypes.bool
+};
 
 const IDField = ({id, index}) => {
   if(! id) {

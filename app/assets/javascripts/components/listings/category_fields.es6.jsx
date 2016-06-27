@@ -29,7 +29,8 @@ class CategoryFields extends React.Component {
           defaultValue={this.props.description} />
       </Common.FieldsSection>
       <div className="row-fields-section">
-        <Common.FieldsSection>
+        <Common.FieldsSection
+          priceRelevant={true}>
           <label hmtlFor={fieldName("price")}>
             Price
           </label>
@@ -37,7 +38,8 @@ class CategoryFields extends React.Component {
             initialValue={this.props.price || 0}
             name={fieldName("price")} />
         </Common.FieldsSection>
-        <Common.FieldsSection>
+        <Common.FieldsSection
+          priceRelevant={true}>
           <label>
             Number free
           </label>
@@ -57,8 +59,7 @@ class CategoryFields extends React.Component {
             defaultValue={category.max_count || "10"} />
         </Common.FieldsSection>
         <a onClick={removeSelf}
-          className="remove-text-red remove-option-button"
-          href="#">
+          className="remove-text-red remove-option-button">
           Remove
         </a>
       </div>
@@ -68,5 +69,10 @@ class CategoryFields extends React.Component {
     </li>;
   }
 }
+
+CategoryFields.contextTypes = {
+  quoteOnly: React.PropTypes.bool
+};
+
 
 export default CategoryFields;
