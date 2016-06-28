@@ -72,6 +72,47 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   }
 }
 
+.listing-example-images-section {
+
+  .lower-section {
+    transition: 1s linear;
+    max-height: 70vh;
+    overflow-y: scroll;
+  }
+
+  &.inactive {
+    .lower-section {
+      max-height: 0;
+      overflow: hidden;
+    }
+  }
+}
+
+.example-images-activate-bar {
+  height: 35px;
+  background-color: lighten($header-background-color, 50%);
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  font-size: 20px;
+
+  &::after {
+    display: block;
+    content: $icon-dropdown;
+    color: #fff;
+    transition: 500ms linear;
+    transform: rotateZ(180deg);
+  }
+
+  &.inactive {
+    &::after {
+      transform: rotateZ(0deg);
+    }
+  }
+}
+
 .options-section {
   display: flex;
   flex-direction: column;
@@ -96,9 +137,12 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   }
 }
 
+#example-image-section {
+  margin: 0;
+}
 
 .listing-form {
-  max-width: 700px;
+  max-width: 800px;
   margin: auto;
 }
 

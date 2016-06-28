@@ -90,8 +90,7 @@ class Conversation extends React.Component {
     return <div className={this.state.containerClass}>
       <div className={"conversation-upper" + upperSuffix} >
         <h5>{this.props.conversation.name}</h5>
-        <a href="#"
-          className="close-chat"
+        <a className="close-chat"
           onClick={() => this.context.dispatch(changeConversation(null))} />
 
       </div>

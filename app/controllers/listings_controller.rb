@@ -69,6 +69,7 @@ class ListingsController < ApplicationController
               :description,
               :base_price,
               :quote_only,
+              image_ids: [],
               options_attributes: [option_attributes],
               categories_attributes: [categories_attributes])
       .merge(user_id: current_user.id)

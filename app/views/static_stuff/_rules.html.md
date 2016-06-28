@@ -59,6 +59,12 @@ If your tag is for a character in a certain franchise, add that franchise in (pa
 For example, the tag should be "Walter White (Breaking Bad)" as opposed to simply "Walter White".
 
 #### Tagging your Characters
-If it is a character of your own creation, feel free to make a tag!
+If it is a character of your own creation, feel free to make a tag.
 Simply add your user name in parenthesis after the tag name.
 For example, if I invented a wizard named Kelvin and drew a picture of him, he should be tagged "Kelvin (anthony)".
+
+If your character appears in some other media property (like a webcomic or a book), use the title of that property instead.
+This will make it easier for people who don't know your ImageHex account name to find the artwork they desire.
+
+Please note that it is generally polite to only create tags for characters which will be drawn multiple times, to avoid adding lots of unneeded tags to our database.
+Adding lots of tags that are only used once can make it harder for people to find the tags they want when searching.

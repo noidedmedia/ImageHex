@@ -1,6 +1,7 @@
 import PriceSection from './price_section.es6.jsx';
 import OptionSection from './option_section.es6.jsx'; 
 import CategorySection from './category_section.es6.jsx';
+import ExampleImageSection from './example_image_section.es6.jsx';
 
 class ListingForm extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class ListingForm extends React.Component {
         addOption={this.addOption.bind(this)}
         removeOption={this.removeOption.bind(this)}
         options={this.state.options} />
+      <ExampleImageSection />
         {this.submitSection}
       </div>
     }

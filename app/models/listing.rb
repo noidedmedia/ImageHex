@@ -23,9 +23,9 @@ class Listing < ActiveRecord::Base
     class_name: 'Listing::Image',
     inverse_of: :listing
 
-  has_many :images, through: :listing_images
-
-  accepts_nested_attributes_for :listing_images
+  has_many :images, 
+    through: :listing_images,
+    class_name: "::Image"
 
   has_many :orders
 

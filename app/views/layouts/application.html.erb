@@ -15,6 +15,7 @@
   Stripe.setPublishableKey("<%= Rails.configuration.stripe[:publishable_key] %>")
   <% if current_user %>
       USER_SIGNED_IN = true
+      CURRENT_USER_ID = <%= current_user.id.to_i %>
   <% else %> 
       USER_SIGNED_IN = false
   <% end %> 

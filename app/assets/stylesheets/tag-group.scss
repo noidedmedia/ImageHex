@@ -77,8 +77,12 @@
   align-items: center;
   justify-content: space-between;
 
+  &:first-of-type {
+    font-weight: bold;
+  }
+
   &:not(:first-of-type) {
-    margin-left: 20%;
+    margin-left: 10%;
   }
 
   &:not(:last-of-type) {
@@ -98,6 +102,7 @@
     content: $icon-close;
   }
 }
+
 .imagehex-empty-note {
   color: #fff;
   background-color: darken($header-color, 10%);
