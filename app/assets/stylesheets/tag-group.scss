@@ -34,6 +34,7 @@
     height: 40px;
     font-size: 1.4rem;
     vertical-align: middle;
+    padding: 10px;
   }
 }
 
@@ -75,7 +76,10 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 3px;
+
+  &:not(:first-of-type) {
+    margin-left: 20%;
+  }
 
   &:not(:last-of-type) {
     border-bottom: 1px solid #e4e4e4;
@@ -87,6 +91,13 @@
   }
 }
 
+.tag-box-remove-tag {
+  cursor: pointer;
+
+  &::before {
+    content: $icon-close;
+  }
+}
 .imagehex-empty-note {
   color: #fff;
   background-color: darken($header-color, 10%);

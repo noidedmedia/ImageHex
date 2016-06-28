@@ -6,18 +6,10 @@ import NM from '../../api/global.es6';
 class ImageTagGroup extends React.Component {
   constructor(props) {
     super(props);
-    if (this.props.isNew) {
-      var group = new EtherealTagGroup();
-      this.state = {
-        group: group,
-        showSubmit: true
-      };
-    } else {
-      this.state = {
-        group: this.props.group,
-        showSubmit: true
-      };
-    }
+    this.state = {
+      tags: props.initialTags || [],
+      showSubmit: true
+    };
   }
 
   render() {
@@ -31,13 +23,12 @@ class ImageTagGroup extends React.Component {
       submit = <div></div>;
     }
     var className = "image-group-editor";
-    if (! this.state.group.id ) {
+    if (! this.props.groupId ) {
       className += " new-group";
     }
     return <div className={className}>
       <TagGroupEditor
-        key={0}
-        tags={this.state.group.tags}
+        tags={this.state.tags}
         group={this.state.group}
         onTagAdd={this.addTag.bind(this)}
         onTagRemove={this.removeTag.bind(this)}
@@ -63,53 +54,49 @@ class ImageTagGroup extends React.Component {
   }
 
   addTag(tag) {
-    var group = this.state.group;
-    group.addTag(tag);
-    this.setState({
-      group: group,
-      showSubmit: true
-    });
+    let id = tag.id;
+    if(this.state.tags.find(t => t.id === id)) {
+      // Tag already exists, do nothing
+    }
+    else {
+      this.setState({
+        tags: [...this.state.tags, tag],
+        showSubmit: true
+      });
+    }
   }
 
   removeTag(tag) {
-    var group = this.state.group;
-    group.removeTag(tag);
     this.setState({
-      group: group,
-      showSubmit: true
+      tags: NM.reject(this.state.tags, (t) => t.id === tag.id),
+        showSubmit: true
     });
   }
 
-  submit() {
-    if (this.state.group.id) {
-      var url = "/images/" + this.props.group.image_id + "/tag_groups/";
-      url += this.state.group.id;
-      delete this.state.group["image"];
-      console.log("putting to url", url);
-      var tag_ids = this.state.group.tags.map((t) => t.id);
+  async submit() {
+    if (this.props.groupId) {
+      let {imageId, groupId} = this.props;
+      var url = `/images/${imageId}/tag_groups/${groupId}`;
+      var tag_ids = this.state.tags.map((t) => t.id);
       var data = {
         tag_group: {
           tag_ids: tag_ids
         }
       };
-      NM.putJSON(url, data, function() {
-        console.log("Successfully edited.");
-        window.location.reload();
-      });
+      let d = await NM.putJSON(url, data);
+      window.location.reload();
     }
     // new tag group
     else {
-      var tag_ids = this.state.group.tags.map((t) => t.id);
+      var tag_ids = this.state.tags.map((t) => t.id);
       var data = {
         tag_group: {
           tag_ids: tag_ids
         }
       };
-      var url = "/images/" + this.props.imageId + "/tag_groups";
-      NM.postJSON(url, data, function() {
-        console.log("That should have created another tag group");
-        window.location.reload();
-      });
+      var url = `/images/${this.props.imageId}/tag_groups`;
+      let j = await NM.postJSON(url, data);
+      window.location.reload();
     }
   }
 }
@@ -119,8 +106,6 @@ document.addEventListener("turbolinks:load", function() {
   var newButton = document.getElementById("add-tag-group-button");
   if (newButton) {
     newButton.addEventListener("click", function() {
-      $("#image-details-left").addClass("hide-mobile");
-      console.log("Adding a new tag group");
       ReactDOM.render(<ImageTagGroup 
         isNew={true}
         imageId={this.dataset.image_id}
@@ -130,13 +115,18 @@ document.addEventListener("turbolinks:load", function() {
   var elements = document.getElementsByClassName("edit-generic-tag-group");
   for (var e = 0; e < elements.length; e++) {
     var element = elements[e];
-    element.addEventListener("click", function() {
-      Image.find(this.dataset.image_id, (img) => {
-        console.log("Found an image");
-        var group = img.groupWithId(this.dataset.group_id);
-        ReactDOM.render(<ImageTagGroup group={group} />,
-                        this.parentElement);
-      });
+    element.addEventListener("click", async function() {
+      let imgId = this.dataset.image_id;
+      let groupId = this.dataset.group_id;
+      let img = await NM.getJSON(`/images/${imgId}.json`);
+      console.log("Got image data", img);
+      console.log("Group id is", groupId);
+      let group = img.tag_groups.find((g) => g.id == groupId);
+      ReactDOM.render(<ImageTagGroup
+        initialTags={group.tags}
+        groupId={groupId}
+        imageId={imgId}
+        isNew={false} />, this.parentElement);
     }.bind(element));
   }
 });

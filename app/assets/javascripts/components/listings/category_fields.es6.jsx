@@ -4,6 +4,9 @@ import { CurrencyInputField } from '../currency_input.es6.jsx';
 class CategoryFields extends React.Component {  
   constructor(props) {
     super(props);
+    this.state = {
+      name: this.props.name || ""
+    };
   }
 
   render() {
@@ -16,9 +19,12 @@ class CategoryFields extends React.Component {
         <label htmlFor={fieldName("name")}>
           Name
         </label>
+        {this.nameWarning}
         <input type="text"
           name={fieldName("name")}
-          defaultValue={this.props.name} />
+          value={this.state.name} 
+          onChange={this.changeName.bind(this)} 
+          required={true}/>
       </Common.FieldsSection>
       <Common.FieldsSection>
         <label htmlFor={fieldName("description")}>
@@ -26,13 +32,15 @@ class CategoryFields extends React.Component {
         </label>
         <textarea
           name={fieldName("description")}
-          defaultValue={this.props.description} />
+          value={this.state.description}
+          defualtValue={this.props.description}
+          required={true} />
       </Common.FieldsSection>
       <div className="row-fields-section">
         <Common.FieldsSection
           priceRelevant={true}>
           <label hmtlFor={fieldName("price")}>
-            Price
+            {this.priceLabel}
           </label>
           <CurrencyInputField
             initialValue={this.props.price || 0}
@@ -67,6 +75,37 @@ class CategoryFields extends React.Component {
         name={fieldName("id")}
         value={this.props.id} />
     </li>;
+  }
+
+  get priceLabel() {
+    let { name } = this.state;
+    if(name === "") {
+      return "Price";
+    }
+    else {
+      return `Price per ${name}`;
+    }
+  }
+
+  get nameWarning() {
+    let { name } = this.state;
+    name = name.trim();
+    if(name.endsWith("s")) {
+      let ne = name.substring(0, name.length - 1);
+      return <div className="field-warning">
+        Category names should be singular.
+        Consider "{ne}" instead.
+      </div>;
+    }
+    else {
+      return "";
+    }
+  }
+
+  changeName(event) {
+    this.setState({
+      name: event.target.value
+    });
   }
 }
 

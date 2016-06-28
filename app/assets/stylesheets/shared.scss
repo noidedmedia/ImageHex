@@ -29,21 +29,6 @@
   font-size: 14px;
 }
 
-.remove-text-red {
-  font-size: 14px;
-  color: $logo-red;
-  text-decoration: none;
-
-  &::before {
-    margin-right: 5px;
-    content: $icon-close;
-    color: $logo-red;
-  }
-
-  @media #{$mobile} {
-    flex-basis: unset;
-  }
-}
 
 .fields-section {
   display: flex;
@@ -73,4 +58,59 @@
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+
+.flex-row-mobile-column {
+  display: flex;
+  flex-direction: row;
+
+  @media #{$mobile} {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.field-warning {
+  font-size: 14px;
+  margin: 10px 0;
+  padding: 10px;
+  color: #fff;
+  background-color: lighten($logo-red, 10%);
+
+  &::before {
+    content: $icon-danger;
+    margin-right: 10px;
+  }
+}
+
+.warning-dialogue {
+  font-size: 14px;
+  margin: 20px 0px;
+  padding: 20px;
+  background-color: lighten($logo-red, 10%);
+  color: #eee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.warning-dialogue-icon::before {
+  content: $icon-danger;
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.checkmark-submit-button {
+  font-family: $font-stack;
+  border: 0;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: $logo-green;
+  color: #eee;
+
+  &::before {
+    content: $icon-checkmark;
+    margin-right: 10px;
+  }
 }

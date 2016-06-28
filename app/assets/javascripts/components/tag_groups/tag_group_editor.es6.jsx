@@ -1,5 +1,8 @@
 import Tag from '../../api/tag.es6';
 import InlineTagCreator from './inline_tag_creator.es6.jsx';
+import GroupTag from './group_tag.es6.jsx';
+import TagSuggestion from './tag_suggestion.es6.jsx';
+
 /**
  * Display an interface for editing tag groups.
  * Doesn't manage any state relating to an actual group, so you have to wrap
@@ -16,33 +19,108 @@ class TagGroupEditor extends React.Component {
       activeSuggestion: undefined,
       hasBlankInput: true,
       isActive: false
-    };
+    }  
   }
 
   render() {
     // A list of all tags in this group currently
-    var tags = this.props.tags.map((tag) => {
-      return <TagBox tag={tag} 
-        onRemove={this.props.onTagRemove} 
+    var tags = this.props.tags
+    .sort((a, b) => b.importance - a.importance)
+    .map((tag) => (
+      <GroupTag
         key={tag.id}
-      />;
-    });
-    var suggestions;
+        tag={tag}
+        removeSelf={this.props.onTagRemove.bind(null, tag)} />));
+        var suggestions = this.suggestions;
+
+        var inputField = <input
+          className="tag-group-editor-input"
+          id={this.inputId}
+          onFocus={this.onFocus.bind(this)}
+          name="suggestions" 
+          onChange={this.onInputChange.bind(this)}
+          onKeyDown={this.onKeyUp.bind(this)}
+          value={this.state.inputValue}
+          ref="groupInput"
+          placeholder={this.inputPlaceholder}
+        />;
+        var inputSection;
+        if (this.props.isHeaderSearch) {
+          inputSection = <div className="search-outer-container">
+            <label title="Search" htmlFor="search-input">
+              <span className="icon icon-small icon-search"></span>
+            </label>
+            <span className="search-input-container">
+              {inputField}
+              {this.goButton}
+            </span>
+          </div>;
+        }
+        else {
+          inputSection = inputField;
+        }
+        return <div className="tag-group-editor">
+          <ul className="tag-group-editor-tags">
+            {tags}
+          </ul>
+          {inputSection}
+          <ul className="tag-group-editor-tags-suggestions">
+            {suggestions}
+          </ul>
+          {this.inlineCreator}
+        </div>;
+  }
+
+
+  get inlineCreator() {
+    if (!this.state.hasBlankInput && this.props.allowTagCreation) {
+      return <InlineTagCreator 
+        hideSubmit={this.props.hideSubmit}
+        onAdd={this.onTagAdd.bind(this)}
+        initialTagName={this.state.inputValue} />;
+    }
+    else {
+      return "";
+    }
+  }
+
+  get goButton() {
+    if (this.state.isActive) {
+      // Golly gee I love centering stuff in CSS
+      return <span className="search-side-button"
+        onClick={this.props.submit}>
+        <span>Go</span>
+      </span>;
+    }
+
+    console.log("Go button is not a go ;-;");
+    return "";
+  }
+
+  get inputPlaceholder() {
+    return this.props.isHeaderSearch ? "Search" : "Add a Tag";
+  }
+
+  get inputId() {
+    return this.props.isHeaderSearch ? "search-input" : "";
+  }
+
+  get suggestions() {
     if (this.state.hasSuggestions) {
       // Show the suggestions if we have any
-      suggestions = this.state.suggestions.map((sug, index) => {
-        return <TagSuggestion
-          key={"tag-" + sug.id}
+      return this.state.suggestions.map((sug, index) => (
+        <TagSuggestion
+          key={sug.id}
           tag={sug}
           isActive={index == this.state.activeSuggestion} 
-          onAdd={this.onTagAdd.bind(this)} />;
-      });
+          addSelf={this.onTagAdd.bind(this, sug)} />
+      ));
 
     }
     // Now, if we do want to show the user suggestions, display a notification
     // that there aren't any to show.
     else if (this.state.showSuggestions) {
-      suggestions = <li className="imagehex-empty-note">
+      return <li className="imagehex-empty-note">
         Found no suggestions.
       </li>;
     }
@@ -50,79 +128,10 @@ class TagGroupEditor extends React.Component {
     // any suggestions. This is mostly for the case where the input is blank,
     // and can probably be refactored out.
     else {
-      suggestions = "";
+      return "";
     }
-
-    var inlineCreator = "";
-    if (!this.state.hasBlankInput && this.props.allowTagCreation) {
-      inlineCreator = <InlineTagCreator 
-        hideSubmit={this.props.hideSubmit}
-        onAdd={this.onTagAdd.bind(this)}
-        initialTagName={this.state.inputValue} />;
-
-    }
-    var removalButton = "";
-    // If we allow removal, add a button to do so.
-    if (this.props.allowRemoval) {
-      removalButton = <div className="remove-tag-group"
-        onClick={this.props.onRemove}>
-        Remove
-      </div>;
-    }
-    // Determine how the input field is going to look
-    // Used for styling purposes.
-    var inputField;
-    if (this.props.isHeaderSearch) {
-      var goButton = "";
-      if (this.state.isActive) {
-        // Golly gee I love centering stuff in CSS
-        goButton = <span className="search-side-button"
-          onClick={this.props.submit}>
-          <span>Go</span>
-        </span>;
-      }
-      inputField = <div className="search-outer-container">
-        <label title="Search" htmlFor="search-input">
-          <span className="icon icon-small icon-search"></span>
-        </label>
-        <span className="search-input-container">
-          <input type="text"
-            id="search-input"
-            name="suggestions" 
-            onChange={this.onInputChange.bind(this)}
-            onKeyDown={this.onKeyUp.bind(this)}
-            value={this.state.inputValue}
-            ref="groupInput"
-            placeholder="Search"
-            onFocus={this.focus.bind(this)}
-          />
-          {goButton}
-        </span>
-      </div>;
-    } else {
-      inputField = <input type="text" 
-        className="tag-group-editor-input"
-        name="suggestions" 
-        onChange={this.onInputChange.bind(this)}
-        onKeyDown={this.onKeyUp.bind(this)}
-        value={this.state.inputValue}
-        ref="groupInput"
-        placeholder="Add a tag"
-      />;
-    }
-
-    return <div className="tag-group-editor">
-      {removalButton}
-      <ul className="tag-group-editor-tags">
-        {tags}
-      </ul>
-      {inputField}
-      <ul className="tag-group-editor-tags-suggestions">
-        {suggestions}
-      </ul>
-      {inlineCreator}
-    </div>;
   }
+
   /**
    * Focus our text box on every update, if props tells us to.
    * Otherwise, the user has to click in the box again.
@@ -133,7 +142,7 @@ class TagGroupEditor extends React.Component {
     }
   }
 
-  focus() {
+  onFocus() {
     this.setState({isActive: true});
   }
   /**
@@ -162,26 +171,6 @@ class TagGroupEditor extends React.Component {
     // Input is currently blank, but that may be because we deleted the last
     // character in the box
     if (this.state.hasBlankInput && event.keyCode == 8) {
-      // if it as blank and the key we pressed before this was also a backspace
-      // we have pressed backspace in a blank box and thus should go to the
-      // previous tag
-      if (this.state.lastKeyWasBackspace) {
-        let lastTag = this.props.tags[this.props.tags.length - 1];
-        this.props.onTagRemove(lastTag);
-        this.setState({
-          hasBlankInput: false,
-          inputValue: lastTag.name
-        });
-        return;
-      }
-      // Tf the last key wasn't a backspace, this backspace made the box blank.
-      // That means that the next backspace should go to the previous tag.
-      else {
-        this.setState({
-          lastKeyWasBackspace: true
-        });
-        return;
-      }
     }
     // User types an enter key or a comma, try to add the current tag
     else if (event.keyCode == 13) {
@@ -234,6 +223,28 @@ class TagGroupEditor extends React.Component {
 
   }
 
+  backspacePressed() {
+    // if it as blank and the key we pressed before this was also a backspace
+    // we have pressed backspace in a blank box and thus should go to the
+    // previous tag
+    if (this.state.lastKeyWasBackspace) {
+      let lastTag = this.props.tags[this.props.tags.length - 1];
+      this.props.onTagRemove(lastTag);
+      this.setState({
+        hasBlankInput: false,
+        inputValue: lastTag.name
+      });
+    }
+    // Tf the last key wasn't a backspace, this backspace made the box blank.
+    // That means that the next backspace should go to the previous tag.
+    else {
+      this.setState({
+        lastKeyWasBackspace: true
+      });
+    }
+  }
+
+
   /**
    * Add the active suggestion.
    */
@@ -249,10 +260,6 @@ class TagGroupEditor extends React.Component {
   /**
    * Handle each time the input updates, fetching new suggestions each time,
    * or doing other actions in certain cases.
-   *
-   * This should almost certainly be modified to only fetch new suggestions for
-   * the first 3-4 characters, and to filter the existing suggestions from that
-   * point on. Right now, though, we're 2agile4that, or something.
    */
   onInputChange(event) { 
     var value = event.target.value;
@@ -280,45 +287,37 @@ class TagGroupEditor extends React.Component {
    * Start fetching new suggestions. 
    * See `onInputChange` for info on how we may refactor this.
    */
-  fetchSuggestions(value) {
-    Tag.withPrefix(value, (tags) => {
-      // Filter tags already in this group
-      tags = tags.filter( (tag) => {
-        for (var i = 0; i < this.props.tags.length; i++) {
-          if (this.props.tags[i].id === tag.id) {
-            return false;
-          }
-        }
-        return true;
+  async fetchSuggestions(value) {
+    let tags = await Tag.withPrefix(value, value.length > 1);
+    let filtered = tags.filter((tag) => {
+      return ! this.props.tags.some(t => t.id == tag.id);
+    });
+    if(filtered.length > 0) {
+      /**
+       * We also set the `active` suggestion to 0. This may result in weird
+       * behavior if the user hits the down arrow key to change the active
+       * suggestion, then types another character. However, if the user is 
+       * hitting the down arrow to change their active selection, it stands
+       * to reason that they will just hit "enter" to select that and not
+       * keep typing. After all, why switch the active suggestion if you need
+       * to keep typing? If it becomes a problem we can fix it, but for
+       * right now this should work.
+       */
+      this.setState({
+        hasBlankInput: false,
+        hasSuggestions: true,
+        showSuggestions: true,
+        suggestions: filtered,
+        activeSuggestion: 0
       });
-      if (tags.length > 0) {
-
-        /**
-         * We also set the `active` suggestion to 0. This may result in weird
-         * behavior if the user hits the down arrow key to change the active
-         * suggestion, then types another character. However, if the user is 
-         * hitting the down arrow to change their active selection, it stands
-         * to reason that they will just hit "enter" to select that and not
-         * keep typing. After all, why switch the active suggestion if you need
-         * to keep typing? If it becomes a problem we can fix it, but for
-         * right now this should work.
-         */
-        this.setState({
-          hasBlankInput: false,
-          hasSuggestions: true,
-          showSuggestions: true,
-          suggestions: tags,
-          activeSuggestion: 0
-        });
-      }
-      else {
-        this.setState({
-          hasSuggestions: false,
-          showSuggestions: true,
-          hasBlankInput: false,
-        });
-      }
-    }, value.length > 1);
+    }
+    else {
+      this.setState({
+        hasSuggestions: false,
+        showSuggestions: true,
+        hasBlankInput: false,
+      });
+    }
   }
 }
 
@@ -371,77 +370,6 @@ TagGroupEditor.propTypes = {
   // We call this when the user clicks our `remove` button.
   //
   // See above for a way to refactor this.
-  onRemove: React.PropTypes.func
-};
-
-/**
- * A very simple display of a tag suggestion
- */
-class TagSuggestion extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    var className = "tag-group-tag-suggestion";
-    if (this.props.isActive) {
-      className += " active";
-    }
-    return <li
-      className={className}
-      onClick={this.click.bind(this)}>
-      <span>{this.props.tag.name}</span>
-    </li>;
-  }
-  click() {
-    this.props.onAdd(this.props.tag);
-  }
-}
-
-TagSuggestion.propTypes = {
-  // The tag we are suggesting. Commented out for now because our JS
-  // is loading in the wrong order, so this isn't visible
-  // tag: React.PropTypes.instanceOf(Tag),
-  // Is this the active suggestion?
-  active: React.PropTypes.bool,
-  // Call this callback with our tag if somebody clicks on us
-  onTagAdd: React.PropTypes.func
-};
-
-
-
-/**
- * Box one tag value, displaying it in this group and allowing user removal.
- * 
- * Should almost definitely be renamed.
- */
-class TagBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return <li className="tag-box-added-tag">
-      {this.props.tag.name}
-      <div className="tag-box-remove-tag"
-        onClick={this.removeSelf.bind(this)}>
-        Remove
-      </div>
-    </li>;
-  }
-
-  removeSelf() {
-    this.props.onRemove(this.props.tag);
-  }
-}
-
-TagBox.propTypes = {
-  // The tag we are displaying 
-  //  Commented our for now due to JS load order weirdness
-  // tag: React.PropTypes.instanceOf(Tag),
-  // Call this function when the user clicks our `remove` button
   onRemove: React.PropTypes.func
 };
 

@@ -21,16 +21,24 @@ class OptionSection extends React.Component {
         key={i} />
     });
 
-    return <div className="listing-form-options-section">
-      <a 
-        className="add-option-button green-add-button"
-        onClick={this.addOption.bind(this)}>
-        Add an Option
-      </a>
+    return <div className="listing-form-section">
+      <div className="listing-form-section-header">
+        <h1>Options</h1>
+        <div className="description">
+          Optional features for this commission.
+          May include inked linework, proper shading, or anything else you can provide to clients.
+          If an option requires reference material, make it a charged reference category instead.
+          If an option significently changes a commission in terms of price or time to completion, consider making a new listing instead.
+        </div>
+        <a 
+          className="add-option-button green-add-button"
+          onClick={this.addOption.bind(this)}>
+          Add an Option
+        </a>
+      </div>
       <ul className="options-container">
         {options}
       </ul>
-
     </div>;
   }
 

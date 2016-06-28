@@ -18,6 +18,29 @@ NM.flatten = function(array) {
   return ret;
 }
 
+NM.reject = function(array, predicate) {
+  var ret = [];
+  array.forEach((e) => {
+    if(predicate(e)) {
+      // do nothing
+    }
+    else {
+      ret.push(e);
+    }
+  });
+  return ret;
+}
+
+NM.select = function(array, predicate) {
+  var ret = [];
+  array.forEach((e) => {
+    if(predicate(e)) {
+      ret.push(e);
+    }
+  });
+  return ret;
+}
+
 /**
  * Turn an array into a normalized object.
  * Will use the `sel` parameter of each object as the key, and the object

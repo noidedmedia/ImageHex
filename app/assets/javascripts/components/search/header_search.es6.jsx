@@ -1,5 +1,5 @@
-import EtherealTagGroup from './../api/ethereal_tag_group.es6';
-import TagGroupEditor from './tag_groups/tag_group_editor.es6.jsx';
+import EtherealTagGroup from './../../api/ethereal_tag_group.es6';
+import TagGroupEditor from '../tag_groups/tag_group_editor.es6.jsx';
 
 class HeaderSearch extends React.Component {
   constructor(props) {
@@ -28,12 +28,14 @@ class HeaderSearch extends React.Component {
       tagGroup: this.state.tagGroup
     });
   }
+
   removeTag(tag) {
     this.state.tagGroup.removeTag(tag);
     this.setState({
       tagGroup: this.state.tagGroup
     });
   }
+
   submit() {
     var query = {};
     var tags = this.state.tagGroup.tags.map((tag) => {

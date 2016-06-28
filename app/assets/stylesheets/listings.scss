@@ -1,6 +1,9 @@
 @import "variables";
 
-$standard-padding: 15px;
+$standard-padding: 20px;
+$header-background-color: #272727;
+$header-text-color: rgba(255, 255, 255, 0.8);
+
 
 #listing-form {
   .price-relevant {
@@ -22,121 +25,50 @@ $standard-padding: 15px;
   }
 }
 
-// INDEX
-.listings-description {
-  max-width: 700px;
-  margin-top: 10px;
-  padding: 10px;
-  margin: auto;
-  font-size: 2.0rem;
-  text-align: center;
-}
-
-#listings-list {
-  max-width: 500px;
-  padding: 10px;
-  display: block;
-  margin: auto;
-}
-
-.listings-list-item {
+.listing-overall-prices {
+  padding: $standard-padding;
+  margin-bottom: $standard-padding;
   font-size: 14px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+}
 
-  &:not(:last-of-type) {
-    border-bottom: 3px solid $header-color;
-  }
+.listing-form-section-header {
+  padding: $standard-padding;
+  background-color: $header-background-color;
+  color: $header-text-color;
+  margin-bottom: $standard-padding;
+  font-size: 14px;
 
-  a {
-    text-decoration: none;
-    color: $header-color;
-  }
-
-  h2 {
-    font-size: 2.5rem;
-  }
-
-  h3 {
-    font-size: 2.0rem;
-    font-weight: normal;
+  h1 {
+    font-size: 2.4rem;
   }
 }
 
-.listings-list-user {
-  display: flex;
-  flex-direction: row;
+.big-description {
+  justify-content: space-between;
   align-items: center;
-
-  span {
-    margin-left: 10px;
-    display: inline-block;
-    vertical-align: center;
-    font-size: 1.5rem;
-  }
-
-  img {
-    max-height: 40px;
-  }
-}
-
-.two-column-label {
-  color: #333;
-  margin-top: 5px;
-  display: flex;
-  justify-content: space-between;
-
-  span {
-    display: block;
-    flex-shrink: 1;
-  }
-}
-
-.options-item {
-  margin-top: 5px;
-
-  &:not(:last-of-type) {
-    margin-bottom: 5px;
-  }
-}
-
-.option-header {
-  display: flex;
-  justify-content: space-between;
-
-  span {
-    color: #666;
-  }
-}
-
-.option-inner {
-  padding-left: 5%;
-}
-
-// SHOW
-.listing-show-wrapper {
-  max-width: 600px;
-  margin: 10px;
-}
-
-
-// FORMS
-
-.button-side-label {
-  margin-right: 5px;
-}
-
-.price-field-section {
-  transition: 0.5s ease-in-out;
-  max-height: 40px;
+  transition: 1s linear;
   overflow: hidden;
+  margin-bottom: ($standard-padding / 2);
 
-  &.inactive {
+  > div {
+    max-width: 75%;
+  }
+
+  &.price-active {
+    max-height: 30px;
+  }
+
+  input[type="checkbox"] {
+    width: 25%;
+  }
+
+  &.price-inactive {
     max-height: 0;
-    flex-basis: 0;
+  }
+
+  label {
+    font-size: 18px;
+    white-space: nowrap;
   }
 }
 
@@ -191,42 +123,14 @@ $standard-padding: 15px;
   }
 }
 
+.remove-option-button {
+  font-size: 16px;
+  color: $logo-red;
+  cursor: pointer;
 
-.warning-message {
-  color: #fff;
-  font-size: 14px;
-  transition: 0.5s ease-in-out;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  max-height: 0;
-
-  &.active {
-    padding: 10px;
-    margin: 10px;
-    max-height: 100px;
-    background-color: $logo-red;
-  }
-
-  .warning-message-icon::before {
-    content: $icon-warning;
-    margin-right: 10px;
-  }
-
-  .warning-message-inner {
-    max-width: 45%;
-    text-align: center;
-  }
-
-  @media #{$mobile} {
-    &.active {
-      max-height: 150px;
-    }
-
-    .warning-message-inner {
-      max-width: 90%;
-    }
+  &::before {
+    content: $icon-close;
+    margin-right: 5px;
   }
 }
+

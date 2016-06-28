@@ -7,20 +7,31 @@ class PriceSection extends React.Component {
   }
 
   render() {
-    return <div className="row-fields-section">
-      <div>
-        <label htmlFor="listing[quote_only]">
-          Quote only?
-        </label>
+    return <div className="listing-overall-prices">
+      <div className="flex-row-mobile-column big-description">
+        <div>
+          <label htmlFor="listing[quote_only]"
+            className="big-label">
+            Quote Prices?
+          </label>
+          <div className="field-description">
+            You will determine the price on a case-by-case basis, 
+            and provide the user with a quote.
+            This will disable automatic price calculation.
+          </div>
+        </div>
         <input type="checkbox"
           name="listing[quote_only]"
           state={this.props.quote_only}
           onChange={this.toggleCheck.bind(this)} />
       </div>
-      <div className={this.inputClassName}>
-        <label htmlFor="listing[base_price]">
-          Base Price
-        </label>
+      <div 
+        className={"flex-row-mobile-column big-description " + this.priceClass}>
+        <div>
+          <label htmlFor="listing[base_price]">
+            Base Price
+          </label>
+        </div>
         <CurrencyInputField min={0} 
           initialValue={500}
           name="listing[base_price]" />
@@ -28,14 +39,9 @@ class PriceSection extends React.Component {
     </div>;
   }
 
-  get inputClassName() {
-    var base = "price-field-section";
-    if(this.props.quote_only) {
-      return base + " inactive";
-    }
-    else {
-      return base + " active";
-    }
+
+  get priceClass() {
+    return (this.props.quote_only ? " price-inactive" : " price-active");
   }
 
   toggleCheck() {

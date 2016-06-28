@@ -11,33 +11,40 @@ class ListingForm extends React.Component {
   }
 
   render() {
-    var warningMessageClass = "warning-message";
     return <div id="listing-form">
       <PriceSection {...this.state} 
         toggleCheck={this.toggleCheck.bind(this)} />
+      <CategorySection
+        categories={this.state.categories}
+        addCategory={this.addCategory.bind(this)}
+        removeCategory={this.removeCategory.bind(this)} />
       <OptionSection
         quoteOnly={this.state.quote_only}
         addOption={this.addOption.bind(this)}
         removeOption={this.removeOption.bind(this)}
         options={this.state.options} />
-      <CategorySection
-        categories={this.state.categories}
-        addCategory={this.addCategory.bind(this)}
-        removeCategory={this.removeCategory.bind(this)} />
-      <button type="submit"
-        disabled={this.state.refCatCount == 0}>
-        Submit
-      </button>
-      <div className={warningMessageClass}>
-        <span className="warning-message-icon"/>
+        {this.submitSection}
+      </div>
+    }
 
-        <span className="warning-message-inner">
+  get submitSection() {
+    if(this.state.categories.length == 0) {
+      return <div className="warning-dialogue">
+        <span className="warning-dialogue-icon" />
+        <span className="warning-dialogue-inner">
           You must add one reference category, which ImageHex uses to organize reference material.
           Typically, this will represent objects or characters in the image.
         </span>
-      </div>
-    </div>;
+      </div>;
+    }
+    else {
+      return  <button type="submit"
+        className="checkmark-submit-button">
+        Save Listing
+      </button>;
+    }
   }
+
 
   getChildContext() {
     return {

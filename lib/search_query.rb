@@ -27,10 +27,14 @@ class SearchQuery
   end
 
   def tag_groups
-    if @q["tag_groups"].is_a? Array
-      @q["tag_groups"]
+    val = @q["tag_groups"]
+    case val
+    when Array
+      val
+    when NilClass
+      []
     else
-      @q["tag_groups"].values
+      val.values
     end
   end
 

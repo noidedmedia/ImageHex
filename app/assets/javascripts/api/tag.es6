@@ -43,14 +43,14 @@ class Tag {
     });
   }
 
-  static withPrefixBuffered(prefix, callback) {
+  static withPrefixBuffered(prefix, resolve) {
     // All tags that start with the first 2 letters
     var pf = Tag.prefix_buffer[prefix.substring(0, 1)]
     // Get only tags that start with the entire prefix
     var f = pf.filter((val) => {
       return val.name.toLowerCase().startsWith(prefix.toLowerCase());
     });
-    callback(f);
+    resolve(f);
   }
 
   static hasPrefixFromBuffer(prefix) {
@@ -61,23 +61,21 @@ class Tag {
    * @param{String} prefix the prefix
    * @param{Function} callback called with the array of tags
    */
-  static withPrefix(prefix, callback, buffered) {
-    prefix = prefix.toLowerCase();
-    console.log("Grabbing for prefix",prefix, "buffered",buffered);
-    if(buffered && Tag.hasPrefixFromBuffer(prefix)) {
-      console.log("Grabbing from buffer...");
-      return Tag.withPrefixBuffered(prefix, callback);
-    }
-    var uri = "/tags/suggest/?"+ $.param({name: prefix});
-    $.getJSON(uri, (d) => {
-      var a = [];
-      for (var t of d) {
-        a.push(new Tag(t));
+  static withPrefix(prefix, buffered) {
+    return new Promise(async function(resolve, reject) {
+      prefix = prefix.toLowerCase();
+      if(buffered && Tag.hasPrefixFromBuffer(prefix)) {
+        return Tag.withPrefixBuffered(prefix, resolve);
       }
-      Tag.addBuffer(a, prefix);
-      callback(a);
+      let query = $.param({name: prefix});
+      let uri = `/tags/suggest.json?${query}`;
+      let tags = await NM.getJSON(uri);
+      let mapped = tags.map(t => new Tag(t));
+      Tag.addBuffer(mapped, prefix);
+      resolve(mapped);
     });
   }
+
   static addBuffer(ar, prefix) {
     Tag.prefix_buffer[prefix.toLowerCase().substring(0, 1)] = ar;
   }
