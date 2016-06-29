@@ -24,7 +24,7 @@ class OrderForm extends React.Component {
             {" " + this.props.listing.username} to create. 
           </div>
         </div>
-        <div className="lower-section">
+        <div className="lower-section fields-section">
           <textarea 
             name="order[description]"
             defaultValue={this.props.description} />

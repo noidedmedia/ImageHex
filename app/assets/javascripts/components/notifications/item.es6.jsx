@@ -22,6 +22,7 @@ class NotificationItem extends React.Component {
       </a>
     </li>;
   }
+
   async readSelf() {
     var r = await NM.postJSON("/notifications/" + this.props.id + "/read", {});
     this.setState({
@@ -44,8 +45,9 @@ class NotificationItem extends React.Component {
     else if (this.props.subject.type == "user") {
       return "/users/" + this.props.subject.id;
     }
-    else if (this.props.subject.type == "commission_offer") {
-      return "/commission_offers/" + this.props.subject.id;
+    else if (this.props.subject.type == "order") {
+      let { listing_id, order_id } = this.props.subject;
+      return `/listings/${listing_id}/orders/${order_id}`;
     }
   }
   message() {

@@ -60,6 +60,7 @@ class Notification < ActiveRecord::Base
       }
     when Order
       to_write = {
+        order_id: sub.id,
         listing_id: sub.listing.id,
         listing_name: sub.listing.name,
         type: :order,

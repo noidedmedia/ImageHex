@@ -27,7 +27,7 @@ class ReferenceForm extends React.Component {
         </div>
         <textarea name={fieldName("description")}
           defaultValue={reference.description} 
-          className="reference-description" />
+          className="rounded-text-area" />
       </div>
       <input type="hidden"
         name={fieldName("listing_category_id")}

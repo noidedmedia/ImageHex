@@ -1,3 +1,47 @@
-<div class="listing-show-wrapper">
-  <%= render "listing", listing: @listing %>
+<div id="show-listing">
+  <div class="show-listing-header flex-column">
+    <h1><%= @listing.name %></h1>
+    <div class="listing-artist flex-row">
+      <span>By</span>
+      <%= image_tag @listing.user.avatar_img_thumb %>
+      <%= link_to @listing.user.name, @listing.user %>
+    </div>
+  </div>
+
+  <div class="show-listing-description white-listing-box">
+    <%= markdown_parse @listing.description %>
+  </div>
+
+  <h2>Examples</h2>
+  <ul class="listing-example-images-list flex-row">
+    <% @listing.images.each do |img| %>
+      <li class="listing-example-images-item">
+        <%= link_to img do %>
+          <%= image_tag img.f(:medium) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <% unless @listing.quote_only? %>
+    <div class="listing-price-section white-listing-box">
+      Base Price: <%= price @listing.base_price %>
+    </div>
+  <% end %>
+  <% if policy(@listing).confirm? %>
+    <div class="listing-confirm flex-row">
+      <span>
+        This listing is a draft.
+      </span>
+      <%= form_tag confirm_listing_path(@listing) do %>
+        <%= submit_tag("Finalize Listing", class: "checkmark-submit-button") %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @listing.user != current_user %>
+    <%= link_to "Make an Order", 
+      new_listing_order_path(@listing),
+      :class => "listing-order-button" %>
+  <% end %>
 </div>

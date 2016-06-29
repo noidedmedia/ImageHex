@@ -39,10 +39,30 @@ class ExampleImageSection extends React.Component {
           changeSelected={this.changeSelected.bind(this)} />
         {this.progressBar}
         {this.formFields}
+        {this.controls}
       </div>
     </div>;
   }
 
+  get controls() {
+    let prevButton, nextButton;
+    if(this.hasPreviousPage) {
+      prevButton = <a className="control-button previous-button"
+        onClick={this.regressPage.bind(this)}>
+        ←
+      </a>;
+    }
+    if(this.hasNextPage) {
+      nextButton = <a className="control-button next-button"
+        onClick={this.advancePage.bind(this)}>
+        →
+      </a>;
+    }
+    return <div className="example-image-controls flex-row">
+      {prevButton}
+      {nextButton}
+    </div>
+  }
 
   get formFields() {
     const fieldName = "listing[image_ids][]";
@@ -55,6 +75,14 @@ class ExampleImageSection extends React.Component {
     ));
   }
 
+  get hasPreviousPage() {
+    return this.state.page > 1;
+  }
+
+  get hasNextPage() {
+    return this.state.totalPages && this.state.page < this.state.totalPages;
+  }
+
   get activateBar() {
     if(this.state.active) {
       return <div className="example-images-activate-bar active"
@@ -64,6 +92,22 @@ class ExampleImageSection extends React.Component {
       return <div className="example-images-activate-bar inactive"
         onClick={this.activate.bind(this)} />
     }
+  }
+
+  advancePage() {
+    this.setState({
+      page: this.state.page + 1
+    }, () => {
+      this.fetchPage();
+    });
+  }
+
+  regressPage() {
+    this.setState({
+      page: this.state.page - 1
+    }, () => {
+      this.fetchPage();
+    });
   }
 
   activate() {
@@ -79,9 +123,11 @@ class ExampleImageSection extends React.Component {
   }
   get progressBar() {
     if(this.state.fetching) {
-      return <progress></progress>;
+      return <progress className="full-width-progress active">
+      </progress>;
     }
-    return "";
+    return <progress className="full-width-progress inactive">
+    </progress>
   }
 
   changeSelected(selected) {
@@ -104,8 +150,8 @@ class ExampleImageSection extends React.Component {
     let q = await NM.getJSON(url);
     this.setState({
       activeImages: q.images,
-      page: q.page,
-      total_pages: q.total_pages,
+      page: q.current_page,
+      totalPages: q.total_pages,
       fetching: false
     });
   }

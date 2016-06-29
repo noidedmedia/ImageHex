@@ -17,7 +17,7 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def confirm?
-    ! @user.stripe_user_id.nil?
+    (! @user.stripe_user_id.nil?) && owned? && ! @listing.confirmed?
   end
 
   def create?

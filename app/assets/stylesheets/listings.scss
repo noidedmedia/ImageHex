@@ -5,6 +5,87 @@ $header-background-color: #272727;
 $header-text-color: rgba(255, 255, 255, 0.8);
 
 
+
+#show-listing {
+  max-width: 700px;
+  padding: $standard-padding 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-confirm {
+  font-size: 16px;
+  justify-content: space-between;
+  margin: $standard-padding 0;
+
+  input {
+    font-size: 16px;
+    border: 0;
+  }
+}
+
+.show-listing-header {
+  h1 {
+    text-align: center;
+  }
+
+  .listing-artist {
+    align-self: flex-end;
+    align-items: center;
+    font-size: 16px;
+    
+    img {
+      max-height: 3em;
+    }
+
+    span {
+      margin-right: 10px;
+    }
+
+    a {
+      margin-left: 10px;
+    }
+  }
+}
+
+.listing-example-images-list {
+  flex-wrap: wrap;
+}
+
+.listing-example-images-item {
+  margin: $standard-padding;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.white-listing-box {
+  padding: $standard-padding;
+  margin: $standard-padding 0;
+  background-color: #fff;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.listing-price-section {
+  font-size: 16px;
+}
+
+.listing-order-button {
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-block;
+  padding: ($standard-padding / 2);
+  align-self: flex-end;
+  color: #fff;
+  background-color: $logo-green;
+
+  &::before {
+    content: $icon-plus;
+    margin-right: 10px;
+  }
+}
+
 #listing-form {
   .price-relevant {
     transition: 1s linear;
@@ -75,6 +156,7 @@ $header-text-color: rgba(255, 255, 255, 0.8);
 .listing-example-images-section {
 
   .lower-section {
+    background-color: #fff;
     transition: 1s linear;
     max-height: 70vh;
     overflow-y: scroll;
@@ -139,6 +221,24 @@ $header-text-color: rgba(255, 255, 255, 0.8);
 
 #example-image-section {
   margin: 0;
+}
+
+.control-button {
+  background-color: $logo-blue;
+  color: #fff;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.example-image-controls {
+  $side-padding: 50px;
+  margin-left: $side-padding;
+  margin-right: $side-padding;
+  margin-bottom: (2 * $standard-padding);
+}
+
+.next-button {
+  margin-left: auto;
 }
 
 .listing-form {

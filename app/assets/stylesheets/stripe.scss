@@ -1,3 +1,9 @@
 // Place all the styles related to the Stripe controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.stripe-button-el {
+  align-self: flex-end;
+  justify-self: flex-end;
+  margin-top: 20px;
+}

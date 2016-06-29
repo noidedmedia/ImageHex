@@ -1,4 +1,4 @@
-<li class="reference-group-fields">
+<li class="reference-group-fields show-order">
   <div class="reference-group-header">
     <h3>Description</h3>
     <div class="description markdown-description">
@@ -28,5 +28,14 @@
         </li>
       <% end %>
     </ul>
+    <div class="order-group-container">
+      <div class="generic-tag-group">
+        <ul class="generic-tag-list">
+          <% reference.tags.each do |t| %>
+            <li class="generic-tag"><%= link_to t.name, t %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 </li>

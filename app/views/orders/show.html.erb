@@ -1,5 +1,5 @@
-<div id="order-form-inner">
-  <div class="order-description">
+<div id="order-show" class="flex-column">
+  <div class="order-description white-listing-box">
     <%= markdown_parse @order.description %>
   </div>
 
@@ -10,7 +10,9 @@
   </ul>
 
   <div class="options-section">
-    <h3>Options</h3>
+    <div class="options-section-header">
+      <h3>Options</h3>
+    </div>
     <% unless @order.options.empty? %>
       <ul class="option-fields-list">
         <% @order.options.each do |opt| %>
@@ -38,26 +40,29 @@
     <%= link_to confirm_listing_order_path(@listing, @order), 
       method: :post, 
       confirm: "Are you sure?",
-      class: "order-confirm-button" do %>
+      :class =>  "checkmark-submit-button order-confirm-button" do %>
         Confirm order
         <% unless @order.listing.quote_only? %>
-          for $<%= price @order.calculated_final_price %>
+          for <%= price @order.calculated_final_price %>
         <% end %>
       <% end %>
     <% end %>
 
     <% if policy(@order).accept? %>
       <%= form_tag accept_listing_order_path(@listing, @order),
-        method: :post, class: "order-confirm-form" do %>
+        method: :post, 
+        :class => "order-confirm-form flex-column" do %>
           <% if @listing.quote_only? %>
             <%= react_component("QuotePicker") %>
           <% end %>
-          <%= button_tag("Confirm Order") %>
+          <%= submit_tag("Confirm Order",
+                         :class => "checkmark-submit-button order-confirm-button") %>
         <% end %>
       <% end %>
 
       <% if policy(@order).purchase? %>
         <%= form_tag purchase_listing_order_path(@listing, @order),
+          :class => "flex-column",
           method: :post do %>
             <script
               src="https://checkout.stripe.com/checkout.js"

@@ -108,9 +108,20 @@
   margin-bottom: 20px;
   background-color: $logo-green;
   color: #eee;
+  cursor: pointer;
 
   &::before {
     content: $icon-checkmark;
     margin-right: 10px;
+  }
+}
+
+.full-width-progress {
+  width: 100%;
+  transition: 500ms linear;
+  opacity: 1;
+
+  &.inactive {
+    opacity: 0;
   }
 }
