@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
     @order = @listing.orders.find(params[:id])
     authorize @order
     respond_to do |format|
-      if @order.update(image_id: params[:image_id])
+      if @order.fill(Image.find(params[:image_id]))
         format.html { redirect_to @order }
         format.json { render 'show' }
       else

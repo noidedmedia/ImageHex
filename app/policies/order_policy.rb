@@ -25,6 +25,11 @@ class OrderPolicy < ApplicationPolicy
      ! @order.accepted?)
   end
 
+  def fill?
+    @order.charge_id &&
+      listing_owner?
+  end
+
   def create?
     ! listing_owner?
   end

@@ -74,4 +74,14 @@
             data-locale="auto"> </script>
         <% end %>
       <% end %>
+
+
+      <% if policy(@order).fill? %>
+        <%= form_for fill_listing_order_path(@listing, @order),
+          action: :post do %>
+          <%= react_component("OrderFiller", 
+          {chargeTime: @order.charged_at,
+            order_id: @order.id}) %>
+          <% end %>
+      <% end %>
     </div>

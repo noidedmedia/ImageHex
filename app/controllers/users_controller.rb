@@ -117,6 +117,10 @@ class UsersController < ApplicationController
     @images = @user.creations
       .for_content(content_pref)
       .paginate(page: page, per_page: per_page)
+    if params[:created_after] then
+      t = Time.at(params[:created_after].to_f)
+      @images = @images.where("images.created_at > ?", t)
+    end
   end
 
   ##

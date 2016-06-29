@@ -44,13 +44,23 @@ class Order < ActiveRecord::Base
 
   def fill(img)
     fail TypeError, "That's not an image" unless img.is_a? Image
-    update!(image: img,
-            filled_at: Time.zone.now)
+    self.class.transaction do 
+      update!(image: img,
+              filled_at: Time.zone.now)
+      Notification.create(user: self.user,
+                          kind: :order_filled,
+                          subject: self)
+    end
   end
 
   def charge(charge)
-    update(charge_id: charge["id"],
-           charged_at: Time.at(charge["created"]).utc.to_datetime)
+    self.class.transaction do 
+      update(charge_id: charge["id"],
+             charged_at: Time.at(charge["created"]).utc.to_datetime)
+      Notification.create(user: self.user,
+                          kind: :order_paid,
+                          subject: self)
+    end
   end
 
   def accept(params)
