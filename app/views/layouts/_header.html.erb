@@ -85,8 +85,6 @@
 
           <ul>
             <li><%= link_to t(".profile"), current_user %>
-            <li><%= link_to t(".conversations"), conversations_path %>
-
             <%# Admin, only displayed for admins. %>
             <% if current_user.admin? %>
               <li><%= link_to t(".admin"), admin_images_path %>
