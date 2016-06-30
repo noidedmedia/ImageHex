@@ -198,6 +198,10 @@
   border-radius: 5px;
   border: 1px solid #eee;
   padding: 10px;
+
+  @media #{$mobile} {
+    padding: 10px 10px 50px 10px;
+  }
 }
 
 @keyframes foldOpen {
