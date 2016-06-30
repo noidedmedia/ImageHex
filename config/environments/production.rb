@@ -7,14 +7,14 @@ Rails.application.config.action_cable.allowed_request_origins = ['https://www.im
 
 Sidekiq.configure_client do |config|
   config.redis = {
-    size: 3,
+    size: 7,
     url: ENV["REDIS_URL"]
   }
 end
 
 Sidekiq.configure_server do |config|
   config.redis = {
-    size: 3,
+    size: 7,
     url: ENV["REDIS_URL"]
   }
 end
