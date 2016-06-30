@@ -20,6 +20,7 @@ module ImageHex
 
 
     config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join("lib")
     routes.default_url_options[:host] = "localhost"
 
     # Default host URL for links in emails.
