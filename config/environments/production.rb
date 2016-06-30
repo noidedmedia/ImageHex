@@ -6,8 +6,19 @@ Rails.application.routes.default_url_options[:host] = "www.imagehex.com"
 Rails.application.config.action_cable.allowed_request_origins = ['https://www.imagehex.com']
 
 Sidekiq.configure_client do |config|
-  config.redis = { size: 3 }
+  config.redis = {
+    size: 3,
+    url: ENV["REDIS_URL"]
+  }
 end
+
+Sidekiq.configure_server do |config|
+  config.redis = {
+    size: 3,
+    url: ENV["REDIS_URL"]
+  }
+end
+
 
 ActionMailer::Base.smtp_settings = {
   address: 'smtp.sendgrid.net',
