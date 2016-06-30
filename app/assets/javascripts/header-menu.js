@@ -36,12 +36,7 @@ function headerMenuClose() {
 }
 
 var ready = function() {
-  var windowwidth = window.innerWidth;
-
-  // Only run if the browser window implies a mobile device.
-  if (windowwidth < "750") {
-    headerMenu();
-  }
+  headerMenu();
 };
 
 document.addEventListener("turbolinks:load", ready);
