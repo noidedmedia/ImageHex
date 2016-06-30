@@ -2,6 +2,10 @@
 # Set our hostname
 
 Rails.application.routes.default_url_options[:host] = "www.imagehex.com"
+
+Rails.application.config.action_cable
+.allowed_request_origins = ['https://www.imagehex.com']
+
 ActionMailer::Base.smtp_settings = {
   address: 'smtp.sendgrid.net',
   port: '587',
