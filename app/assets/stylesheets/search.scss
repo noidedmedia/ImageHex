@@ -94,6 +94,10 @@
   margin: $spacing-width;
   background-color: #fff;
 
+  @media #{$mobile} {
+    flex-basis: 100%;
+  }
+
   .tag-group-editor {
     padding: $spacing-width;
   }
