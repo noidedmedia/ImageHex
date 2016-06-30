@@ -71,17 +71,26 @@
               data-amount="<%= @order.final_price %>"
               data-name="Commission from <%= escape_javascript(@listing.user.name) %>"
               data-image="<%= @listing.user.avatar(:tiny) %>"
-            data-locale="auto"> </script>
+              data-locale="auto"> 
+            </script>
         <% end %>
       <% end %>
 
 
       <% if policy(@order).fill? %>
-        <%= form_for fill_listing_order_path(@listing, @order),
+        <%= form_tag fill_listing_order_path(@listing, @order),
           action: :post do %>
           <%= react_component("OrderFiller", 
           {chargeTime: @order.charged_at,
             order_id: @order.id}) %>
           <% end %>
-      <% end %>
+        <% end %>
+
+        <% if @order.filled? %>
+          <div id="filled-order">
+            <%= link_to @order.image do %>
+              <%= image_tag @order.image.f(:medium) %>
+            <% end %>
+          </div>
+        <% end %>
     </div>

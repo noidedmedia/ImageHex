@@ -27,7 +27,8 @@ class OrderPolicy < ApplicationPolicy
 
   def fill?
     @order.charge_id &&
-      listing_owner?
+      listing_owner? &&
+      ! @order.filled?
   end
 
   def create?

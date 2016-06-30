@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     authorize @order
     respond_to do |format|
       if @order.fill(Image.find(params[:image_id]))
-        format.html { redirect_to @order }
+        format.html { redirect_to [@listing, @order] }
         format.json { render 'show' }
       else
         format.html { render 'show', errors: @order.errors }

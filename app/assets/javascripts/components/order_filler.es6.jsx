@@ -13,10 +13,19 @@ class OrderFiller extends React.Component {
 
   render() {
     return <div>
+      <div className="fill-header">
+        <h3>Fill Order</h3>
+        <div className="description">
+          <span>To fill this order, </span>
+          <a href="/images/new">upload a new image</a>,
+          then select it here.
+        </div>
+      </div>
       <ImagePicker
         imageCollection={this.state.activeImages}
         selectedImages={this.state.selectedImages}
         changeSelected={this.changeSelected.bind(this)} />
+      {this.formField}
       {this.submitButton}
     </div>;
   }
@@ -26,6 +35,25 @@ class OrderFiller extends React.Component {
     this.setState({
       selectedImages: [ns]
     });
+  }
+
+  get formField() {
+    if(this.state.selectedImages.length > 0) {
+      let img = this.state.selectedImages[0];
+      return <input type="hidden"
+        name="image_id"
+        value={img.id} />;
+    }
+    return <span></span>;
+  }
+  get submitButton() {
+    if(this.state.selectedImages.length > 0) {
+      return <button type="submit"
+        className="checkmark-submit-button">
+        Fill Order
+      </button>
+    }
+    return <span></span>
   }
 
   componentDidMount() {

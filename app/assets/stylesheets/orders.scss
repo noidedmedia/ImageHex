@@ -6,6 +6,14 @@ $heading-text-color: rgba(255, 255, 255, 0.8);
 $fields-background-color: #fff;
 $fields-text-color: rgba(0, 0, 0, 0.9);
 
+
+#filled-order {
+  padding: $standard-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #order-show {
   max-width: 750px;
   margin: auto;
@@ -27,6 +35,28 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   text-decoration: none;
   align-self: flex-end;
   justify-self: flex-end;
+}
+
+.fill-header {
+  padding: $standard-padding;
+  margin-top: $standard-padding;
+  background-color: $heading-background-color;
+  color: $heading-text-color;
+ 
+  .description {
+    font-size: 14px;
+
+    a {
+      transition: color 1s linear;
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        color: lighten($heading-text-color, 20%);
+      }
+    }
+  }
 }
 
 .order-form-header {

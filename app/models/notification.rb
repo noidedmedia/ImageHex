@@ -39,7 +39,8 @@ class Notification < ActiveRecord::Base
               :new_subscriber,
               :order_confirmed,
               :order_accepted,
-              :order_charged]
+              :order_charged,
+              :order_filled]
 
 
   def subject=(sub)

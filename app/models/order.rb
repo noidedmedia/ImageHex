@@ -42,6 +42,10 @@ class Order < ActiveRecord::Base
   after_save :create_conversation, 
     :if => :needs_conversation_creation
 
+  def filled?
+    ! image.nil?
+  end
+
   def fill(img)
     fail TypeError, "That's not an image" unless img.is_a? Image
     self.class.transaction do 
