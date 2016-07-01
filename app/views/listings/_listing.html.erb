@@ -1,30 +1,24 @@
 <li class="listings-list-item">
-  <h2><%= link_to listing.name, listing %></h2>
-  <div class="listings-list-user">
-    <%= image_tag listing.user.avatar_img_thumb %>
-    <span>
-      <%= link_to listing.user.name, listing.user %>
-    </span>
+  <div class="show-listing-header flex-column">
+    <h1><%= link_to listing.name, listing %></h1>
+    <div class="listing-artist flex-row">
+      <%= image_tag listing.user.avatar_img_thumb %>
+      <span>
+        <%= link_to listing.user.name, listing.user %>
+      </span>
+    </div>
   </div>
 
-  <div class="listing-description">
+  <div class="show-listing-description white-listing-box">
     <%= markdown_parse listing.description %>
   </div>
-  <ul class="listing-example-images">
-    <% listing.images.take(3).each do |img| %>
-      <li>
-        <%= image_tag img.f(:medium) %>
+  <ul class="listing-example-images-list flex-row">
+    <% listing.images.take(8).each do |img| %>
+      <li class="listing-example-images-item">
+        <%= link_to img do %>
+          <%= image_tag img.f(:medium) %>
+        <% end %>
       </li>
     <% end %>
   </ul>
-  <% if listing.quote_only? %>
-    <span class="listings-list-quote-only">
-      Price decided on a case-by-case basis
-    </span>
-  <% else %>
-    <span class="two-column-label">
-      <span>Starting at</span> 
-      <span><%= price listing.base_price %></span>
-    </span>
-  <% end %>
 </li>

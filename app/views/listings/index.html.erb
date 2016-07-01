@@ -1,7 +1,9 @@
-<div class="listings-description">
-  Commission art from artists around the world, simply, easily, and safely.
-</div>
+<%- title "Listings" %>
 
-<ul id="listings-list">
+<%= render partial: "shared/browse_tabs" %>
+
+<ul id="listings-list" class="flex-column">
   <%= render @listings %>
 </ul>
+
+<%= will_paginate @listings %>

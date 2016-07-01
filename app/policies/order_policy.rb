@@ -32,7 +32,7 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def create?
-    ! listing_owner?
+    ! listing_owner? && @order.listing.open?
   end
 
   def confirm?

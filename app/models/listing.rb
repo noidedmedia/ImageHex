@@ -2,6 +2,8 @@ class Listing < ActiveRecord::Base
 
   scope :confirmed, -> { where(confirmed: true) }
 
+  scope :open, -> { where(open: true) }
+
 
   belongs_to :user, required: true
 
@@ -36,6 +38,17 @@ class Listing < ActiveRecord::Base
 
   validate :listing_has_categories
 
+  def make_open!
+    update(open: true)
+  end
+
+  def make_closed!
+    update(open: false)
+  end
+
+  def closed?
+    ! open?
+  end
 
   private
 

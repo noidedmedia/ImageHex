@@ -1,12 +1,19 @@
 class ListingsController < ApplicationController
   include Pundit
+
   before_action :ensure_user, except: [:index, :show]
+
+  def mine
+    @listings = current_user.listings
+      .order(created_at: :desc)
+    render 'index'
+  end
 
   def index
     @listings = Listing.all
       .confirmed
+      .open
       .order(created_at: :desc)
-      .includes(:images)
       .paginate(page: page, per_page: per_page)
   end
 
@@ -14,7 +21,7 @@ class ListingsController < ApplicationController
     begin
       @listing = Listing.find(params[:id])
       authorize @listing
-      @listing.update(confirmed: true)
+      @listing.update(confirmed: true, open: true)
       redirect_to @listing
     rescue Pundit::NotAuthorizedError
       redirect_to "/stripe/authorize"
@@ -60,6 +67,20 @@ class ListingsController < ApplicationController
         format.json { render json: @listing.errors, status: 422 }
       end
     end
+  end
+
+  def open
+    @listing = Listing.find(params[:id])
+    authorize @listing
+    @listing.make_open!
+    redirect_to @listing
+  end
+
+  def close
+    @listing = Listing.find(params[:id])
+    authorize @listing
+    @listing.make_closed!
+    redirect_to @listing
   end
 
   protected

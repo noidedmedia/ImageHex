@@ -116,6 +116,15 @@
   }
 }
 
+.cross-delete-button {
+  font-size: 16px;
+  background-color: $logo-red;
+  color: #fff;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
 .full-width-progress {
   width: 100%;
   transition: 500ms linear;

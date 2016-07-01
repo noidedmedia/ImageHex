@@ -1,9 +1,14 @@
 class Listing
   class Image < ActiveRecord::Base
-    belongs_to :image
+    belongs_to :image,
+      class_name: "::Image"
+
     belongs_to :listing
+
     validates :image, presence: true
+
     validates :listing, presence: true
+
     validate :share_user
 
     protected

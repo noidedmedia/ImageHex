@@ -54,7 +54,11 @@ Rails.application.routes.draw do
   
   resources :listings do
     get 'search', on: :collection
+    get 'mine', on: :collection
     post 'confirm', on: :member
+    post 'open', on: :member
+    post 'close', on: :member
+
     resources :orders do
       post 'confirm', on: :member
       post 'accept', on: :member

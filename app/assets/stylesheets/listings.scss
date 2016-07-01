@@ -5,6 +5,29 @@ $header-background-color: #272727;
 $header-text-color: rgba(255, 255, 255, 0.8);
 
 
+#listings-list {
+  padding-top: 20px;
+  max-width: 700px;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.listings-list-item {
+  padding: $standard-padding 0;
+
+  &:not(:last-of-type) {
+    margin: $standard-padding 0;
+    border-bottom: 10px solid #333;
+  }
+
+  a {
+    text-decoration: none;
+
+    &::hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 #show-listing {
   max-width: 700px;
