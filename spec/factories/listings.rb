@@ -28,5 +28,9 @@ FactoryGirl.define do
     factory :unconfirmed_listing do
       confirmed false
     end
+
+    factory :open_listing do
+      open true
+    end
   end
 end

@@ -5,7 +5,7 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @listing.open? || owned?
   end
 
   def new?

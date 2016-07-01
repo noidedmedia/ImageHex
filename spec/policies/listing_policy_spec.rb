@@ -2,27 +2,35 @@ require 'rails_helper'
 
 RSpec.describe ListingPolicy do
 
-  let(:user) { User.new }
-
+  let(:creator) { create(:user) }
+  let(:user) { create(:user) } 
   subject { described_class }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
+  context "with an open listing" do
+    let(:listing) { create(:open_listing, user: creator) }
+
+    permissions :show? do
+      it "works with users" do
+        expect(subject).to permit(user, listing)
+      end
+
+      it "works with creator" do
+        expect(subject).to permit(creator, listing)
+      end
+    end
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  context "with a closed listing" do
+    let(:listing) { create(:listing, user: creator) }
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+    permissions :show? do
+      it "does not work with users" do
+        expect(subject).to_not permit(user, listing)
+      end
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+      it "works with creator" do
+        expect(subject).to permit(creator, listing)
+      end
+    end
   end
 end

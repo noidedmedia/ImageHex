@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe OrdersController, type: :controller do
   include Devise::TestHelpers
-  let(:listing) { create(:listing) }
+  let(:listing) { create(:open_listing) }
   context "when logged in" do
     before(:each) do
       @user = create(:user)
