@@ -1,5 +1,18 @@
 @import "variables";
 
+#follow-stuff-message {
+  font-size: 16px;
+  color: #777;
+
+  a {
+    text-decoration: none;
+    color: #666;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 // Simple home container that makes sure the home page's content doesn't clip the header/footer.
 .home-container {
   display: block;
