@@ -54,20 +54,25 @@ class User < ActiveRecord::Base
   ##
   # Join table: users -> collections
   has_many :listings
-  has_many :commission_offers
+
   has_many :conversation_users
   has_many :conversations,
            through: :conversation_users
-  has_many :subscriptions
+
   has_many :comments
+
+  has_many :subscriptions
   has_many :subscribed_collections,
            through: :subscriptions,
            source: :collection
+
   has_many :image_reports
   has_many :notifications
   has_many :images
+
   has_many :curatorships
   has_many :collections, through: :curatorships
+
   has_many :user_creations
   has_many :creations, -> { order(created_at: :desc) }, through: :user_creations
 
