@@ -104,8 +104,11 @@
   flex-direction: column;
 
   @media #{$mobile} {
-    width: 95vw;
-    right: 2.5vw;
+    width: 100vw;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
   }
 
   &.downwards {
