@@ -225,6 +225,7 @@
 .close-chat {
   text-decoration: none;
   color: #fff;
+  cursor: pointer;
 
   &::before {
     content: $icon-close;
