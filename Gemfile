@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', "~> 5.0.0.rc2"
+gem 'rails', "~> 5.0.0"
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
@@ -202,11 +202,6 @@ group :development do
   # https://github.com/railsbp/rails_best_practices
   # A code metric tool for rails projects.
   gem 'rails_best_practices'
-
-  ##
-  # Mutes asset pipeline log messages.
-  # https://github.com/evrone/quiet_assets
-  gem 'quiet_assets'
 
   ##
   # https://github.com/charliesome/better_errors
