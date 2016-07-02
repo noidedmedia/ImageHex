@@ -3,7 +3,7 @@ import NM from '../../api/global.es6';
 
 const FollowStuffMessage = () => (
   <div id="follow-stuff-message">
-    <span>There isn't anything here.</span>
+    <span>There isn't anything here. </span>
     <span>Follow some <a href="/users">artists</a> </span>
     <span>or <a href="/collections">collections</a> to fix that.</span>
   </div>
