@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   # Ensure that a user is logged in.
   # If one is not, redirect to a page where they can do that.
   def ensure_user
+    session["user_return_to"] = request.fullpath
     redirect_to("/accounts/sign_in") unless user_signed_in?
   end
 
