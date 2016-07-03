@@ -1,4 +1,5 @@
 Rails.application.configure do
+  config.assets.quiet = true
   config.active_job.queue_adapter = :async
 
   Bullet.enable = true

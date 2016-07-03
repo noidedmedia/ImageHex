@@ -1,4 +1,4 @@
-class CommissionCalculatorResults extends React.Component {
+class CommissionPriceCalculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,12 +65,4 @@ class CommissionCalculatorResults extends React.Component {
   }
 }
 
-var ready = function() {
-  var x;
-  if (x = document.getElementById("commission-calculator-input-container")) {
-    ReactDOM.render(<CommissionCalculatorResults/>,
-                    x);
-  }
-};
-
-document.addEventListener("page:change", ready);
+window.CommissionPriceCalculator = CommissionPriceCalculator;
