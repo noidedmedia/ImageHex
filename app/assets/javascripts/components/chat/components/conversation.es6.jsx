@@ -26,7 +26,7 @@ function groupChunk(messages, users) {
   let components = [];
   let msgBuffer = [];
   if(userId === "unread_active") {
-    components.push(seperator(messages[0]));
+    userId = messages[1].user_id;
   }
   // Dump the message buffer in as a group
   function flushBuffer() {
@@ -193,6 +193,7 @@ class Conversation extends React.Component {
     let sH = list.scrollHeight;
     // If we're not at the bottom, return
     if(sT > 0 && Math.abs(((sT + oH) - sH)) > 4) {
+      console.log("Not at the bottom, returning.");
       return;
     }
     this.checkingForUnread = true;

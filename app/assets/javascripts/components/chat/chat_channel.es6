@@ -23,7 +23,12 @@ export default function BindChatChannel(store) {
           data.data[i] = new Date(data.data[i]);
         }
       }
-      store.dispatch(data);
+      if(data.type === "refresh_conversation_list") {
+        store.dispatch(Actions.getConversations());
+      }
+      else {
+        store.dispatch(data);
+      }
     }
   });
 }

@@ -12,7 +12,7 @@
       </a>
 
     <% elsif @image.cc_by_sa? %>
-      <a href="#" id="img-action-download">
+      <a id="img-action-download">
         <div class="image-actions">
           <span class="icon icon-medium icon-download"></span>
           <p><%= t(".download") %>
@@ -84,7 +84,7 @@
     <% end %>
 
     <%# Share %>
-    <a href="#">
+    <a>
       <div class="image-actions" id="img-action-share">
         <span class="icon icon-medium icon-share"></span>
         <p><%= t(".share") %>
@@ -94,16 +94,16 @@
     <div class="image-actions-tooltip" id="img-action-share-tooltip" data-showon="#img-action-share" data-signed-in="showon">
       <p class="tooltip-title"><%= t(".share") %></p>
       <div class="share-icons-container">
-        <div class="share-icon" id="share-facebook"><a href="#"></a></div>
-        <div class="share-icon" id="share-twitter"><a href="#"></a></div>
-        <div class="share-icon" id="share-google-plus"><a href="#"></a></div>
-        <div class="share-icon" id="share-tumblr"><a href="#"></a></div>
-        <div class="share-icon" id="share-pinterest"><a href="#"></a></div>
+        <div class="share-icon" id="share-facebook"><a></a></div>
+        <div class="share-icon" id="share-twitter"><a></a></div>
+        <div class="share-icon" id="share-google-plus"><a></a></div>
+        <div class="share-icon" id="share-tumblr"><a></a></div>
+        <div class="share-icon" id="share-pinterest"><a></a></div>
       </div>
     </div>
 
     <%# Report %>
-    <a href="#">
+    <a> 
       <div class="image-actions" id="img-action-report">
         <span class="icon icon-medium icon-report"></span>
         <p><%= t(".report") %>

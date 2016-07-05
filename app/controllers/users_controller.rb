@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+#frozen_string_literal: true
 ##
 # Controller for things related to Users.
 # Uses friendly_id for ids.
@@ -92,6 +92,14 @@ class UsersController < ApplicationController
       .merge(Image.for_content(content_pref))
       .paginate(page: page, per_page: per_page)
   end
+
+  def search
+    @users = User.all
+      .search(params)
+      .paginate(page: page,
+                per_page: per_page)
+  end
+
 
   ##
   # A collection of images favorited by a given user.

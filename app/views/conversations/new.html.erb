@@ -1,0 +1,17 @@
+<%- title("New Conversation") %>
+
+<h3 class="generic-page-title">
+  New Conversation
+</h3>
+<div class="fields-page-container">
+  <%= form_for @conversation do |f| %>
+    <div class="field-container">
+      <%= f.label :name, :class => "label input-empty" %>
+      <%= f.text_field :name, :class => "input" %>
+    </div>
+
+    <%= react_component("ConversationUserPicker") %>
+
+    <%= f.submit %>
+  <% end %> 
+</div>

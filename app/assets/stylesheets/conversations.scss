@@ -1,0 +1,52 @@
+.conversation-user-picker {
+  h3 {
+    font-weight: 300;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .upper {
+    background-color: #fff;
+  }
+
+  .pagination-controls {
+    padding-top: 10px;
+  }
+}
+
+.conversation-user-picker-controls {
+  padding: 10px;
+}
+
+.user-adder-item {
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  font-size: 16px;
+  align-items: center;
+
+  .user-info {
+    align-items: center;
+
+    img {
+      width: 50px;
+      height: auto;
+      margin-right: 10px;
+    }
+  }
+
+  .action-button {
+    cursor: pointer;
+  }
+}
+
+.selected-users-item {
+  flex-basis: 100%;
+}
+
+.possible-users-list {
+  max-height: 60vh;
+  overflow: auto;
+}
+

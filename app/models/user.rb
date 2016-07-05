@@ -152,6 +152,32 @@ class User < ActiveRecord::Base
       .order("MAX(user_creations.created_at) DESC")
   end
 
+  def self.search(query)
+    q = all
+    return q unless query
+    q = q.with_similar_name(query[:name]) if query[:name]
+    q = q.unblocked_by(query[:unblocked_by]) if query[:unblocked_by]
+    q
+  end
+
+  def self.with_similar_name(name)
+    where("name ILIKE ?", "#{name}%")
+  end
+
+  ##
+  # Currently not implemented, will be soon
+  def self.unblocked_by(user)
+    id = case user
+         when User
+           user.id
+         when Integer, String
+           Integer(user)
+         else
+           fail ArgumentError, "need a user object or an id"
+         end
+    all
+  end
+
   ####################
   # INSTANCE METHODS #
   ####################

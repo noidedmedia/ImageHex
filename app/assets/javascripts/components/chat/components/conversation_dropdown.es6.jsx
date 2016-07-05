@@ -1,19 +1,25 @@
 import { changeConversation, deactivate } from '../actions.es6';
 
-export default class ConversationList extends React.Component {
+export default class ConversationDropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    return <ul className={this.getClassName()}>
-      {this.conversations()}
-    </ul>;
+    return <div className={this.getClassName()}>
+      <ul className="conversations-list">
+        {this.conversations()}
+      </ul>
+      <a href="/conversations/new"
+        className="add-conversation-link">
+
+      </a>
+    </div>;
   }
 
   getClassName() {
-    var cn = "conversation-list";
+    var cn = "conversation-dropdown";
     if(this.props.active) {
       cn += " active";
     }
@@ -49,7 +55,7 @@ export default class ConversationList extends React.Component {
   }
 }
 
-ConversationList.contextTypes = {
+ConversationDropdown.contextTypes = {
   store: React.PropTypes.object,
   dispatch: React.PropTypes.func
 };

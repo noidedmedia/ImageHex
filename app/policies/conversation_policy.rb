@@ -13,6 +13,10 @@ class ConversationPolicy < ApplicationPolicy
     in_conversation?
   end
 
+  def create?
+    true
+  end
+
   protected
   def in_conversation?
     @conv.users.include? @user

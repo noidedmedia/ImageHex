@@ -91,6 +91,7 @@ Rails.application.routes.draw do
              }
 
   resources :users, only: [:show, :edit, :update, :index] do
+    get 'search', on: :collection
     ##
     # This is done so it's easier to see a users collections.
     # Meanwhile, creation and modification of collections is its own thing.

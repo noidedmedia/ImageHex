@@ -11,6 +11,8 @@ class Conversation < ActiveRecord::Base
   belongs_to :order,
     required: false
 
+  after_create :notify_cables
+
   def self.with_unread_status_for(u)
     raise "Not a user" unless u.is_a? User
     includes(:conversation_users)
@@ -59,5 +61,11 @@ class Conversation < ActiveRecord::Base
 
   def last_read_for(user)
     conversation_user_for(user).last_read_at
+  end
+
+  private
+
+  def notify_cables
+    NewConversationJob.perform_later(self)
   end
 end

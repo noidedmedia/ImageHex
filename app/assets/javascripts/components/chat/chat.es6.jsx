@@ -3,7 +3,7 @@ import * as Actions from './actions.es6';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import BindChatChannel from './chat_channel.es6';
-import ConversationList from './components/conversation_list.es6.jsx';
+import ConversationDropdown from './components/conversation_dropdown.es6.jsx';
 import StatusDisplay from './components/status_display.es6.jsx';
 import Conversation from './components/conversation.es6.jsx';
 
@@ -40,7 +40,7 @@ class Chat extends React.Component {
         online={this.state.online}
         active={this.state.active} 
         unreadCount={unreadCount} />
-      <ConversationList
+      <ConversationDropdown
         updating={this.state.updating}
         unreadMap={unreadMap}
         conversations={this.state.conversations}
@@ -50,7 +50,6 @@ class Chat extends React.Component {
         activeConversation={this.state.activeConversation} />
 
       {conversation}
-
     </div>;
   }
 
