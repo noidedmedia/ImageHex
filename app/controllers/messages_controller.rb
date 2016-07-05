@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages
       .with_read_status_for(current_user)
       .order(created_at: :desc)
-      .limit(30)
+      .limit(50)
     if params[:after]
       @messages = @messages.created_after(Time.at(params[:after].to_f))
     end

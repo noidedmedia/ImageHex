@@ -5,9 +5,11 @@ export default function BindChatChannel(store) {
   if(! App.cable) {
     throw "ERROR: Cable does not exist!";
   }
+
   App.chat = App.cable.subscriptions.create("ChatChannel", {
     connected: function() {
       store.dispatch(Actions.goOnline());
+      store.dispatch(Actions.getRecentMessages());
     },
 
     disconnected: function() {

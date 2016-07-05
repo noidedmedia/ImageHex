@@ -33,6 +33,38 @@ export function endUpdate() {
   };
 }
 
+export function addMessagesNormalized(normalized) {
+  return {
+    data: normalized,
+    type: Types.ADD_MESSAGES
+  };
+}
+
+function normalizeMessages(msgs) {
+  var dict = {};
+  msgs.forEach(m => dict[m.id] = m);
+  return dict;
+}
+
+export function getRecentMessages() {
+  return async function(dispatch, getState) {
+    let { activeConversation } = getState();
+    if(! activeConversation) {
+      return;
+    }
+    dispatch(startUpdate());
+    try {
+      let url = `/conversations/${activeConversation}/messages`;
+      let resp = await NM.getJSON(url);
+      let normal = normalizeMessages(resp);
+      dispatch(addMessagesNormalized(normal));
+    }
+    finally {
+      dispatch(endUpdate());
+    }
+  }
+}
+
 export function getConversations() {
   return async function(dispatch, getState) {
     dispatch(startUpdate());
