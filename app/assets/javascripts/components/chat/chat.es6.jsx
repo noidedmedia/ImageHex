@@ -62,39 +62,27 @@ class Chat extends React.Component {
     var unreadMap = {};
     var unreadCount = 0;
     var activeMessages = [];
-    // First, by default everything is false
+    // First, by default, the unread map is set to zero each.
     for(var i in this.state.conversations) {
-      unreadMap[i] = false;
+      unreadMap[i] = 0;
     }
     let activeId = this.state.activeConversation;
-    let foundUnreadActive = false;
-    // Now, go through all messages, and see if something is unread
+      // Now, go through all messages, and see if something is unread
     for(var i in this.state.messages) {
       let msg = this.state.messages[i];
       let cid = msg.conversation_id;
       if(cid == activeId) {
-        // this is the first active unread message
-        // put a seperator in there to be sure
-        if(new Date(msg.created_at) > this.state.readTimes[activeId] &&
-            ! foundUnreadActive) {
-          // Put in a seperator with a bogus user ID
-          // Prevents chunking from crossing a read boundary later on
-          activeMessages.push({user_id: "unread_active",
-                              last_active_at: new Date(msg.created_at),
-                              is_unread_flag: true});
-          foundUnreadActive = true;
-        }
-        activeMessages.push(msg);
+          activeMessages.push(msg);
       }
       // if message is unread
       if(new Date(msg.created_at) > this.state.readTimes[cid]) {
-        unreadMap[cid] = true;
+        unreadMap[cid] = unreadMap[cid] + 1;
         unreadCount++;
       }
     }
 
     let sorted = activeMessages.sort((a, b) => (
-      new Date(a.created_at) > new Date(b.created_at)
+      new Date(a.created_at) - new Date(b.created_at)
     ));
 
     return {

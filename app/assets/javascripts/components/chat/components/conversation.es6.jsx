@@ -25,29 +25,25 @@ function groupChunk(messages, users) {
   let userId = messages[0].user_id;
   let components = [];
   let msgBuffer = [];
-  if(userId === "unread_active") {
-    userId = messages[1].user_id;
-  }
   // Dump the message buffer in as a group
   function flushBuffer() {
     if(msgBuffer.length > 0) {
       components.push(<MessageGroup
-        messages={msgBuffer}
+        messages={msgBuffer.slice()}
         user={users[userId]}
         key={msgBuffer[0].id} />);
     }
     msgBuffer = [];
   }
-  for(var i = 0; i < messages.length; i++) {
-    let message = messages[i];
+  messages.forEach((message, index) => {
     if(message.user_id === userId) {
       msgBuffer.push(message);
     }
     // unread message seperator
     else if(message.user_id === "unread_active") {
-      // ignore seperator entirely
-      if((i + 3) > messages.length) {
-        continue;
+      // ignore seperator entirely if we're near the end
+      if((index + 3) > messages.length) {
+        return;
       }
       // add seperator
       else {
@@ -68,7 +64,7 @@ function groupChunk(messages, users) {
     if(msgBuffer.length > 6) {
       flushBuffer();
     }
-  }
+  });
   flushBuffer();
   return components;
 }
