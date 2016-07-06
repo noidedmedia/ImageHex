@@ -45,6 +45,40 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
+  describe ".all_users_accepted?" do
+    let(:user_a) { create(:user) }
+    let(:user_b) { create(:user) }
+    let(:users) { [user_a, user_b] }
+
+    it "returns true when all accepted" do
+      c = Conversation.create(users: users, name: "test")
+      c.conversation_users.update_all(accepted: true)
+      expect(c.reload.all_users_accepted?).to eq(true)
+    end
+
+    it "returns false with undecided" do
+      c = Conversation.create(users: users, name: "test")
+      expect(c.all_users_accepted?).to eq(false)
+    end
+
+    it "returns false when rejected" do
+      c = Conversation.create(users: users, name: "test")
+      c.conversation_users.first.update(accepted: false)
+      expect(c.all_users_accepted?).to eq(false)
+    end
+  end
+
+  describe ".autoaccept" do
+    let(:user_a) { create(:user) }
+    let(:user_b) { create(:user) }
+    it "sets the conversation as automatically accepted" do
+      c = Conversation.create(users: [user_a, user_b],
+                              name: "Test",
+                              auto_accept: true)
+      expect(c.all_users_accepted?).to eq(true)
+    end
+  end
+
   describe ".with_unread_status_for" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
@@ -52,7 +86,8 @@ RSpec.describe Conversation, type: :model do
     let(:conv_a) { create(:conversation,
                           users: [user_a, user_b]) }
     let(:conv_b) { create(:conversation,
-                          users: [user_a, user_c]) }
+                          users: [user_a, user_c],
+                          auto_accept: true) }
     it "shows the unread status for users" do
       conv_b.messages.create(user: user_c,
                              body: "Test")
@@ -64,35 +99,6 @@ RSpec.describe Conversation, type: :model do
       cb = convs.to_a.reject(&:has_unread).first
       expect(ca.id).to eq(conv_a.id)
       expect(cb.id).to eq(conv_b.id)
-    end
-  end
-  describe ".messages_for_user" do
-    let(:user_a) { create(:user) }
-    let(:user_b) { create(:user) }
-    let(:conversation) do
-      create(:conversation, users: [user_a, user_b])
-    end
-    it "throws an error if the user isn't in the conversation" do
-      expect do
-        conversation.messages_for_user(create(:user))
-      end.to raise_error(Conversation::UserNotInConversation)
-    end
-    it "returns messages made after this user's last_read_at" do
-      create(:message,
-             conversation: conversation,
-             user: user_b)
-      create(:message,
-             conversation: conversation,
-             user: user_a)
-      conversation.mark_read!(user_a)
-      m3 = create(:message,
-                  conversation: conversation,
-                  user: user_b)
-      m4 = create(:message,
-                  conversation: conversation,
-                  user: user_b)
-      res = conversation.messages_for_user(user_a)
-      expect(res).to contain_exactly(m3, m4)
     end
   end
 end

@@ -8,20 +8,22 @@ import {
   changeConversation
 } from '../actions.es6';
 
-const seperator = (u) => {
-  let lastRead = new Date(u.last_active_at);
+const UnreadSeperator = ({lastReadAt}) => {
     return <div className="read-seperator" key="seperator">
       Unread since <span> </span>
-      <date dateTime={lastRead}>
-        {lastRead.toLocaleString()}
+      <date dateTime={lastReadAt}>
+        {lastReadAt.toLocaleString()}
       </date>
     </div>;
 };
 
-function groupChunk(messages, users) {
+function groupChunk(messages, users, lastReadAt) {
   if(messages.length === 0) {
     return "";
   }
+  let addedSeperator = false;
+  // Only add the unread seperator if it happened more than 15 seconds ago
+  let shouldAddSep = Date.now() - lastReadAt.getTime() > 15000;
   let userId = messages[0].user_id;
   let components = [];
   let msgBuffer = [];
@@ -36,21 +38,15 @@ function groupChunk(messages, users) {
     msgBuffer = [];
   }
   messages.forEach((message, index) => {
+    if(new Date(message.created_at) > new Date(lastReadAt) 
+       && ! addedSeperator && shouldAddSep) {
+      flushBuffer();
+      components.push(<UnreadSeperator key="unread-sep"
+                      lastReadAt={lastReadAt} />);
+      addedSeperator = true;
+    }
     if(message.user_id === userId) {
       msgBuffer.push(message);
-    }
-    // unread message seperator
-    else if(message.user_id === "unread_active") {
-      // ignore seperator entirely if we're near the end
-      if((index + 3) > messages.length) {
-        return;
-      }
-      // add seperator
-      else {
-        flushBuffer();
-        userId = "unread_active";
-        components.push(seperator(message));
-      }
     }
     else {
       // Flush to an actual group
@@ -60,6 +56,7 @@ function groupChunk(messages, users) {
       // append current message to new buffer
       msgBuffer.push(message);
     }
+
     // if msgBuffer is too long, flush it to a group again
     if(msgBuffer.length > 6) {
       flushBuffer();
@@ -79,7 +76,8 @@ class Conversation extends React.Component {
 
   render() {
     var upperSuffix = "";
-    let mapped = groupChunk(this.props.messages, this.props.users);
+    let {messages, users, lastReadAt} = this.props;
+    let mapped = groupChunk(messages, users, lastReadAt);
     if(this.props.updating) {
       upperSuffix = " updating";
     }
@@ -127,7 +125,7 @@ class Conversation extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if(this.props.conversation.id !== prevProps.conversation.id) {
       if(this.props.messages.length < 15) {
-        console.log("We don't have enough stuff in update, fetching older");
+        console.log("Fetching older messages as we have changed conversation");
         this.fetchOlder();
       }
       this.checkForRead();
@@ -187,13 +185,14 @@ class Conversation extends React.Component {
     let sT = list.scrollTop;
     let oH = list.offsetHeight;
     let sH = list.scrollHeight;
+    let cid = this.props.conversation.id;
     // If we're not at the bottom, return
     if(sT > 0 && Math.abs(((sT + oH) - sH)) > 4) {
       console.log("Not at the bottom, returning.");
       return;
     }
     this.checkingForUnread = true;
-    App.chat.perform("read", {cid: 1});
+    App.chat.perform("read", {cid: cid});
     window.setTimeout(() => {this.checkingForUnread = false}, 1000);
   }
 

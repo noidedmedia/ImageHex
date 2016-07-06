@@ -29,7 +29,8 @@ class Chat extends React.Component {
       conversation = <Conversation
         updating={this.state.updating}
         messages={activeMessages}
-        hasUnread={unreadMap[cid]}
+        hasUnread={unreadMap[cid] > 0}
+        lastReadAt={this.state.readTimes[cid]}
         conversation={this.state.conversations[cid]}
         users={this.state.users}
         depletedHistory={this.state.depletedHistory[cid]}

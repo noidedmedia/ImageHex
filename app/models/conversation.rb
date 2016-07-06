@@ -11,7 +11,15 @@ class Conversation < ActiveRecord::Base
   belongs_to :order,
     required: false
 
+  attr_accessor :auto_accept
+
+  after_create :accept_all_users, :if => :auto_accept
+
   after_create :notify_cables
+
+  ##########
+  # SCOPES #
+  ##########
 
   def self.with_unread_status_for(u)
     raise "Not a user" unless u.is_a? User
@@ -26,6 +34,9 @@ class Conversation < ActiveRecord::Base
       .references(:conversation_users)
   end
 
+  def all_users_accepted?
+    conversation_users.where(accepted: [false, nil]).count == 0
+  end
    ##
   # Hack because we do a custom thing in our SELECT sometimes
   def has_unread?
@@ -67,5 +78,9 @@ class Conversation < ActiveRecord::Base
 
   def notify_cables
     NewConversationJob.perform_later(self)
+  end
+
+  def accept_all_users
+    conversation_users.update_all(accepted: true)
   end
 end
