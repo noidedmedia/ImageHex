@@ -54,6 +54,8 @@
 .conversation-item {
   padding: 10px;
   overflow: hidden;
+  align-items: center;
+  justify-content: center;
 
   h4 {
     font-weight: normal;
@@ -64,6 +66,21 @@
 
   &.active {
     background-color: #fff;
+  }
+
+  .unread-count {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  &.has-unread {
+    .unread-count {
+      color: $logo-green;
+    }
+  }
+
+  .full-width {
+    flex-grow: 1;
   }
 }
 

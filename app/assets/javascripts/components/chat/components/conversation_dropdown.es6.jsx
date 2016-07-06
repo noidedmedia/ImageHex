@@ -37,7 +37,7 @@ export default class ConversationDropdown extends React.Component {
       c.push(<ConversationItem
         key={i}
         conversation={conv}
-        hasUnread={this.props.unreadMap[i]}
+        unreadCount={this.props.unreadMap[i]}
         users={users}
         activate={this.activate.bind(this, i)}
         active={i === this.props.activeConversation} />);
@@ -61,7 +61,7 @@ ConversationDropdown.contextTypes = {
 };
 
 const ConversationItem = (props) => {
-  var className = "conversation-item";
+  var className = "conversation-item flex-row";
   var click = () => {};
   if(props.active) {
     className += " active";
@@ -69,16 +69,23 @@ const ConversationItem = (props) => {
   else {
     click = props.activate;
   }
-  if(props.hasUnread) {
+  if(props.unreadCount > 0) {
     className += " has-unread";
   }
   let ud = props.users.map(userDisplay);
   return <li className={className}
     onClick={click}>
-    <h4>{props.conversation.name}</h4>
-    <ul className="conversation-users-list">
-      {ud}
-    </ul>
+
+    <div className="unread-count">
+      {props.unreadCount}
+    </div>
+
+    <div className="full-width">
+      <h4>{props.conversation.name}</h4>
+      <ul className="conversation-users-list">
+        {ud}
+      </ul>
+    </div>
   </li>;
 };
 
