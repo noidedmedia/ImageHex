@@ -31,7 +31,7 @@
 
   <% if @listing.user == current_user %>
     <% if current_user.stripe_user_id.nil? %>
-      <div class="warning-dialgoue">
+      <div class="warning-dialogue">
         You must
         <%= link_to "add stripe", authorize_stripe_index_path %>
         to make this listing visible.
@@ -49,7 +49,7 @@
         <%= submit_tag("Finalize Listing", class: "checkmark-submit-button") %>
       <% end %>
     </div>
-  <% elsif @listing.closed? %>
+  <% elsif policy(@listing).open? %>
     <div class="listing-confirm flex-row">
       <span>
         This listing is closed, and no new orders can be made.
@@ -58,7 +58,7 @@
         <%= submit_tag("Open Listing", class: "checkmark-submit-button") %>
       <% end %>
     </div>
-  <% else %>
+  <% elsif policy(@listing).close? %>
     <div class="listing-confirm flex-row">
       <span>
         This listing is open, and accepting new orders
