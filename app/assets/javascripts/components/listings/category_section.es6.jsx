@@ -21,14 +21,11 @@ class CategorySection extends React.Component {
     });
     return <div className="listing-form-section">
       <div className="listing-form-section-header">
-        <h1>Categories</h1>
+        <h1>Reference Categories</h1>
         <div className="description">
-          Categories provide a way for your clients to 
-          organize their reference material, and for you to manage prices.
-          Typically, an artist will provide one category 
-          for characters in their image, and optionally one for a background.
-          You may create as many categories as you like, and may charge
-          for things in that category—for example, a set price per character.
+          Reference categories help you organize your commission into logical parts, such as "characters" or "background".
+          Your clients will be able to add items within each category individually, and you can charge per item.
+          Each item will also have its own reference material, to help you keep things organized.
         </div>
         <a className="green-add-button add-category-button"
           onClick={this.props.addCategory}>
