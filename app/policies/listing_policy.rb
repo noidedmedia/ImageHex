@@ -13,11 +13,11 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def close?
-    owned?
+    (@listing.open? && owned?)
   end
 
   def open?
-    owned?
+    (! @listing.open? ) && owned?
   end
 
   def update?
