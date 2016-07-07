@@ -30,6 +30,7 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find(params[:id])
+    authorize @listing
   end
 
   def new
@@ -58,6 +59,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
+    authorize @listing
     respond_to do |format|
       if @listing.save
         format.json { render 'show' }
