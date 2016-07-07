@@ -79,6 +79,35 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
+  describe "conversations with the same participants" do
+    let(:user_a) { create(:user) }
+    let(:user_b) { create(:user) }
+
+    it "does not allow multiple normal conversations" do
+      a = create(:conversation, users: [user_a, user_b])
+      b = build(:conversation, users: [user_a, user_b])
+      expect(b).to_not be_valid
+    end
+
+    context "with orders" do
+      let(:listing) { create(:listing, user: user_a) } 
+      let(:order)  { create(:order, listing: listing, user: user_b) }
+
+      it "ignores existing order conversations when creating a normal one" do
+        a = create(:conversation, users: [user_a, user_b], order: order)
+        b = build(:conversation, users: [user_a, user_b])
+        expect(b).to be_valid
+      end
+
+      it "ignores existing normal conversations when creating an order one" do 
+        a = create(:conversation, users: [user_a, user_b])
+        b = build(:conversation, users: [user_a, user_b], order: order)
+        expect(b).to be_valid
+      end
+    end
+
+  end
+
   describe ".with_unread_status_for" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
