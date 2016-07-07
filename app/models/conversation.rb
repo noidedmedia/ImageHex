@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 class Conversation < ActiveRecord::Base
   has_many :conversation_users, inverse_of: :conversation
-
   has_many :users, through: :conversation_users
-
   has_many :messages
 
   accepts_nested_attributes_for :conversation_users
@@ -14,8 +12,9 @@ class Conversation < ActiveRecord::Base
   attr_accessor :auto_accept
 
   after_create :accept_all_users, :if => :auto_accept
-
   after_create :notify_cables
+
+  validate :conversation_has_unique_users
 
   ##########
   # SCOPES #
@@ -33,6 +32,24 @@ class Conversation < ActiveRecord::Base
       })
       .references(:conversation_users)
   end
+
+  def self.find_with_exact_user_ids(ids)
+    subquery = joins(:conversation_users)
+      .references(:conversation_users)
+      .group("conversations.id")
+      .having("COUNT(conversation_users) != ?", ids.length)
+
+    joins(:conversation_users)
+      .references(:conversation_users)
+      .where(conversation_users: {user_id: ids})
+      .group("conversations.id")
+      .having("COUNT(conversation_users) = ?", ids.length)
+      .where.not(id: subquery).first
+  end
+
+  ####################
+  # INSTANCE METHODS #
+  ####################
 
   def all_users_accepted?
     conversation_users.where(accepted: [false, nil]).count == 0
@@ -83,4 +100,13 @@ class Conversation < ActiveRecord::Base
   def accept_all_users
     conversation_users.update_all(accepted: true)
   end
+  
+  def conversation_has_unique_users
+    return unless order.nil?
+    q = Conversation.where(order: nil).find_with_exact_user_ids(self.user_ids)
+    unless q.nil?
+      errors.add(:users, "conversation with these users already exists")
+    end
+  end
+
 end
