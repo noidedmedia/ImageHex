@@ -104,9 +104,26 @@ class Conversation extends React.Component {
     if(this.props.messages.length < 15) {
       this.fetchOlder();
     }
+    $(window).on("turbolinks:before-visit.chatComponent", (event) => {
+      let list = this._list;
+      this.loadScrollTop = list.scrollTop;
+      console.log("Set scrolltop to", list.scrollTop);
+    });
+    $(window).on("turbolinks:load.chatComponent", (event) => {
+      console.log("Have load scroll top of",this.loadScrollTop);
+      let list = this._list;
+      if(this.loadScrollTop) {
+        list.scrollTop = this.loadScrollTop;
+      }
+    });
     this.setState({
       containerClass: "active-conversation"
     });
+  }
+
+  componentWillUnmount() {
+    $(window).off("turbolinks:before-visit.chatComponent");
+    $(window).off("turbolinks:load.chatComponent");
   }
 
   componentWillUpdate(nextProps, nextState) {
