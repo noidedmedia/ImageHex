@@ -1,8 +1,10 @@
 <div class="creators-list-item">
   <div class="upper-info">
     <div class="creators-list-item-header">
-      <%= image_tag creator.avatar(:small) %>
-      <%= link_to creator.name, creator %>
+      <%= link_to creator do %>
+        <%= image_tag creator.avatar(:small) %>
+      <% end %> 
+      <%= link_to creator.name, creator, :class => "user-name" %>
     </div>
 
       <div class="creators-list-item-description">
