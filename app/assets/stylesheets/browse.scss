@@ -9,6 +9,8 @@
 }
 
 .creators-list-item {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 500px;
   background-color: #fff;
   overflow: hidden;
@@ -22,12 +24,7 @@
   .upper-info {
     display: flex;
     flex-direction: row;
-    height: 70%;
-
-    @media #{$mobile} {
-      flex-direction: column;
-      height: 50%;
-    }
+    height: 50%;
   }
 }
 
@@ -38,11 +35,10 @@
   align-items: center;
   padding: 15px;
   text-decoration: none;
-  flex: 0 0 calc(500px * 0.2);
 
   img {
-    height: 125px;
-    width: 125px;
+    height: 100px;
+    width: 100px;
   }
 
   a.user_name {
@@ -61,10 +57,6 @@
   overflow: hidden;
   height: 100%;
 
-  @media #{$mobile} {
-    display: none;
-  }
-
   &::after {
     content: "";
     position: absolute;
@@ -77,8 +69,13 @@
 }
 
 .creators-creations-list {
-  padding: 15px 0;
+  padding: 15px;
   display: flex;
+  flex-grow: 1;
   max-width: 100%;
   overflow: hidden;
+
+  img {
+    max-height: 100%;
+  }
 }
