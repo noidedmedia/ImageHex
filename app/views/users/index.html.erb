@@ -3,7 +3,9 @@
 <%= render partial: "shared/browse_tabs" %>
 
 <div class="creators-list-container">
-  <%= render partial: "users/show_stub", collection: @users, as: :creator %>
+  <%= render partial: "users/show_stub", 
+    collection: @users, 
+    as: :creator %>
 </div>
 
 <%= will_paginate @creators %>

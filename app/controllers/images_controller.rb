@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 ##
 # As the name implies, this contorller handles all actions for images.
