@@ -19,7 +19,7 @@ RSpec.describe Conversation, type: :model do
     end
     it "associates the users properly" do
       c = Conversation.create(conversation_users_attributes: users_attributes)
-      expect(c.users).to contain_exactly(*users)
+      expect(c.reload.users).to contain_exactly(*users)
     end
   end
 
@@ -105,7 +105,13 @@ RSpec.describe Conversation, type: :model do
         expect(b).to be_valid
       end
     end
+  end
 
+  describe "validation" do
+    it "does not allow more than 5" do
+      expect(build(:conversation, 
+                   users: 6.times.map{ create(:user) })).to_not be_valid
+    end
   end
 
   describe ".with_unread_status_for" do

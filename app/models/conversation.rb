@@ -15,6 +15,7 @@ class Conversation < ActiveRecord::Base
   after_create :notify_cables
 
   validate :conversation_has_unique_users
+  validate :conversation_has_few_users
 
   ##########
   # SCOPES #
@@ -109,4 +110,9 @@ class Conversation < ActiveRecord::Base
     end
   end
 
+  def conversation_has_few_users
+    if self.users.length > 5
+      errors.add(:users, "have too many (max of 5)")
+    end
+  end
 end
