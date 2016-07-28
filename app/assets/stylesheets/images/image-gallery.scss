@@ -77,6 +77,10 @@
       object-fit: cover;
       object-position: 50% 0%;
       width: auto;
+
+      @media #{$mobile} {
+        width: 100%;
+      }
     }
   }
 
