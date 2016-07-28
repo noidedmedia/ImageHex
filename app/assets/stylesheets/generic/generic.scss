@@ -20,7 +20,6 @@
 // Centered tabs
 .imagehex-tab-container {
   width: 100vw;
-  height: 40px;
   background-color: $white;
   display: flex;
   text-align: center;
@@ -32,7 +31,7 @@
 
     a {
       display: inline-block;
-      padding: 0 25px;
+      padding: 10px 25px;
     }
   }
 
