@@ -112,10 +112,10 @@ window.Chat = Chat;
 
 $(window).on("turbolinks:load", () => {
   var container = $("#chat-container");
-  if(! container.has("#chat").length) {
+  if(container[0]) {
     ReactDOM.render(<Chat />,
                     container[0]);
   } else {
-    console.log("Chat has no container, not replacing");
+    console.log("Chat has no container, not loading");
   }
 });

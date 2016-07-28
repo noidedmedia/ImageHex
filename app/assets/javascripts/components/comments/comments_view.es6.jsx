@@ -16,7 +16,7 @@ class CommentsView extends React.Component {
 
   render() {
     console.log(this);
-    if(! this.state.isVisible || ! this.state.comments) {
+    if(! this.state.isVisible) {
       return <div ref={(r) => this.overallContainer = r}>
         </div>;
     }
@@ -25,7 +25,13 @@ class CommentsView extends React.Component {
         <progress></progress>
       </div>;
     }
-
+    if(this.state.comments.length == 0 && this.state.isVisible) {
+      return <div className="comments-outer">
+        <h3 className="no-comments">
+          No comments yet.
+        </h3>
+      </div>;
+    }
     var cmts = this.state.comments.map((c) => <Comment {...c} key={c.id} />);
     return <div className="comments-outer">
       <h3>Comments</h3>
