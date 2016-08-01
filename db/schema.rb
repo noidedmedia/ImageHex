@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160706201848) do
+ActiveRecord::Schema.define(version: 20160801152657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20160706201848) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.jsonb    "info"
-    t.string   "type"
     t.text     "description"
   end
 
@@ -107,6 +106,16 @@ ActiveRecord::Schema.define(version: 20160706201848) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["commission_offer_id"], name: "index_disputes_on_commission_offer_id", using: :btree
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "image_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_favorites_on_image_id", using: :btree
+    t.index ["user_id", "image_id"], name: "index_favorites_on_user_id_and_image_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -416,6 +425,8 @@ ActiveRecord::Schema.define(version: 20160706201848) do
   add_foreign_key "conversations", "orders", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
+  add_foreign_key "favorites", "images", on_delete: :cascade
+  add_foreign_key "favorites", "users", on_delete: :cascade
   add_foreign_key "image_reports", "images", on_delete: :cascade
   add_foreign_key "image_reports", "users", on_delete: :cascade
   add_foreign_key "images", "users"

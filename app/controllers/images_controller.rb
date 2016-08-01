@@ -8,7 +8,6 @@ class ImagesController < ApplicationController
   # Load the image via our id
   before_action :load_image, 
     only: [:comment, 
-      :favorite, 
       :created, 
       :update, 
       :edit, 
@@ -65,26 +64,6 @@ class ImagesController < ApplicationController
     authorize @image
     current_user.created! @image
     redirect_to(@image)
-  end
-
-  ##
-  # User adds the image to their favorites collection.
-  # Image must be in params[:id], user must be logged in.
-  # @image:: Image being favorited.
-  def favorite
-    current_user.favorite! @image
-    redirect_to(@image)
-  end
-
-  ##
-  # Remove an image from the current users' favorites.
-  # The image's id must be in params[:id]. The request must be a DELETE.
-  # The user must be logged in.
-  def unfavorite
-    col = current_user.favorites
-    image = Image.find(params[:id])
-    result = col.images.delete(image)
-    render json: result
   end
 
   ##

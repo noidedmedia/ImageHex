@@ -66,6 +66,11 @@ class User < ActiveRecord::Base
            through: :subscriptions,
            source: :collection
 
+  has_many :favorites
+  has_many :favorite_images, through: :favorites,
+    class_name: "Image",
+    source: :image
+
   has_many :image_reports
   has_many :notifications
   has_many :images
@@ -130,8 +135,6 @@ class User < ActiveRecord::Base
   #############
   # CALLBACKS #
   #############
-
-  after_create :make_collections
 
   before_save :coerce_content_pref!
 
@@ -258,26 +261,7 @@ class User < ActiveRecord::Base
     c.subscribers.destroy(self)
   end
 
-  ##
-  # Convenience method to access the favorites collection for a user
-  def favorites
-    collections.favorites.first
-  end
-
-  ##
-  # Add an image to a user's favorites
-  # i:: The image being added to the user's favorites.
-  def favorite!(i)
-    favorites.images << i
-  end
-
-  ##
-  # Returns a boolean depending on if the user has favorited the image.
-  # i:: The image being evaluated.
-  def favorited?(i)
-    favorites.images.include? i
-  end
-
+  
   ##
   # Add an image to a user's creationed collection.
   # i:: The image the use will be credit for creating.
@@ -311,12 +295,5 @@ class User < ActiveRecord::Base
         [k, v]
       end
     end.to_h
-  end
-
-  ##
-  # All users have to have a Favorite collection and a Created collection.
-  # This method makes both of those collections in a callback on user creation.
-  def make_collections
-    f = Favorite.create!(curators: [self])
   end
 end

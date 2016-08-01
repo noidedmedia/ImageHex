@@ -4,7 +4,4 @@ FactoryGirl.define do
     curators { [FactoryGirl.create(:user)] }
     name "Test"
   end
-
-  factory :subjective, parent: :collection, class: "Subjective" do
-  end
 end

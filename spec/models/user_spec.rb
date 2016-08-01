@@ -84,23 +84,6 @@ describe User do
     end
   end
   describe "creation" do
-    it "gives the user a favorites collection" do
-      expect { FactoryGirl.create(:user) }.to change { Collection.count }.by(1)
-      u = FactoryGirl.create(:user)
-      expect(u.collections.favorites.size).to eq(1)
-    end
-  end
-
-  describe "favoriting" do
-    let(:u) { FactoryGirl.create(:user) }
-    let(:i) { FactoryGirl.create(:image) }
-
-    it "adds an image to the favorites" do
-      u.favorite!(i)
-      expect(u.favorites.images).to eq([i])
-    end
-  end
-  describe "creation" do
     let(:u) { FactoryGirl.create(:user) }
     let(:i) { FactoryGirl.create(:image) }
     it "adds an image to creations" do

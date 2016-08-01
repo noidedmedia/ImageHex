@@ -16,8 +16,6 @@
 #
 # == Scopes
 # favorites:: All collections of the Favorite variety.
-# creations: All collections of the Creation variety
-# subjective: All collections of the subjective variety.
 class Collection < ActiveRecord::Base
   ################
   # ASSOCIATIONS #

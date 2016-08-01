@@ -60,18 +60,6 @@ describe ImagesController do
         end
       end
     end
-    describe "POST #favorite" do
-      let(:i) { FactoryGirl.create(:image) }
-      it "makes a new favorite for a user" do
-        expect do
-          post :favorite, params: { id: i }
-        end.to change { @user.favorites.images.count }.by(1)
-      end
-      it "adds the image to the user's favorite" do
-        post :favorite, params: { id: i }
-        expect(@user.favorites.images).to include(i)
-      end
-    end
     describe "POST #created" do
       let(:i) { FactoryGirl.create(:image) }
       it "makes a new creation for a user" do

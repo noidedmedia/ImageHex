@@ -30,6 +30,10 @@ Rails.application.routes.draw do
 
   resources :disputes
 
+  resources :favorites, only: [:create, :destroy] do
+    get 'includes_image', on: :member
+  end
+
   resources :conversations do
     resources :messages, only: [:index, :new, :create] do
       get 'by_time', on: :collection
@@ -72,9 +76,7 @@ Rails.application.routes.draw do
 
   resources :images do
     member do
-      post "favorite"
       post "created"
-      delete "unfavorite"
     end
 
     resources :tag_groups do

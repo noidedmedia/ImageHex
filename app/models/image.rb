@@ -156,13 +156,13 @@ class Image < ActiveRecord::Base
   # rubocop:disable AbcSize
   def self.by_popularity(interval = 3.days.ago..Time.zone.now)
     imgs = Image.arel_table
-    cimgs = CollectionImage.arel_table
-    j = imgs.join(cimgs, Arel::Nodes::OuterJoin)
-      .on(cimgs[:image_id].eq(imgs[:id]), cimgs[:created_at].between(interval))
+    fvts = Favorite.arel_table
+    j = imgs.join(fvts, Arel::Nodes::OuterJoin)
+      .on(fvts[:image_id].eq(imgs[:id]), fvts[:created_at].between(interval))
       .join_sources
     joins(j)
       .group("images.id")
-      .order("COUNT (collection_images) DESC, created_at DESC")
+      .order("COUNT (favorites) DESC, created_at DESC")
   end
   # rubocop:enable AbcSize
 

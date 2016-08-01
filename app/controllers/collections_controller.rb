@@ -81,19 +81,8 @@ class CollectionsController < ApplicationController
   # POST to create a new collection
   # Redirects to the new action with errors in flash[:warning] on failure,
   # and to the created collection on success.
-  # TODO: Authorization?
   def create
-    c = nil
-    # We create 2 different types in this view. So we have to build
-    # models in that way
-    case collection_params[:type]
-    when "Subjective"
-      c = Subjective.new(collection_params)
-    end
-    unless c
-      flash[:warning] = I18n.t("notices.collection_type_not_specified_or_not_applicable")
-      redirect_to(action: "new") && return
-    end
+    c = Collection.new(collection_params)
     respond_to do |format|
       if c.save
         format.html { redirect_to collection_path(id: c.id), notice: I18n.t("notices.collection_created_successfully") }
@@ -153,13 +142,11 @@ class CollectionsController < ApplicationController
 
   ##
   # Parameters needed to create the collection.
-  # type:: What type of collection it is. Currently, only "Subjective" is
-  #        user-creatable
   # name:: What to name this collection
   # description:: A short bit of info describing this collection.
   def collection_params
     params.require(:collection)
-      .permit(:type, :name, :description)
+      .permit(:name, :description)
       .merge(curators: [current_user])
   end
 end

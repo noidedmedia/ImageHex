@@ -55,11 +55,5 @@ describe CollectionPolicy do
                          level: :worker)
       expect(subject).to_not permit(user, collection)
     end
-    it "does not allow favorites" do
-      expect(subject).to_not permit(user, user.favorites)
-    end
-    it "does not allow creations" do
-      expect(subject).to_not permit(user, user.creations)
-    end
   end
 end

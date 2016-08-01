@@ -94,14 +94,12 @@ RSpec.describe CollectionsController, type: :controller do
     end
     describe "post #create" do
       context "with valid attributes" do
-        let(:subjective_atrs) do
-          { type: "Subjective",
-            name: "My Kawaii Images" }
-        end
+        let(:subjective_atrs){ {name: "My Kawaii Images"} }
+      
         it "makes a new collection of the proper type with an admin user" do
           expect do
             post :create, params: { collection: subjective_atrs }
-          end.to change { Subjective.count }.by(1)
+          end.to change { Collection.count }.by(1)
           expect(Curatorship.last.level).to eq("admin")
         end
         it "redirects to the collection" do
