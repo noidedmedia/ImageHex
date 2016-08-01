@@ -30,46 +30,31 @@
       </div>
     <% end %>
 
-    <%# Favorite/Favorited %>
-    <%# Initial state determined automatically by Rails. %>
-    <%# Switches between the two on successful contact with server (as determined via JavaScript). %>
-    <div class="image-actions-favorite-container" data-signed-in="ajax">
-      <% if current_user && current_user.favorited?(@image) %>
-        <div class="image-actions inactive" id="img-action-favorite">
-          <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
-            <span class="icon icon-medium icon-favorite"></span>
-            <p><%= t(".favorite") %></p>
-          <% end %>
-        </div>
 
-        <div class="image-actions active" id="img-action-favorited" data-signed-in="ajax">
-          <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
-            <span class="icon icon-medium icon-favorited"></span>
-            <p><%= t(".favorited") %></p>
-          <% end %>
-        </div>
-
-      <% else %>
-
-        <div class="image-actions active" id="img-action-favorite" data-signed-in="ajax">
-          <%= link_to favorite_image_path(@image), method: :post, remote: true do %>
-            <span class="icon icon-medium icon-favorite"></span>
-            <p><%= t(".favorite") %></p>
-          <% end %>
-        </div>
-
-        <div class="image-actions inactive" id="img-action-favorited" data-signed-in="ajax">
-          <%= link_to unfavorite_image_path(@image), method: :delete, remote: true do %>
-            <span class="icon icon-medium icon-favorited"></span>
-            <p><%= t(".favorited") %></p>
-          <% end %>
-        </div>
-
-      <% end %>
-    </div>
-
-    <%# Add to collection %>
     <% if user_signed_in? %>
+      <%# Image favorite controls %>
+      <%# Slightly messy, cleanup needed %>
+
+      <div class="image-actions-favorite-container">
+        <% if current_user.favorited? @image %>
+          <div id="img-action-favorited" class="image-actions active">
+            <%= link_to favorite_path(@favorite), 
+              method: :delete, 
+              confirm: "Are you sure?" do %>
+              <span class="icon icon-medium icon-favorited"></span>
+              <p>Favorited</p>
+            <% end %>
+          </div>
+        <% else %>
+          <%= form_for Favorite.new(image: @image), 
+            html: {id: "img-action-favorite", 
+                   class: "image-actions active"} do |f| %>
+            <%= f.hidden_field :image_id %>
+            <span class="icon icon-medium icon-favorite"></span>
+            <p>Favorite</p>
+          <% end %>
+        <% end %>
+      </div>
       <a>
         <div class="image-actions" id="img-action-collection"
           data-image-id="<%= @image.id %>">

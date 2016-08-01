@@ -18,10 +18,26 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    @favorite = Favorite.find(params[:id])
+    @image = @favorite.image
+    authorize @favorite
+    respond_to do |format|
+      if @favorite.destroy
+        format.html{ redirect_to @image, notice: "Unfavorited" }
+        format.json{ render json: {success: true} }
+      else
+        format.html{ redirect_to @image, warning: "Could not unfavorite" }
+        format.json{ render json: {success: false} }
+      end
+    end
+  end
+
   protected
 
   def favorite_params
     params.require(:favorite)
       .permit(:image_id)
+      .merge(user_id: current_user.id)
   end
 end

@@ -261,6 +261,10 @@ class User < ActiveRecord::Base
     c.subscribers.destroy(self)
   end
 
+  def favorited?(img)
+    self.favorite_images.include? img
+  end
+
   
   ##
   # Add an image to a user's creationed collection.

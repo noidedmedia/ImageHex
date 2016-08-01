@@ -184,8 +184,14 @@ class ImagesController < ApplicationController
   # @image:: The image being shown
   # @groups:: Tag groups on the image. Should be refactored out at some point.
   def show
+    @favorite = if user_signed_in?
+                  current_user.favorites.where(image_id: @image.id).first
+                else
+                  nil
+                end
+
     @groups = TagGroup.where(image: @image).includes(:tags)
-    @collections = current_user.try(:collections).try(:subjective)
+    @collections = current_user.try(:collections)
   end
 
   protected
