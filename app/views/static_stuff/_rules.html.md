@@ -12,6 +12,7 @@ Uploading content of this nature may get your IP address banned.
 * Any content against the law in any state in the United States
   * Not many things fit into this category, but uploading content of this nature will result in the relevant information being provided to the authorities.
 * Any sexually explicit content of a minor
+* Content which you do not have the copyright to post
 
 ### Content that must be flagged
 Some content is allowed on ImageHex, but is required to be flagged when the image is uploaded.
@@ -46,25 +47,16 @@ Knowing that she has "stained clothing" is also good.
 If a tag group applies to a character in a particular fictional universe, such as that of *Doctor Who* or *Dragonlance*, you should tag that universe as well.
 
 ### Creating Tags
-
-If you feel the need to create a tag, go ahead and do it!
+If you feel the need to create a new tag, go ahead and do it!
 Try to give it an accurate description.
 The ability to mark tags in as "potentially explicit" is coming soon&trade;.
 When that does get implemented, be sure to mark the tag as such if its name or description may not be suitable for some users.
 
-### Tag Naming
-
+#### Naming Guidelines
 Try to use sensible names for tags, preferring to use the simplest term possible to name a tag.
 If your tag is for a character in a certain franchise, add that franchise in (parenthesis) after its name.
 For example, the tag should be "Walter White (Breaking Bad)" as opposed to simply "Walter White".
 
-#### Tagging your Characters
-If it is a character of your own creation, feel free to make a tag.
-Simply add your user name in parenthesis after the tag name.
-For example, if I invented a wizard named Kelvin and drew a picture of him, he should be tagged "Kelvin (anthony)".
-
-If your character appears in some other media property (like a webcomic or a book), use the title of that property instead.
-This will make it easier for people who don't know your ImageHex account name to find the artwork they desire.
-
-Please note that it is generally polite to only create tags for characters which will be drawn multiple times, to avoid adding lots of unneeded tags to our database.
-Adding lots of tags that are only used once can make it harder for people to find the tags they want when searching.
+If it is a character of your own creation, use your username as the franchise name.
+So, if the user Anthony is drawing pictures of a character named "Stella", he should tag her as "Stella (Anthony)".
+If you would like, you may also use the name of a fictional universe of your creation instead&mdash;so if Stella is from the epic fantasy series *Spirals*, her tag could also be named "Stella (Spirals)".
