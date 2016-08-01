@@ -175,10 +175,10 @@ class UsersController < ApplicationController
     @creations = @user.creations
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
-    @favorites = @user.favorites.images
+    @favorites = @user.favorite_images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
-    @collections = @user.collections.subjective
+    @collections = @user.collections
     # HACK
     @content = content_pref
   end
