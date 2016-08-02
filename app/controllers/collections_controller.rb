@@ -23,7 +23,6 @@ class CollectionsController < ApplicationController
   # @collections:: The collections displayed based on popularity or recency.
   def index
     @collections = find_index_collections
-      .subjective
       .paginate(page: page, per_page: per_page)
       .preload(:images)
     # HACK: This is a hack.

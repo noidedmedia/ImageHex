@@ -44,10 +44,6 @@ class Collection < ActiveRecord::Base
   # SCOPES #
   ##########
 
-  scope :favorites, -> { where(type: "Favorite") }
-  scope :creations, -> { where(type: "Creation") }
-  scope :subjective, -> { where(type: "Subjective") }
-
   ##
   # Get a list of collections ordered by how popular they are, in terms of
   # subscribers.
