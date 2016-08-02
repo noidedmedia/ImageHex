@@ -5,7 +5,11 @@ class StripeController < ApplicationController
   def authorize
     params = {
       scope: "read_write",
-      redirect_uri: callback_stripe_index_url
+      redirect_uri: callback_stripe_index_url,
+      "stripe_user[email]" => current_user.email,
+      "stripe_user[url]" => user_url(current_user),
+      "stripe_user[product_category]" => "art_and_graphic_design",
+      "stripe_user[physical_product]" => "false"
     }
     url = OAUTH_CLIENT.auth_code.authorize_url(params)
     redirect_to url
