@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-json.extract! @collection, :name, :id, :type, :description
+json.extract! @collection, :name, :id, :description
 json.images do
   json.partial! 'images/list', images: @images
 end
