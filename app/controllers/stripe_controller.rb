@@ -9,7 +9,8 @@ class StripeController < ApplicationController
       "stripe_user[email]" => current_user.email,
       "stripe_user[url]" => user_url(current_user),
       "stripe_user[product_category]" => "art_and_graphic_design",
-      "stripe_user[physical_product]" => "false"
+      "stripe_user[physical_product]" => "false",
+      "stripe_user[business_name]" => "#{current_user.name}'s Commissions"
     }
     url = OAUTH_CLIENT.auth_code.authorize_url(params)
     redirect_to url
