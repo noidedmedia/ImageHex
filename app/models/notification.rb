@@ -39,7 +39,7 @@ class Notification < ActiveRecord::Base
               :new_subscriber,
               :order_confirmed,
               :order_accepted,
-              :order_charged,
+              :order_paid,
               :order_filled]
 
 
