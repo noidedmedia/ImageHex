@@ -12,7 +12,7 @@ class Order::Reference::Image < ActiveRecord::Base
     path: ($REF_PATH ? $REF_PATH : "ref_images/:id_:style.:extension")
 
     process_in_background :img, 
-      processing_image_url: :proccessing_image_fallback
+      processing_image_url: :processing_image_fallback
 
 
     validates_attachment :img,
