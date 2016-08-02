@@ -61,7 +61,7 @@ class Order < ActiveRecord::Base
     self.class.transaction do 
       update(charge_id: charge["id"],
              charged_at: Time.at(charge["created"]).utc.to_datetime)
-      Notification.create(user: self.user,
+      Notification.create(user: self.listing.user,
                           kind: :order_paid,
                           subject: self)
     end
