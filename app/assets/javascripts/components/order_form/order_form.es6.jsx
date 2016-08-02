@@ -121,7 +121,7 @@ class OrderForm extends React.Component {
         return 0;
       }
     });
-    const sum = prices.reduce((a, b) => a + b);
+    const sum = prices.reduce((a, b) => a + b, 0);
     return sum;
   }
 
@@ -136,7 +136,7 @@ class OrderForm extends React.Component {
       else {
         return paidRefs * cat.price;
       }
-    }).reduce((a, b) => a + b);
+    }).reduce((a, b) => a + b, 0);
   }
 
   refsUnder(category) {
