@@ -61,5 +61,18 @@ RSpec.feature "Image show page", type: :feature do
         end
       end
     end
+
+    feature "sharing" do
+      scenario "they click the share button", js: true do
+        visit image_path(@image)
+
+        expect(page).to have_css("#img-action-report")
+        expect(page).to_not have_css("#img-action-share-tooltip")
+
+        find("#img-action-share").click
+
+        expect(page).to have_css("#img-action-share-tooltip")
+      end
+    end
   end # when signed in
 end
