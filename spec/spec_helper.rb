@@ -16,9 +16,9 @@ end
 
 Capybara.register_driver :poltergeist_silent do |app|
   Capybara::Poltergeist::Driver.new(app, 
-    phantomjs_logger: FakePoltergeistLogger,
-    logger: FakePoltergeistLogger,
-    debug: false)
+                                    phantomjs_logger: FakePoltergeistLogger,
+                                    logger: FakePoltergeistLogger,
+                                    debug: false)
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -33,13 +33,32 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.use_transactional_fixtures = false
 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    # set the default
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, type: :feature) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.append_after(:each) do
+    DatabaseCleaner.clean
+  end
+
+
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
@@ -56,12 +75,6 @@ RSpec.configure do |config|
 
   config.before(:each, type: :feature) do
     Paperclip.is_in_feature_spec = true
-  end
-
-  # Delete uploaded files after our tests pass
-  config.after(:suite) do
-    FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/system/fs/test/"])
   end
 
   config.after(:each) do
