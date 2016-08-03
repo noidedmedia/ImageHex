@@ -21,6 +21,7 @@ Capybara.register_driver :poltergeist_silent do |app|
                                     debug: false)
 end
 
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -52,6 +53,14 @@ RSpec.configure do |config|
 
   config.append_after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.before(:each, js: true) do
+    Capybara.current_driver = :poltergeist_silent
+  end
+
+  config.after(:each, js: true) do
+    Capybara.use_default_driver
   end
 
 
