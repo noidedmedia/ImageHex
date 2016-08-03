@@ -11,6 +11,7 @@ git_stats/
 /.bundle
 # Ignore images uploaded in dev mode
 /public/system/fs/*
+public/system/test/*
 
 *.swp
 # Ignore the default SQLite database.

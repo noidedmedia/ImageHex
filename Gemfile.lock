@@ -111,6 +111,7 @@ GEM
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     dalli (2.7.6)
+    database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     delayed_paperclip (2.10.0)
       paperclip (>= 3.3)
@@ -427,6 +428,7 @@ DEPENDENCIES
   capybara-screenshot
   coffee-rails
   dalli
+  database_cleaner
   delayed_paperclip
   devise (>= 4.0.0.rc1)
   devise-two-factor (~> 3.0.0)

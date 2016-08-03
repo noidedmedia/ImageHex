@@ -1,10 +1,14 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # Store test files in a temporary directory
-  Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
-  $IMAGE_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
-  $REF_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
-  $AVATAR_PATH = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
+  config.paperclip_defaults = {
+    path: "public/system/fs/test/:class/:id_:style.:extension",
+    url: "/system/fs/test/:class/:id_:style.:extension"
+  }
+
+  $IMAGE_PATH = "public/system/fs/test/:class/:id_:style.:extension"
+  $REF_PATH = "public/system/fs/test/:class/:id_:style.:extension"
+  $AVATAR_PATH = "public/system/fs/test/:class/:id_:style.:extension"
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
