@@ -15,13 +15,4 @@ RSpec.feature "User creates a collection", type: :feature do
       expect(current_path).to eq(collection_path(c))
     end
   end
-
-  context "when not logged in" do
-    scenario "the nonregistered user visits the form" do
-      visit new_collection_path
-
-      expect(current_path).to eq("/accounts/sign_in")
-    end
-  end
-
 end
