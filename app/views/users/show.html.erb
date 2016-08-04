@@ -69,6 +69,9 @@
         <li data-tab="tab-2" class="user-page-header-tab"><%= t(".uploads", count: @uploads.count) %>
         <li data-tab="tab-3" class="user-page-header-tab"><%= t(".favorites", count: @favorites.count) %>
         <li data-tab="tab-4" class="user-page-header-tab"><%= t(".collections", count: @collections.count) %>
+        <li data-tab="tab-5" class="user-page-header-tab">
+          <%= t(".listings", count: @listings.count) %>
+        </li>
       </ul>
     </div>
   <% end %>
@@ -100,5 +103,16 @@
       <% end %>
     </div>
 
+    <div class="user-content tab-content tc-tab-5 listing-list-container">
+      <% if @listings.empty? %>
+        <p class="imagehex-empty-note">
+          <%= t(".no_open_listings") %>
+        </p>
+      <% else %>
+        <div id="listings-list" class="flex-column">
+          <%= render partial: "listings/listing", collection: @listings, as: :listing %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

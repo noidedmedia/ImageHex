@@ -179,6 +179,7 @@ class UsersController < ApplicationController
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
     @collections = @user.collections
+    @listings = @user.listings.open
     # HACK
     @content = content_pref
   end
