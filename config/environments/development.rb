@@ -1,4 +1,5 @@
 Rails.application.configure do
+  config.browserify_rails.use_browserifyinc = true 
   config.assets.quiet = true
   config.active_job.queue_adapter = :async
 

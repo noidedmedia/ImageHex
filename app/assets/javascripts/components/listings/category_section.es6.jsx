@@ -4,10 +4,10 @@ import CategoryFields from './category_fields.es6.jsx';
 let RemovedCategory = ({id, index}) => (
   <div>
     <input type="hidden"
-      name={`categories[${0 - id}][id]`}
+      name={`listing[categories_attributes][${0 - id}][id]`}
       value={id} />
     <input type="hidden"
-      name={`categories[${0 - id}][_destroy]`}
+      name={`listing[categories_attributes][${0 - id}][_destroy]`}
       value={true} />
   </div>
 );
@@ -26,11 +26,6 @@ class CategorySection extends React.Component {
         {...c} />
     ));
     var categories = this.props.categories.map((c, i) => {
-      // We pretend that the index is much larger than it actually is
-      // to avoid over-writing the fields from options
-      // if a user has over 10K options this breaks, but...
-      // that should never happen
-      console.log("Category",c,"has index",i);
       return <CategoryFields
         category={c}
         key={c.id}

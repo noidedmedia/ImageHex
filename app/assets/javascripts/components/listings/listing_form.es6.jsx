@@ -84,12 +84,15 @@ class ListingForm extends React.Component {
   }
 
   removeCategory(index) {
-    console.log("Removing category with index", index);
-    let removed = this.state.categories.splice(index, 1);
+    let removed = this.state.categories.splice(index, 1)[0];
     console.log("Removed category",removed);
+    let removedCategories = removed.id > 0 ? (
+      [...this.state.removedCategories, removed]) : (
+        this.state.removedCategories);
+    console.log("After removal, removed categories are",removedCategories);
     this.setState({
       categories: this.state.categories,
-      removedCategories: [...this.state.removedCategories, ...removed]
+      removedCategories
     });
   }
 }

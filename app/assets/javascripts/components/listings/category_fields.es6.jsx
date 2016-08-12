@@ -13,11 +13,13 @@ class CategoryFields extends React.Component {
   }
 
   render() {
+    console.log("Test");
     var {category, index, quoteOnly, removeSelf} = this.props;
     category = category || {};
     const fieldName = (name) => (
       `listing[categories_attributes][${index}][${name}]`
     );
+    console.log(2**5);
     return <li className="option-fields-section">
       <Common.FieldsSection>
         <label htmlFor={fieldName("name")}>
@@ -74,19 +76,22 @@ class CategoryFields extends React.Component {
           Remove
         </a>
       </div>
-      <input type="hidden"
-        name={fieldName("id")}
-        value={this.props.id} />
+      {
+        (category && category.id > 0) ? (
+          <input type="hidden"
+            name={fieldName("id")}
+            value={this.props.id} />) : (<span />)
+      }
     </li>;
   }
 
   get priceLabel() {
     let { name } = this.state;
-    if(name === "") {
-      return "Price";
+    if(name === "") { 
+      return "Price"; 
     }
-    else {
-      return `Price per ${name}`;
+    else { 
+      return `Price per ${name}`; 
     }
   }
 

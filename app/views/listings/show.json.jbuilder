@@ -7,6 +7,7 @@ json.extract! @listing,
 
 json.options @listing.options do |option|
   json.extract! option,
+    :id,
     :price,
     :name,
     :description
@@ -14,6 +15,7 @@ end
 
 json.categories @listing.categories do |category|
   json.extract! category,
+    :id,
     :price,
     :name,
     :description,
