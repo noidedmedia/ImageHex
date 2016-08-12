@@ -4,13 +4,17 @@ import { CurrencyInputField } from '../currency_input.es6.jsx';
 class CategoryFields extends React.Component {  
   constructor(props) {
     super(props);
+    let category = this.props.category || {}
     this.state = {
-      name: this.props.name || ""
+      name: category.name || "",
+      description: category.description || "",
+      price: category.price || 0
     };
   }
 
   render() {
     var {category, index, quoteOnly, removeSelf} = this.props;
+    category = category || {};
     const fieldName = (name) => (
       `listing[categories_attributes][${index}][${name}]`
     );
@@ -43,7 +47,7 @@ class CategoryFields extends React.Component {
             {this.priceLabel}
           </label>
           <CurrencyInputField
-            initialValue={this.props.price || 0}
+            initialValue={this.state.price}
             name={fieldName("price")} />
         </Common.FieldsSection>
         <Common.FieldsSection
