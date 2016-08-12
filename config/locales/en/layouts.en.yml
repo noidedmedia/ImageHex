@@ -35,6 +35,7 @@ en:
       profile: Profile
       search: Page where you can find many images
       search_suggestions_note: Typing in this box will display a list of tags which are close matches of what you have typed to assist you in finding tags
+      my_listings: My Listings
       settings: Settings
       sign_in: Sign in
       sign_out: Sign out

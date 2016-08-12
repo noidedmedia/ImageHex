@@ -6,6 +6,7 @@ class ListingsController < ApplicationController
   def mine
     @listings = current_user.listings
       .order(created_at: :desc)
+      .paginate(page: page, per_page: per_page)
     render 'index'
   end
 

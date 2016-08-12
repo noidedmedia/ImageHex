@@ -1,4 +1,11 @@
 class ListingPolicy < ApplicationPolicy
+  
+  class Scope < Scope
+    def resolve
+      @scope.open.or(@scope.where(user_id: @user.id))
+    end
+  end
+
   def initialize(user, listing)
     @listing = listing
     @user = user

@@ -179,7 +179,7 @@ class UsersController < ApplicationController
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
     @collections = @user.collections
-    @listings = @user.listings.open.includes(:images)
+    @listings = policy_scope(@user.listings).includes(:images)
     # HACK
     @content = content_pref
   end
