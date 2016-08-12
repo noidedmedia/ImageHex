@@ -7,8 +7,10 @@ class ListingForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...props
+      ...props,
+      removedCategories: []
     };
+    this.categoryFakeId = -1;
   }
 
   render() {
@@ -18,6 +20,7 @@ class ListingForm extends React.Component {
       <CategorySection
         categories={this.state.categories}
         addCategory={this.addCategory.bind(this)}
+        removedCategories={this.state.removedCategories}
         removeCategory={this.removeCategory.bind(this)} />
       <OptionSection
         quoteOnly={this.state.quote_only}
@@ -75,14 +78,18 @@ class ListingForm extends React.Component {
 
   addCategory() {
     this.setState({
-      categories: [...this.state.categories, {}]
+      categories: [...this.state.categories, {id: this.categoryFakeId}]
     });
+    this.categoryFakeId = this.categoryFakeId - 1;
   }
 
   removeCategory(index) {
-    this.state.categories.splice(index, 1);
+    console.log("Removing category with index", index);
+    let removed = this.state.categories.splice(index, 1);
+    console.log("Removed category",removed);
     this.setState({
-      categories: this.state.categories
+      categories: this.state.categories,
+      removedCategories: [...this.state.removedCategories, ...removed]
     });
   }
 }

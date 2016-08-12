@@ -36,8 +36,7 @@ class CategoryFields extends React.Component {
         </label>
         <textarea
           name={fieldName("description")}
-          value={this.state.description}
-          defualtValue={this.props.description}
+          defualtValue={this.state.description}
           required={true} />
       </Common.FieldsSection>
       <div className="row-fields-section">
