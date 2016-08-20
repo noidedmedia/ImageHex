@@ -13,13 +13,11 @@ class CategoryFields extends React.Component {
   }
 
   render() {
-    console.log("Test");
     var {category, index, quoteOnly, removeSelf} = this.props;
     category = category || {};
     const fieldName = (name) => (
       `listing[categories_attributes][${index}][${name}]`
     );
-    console.log(2**5);
     return <li className="option-fields-section">
       <Common.FieldsSection>
         <label htmlFor={fieldName("name")}>
@@ -38,7 +36,7 @@ class CategoryFields extends React.Component {
         </label>
         <textarea
           name={fieldName("description")}
-          defualtValue={this.state.description}
+          defaultValue={this.state.description}
           required={true} />
       </Common.FieldsSection>
       <div className="row-fields-section">
@@ -80,7 +78,7 @@ class CategoryFields extends React.Component {
         (category && category.id > 0) ? (
           <input type="hidden"
             name={fieldName("id")}
-            value={this.props.id} />) : (<span />)
+            value={category.id} />) : (<span />)
       }
     </li>;
   }

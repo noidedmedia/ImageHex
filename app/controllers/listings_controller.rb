@@ -5,6 +5,7 @@ class ListingsController < ApplicationController
 
   def mine
     @listings = current_user.listings
+      .includes(:images)
       .order(created_at: :desc)
       .paginate(page: page, per_page: per_page)
     render 'index'
@@ -52,8 +53,10 @@ class ListingsController < ApplicationController
         format.json { render 'show' }
       else
         format.html { render 'edit', errors: @listing.errors }
-        format.html { render json: @listing.errors,
-          status: :unprocessible_entity }
+        format.html do 
+          render json: @listing.errors,
+            status: :unprocessible_entity
+        end
       end
     end
   end
@@ -101,6 +104,7 @@ class ListingsController < ApplicationController
 
   def option_attributes
     [:price,
+      :_destroy,
       :name,
       :description,
       :id]
@@ -109,6 +113,7 @@ class ListingsController < ApplicationController
 
   def categories_attributes
     [:price,
+      :_destroy,
       :max_count,
       :free_count,
       :name,

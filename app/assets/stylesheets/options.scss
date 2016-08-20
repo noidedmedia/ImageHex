@@ -1,0 +1,28 @@
+.options-item {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  h3 {
+    font-size: 2.0rem;
+    font-weight: normal;
+ 
+  }
+
+  .markdown-description {
+    color: #555;
+  }
+}
+
+.options-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.show-listing-options-section {
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #fff;
+}

@@ -10,17 +10,27 @@ class OptionSection extends React.Component {
   }
 
   render() {
-    var options = this.state.options.map((o, i) => {
+    var options = this.props.options.map((o, i) => {
       return <OptionFields
         option={o}
         index={i}
         quoteOnly={this.props.quoteOnly}
-        removeSelf={this.removeOption.bind(this, i)}
+        removeSelf={this.props.removeOption.bind(null, i)}
         addRefCat={this.props.addRefCat}
         removeRefCat={this.props.removeRefCat}
         key={i} />
     });
-
+    let removed = this.props.removedOptions.map((o, i) => {
+      let index = this.props.options.length + 1 + i;
+      return <div key={index}>
+        <input name={`listing[options_attributes][${index}][id]`}
+          type="hidden"
+          value={o.id} />
+        <input name={`listing[options_attributes][${index}][_destroy]`}
+          type="hidden"
+          value="true" />
+      </div>;
+    });
     return <div className="listing-form-section">
       <div className="listing-form-section-header">
         <h1>Options</h1>
@@ -32,28 +42,15 @@ class OptionSection extends React.Component {
         </div>
         <a 
           className="add-option-button green-add-button"
-          onClick={this.addOption.bind(this)}>
+          onClick={this.props.addOption}>
           Add an Option
         </a>
       </div>
       <ul className="options-container">
         {options}
       </ul>
+      {removed}
     </div>;
-  }
-
-  addOption() {
-    var n = [...this.state.options, {}];
-    this.setState({
-      options: n
-    });
-  }
-
-  removeOption(index) {
-    this.state.options.splice(index, 1);
-    this.setState({
-      options: this.state.options
-    });
   }
 }
 

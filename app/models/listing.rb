@@ -12,14 +12,16 @@ class Listing < ActiveRecord::Base
     inverse_of: :listing,
     autosave: true
 
-  accepts_nested_attributes_for :categories
+  accepts_nested_attributes_for :categories,
+    allow_destroy: true
 
   has_many :options, 
     class_name: 'Listing::Option',
     inverse_of: :listing,
     autosave: true
 
-  accepts_nested_attributes_for :options
+  accepts_nested_attributes_for :options,
+    allow_destroy: true
 
   has_many :listing_images,
     class_name: 'Listing::Image',

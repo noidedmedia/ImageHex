@@ -12,16 +12,31 @@
     <%= markdown_parse @listing.description %>
   </div>
 
-  <h2>Examples</h2>
-  <ul class="listing-example-images-list flex-row">
-    <% @listing.images.each do |img| %>
-      <li class="listing-example-images-item">
-        <%= link_to img do %>
-          <%= image_tag img.f(:medium) %>
-        <% end %>
-      </li>
-    <% end %>
+  <ul class="show-listing-categories">
+    <%= render partial: "category", collection: @listing.categories %>
   </ul>
+
+  <div class="show-listing-options-section">
+    <h2 class="padded-dark-header">Options</h2>
+    <ul class="show-listing-options-list">
+      <%= render partial: "option", collection: @listing.options %>
+    </ul>
+  </div>
+
+  <div class="show-listing-example-images">
+    <h2 class="padded-dark-header">
+      Examples
+    </h2>
+    <ul class="listing-example-images-list flex-row">
+      <% @listing.images.each do |img| %>
+        <li class="listing-example-images-item">
+          <%= link_to img do %>
+            <%= image_tag img.f(:medium) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
   <% unless @listing.quote_only? %>
     <div class="listing-price-section white-listing-box">

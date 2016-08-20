@@ -111,9 +111,7 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   color: $heading-text-color;
 }
 
-.markdown-description {
-  font-size: 14px;
-}
+
 
 .reference-group-fields {
   background-color: $fields-background-color;
@@ -331,11 +329,6 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
 
 .option-fields {
   padding: $standard-padding;
-
-  &:nth-child(odd) {
-    margin-right: $standard-padding;
-  }
-
   .description {
     width: 90%;
     margin-left: auto;

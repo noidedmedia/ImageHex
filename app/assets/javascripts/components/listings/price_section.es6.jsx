@@ -21,9 +21,11 @@ class PriceSection extends React.Component {
           </div>
         </div>
         <input type="checkbox"
-          name="listing[quote_only]"
-          state={this.props.quote_only}
+          checked={this.props.quote_only}
           onChange={this.toggleCheck.bind(this)} />
+        <input type="hidden"
+          name="listing[quote_only]"
+          value={this.props.quote_only} />
       </div>
       <div 
         className={"flex-row-mobile-column big-description " + this.priceClass}>

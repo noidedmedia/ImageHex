@@ -1,0 +1,21 @@
+<li class="listing-category-show">
+  <h2 class="padded-dark-header">
+    <%= category.name.pluralize(category.max_count) %>
+  </h2>
+  <div class="markdown-description">
+    <%= markdown_parse category.description %>
+  </div>
+  <div class="category-price">
+    <div>Price</div>
+    <div>
+      <% if category.free_count > 0 %>
+        <span>
+          <strong><%= category.free_count %></strong> included, </span>
+      <% end %>
+      <strong><%= price category.price %></strong>
+      <% if category.max_count > 1 %>
+        <span>each (<strong><%= category.max_count %></strong> max)</span>
+      <% end %>
+    </div>
+  </div>
+</li>

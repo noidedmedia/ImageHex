@@ -301,3 +301,25 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   }
 }
 
+
+.padded-dark-header {
+  background-color: #272727;
+  color: #eee;
+  padding: 10px;
+}
+
+.show-listing-example-images {
+  margin: 10px 0;
+  background-color: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.markdown-description {
+  font-size: 14px;
+  padding-bottom: 5pt;
+
+  p:not(:first-of-type) {
+    margin-top: 5pt;
+  }
+}

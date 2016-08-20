@@ -1,32 +1,15 @@
 <li class="options-item">
-  <div class="option-header">
+  <div class="options-header">
     <h3><%= option.name %></h3>
-  </div>
-  <div class="option-inner">
-    <div class="option-description">
-      <%= markdown_parse option.description %>
-    </div>
-    <div class="two-column-label">
-      <span>Price</span>
-      <% if option.price > 0 %>
-        <% if option.free_count > 0 %>
-          <span><%= option.free_count %> free,
-            <%= price option.price %>/each additional
-          </span>
-        <% elsif option.max_allowed > 1 %>
-          <span><%= price option.price %></span>
-        <% else %>
-          <span><%= price option.price %></span>
-        <% end %>
+    <% unless @listing.quote_only? %>
+      <% if option.price == 0 %> 
+        <strong>Free</strong>
       <% else %>
-        <span>Free</span>
+        <strong><%= price option.price %></strong>
       <% end %>
-    </div>
-    <% if option.max_allowed > 1 %>
-      <div class="two-column-label">
-        <span>Max allowed:</span>
-        <span><%= option.max_allowed %></span>
-      </div>
     <% end %>
+  </div>
+  <div class="markdown-description">
+    <%= markdown_parse option.description %>
   </div>
 </li>

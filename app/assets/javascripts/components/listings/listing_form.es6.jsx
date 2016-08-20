@@ -8,14 +8,16 @@ class ListingForm extends React.Component {
     super(props);
     this.state = {
       ...props,
-      removedCategories: []
+      removedCategories: [],
+      removedOptions: []
     };
     this.categoryFakeId = -1;
+    this.fakeOptionId = -1;
   }
 
   render() {
     return <div id="listing-form">
-      <PriceSection {...this.state} 
+      <PriceSection {...this.state}
         toggleCheck={this.toggleCheck.bind(this)} />
       <CategorySection
         categories={this.state.categories}
@@ -26,6 +28,7 @@ class ListingForm extends React.Component {
         quoteOnly={this.state.quote_only}
         addOption={this.addOption.bind(this)}
         removeOption={this.removeOption.bind(this)}
+        removedOptions={this.state.removedOptions}
         options={this.state.options} />
       <ExampleImageSection />
         {this.submitSection}
@@ -65,14 +68,19 @@ class ListingForm extends React.Component {
 
   addOption() {
     this.setState({
-      options: [...this.state.options, {}]
+      options: [...this.state.options, {id: this.fakeOptionId}]
     });
+    this.fakeOptionId--;
   }
 
   removeOption(index) {
-    this.state.options.splice(index, 1);
+    let option = this.state.options.splice(index, 1)[0];
+    console.log("Removed option",option);
+    let ro = option.id > 0 ? [...this.state.removedOptions, option] : (
+      this.state.removedOptions)
     this.setState({
-      options: this.state.options
+      options: this.state.options,
+      removedOptions: ro
     });
   }
 
@@ -89,7 +97,6 @@ class ListingForm extends React.Component {
     let removedCategories = removed.id > 0 ? (
       [...this.state.removedCategories, removed]) : (
         this.state.removedCategories);
-    console.log("After removal, removed categories are",removedCategories);
     this.setState({
       categories: this.state.categories,
       removedCategories
