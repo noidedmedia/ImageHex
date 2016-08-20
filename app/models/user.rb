@@ -284,6 +284,14 @@ class User < ActiveRecord::Base
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  ## 
+  # Security: We don't actually want as_json to be called on user
+  # as it can leak private details. Just in case we call it on accident,
+  # we force it to only include the id and the name.
+  def as_json(options)
+    super(only: [:name, :id])
+  end
+
   protected
 
   ##

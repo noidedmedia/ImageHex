@@ -10,8 +10,15 @@ json.creations do
 end
 
 json.favorites do
-  json.partial! "collections/stub", c: @user.favorites
+  json.partial! "images/list", images: @favorites
 end
+
+json.subscribed_artists @user.subscribed_artists,
+  partial: "users/stub", as: :user
+
+json.subscribers @user.subscribers,
+  partial: "users/stub", as: :user
+
 
 json.collections @collections, partial: "collections/stub", as: :c
 json.bio @user.description

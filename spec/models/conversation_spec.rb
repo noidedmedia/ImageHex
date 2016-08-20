@@ -2,16 +2,24 @@
 require 'rails_helper'
 
 RSpec.describe Conversation, type: :model do
-
-  describe "user_ids" do
-    let(:ua) { create(:user) }
-    let(:ub) { create(:user) }
+  def follow_eachother(*users)
+    users.combination(2) do |(a, b)|
+      next if a == b
+      a.subscribed_artists << b
+      b.subscribed_artists << a
+    end
   end
+
   describe "nested attributes" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
     let(:users) { [user_a, user_b] }
     let(:users_attributes) { users.map { |u| { user_id: u.id } } }
+
+    before(:each) do
+      follow_eachother(user_a, user_b)
+    end
+
     it "creates conversation users" do
       expect do
         Conversation.create(conversation_users_attributes: users_attributes)
@@ -45,43 +53,13 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
-  describe ".all_users_accepted?" do
-    let(:user_a) { create(:user) }
-    let(:user_b) { create(:user) }
-    let(:users) { [user_a, user_b] }
-
-    it "returns true when all accepted" do
-      c = Conversation.create(users: users, name: "test")
-      c.conversation_users.update_all(accepted: true)
-      expect(c.reload.all_users_accepted?).to eq(true)
-    end
-
-    it "returns false with undecided" do
-      c = Conversation.create(users: users, name: "test")
-      expect(c.all_users_accepted?).to eq(false)
-    end
-
-    it "returns false when rejected" do
-      c = Conversation.create(users: users, name: "test")
-      c.conversation_users.first.update(accepted: false)
-      expect(c.all_users_accepted?).to eq(false)
-    end
-  end
-
-  describe ".autoaccept" do
-    let(:user_a) { create(:user) }
-    let(:user_b) { create(:user) }
-    it "sets the conversation as automatically accepted" do
-      c = Conversation.create(users: [user_a, user_b],
-                              name: "Test",
-                              auto_accept: true)
-      expect(c.all_users_accepted?).to eq(true)
-    end
-  end
-
   describe "conversations with the same participants" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
+
+    before(:each) do
+      follow_eachother(user_a, user_b)
+    end
 
     it "does not allow multiple normal conversations" do
       a = create(:conversation, users: [user_a, user_b])
@@ -108,9 +86,31 @@ RSpec.describe Conversation, type: :model do
   end
 
   describe "validation" do
+    let(:user_a) { create(:user) }
+    let(:user_b) { create(:user) }
+
     it "does not allow more than 5" do
-      expect(build(:conversation, 
-                   users: 6.times.map{ create(:user) })).to_not be_valid
+      users = 6.times.map{create(:user)}
+      follow_eachother(*users)
+      expect(build(:conversation,
+                   users: users)).to_not be_valid
+    end
+
+    it "allows users who follow each other" do
+      follow_eachother(user_a, user_b)
+      expect(build(:conversation,
+                   users: [user_a, user_b])).to be_valid
+    end
+
+    it "does not allow users who don't follow each other" do
+      expect(build(:conversation,
+                   users: [user_a, user_b])).to_not be_valid
+    end
+
+    it "does not allow users who have a one-way relationship" do
+      user_a.subscribed_artists << user_b
+      expect(build(:conversation,
+                   users: [user_a, user_b])).to_not be_valid
     end
   end
 
@@ -121,8 +121,11 @@ RSpec.describe Conversation, type: :model do
     let(:conv_a) { create(:conversation,
                           users: [user_a, user_b]) }
     let(:conv_b) { create(:conversation,
-                          users: [user_a, user_c],
-                          auto_accept: true) }
+                          users: [user_a, user_c]) }
+    before(:each) do
+      follow_eachother(user_a, user_b, user_c)
+    end
+
     it "shows the unread status for users" do
       conv_b.messages.create(user: user_c,
                              body: "Test")

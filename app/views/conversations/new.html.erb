@@ -3,6 +3,16 @@
 <h3 class="generic-page-title">
   New Conversation
 </h3>
+<% if @conversation.errors.present? %>
+  <div class="error-container">
+    <h3>Your conversation could not be saved:</h3>
+    <ul>
+      <% @conversation.errors.full_messages.each do |m| %>
+        <li><%= m %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class="fields-page-container">
   <%= form_for @conversation do |f| %>
     <div class="field-container">

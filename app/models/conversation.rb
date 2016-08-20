@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 class Conversation < ActiveRecord::Base
   has_many :conversation_users, inverse_of: :conversation
+
   has_many :users, through: :conversation_users
+
   has_many :messages
 
   accepts_nested_attributes_for :conversation_users
@@ -9,13 +11,13 @@ class Conversation < ActiveRecord::Base
   belongs_to :order,
     required: false
 
-  attr_accessor :auto_accept
 
-  after_create :accept_all_users, :if => :auto_accept
   after_create :notify_cables
 
   validate :conversation_has_unique_users
   validate :conversation_has_few_users
+  validate :users_follow_each_other,
+    unless: :for_order?
 
   ##########
   # SCOPES #
@@ -51,11 +53,7 @@ class Conversation < ActiveRecord::Base
   ####################
   # INSTANCE METHODS #
   ####################
-
-  def all_users_accepted?
-    conversation_users.where(accepted: [false, nil]).count == 0
-  end
-   ##
+  ##
   # Hack because we do a custom thing in our SELECT sometimes
   def has_unread?
     attributes["has_unread"]
@@ -92,14 +90,14 @@ class Conversation < ActiveRecord::Base
     conversation_user_for(user).last_read_at
   end
 
+  def for_order?
+    self.order.present?
+  end
+
   private
 
   def notify_cables
     NewConversationJob.perform_later(self)
-  end
-
-  def accept_all_users
-    conversation_users.update_all(accepted: true)
   end
   
   def conversation_has_unique_users
@@ -111,8 +109,21 @@ class Conversation < ActiveRecord::Base
   end
 
   def conversation_has_few_users
-    if self.users.length > 5
+    if self.conversation_users.length > 5
       errors.add(:users, "have too many (max of 5)")
+    end
+  end
+
+  ## TODO: Refactor this so it isn't so horrible
+  def users_follow_each_other
+    return if self.conversation_users.length > 5
+    user_ids = self.conversation_users.to_a.pluck(:user_id)
+    count = self.conversation_users.length
+    desired_count = ((1..count).inject(1, :*)) / (1..(count - 2)).inject(1, :*)
+    real_count = ArtistSubscription.where(user_id: user_ids)
+      .where(artist_id: user_ids).count
+    if real_count != desired_count
+      errors.add(:users, "are not all subscribed to each other")
     end
   end
 end

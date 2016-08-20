@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
   end
 
   DEFAULT_CONTENT = {
-    "nsfw_language" => true
+    "nsfw_language" => false
   }.freeze
 
   def content_pref

@@ -3,7 +3,7 @@ import NM from '../api/global.es6';
 
 const UserInfo = (user) => (
   <div className="user-info flex-row">
-    <img src={user.avatar_img_thumb} />
+    <img src={user.avatar_path} />
     <div className="user-name">
       {user.name}
     </div>
@@ -34,6 +34,48 @@ const SelectedUser = ({user, onRemove}) => (
       value={user.id} />
   </li>
 );
+
+function indexOfBSearch(array, needle, compare, start, end) {
+  if(start == undefined) {
+    start = 0;
+  }
+  if(end == undefined) {
+    end = array.length - 1;
+  }
+  if(start > end) {
+    return -1;
+  }
+  let mid = Math.floor((end + start) / 2);
+  let current = array[mid];
+  let comp = compare(needle, current);
+  // Equal
+  if(comp == 0) {
+    return mid;
+  }
+  // needle > current, look in the larger half
+  else if(comp > 0) {
+    return indexOfBSearch(array, needle, compare, mid + 1, end);
+  }
+  // needle < current, look in smaller half
+  else if(comp < 0) {
+    return indexOfBSearch(array, needle, compare, start, mid - 1);
+  }
+}
+
+function viableUsers(to, from) {
+  if(! to || ! from) {
+    return [];
+  }
+  var viable = [];
+  let compare = (a, b) => a.id - b.id;
+  from = from.sort(compare);
+  to.forEach(t => {
+    if(indexOfBSearch(from, t, compare) !== -1) {
+      viable.push(t);
+    }
+  });
+  return viable;
+}
 
 class ConversationUserPicker extends React.Component {
   constructor(props) {
@@ -75,7 +117,6 @@ class ConversationUserPicker extends React.Component {
               value={this.state.nameFilter}
               onChange={this.changeNameFilter.bind(this)} />
           </div>
-            {this.pagination}
         </div>
       </div>
 
@@ -85,49 +126,25 @@ class ConversationUserPicker extends React.Component {
     </div>
   }
 
-  get pagination() {
-    let left = <div></div>;
-    if(this.state.currentPage > 1) {
-      left = <a
-        className="control-button previous-button"
-        onClick={this.regressPage.bind(this)}>
-        ←
-      </a>;
-    }
-    let right = <div></div>;
-    if(this.state.currentPage < this.state.totalPages) {
-      right = <a
-        className="control-button next-button"
-        onClick={this.advancePage.bind(this)}>
-        →
-      </a>;
-    }
-    return <div className="flex-row pagination-controls">
-      {left}
-      {right}
-    </div>;
-  }
-
-  advancePage() {
-    this.setState({
-      currentPage: this.state.currentPage + 1
-    }, () => this.fetchImages());
-  }
-
-  regressPage() {
-    this.setState({
-      currentPage: this.state.currentPage - 1
-    }, () => this.fetchImages());
-  }
 
   get possibleUsers() {
     let selected = this.state.selectedUsers;
-    return this.state.possibleUsers.filter(u => {
+    let viable = viableUsers(this.state.subscribers, this.state.subscribed);
+    return viable.filter(u => {
       if(u.id === window.CURRENT_USER_ID) {
         return false;
       }
       let i = selected.findIndex(user => user.id === u.id);
-      return i === -1;
+      if(i !== -1) {
+        return false;
+      }
+      try {
+        var m = new RegExp(this.state.nameFilter, 'i');
+        return u.name.match(m);
+      }
+      catch(err) {
+        return true;
+      }
     });
   }
 
@@ -149,13 +166,6 @@ class ConversationUserPicker extends React.Component {
     this.setState({
       nameFilter: name
     });
-    // Update if the user hasn't typed after a certain delay
-    window.setTimeout(() => {
-      if(this.state.nameFilter === name &&
-                      ! this.fetching) {
-        this.fetchImages();
-      }
-    }, 500);
   }
 
   componentDidMount() {
@@ -168,26 +178,14 @@ class ConversationUserPicker extends React.Component {
     this.setState({
       fetching: true
     });
-    let params = this.formParams;
-    let url = `/users/search?`;
-    url += $.param(params);
+    let url = `/users/${window.CURRENT_USER_ID}`;
     let data = await NM.getJSON(url);
     this.setState({
-      possibleUsers: data.users,
-      currentPage: data.page,
-      totalPages: data.total_pages,
+      subscribed: data.subscribed_artists,
+      subscribers: data.subscribers,
       fetching: false
     });
-
     this.fetching = false;
-  }
-
-  get formParams() {
-    return {
-      page: this.state.currentPage || 1,
-      name: this.state.nameFilter,
-      unblocked_by: window.CURRENT_USER_ID
-    };
   }
 }
 
