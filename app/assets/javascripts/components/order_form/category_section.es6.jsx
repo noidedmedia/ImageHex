@@ -15,7 +15,6 @@ class CategorySection extends React.Component {
         <div className="category-description markdown-description"
           dangerouslySetInnerHTML={this.descriptionHTML()} />
         {this.addButton()}
-
       </div>
       
       <ul className="reference-group-list">

@@ -21,10 +21,10 @@ class OptionsForm extends React.Component {
         key={id}
         value={id} />;
     });
-    return <div className="options-section">
-      <div className="options-section-header">
-        <h3>Options</h3>
-      </div>
+    return <div className="show-listing-options-section order-options-section">
+      <h2 className="padded-dark-header">
+        Options
+      </h2>
       {fields}
       <ul className="option-fields-list">
         {o}
@@ -44,6 +44,7 @@ class OptionsForm extends React.Component {
 const OptionSection = ({contained, option, add, remove}) => {
   const descHTML = {__html: option.html_description};
   var checkbox;
+  var price;
   if(contained) {
     checkbox = <input
       type="checkbox"
@@ -56,15 +57,24 @@ const OptionSection = ({contained, option, add, remove}) => {
       checked={false}
       onChange={add.bind(null, option.id)} />;
   }
-  return <li className="option-fields">
-    <div className="option-fields-header">
-      <div>
-        {checkbox}
-      </div>
-      <h3>{option.name}</h3>
+  if(option.price > 0) {
+    price = <strong>${(option.price / 100).toFixed(2)}</strong>
+  }
+  else {
+    price = <strong>Free</strong>
+  }
+  return <li className="options-item order-options-item">
+    <div className="order-options-checkmark">
+      {checkbox}
     </div>
-    <div className="description markdown-description"
-      dangerouslySetInnerHTML={descHTML} />
+    <div className="order-options-body">
+      <div className="options-header">
+        <h3>{option.name}</h3>
+        {price}
+      </div>
+      <div className="description markdown-description"
+        dangerouslySetInnerHTML={descHTML} />
+    </div>
   </li>;
 };
 

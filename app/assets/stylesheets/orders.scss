@@ -298,58 +298,10 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   }
 }
 
-.option-checkbox {
-  width: 10%;
-  text-align: center;
-
-  &::before {
-    font-size: 24px;
-    content: $icon-checkmark;
-  }
-}
-
 .order-group-container {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.options-section-header {
-  padding: $standard-padding;
-  color: $heading-text-color;
-  background-color: $heading-background-color;
-}
-
-.option-fields-list {
-  display: flex;
-  flex-flow: column;
-  color: $fields-text-color;
-  background-color: $fields-background-color;
-}
-
-.option-fields {
-  padding: $standard-padding;
-  .description {
-    width: 90%;
-    margin-left: auto;
-  }
-}
-
-.option-fields-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10%;
-  }
-
-  h3 {
-    flex-grow: 1;
-  }
 }
 
 .order-form-footer {

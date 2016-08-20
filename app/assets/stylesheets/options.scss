@@ -1,7 +1,5 @@
 .options-item {
   font-size: 14px;
-  display: flex;
-  flex-direction: column;
   padding: 10px;
 
   h3 {
@@ -25,4 +23,24 @@
   border-radius: 3px;
   overflow: hidden;
   background-color: #fff;
+}
+
+.order-options-section {
+  .padded-dark-header {
+    padding-left: 50px;
+  }
+}
+
+.order-options-checkmark {
+  width: 30px;
+}
+
+.order-options-item {
+  display: flex;
+  align-items: baseline;
+}
+
+.order-options-body {
+  flex-grow: 1;
+  margin-left: 10px;
 }
