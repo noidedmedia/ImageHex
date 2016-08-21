@@ -1,6 +1,6 @@
 Besides our [rules](/rules), ImageHex also provides some guidelines to posting.
 
-## Uploading Image
+## Uploading
 
 <h3 id="content-ratings">Content Ratings</h3>
 Flag your images with the proper content ratings as soon as you upload them.
