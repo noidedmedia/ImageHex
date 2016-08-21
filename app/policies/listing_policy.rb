@@ -2,7 +2,11 @@ class ListingPolicy < ApplicationPolicy
   
   class Scope < Scope
     def resolve
-      @scope.open.or(@scope.where(user_id: @user.id))
+      if @user
+        @scope.open.or(@scope.where(user_id: @user.id))
+      else
+        @scope.open
+      end
     end
   end
 
