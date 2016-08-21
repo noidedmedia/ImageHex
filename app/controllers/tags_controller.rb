@@ -27,8 +27,9 @@ class TagsController < ApplicationController
     @tag = Tag.friendly.find(params[:id])
     @neighbors = @tag.neighbors.limit(10)
     @images = @tag.images
-      .paginate(page: page, per_page: per_page)
+      .group("images.id")
       .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
   end
 
   ##

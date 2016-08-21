@@ -171,6 +171,7 @@ Rails.application.routes.draw do
   root to: "frontpage#index"
   get 'about', to: "static_stuff#about"
   get 'people', to: "static_stuff#people"
+  get 'guidelines', to: "static_stuff#guidelines"
   get 'contact', to: "static_stuff#contact"
   get 'rules', to: "static_stuff#rules"
   get 'faq', to: "static_stuff#faq"
