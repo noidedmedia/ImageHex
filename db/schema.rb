@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801152657) do
+ActiveRecord::Schema.define(version: 20160824021502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,13 +197,17 @@ ActiveRecord::Schema.define(version: 20160801152657) do
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "base_price"
-    t.text     "description",                 null: false
-    t.string   "name",                        null: false
-    t.boolean  "quote_only",  default: false, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "confirmed",   default: false, null: false
-    t.boolean  "open",        default: false, null: false
+    t.text     "description",                    null: false
+    t.string   "name",                           null: false
+    t.boolean  "quote_only",     default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "confirmed",      default: false, null: false
+    t.boolean  "open",           default: false, null: false
+    t.boolean  "nsfw_nudity",    default: false, null: false
+    t.boolean  "nsfw_gore",      default: false, null: false
+    t.boolean  "nsfw_language",  default: false, null: false
+    t.boolean  "nsfw_sexuality", default: false, null: false
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
   end
 

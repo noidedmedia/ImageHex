@@ -5,3 +5,8 @@ en:
       new_listing: New Listing
     form:
       create_listing: Create Listing
+    show:
+      nsfw_gore: "NSFW - Gore"
+      nsfw_sexuality: "NSFW - Sexuality"
+      nsfw_language: "NSFW - Language"
+      nsfw_nudity: "NSFW - Nudity"

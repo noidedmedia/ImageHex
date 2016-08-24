@@ -40,6 +40,11 @@ class Listing < ActiveRecord::Base
 
   validate :listing_has_categories
 
+  def completely_safe?
+    ! (nsfw_gore? || nsfw_nudity? || nsfw_language? || nsfw_sexuality?)
+  end
+
+
   def make_open!
     update(open: true)
   end

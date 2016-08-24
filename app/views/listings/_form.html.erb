@@ -11,6 +11,35 @@
     <%= f.text_area :description, :class => "input" %>
   </div>
 
+  <div class="listing-content-ratings">
+    <h5>Content Allowed</h5>
+    <p class="faded-warning">
+      Never feel pressured into making Artwork you aren't comfortable with.
+    </p>
+
+    <div class="checkbox-field">
+      <%= f.check_box :nsfw_gore %>
+      <%= f.label :nsfw_gore %>
+    </div>
+
+    <div class="checkbox-field">
+      <%= f.check_box :nsfw_language %>
+      <%= f.label :nsfw_language %>
+    </div>
+
+    <div class="checkbox-field">
+      <%= f.check_box :nsfw_nudity %>
+      <%= f.label :nsfw_nudity %>
+    </div>
+
+    <div class="checkbox-field">
+      <%= f.check_box :nsfw_sexuality %>
+      <%= f.label :nsfw_sexuality %>
+    </div>
+
+  </div>
+
+
   <%= react_component "ListingForm", 
     render(file: "listings/show.json.jbuilder") %>
 <% end %>

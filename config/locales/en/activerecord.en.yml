@@ -2,6 +2,11 @@
 en:
   activerecord:
     attributes:
+      listing:
+        nsfw_gore: "NSFW - Gore"
+        nsfw_language: "NSFW - Language"
+        nsfw_nudity: "NSFW - Nudity"
+        nsfw_sexuality: "NSFW - Sexuality"
       content_ratings:
         nsfw_gore: NSFW Gore
         nsfw_language: NSFW Language

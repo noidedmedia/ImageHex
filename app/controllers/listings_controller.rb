@@ -96,6 +96,10 @@ class ListingsController < ApplicationController
               :description,
               :base_price,
               :quote_only,
+              :nsfw_gore,
+              :nsfw_language,
+              :nsfw_sexuality,
+              :nsfw_nudity,
               image_ids: [],
               options_attributes: [option_attributes],
               categories_attributes: [categories_attributes])

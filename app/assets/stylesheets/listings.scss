@@ -29,6 +29,10 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   }
 }
 
+.listing-allowed-content {
+  font-size: 16px;
+}
+
 #show-listing {
   max-width: 700px;
   padding: $standard-padding 0;
@@ -189,6 +193,35 @@ $header-text-color: rgba(255, 255, 255, 0.8);
     .lower-section {
       max-height: 0;
       overflow: hidden;
+    }
+  }
+}
+
+.listing-content-ratings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h5 {
+    text-align: center;
+  }
+
+  .faded-warning {
+    color: #777;
+    text-align: center;
+  }
+
+  .checkbox-field {
+    min-width: 25%;
+    margin: 10px auto;
+
+    input {
+      margin-right: 20px;
+    }
+
+    label {
+      font-size: 16px;
     }
   }
 }
