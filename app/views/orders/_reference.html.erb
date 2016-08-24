@@ -16,9 +16,6 @@
             <% end %>
           </div>
           <div class="flex-column">
-            <span class="larger-label">
-              Description
-            </span>
             <% unless img.description.blank? %>
               <div class="description markdown-description">
                 <%= markdown_parse img.description %>

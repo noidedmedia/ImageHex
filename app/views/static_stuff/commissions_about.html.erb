@@ -11,37 +11,174 @@
     <div class="image-container commissions-about">
       <img src=<%= asset_path("commissions/canvas.svg") %> />
       <img class="commissions-artwork" src=<%= asset_path("commissions/rocketship.png") %> />
-
-      <p>Artwork by <a href="https://www.imagehex.com/@connor">Connor Shea</a>.</p>
+      <p>
+        Artwork by <a href="https://www.imagehex.com/@connor">Connor Shea</a>.
+      </p>
     </div>
 
+  </section>
+  <section class="imagehex-static-section">
+    <div class="section-graphic">
+      <%= image_tag "commissions/toolbox.svg" %>
+    </div>
+    <div class="imagehex-static-text">
+      <h2 class="center section-header">
+        Built for Commissions
+      </h2>
+      <p class="center section-subheader">
+        ImageHex was built from the ground-up to make commissioning art easier, safer, and faster than ever.
+        We handle all the logistics so you can handle the art.
+      </p>
+    </div>
+    <ul class="features-list">
+      <li class="feature">
+        <%= image_tag "commissions/icon-credit-card.svg" %>
+        <p>Payments</p>
+        <p>
+          No more fumbling with personal transfers.
+          ImageHex handles payments for your clients to ensure everything goes smoothly, while still leaving you in full control of your stripe account.
+        </p>
+      </li>
+      <li class="feature">
+        <%= image_tag "commissions/icon-messages.svg" %>
+        <p>Communication</p>
+        <p>ImageHex has a built-in messaging sytem, fully integrated with commissions.
+          No need to give out your email to clients.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="imagehex-static-section alt-background">
+    <div class="imagehex-static-text">
+      <h2 class="center section-header">
+        Prices, automatically
+      </h2>
+
+      <p class="center section-subheader">
+        No more opening a calculator.
+        ImageHex lets you set pricing flexibly, and calculates the price of each piece for you.
+        Want more fine-grained control?
+        Mark your listing as quote only, and we'll get out of the way.
+      </p>
+    </div>
+
+    <div class="commissions-about-example">
+      <div class="example-navbar"></div>
+
+      <ul class="show-listing-categories">
+        <li class="listing-category-show">
+          <h2 class="padded-dark-header">
+            Characters
+          </h2>
+          <div class="markdown-description">
+            <p>
+              I can draw any human characters fairly easily.
+              Please provide a good reference sheet, or a good description.
+            </p>
+            <p>
+              If you provide a description, be wary that your results may
+              slightly vary.
+            </p>
+          </div> 
+          <%# show-description %>
+          <div class="category-price">
+            <div>Price</div>
+            <div>
+              <strong>2</strong>
+              included, 
+              <strong>$10.00</strong> each
+              (<strong>10</strong> max)
+            </div>
+          </div>
+        </li>
+
+        <li class="listing-category-show">
+          <h2 class="padded-dark-header">
+            Background
+          </h2>
+          <div class="markdown-description">
+            <p>I can sketch out a basic background as well.</p>
+          </div>
+          <div class="category-price">
+            <div>Price</div>
+            <div><strong>$16.00</strong></div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
-      <div class="section-graphic">
-        <img src=<%= asset_path("commissions/toolbox.svg") %>>
-      </div>
-      <h2 class="center section-header">The tools you need to succeed</h2>
-      <p class="center section-subheader">Manage commissions, deadlines, get paid, and update clients all from one central place.</p>
-    
-      <ul class="features-list no-left-padding">
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-credit-card.svg") %>>
-          <p>Simple payments</p>
-          <p>We handle payments for the client to make sure everything goes smoothly, but stay out of the way for artists to control their Stripe account independently.</p>
-        </li>
+      <h2 class="center section-header">
+        Organization on your Behalf
+      </h2>
+      <p class="center section-subheader">
+        ImageHex organizes all the reference material you need to create art in one central location.
+        No more tracking down that one reference sheet across twenty different emails&mdash;we have you covered.
+      </p>
+    </div>
 
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-calendar.svg") %>>
-          <p>Deadlines</p>
-          <p>Keep track of deadlines, and opt to recieve email notifications so they can't sneak up on you.</p>
-        </li>
+    <div class="commissions-about-example">
+      <div class="example-navbar"></div>
+      <ul class="order-categories-list">
+        <li class="category-section">
+          <h2 class="padded-dark-header">
+            Characters
+          </h2>
+          <ul class="reference-group-list">
+            <li class="reference-group-fields show-order">
+              <div class="reference-group-header">
+                <div class="description markdown-description">
+                  <p>
+                    Richard Stallman.
+                    He's a free software advocate, and a personal hero of mine. 
+                    Ideally he would be wearing some sort of Hawaiian shirt. 
+                  </p>
 
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-messages.svg") %>>
-          <p>Messages</p>
-          <p>Update clients on progress, request clarification, and send them work-in-progress shots&mdash;all through ImageHex</p>
+                  <p>
+                    The sword should be a scimitar, which is curved.
+                    He should be holding the sword out in front of him.
+                  </p>
+                </div>
+                <div class="references-outer">
+                  <h3>Reference Images</h3>
+                  <ul class="reference-images-list">
+                    <li class="reference-image-item flex-row">
+                      <div class="img-wrapper">
+                        <%= image_tag("commissions/stallman.jpg") %>
+                      </div>
+                      <div class="flex-column">
+                        <div class="description markdown-description">
+                          This is an image of Stallman.
+                        </div>
+                      </div>
+                    </li>
+                    <li class="reference-image-item flex-row">
+                      <div class="img-wrapper">
+                        <%= image_tag "commissions/scim.jpg" %>
+                      </div>
+                      <div class="flex-column">
+                        <div class="decription markdown-description">
+                          This is the type of sword he should be holding.
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="order-group-container">
+                    <div class="generic-tag-group">
+                      <ul class="generic-tag-list">
+                        <% ["Richard Stallman", "Beard", "Scimitar"].each do |e| %>
+                          <li class="generic-tag"><%= e %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -55,18 +192,12 @@
     <div class="imagehex-static-text">
       <h2 class="center section-header">Connecting creators with clients</h2>
       <p class="center section-subheader">Expand your audience, get more clients, and earn more money.</p>
-    
+
       <ul class="features-list no-left-padding">
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-marketplace.svg") %>>
           <p>Marketplace</p>
-          <p>Commissions appear on the open marketplace, providing more exposure and making it easier to find artists accepting commissions.</p>
-        </li>
-
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-notifications.svg") %>>
-          <p>Notify followers</p>
-          <p>Send notifications to followers when you become open for commissions.</p>
+          <p>Commissions appear on the <%= link_to "open marketplace", listings_path %>, providing more exposure and making it easier to find artists accepting commissions.</p>
         </li>
 
         <li class="feature">
@@ -77,8 +208,11 @@
 
         <li class="feature">
           <img src=<%= asset_path("commissions/icon-tiers.svg") %>>
-          <p>Flexible pricing</p>
-          <p>Artists can customize pricing scheme based on how complex a commission is, putting them in control.</p>
+          <p>Multiple Listings</p>
+          <p>
+            Can you make sketches, inked linework, fully-rendered drawings, and fancy paintings?
+            ImageHex lets you make as many different listings as you want, so you can offer all your services easily.
+          </p>
         </li>
       </ul>
     </div>
@@ -110,49 +244,6 @@
     </div>
   </section>
 
-  <section class="imagehex-static-section alt-background">
-    <div class="section-graphic">
-      <img src=<%= asset_path("commissions/book.svg") %>>
-    </div>
-
-    <div class="imagehex-static-text">
-      <h2 class="center section-header">Everyone on the same page</h2>
-      <p class="center section-subheader">
-        Clients often forget to provide crucial details in their requests, or details get lost in email threads dozens of messages long.
-      </p>
-      <br>
-      <p class="center bold">Here are a few ways ImageHex helps ease that burden:</p>
-
-      <ul class="features-list features-list-two-column no-left-padding">
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-tag-groups.svg") %>>
-          <p>Tag groups</p>
-          <p>
-            Give the exact details of each character, place, or object in the commission, organized how the artist desires.
-          </p>
-        </li>
-
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-reference-images.svg") %>>
-          <p>Reference images</p>
-          <p>Include reference images, organized how the artist wants.</p>
-        </li>
-
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-calendar.svg") %>>
-          <p>Deadlines</p>
-          <p>Help artwork be delivered on time</p>
-        </li>
-
-        <li class="feature">
-          <img src=<%= asset_path("commissions/icon-technical.svg") %>>
-          <p>Technical</p>
-          <p>Agree on the file format, resolution, and orientation so the artwork delivered can be used without issue.</p>
-        </li>
-
-      </ul>
-    </div>
-  </section>
 
   <section class="imagehex-static-section">
     <div class="imagehex-static-text">
@@ -187,22 +278,22 @@
       </div>
 
       <p class="smaller-text padding-top">Note that this assumes transactions involving either USD or CAD, users in other countries may have slightly different Stripe fees due to currency conversion and varying pricing in different countries. See <%= link_to "Stripe's Pricing page", "https://stripe.com/pricing" %> in your respective region for more information.
-    </div>
+      </div>
 
-  </section>
+    </section>
 
-  <section class="imagehex-static-section alt-background"> 
-    <div class="imagehex-static-text">
-      <h2 class="center section-header">
-        Get started
-      </h2>
-      <p class="center section-subheader">
-        The marketplace is open for business.
-        <%= link_to "Open a listing", new_listing_path %> or
-        <%= link_to "browse listings", listings_path %> to start
-        selling or buying art today.
-      </p>
-    </div>
-  </section>
+    <section class="imagehex-static-section alt-background"> 
+      <div class="imagehex-static-text">
+        <h2 class="center section-header">
+          Get started
+        </h2>
+        <p class="center section-subheader">
+          The marketplace is open for business.
+          <%= link_to "Open a listing", new_listing_path %> or
+          <%= link_to "browse listings", listings_path %> to start
+          selling or buying art today.
+        </p>
+      </div>
+    </section>
 
-</article>
+  </article>
