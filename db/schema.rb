@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824021502) do
+ActiveRecord::Schema.define(version: 20160829174013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -372,12 +372,12 @@ ActiveRecord::Schema.define(version: 20160824021502) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                     limit: 255, default: "",    null: false
-    t.string   "encrypted_password",        limit: 255, default: "",    null: false
+    t.string   "email",                     limit: 255, default: "",                                                                                                                  null: false
+    t.string   "encrypted_password",        limit: 255, default: "",                                                                                                                  null: false
     t.string   "reset_password_token",      limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         default: 0,     null: false
+    t.integer  "sign_in_count",                         default: 0,                                                                                                                   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",        limit: 255
@@ -394,7 +394,7 @@ ActiveRecord::Schema.define(version: 20160824021502) do
     t.string   "slug"
     t.string   "provider"
     t.string   "uid"
-    t.jsonb    "content_pref",                          default: {},    null: false
+    t.jsonb    "content_pref",                          default: {},                                                                                                                  null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -404,15 +404,16 @@ ActiveRecord::Schema.define(version: 20160824021502) do
     t.string   "encrypted_otp_secret_salt"
     t.integer  "consumed_timestep"
     t.boolean  "otp_required_for_login"
-    t.text     "description",                           default: "",    null: false
+    t.text     "description",                           default: "",                                                                                                                  null: false
     t.jsonb    "elsewhere"
-    t.boolean  "two_factor_verified",                   default: false, null: false
-    t.string   "otp_backup_codes",                                                   array: true
+    t.boolean  "two_factor_verified",                   default: false,                                                                                                               null: false
+    t.string   "otp_backup_codes",                                                                                                                                                                 array: true
     t.text     "stripe_publishable_key"
     t.text     "stripe_access_token"
     t.text     "stripe_user_id"
-    t.boolean  "subscribed_to_newsletter",              default: false, null: false
-    t.boolean  "use_infinite_scroll",                   default: true,  null: false
+    t.boolean  "subscribed_to_newsletter",              default: false,                                                                                                               null: false
+    t.boolean  "use_infinite_scroll",                   default: true,                                                                                                                null: false
+    t.jsonb    "notifications_pref",                    default: {"order_paid"=>true, "order_filled"=>true, "new_subscriber"=>true, "order_accepted"=>true, "order_confirmed"=>true}, null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree

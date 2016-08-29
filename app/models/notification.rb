@@ -42,6 +42,8 @@ class Notification < ActiveRecord::Base
               :order_paid,
               :order_filled]
 
+  after_create :send_email, if: :should_send_email?
+
 
   def subject=(sub)
     to_write = nil
@@ -51,7 +53,8 @@ class Notification < ActiveRecord::Base
         user_name: sub.user.name,
         type: :comment,
         commentable_type: sub.commentable_type,
-        commentable_id: sub.commentable_id
+        commentable_id: sub.commentable_id,
+        id: sub.id
       }
     when User
       to_write = {
@@ -73,4 +76,13 @@ class Notification < ActiveRecord::Base
     end
     self[:subject] = to_write
   end
+
+  def should_send_email?
+    user.notifications_pref[self.kind]
+  end
+
+  def send_email
+    NotificationMailer.notification_email(self).deliver_later
+  end
+
 end
