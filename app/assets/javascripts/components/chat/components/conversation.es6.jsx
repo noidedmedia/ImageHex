@@ -236,7 +236,6 @@ class Conversation extends React.Component {
       console.log("Got an erorr while posting:",err);
     }
     finally {
- 
       this.context.dispatch(endUpdate());
       this.clearInput();
     }

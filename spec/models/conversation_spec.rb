@@ -34,8 +34,10 @@ RSpec.describe Conversation, type: :model do
   describe ".mark_read(user)" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
+
+    before(:each) { follow_eachother(user_a, user_b) }
     let(:conversation) do
-      create(:conversation, users: [user_a, user_b])
+      create(:conversation, include_users: false, users: [user_a, user_b])
     end
     it "raises an error if the user is not in the conversation" do
       expect do
@@ -53,38 +55,6 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
-  describe "conversations with the same participants" do
-    let(:user_a) { create(:user) }
-    let(:user_b) { create(:user) }
-
-    before(:each) do
-      follow_eachother(user_a, user_b)
-    end
-
-    it "does not allow multiple normal conversations" do
-      a = create(:conversation, users: [user_a, user_b])
-      b = build(:conversation, users: [user_a, user_b])
-      expect(b).to_not be_valid
-    end
-
-    context "with orders" do
-      let(:listing) { create(:listing, user: user_a) } 
-      let(:order)  { create(:order, listing: listing, user: user_b) }
-
-      it "ignores existing order conversations when creating a normal one" do
-        a = create(:conversation, users: [user_a, user_b], order: order)
-        b = build(:conversation, users: [user_a, user_b])
-        expect(b).to be_valid
-      end
-
-      it "ignores existing normal conversations when creating an order one" do 
-        a = create(:conversation, users: [user_a, user_b])
-        b = build(:conversation, users: [user_a, user_b], order: order)
-        expect(b).to be_valid
-      end
-    end
-  end
-
   describe "validation" do
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
@@ -93,38 +63,45 @@ RSpec.describe Conversation, type: :model do
       users = 6.times.map{create(:user)}
       follow_eachother(*users)
       expect(build(:conversation,
+                   include_users: false,
                    users: users)).to_not be_valid
     end
 
     it "allows users who follow each other" do
       follow_eachother(user_a, user_b)
       expect(build(:conversation,
+                   include_users: false,
                    users: [user_a, user_b])).to be_valid
     end
 
     it "does not allow users who don't follow each other" do
       expect(build(:conversation,
+                   include_users: false,
                    users: [user_a, user_b])).to_not be_valid
     end
 
     it "does not allow users who have a one-way relationship" do
       user_a.subscribed_artists << user_b
       expect(build(:conversation,
+                   include_users: false,
                    users: [user_a, user_b])).to_not be_valid
     end
   end
 
   describe ".with_unread_status_for" do
+    before(:each) do
+      follow_eachother(user_a, user_b, user_c)
+    end
     let(:user_a) { create(:user) }
     let(:user_b) { create(:user) }
     let(:user_c) { create(:user) }
     let(:conv_a) { create(:conversation,
+                          include_users: false,
                           users: [user_a, user_b]) }
     let(:conv_b) { create(:conversation,
+                          include_users: false,
                           users: [user_a, user_c]) }
-    before(:each) do
-      follow_eachother(user_a, user_b, user_c)
-    end
+   
 
     it "shows the unread status for users" do
       conv_b.messages.create(user: user_c,

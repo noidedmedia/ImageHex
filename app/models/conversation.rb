@@ -14,7 +14,6 @@ class Conversation < ActiveRecord::Base
 
   after_create :notify_cables
 
-  validate :conversation_has_unique_users
   validate :conversation_has_few_users
   validate :users_follow_each_other,
     unless: :for_order?
@@ -98,14 +97,6 @@ class Conversation < ActiveRecord::Base
 
   def notify_cables
     NewConversationJob.perform_later(self)
-  end
-  
-  def conversation_has_unique_users
-    return unless order.nil?
-    q = Conversation.where(order: nil).find_with_exact_user_ids(self.user_ids)
-    unless q.nil?
-      errors.add(:users, "conversation with these users already exists")
-    end
   end
 
   def conversation_has_few_users

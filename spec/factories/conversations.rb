@@ -2,7 +2,7 @@
 FactoryGirl.define do
   factory :conversation do
     transient do
-      include_users { false }
+      include_users { true }
     end
 
     name { Faker::Lorem.word }
