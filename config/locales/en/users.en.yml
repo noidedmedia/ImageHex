@@ -23,6 +23,15 @@ en:
       nsfw_language: NSFW Language
       nsfw_nudity: NSFW Nudity
       nsfw_sexuality: NSFW Sexuality
+      uploaded_image_commented_on: Somebody comments on one of my images
+      subscribed_image_commented_on: Somebody comments on an image I am subscribed to.
+      comment_replied_to: Somebody replies to one of my comments
+      mentioned: Somebody mentions my username in a comment
+      new_subscriber: Somebody subscribes to me
+      order_confirmed: Somebody confirms an order to one of my listings
+      order_accepted: Somebody accepts an order I have placed
+      order_paid: Somebody pays for their order to one of my listings
+      order_filled: Somebody fills an order I placed
       password: Password
       please_confirm_your_password_to_disable_twofactor_authentication: Please confirm your password to disable Two-Factor Authentication.
       save_changes: Save changes

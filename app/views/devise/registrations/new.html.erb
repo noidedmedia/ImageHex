@@ -26,11 +26,6 @@
         <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: t(".reenter_password") %>
       </div>
     </div>
-    
-    <div class="checkbox-container">
-      <%= f.check_box :subscribed_to_newsletter, checked: true %>
-      <%= f.label :subscribed_to_newsletter, t(".monthly_newsletter") %>
-    </div>
 
     <%= f.submit t(".create_an_account_submit"), class: "btn btn-green btn-large" %>
 

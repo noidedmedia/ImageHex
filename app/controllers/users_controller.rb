@@ -247,6 +247,7 @@ class UsersController < ApplicationController
               content_pref: [:nsfw_language,
                              :nsfw_gore,
                              :nsfw_nudity,
-                             :nsfw_sexuality])
+                             :nsfw_sexuality],
+              notifications_pref: Notification.kinds.keys)
   end
 end

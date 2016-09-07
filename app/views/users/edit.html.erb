@@ -54,6 +54,21 @@
     </div>
 
     <div class="field-container">
+      <h3 class="generic-smallcaps-title">
+        Email Notification Preference
+      </h3>
+      <%= f.fields_for :notifications_pref, 
+        OpenStruct.new(@user.notifications_pref) do |fc| %>
+        <% Notification.kinds.keys.each do |k| %>
+          <div class="checkbox-container">
+            <%= fc.check_box k %>
+            <%= fc.label k, t(".#{k}") %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="field-container">
       <h3 class="generic-smallcaps-title"><%= t(".twofactor_authentication") %></h3>
 
       <div class="generic-container-with-side-image">
@@ -73,15 +88,6 @@
             <%= link_to t(".enable_twofactor_authentication"), enable_twofactor_user_path(@user), class: "btn btn-white btn-with-border btn-bold", method: :put %>
           <% end %>
         </div>
-      </div>
-    </div>
-
-    <div class="field-container">
-      <h3 class="generic-smallcaps-title"><%= t(".emails") %></h3>
-
-      <div class="checkbox-container">
-        <%= f.check_box :subscribed_to_newsletter %>
-        <%= f.label :subscribed_to_newsletter, t(".monthly_newsletter") %>
       </div>
     </div>
 

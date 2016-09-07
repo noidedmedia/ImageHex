@@ -89,7 +89,7 @@ class ImagesController < ApplicationController
   # Sets the following variables:
   # @image:: A new image object, used to build the form.
   def new
-    @image = Image.new
+    @image = Image.new(created_by_uploader: true)
   end
 
   ##
