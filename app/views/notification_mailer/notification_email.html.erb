@@ -5,34 +5,39 @@
 <p>
 <% case @notification.kind
   when "uploaded_image_commented_on", "subscribed_image_commented_on" %>
-Somebody <%= link_to "commented", image_path(@subject[:id]) %> on your image
+Somebody 
+<%= link_to "commented", 
+  image_url(@subject["commentable_id"]) %> 
+on your image
 <% when "comment_replied_to", "mentioned" %>
-  <%= @subject[:user_name] %>
-  <% if @notifcation.kind == :mentioned %>
+  <%= @subject["user_name"] %>
+  <% if @notifcation.kind == "mentioned" %>
     mentioned you in
   <% else %>
     replied to you in
   <% end %>
-  a <%= link_to "comment", images_path(@subject[:commentable_id]) %>
-<% when :new_subscriber %>
-  <%= link_to @subject[:name], users_path(@subject[:id]) %>
-  subscribed to you 
+  a <%= link_to "comment", image_url(@subject["commentable_id"]) %>
+<% when "new_subscriber" %>
+  <%= link_to @subject["name"], user_url(@subject["id"].to_i) %>
+  subscribed to you.
 <% when "order_confirmed", "order_accepted", "order_paid", "order_filled" %>
   <% if @notification.kind == "order_confirmed" %>
-    <%= link_to @subject[:customer_name], users_path(@subject[:customer_id]) %>
+    <%= link_to @subject["customer_name"], 
+      users_url(@subject["customer_id"]) %>
     placed an
   <% elsif @notification.kind == "order_accepted" %>
-    <%= link_to @subject[:seller_name], users_path(@subject[:seller_id]) %>
+    <%= link_to @subject["seller_name"], user_url(@subject["seller_id"]) %>
     accepted your
   <% elsif @notification.kind == "order_paid" %>
-    <%= link_to @subject[:customer_name], users_path(@subject[:customer_id]) %>
+    <%= link_to @subject["customer_name"], 
+      user_url(@subject["customer_id"]) %>
     paid for their
   <% else %>
-    <%= link_to @subject[:seller_name], users_path(@subject[:seller_id]) %>
+    <%= link_to @subject["seller_name"], user_url(@subject["seller_id"]) %>
     filled your
   <% end %>
   <%= link_to "order", 
-    listing_order_path(@subject[:listing_id], @subject[:order_id]) %>
+    listing_order_url(@subject["listing_id"], @subject["order_id"]) %>
 <% else %>
   You have a new notification on ImageHex.
 <% end %>
