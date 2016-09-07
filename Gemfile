@@ -181,6 +181,12 @@ gem 'autoprefixer-rails'
 ##
 # Development-only gems
 group :development do
+
+  ##
+  # https://github.com/fgrehm/letter_opener_web
+  # Open mail
+  gem 'letter_opener_web'
+
   ##
   # https://github.com/bbatsov/rubocop
   # A Ruby static code analyzer based on the community Ruby style guide.

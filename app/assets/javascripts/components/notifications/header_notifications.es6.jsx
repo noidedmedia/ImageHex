@@ -44,8 +44,8 @@ class HeaderNotifications extends React.Component {
   }
 
   async markRead() {
-    await NM.postJSON("notifications/mark_all_read", {});
-    var notes = NM.getJSON("/notifications/");
+    await NM.postJSON("/notifications/mark_all_read", {});
+    var notes = await NM.getJSON("/notifications/");
     this.setState({
       notifications: notes,
       active: false
