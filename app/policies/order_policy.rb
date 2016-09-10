@@ -12,6 +12,10 @@ class OrderPolicy < ApplicationPolicy
     end
   end
 
+  def update?
+    owned? && ! @order.confirmed?
+  end
+
   def purchase?
     @order.confirmed? && 
       @order.accepted? && 

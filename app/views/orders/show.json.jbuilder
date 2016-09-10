@@ -38,8 +38,16 @@ json.references @order.references do |ref|
     :id,
     :listing_category_id,
     :description
+
+  json.tags ref.tags do |tag|
+    json.extract! tag,
+      :name,
+      :id
+  end
+
   json.images ref.images do |img|
     json.extract! img,
+      :id,
       :description
     json.url img.img(:medium)
   end

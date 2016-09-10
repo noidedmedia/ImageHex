@@ -7,7 +7,8 @@ class OrderForm extends React.Component {
     var optionIds = (props.order_options || []).map(o => o.listing_option_id);
     this.state = {
       optionIds,
-      references: (props.references) || []
+      references: (props.references) || [],
+      removedReferences: []
     };
     this.refKey = 0;
   }
@@ -33,6 +34,7 @@ class OrderForm extends React.Component {
       <ReferenceSection
         categories={this.props.listing.categories}
         references={this.state.references}
+        removedReferences={this.state.removedReferences}
         addReference={this.addReference.bind(this)}
         removeReference={this.removeReference.bind(this)} />
       <OptionsForm
@@ -89,9 +91,10 @@ class OrderForm extends React.Component {
 
   removeReference(index) {
     var {references} = this.state;
-    references.splice(index, 1);
+    let ref = references.splice(index, 1);
     this.setState({
-      references
+      references: references,
+      removedReferences: [...this.state.removedReferences, ...ref]
     });
   }
 

@@ -1,13 +1,15 @@
 import ImageField from './image_field.es6.jsx';
+import RemovedImageField from './removed_image_field.es6.jsx';
 import TagGroupFieldsEditor from '../tag_groups/fields_editor.es6.jsx';
 
 class ReferenceForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [...(props.images || []), {key: 0}],
+      images: [...(props.reference.images || []), {key: 0}],
       className: "reference-group-fields",
-      style: undefined
+      style: undefined,
+      removedImages: []
     };
     this.imageKey = -1;
   }
@@ -17,6 +19,7 @@ class ReferenceForm extends React.Component {
     const reference = this.props.reference;
     const fieldName = this.fieldName.bind(this);
     return <li className={this.state.className}>
+      {this.idField()}
       <div className="fields-section">
         <label htmlFor={fieldName("description")}
           className="reference-group-section-header">
@@ -49,7 +52,7 @@ class ReferenceForm extends React.Component {
       </div>
       <div className="reference-tag-group-editor">
         <TagGroupFieldsEditor
-          initialTags={this.props.tags}
+          initialTags={this.props.reference.tags}
           fieldName={fieldName("tag_ids")} />
       </div>
       <div className="column-right-align">
@@ -60,6 +63,15 @@ class ReferenceForm extends React.Component {
         </a>
       </div>
     </li>;
+  }
+
+  idField() {
+    if(this.props.reference.id > 0) {
+      return <input type="hidden"
+        name={this.fieldName("id")}
+        value={this.props.reference.id} />;
+    }
+    return <span></span>;
   }
 
   removeSelf(e) {
@@ -82,21 +94,37 @@ class ReferenceForm extends React.Component {
   referenceImageFields() {
     const reference = this.props.reference;
     const fieldName = this.fieldName.bind(this);
+    let index = 0;
     if(this.state.images.length !== 0) {
-      return this.state.images.map((img, index) => {
+      let alive = this.state.images.map((img, i) => {
+        index++;
         return <ImageField
           image={img}
-          baseFieldName={fieldName("images_attributes") + index}
-          removeSelf={this.removeImage.bind(this, index)}
+          baseFieldName={fieldName("images_attributes") + `[${index}]`}
+          removeSelf={this.removeImage.bind(this, i)}
           key={img.id || img.key}
           addImage={this.addImage.bind(this)}
           />;
-
       });
+      let dead = this.state.removedImages
+        .map((i) => {
+          index++;
+          return <RemovedImageField
+            id={i.id}
+            key={i.id || i.key}
+            baseFieldName={fieldName("images_attributes") + `[${index}]`}
+          />;
+        });
+      return [...alive, ...dead];
     }
     else {
       return <div></div>;
     }
+  }
+
+  removedReferenceImageFields() {
+    const reference = this.props.reference;
+    const fieldName = this.fieldName
   }
 
   addImage() {
@@ -107,10 +135,12 @@ class ReferenceForm extends React.Component {
   }
 
   removeImage(index) {
+    console.log("removing index", index);
     let {images} = this.state;
     const img = images.splice(index, 1);
     this.setState({
-      images: images
+      images: images,
+      removedImages: [...this.state.removedImages, ...img]
     });
   }
 }

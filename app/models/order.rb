@@ -20,7 +20,8 @@ class Order < ActiveRecord::Base
 
   has_one :conversation
 
-  accepts_nested_attributes_for :references
+  accepts_nested_attributes_for :references,
+    allow_destroy: true
 
   validates :user, presence: true
 
