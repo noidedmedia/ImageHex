@@ -11,6 +11,11 @@ class OrdersController < ApplicationController
     @order = @listing.orders.find(params[:id])
   end
 
+  def edit
+    @order = @listing.orders.find(params[:id])
+    authorize @order
+  end
+
   def purchase
     @order = @listing.orders.find(params[:id])
     authorize @order
@@ -63,6 +68,20 @@ class OrdersController < ApplicationController
     authorize @order
   end
 
+  def update
+    @order = Order.find(params[:id])
+    authorize @order
+    respond_to do |format|
+      if @order.update(order_params)
+        format.html { redirect_to [@listing, @order] }
+        format.json { render 'show' }
+      else
+        format.html { render 'edit' }
+        format.json { render json: @order.errors, status: 401 }
+      end
+    end
+  end
+
   def confirm
     @order = Order.find(params[:id])
     authorize @order
@@ -102,7 +121,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order)
+    {option_ids: []}.merge params.require(:order)
       .permit(:description,
               option_ids: [],
               references_attributes: [reference_params])
@@ -111,7 +130,9 @@ class OrdersController < ApplicationController
 
   def reference_params
     [:description,
+     :id,
       :listing_category_id,
+      :_destroy,
       tag_ids: [],
       images_attributes: [reference_image_params]]
   end

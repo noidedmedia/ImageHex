@@ -2,14 +2,18 @@ class ImageField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgUrl: props.url,
+      imgURL: props.image.url,
+      hasUploaded: !! props.image.url,
       containerClass: "reference-image-fields"
     };
   }
 
   render() {
     const fieldName = (name) => {
-      if(this.state.imgURL) {
+      if(this.state.hasUploaded && name == 'img') {
+        return "";
+      }
+      else if(this.state.imgURL) {
         return `${this.props.baseFieldName}[${name}]`;
       }
       else {
@@ -31,11 +35,12 @@ class ImageField extends React.Component {
       </div>;
     }
     return <li className={className}>
+      {this.idField()}
       <div className="reference-image-preview-section">
-       {preview}
+        {preview}
         <input name={fieldName("img")}
           onChange={this.change.bind(this)}
-          type="file" />
+          type="file" />;
       </div>
       <div className="reference-image-info-section">
         <label 
@@ -43,7 +48,9 @@ class ImageField extends React.Component {
           for={fieldName("description")}>
           Description
         </label>
-        <textarea name={fieldName("description")} />
+        <textarea 
+          name={fieldName("description")}
+          defaultValue={this.props.image.description} />
         <div className="column-right-align">
           <a href="#"
             onClick={this.remove.bind(this)}
@@ -64,7 +71,8 @@ class ImageField extends React.Component {
       }
 
       this.setState({
-        imgURL: reader.result
+        imgURL: reader.result,
+        hasUploaded: false
       });
     }, false);
 
@@ -83,6 +91,16 @@ class ImageField extends React.Component {
         this.props.removeSelf();
       }, 990);
     });
+  }
+
+  idField() {
+    if(this.props.image.id > 0) {
+      return <input
+        type="hidden"
+        name={`${this.props.baseFieldName}[id]`}
+        value={this.props.image.id} />;
+    }
+    return <span></span>;
   }
 }
 

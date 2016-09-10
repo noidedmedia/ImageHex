@@ -1,4 +1,5 @@
 import CategorySection from './category_section.es6.jsx';
+import RemovedReferenceFields from './removed_reference_fields.es6.jsx';
 
 class ReferenceSection extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class ReferenceSection extends React.Component {
     });
     return <ul className="categories">
       {rs}
+      {this.removedReferences()}
     </ul>
   }
 
@@ -29,6 +31,18 @@ class ReferenceSection extends React.Component {
       }
     });
     return refs;
+  }
+
+  removedReferences() {
+    let indexStart = this.props.references.length;
+    return this.props.removedReferences
+      .filter(r => r.id > 0)
+      .map((ref, i) => {
+        let index = i + indexStart;
+        return <RemovedReferenceFields
+          id={ref.id}
+          index={index} />;
+      });
   }
 }
 

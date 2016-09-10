@@ -24,7 +24,8 @@ class Order::Reference < ActiveRecord::Base
   validates :order,
     presence: true
 
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images,
+    allow_destroy: true
 
   validates :category,
     presence: true

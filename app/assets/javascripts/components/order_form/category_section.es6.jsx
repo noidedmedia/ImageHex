@@ -34,7 +34,7 @@ class CategorySection extends React.Component {
         return <ReferenceForm
           removeSelf={this.props.removeReference.bind(null, ref.index)}
           reference={ref} 
-          key={ref.key}
+          key={ref.id || ref.key}
           category={category}
           />;
       }).reverse();
