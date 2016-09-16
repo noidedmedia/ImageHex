@@ -5,6 +5,9 @@
 # At some point we should replace this with an NGINX thing or something.
 class StaticStuffController < ApplicationController
 
+  def terms_of_service
+  end
+
   def guidelines
   end
   ##

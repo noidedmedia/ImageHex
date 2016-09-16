@@ -1,0 +1,156 @@
+<%- title "Terms of Service" %>
+<% cache "TOS", expires_in: 1.day do %>
+
+  <article class="imagehex-static-page-container" id="tos">
+
+    <h1>Terms of Service</h1>
+
+    Hello, and welcome to our Terms of Service!
+    Please give this a read-through before using our site, as it is a contract between you and ImageHex.
+    Since most people don't speak legalease, we've added some annotations to make this easier to read.
+
+    This terms of 
+    <section>
+      <h2>1. Acceptance of these terms</h2>
+
+      <p>These terms, along with our <%= link_to "rules", rules_path %> (collectively, the <em>Agreement</em>) constitute a contract between you (<em>Subscriber</em>, <em>user</em>, or <em>you</em>) and ImageHex, including its parent company, Noided Media LLC (<em>ImageHex</em> or <em>us</em>).
+        Your use of the website is subject to these terms and conditions.
+        Please read them.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Modifications to this Agreement</h2>
+      <p>
+        ImageHex reserves the right to modify these terms at any time.
+        These changes will not apply retroactively.
+        If a change to these terms is disagreeable to you, and you wish to not be bound under the new terms, please stop using the service.
+        Continued use of the service constitutes acceptance of the new agreement.
+      </p>
+
+      <aside class="clarification-box">
+        We may need to change our TOS.
+        If we do, and you keep using the website, you agree to the new TOS.
+      </aside>
+
+    </section>
+
+    <section>
+      <h2>3. Use of the Services</h2>
+      <h3>Eligibility</h3>
+      No individual under the age of 13 may use the Services, provide any personal information to ImageHex, or otherwise submit personal information to the Service.
+
+      <aside class="clarification-box">
+        You need to be 13 to use our website.
+        Don't blame us, blame Congress.
+      </aside>
+
+      <h3>Limitations on Automated Use</h3>
+      You may not, without express prior written permission, do any of the following with the services:
+      <ol>
+        <li>Tamper with or use non-public areas of the services</li>
+        <li>Attempt to breach the services</li>
+        <li>Use automated software to scrape the services in a way that violates our robots.txt file</li>
+        <li>Scrape the services via parsing of HTML pages</li>
+        <li>Interfere with or disrupt the services in any way</li>
+      </ol>
+
+      <aside class="clarification-box">
+        Don't scrape our website!
+        You'll murder our servers, and we have a nice <%= link_to "api", apipony_path %> you can use instead.
+      </aside>
+    </section>
+
+    <section>
+      <h2>4. Registration, Emails, and Security</h2>
+      <p>If you have an account on ImageHex, you must provide complete and accurate information, including an accurate email address.
+        You are also responsible for maintaining the integrity of your account.
+        Please notify ImageHex immediately if you believe your account has been compromised.</p>
+
+    </section>
+
+    <section>
+      <h2>5. Content and Subscriber Content</h2>
+      <section>
+        <h3>Definitions</h3>
+        <p>
+          For the purposes of this agreement, the term <em>Content</em> refers to any kind of creative expression, including, without limitation, photographs, drawings, digital renderings, animations, illustrations, logos, written content, numerical data, and any other content with may be accessible through ImageHex or its affiliates.
+          The term <em>Subscriber Content</em> means Content that a subscriber submits, transfers, or otherwise provides to the service.
+          Content includes, without limitations, all subscriber content.
+        </p>
+      </section>
+      <section>
+        <h3>Your Rights</h3>
+        <p>Subscribers retain ownership and all applicable rights in Subscriber Content, and ImageHex retains all applicable rights to content other than subscriber content.</p>
+
+        <aside class="clarification-box">
+          You own anything you upload to ImageHex, including comments, and (of course) artwork.
+          ImageHex owns everything else on ImageHex, such as the actual design of the website, and the software used to build it.
+        </aside>
+      </section>
+      <section>
+        <h3>Subscriber Content License to ImageHex</h3>
+        <p>
+          When you provide subscriber content to ImageHex through the services, you grant ImageHex a non-exclusive, worldwide, royalty-free, sublicensable, transferable right and license to use, host, store, cache, reproduce, publish, display (publicly or otherwise), perform (publicly or otherwise), distribute, transmit, modify, adapt (including, without limitation, in order to confirm it to the requirements of any networks, devices, services, or media through which the Services are available) and creative derivative works of, such Subscriber Content.
+          The rights you grant in this license are for the limited purpose of allowing ImageHex to operate the Services in accordance with their functionality, improve the Services, and develop new services.
+          The reference to "creating derivative works" is not intended to give ImageHex a right to make substantial editorial changes or deviations, but does, for example, allow us to display your image in a different frame, position, or resolution.
+        </p>
+
+        <aside class="clarification-box">
+          <p>
+            When you upload things to ImageHex, you are giving us permission to make them available in all the ways you'd expect.
+            This includes directly through the website, but also through our CDNs, any mobile apps we build, RSS feeds, and so on.
+            We never want to modify your work in a way you do not desire, and we'll never do something you dislike with it.
+          </p>
+          <p>
+            If your artwork goes on to build some sort of commercial media property, ImageHex does not collect any royalties or compensation, nor can it.
+            If you want to send us a little "thank-you" check we probably wouldn't be opposed, but that's up to you. 
+          </p>
+        </aside>
+
+        <p>
+          You also agree that this license allows ImageHex to make all publicly-posted content available to third-parties selected by ImageHex, so that those third parties may syndicate and/or analyze such Content on other media and services.
+        </p>
+
+        <aside class="clarification-box">
+          This clause allows us to make your publicly-posted content available to our partners, like Search engines.
+          We might also use your content for some types of technical, computer vision, or branding analysis.
+        </aside>
+
+        <p>
+          Note that this license to your Subscriber Content continues even if you stop using the services.
+        </p>
+
+        <p>
+          You also agree to respect the intellectual property rights of others, and represent and warrant that you have all of the necessary rights to post your content to ImageHex.
+        </p>
+      </section>
+      <section>
+        <h3>Compliance with our Guidelines</h3>
+        You agree that you will heed our <%= link_to "Guidelines", guidelines_path %> when using the services.
+      </section>
+    </section>
+    <section>
+      <h2>6. Use of Trademarks</h2>
+      Any use of ImageHex's trademarks, branding, logos, and other such assets in relation to the services shall use the guidelines outlined in our <%= link_to "Press Kit", press_path %>.
+    </section>
+    <section>
+      <h2>7. Market Services</h2>
+      <p>
+        Some of the Services allow you to take commissions from various clients, agreeing to create art for them in exchange for payment.
+        By making use of these services, you agree that ImageHex may collect a fee from your earnings as payment for use of the Services.
+      </p>
+      <p>
+        ImageHex may, at its sole discretion, modify the functionality of, or eliminate, these services, or any other Paid Services.
+      </p>
+    </section>
+    <section>
+      <h2>8. Warranty Disclaimer</h2>
+      Your access to and use of the Services or any Content is at your own risk.
+      YOU UNDERSTAND AND AGREE THAT THE SERVICES ARE PROVIDED TO YOU ON AN "AS IS" AND "AS AVAILABLE" BASIS. WITHOUT LIMITING THE FOREGOING, TO THE FULL EXTENT PERMITTED BY LAW, IMAGEHEX DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. 
+      ImageHex makes no representations or warranties of any kind with respect to the Services, including any representation or warranty that the use of the Services will (a) be timely, uninterrupted or error-free or operate in combination with any other hardware, software, system, or data, (b) meet your requirements or expectations, (c) be free from errors or that defects will be corrected, or (d) be free of viruses or other harmful components. 
+      ImageHex also makes no representations or warranties of any kind with respect to Content; Subscriber Content, especially, is provided by and is solely the responsibility of the Subscribers providing that Content. 
+      No advice or information, whether oral or written, obtained from Tumblr or through the Services, will create any warranty not expressly made herein.
+    </article>
+  </article>
+<% end %>
