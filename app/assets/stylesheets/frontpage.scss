@@ -14,19 +14,6 @@
   }
 }
 // Simple home container that makes sure the home page's content doesn't clip the header/footer.
-.home-container {
-  display: block;
-  height: auto;
-  padding: 20px 40px;
-  position: relative;
-  text-align: center;
-  width: 100%;
-
-  @media #{$mobile} {
-    padding: 20px;
-  }
-}
-
 .frontpage-links {
   font-size: 1.7rem;
 
@@ -49,15 +36,7 @@
   margin: auto;
 }
 
-.frontpage-logo {
-  width: 100%;
 
-  img {
-    margin: auto;
-    height: 75px;
-    pointer-events: none;
-  }
-}
 
 .subscription-item {
   border-radius: 3px;

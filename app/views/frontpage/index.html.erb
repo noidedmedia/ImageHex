@@ -1,14 +1,22 @@
 <%# This space intentionally left blank. No title needed for the home page. %>
-<div class="home-container">
-  <div class="frontpage-logo">
-    <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
-    <div class="frontpage-links">
-      <%= link_to "Find", search_path %>,
-      <%= link_to "Share", new_image_path %>,
-      and 
-      <%= link_to "Commission", commissions_path %>
-      Art.
+<div class="frontpage-logo frontpage-section alt-background">
+  <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
+</div>
+
+<div class="frontpage-section example-showcase">
+  <div class="description-section showcase-info">
+    <h1 class="big-shadow-title">
+      Better Search
+    </h1>
+    <div class="frontpage-seperated-text">
+      On ImageHex, tags apply to a subject within an image, not an entire image.
+      This makes <%= link_to "searching", search_path %> much more accurate&mdash;and makes it easier for you to find the artwork you want to see.
     </div>
   </div>
-  <%= render 'images/show_stub', images: @images %>
+
+  <div class="showcase-example">
+    <%= image_tag "splash/taggroup.png" %>
+  </div>
 </div>
+<%= render 'images/show_stub', images: @images %>
+

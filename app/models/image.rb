@@ -190,7 +190,7 @@ class Image < ActiveRecord::Base
     ## Clear previous scope to construct a subquery
     sq = Image.unscoped.joins(tag_groups: { tag_group_members: :tag })
       .where(tags: { id: tags })
-      .group("images.id")
+      .group("tag_groups.id, images.id")
       .having("COUNT(*) >= ?", tags.length)
     where(id: sq)
   end
