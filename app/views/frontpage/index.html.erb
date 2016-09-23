@@ -1,4 +1,5 @@
 <%# This space intentionally left blank. No title needed for the home page. %>
+<% unless params[:page] %>
 <div class="frontpage-logo frontpage-section alt-background">
   <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
   <h1 class="big-shadow-title">
@@ -7,6 +8,21 @@
 </div>
 
 <div class="frontpage-section example-showcase">
+  <div class="description-section showcase-info">
+    <h1 class="big-shadow-title">
+      A Fantastic Showcase
+    </h1>
+    <div class="frontpage-seperated-text">
+      ImageHex is a great way to showcase your art, and makes it easy to follow artists you like.
+      We'll even notify you when an artist you follow becomes available to commission.
+    </div>
+  </div>
+  <div class="showcase-example">
+    <%= image_tag "splash/gallery.png" %>
+  </div>
+</div>
+
+<div class="frontpage-section big-showcase alt-background">
   <div class="description-section showcase-info">
     <h1 class="big-shadow-title">
       Better Search
@@ -22,7 +38,7 @@
   </div>
 </div>
 
-<div class="frontpage-section example-showcase alt-background">
+<div class="frontpage-section example-showcase">
   <div class="description-section showcase-info">
     <h1 class="big-shadow-title">
       Better Sharing
@@ -38,5 +54,8 @@
     <%= image_tag "splash/collections.png" %>
   </div>
 </div>
+
+
+<% end %>
 <%= render 'images/show_stub', images: @images %>
 

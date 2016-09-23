@@ -70,6 +70,39 @@ $darker-background: rgb(249, 250, 251);
   }
 }
 
+.big-showcase {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .showcase-example {
+    width: 50%;
+    order: 1;
+    img {
+      max-width: 100%;
+      height: auto;
+      width: auto;
+    }
+  }
+
+  .showcase-info {
+    width: 30%;
+    order: 2;
+  }
+
+  @media #{$mobile} {
+    flex-direction: column;
+
+    .showcase-info {
+      width: 90%;
+    }
+
+    .showcase-example {
+      width: 90%;
+    }
+  }
+}
+
 .frontpage-seperated-text {
   margin: 20px 0;
   font-size: 16px;
