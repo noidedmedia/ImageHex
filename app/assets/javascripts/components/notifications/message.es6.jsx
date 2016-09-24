@@ -28,6 +28,9 @@ Message.order_paid = ({customer_name}) => (
   `${customer_name} just paid for their order!`
 );
 
+Message.order_rejected = ({seller_name}) => (
+  `${seller_name} rejected your order.`
+);
+
 
 export default Message;
-
