@@ -54,7 +54,7 @@
           <% if @listing.quote_only? %>
             <%= react_component("QuotePicker") %>
           <% end %>
-          <%= submit_tag("Confirm Order",
+          <%= submit_tag("Accept Order",
                          :class => "checkmark-submit-button order-confirm-button") %>
         <% end %>
       <% end %>

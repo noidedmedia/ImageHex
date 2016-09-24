@@ -24,9 +24,10 @@ Message.order_accepted = ({seller_name}) => (
   `${seller_name} accepted your order`
   );
 
-Message.order_charged = ({customer_name}) => (
+Message.order_paid = ({customer_name}) => (
   `${customer_name} just paid for their order!`
-  );
+);
+
 
 export default Message;
 
