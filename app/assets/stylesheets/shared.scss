@@ -92,6 +92,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  span {
+    margin-right: 10px;
+  }
 }
 
 .warning-dialogue-icon::before {

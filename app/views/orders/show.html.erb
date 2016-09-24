@@ -1,4 +1,10 @@
 <div id="order-show" class="flex-column">
+  <% if @order.rejected %>
+    <div class="warning-dialogue">
+      <div class="warning-dialogue-icon"></div>
+      <span>Order rejected on </span><%= time_tag @order.rejected_at %>
+    </div>
+  <% end %>
   <div class="order-description white-listing-box">
     <%= markdown_parse @order.description %>
   </div>

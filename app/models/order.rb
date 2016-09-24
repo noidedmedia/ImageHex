@@ -106,8 +106,8 @@ class Order < ActiveRecord::Base
     result = true
     begin
       Order.transaction do
-        update(rejected: true,
-               rejected_at: Time.current)
+        update!(rejected: true,
+                rejected_at: Time.current)
         notify_rejection!
       end
     rescue ActiveRecord::RecordInvalid
