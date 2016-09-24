@@ -54,10 +54,17 @@
           <% if @listing.quote_only? %>
             <%= react_component("QuotePicker") %>
           <% end %>
-          <%= submit_tag("Accept Order",
-                         :class => "checkmark-submit-button order-confirm-button") %>
+          <%= submit_tag("Accept Order", :class => "checkmark-submit-button order-confirm-button") %>
         <% end %>
       <% end %>
+
+    <% if policy(@order).reject? %>
+      <%= form_tag reject_listing_order_path(@listing, @order),
+        method: :post, :class => "order-reject-form flex-row" do %>
+        <%= submit_tag("Reject Order",
+          :class => "order-reject-button") %>
+      <% end %>
+    <% end %>
 
       <% if policy(@order).purchase? %>
         <%= form_tag purchase_listing_order_path(@listing, @order),

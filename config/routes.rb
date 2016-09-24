@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       post 'accept', on: :member
       post 'purchase', on: :member
       post 'fill', on: :member
+      post 'reject', on: :member
     end
   end
 

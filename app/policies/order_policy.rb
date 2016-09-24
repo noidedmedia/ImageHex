@@ -26,7 +26,8 @@ class OrderPolicy < ApplicationPolicy
   def accept?
     (@order.confirmed? && 
      listing_owner? && 
-     ! @order.accepted?)
+     ! @order.accepted? &&
+     ! @order.rejected?)
   end
 
   def fill?
@@ -40,7 +41,11 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def confirm?
-    owned? && ! @order.confirmed?
+    owned? && ! @order.confirmed? && ! @order.rejected?
+  end
+
+  def reject?
+    listing_owner? && @order.confirmed? && ! @order.rejected?
   end
 
   protected

@@ -113,6 +113,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def reject
+    @order = @listing.orders.find(params[:id])
+    authorize @order
+    respond_to do |format|
+      if @order.update(rejected: true)
+        format.html do 
+          redirect_to [@listing, @order],
+            notice: "Order rejected"
+        end
+        format.json { render 'show' }
+      else
+        format.html do 
+          redirect_to [@listing, @order], 
+            warning: "rejection failed"
+        end
+        format.json { render json: @order.errors, status: 401 }
+      end
+    end
+  end
+
 
   protected
   def load_listing
