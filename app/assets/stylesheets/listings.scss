@@ -356,3 +356,19 @@ $header-text-color: rgba(255, 255, 255, 0.8);
     margin-top: 5pt;
   }
 }
+
+.quote-picker-inner {
+  display: flex;
+  font-size: 16px;
+}
+
+.quote-picker-inputbar {
+  align-items: center;
+  display: flex;
+  margin-right: 15px;
+}
+
+.order-confirm-form {
+  align-items: center;
+  justify-content: space-between;
+}

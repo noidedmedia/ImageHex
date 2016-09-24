@@ -25,7 +25,7 @@ class QuotePicker extends React.Component {
       </span>
 
       <div>
-        (You get ${earnings / 100})
+        (You get ${(earnings / 100).toFixed(2)})
       </div>
     </div>;
   }
