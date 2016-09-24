@@ -40,7 +40,8 @@ class Notification < ActiveRecord::Base
               :order_confirmed,
               :order_accepted,
               :order_paid,
-              :order_filled]
+              :order_filled,
+              :order_rejected]
 
   after_create :send_email, if: :should_send_email?
 

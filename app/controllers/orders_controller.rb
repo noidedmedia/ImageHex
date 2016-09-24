@@ -117,7 +117,7 @@ class OrdersController < ApplicationController
     @order = @listing.orders.find(params[:id])
     authorize @order
     respond_to do |format|
-      if @order.update(rejected: true)
+      if @order.reject
         format.html do 
           redirect_to [@listing, @order],
             notice: "Order rejected"

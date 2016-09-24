@@ -102,6 +102,20 @@ class Order < ActiveRecord::Base
     result
   end
 
+  def reject
+    result = true
+    begin
+      Order.transaction do
+        update(rejected: true,
+               rejected_at: Time.current)
+        notify_rejection!
+      end
+    rescue ActiveRecord::RecordInvalid
+      result = false
+    end
+    result
+  end
+
   def references_by_category
     h = Hash.new{|hash, key| hash[key] = []}
     self.references.each do |ref|
@@ -126,6 +140,12 @@ class Order < ActiveRecord::Base
   def notify_confirmation!
     Notification.create!(kind: :order_confirmed,
                          user: self.listing.user,
+                         subject: self)
+  end
+
+  def notify_rejection!
+    Notification.create!(kind: :order_rejected,
+                         user: self.user,
                          subject: self)
   end
 
