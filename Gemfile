@@ -288,7 +288,7 @@ group :development, :test do
   ##
   # https://github.com/teampoltergeist/poltergeist
   # A PhantomJS driver for Capybara
-  gem 'poltergeist'
+  gem 'capybara-webkit'
 end
 
 ##

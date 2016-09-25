@@ -12,17 +12,6 @@ RSpec.feature "Image show page", type: :feature do
 
         expect(page).to have_css("#img-action-favorite")
       end
-
-      scenario "they favorite an image", js: true do
-        visit image_path(@image)
-
-        expect do
-          find("#img-action-favorite", visible: false).click
-        end.to change{Favorite.count}.by(1)
-
-        expect(current_path).to eq(image_path(@image))
-      end
-
     end
 
     feature "collections" do
@@ -40,25 +29,6 @@ RSpec.feature "Image show page", type: :feature do
                .find(".contains-image")).to have_content(collection.name)
 
         find("#image-collection-list").find(".contains-image").click
-      end
-    end
-
-    feature "reporting" do
-      scenario "they report an image", js: true do
-        visit image_path(@image)
-
-        expect(page).to have_css("#img-action-report")
-
-        find("#img-action-report").click
-
-        expect(page).to have_css("#img-action-report-tooltip.active")
-
-        within("#report-form") do
-          choose("report_reason_illegal_content", visible: false)
-          expect do
-            click_button("Report")
-          end.to change{ImageReport.count}.by(1)
-        end
       end
     end
 

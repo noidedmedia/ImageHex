@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924194058) do
+ActiveRecord::Schema.define(version: 20160925185042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,12 +100,11 @@ ActiveRecord::Schema.define(version: 20160924194058) do
   end
 
   create_table "disputes", force: :cascade do |t|
-    t.integer  "commission_offer_id"
     t.text     "description"
-    t.boolean  "resolved",            default: false, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["commission_offer_id"], name: "index_disputes_on_commission_offer_id", using: :btree
+    t.integer  "order_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["order_id"], name: "index_disputes_on_order_id", using: :btree
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -432,6 +431,7 @@ ActiveRecord::Schema.define(version: 20160924194058) do
   add_foreign_key "conversations", "orders", on_delete: :nullify
   add_foreign_key "curatorships", "collections", on_delete: :cascade
   add_foreign_key "curatorships", "users", on_delete: :cascade
+  add_foreign_key "disputes", "orders"
   add_foreign_key "favorites", "images", on_delete: :cascade
   add_foreign_key "favorites", "users", on_delete: :cascade
   add_foreign_key "image_reports", "images", on_delete: :cascade

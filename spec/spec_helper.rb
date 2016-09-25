@@ -7,20 +7,8 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require "paperclip/matchers" # Make testing paperclip stuff much easier
-require 'capybara/poltergeist'
 
-class FakePoltergeistLogger
-  def self.puts(*)
-  end
-end
-
-Capybara.register_driver :poltergeist_silent do |app|
-  Capybara::Poltergeist::Driver.new(app, 
-                                    phantomjs_logger: FakePoltergeistLogger,
-                                    logger: FakePoltergeistLogger,
-                                    debug: false)
-end
-
+Capybara.javascript_driver = :webkit
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories.
@@ -53,14 +41,6 @@ RSpec.configure do |config|
 
   config.append_after(:each) do
     DatabaseCleaner.clean
-  end
-
-  config.before(:each, js: true) do
-    Capybara.current_driver = :poltergeist_silent
-  end
-
-  config.after(:each, js: true) do
-    Capybara.use_default_driver
   end
 
 
