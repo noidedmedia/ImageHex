@@ -87,17 +87,19 @@
       </div>
     </div>
 
-    <%# Report %>
-    <a> 
-      <div class="image-actions" id="img-action-report">
-        <span class="icon icon-medium icon-report"></span>
-        <p><%= t(".report") %>
-      </div>
+    <% if user_signed_in? %>
+      <%# Report %>
+      <a> 
+        <div class="image-actions" id="img-action-report">
+          <span class="icon icon-medium icon-report"></span>
+          <p><%= t(".report") %>
+        </div>
 
-      <div class="image-actions-tooltip" id="img-action-report-tooltip" data-showon="#img-action-report" data-signed-in="showon">
-        <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
-      </div>
-    </a>
+        <div class="image-actions-tooltip" id="img-action-report-tooltip" data-showon="#img-action-report" data-signed-in="showon">
+          <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
+        </div>
+      </a>
+    <% end %>
 
     <%# Delete %>
     <%# Only accessible to users with admin privileges or the uploader for the first 24 hours after uploading an image. %>
