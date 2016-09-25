@@ -1,13 +1,13 @@
 .listing-category-show {
   background-color: #fff;
-
+  margin: 10px 0;
+  border-radius: 3px;
+  overflow: hidden;
+  
   .markdown-description {
     color: #555;
     padding: 10px;
   }
-  margin: 10px 0;
-  border-radius: 3px;
-  overflow: hidden;
 }
 
 .category-price {

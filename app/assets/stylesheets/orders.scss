@@ -375,7 +375,7 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   color: #fff;
   font-size: 16px;
   padding: 5px 20px;
-  border: none;
+  border: 0;
 
   &::before {
     content: $icon-close;

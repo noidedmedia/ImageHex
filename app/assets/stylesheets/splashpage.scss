@@ -24,7 +24,7 @@ $darker-background: rgb(249, 250, 251);
 
   @media #{$mobile} {
     img {
-      width: 90%
+      width: 90%;
     }
   }
 }
@@ -85,6 +85,7 @@ $darker-background: rgb(249, 250, 251);
   .showcase-example {
     width: 50%;
     order: 1;
+
     img {
       max-width: 100%;
       height: auto;
@@ -127,6 +128,7 @@ $darker-background: rgb(249, 250, 251);
   .showcase-example {
     order: 1;
     max-width: 90%;
+
     img {
       max-width: 100%;
     }
