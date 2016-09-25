@@ -2,6 +2,7 @@
 class ArtistSubscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :artist, class_name: "User"
+  validate :not_subscribed_to_self
   after_create :notify_artist
 
   protected
@@ -11,5 +12,11 @@ class ArtistSubscription < ActiveRecord::Base
                          subject: user,
                          user: artist)
     n.save
+  end
+
+  def not_subscribed_to_self
+    unless artist_id != user_id
+      errors.add(:base, "cannot be to self")
+    end
   end
 end

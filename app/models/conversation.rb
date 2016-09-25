@@ -108,7 +108,7 @@ class Conversation < ActiveRecord::Base
   ## TODO: Refactor this so it isn't so horrible
   def users_follow_each_other
     return if self.conversation_users.length > 5
-    user_ids = self.conversation_users.to_a.pluck(:user_id)
+    user_ids = self.conversation_users.to_a.map(&:user_id)
     count = self.conversation_users.length
     desired_count = ((1..count).inject(1, :*)) / (1..(count - 2)).inject(1, :*)
     real_count = ArtistSubscription.where(user_id: user_ids)
