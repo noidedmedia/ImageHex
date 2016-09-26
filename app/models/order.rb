@@ -43,6 +43,32 @@ class Order < ActiveRecord::Base
   after_save :create_conversation, 
     :if => :needs_conversation_creation
 
+  ##########
+  # SCOPES #
+  ##########
+
+  def self.to_user(user)
+    joins(listing: :user)
+      .references(listing: :user)
+      .where(listings: {user_id: user})
+  end
+
+  def self.unfilled
+    where(image_id: nil)
+  end
+
+  def self.confirmed
+    where(confirmed: true)
+  end
+
+  def self.unrejected
+    where(rejected: false)
+  end
+
+  def self.active
+    confirmed.unrejected.unfilled
+  end
+
   def filled?
     ! image.nil?
   end
