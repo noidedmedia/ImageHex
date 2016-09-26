@@ -5,6 +5,12 @@ RSpec.feature "Image show page", type: :feature do
     @image = create(:image)
   end
 
+  scenario "the image is shown" do
+    visit image_path(@image)
+    expect(page).to have_css(".image")
+    expect(page).to have_css(".image-actions-sidebar")
+  end
+
   include_context "when signed in" do
     feature "favoriting" do
       scenario "they see the favorites button", js: true do
@@ -14,8 +20,22 @@ RSpec.feature "Image show page", type: :feature do
       end
     end
 
-    feature "collections" do
+    feature "commenting" do
+      scenario "they comment on the image", js: true do
+        visit image_path(@image)
+        page.execute_script("window.scrollTo(0, 1000000)")
 
+        expect(page).to have_css("#comment_body")
+        fill_in "comment_body", with: "test"
+
+        expect do
+          click_button "Submit"
+          sleep(1)
+        end.to change{@image.comments.reload.count}.by(1)
+      end
+    end
+
+    feature "collections" do
       scenario "they try to add an image to collections", js: true do
         collection = create(:collection, curators: [@user])
         visit image_path(@image)

@@ -10,6 +10,10 @@ require "paperclip/matchers" # Make testing paperclip stuff much easier
 
 Capybara.javascript_driver = :webkit
 
+Capybara::Webkit.configure do |config|
+  config.allow_url("js.stripe.com")
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
