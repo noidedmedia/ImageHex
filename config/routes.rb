@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :commissions_dashboard, only: :index
   ##
   # Not really resourceful at all but whatever yolo
   resources :stripe, only: [] do
@@ -76,6 +77,8 @@ Rails.application.routes.draw do
       post 'reject', on: :member
     end
   end
+
+  get "/my_orders", to: "orders#mine"
 
   resources :tag_group_changes, only: [:show] do
   end

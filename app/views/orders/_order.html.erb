@@ -1,0 +1,45 @@
+<li class="active-order-item">
+  <h3><%= link_to "Order ##{order.id}", [order.listing, order] %></h3>
+  <div class="order-info-column">
+    <span>User</span>
+    <div class="order-user">
+      <%= order.user.name %>
+    </div>
+  </div>
+
+  <div class="order-info-column">
+    <span>Listing</span>
+    <div class="order-listing">
+      <%= link_to order.listing.name, order.listing %>
+    </div>
+  </div>
+
+  <div class="order-info-column">
+    <span>Confirmed?</span>
+    <div>
+      <%= order.confirmed? ? "Yes" : "No" %>
+    </div>
+  </div>
+
+  <div class="order-info-column">
+    <span>Rejected?</span>
+    <div>
+      <%= order.rejected ? "Yes" : "No" %>
+    </div>
+  </div>
+
+  <div class="order-info-column">
+    <span>Filled?</span>
+    <div>
+      <% if order.filled? %>
+        <%= link_to "Yes", order.image %>
+      <% else %>
+        No
+      <% end %>
+    </div>
+  </div>
+
+  <div class="active-order-description">
+    <%= markdown_parse order.description %>
+  </div>
+</li>

@@ -1,0 +1,42 @@
+#order-index-container {
+  max-width: 500px;
+  margin: auto;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.order-info-column {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+
+.active-order-item {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #333;
+  border-radius: 3px;
+
+  h3 {
+    text-align: center;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.active-order-description {
+  padding: 10px;
+  font-size: 14px;
+  background-color: #fff;
+  border-radius: 3px;
+  margin-top: 10px;
+}

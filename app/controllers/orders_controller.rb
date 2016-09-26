@@ -1,10 +1,14 @@
 class OrdersController < ApplicationController
   include Pundit
   before_action :ensure_user
-  before_action :load_listing
+  before_action :load_listing, except: :mine
 
   def index
     @orders = @listing.orders  
+  end
+
+  def mine
+    @orders = current_user.orders
   end
 
   def show

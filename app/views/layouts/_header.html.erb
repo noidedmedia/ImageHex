@@ -94,6 +94,9 @@
             <%# Settings %>
             <li><%= link_to t(".settings"), settings_path %>
             <li><%= link_to t(".my_listings"), mine_listings_path %>
+            <li><%= link_to "Commissions Dashboard", 
+              commissions_dashboard_index_path %>
+            <li><%= link_to "My Orders", my_orders_path %>
             <%# Sign out %>
             <li><%= button_to t(".sign_out"), destroy_user_session_path, method: :delete %>
           </ul>
