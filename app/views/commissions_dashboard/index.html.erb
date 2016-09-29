@@ -1,0 +1,44 @@
+
+<div class="commissions-dashboard-container">
+  <div class="dashboard-header">
+    <h1>Commissions Dashboard</h1>
+  </div>
+
+  <div class="commissions-dashboard-list">
+    <h2>Open Listings</h2>
+    <div class="commissions-dashboard-list-inner dashboard-listings">
+      <%= render partial: "listing", collection: @presenter.listings.open %>
+    </div>
+  </div>
+
+  <div class="commissions-dashboard-list">
+    <h2>Unopen Listings</h2>
+    <div class="commissions-dashboard-list-inner dashboard-listings">
+      <%= render partial: "listing", collection: @presenter.listings.unopen %>
+    </div>
+  </div>
+
+  <div class="commissions-dashboard-list">
+    <h2>Active Orders</h2>
+    <div class="commissions-dashboard-list-inner dashboard-orders">
+      <%= render partial: "order", 
+        collection: @presenter.recieved_orders.active %>
+    </div>
+  </div>
+
+  <div class="commissions-dashboard-list">
+    <h2>Pending Orders</h2>
+    <div class="commissions-dashboard-list-inner dashboard-orders">
+      <%= render partial: "order", 
+        collection: @presenter.recieved_orders.pending %>
+    </div>
+  </div>
+
+  <div class="commissions-dashboard-list">
+    <h2>Completed Orders</h2>
+    <div class="commissions-dashboard-list-inner dashboard-orders">
+      <%= render partial: "order", 
+        collection: @presenter.recieved_orders.completed %>
+    </div>
+  </div>
+</div>
