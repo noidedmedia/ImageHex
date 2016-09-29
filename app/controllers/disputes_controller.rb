@@ -2,9 +2,9 @@
 class DisputesController < ApplicationController
   include Pundit
   before_action :ensure_user
+
   def index
-    @disputes = Dispute.all.unresolved
-    raise Pundit::NotAuthorizedError unless current_user.admin?
+    @disputes = policy_scope(Dispute.unresolved)
   end
 
   def show
@@ -13,9 +13,6 @@ class DisputesController < ApplicationController
   end
 
   def new
-    attrs = {
-      commission_offer_id: params[:commission_offer_id]
-    }
     @dispute = Dispute.new(attrs)
     authorize @dispute
   end

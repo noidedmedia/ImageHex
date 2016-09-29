@@ -32,9 +32,6 @@ Rails.application.routes.draw do
   # RESTFUL ROUTES #
   ##################
   
-
-  resources :disputes
-
   resources :favorites, only: [:create, :destroy] do
     get 'includes_image', on: :member
   end
