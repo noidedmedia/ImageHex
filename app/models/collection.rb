@@ -47,14 +47,15 @@ class Collection < ActiveRecord::Base
   ##
   # Get a list of collections ordered by how popular they are, in terms of
   # subscribers.
-  def self.by_popularity(inter = 2.weeks.ago..Time.now)
+  def self.by_popularity(inter = 2.weeks.ago..Time.now, 
+                         group_str: "collections.id")
     subs = Subscription.arel_table
     col = arel_table
     j = col.join(subs, Arel::Nodes::OuterJoin)
       .on(subs[:collection_id].eq(col[:id]), subs[:created_at].between(inter))
       .join_sources
     res = joins(j)
-      .group("collections.id")
+      .group(group_str)
       .order("COUNT(subscriptions) DESC")
   end
 

@@ -22,11 +22,12 @@ class CollectionsController < ApplicationController
   # "Browse collections" page.
   # @collections:: The collections displayed based on popularity or recency.
   def index
+    image_scope = Image.for_content(content_pref)
     @collections = find_index_collections
+      .includes(:images)
+      .where(collection_images: {image_id: image_scope})
+      .references(collection_images: :images)
       .paginate(page: page, per_page: per_page)
-      .preload(:images)
-    # HACK: This is a hack.
-    @content = content_pref
   end
 
   ##
@@ -135,7 +136,7 @@ class CollectionsController < ApplicationController
     when "created_at"
       Collection.order(created_at: :desc)
     else
-      Collection.by_popularity
+      Collection.by_popularity(group_str: "collections.id, images.id")
     end
   end
 
