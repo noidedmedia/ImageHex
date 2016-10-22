@@ -17,6 +17,11 @@ class Order < ActiveRecord::Base
   has_many :references,
     class_name: "Order::Reference",
     inverse_of: :order
+  
+  has_many :reference_images,
+    class_name: "Order::Reference::Image",
+    through: :references,
+    source: :images
 
   has_one :conversation
 
@@ -68,6 +73,11 @@ class Order < ActiveRecord::Base
   def self.active
     confirmed.unrejected.unfilled
   end
+
+  ####################
+  # INSTANCE METHODS #
+  ####################
+
 
   def filled?
     ! image.nil?

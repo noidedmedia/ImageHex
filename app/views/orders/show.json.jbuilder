@@ -31,7 +31,8 @@ json.listing do
 end
 
 json.extract! @order,
-  :description
+  :description,
+  :name
 
 json.references @order.references do |ref|
   json.extract! ref,

@@ -3,8 +3,14 @@
     <div class="warning-dialogue">
       <div class="warning-dialogue-icon"></div>
       <span>Order rejected on </span><%= time_tag @order.rejected_at %>
-    </div>
-  <% end %>
+  </div>
+<% end %>
+
+ <h1 class="order-name-display">
+    <%= @order.name %>
+  </h1>
+
+
   <div class="order-description white-listing-box">
     <%= markdown_parse @order.description %>
   </div>

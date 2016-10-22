@@ -3,11 +3,11 @@ class CommissionsPresenter
     @user = current_user
   end
 
-  def placed_orders
+  def placed
     @placed_orders ||= OrdersPresenter.new(@user.orders)
   end
 
-  def recieved_orders
+  def received
     @recieved_orders ||= OrdersPresenter.new(Order.to_user(@user).confirmed)
   end
 
@@ -33,11 +33,29 @@ class CommissionsPresenter
     end
 
     def pending
-      @pending ||= @orders.select{|o| ! o.accepted? && ! o.rejected?}
+      @pending ||= @orders.select do |o| 
+        ! o.accepted? && ! o.rejected? && o.confirmed?
+      end
+    end
+
+    def draft
+      @draft ||= @orders.select{|o| ! o.confirmed? }
+    end
+
+    def unpaid
+      @unpaid ||= @orders.select{|o| o.accepted? && o.charge_id.nil?}
     end
 
     def method_missing(meth, *args)
       @orders.public_send(meth, *args)
+    end
+
+    def types(for_customer = true)
+      if for_customer
+        %w(completed active pending rejected unpaid draft)
+      else
+        %(completed active pending unpaid)
+      end
     end
   end
 
@@ -61,6 +79,10 @@ class CommissionsPresenter
 
     def types
       %w(open unopen draft)
+    end
+
+    def method_missing(meth, *args, **kwargs)
+      @listings.public_send(meth, *args, **kwargs)
     end
   end
 end

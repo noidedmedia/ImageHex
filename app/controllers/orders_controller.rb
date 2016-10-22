@@ -163,6 +163,7 @@ class OrdersController < ApplicationController
 
   def reference_image_params
     [:description,
+      :name,
       :img,
       :id,
       :_destroy]

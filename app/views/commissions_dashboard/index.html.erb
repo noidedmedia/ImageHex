@@ -2,7 +2,11 @@
   <div class="dashboard-left-nav">
     <div class="dashboard-category listings">
       <h1>Listings</h1>
-      <% %w(open closed draft).each do |sc| %>
+      <div class="dashboard-subcategory
+        dashboard-subcategory-listing-open">
+        Open listings
+      </div>
+      <% %w(closed draft).each do |sc| %>
         <div class="dashboard-subcategory 
           dashboard-subcategory-listing-<%= sc %>">
           <%= sc.capitalize %> listings
@@ -13,31 +17,58 @@
       <h1>Received Orders</h1>
       <% %w(active pending completed).each do |sc| %>
         <div class="dashboard-subcategory 
-          dashboard-subcategory-recieved-<%= sc %>">
+          dashboard-subcategory-received-<%= sc %>">
           <%= sc.capitalize %> orders
         </div>
       <% end %>
       <div class="dashboard-subcategory 
-        dashboard-subcategory-recieved-awaiting">
+        dashboard-subcategory-received-unpaid">
         Awaiting Payment
       </div>
     </div>
     <div class="dashboard-category placed-orders">
       <h1>Placed Orders</h1>
-      <% %w(active pending completed rejected).each do |sc| %>
+      <% %w(active pending completed rejected draft).each do |sc| %>
         <div class="dashboard-subcategory
           dashboard-subcategory-placed-<%= sc %>">
           <%= sc.capitalize %> orders
         </div>
       <% end %>
+      <div class="dashboard-subcategory dashboard-subcategory-placed-unpaid">
+        Awaiting Payment
+      </div>
     </div>
   </div>
   <div class="dashboard-content">
     <% @presenter.listings.types.each do |t| %>
       <ul class="dashboard-content-inner dashboard-content-listing-<%= t %>">
-        <%= render partial: "listing", collection: @presenter.listings.send(t),
+        <%= render partial: "listing", 
+          collection: @presenter.listings.public_send(t),
             as: :listing %>
+      </ul>
+    <% end %>
+
+    <% @presenter.received.types.each do |t| %>
+      <ul class="dashboard-content-inner dashboard-content-received-<%= t %>">
+        <%= render partial: "order", 
+        collection: @presenter.received.public_send(t),
+        as: :order %>
+      </ul>
+    <% end %>
+
+    <% @presenter.placed.types(true).each do |t| %>
+      <ul class="dashboard-content-inner dashboard-content-placed-<%= t %>">
+        <%= render partial: "order",
+        collection: @presenter.placed.public_send(t),
+        as: :order %>
       </ul>
     <% end %>
   </div>
 </div>
+
+<!-- mega ultra hack -->
+
+<script>
+  $(".dashboard-content-listing-open").addClass("active");
+  $(".dashboard-subcategory-listing-open").addClass("active");
+</script>

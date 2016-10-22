@@ -17,6 +17,22 @@ class OrderForm extends React.Component {
     return <div>
       <div className="order-form-overall-description">
         <div className="heading">
+          <label htmlFor="order[name]">
+            Name
+          </label>
+          <div class="description-squared">
+            Provide a name, to help the artist keep track of this order
+          </div>
+        </div>
+        <div className="lower-section fields-section">
+          <input
+            type="text"
+            name="order[name]"
+            defaultValue={this.props.name} />
+        </div>
+      </div>
+      <div className="order-form-overall-description">
+        <div className="heading">
           <label htmlFor="order[description]">
             Description
           </label>

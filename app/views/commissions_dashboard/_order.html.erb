@@ -1,3 +1,16 @@
-<li class="dashboard-order">
-  <%= order.user.name %>
+<li class="dashboard-item">
+  <%= link_to [order.listing, order] do %>
+    <%= image_tag(order.reference_images.sample.try(:img, :large) || 
+                 "empty-collection.svg") %>
+  <% end %>
+  <div class="item-bottom-bar">
+    <div class="item-name">
+      <%= link_to order.name, [order.listing, order] %>
+    </div>
+  </div>
+  <% if order.final_price %>
+    <div class="item-price">
+      <%= price order.final_price %>
+    </div>
+  <% end %>
 </li>
