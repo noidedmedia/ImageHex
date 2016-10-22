@@ -95,7 +95,9 @@
     <%= yield %>
   </div>
 
-  <%= render 'layouts/footer' %>
+  <% unless @no_footer %>
+    <%= render 'layouts/footer' %>
+  <% end %>
 
 
 

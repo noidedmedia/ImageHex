@@ -54,5 +54,13 @@ class CommissionsPresenter
     def unopen
       @listings.reject(&:open?)
     end
+
+    def draft
+      @listings.reject(&:confirmed?)
+    end
+
+    def types
+      %w(open unopen draft)
+    end
   end
 end

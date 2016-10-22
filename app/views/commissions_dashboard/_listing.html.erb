@@ -1,14 +1,9 @@
 <li class="dashboard-listing-item">
-  <div class="dashboard-listing-name">
-    <%= link_to listing.name, listing %>
+  <%= link_to listing do %>
+    <%= image_tag(listing.images.first.try(:f).try(:url, :large) || 
+                  "empty-collection.svg") %>
+  <% end %>
+  <div class="listing-bottom-bar">
+    <div class="listing-name"><%= listing.name %></div>
   </div>
-  <ul class="dashboard-listing-example-images-list">
-    <% listing.images.each do |i| %>
-      <li>
-        <%= link_to i do %>
-          <%= image_tag i.f(:small) %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
 </li>

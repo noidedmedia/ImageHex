@@ -1,44 +1,43 @@
-
-<div class="commissions-dashboard-container">
-  <div class="dashboard-header">
-    <h1>Commissions Dashboard</h1>
-  </div>
-
-  <div class="commissions-dashboard-list">
-    <h2>Open Listings</h2>
-    <div class="commissions-dashboard-list-inner dashboard-listings">
-      <%= render partial: "listing", collection: @presenter.listings.open %>
+<div class="dashboard-container">
+  <div class="dashboard-left-nav">
+    <div class="dashboard-category listings">
+      <h1>Listings</h1>
+      <% %w(open closed draft).each do |sc| %>
+        <div class="dashboard-subcategory 
+          dashboard-subcategory-listing-<%= sc %>">
+          <%= sc.capitalize %> listings
+        </div>
+      <% end %>
+    </div>
+    <div class="dashboard-category received-orders">
+      <h1>Received Orders</h1>
+      <% %w(active pending completed).each do |sc| %>
+        <div class="dashboard-subcategory 
+          dashboard-subcategory-recieved-<%= sc %>">
+          <%= sc.capitalize %> orders
+        </div>
+      <% end %>
+      <div class="dashboard-subcategory 
+        dashboard-subcategory-recieved-awaiting">
+        Awaiting Payment
+      </div>
+    </div>
+    <div class="dashboard-category placed-orders">
+      <h1>Placed Orders</h1>
+      <% %w(active pending completed rejected).each do |sc| %>
+        <div class="dashboard-subcategory
+          dashboard-subcategory-placed-<%= sc %>">
+          <%= sc.capitalize %> orders
+        </div>
+      <% end %>
     </div>
   </div>
-
-  <div class="commissions-dashboard-list">
-    <h2>Unopen Listings</h2>
-    <div class="commissions-dashboard-list-inner dashboard-listings">
-      <%= render partial: "listing", collection: @presenter.listings.unopen %>
-    </div>
-  </div>
-
-  <div class="commissions-dashboard-list">
-    <h2>Active Orders</h2>
-    <div class="commissions-dashboard-list-inner dashboard-orders">
-      <%= render partial: "order", 
-        collection: @presenter.recieved_orders.active %>
-    </div>
-  </div>
-
-  <div class="commissions-dashboard-list">
-    <h2>Pending Orders</h2>
-    <div class="commissions-dashboard-list-inner dashboard-orders">
-      <%= render partial: "order", 
-        collection: @presenter.recieved_orders.pending %>
-    </div>
-  </div>
-
-  <div class="commissions-dashboard-list">
-    <h2>Completed Orders</h2>
-    <div class="commissions-dashboard-list-inner dashboard-orders">
-      <%= render partial: "order", 
-        collection: @presenter.recieved_orders.completed %>
-    </div>
+  <div class="dashboard-content">
+    <% @presenter.listings.types.each do |t| %>
+      <ul class="dashboard-content-inner dashboard-content-listing-<%= t %>">
+        <%= render partial: "listing", collection: @presenter.listings.send(t),
+            as: :listing %>
+      </ul>
+    <% end %>
   </div>
 </div>
