@@ -70,12 +70,11 @@
 </div>
 
 <div class="frontpage-call">
-  <div class="logo-section">
-
-  </div>
+    <%= link_to new_user_registration_path, 
+      :class => "frontpage-call-button" do %>
+      <%= image_tag "logo/imagehex-monochrome-white.svg" %>
+      <div>Get started today</div>
+    <% end %>
 </div>
-
-
 <% end %>
-<%= render 'images/show_stub', images: @images %>
 

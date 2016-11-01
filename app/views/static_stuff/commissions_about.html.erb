@@ -108,78 +108,21 @@
     </div>
   </section>
 
-  <section class="imagehex-static-section">
-    <div class="imagehex-static-text">
-      <h2 class="center section-header">
-        Organization on your Behalf
+  <section class="fontpage-section big-showcase">
+    <div class="description-section showcase-info">
+      <h2 class="big-shadow-title">
+        Organized and Automatic
       </h2>
-      <p class="center section-subheader">
-        ImageHex makes it easy to organize the reference material you need to commission your favorite artist.
-        No need to fumble with email attachments&mdash;our simple form will handle everything.
+      <p class="frontpage-seperated-text">
+        No need to fumble with email or private messages.
+        ImageHex automatically builds forms for commissions based on information the artist enters, making it easy and painless to get the art you want.
       </p>
     </div>
 
-    <div class="commissions-about-example">
-      <div class="example-navbar"></div>
-      <ul class="order-categories-list">
-        <li class="category-section">
-          <h2 class="padded-dark-header">
-            Characters
-          </h2>
-          <ul class="reference-group-list">
-            <li class="reference-group-fields show-order">
-              <div class="reference-group-header">
-                <div class="description markdown-description">
-                  <p>
-                    Richard Stallman.
-                    He's a free software advocate, and a personal hero of mine. 
-                    Ideally he would be wearing some sort of Hawaiian shirt. 
-                  </p>
-
-                  <p>
-                    The sword should be a scimitar, which is curved.
-                    He should be holding the sword out in front of him.
-                  </p>
-                </div>
-                <div class="references-outer">
-                  <h3>Reference Images</h3>
-                  <ul class="reference-images-list">
-                    <li class="reference-image-item flex-row">
-                      <div class="img-wrapper">
-                        <%= image_tag("commissions/stallman.jpg") %>
-                      </div>
-                      <div class="flex-column">
-                        <div class="description markdown-description">
-                          This is an image of Stallman.
-                        </div>
-                      </div>
-                    </li>
-                    <li class="reference-image-item flex-row">
-                      <div class="img-wrapper">
-                        <%= image_tag "commissions/scim.jpg" %>
-                      </div>
-                      <div class="flex-column">
-                        <div class="decription markdown-description">
-                          This is the type of sword he should be holding.
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="order-group-container">
-                    <div class="generic-tag-group">
-                      <ul class="generic-tag-list">
-                        <% ["Richard Stallman", "Beard", "Scimitar"].each do |e| %>
-                          <li class="generic-tag"><%= e %></li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
+    <div class="showcase-example">
+      <div class="shadow-example">
+        <%= image_tag "commissions/character-form.png" %>
+      </div>
     </div>
   </section>
 

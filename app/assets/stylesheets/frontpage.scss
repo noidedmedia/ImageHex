@@ -124,3 +124,31 @@
     align-items: center;
   }
 }
+
+.frontpage-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.frontpage-call-button {
+  background-color: $logo-green;
+  display: flex;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 20px;
+  font-weight: 200;
+  border-radius: 5px;
+  height: 50%;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 32px;
+
+  img {
+    margin-right: 30px;
+    height: 60%;
+    width: auto;
+  }
+}
