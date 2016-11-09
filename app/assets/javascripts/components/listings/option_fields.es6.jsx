@@ -25,7 +25,7 @@ class OptionFields extends React.Component {
           className="remove-text-red remove-option-button">
           Remove
         </a>
-        {(option && option.id) ? 
+        {(option && option.id > 0) ? 
           <input type="hidden"
             name={`listing[options_attributes][${index}][id]`}
             value={option.id}/> : <span />}

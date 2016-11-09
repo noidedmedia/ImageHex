@@ -60,26 +60,24 @@
   </div>
 <% end %>
 
-<% if @listing.user == current_user %>
+
+<% if ! @listing.confirmed? %>
   <% if current_user.stripe_user_id.nil? %>
     <div class="warning-dialogue">
       You must
       <%= link_to "add stripe", authorize_stripe_index_path %>
       to make this listing visible.
     </div>
+  <% else %>
+    <div class="listing-confirm flex-row">
+      <span>
+        This listing is a draft, and not visible to others.
+      </span>
+      <%= form_tag confirm_listing_path(@listing) do %>
+        <%= submit_tag("Publish Listing", class: "checkmark-submit-button") %>
+      <% end %>
+    </div>
   <% end %>
-
-<% end %>
-
-<% if policy(@listing).confirm? %>
-  <div class="listing-confirm flex-row">
-    <span>
-      This listing is a draft.
-    </span>
-    <%= form_tag confirm_listing_path(@listing) do %>
-      <%= submit_tag("Finalize Listing", class: "checkmark-submit-button") %>
-    <% end %>
-  </div>
 <% elsif policy(@listing).open? %>
   <div class="listing-confirm flex-row">
     <span>
