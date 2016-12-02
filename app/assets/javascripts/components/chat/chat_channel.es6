@@ -1,5 +1,6 @@
 import * as Actions from './actions.es6';
 import * as Types from './action_types.es6';
+import App from '../../cable';
 
 export default function BindChatChannel(store) {
   if(! App.cable) {

@@ -1,1 +1,2 @@
-//= require_tree ./components
+import './components/comments/comments_view';
+import './components/chat/chat';

@@ -1,5 +1,6 @@
 Rails.application.configure do
-  config.browserify_rails.use_browserifyinc = true 
+  config.action_cable.allowed_request_origins = ['http://localhost:5000', 
+                                                 'http://localhost:3000']
   config.assets.quiet = true
   config.active_job.queue_adapter = :async
 

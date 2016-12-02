@@ -70,9 +70,6 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     brakeman (3.3.2)
-    browserify-rails (3.1.0)
-      railties (>= 4.0.0, < 5.1)
-      sprockets (>= 3.5.2)
     builder (3.2.2)
     bullet (5.1.0)
       activesupport (>= 3.0.0)
@@ -158,6 +155,8 @@ GEM
       json (~> 1.4)
       listen (>= 1.0, < 3.0)
       thor (~> 0.14)
+    foreman (0.82.0)
+      thor (~> 0.19.1)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     globalid (0.3.6)
@@ -405,6 +404,8 @@ GEM
     uniform_notifier (1.10.0)
     warden (1.2.6)
       rack (>= 1.0)
+    webpack-rails (0.9.9)
+      rails (>= 3.2.0)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -424,7 +425,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   brakeman
-  browserify-rails
   bullet
   bundler-audit
   capybara
@@ -440,6 +440,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fontcustom
+  foreman
   friendly_id
   i18n
   i18n-tasks
@@ -478,6 +479,7 @@ DEPENDENCIES
   train_track
   turbolinks (~> 5.0.0.beta)
   uglifier
+  webpack-rails
   will_paginate
   yajl-ruby
 

@@ -57,7 +57,7 @@
       </div>
       <% if user_signed_in? %>
         <div id="chat-container" data-turbolinks-permanent>
-
+          <%= react_component("Chat") %>
         </div>
         <%# Upload %>
         <div class="header-item" id="header-create">

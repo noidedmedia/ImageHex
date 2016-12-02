@@ -1,3 +1,5 @@
+import React from 'react';
+
 function onMobile() {
   return window.innerWidth < 600;
 }

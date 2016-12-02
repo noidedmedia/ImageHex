@@ -1,3 +1,5 @@
+import React from 'react';
+
 function appendId() {
   $("#comment_body").val($("#comment_body").val() + `@${this}`);
 }

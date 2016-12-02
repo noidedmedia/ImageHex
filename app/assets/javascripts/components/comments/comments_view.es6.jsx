@@ -1,8 +1,10 @@
+import React, { Component } from 'react';
 import NM from '../../api/global.es6';
 import PaginationControls from './pagination_controls.es6.jsx';
 import Comment from './comment.es6.jsx';
+import ReactUJS from '../../react_ujs';
 
-class CommentsView extends React.Component {
+class CommentsView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,9 +71,7 @@ class CommentsView extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Adding a scroll handler");
     $("body").on("scroll.comments touchmove.comments", (event) => {
-      console.log("Scroll event fires");
       var r = $(this.overallContainer)[0].getBoundingClientRect();
       if(r.bottom <= window.innerHeight && ! this.state.fetching) {
         this.setState({
@@ -91,7 +91,6 @@ class CommentsView extends React.Component {
     this.setState({
       fetching: true
     });
-    console.log("Getting current with state",this.state);
     let url = this.props.url + `.json?page=${this.state.currentPage}`;
     url += `&sort=${this.state.sortBy}`;
     var res = await NM.getJSON(url);
@@ -101,10 +100,7 @@ class CommentsView extends React.Component {
       fetching: false
     });
   }
-
-  componentWillUnmount() {
-    console.log("Removing the comments");
-  }
 }
 
-window.CommentsView = CommentsView;
+ReactUJS.register("CommentsView", CommentsView);
+export default CommentsView;

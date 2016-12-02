@@ -26,6 +26,10 @@ gem 'stripe'
 # Use Omniauth with Stripe
 gem 'oauth2'
 
+## 
+# Use forman 
+gem 'foreman'
+
 
 gem 'coffee-rails'
 ##
@@ -109,11 +113,7 @@ gem 'jquery-rails'
 gem 'react-rails'
 
 
-##
-# https://github.com/browserify-rails/browserify-rails
-# Use browserify and NPM modules on Rails
-gem 'browserify-rails'
-
+gem 'webpack-rails'
 
 ##
 # https://github.com/turbolinks/turbolinks
@@ -327,3 +327,5 @@ group :production do
 
   gem 'newrelic_rpm'
 end
+
+gem 'foreman'

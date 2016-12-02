@@ -269,3 +269,23 @@
     content: $icon-close;
   }
 }
+
+.message-slide-enter {
+  transform: translateX(-120%);
+  overflow: hidden;
+
+  &.message-slide-enter-active {
+    transform: translateX(0%);
+    transition: 250ms linear;
+  }
+}
+
+
+.message-group-slide-enter {
+  transform: translateY(100%);
+
+  &.message-group-slide-enter-active {
+    transform: translateY(0%);
+    transition: 250ms linear;
+  }
+}

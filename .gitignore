@@ -35,3 +35,6 @@ public/system/test/*
 .fontcustom-manifest.json
 
 browserify-cache.json
+# Added by webpack-rails
+/node_modules
+/public/webpack

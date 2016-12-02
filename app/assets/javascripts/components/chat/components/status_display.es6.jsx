@@ -1,3 +1,4 @@
+import React from 'react';
 import { activate, deactivate } from '../actions.es6';
 
 export default class StatusDisplay extends React.Component {

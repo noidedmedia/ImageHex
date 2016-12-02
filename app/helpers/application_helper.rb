@@ -22,7 +22,6 @@ module ApplicationHelper
       "/collections/" + id.to_s
     end
   end
-
   ##
   # Markdown parsing helper, uses the Redcarpet gem.
   def markdown_parse(str)

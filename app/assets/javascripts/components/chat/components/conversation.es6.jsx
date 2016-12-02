@@ -1,5 +1,9 @@
+import React from 'react';
+import App from '../../../cable';
 import NM from '../../../api/global.es6';
 import MessageGroup from './message_group.es6.jsx';
+import TransitionGroup from 'react-addons-css-transition-group';
+
 import {
   getHistoryBefore, 
   startUpdate, 
@@ -36,9 +40,10 @@ function groupChunk(messages, users, lastReadAt) {
         key={msgBuffer[0].id} />);
     }
     msgBuffer = [];
-  }
+  };
+
   messages.forEach((message, index) => {
-    if(new Date(message.created_at) > new Date(lastReadAt) 
+    if((new Date(message.created_at) > new Date(lastReadAt)) 
        && ! addedSeperator && shouldAddSep) {
       flushBuffer();
       components.push(<UnreadSeperator key="unread-sep"
@@ -81,7 +86,8 @@ class Conversation extends React.Component {
     if(this.props.updating) {
       upperSuffix = " updating";
     }
-    return <div className={this.state.containerClass}>
+    return <div className={this.state.containerClass}
+        ref={(i) => this._overall = i} >
       <div className={"conversation-upper" + upperSuffix} >
         <h5>{this.props.conversation.name}</h5>
         <a className="close-chat"
@@ -91,7 +97,12 @@ class Conversation extends React.Component {
       <ul className="message-group-list"
         ref={(i) => this._list = i}
         onScroll={this.onScroll.bind(this)}>
-        {mapped}
+        <TransitionGroup
+          transitionName="message-slide"
+          transitionEnterTimeout={250}
+          transitionLeaveTimeout={250}>
+          {mapped}
+        </TransitionGroup>
       </ul>
       <input className="message-input"
         ref={(e) => this._input = e}
@@ -141,6 +152,9 @@ class Conversation extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.conversation.id !== prevProps.conversation.id) {
+      let n = this.props.conversation.id;
+      let o = prevProps.conversation.id;
+      console.log(`Changed ID from ${n} to ${o}`);
       if(this.props.messages.length < 15) {
         console.log("Fetching older messages as we have changed conversation");
         this.fetchOlder();
@@ -195,13 +209,15 @@ class Conversation extends React.Component {
 
   checkForRead() {
     if(! this.props.hasUnread || this.checkingForUnread) {
-      console.log("We either have no unread messages or are checking already");
       return;
     }
     let list = this._list;
     let sT = list.scrollTop;
     let oH = list.offsetHeight;
     let sH = list.scrollHeight;
+    if(sH > this._overall.scrollHeight) {
+      console.log("It's less");
+    }
     let cid = this.props.conversation.id;
     // If we're not at the bottom, return
     if(sT > 0 && Math.abs(((sT + oH) - sH)) > 4) {

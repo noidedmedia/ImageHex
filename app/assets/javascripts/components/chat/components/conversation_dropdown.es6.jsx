@@ -1,3 +1,4 @@
+import React from 'react';
 import { changeConversation, deactivate } from '../actions.es6';
 
 export default class ConversationDropdown extends React.Component {

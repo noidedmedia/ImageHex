@@ -1,3 +1,4 @@
+import React from 'react';
 import App from './app.es6';
 import * as Actions from './actions.es6';
 import { createStore, applyMiddleware } from 'redux';
@@ -6,6 +7,7 @@ import BindChatChannel from './chat_channel.es6';
 import ConversationDropdown from './components/conversation_dropdown.es6.jsx';
 import StatusDisplay from './components/status_display.es6.jsx';
 import Conversation from './components/conversation.es6.jsx';
+import ReactUJS from '../../react_ujs';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -108,14 +110,6 @@ Chat.childContextTypes = {
   dispatch: React.PropTypes.func
 };
 
-window.Chat = Chat;
+ReactUJS.register("Chat", Chat);
 
-$(window).on("turbolinks:load", () => {
-  var container = $("#chat-container");
-  if(container[0]) {
-    ReactDOM.render(<Chat />,
-                    container[0]);
-  } else {
-    console.log("Chat has no container, not loading");
-  }
-});
+export default Chat;

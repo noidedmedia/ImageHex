@@ -1,3 +1,6 @@
+import React from 'react';
+import TransitionGroup from 'react-addons-css-transition-group';
+
 const MessageGroup = ({messages, user}) => {
   let mdisp = messages.map((m) => (
     <li className="message" key={m.id}>
@@ -13,7 +16,12 @@ const MessageGroup = ({messages, user}) => {
     <div className="message-group-right">
       <span>{user.name}</span>
       <ul className="message-group-messages">
-        {mdisp}
+        <TransitionGroup
+          transitionName="message-slide"
+          transitionEnterTimeout={250}
+          transitionLeaveTimeout={250}>
+          {mdisp}
+        </TransitionGroup>
       </ul>
     </div>
   </li>;
