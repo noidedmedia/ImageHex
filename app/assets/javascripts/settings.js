@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 function avatarUploader() {
   document.querySelector(".avatar-uploader").addEventListener("change", avatarUploaderPreview);
 }

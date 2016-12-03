@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 function fileUpload() {
   $("#file-field").on("dragenter", function() {
     // Add "hover" styles for dragging-and-dropping images.

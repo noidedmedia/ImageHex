@@ -1,4 +1,5 @@
 import NM from '../api/global.es6';
+import React from 'react';
 
 class CurrencyInput extends React.Component {
   constructor(props) {

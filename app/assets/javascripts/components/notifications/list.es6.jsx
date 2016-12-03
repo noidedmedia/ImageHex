@@ -1,3 +1,4 @@
+import React from 'react';
 import NM from '../../api/global.es6';
 import NotificationItem from './item.es6.jsx';
 

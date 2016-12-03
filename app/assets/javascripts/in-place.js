@@ -1,5 +1,4 @@
-// A simple library to do a lot of things in-place with AJAX.
-// Commented heavily so as to properly explain how it works.
+import $ from 'jquery';
 
 /*
  *  The show-on property hides a DOM node until another node is clicked.

@@ -1,3 +1,4 @@
+import React from 'react';
 import { CurrencyInputField } from '../currency_input.es6.jsx';
 
 function optionFieldName(index, name) {

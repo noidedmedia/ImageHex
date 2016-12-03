@@ -1,4 +1,5 @@
 import NM from '../../api/global.es6';
+import React from 'react';
 
 const Image = ({img, selected, click}) => {
   let cn = selected ? "image-picker-item selected" : "image-picker-item";

@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 function tabbedMenu() {
   var tabs = document.querySelectorAll("ul.user-page-header-tabs li");
   for (var i = 0; i < tabs.length; i++) {

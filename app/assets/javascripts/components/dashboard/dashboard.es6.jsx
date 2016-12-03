@@ -1,5 +1,8 @@
+import React from 'react';
 import ImageItem from './image_item.es6.jsx';
 import NM from '../../api/global.es6';
+import ReactUJS from '../../react_ujs';
+import TransitionGroup from 'react-addons-css-transition-group';
 
 const FollowStuffMessage = () => (
   <div id="follow-stuff-message">
@@ -41,7 +44,12 @@ class Dashboard extends React.Component {
     return <div>
       <ul className="frontpage-subscription-container"
         ref={(r) => this.listContainer = r}>
-        {imgs}
+        <TransitionGroup
+          transitionName="message-slide"
+          transitionEnterTimeout={250}
+          transitionLeaveTimeout={250}>
+          {imgs}
+        </TransitionGroup>
       </ul>
       {fetchBar}
     </div>;
@@ -95,7 +103,6 @@ class Dashboard extends React.Component {
   }
 }
 
+ReactUJS.register("Dashboard", Dashboard);
 
-
-window.Dashboard = Dashboard;
 export default Dashboard;

@@ -1,3 +1,4 @@
+import React from 'react';
 import ImagePicker from '../image_picker/image_picker.es6.jsx';
 import NM from '../../api/global.es6';
 

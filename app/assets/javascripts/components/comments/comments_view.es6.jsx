@@ -55,8 +55,6 @@ class CommentsView extends Component {
 
   changeSort(event) {
     if(this.state.sortBy !== event.target.value) {
-      // For some reason this setState isn't finishing by the time we're in
-      // the fetch, so set sort manually:
       this.setState({
         sortBy: event.target.value,
         currentPage: 1

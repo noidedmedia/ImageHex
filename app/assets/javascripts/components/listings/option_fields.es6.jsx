@@ -1,3 +1,4 @@
+import React from 'react';
 import * as Common from './common_fields.es6.jsx';
 
 class OptionFields extends React.Component {

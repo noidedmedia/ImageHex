@@ -1,3 +1,4 @@
+import React from 'react';
 import Creator from './creator.es6.jsx';
 
 function reason_path(img) {

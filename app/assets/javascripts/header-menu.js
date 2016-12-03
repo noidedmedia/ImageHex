@@ -1,11 +1,14 @@
+import $ from 'jquery';
+
 function preventDefault(e) {
   e.preventDefault();
 }
+
 function headerMenu() {
-  document.querySelector("#mobile-menu-icon").addEventListener("click", function() {
-    
-    document.querySelector("#header-right").classList.toggle("active");
-    document.querySelector("#mobile-menu-icon").classList.toggle("active");
+  $("#mobile-menu-icon").on("click", function() {
+    console.log("Click!");
+    $("#header-right").toggleClass("active");
+    $("#mobile-menu-icon").toggleClass("active");
     document.querySelector("#mobile-menu-overlay").classList.toggle("active");
 
     if (document.querySelector("#mobile-menu-icon").classList.contains("active")) {
@@ -36,7 +39,8 @@ function headerMenuClose() {
 }
 
 var ready = function() {
+  console.log("Doing header menu");
   headerMenu();
 };
 
-document.addEventListener("turbolinks:load", ready);
+$(document).on("turbolinks:load", ready);

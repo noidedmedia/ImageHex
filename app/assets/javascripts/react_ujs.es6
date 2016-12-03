@@ -29,7 +29,11 @@ ReactUJS.mountComponents = function() {
     let props = propsJSON && JSON.parse(propsJSON);
     if(typeof(constructor) === "undefined") {
       let msg = `Cannot find component ${key}.`;
-      if(console && console.error) { console.error("ReactUJS: " + msg); }
+      if(console && console.error) {
+        var candidates = Object.keys(ReactUJS.componentMap);
+        console.error("ReactUJS: " + msg);
+        console.error("ReactUJS: Candidates are:", candidates);
+      }
     } else {
       ReactDOM.render(React.createElement(constructor, props), node);
     }

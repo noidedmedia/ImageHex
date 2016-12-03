@@ -1,4 +1,6 @@
+import React from 'react';
 import NM from '../../api/global.es6';
+import ReactUJS from '../../react_ujs';
 import NotificationList from './list.es6.jsx';
 
 class HeaderNotifications extends React.Component {
@@ -63,6 +65,5 @@ class HeaderNotifications extends React.Component {
   }
 }
 
+ReactUJS.register("HeaderNotifications", HeaderNotifications);
 export default HeaderNotifications;
-
-window.HeaderNotifications = HeaderNotifications;

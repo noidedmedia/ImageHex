@@ -1,3 +1,4 @@
+import React from 'react';
 import Message from './message.es6.jsx';
 
 class NotificationItem extends React.Component {

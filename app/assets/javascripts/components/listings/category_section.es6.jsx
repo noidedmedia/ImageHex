@@ -1,3 +1,4 @@
+import React from 'react';
 import CategoryFields from './category_fields.es6.jsx';
 
 

@@ -1,7 +1,9 @@
+import React from 'react';
 import PriceSection from './price_section.es6.jsx';
 import OptionSection from './option_section.es6.jsx'; 
 import CategorySection from './category_section.es6.jsx';
 import ExampleImageSection from './example_image_section.es6.jsx';
+import ReactUJS from '../../react_ujs';
 
 class ListingForm extends React.Component {
   constructor(props) {
@@ -109,6 +111,6 @@ ListingForm.childContextTypes = {
 };
 
 
-window.ListingForm = ListingForm;
+ReactUJS.register("ListingForm", ListingForm);
 
 export default ListingForm;

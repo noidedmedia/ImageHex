@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Creator(props) {
   return <li className="subscription-creators-item">
     <a href={`/users/${props.slug}/`}>

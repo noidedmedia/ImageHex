@@ -1,3 +1,4 @@
+import React from 'react';
 import OptionFields from './option_fields.es6.jsx';
 
 class OptionSection extends React.Component {

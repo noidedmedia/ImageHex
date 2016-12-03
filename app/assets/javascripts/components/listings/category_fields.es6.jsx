@@ -1,3 +1,4 @@
+import React from 'react';
 import * as Common from './common_fields.es6.jsx';
 import { CurrencyInputField } from '../currency_input.es6.jsx';
 
