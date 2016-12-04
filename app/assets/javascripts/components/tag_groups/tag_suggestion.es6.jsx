@@ -1,3 +1,4 @@
+import React from 'react';
 const TagSuggestion = ({tag, isActive, addSelf}) => {
   let className = "tag-group-tag-suggestion";
   if(isActive) {

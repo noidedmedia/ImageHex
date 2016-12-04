@@ -1,19 +1,20 @@
-import EtherealTagGroup from './../../api/ethereal_tag_group.es6';
+import React from 'react';
+import Turbolinks from 'turbolinks';
+import ReactUJS from '../../react_ujs';
 import TagGroupEditor from '../tag_groups/tag_group_editor.es6.jsx';
 
 class HeaderSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tagGroup: new EtherealTagGroup()
+      tags: []
     };
   }
   render() {
     return <div id="header-search-react">
       <TagGroupEditor
         key={1}
-        group={this.state.tagGroup}
-        tags={this.state.tagGroup.tags}
+        tags={this.state.tags}
         onTagRemove={this.removeTag.bind(this)}
         onTagAdd={this.addTag.bind(this)}
         isSearch={true}
@@ -22,35 +23,29 @@ class HeaderSearch extends React.Component {
       />
     </div>;
   }
+
   addTag(tag) {
-    this.state.tagGroup.addTag(tag);
+    let tags = [...this.state.tags, tag];
     this.setState({
-      tagGroup: this.state.tagGroup
+      tags: tags
     });
   }
 
   removeTag(tag) {
-    this.state.tagGroup.removeTag(tag);
+    let tags = this.state.tags.filter(t => t.id != tag.id);
     this.setState({
-      tagGroup: this.state.tagGroup
+      tags: tags
     });
   }
 
   submit() {
     var query = {};
-    var tags = this.state.tagGroup.tags.map((tag) => {
-      return {
-        id: tag.id,
-        name: tag.name
-      };
-    });
-    query.tag_groups = [{
-      tags: tags
-    }];
-    window.location.href = "/search?" + $.param({query: query});
+    var tags = this.state.tags.map((tag) => tag.id);
+    query.tag_groups = [tags];
+    Turbolinks.visit(`/search?${$.param(query)}`);
   }
 }
 
-window.HeaderSearch = HeaderSearch;
+ReactUJS.register("HeaderSearch", HeaderSearch);
 
 export default HeaderSearch;

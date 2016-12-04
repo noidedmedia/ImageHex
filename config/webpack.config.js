@@ -79,7 +79,7 @@ if (production) {
   };
   config.output.publicPath = '//localhost:' + devServerPort + '/webpack/';
   // Source maps
-  config.devtool = 'cheap-module-eval-source-map';
+  config.devtool = 'cheap-module-source-map';
 }
 
 module.exports = config;

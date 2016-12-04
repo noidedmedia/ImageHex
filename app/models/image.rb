@@ -199,7 +199,7 @@ class Image < ActiveRecord::Base
     # return nothing unless we have a query
     return where("1 = 0") unless q.is_a? SearchQuery
     query = all
-    q.each_group_tag_ids do |group|
+    q.groups.each do |group|
       query = query.with_all_tags(group)
     end
     query

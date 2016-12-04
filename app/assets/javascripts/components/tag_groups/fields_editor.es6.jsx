@@ -1,3 +1,4 @@
+import React from 'react';
 import TagGroupEditor from './tag_group_editor.es6.jsx';
 
 class TagGroupFieldsEditor extends React.Component {

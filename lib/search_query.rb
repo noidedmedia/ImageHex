@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 # TODO: Comment this file.
+require 'set'
+
 class SearchQuery
   def initialize(q)
     @q = convert_to_hash(q)
@@ -38,38 +40,26 @@ class SearchQuery
     end
   end
 
-  def each_group_tag_ids(&_block)
-    raise ArgumentError("Must take a block") unless block_given?
-    each_group do |g|
-      yield tags(g).map { |t| t["id"] }
-    end
-  end
-
-  def tags(g)
-    g["tags"].is_a?(Hash) ? g["tags"].values : g["tags"]
-  end
-
   def to_h
     @q
   end
 
-  def to_page_h
-    return {query: {tag_groups: []}} unless tag_groups
-    ar = tag_groups.map do |t|
-      {
-        tags: tags(t)
-      }
-    end
-    {query: {tag_groups: ar}}
-    
+  def groups
+    @q["tag_groups"].values
   end
 
-  private
-
-  def fix_tag_group_array!
-    # $.param is a bit weird, and will turn tag_groups into a hash
-    # where the key is a string version of the array index as opposed to
-    # an array. So we just flatten to an array
-    @q["tag_groups"] = @q["tag_groups"].values if @q["tag_groups"].is_a? Hash
+  def to_page_h
+    set = Set.new
+    hash = Hash.new
+    hash["groups"] = self.groups
+    self.groups.each do |g|
+      g.each{|t| set << t}
+    end
+    tags = Tag.where(id: set.to_a).to_a.inject({}) do |memo, tag|
+      memo[tag.id] = tag.name
+      memo
+    end
+    hash["tags"] = tags
+    hash
   end
 end

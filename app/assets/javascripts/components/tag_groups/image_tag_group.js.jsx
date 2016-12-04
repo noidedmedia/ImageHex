@@ -1,3 +1,4 @@
+import React from 'react';
 import EtherealTagGroup from '../../api/ethereal_tag_group.es6';
 import TagGroupEditor from './tag_group_editor.es6.jsx';
 import Image from '../../api/image.es6';

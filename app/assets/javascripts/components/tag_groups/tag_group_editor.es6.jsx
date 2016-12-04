@@ -1,3 +1,4 @@
+import React from 'react';
 import Tag from '../../api/tag.es6';
 import InlineTagCreator from './inline_tag_creator.es6.jsx';
 import GroupTag from './group_tag.es6.jsx';
@@ -31,44 +32,42 @@ class TagGroupEditor extends React.Component {
         key={tag.id}
         tag={tag}
         removeSelf={this.props.onTagRemove.bind(null, tag)} />));
-        var suggestions = this.suggestions;
-
-        var inputField = <input
-          className="tag-group-editor-input"
-          id={this.inputId}
-          onFocus={this.onFocus.bind(this)}
-          name="suggestions" 
-          onChange={this.onInputChange.bind(this)}
-          onKeyDown={this.onKeyUp.bind(this)}
-          value={this.state.inputValue}
-          ref="groupInput"
-          placeholder={this.inputPlaceholder}
-        />;
-        var inputSection;
-        if (this.props.isHeaderSearch) {
-          inputSection = <div className="search-outer-container">
-            <label title="Search" htmlFor="search-input">
-              <span className="icon icon-small icon-search"></span>
-            </label>
-            <span className="search-input-container">
-              {inputField}
-              {this.goButton}
-            </span>
-          </div>;
-        }
-        else {
-          inputSection = inputField;
-        }
-        return <div className="tag-group-editor">
-          <ul className="tag-group-editor-tags">
-            {tags}
-          </ul>
-          {inputSection}
-          <ul className="tag-group-editor-tags-suggestions">
-            {suggestions}
-          </ul>
-          {this.inlineCreator}
-        </div>;
+    var suggestions = this.suggestions;
+    var inputField = <input
+      className="tag-group-editor-input"
+      id={this.inputId}
+      name="suggestions" 
+      onChange={this.onInputChange.bind(this)}
+      onKeyDown={this.onKeyUp.bind(this)}
+      value={this.state.inputValue}
+      ref={(n) => this._groupInput = n}
+      placeholder={this.inputPlaceholder}
+    />;
+    var inputSection;
+    if (this.props.isHeaderSearch) {
+      inputSection = <div className="search-outer-container">
+        <label title="Search" htmlFor="search-input">
+          <span className="icon icon-small icon-search"></span>
+        </label>
+        <span className="search-input-container">
+          {inputField}
+          {this.goButton}
+        </span>
+      </div>;
+    }
+    else {
+      inputSection = inputField;
+    }
+    return <div className="tag-group-editor">
+      <ul className="tag-group-editor-tags">
+        {tags}
+      </ul>
+      {inputSection}
+      <ul className="tag-group-editor-tags-suggestions">
+        {suggestions}
+      </ul>
+      {this.inlineCreator}
+    </div>;
   }
 
 
@@ -130,20 +129,6 @@ class TagGroupEditor extends React.Component {
     else {
       return "";
     }
-  }
-
-  /**
-   * Focus our text box on every update, if props tells us to.
-   * Otherwise, the user has to click in the box again.
-   */
-  componentDidUpdate() {
-    if (this.props.autofocus) {
-      ReactDOM.findDOMNode(this.refs.groupInput).focus();
-    }
-  }
-
-  onFocus() {
-    this.setState({isActive: true});
   }
   /**
    * Tell our parent that we are adding a tag, and do our own bookkeeping.

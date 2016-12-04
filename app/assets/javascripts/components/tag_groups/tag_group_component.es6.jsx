@@ -1,3 +1,4 @@
+import React from 'react';
 class TagGroupComponent extends React.Component {
   render() {
     var tags = this.props.group.tags.map((tag) => {

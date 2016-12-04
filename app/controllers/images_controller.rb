@@ -72,7 +72,7 @@ class ImagesController < ApplicationController
   # @query:: The search term input by the user.
   # @images:: The images the recieved in response to the query.
   def search
-    @query = SearchQuery.new(params[:query])
+    @query = SearchQuery.new(params)
     @images = Image.search(@query)
       .order(created_at: :desc)
       .paginate(page: page, per_page: per_page)

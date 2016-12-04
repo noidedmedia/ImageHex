@@ -1,3 +1,4 @@
+import React from 'react';
 const GroupTag = ({tag, removeSelf}) => (
   <li className="tag-box-added-tag">
     {tag.name}

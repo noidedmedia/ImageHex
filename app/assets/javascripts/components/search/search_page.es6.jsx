@@ -1,4 +1,8 @@
+import ReactUJS from '../../react_ujs';
+import React from 'react';
 import SearchGroup from './search_group.es6.jsx';
+import Turbolinks from 'turbolinks'
+import $ from 'jquery';
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -11,12 +15,21 @@ class SearchPage extends React.Component {
   }
 
   findInitialGroups() {
-    if (this.props.query && this.props.query.tag_groups) {
-      return this.props.query.tag_groups.map((g, i) => {
+    if (this.props.groups) {
+      let key = 0;
+      return this.props.groups.map(group => {
+        console.log("Group is",group);
+        let tags = group.map(t => {
+          return {
+            id: t, 
+            name: this.props.tags[t]
+          };
+        });
+        console.log("Tags are",tags);
         return {
-          initialTags: g.tags,
-          key: i
-        }
+          key: key++,
+          tags: tags
+        };
       });
     }
     else {
@@ -31,10 +44,12 @@ class SearchPage extends React.Component {
         key={group.key}
         index={index}
         removeSelf={this.removeGroup.bind(this, index)}
-        initialTags={group.initialTags} />
+        addTag={this.addGroupTag.bind(this, index)}
+        removeTag={this.removeGroupTag.bind(this, index)}
+        tags={group.tags} />
     ));
     return <div className="search">
-      <form action="/search" method="GET">
+      <form>
         <h1>Search</h1>
         <ul className="search-tag-groups">
           {tags}
@@ -49,7 +64,8 @@ class SearchPage extends React.Component {
 
           <button
             type="submit"
-            className="submit-button">
+            className="submit-button"
+            onClick={this.submit.bind(this)}>
             Search
           </button>
         </div>
@@ -65,13 +81,40 @@ class SearchPage extends React.Component {
   }
 
   addGroup(event) {
-    console.log("Add group fires");
     this.setState({
-      tagGroups: [...this.state.tagGroups, {key: this.groupKey}]
+      tagGroups: [...this.state.tagGroups, {key: this.groupKey, tags: []}]
     });
     this.groupKey = this.groupKey - 1;
   }
+
+  addGroupTag(index, tag) {
+    let g = this.state.tagGroups[index].tags
+    this.state.tagGroups[index].tags = [...g, tag];
+    this.setState({
+      tagGroups: this.state.tagGroups
+    });
+  }
+
+  removeGroupTag(index, tag) {
+    let g = this.state.tagGroups[index].tags
+    this.state.tagGroups[index].tags = g.filter(t => t.id !== tag.id);
+    this.setState({
+      tagGroups: this.state.tagGroups
+    });
+  }
+
+  submit(event) {
+    event.preventDefault();
+    let groups = this.state.tagGroups.map((g) => {
+      return g.tags.map(t => t.id);
+    });
+    let params = {
+      tag_groups: groups
+    };
+    Turbolinks.visit(`/search?${$.param(params)}`);
+  }
 }
 
-window.SearchPage = SearchPage;
+ReactUJS.register("SearchPage", SearchPage);
+
 export default SearchPage;
