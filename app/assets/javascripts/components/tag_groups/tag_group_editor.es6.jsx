@@ -84,15 +84,13 @@ class TagGroupEditor extends React.Component {
   }
 
   get goButton() {
-    if (this.state.isActive) {
+    if ($(this._groupInput).is(":focus")) {
       // Golly gee I love centering stuff in CSS
       return <span className="search-side-button"
         onClick={this.props.submit}>
         <span>Go</span>
       </span>;
     }
-
-    console.log("Go button is not a go ;-;");
     return "";
   }
 
