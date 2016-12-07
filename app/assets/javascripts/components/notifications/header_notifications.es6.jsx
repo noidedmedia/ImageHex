@@ -46,11 +46,19 @@ class HeaderNotifications extends React.Component {
     };
   }
 
+  get notificationClass() {
+    let beta = "header-notifications";
+    if(this.state.unread > 0) {
+      beta += " has-unread";
+    }
+    return beta;
+  }
+
   render() {
     if(! this.state.fetched) {
-      return <div className="header-notifications">
+      return <div className={this.notificationClass}>
         <div className="notifications-unread-count">
-            <a href="/notifications" onClick={this.fetchNotifications.bind(this)}>
+            <a onClick={this.fetchNotifications.bind(this)}>
               {this.state.unread}
             </a>
         </div>

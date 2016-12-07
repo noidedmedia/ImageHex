@@ -1,3 +1,5 @@
+import React from 'react';
+import UJS from '../../react_ujs';
 
 class ImageBrowserForm extends React.Component {
   constructor(props) {
@@ -29,6 +31,6 @@ class ImageBrowserForm extends React.Component {
     });
   }
 }
+UJS.register("ImageBrowserForm", ImageBrowserForm);
 
-window.ImageBrowserForm = ImageBrowserForm;
 export default ImageBrowserForm;

@@ -15,7 +15,7 @@ $_notifications-unread-width: 36px;
     height: auto;
   }
 
-  &.unread {
+  &.has-unread {
     background-color: #b70f3b;
 
     .notifications-unread-count a {
@@ -44,6 +44,7 @@ $_notifications-unread-width: 36px;
     transition: color 300ms ease-in-out;
     padding: 12px 15px;
     display: inline-block;
+    cursor: pointer;
 
     &:hover {
       color: $white;
