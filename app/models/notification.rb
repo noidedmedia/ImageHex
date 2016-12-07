@@ -44,6 +44,7 @@ class Notification < ActiveRecord::Base
               :order_rejected]
 
   after_create :send_email, if: :should_send_email?
+  after_create :notify_cables
 
 
   def subject=(sub)
@@ -84,6 +85,11 @@ class Notification < ActiveRecord::Base
 
   def send_email
     NotificationMailer.notification_email(self).deliver_later
+  end
+
+  private
+  def notify_cables
+    NewNotificationJob.perform_now(self)
   end
 
 end
