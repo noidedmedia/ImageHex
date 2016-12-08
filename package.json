@@ -27,15 +27,14 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-preset-stage-2": "^6.18.0",
-
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "browserify-incremental": "^3.0.1",
-    "jquery": "^3.1.1",
     "stats-webpack-plugin": "^0.4.2",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "jquery": "^3.1.1",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
     "actioncable": "^5.0.0",
