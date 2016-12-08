@@ -1,3 +1,5 @@
+import React from 'react';
+
 class ImageField extends React.Component {
   constructor(props) {
     super(props);

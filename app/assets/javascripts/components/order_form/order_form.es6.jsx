@@ -1,5 +1,7 @@
 import OptionsForm from './options_form.es6.jsx';
 import ReferenceSection from './reference_section.es6.jsx';
+import React from 'react';
+import ReactUJS from '../../react_ujs';
 
 class OrderForm extends React.Component {
   constructor(props) {
@@ -165,5 +167,5 @@ class OrderForm extends React.Component {
   }
 }
 
-window.OrderForm = OrderForm;
+ReactUJS.register("OrderForm",OrderForm);
 export default OrderForm;

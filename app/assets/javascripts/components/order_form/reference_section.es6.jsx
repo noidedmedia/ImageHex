@@ -1,5 +1,6 @@
 import CategorySection from './category_section.es6.jsx';
 import RemovedReferenceFields from './removed_reference_fields.es6.jsx';
+import React from 'react';
 
 class ReferenceSection extends React.Component {
   constructor(props) {

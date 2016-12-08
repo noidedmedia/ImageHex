@@ -1,4 +1,5 @@
 import ReferenceForm from './reference_form.es6.jsx';
+import React from 'react';
 
 class CategorySection extends React.Component {
   constructor(props) {

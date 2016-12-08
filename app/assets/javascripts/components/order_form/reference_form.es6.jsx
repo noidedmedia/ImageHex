@@ -1,6 +1,7 @@
 import ImageField from './image_field.es6.jsx';
 import RemovedImageField from './removed_image_field.es6.jsx';
 import TagGroupFieldsEditor from '../tag_groups/fields_editor.es6.jsx';
+import React from 'react';
 
 class ReferenceForm extends React.Component {
   constructor(props) {

@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactUJS from '../react_ujs';
+
 class CommissionPriceCalculator extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +18,7 @@ class CommissionPriceCalculator extends React.Component {
       onChange={this.updateValue.bind(this)}
       className="input"
     />;
-    total = this.state.value * 100;
+    let total = this.state.value * 100;
 
     var stripeFees = Math.floor((total * 0.029) + 30);
     var imagehexFees = Math.floor(total * (0.10 - 0.029));
@@ -65,4 +68,4 @@ class CommissionPriceCalculator extends React.Component {
   }
 }
 
-window.CommissionPriceCalculator = CommissionPriceCalculator;
+ReactUJS.register("CommissionPriceCalculator", CommissionPriceCalculator);

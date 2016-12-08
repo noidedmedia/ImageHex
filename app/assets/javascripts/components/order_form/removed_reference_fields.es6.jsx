@@ -1,3 +1,5 @@
+import React from 'react';
+
 const RRF = ({id, index}) => (
   <span>
     <input name={`order[references_attributes][${index}][id]`}

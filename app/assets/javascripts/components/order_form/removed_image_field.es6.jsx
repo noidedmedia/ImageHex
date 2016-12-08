@@ -1,3 +1,5 @@
+import React from 'react';
+
 const RemovedImageField = ({id, baseFieldName}) => (
   <span>
     <input name={`${baseFieldName}[id]`}

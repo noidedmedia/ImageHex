@@ -1,3 +1,5 @@
+import React from 'react';
+import ReactUJS from '../react_ujs';
 import {CurrencyInputField} from './currency_input.es6.jsx';
 
 class QuotePicker extends React.Component {
@@ -37,4 +39,4 @@ class QuotePicker extends React.Component {
   }
 }
 
-window.QuotePicker = QuotePicker;
+ReactUJS.register("QuotePicker", QuotePicker);
