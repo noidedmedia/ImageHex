@@ -1,5 +1,5 @@
 // Close the Alert dialog when the close icon is clicked.
-function hideError() {
+ function hideError() {
   if (document.getElementsByClassName("alert").length > 0) {
     document.querySelector("#alert-close").addEventListener("click", function() {
       document.querySelector(".alert").style.display = "none";
@@ -13,4 +13,4 @@ var ready = function() {
   }
 };
 
-document.addEventListener("page:change", ready);
+document.addEventListener("turbolinks:load", ready);

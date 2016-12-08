@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 function shareButtons() {
   var currenturl = window.location.href;
   var facebook = "https://www.facebook.com/sharer.php?u=";

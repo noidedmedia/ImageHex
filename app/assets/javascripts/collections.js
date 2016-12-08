@@ -1,3 +1,4 @@
+import $ from 'jquery';
 // When an AJAX request is sent successfully, the "active" class
 // is toggled on both elements.
 function followCollection() {

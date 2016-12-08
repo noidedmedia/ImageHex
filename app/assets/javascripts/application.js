@@ -11,7 +11,12 @@ import './in-place';
 import './settings';
 import './upload';
 import './users';
-
+import './images';
+import './errors';
+import './collections';
+import './commissions_dashboard';
+import './signed-in';
+import './share';
 
 Turbolinks.start();
 ReactUJS.setup();

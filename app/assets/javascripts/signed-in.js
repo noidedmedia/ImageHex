@@ -1,3 +1,4 @@
+import $ from 'jquery';
 /*
  * The purpose of this function is to prevent the display of certain dialogs
  * if the user isn't signed in, determined by whether or not a "signed-in"
