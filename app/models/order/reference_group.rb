@@ -1,6 +1,6 @@
 class Order::ReferenceGroup < ActiveRecord::Base
   belongs_to :order,
-    inverse_of: :references,
+    inverse_of: :reference_groups,
     required: true
 
   has_many :images,
@@ -23,8 +23,6 @@ class Order::ReferenceGroup < ActiveRecord::Base
   accepts_nested_attributes_for :images,
     allow_destroy: true
 
-  validates :category,
-    presence: true
 end
 
 require_dependency("order/reference_group/image.rb")

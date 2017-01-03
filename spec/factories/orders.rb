@@ -10,7 +10,7 @@ FactoryGirl.define do
 
     after(:build) do |o, e|
       o.reference_groups = build_list(:order_reference_group,
-                                      e.reference_count,
+                                      e.reference_group_count,
                                       order: o)
     end
   end
