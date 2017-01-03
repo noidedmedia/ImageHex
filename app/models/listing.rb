@@ -4,24 +4,7 @@ class Listing < ActiveRecord::Base
 
   scope :open, -> { where(open: true) }
 
-
   belongs_to :user, required: true
-
-  has_many :categories,
-    class_name: 'Listing::Category',
-    inverse_of: :listing,
-    autosave: true
-
-  accepts_nested_attributes_for :categories,
-    allow_destroy: true
-
-  has_many :options, 
-    class_name: 'Listing::Option',
-    inverse_of: :listing,
-    autosave: true
-
-  accepts_nested_attributes_for :options,
-    allow_destroy: true
 
   has_many :listing_images,
     class_name: 'Listing::Image',
@@ -32,13 +15,6 @@ class Listing < ActiveRecord::Base
     class_name: "::Image"
 
   has_many :orders
-
-  validates :base_price, presence: true,
-    numericality: { only_integer: true, greater_than_or_equal_to: 0 },
-    unless: :quote_only?
-
-
-  validate :listing_has_categories
 
   def completely_safe?
     ! (nsfw_gore? || nsfw_nudity? || nsfw_language? || nsfw_sexuality?)
@@ -55,14 +31,6 @@ class Listing < ActiveRecord::Base
 
   def closed?
     ! open?
-  end
-
-  private
-
-  def listing_has_categories
-    if categories.blank?
-      errors.add(:categories, "need at least one")
-    end
   end
 end
 

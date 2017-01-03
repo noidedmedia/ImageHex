@@ -1,7 +1,8 @@
-class Order::Reference::Image < ActiveRecord::Base
-  belongs_to :reference,
-    class_name: "Order::Reference",
-    foreign_key: :order_reference_id
+class Order::ReferenceGroup::Image < ActiveRecord::Base
+  belongs_to :reference_group,
+    class_name: "Order::ReferenceGroup",
+    foreign_key: :order_reference_group_id,
+    inverse_of: :images
 
   has_attached_file :img,
     styles: {

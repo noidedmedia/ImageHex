@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Order::Reference, type: :model do
+RSpec.describe Order::ReferenceGroup, type: :model do
   describe "validation" do
     it "requires category be on the proper listing" do
       order = create(:order)

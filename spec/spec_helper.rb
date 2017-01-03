@@ -6,7 +6,7 @@ ENV["RAILS_ENV"] ||= 'test'
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require "paperclip/matchers" # Make testing paperclip stuff much easier
+require "paperclip/matchers" # Make testing paperclip stuff much easiera
 
 Capybara.javascript_driver = :webkit
 
