@@ -98,9 +98,7 @@ class Order < ActiveRecord::Base
       accepted: true,
       accepted_at: Time.current
     }
-    if self.listing.quote_only?
-      attrs[:final_price] = params[:quote_price]
-    end
+    attrs[:final_price] = params[:quote_price]
     result = true
     begin
       Order.transaction do

@@ -11,49 +11,8 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     describe "POST #accept" do 
-      context "with priced listings" do
-        let(:listing) { create(:listing, user: @user) }
-        let(:order) do
-          create(:order,
-                 listing: listing,
-                 confirmed: true)
-        end
-
-        it "allows the user to accept the order" do
-          expect do
-            post :accept,
-              params: {
-              listing_id: listing.id,
-              id: order.id
-            }
-          end.to change{order.reload.accepted}.from(false).to(true)
-        end
-
-        it "changes the accepted_at time" do
-          expect do
-            post :accept,
-              params: {
-              listing_id: listing.id,
-              id: order.id
-            }
-          end.to change{order.reload.accepted_at}
-        end
-
-        it "creates a conversation" do
-          expect do
-            post :accept,
-              params: {
-              listing_id: listing.id,
-              id: order.id
-            }
-          end.to change{Conversation.count}.by(1)
-          expect(Conversation.last.user_ids).to contain_exactly(@user.id,
-                                                                order.user.id)
-        end
-      end
-
       context "with quote listings" do
-        let(:listing) { create(:quote_listing, user: @user) }
+        let(:listing) { create(:listing, user: @user) }
         let(:order) do
           create(:order,
                  listing: listing,
@@ -138,53 +97,41 @@ RSpec.describe OrdersController, type: :controller do
       end
     end
 
+
     describe "POST create" do
       context "with valid attributes" do
-
         let(:images_attributes) do
-          attributes_for(:order_reference_image).select do |a|
+          attributes_for(:order_reference_group_image).select do |a|
             [:description, :img].include? a
           end
         end
 
-        let(:references_attributes) do
-          {listing_category_id: listing.category_ids.sample,
-            description: "This is a test"}
+        let(:reference_group_attributes) do
+          {description: "This is a test"}
             .merge(images_attributes: {1 => images_attributes})
         end
 
-        let(:order_option_ids) do
-          # obtain a randomly sized sample
-          listing.options.sample(1 + rand(listing.options.count)).map(&:id)
-        end
-
         let(:order_params) do
+          rga = {1 => reference_group_attributes}
           attributes_for(:order)
-            .merge(option_ids: order_option_ids)
-            .merge(references_attributes: {1 => references_attributes})
+            .merge(description: "This is the one you want")
+            .merge(reference_groups_attributes: rga)
         end
 
-        it "creates a new order" do
-          p = order_params
-          expect do
-            post(:create,
-              params: {
-                listing_id: listing.id,
-                order: p
-              })
-          end.to change{Order.count}.by(1)
-          expect(Order.last.options.pluck(:id)).to match_array(order_option_ids)
-        end
-        it "creates a new order on the listing" do
-          p = order_params
-          expect do
+        it "fixes stuff" do
+          order_params # need this because it creates an order for some reason
+          p = lambda do
             post(:create,
                  params: {
-                  listing_id: listing.id,
-                  order: p
+                    listing_id: listing.id,
+                    order: order_params
                 })
-          end.to change{listing.orders.count}.by(1)
+          end
+          expect(p).to change{Order.count}.by(1).and \
+            change{listing.orders.count}.by(1)
         end
+        #it { should change{Order.count}.by 1}
+        #it { should change{listing.orders.count}.by 1}
       end
     end
   end

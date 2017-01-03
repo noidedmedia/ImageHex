@@ -9,14 +9,8 @@ RSpec.describe ListingsController, type: :controller do
       sign_in @user
     end
 
-    let(:category_attributes) { attributes_for(:listing_category) }
-
-    let(:option_attributes) { attributes_for(:listing_option) }
-
     let(:listing_attributes) do
       attributes_for(:listing)
-        .merge(categories_attributes: [category_attributes])
-        .merge(options_attributes: [option_attributes])
     end
 
     describe "#post create" do

@@ -1,9 +1,6 @@
 class Listing < ActiveRecord::Base
 
-  scope :confirmed, -> { where(confirmed: true) }
-
-  scope :open, -> { where(open: true) }
-
+  # RELATIONS
   belongs_to :user, required: true
 
   has_many :listing_images,
@@ -15,6 +12,20 @@ class Listing < ActiveRecord::Base
     class_name: "::Image"
 
   has_many :orders
+
+  # VALIDATION
+  validates :name,
+    presence: true
+
+  validates :description,
+    presence: true
+
+
+  # SCOPES
+
+  scope :confirmed, -> { where(confirmed: true) }
+
+  scope :open, -> { where(open: true) }
 
   def completely_safe?
     ! (nsfw_gore? || nsfw_nudity? || nsfw_language? || nsfw_sexuality?)

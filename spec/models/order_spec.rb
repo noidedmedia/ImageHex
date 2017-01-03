@@ -11,7 +11,7 @@ RSpec.describe Order, type: :model do
 
     it "requires itself to have some references" do
       o = build(:order)
-      o.references = []
+      o.reference_groups = []
       expect(o).to_not be_valid
     end
   end
