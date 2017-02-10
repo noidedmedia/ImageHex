@@ -6,18 +6,22 @@ class Order < ActiveRecord::Base
   belongs_to :image,
     required: false
 
-  has_many :reference_groups,
-    class_name: "Order::ReferenceGroup",
+  has_many :groups,
+    class_name: "Order::Group",
     inverse_of: :order
   
-  has_many :reference_images,
-    class_name: "Order::ReferenceGroup::Image",
+  has_many :group_images,
+    class_name: "Order::Group::Image",
     through: :references,
     source: :images
 
+  has_many :reference_images,
+    class_name: "::Image",
+    through: :group_images
+
   has_one :conversation
 
-  accepts_nested_attributes_for :reference_groups,
+  accepts_nested_attributes_for :groups,
     allow_destroy: true
 
   validates :user, presence: true
@@ -178,8 +182,8 @@ class Order < ActiveRecord::Base
   end
 
   def order_has_references
-    if reference_groups.blank?
-      errors.add(:references, "need at least 1")
+    if groups.blank?
+      errors.add(:groups, "need at least 1")
     end
   end
 

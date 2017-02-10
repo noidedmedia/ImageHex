@@ -1,4 +1,5 @@
 class Order::Group < ActiveRecord::Base
+
   belongs_to :order,
     inverse_of: :groups,
     required: true

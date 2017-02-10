@@ -1,7 +1,7 @@
 class Order::Group::Image < ActiveRecord::Base
   belongs_to :reference_group,
-    class_name: "Order::ReferenceGroup",
-    foreign_key: :order_reference_group_id,
+    class_name: "Order::Group",
+    foreign_key: :order_group_id,
     inverse_of: :images
 
   has_attached_file :img,
