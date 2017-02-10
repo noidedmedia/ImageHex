@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210020746) do
+ActiveRecord::Schema.define(version: 20170210023334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,32 +218,32 @@ ActiveRecord::Schema.define(version: 20170210020746) do
     t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
-  create_table "order_reference_group_images", force: :cascade do |t|
-    t.integer  "order_reference_group_id"
+  create_table "order_group_images", force: :cascade do |t|
+    t.integer  "order_group_id"
     t.text     "description"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "img_file_name"
     t.string   "img_content_type"
     t.integer  "img_file_size"
     t.datetime "img_updated_at"
     t.boolean  "img_processing"
-    t.index ["order_reference_group_id"], name: "index_order_reference_group_images_on_order_reference_group_id", using: :btree
+    t.index ["order_group_id"], name: "index_order_group_images_on_order_group_id", using: :btree
   end
 
-  create_table "order_reference_group_tags", force: :cascade do |t|
-    t.integer  "order_reference_group_id", null: false
-    t.integer  "tag_id",                   null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+  create_table "order_group_tags", force: :cascade do |t|
+    t.integer  "order_group_id", null: false
+    t.integer  "tag_id",         null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  create_table "order_reference_groups", force: :cascade do |t|
+  create_table "order_groups", force: :cascade do |t|
     t.integer  "order_id"
     t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["order_id"], name: "index_order_reference_groups_on_order_id", using: :btree
+    t.index ["order_id"], name: "index_order_groups_on_order_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -411,10 +411,10 @@ ActiveRecord::Schema.define(version: 20170210020746) do
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
   add_foreign_key "notifications", "users"
-  add_foreign_key "order_reference_group_images", "order_reference_groups"
-  add_foreign_key "order_reference_group_tags", "order_reference_groups", on_delete: :cascade
-  add_foreign_key "order_reference_group_tags", "tags", on_delete: :cascade
-  add_foreign_key "order_reference_groups", "orders"
+  add_foreign_key "order_group_images", "order_groups"
+  add_foreign_key "order_group_tags", "order_groups", on_delete: :cascade
+  add_foreign_key "order_group_tags", "tags", on_delete: :cascade
+  add_foreign_key "order_groups", "orders"
   add_foreign_key "orders", "images", on_delete: :restrict
   add_foreign_key "orders", "listings"
   add_foreign_key "orders", "users"

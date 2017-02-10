@@ -1,4 +1,4 @@
-class Order::ReferenceGroup::Image < ActiveRecord::Base
+class Order::Group::Image < ActiveRecord::Base
   belongs_to :reference_group,
     class_name: "Order::ReferenceGroup",
     foreign_key: :order_reference_group_id,

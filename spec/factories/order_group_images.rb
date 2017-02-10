@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :order_reference_group_image, class: 'Order::ReferenceGroup::Image' do
-    reference_group { create(:order_reference_group) } 
+  factory :order_group_image, class: 'Order::Group::Image' do
+    reference_group { create(:order_group) } 
     description { Faker::Lorem.paragraph }
     img do
       path = Rails.root.join("spec", "fixtures", "files", "test.jpg")
