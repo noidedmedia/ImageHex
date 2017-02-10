@@ -147,19 +147,19 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
       .permit(:description,
-              reference_groups_attributes: [reference_group_params])
+              groups_attributes: [group_params])
       .merge(user: current_user)
   end
 
-  def reference_group_params
+  def group_params
     [:description,
      :id,
       :_destroy,
       tag_ids: [],
-      images_attributes: [reference_image_params]]
+      group_images_attributes: [group_image_params]]
   end
 
-  def reference_image_params
+  def group_image_params
     [:description,
       :name,
       :img,

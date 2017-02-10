@@ -101,21 +101,21 @@ RSpec.describe OrdersController, type: :controller do
     describe "POST create" do
       context "with valid attributes" do
         let(:images_attributes) do
-          attributes_for(:order_reference_group_image).select do |a|
+          attributes_for(:order_group_image).select do |a|
             [:description, :img].include? a
           end
         end
 
-        let(:reference_group_attributes) do
+        let(:group_attributes) do
           {description: "This is a test"}
             .merge(images_attributes: {1 => images_attributes})
         end
 
         let(:order_params) do
-          rga = {1 => reference_group_attributes}
+          rga = {1 => group_attributes}
           attributes_for(:order)
             .merge(description: "This is the one you want")
-            .merge(reference_groups_attributes: rga)
+            .merge(groups_attributes: rga)
         end
 
         it "fixes stuff" do

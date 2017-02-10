@@ -28,7 +28,7 @@ class Order::Group < ActiveRecord::Base
   validates :description,
     presence: true
 
-  accepts_nested_attributes_for :images,
+  accepts_nested_attributes_for :group_images,
     allow_destroy: true
 
 end

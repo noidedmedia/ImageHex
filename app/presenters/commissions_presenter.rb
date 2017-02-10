@@ -1,18 +1,20 @@
-class CommissionsPresenter
+class CommissionsPresenter < ApplicationPresenter
   def initialize(current_user)
     @user = current_user
   end
 
+  memoize :placed, :received, :listings
+
   def placed
-    @placed_orders ||= OrdersPresenter.new(@user.orders)
+    OrdersPresenter.new(@user.orders)
   end
 
   def received
-    @recieved_orders ||= OrdersPresenter.new(Order.to_user(@user).confirmed)
+    OrdersPresenter.new(Order.to_user(@user).confirmed)
   end
 
   def listings
-    @listings ||= ListingsPresenter.new(@user.listings.includes(:images).to_a)
+    ListingsPresenter.new(@user.listings.includes(:images).to_a)
   end
 
   class OrdersPresenter
@@ -39,7 +41,7 @@ class CommissionsPresenter
     end
 
     def draft
-      @draft ||= @orders.select{|o| ! o.confirmed? }
+      @draft ||= @orders.select{|o| ! o.confirmed?}
     end
 
     def unpaid

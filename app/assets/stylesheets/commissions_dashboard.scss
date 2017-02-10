@@ -17,7 +17,7 @@
 }
 
 .dashboard-category {
-  padding: 0 20px 0 20px;
+  padding: 0 20px;
   margin-bottom: 10px;
 
   h1 {
@@ -101,7 +101,7 @@
   box-shadow: 3px 5px 12px 0 rgba(100, 100, 100, 0.25);
 
   a {
-    color: black;
+    color: #000;
     text-decoration: none;
   }
 
@@ -117,7 +117,7 @@
   }
 
   .item-bottom-bar {
-    background-color: white;
+    background-color: #fff;
     height: 60px;
     position: absolute;
     width: 100%;
@@ -139,10 +139,8 @@
 
   .item-price {
     z-index: 10;
-    font-weight: 600;
     right: -3px;
     top: 15px;
-    margin-left: 50px;
     position: absolute;
     font-size: 20px;
     font-weight: 700;
@@ -153,12 +151,12 @@
     margin-left: 15px;
     background: rgb(253, 235, 153);
     text-shadow: rgba(255, 255, 255, 0.2) 1px 1px, rgba(255, 255, 255, 0.2) 1px 1px;
-    border-radius: 0 3px 2px 0px; 
+    border-radius: 0 3px 2px 0;
     text-align: left; 
 
   }
 
-  .item-price:after {
+  .item-price::after {
     content: "";
     position: absolute;
     right: 100%;
