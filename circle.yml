@@ -2,7 +2,7 @@ machine:
   timezone:
     UTC
   ruby:
-    version: 2.3.1
+    version: 2.4.0
 
 compile:
   post:
