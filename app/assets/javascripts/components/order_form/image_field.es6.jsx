@@ -1,4 +1,5 @@
 import React from 'react';
+import TextareaInput from '../shared/textarea_input';
 
 class ImageField extends React.Component {
   constructor(props) {
@@ -8,6 +9,10 @@ class ImageField extends React.Component {
       hasUploaded: !! props.image.url,
       containerClass: "reference-image-fields"
     };
+  }
+
+  fieldName(name) {
+    return `${this.props.baseFieldName}[${name}]`;
   }
 
   render() {
@@ -33,10 +38,10 @@ class ImageField extends React.Component {
     else {
       className = className + " inactive";
       preview = <div className="preview-inner">
-        <div>Click or drag to upload</div>
+        <div>Click or drag to add a reference image</div>
       </div>;
     }
-    return <li className={className}>
+    return <div className={className}>
       {this.idField()}
       <div className="reference-image-preview-section">
         {preview}
@@ -45,23 +50,17 @@ class ImageField extends React.Component {
           type="file" />;
       </div>
       <div className="reference-image-info-section">
-        <label 
-          className="larger-label"
-          for={fieldName("description")}>
-          Description
-        </label>
-        <textarea 
+        <TextareaInput
           name={fieldName("description")}
-          defaultValue={this.props.image.description} />
-        <div className="column-right-align">
-          <a href="#"
-            onClick={this.remove.bind(this)}
-            className="commission-remove-button">
-            Remove Reference Image
-          </a>
-        </div>
+          defaultValue={this.props.description}
+          label={"Image Description"} />
+        <button
+          onClick={this.remove.bind(this)}
+          className="commission-remove-button">
+          Remove Reference Image
+        </button>
       </div>
-    </li>;
+    </div>;
   }
 
   change(event) {
@@ -71,7 +70,6 @@ class ImageField extends React.Component {
       if(! this.state.imgURL) {
         this.props.addImage();
       }
-
       this.setState({
         imgURL: reader.result,
         hasUploaded: false
@@ -85,21 +83,14 @@ class ImageField extends React.Component {
 
   remove(e) {
     e.preventDefault();
-    this.setState({
-      containerClass: this.state.containerClass + " removed"
-    }, () => {
-      // Kill after animation finishes
-      window.setTimeout(() => {
-        this.props.removeSelf();
-      }, 990);
-    });
+    this.props.removeSelf();
   }
 
   idField() {
-    if(this.props.image.id > 0) {
+    if(this.props.image.id) {
       return <input
         type="hidden"
-        name={`${this.props.baseFieldName}[id]`}
+        name={this.fieldName("id")}
         value={this.props.image.id} />;
     }
     return <span></span>;

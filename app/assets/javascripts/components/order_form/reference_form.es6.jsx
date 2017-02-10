@@ -16,7 +16,6 @@ class ReferenceForm extends React.Component {
   }
 
   render() {
-    const categoryName = this.props.category.name;
     const reference = this.props.reference;
     const fieldName = this.fieldName.bind(this);
     return <li className={this.state.className}>

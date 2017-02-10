@@ -17,6 +17,7 @@ import './collections';
 import './commissions_dashboard';
 import './signed-in';
 import './share';
+import './input';
 
 Turbolinks.start();
 ReactUJS.setup();

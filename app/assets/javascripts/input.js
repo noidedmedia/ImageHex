@@ -1,15 +1,14 @@
 function checkIfEmpty() {
-  $(".input").each(function() {
+  $(".input:not(.react-input)").each(function() {
     if ( $(this).val() === "" ) {
       $(this).siblings("label").addClass("input-empty");
-      $(this).on("input", function() {
-        console.log("test");
-        if ( $(this).val() === "" ) {
-          $(this).siblings("label").addClass("input-empty");
-        } else {
-          $(this).siblings("label").removeClass("input-empty");
-        }    
-      });
+    } else {
+      $(this).siblings("label").removeClass("input-empty");
+    }    
+  });
+  $(".input:not(.react-input)").on("input", function() {
+    if ( $(this).val() === "" ) {
+      $(this).siblings("label").addClass("input-empty");
     } else {
       $(this).siblings("label").removeClass("input-empty");
     }    
@@ -22,4 +21,3 @@ var ready = function() {
 };
 
 document.addEventListener("turbolinks:load", ready);
-

@@ -94,10 +94,6 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   border-radius: 6px;
 }
 
-.listing-price-section {
-  font-size: 16px;
-}
-
 .listing-order-button {
   font-size: 16px;
   text-decoration: none;
@@ -133,12 +129,6 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   }
 }
 
-.listing-overall-prices {
-  padding: $standard-padding;
-  margin-bottom: $standard-padding;
-  font-size: 14px;
-}
-
 .listing-form-section-header {
   padding: $standard-padding;
   background-color: $header-background-color;
@@ -148,35 +138,6 @@ $header-text-color: rgba(255, 255, 255, 0.8);
 
   h1 {
     font-size: 2.4rem;
-  }
-}
-
-.big-description {
-  justify-content: space-between;
-  align-items: center;
-  transition: 1s linear;
-  overflow: hidden;
-  margin-bottom: ($standard-padding / 2);
-
-  > div {
-    max-width: 75%;
-  }
-
-  &.price-active {
-    max-height: 30px;
-  }
-
-  input[type="checkbox"] {
-    width: 25%;
-  }
-
-  &.price-inactive {
-    max-height: 0;
-  }
-
-  label {
-    font-size: 18px;
-    white-space: nowrap;
   }
 }
 
@@ -251,30 +212,6 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   }
 }
 
-.options-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.options-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.option-fields-section {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  padding: $standard-padding;
-  display: flex;
-  flex-direction: column;
-  background-color: #ddd;
-  transition: 1s ease-in-out;
-
-  label {
-    font-size: 16px;
-  }
-}
-
 #example-image-section {
   margin: 0;
 }
@@ -322,18 +259,6 @@ $header-text-color: rgba(255, 255, 255, 0.8);
     }
   }
 }
-
-.remove-option-button {
-  font-size: 16px;
-  color: $logo-red;
-  cursor: pointer;
-
-  &::before {
-    content: $icon-close;
-    margin-right: 5px;
-  }
-}
-
 
 .padded-dark-header {
   background-color: #272727;

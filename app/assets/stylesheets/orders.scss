@@ -113,39 +113,6 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
 
 
 
-.reference-group-fields {
-  background-color: $fields-background-color;
-  color: $fields-text-color;
-  padding: calc(#{$standard-padding} / 2) #{$standard-padding};
-  position: relative;
-  opacity: 1;
-
-  &.removed {
-    opacity: 0;
-    transition: 1s ease-in-out;
-  }
-
-  &.show-order {
-    .markdown-description {
-      padding: $standard-padding;
-      margin: $standard-padding 0;
-      background-color: #f7f7f7;
-    }
-  }
-}
-
-.reference-group-section-header {
-  font-size: 18px;
-  margin-bottom: 1px;
-  color: $fields-text-color;
-}
-
-.reference-group-section-description {
-  font-size: 14px;
-  color: $fields-text-color;
-  margin-bottom: 5px;
-}
-
 .column-right-align {
   display: flex;
   flex-direction: row;
@@ -163,22 +130,39 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   white-space: nowrap;
 }
 
-@keyframes remove-reference-image {
-  0% {
-    max-width: 100%;
-    max-height: 240px;
-  }
+.reference-image-list {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
-  50% {
-    max-width: 0;
-    max-height: 240px;
-  }
+.order-slide-enter {
+  max-height: 0;
+  overflow: hidden;
+  transform: translateX(-100%);
 
-  100% {
-    max-height: 0;
-    max-width: 0;
+  &.order-slide-enter-active {
+    max-height: 500px;
+    transform: translateX(0%);
+    transition: 500ms linear;
   }
 }
+
+.order-slide-leave {
+  transform: translateX(0%);
+  overflow: hidden;
+  max-height: 500px;
+  
+  &.order-slide-leave-active {
+    transform: translateX(100%);
+    max-height: 0;
+    transition: 500ms linear;
+  }
+}
+
+
+
+
 
 .reference-image-fields {
   display: flex;
@@ -207,9 +191,12 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
     max-width: 100%;
 
     .reference-image-info-section {
+      overflow: hidden;
       padding-left: $standard-padding;
       max-width: 100%;
       flex-grow: 1;
+      transition: max-width 1s linear;
+      transition-delay: 500ms;
 
       @media #{$mobile} {
         padding: 0;
@@ -220,25 +207,11 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
       }
     }
   }
-
-  &.removed {
-    animation: 1s linear remove-reference-image;
-    animation-iteration-count: 1;
-  }
 }
 
 .reference-image-info-section {
-  transition: 1s ease-in-out;
   display: flex;
   flex-flow: column nowrap;
-
-  .larger-label {
-    padding-bottom: 5px;
-  }
-
-  textarea {
-    flex-grow: 1;
-  }
 }
 
 .reference-image-preview-section {
@@ -268,7 +241,7 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   height: 100%;
   width: 100%;
   z-index: 2;
-  background-color: #f2f2f2;
+  background-color: #fff;;
   color: #000;
   cursor: pointer;
   pointer-events: none;
@@ -276,6 +249,7 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
   font-size: 14px;
+  text-align: center;
 
   img {
     max-width: 100%;

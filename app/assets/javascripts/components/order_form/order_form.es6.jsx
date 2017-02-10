@@ -1,75 +1,53 @@
-import OptionsForm from './options_form.es6.jsx';
-import ReferenceSection from './reference_section.es6.jsx';
 import React from 'react';
+import GroupRemovalFields from './group_removal_fields';
+import ReferenceGroupForm from './reference_group_form';
 import ReactUJS from '../../react_ujs';
+import TransitionGroup from 'react-addons-css-transition-group';
 
 class OrderForm extends React.Component {
   constructor(props) {
     super(props);
-    var optionIds = (props.order_options || []).map(o => o.listing_option_id);
     this.state = {
-      optionIds,
-      references: (props.references) || [],
-      removedReferences: []
+      groups: props.reference_groups || [],
+      removedGroupIds: []
     };
     this.refKey = 0;
   }
 
   render() {
+    let groups = this.state.groups.map((rg, idx) => {
+      let baseFieldName = `order[reference_groups][${idx}]`;
+      return <ReferenceGroupForm
+        baseFieldName={baseFieldName}
+        group={rg}
+        removeSelf={this.removeGroup.bind(this, idx)} />;
+    });
+    let startIndex = this.state.groups.length;
+    let removed = this.state.removedGroupIds.map((id, idx) => {
+      return <GroupRemovalFields id={id} index={startIndex + idx} />;
+    });
     return <div>
-      <div className="order-form-overall-description">
-        <div className="heading">
-          <label htmlFor="order[name]">
-            Name
-          </label>
-          <div class="description-squared">
-            Provide a name, to help the artist keep track of this order
-          </div>
-        </div>
-        <div className="lower-section fields-section">
-          <input
-            type="text"
-            name="order[name]"
-            defaultValue={this.props.name} />
-        </div>
-      </div>
-      <div className="order-form-overall-description">
-        <div className="heading">
-          <label htmlFor="order[description]">
-            Description
-          </label>
-          <div className="description-squared">
-            Provide an overall description of what you would like
-            {" " + this.props.listing.username} to create. 
-          </div>
-        </div>
-        <div className="lower-section fields-section">
-          <textarea 
-            name="order[description]"
-            defaultValue={this.props.description} />
-        </div>
-      </div>
-      <ReferenceSection
-        categories={this.props.listing.categories}
-        references={this.state.references}
-        removedReferences={this.state.removedReferences}
-        addReference={this.addReference.bind(this)}
-        removeReference={this.removeReference.bind(this)} />
-      <OptionsForm
-        options={this.props.listing.options}
-        optionIds={this.state.optionIds}
-        addOption={this.addOption.bind(this)}
-        removeOption={this.removeOption.bind(this)}
-      />
+      <ul className="reference-group-form-list">
+        <TransitionGroup
+          transitionName="order-slide"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+          {groups}
+        </TransitionGroup>
+      </ul>
+      <button className="add-reference-group-form"
+        onClick={this.addGroup.bind(this)}>
+        Add Reference Group
+      </button>
+      {removed}
       <div className="order-form-footer">
-        {this.getPrice()}
         {this.submitButton()}
       </div>
     </div>
   }
 
   submitButton() {
-    if(this.state.references.length > 0) {
+    if(this.state.groups.length > 0) {
       return <button 
         type="submit">
         Submit
@@ -81,89 +59,24 @@ class OrderForm extends React.Component {
     </button>;
   }
 
-  addOption(option_id) {
-    var ar = [...this.state.optionIds, option_id];
-    var uniq = ar.filter((item, pos) => ar.indexOf(item) == pos);
-    this.setState({
-      optionIds: uniq
-    });
-  }
-
-  removeOption(option_id) {
-    var o = this.state.optionIds.filter((id) => id != option_id);
-    this.setState({
-      optionIds: o
-    });
-  }
-
-  addReference(category_id) {
-    const n = {
-      listing_category_id: category_id,
-      key: this.refKey
-    };
-    this.refKey = this.refKey - 1;
-    this.setState({
-      references: [...this.state.references, n]
-    });
-  }
-
-  removeReference(index) {
-    var {references} = this.state;
-    let ref = references.splice(index, 1);
-    this.setState({
-      references: references,
-      removedReferences: [...this.state.removedReferences, ...ref]
-    });
-  }
-
-  getPrice() {
-    if(this.props.listing.quote_only) {
-      return <div className="quoted-price">
-        Artist will give a quote on the price
-      </div>;
+  removeGroup(index) {
+    let dup = this.state.groups.slice();
+    let removed = dup.splice(index, 1);
+    let rgi = this.state.removedGroupIds;
+    if(removed.id > 0) {
+      rgi = [...rgi, removed.id];
     }
-    var price = this.props.listing.base_price;
-    const oprice = this.optionsPrice();
-    const refprice = this.referencesPrice();
-    console.log("Prices:",{price, oprice, refprice});
-    price += oprice + refprice;
-    return <div className="price">
-      Price: ${price / 100}
-    </div>;
-  }
-
-  optionsPrice() {
-    var prices = this.props.listing.options.map((option) => {
-      var selected = this.state.optionIds.indexOf(option.id) != -1;
-      if(selected) {
-        return option.price;
-      }
-      else {
-        return 0;
-      }
+    this.setState({
+      groups: dup,
+      removedGroupIds: rgi
     });
-    const sum = prices.reduce((a, b) => a + b, 0);
-    return sum;
   }
 
-  referencesPrice() {
-    return this.props.listing.categories.map((cat) => {
-      const refsUnder = this.refsUnder(cat);
-      const refCount = refsUnder.length;
-      const paidRefs = (refCount - cat.free_count);
-      if(paidRefs <= 0) {
-        return 0;
-      }
-      else {
-        return paidRefs * cat.price;
-      }
-    }).reduce((a, b) => a + b, 0);
-  }
-
-  refsUnder(category) {
-    return this.state.references.filter((r) => (
-      r.listing_category_id === category.id
-    ));
+  addGroup(event) {
+    event.preventDefault();
+    this.setState({
+      groups: [...this.state.groups, {id: this.refKey--}]
+    });
   }
 }
 

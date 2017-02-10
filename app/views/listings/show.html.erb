@@ -28,16 +28,6 @@
     <% end %>
   </div>
 
-  <ul class="show-listing-categories">
-    <%= render partial: "category", collection: @listing.categories %>
-  </ul>
-
-  <div class="show-listing-options-section">
-    <h2 class="padded-dark-header">Options</h2>
-    <ul class="show-listing-options-list">
-      <%= render partial: "option", collection: @listing.options %>
-    </ul>
-  </div>
 
   <div class="show-listing-example-images">
     <h2 class="padded-dark-header">
@@ -54,11 +44,6 @@
     </ul>
   </div>
 
-  <% unless @listing.quote_only? %>
-    <div class="listing-price-section white-listing-box">
-      Base Price: <%= price @listing.base_price %>
-  </div>
-<% end %>
 
 
 <% if ! @listing.confirmed? %>
