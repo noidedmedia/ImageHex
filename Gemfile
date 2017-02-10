@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 # http://rubyonrails.org/
 # Rails Guides: http://guides.rubyonrails.org/
 # Ruby on Rails, maybe you've heard of it?
-gem 'rails', "~> 5.0.0"
+gem 'rails', "~> 5.0.1"
 
 ##
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
@@ -294,6 +294,10 @@ end
 ##
 # Test-only gems
 group :test do
+
+  ##
+  # A gem that lets us output in a Junit-like format
+  gem 'rspec_junit_formatter'
 
   gem 'database_cleaner'
   ##

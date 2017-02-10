@@ -11,7 +11,8 @@ test:
   pre:
     - gem install scss_lint
   override:
-    - bundle exec rspec --color --require spec_helper --require rails_helper spec:
+      - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format progress --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
+
         timeout: 900
   post:
     - scss-lint -c config/scss-lint.yml
