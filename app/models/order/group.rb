@@ -4,14 +4,10 @@ class Order::Group < ActiveRecord::Base
     inverse_of: :groups,
     required: true
 
-  has_many :group_images,
+  has_many :images,
     class_name: "Order::Group::Image",
     foreign_key: :order_group_id,
     dependent: :destroy
-
-  has_many :images,
-    class_name: "::Image",
-    through: :group_images
 
   has_many :group_tags,
     class_name: "Order::Group::Tag",
@@ -28,7 +24,7 @@ class Order::Group < ActiveRecord::Base
   validates :description,
     presence: true
 
-  accepts_nested_attributes_for :group_images,
+  accepts_nested_attributes_for :images,
     allow_destroy: true
 
 end

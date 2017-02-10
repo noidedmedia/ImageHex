@@ -10,14 +10,10 @@ class Order < ActiveRecord::Base
     class_name: "Order::Group",
     inverse_of: :order
   
-  has_many :group_images,
-    class_name: "Order::Group::Image",
-    through: :references,
-    source: :images
-
   has_many :reference_images,
-    class_name: "::Image",
-    through: :group_images
+    class_name: "Order::Group::Image",
+    through: :groups,
+    source: :images
 
   has_one :conversation
 

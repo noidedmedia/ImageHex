@@ -2,7 +2,7 @@
   <div class="show-listing-header flex-column">
     <h1><%= link_to listing.name, listing %></h1>
     <div class="listing-artist flex-row">
-      <%= image_tag listing.user.avatar_img_thumb %>
+      <%= image_tag listing.user_avatar %>
       <span>
         <%= link_to listing.user.name, listing.user %>
       </span>
@@ -11,9 +11,11 @@
 
   <div class="show-listing-description white-listing-box">
     <%= markdown_parse listing.description %>
+
+    <b>Average Price: <%= listing.average_price %></b>
   </div>
   <ul class="listing-example-images-list flex-row">
-    <% listing.images.take(8).each do |img| %>
+    <% listing.sample_images(8).each do |img| %>
       <li class="listing-example-images-item">
         <%= link_to img do %>
           <%= image_tag img.f(:medium) %>
