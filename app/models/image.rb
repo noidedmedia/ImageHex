@@ -60,8 +60,8 @@ class Image < ActiveRecord::Base
   has_attached_file :f,
                     # Steal Flickr's suffixes
                     styles: {
-                      small: "140x140>",
-                      medium: "300x300>",
+                      small: {geometry: "140x140>", animated: false},
+                      medium: {geometry: "300x300>", animated: false},
                       large: "500x500>",
                       huge: "1000x1000>" },
                     # Use suffixes for the path

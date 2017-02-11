@@ -66,22 +66,12 @@
   overflow: hidden;
   flex-basis: auto;
   margin: 4px;
-  width: calc(33.3333% - 8px);
-  max-height: 33vw;
+  height: 15vw;
 
-  a {
-    display: flex;
-    justify-content: center;
-
-    img {
-      object-fit: cover;
-      object-position: 50% 0%;
-      width: auto;
-
-      @media #{$mobile} {
-        width: 100%;
-      }
-    }
+  img {
+    display: block;
+    width: auto;
+    max-height: 100%;
   }
 
   @media #{$mobile} {
