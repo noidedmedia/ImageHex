@@ -142,3 +142,26 @@
 .row-fields {
   justify-content: space-between;
 }
+
+
+.markdown-area {
+  font-size: 14px;
+
+  ol {
+    list-style-type: decimal;
+    margin-left: 2em;
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+
+  li {
+    display: list-item;
+  }
+
+  code {
+    background-color: rgba(20, 20, 20, 95);
+    color: rgba(13, 250, 0, 100);
+    padding: 5px;
+  }
+}

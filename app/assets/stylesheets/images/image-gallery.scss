@@ -60,6 +60,7 @@
   width: 100%;
   padding: 15px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .image-gallery-item {
@@ -78,4 +79,12 @@
     width: calc(100% - 8px);
     max-height: 200vh;
   }
+  
+  &:last-of-type {
+    flex-grow: 1;
+  }
+}
+
+.gallery-item-small {
+  height: 150px;
 }

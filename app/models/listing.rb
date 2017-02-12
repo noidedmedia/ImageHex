@@ -22,9 +22,6 @@ class Listing < ActiveRecord::Base
 
 
   # SCOPES
-
-  scope :confirmed, -> { where(confirmed: true) }
-
   scope :open, -> { where(open: true) }
 
   def completely_safe?

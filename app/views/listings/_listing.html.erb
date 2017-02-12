@@ -1,26 +1,28 @@
 <li class="listings-list-item">
-  <div class="show-listing-header flex-column">
+  <div class="listing-info">
     <h1><%= link_to listing.name, listing %></h1>
-    <div class="listing-artist flex-row">
-      <%= image_tag listing.user_avatar %>
-      <span>
-        <%= link_to listing.user.name, listing.user %>
-      </span>
+
+    <div class="listings-list-description">
+      <%= markdown_parse listing.description %>
     </div>
-  </div>
 
-  <div class="show-listing-description white-listing-box">
-    <%= markdown_parse listing.description %>
-
-    <b>Average Price: <%= listing.average_price %></b>
-  </div>
-  <ul class="listing-example-images-list flex-row">
-    <% listing.sample_images(8).each do |img| %>
-      <li class="listing-example-images-item">
-        <%= link_to img do %>
-          <%= image_tag img.f(:medium) %>
-        <% end %>
-      </li>
+    <% if listing.average_price %>
+      <div class="listing-average-price">
+        Average Price: 
+        <%= price listing.average_price %>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
+  <% unless listing.sample_images.empty? %>
+    <ul class="image-gallery listing-image-gallery">
+      <% listing.sample_images(8).each do |img| %>
+        <li class="image-gallery-item gallery-item-small">
+          <%= link_to img do %>
+            <%= image_tag img.f(:medium) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </li>

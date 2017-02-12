@@ -4,29 +4,46 @@ $standard-padding: 20px;
 $header-background-color: #272727;
 $header-text-color: rgba(255, 255, 255, 0.8);
 
-
-#listings-list {
-  padding-top: 20px;
-  max-width: 700px;
+.listings-list {
+  padding: 40px 40px 30px;
   margin: auto;
-  padding-bottom: 20px;
+  columns: 600px auto;
+  column-fill: balance;
 }
 
 .listings-list-item {
   padding: $standard-padding 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-right: 10px;
+  max-width: 600px;
 
-  &:not(:last-of-type) {
-    margin: $standard-padding 0;
-    border-bottom: 10px solid #333;
+  h1 {
+    text-align: center;
+    font-size: 2.0rem;
   }
 
   a {
     text-decoration: none;
-
+    color: inherit;
     &:hover {
       text-decoration: underline;
     }
   }
+}
+
+.listings-list-description {
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+.listing-average-price {
+  padding: 0 15px;
+  font-size: 16px;
+  text-align: center;
 }
 
 .listing-allowed-content {

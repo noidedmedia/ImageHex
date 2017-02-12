@@ -45,7 +45,7 @@ class SearchQuery
   end
 
   def groups
-    @q["tag_groups"].values
+    @q["tag_groups"].try(:values) || []
   end
 
   def to_page_h

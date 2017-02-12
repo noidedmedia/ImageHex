@@ -13,7 +13,6 @@ class ListingsController < ApplicationController
 
   def index
     listings = Listing.all
-      .confirmed
       .open
       .order(created_at: :desc)
       .paginate(page: page, per_page: per_page)

@@ -1,5 +1,6 @@
-class ApplicationPresenter
+require 'set'
 
+class ApplicationPresenter
   include Rails.application.routes.url_helpers
 
   def self.memoize(*attrs)
@@ -32,7 +33,9 @@ class ApplicationPresenter
     self.send(:prepend, m)
   end
 
-  def self.to_presenter(obj)
+  def self.to_presenter(obj, hashset = nil)
+    hashset ||= Set.new
+    return self.presenter_map(obj, hashset) if obj.is_a? Enumerable
     v = obj.class.name.split("::").map{|x| x + "Presenter"}.join("::")
     o = const_get(v)
     unless o && o.is_a?(Class)
@@ -42,6 +45,15 @@ class ApplicationPresenter
     o.new(obj)
   end
 
+  def self.presenter_map(enumerable, hashset)
+    if hashset.contains?(enumerable)
+      raise ArgumentError, "Recursive array breaks everything"
+    end
+    hashset = hashset + [enumerable].to_set
+    enumerable.map{|x| to_presenter(x, hashset)}
+  end
+
+
   def self.delegate_to(sym)
     define_method(:_get_delegate) do 
       self.send(:instance_variable_get, "@#{sym}")
@@ -50,8 +62,7 @@ class ApplicationPresenter
     m = Module.new do |r|
       define_method(:method_missing) do |meth, *args|
         a = _get_delegate
-        a.public_send(meth, *args) || 
-          super(meth, *args)
+        a.public_send(meth, *args)
       end
 
       define_method(:respond_to_missing?) do |sym, include_private = false|
@@ -77,6 +88,10 @@ class ApplicationPresenter
 
     define_method(:to_ary) do
       _collection_delegate.to_ary.map(&mapmeth)
+    end
+
+    define_method(:to_a) do 
+      _collection_delegate.to_a.map(&mapmeth)
     end
   end
 end
