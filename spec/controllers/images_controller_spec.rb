@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe ImagesController do
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   context "when logged in" do
     before(:each) do
       @user = FactoryGirl.create(:user)

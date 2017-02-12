@@ -22,17 +22,6 @@ class ListingsController < ApplicationController
     @listings = ListingsPresenter.new(listings)
   end
 
-  def confirm
-    begin
-      @listing = Listing.find(params[:id])
-      authorize @listing
-      @listing.update(confirmed: true, open: true)
-      redirect_to @listing
-    rescue Pundit::NotAuthorizedError
-      redirect_to "/stripe/authorize"
-    end
-  end
-
   def show
     @listing = Listing.find(params[:id])
     authorize @listing
@@ -81,7 +70,13 @@ class ListingsController < ApplicationController
   def open
     @listing = Listing.find(params[:id])
     authorize @listing
-    @listing.make_open!
+    begin
+      ListingOpenService.new(@listing).perform
+    rescue ListingOpenService::StripelessUserError
+      redirect_to authorize_stripe_index,
+        alert: "You need to connect to Stripe first."
+      return
+    end
     redirect_to @listing
   end
 

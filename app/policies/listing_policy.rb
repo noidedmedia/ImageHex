@@ -16,7 +16,7 @@ class ListingPolicy < ApplicationPolicy
   end
 
   def show?
-    (@listing.open? && @listing.confirmed?) || owned?
+    @listing.open? || owned?
   end
 
   def new?
@@ -33,12 +33,6 @@ class ListingPolicy < ApplicationPolicy
 
   def update?
     owned?
-  end
-
-  def confirm?
-    (owned? && 
-      @user.stripe_user_id && 
-      ! @listing.confirmed?)
   end
 
   def create?

@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe CollectionsController, type: :controller do
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   describe "get #index" do
     it "renders the index page" do
       user = FactoryGirl.create(:user)

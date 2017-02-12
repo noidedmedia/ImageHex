@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe TagsController, type: :controller do
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   describe "get #suggest" do
     it "suggests properly" do
       names = %w(boddy billy broke)

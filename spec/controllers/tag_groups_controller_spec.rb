@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe TagGroupsController do
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   context "when logged in" do
     let(:image) { FactoryGirl.create(:image) }
     before(:each) do

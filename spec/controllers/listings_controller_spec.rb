@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ListingsController, type: :controller do
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   context "when logged in" do
     before(:each) do
       @user = create(:user)

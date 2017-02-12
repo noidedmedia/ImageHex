@@ -23,15 +23,7 @@ class OrdersController < ApplicationController
   def purchase
     @order = @listing.orders.find(params[:id])
     authorize @order
-    fee = FeeCalculator.new(@listing, @order).fee
-    c = Stripe::Charge.create({
-      amount: @order.final_price,
-      currency: "usd",
-      source: params[:stripeToken],
-      application_fee: fee,
-      destination: @listing.user.stripe_user_id
-    })
-    @order.charge(c)
+    OrderChargeService.new(@order, params[:stripeToken]).perform
     redirect_to [@listing, @order]
   end
 
@@ -141,7 +133,6 @@ class OrdersController < ApplicationController
   protected
   def load_listing
     @listing = Listing.find(params[:listing_id])
-    raise Pundit::NotAuthorizedError unless @listing.confirmed?
   end
 
   def order_params

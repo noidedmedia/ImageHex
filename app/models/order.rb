@@ -83,16 +83,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def charge(charge)
-    self.class.transaction do 
-      update(charge_id: charge["id"],
-             charged_at: Time.at(charge["created"]).utc.to_datetime)
-      Notification.create(user: self.listing.user,
-                          kind: :order_paid,
-                          subject: self)
-    end
-  end
-
   def accept(params)
     attrs = {
       accepted: true,

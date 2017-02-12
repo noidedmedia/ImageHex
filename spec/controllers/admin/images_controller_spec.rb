@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Admin::ImagesController do
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
   context "as admin" do
     before(:each) do
       @user = FactoryGirl.create(:user, role: :admin)

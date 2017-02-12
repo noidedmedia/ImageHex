@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe CollectionImagesController, type: :controller do
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 
   let(:image) { FactoryGirl.create(:image) }
   let(:collection) { FactoryGirl.create(:collection) }
