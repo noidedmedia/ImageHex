@@ -31,13 +31,13 @@ class ImageField extends React.Component {
     var preview;
     if(this.state.imgURL) {
       className = className + " active";
-      preview = <div className="preview-inner">
+      preview = <div className="preview-inner active">
         <img src={this.state.imgURL} />
       </div>;
     }
     else {
       className = className + " inactive";
-      preview = <div className="preview-inner">
+      preview = <div className="preview-inner inactive">
         <div>Click or drag to add a reference image</div>
       </div>;
     }

@@ -32,12 +32,6 @@ class ReferenceGroupForm extends Component {
         addImage={this.addImage.bind(this)} />;
     });
     return <li className="reference-group-fields">
-      <TextareaInput
-        name={this.fieldName("description")}
-        label="Group Description" />
-      <TagGroupFieldsEditor
-        initialTags={this.props.group.tags}
-        fieldName={this.fieldName("tag_ids")} />
       <TransitionGroup
         className="reference-image-list"
         transitionName="order-slide"
@@ -45,6 +39,13 @@ class ReferenceGroupForm extends Component {
         transitionLeaveTimeout={500}>
         {images}
       </TransitionGroup>
+      <TextareaInput
+        name={this.fieldName("description")}
+        label="Group Description" />
+      <TagGroupFieldsEditor
+        initialTags={this.props.group.tags}
+        fieldName={this.fieldName("tag_ids")} />
+
     </li>;
   }
 
