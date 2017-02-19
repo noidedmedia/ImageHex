@@ -39,7 +39,6 @@
 
 
 .subscription-item {
-  border-radius: 3px;
   min-width: calc(50% - 14px);
   flex-grow: 1;
   flex-shrink: 1;
@@ -50,6 +49,7 @@
   overflow: hidden;
   font-size: 1.2rem;
   color: #333;
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
 
   picture {
     display: block;

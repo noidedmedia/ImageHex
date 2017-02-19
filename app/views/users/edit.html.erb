@@ -62,7 +62,7 @@
         <% Notification.kinds.keys.each do |k| %>
           <div class="checkbox-container">
             <%= fc.check_box k %>
-            <%= fc.label k, t(".#{k}") %>
+            <%= fc.label k, t("notifications.types.#{k}") %>
           </div>
         <% end %>
       <% end %>
