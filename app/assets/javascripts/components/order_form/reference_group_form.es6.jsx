@@ -41,11 +41,15 @@ class ReferenceGroupForm extends Component {
       </TransitionGroup>
       <TextareaInput
         name={this.fieldName("description")}
+        required={true}
         label="Group Description" />
       <TagGroupFieldsEditor
         initialTags={this.props.group.tags}
         fieldName={this.fieldName("tag_ids")} />
-
+      <button className="commission-remove-button btn-remove"
+        onClick={this.removeSelf.bind(this)}>
+        Remove Group
+      </button>
     </li>;
   }
 
@@ -66,6 +70,13 @@ class ReferenceGroupForm extends Component {
       images: dup,
       removedImageIds: ids
     });
+  }
+
+  removeSelf(event) {
+    event.preventDefault();
+    if(confirm("Are you sure?")) {
+      this.props.removeSelf();
+    }
   }
 }
 

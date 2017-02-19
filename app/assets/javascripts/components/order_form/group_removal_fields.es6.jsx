@@ -2,7 +2,6 @@ import React from 'react';
 
 export default (id, index) => {
   let fieldName = (name) => (`order[reference_groups][${index}][${name}`);
-
   return <div class="removed-group-ids">
     <input type="hidden" 
       name={fieldName("id")}

@@ -22,12 +22,13 @@ class TextareaInput extends Component {
 
   render() {
     return <div className="field-container">
-      <label className={this.labelClass} for={this.props.name}>
+      <label className={this.labelClass} htmlFor={this.props.name}>
         {this.props.label}
       </label>
       <textarea className="input react-input" 
         name={this.props.name} 
         defaultValue={this.props.defaultValue}
+        required={this.props.required}
         onInput={this.input.bind(this)} />
     </div>;
   }

@@ -13,7 +13,17 @@
   <div id="order-form-inner">
     <h3 class="order-form-header">
       Order For <%= link_to @listing.name, @listing %>
-    </h3>
+  </h3>
+
+  <div class="field-container">
+    <%= f.label :name, class: "label input-empty" %>
+    <%= f.text_field :name, class: "input", required: true %>
+  </div>
+
+  <div class="field-container">
+    <%= f.label :description, class: "label input-empty" %>
+    <%= f.text_area :description, class: "input", required: true %>
+  </div>
 
     <%= react_component "OrderForm",
       render(file: "orders/show.json.jbuilder") %>

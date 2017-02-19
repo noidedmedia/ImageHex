@@ -53,6 +53,7 @@ class ImageField extends React.Component {
         <TextareaInput
           name={fieldName("description")}
           defaultValue={this.props.description}
+          required={true}
           label={"Image Description"} />
         <button
           onClick={this.remove.bind(this)}

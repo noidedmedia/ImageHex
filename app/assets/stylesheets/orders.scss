@@ -105,6 +105,14 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   border: none;
   background-color: #eee;
   margin-top: 10px;
+  padding: 6px;
+  width: 100%;
+  transition: 100ms ease-in-out;
+
+  &:hover {
+    background-color: $logo-red;
+    color: #fefefe;
+  }
 }
 
 .reference-image-list {
@@ -159,6 +167,7 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
 
     .reference-image-info-section {
       max-width: 0;
+      max-height: 0;
       overflow: hidden;
     }
   }
@@ -245,6 +254,10 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
   }
 }
 
+.add-group-button {
+  margin-top: 15px;
+}
+
 .reference-tag-group-editor {
   background-color: #ddd;
   color: #000;
@@ -264,21 +277,15 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
 }
 
 .order-form-footer {
-  font-size: 16px;
-  background-color: $heading-background-color;
-  color: $heading-text-color;
   display: flex;
-  flex-direction: row;
-  padding: $standard-padding;
-  margin: $standard-padding 0;
-  justify-content: space-between;
+  justify-content: flex-end;
+  margin: 15px 0;
+
 
   button {
     cursor: pointer;
     border: 0;
-    background-color: transparent;
     font-size: 16px;
-    color: $heading-text-color;
 
     &:disabled {
       color: darken($heading-text-color, 20%);

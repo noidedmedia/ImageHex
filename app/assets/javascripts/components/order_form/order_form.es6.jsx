@@ -8,16 +8,17 @@ class OrderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groups: props.reference_groups || [],
+      groups: props.reference_groups || [{id: -1}],
       removedGroupIds: []
     };
-    this.refKey = 0;
+    this.refKey = -2;
   }
 
   render() {
     let groups = this.state.groups.map((rg, idx) => {
       let baseFieldName = `order[reference_groups][${idx}]`;
       return <ReferenceGroupForm
+        key={rg.id}
         baseFieldName={baseFieldName}
         group={rg}
         removeSelf={this.removeGroup.bind(this, idx)} />;
@@ -35,7 +36,7 @@ class OrderForm extends React.Component {
           {groups}
         </TransitionGroup>
       </ul>
-      <button className="add-reference-group-form"
+      <button className="btn btn-green btn-add add-group-button"
         onClick={this.addGroup.bind(this)}>
         Add Reference Group
       </button>
@@ -49,7 +50,8 @@ class OrderForm extends React.Component {
   submitButton() {
     if(this.state.groups.length > 0) {
       return <button 
-        type="submit">
+        type="submit"
+        className="btn btn-green btn-check">
         Submit
       </button>;
     }

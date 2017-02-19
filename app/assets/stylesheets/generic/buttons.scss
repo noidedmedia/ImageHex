@@ -133,11 +133,11 @@
 
 // Green button, darkens on hover/focus.
 .btn-green {
-  background-color: #2ab27b;
+  background-color: $logo-green;
 
   &:hover,
   &:focus {
-    background-color: darken(#2ab27b, 5%);
+    background-color: darken($logo-green, 5%);
   }
 }
 
@@ -269,4 +269,20 @@
       display: inline;
     }
   }
+}
+
+.btn-check::before {
+  content: $icon-checkmark;
+  margin-right: 5pt;
+}
+
+.btn-add::before {
+  content: "+";
+  font-size: 1.5rem;
+  margin-right: 5pt;
+}
+
+.btn-remove::before {
+  content: $icon-close;
+  margin-right: 5pt;
 }
