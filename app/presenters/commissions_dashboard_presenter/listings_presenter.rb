@@ -18,11 +18,7 @@ class CommissionsDashboardPresenter::ListingsPresenter < ApplicationPresenter
     @listings.reject(&:open?)
   end
 
-  def draft
-    @listings.reject(&:confirmed?)
-  end
-
   def types
-    %w(open unopen draft)
+    %w(open unopen)
   end
 end

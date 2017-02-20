@@ -6,12 +6,10 @@
         dashboard-subcategory-listing-open">
         Open listings
       </div>
-      <% %w(closed draft).each do |sc| %>
-        <div class="dashboard-subcategory 
-          dashboard-subcategory-listing-<%= sc %>">
-          <%= sc.capitalize %> listings
-        </div>
-      <% end %>
+      <div class="dashboard-subcategory 
+        dashboard-subcategory-listing-closed">
+        Closed listings
+      </div>
     </div>
     <div class="dashboard-category received-orders">
       <h1>Received Orders</h1>
