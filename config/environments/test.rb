@@ -10,6 +10,7 @@ Rails.application.configure do
 
   $IMAGE_PATH = "public/system/fs/test/:class/:id_:style.:extension"
   $REF_PATH = "public/system/fs/test/:class/:id_:style.:extension"
+  $REF_URL = "public/system/fs/test/:class/:id_:style.:extension"
   $AVATAR_PATH = "public/system/fs/test/:class/:id_:style.:extension"
 
   # The test environment is used exclusively to run your application's

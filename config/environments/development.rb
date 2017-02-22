@@ -15,14 +15,16 @@ Rails.application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+
   config.paperclip_defaults = {
     path: "public/system/fs/:class/:id_:style.:extension",
-    url: "/system/fs/:class/:id_:style.:extension"
+    url: "system/fs/:class/:id_:style.:extension"
   }
   ##
   # Hack to get images to work properly in development
   $IMAGE_PATH = "public/system/fs/:class/:id_:style.:extension"
-  $REF_PATH = "public/system/fs/:class/:id_:style.:extension"
+  $REF_PATH = "public/system/fs/:class/:accesstoken_:style.:extension"
+  $REF_URL = "/system/fs/:class/:accesstoken_:style.:extension"
   $AVATAR_PATH = "public/system/fs/:class/:id_:style.:extension"
 
   # Do not eager load code on boot.

@@ -151,10 +151,10 @@ class OrdersController < ApplicationController
      :id,
       :_destroy,
       tag_ids: [],
-      group_images_attributes: [group_image_params]]
+      images_attributes: [image_params]]
   end
 
-  def group_image_params
+  def image_params
     [:description,
       :name,
       :img,

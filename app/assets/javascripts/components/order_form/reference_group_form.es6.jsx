@@ -51,6 +51,7 @@ class ReferenceGroupForm extends Component {
         onClick={this.removeSelf.bind(this)}>
         Remove Group
       </button>
+      {this.idField()}
     </li>;
   }
 
@@ -78,6 +79,15 @@ class ReferenceGroupForm extends Component {
     if(confirm("Are you sure?")) {
       this.props.removeSelf();
     }
+  }
+
+  idField() {
+    if(this.props.group.id > 0) {
+      return <input type="hidden"
+        name={this.fieldName("id")}
+        value={this.props.group.id} />;
+    }
+    return "";
   }
 }
 

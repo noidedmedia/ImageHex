@@ -12,8 +12,6 @@ class OrderForm extends React.Component {
       groups: groups,
       removedGroupIds: []
     };
-    console.log("props.groups", groups, !! groups);
-    console.log("state.groups",this.state.groups);
     this.refKey = -2;
   }
 
@@ -28,7 +26,7 @@ class OrderForm extends React.Component {
     });
     let startIndex = this.state.groups.length;
     let removed = this.state.removedGroupIds.map((id, idx) => {
-      return <GroupRemovalFields id={id} index={startIndex + idx} />;
+      return <GroupRemovalFields id={id} index={startIndex + idx} key={id} />;
     });
     return <div>
       <ul className="reference-group-form-list">
@@ -66,7 +64,7 @@ class OrderForm extends React.Component {
 
   removeGroup(index) {
     let dup = this.state.groups.slice();
-    let removed = dup.splice(index, 1);
+    let removed = dup.splice(index, 1)[0];
     let rgi = this.state.removedGroupIds;
     if(removed.id > 0) {
       rgi = [...rgi, removed.id];

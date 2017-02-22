@@ -5,8 +5,8 @@ class ImageField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgURL: props.image.url,
-      hasUploaded: !! props.image.url,
+      imgURL: props.image.medium_url,
+      hasUploaded: !! props.image.medium_url,
       containerClass: "reference-image-fields"
     };
   }
@@ -52,7 +52,7 @@ class ImageField extends React.Component {
       <div className="reference-image-info-section">
         <TextareaInput
           name={fieldName("description")}
-          defaultValue={this.props.description}
+          defaultValue={this.props.image.description}
           label={"Image Description"} />
         <button
           onClick={this.remove.bind(this)}
