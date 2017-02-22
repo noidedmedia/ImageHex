@@ -6,7 +6,6 @@ function preventDefault(e) {
 
 function headerMenu() {
   $("#mobile-menu-icon").on("click", function() {
-    console.log("Click!");
     $("#header-right").toggleClass("active");
     $("#mobile-menu-icon").toggleClass("active");
     document.querySelector("#mobile-menu-overlay").classList.toggle("active");
@@ -39,7 +38,6 @@ function headerMenuClose() {
 }
 
 var ready = function() {
-  console.log("Doing header menu");
   headerMenu();
 };
 

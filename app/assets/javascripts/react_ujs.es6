@@ -18,7 +18,6 @@ ReactUJS.getDOMNodes = function() {
 };
 
 ReactUJS.mountComponents = function() {
-  console.log("Mounting components");
 
   var nodes = ReactUJS.getDOMNodes();
   for(var i = 0; i < nodes.length; ++i) {
@@ -59,7 +58,6 @@ ReactUJS.unmountComponents = function() {
 
 
 ReactUJS.setup = function() {
-  console.log("Setting up react ujs");
   $(document).on("turbolinks:load", () => ReactUJS.mountComponents());
   $(document).on("turbolinks:before-render",() => ReactUJS.unmountComponents());
 };

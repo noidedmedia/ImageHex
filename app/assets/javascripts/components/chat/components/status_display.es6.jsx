@@ -35,11 +35,11 @@ export default class StatusDisplay extends React.Component {
             fill={color}
             d="m222.79 234.51 60 81.981h120l80.775 16.841-20.778-98.822-60-81.981h-120z"/>
         </g>
-        <text id="text3342" font-size="40px" 
+        <text id="text3342" fontSize="40px" 
           y="107.89626" x="100.377853" 
           fontFamily="sans-serif"
           textAnchor="middle"
-          lineHeight="125%" fill="#000000">
+          fill="#000000">
           <tspan id="tspan3344" 
             fontSize="80px" 
             fill="#ffffff">
