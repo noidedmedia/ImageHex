@@ -6,7 +6,7 @@ Rails.application.configure do
     url: "/system/fs/test/:class/:id_:style.:extension"
   }
 
-  config.webpack.dev_server.enabled = !ENV['CI']
+  config.webpack.dev_server.enabled = ! ENV['CI']
 
   $IMAGE_PATH = "public/system/fs/test/:class/:id_:style.:extension"
   $REF_PATH = "public/system/fs/test/:class/:id_:style.:extension"

@@ -6,6 +6,7 @@ feature 'Top Bar Search', feature: true do
     @tag2 = create(:tag, name: "wyven")
     @tag3 = create(:tag, name: "foo")
   end
+
   feature "tag suggestions" do
     scenario "the user types a single letter", js: true do
       visit root_path

@@ -39,16 +39,16 @@ RSpec.feature "Image show page", type: :feature do
       scenario "they try to add an image to collections", js: true do
         collection = create(:collection, curators: [@user])
         visit image_path(@image)
-        find("#img-action-collection").click
+        find("#img-action-collection").trigger('click')
 
         expect(find("#image-collection-list")).to have_content(collection.name)
 
-        find("#image-collection-list").find(".collection-add-list-item").click
+        find("#image-collection-list")
+          .find(".collection-add-list-item").trigger("click")
 
         expect(find("#image-collection-list")
                .find(".contains-image")).to have_content(collection.name)
 
-        find("#image-collection-list").find(".contains-image").click
       end
     end
 

@@ -319,6 +319,9 @@ group :test do
   # https://github.com/rails/rails-controller-testing
   # Extracting `assigns` and `assert_template` from ActionDispatch.
   gem 'rails-controller-testing'
+
+
+  gem 'poltergeist'
 end
 
 ##

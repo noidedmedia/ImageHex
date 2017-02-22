@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'simplecov'
+require 'capybara/poltergeist'
 SimpleCov.start if ENV["COVERAGE"]
 
 ENV["RAILS_ENV"] ||= 'test'
@@ -8,7 +9,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require "paperclip/matchers" # Make testing paperclip stuff much easiera
 
-Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :poltergeist
 
 Capybara::Webkit.configure do |config|
   config.allow_url("js.stripe.com")
