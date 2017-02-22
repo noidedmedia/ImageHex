@@ -4,7 +4,10 @@ class OrdersController < ApplicationController
   before_action :load_listing, except: :mine
 
   def index
-    @orders = @listing.orders  
+    if @listing.user != current_user
+      raise Pundit::NotAuthorizedError
+    end
+    @orders = @listing.orders
   end
 
   def mine
@@ -138,6 +141,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
       .permit(:description,
+              :name,
               groups_attributes: [group_params])
       .merge(user: current_user)
   end

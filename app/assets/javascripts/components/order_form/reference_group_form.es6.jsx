@@ -41,6 +41,7 @@ class ReferenceGroupForm extends Component {
       </TransitionGroup>
       <TextareaInput
         name={this.fieldName("description")}
+        defaultValue={this.props.group.description}
         required={true}
         label="Group Description" />
       <TagGroupFieldsEditor

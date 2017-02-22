@@ -6,7 +6,7 @@
   </div>
 <% end %>
 
- <h1 class="order-name-display">
+ <h1 class="generic-center-header">
     <%= @order.name %>
   </h1>
 
@@ -15,36 +15,9 @@
     <%= markdown_parse @order.description %>
   </div>
 
-  <ul class="order-category-list">
-    <% @order.references_by_category.each do |k, v| %>
-      <%= render 'category', category: k, references: v %>
-    <% end %>
+  <ul class="order-group-list">
+    <%= render partial: "group", collection: @order.groups %>
   </ul>
-
-  <div class="show-listing-options-section">
-    <h2 class="padded-dark-header">
-      Options
-    </h2>
-    <% unless @order.options.empty? %>
-      <ul class="show-listing-options-list">
-        <% @order.options.each do |opt| %>
-          <li class="options-item">
-            <div class="options-header">
-              <h3>
-                <%= opt.name %>
-              </h3>
-            </div>
-            <div class="description markdown-description">
-              <%= markdown_parse opt.description %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      No options selected
-    <% end %>
-  </div>
-
 
 
   <% if policy(@order).confirm? %>
@@ -53,9 +26,6 @@
       confirm: "Are you sure?",
       :class =>  "checkmark-submit-button order-confirm-button" do %>
         Confirm order
-        <% unless @order.listing.quote_only? %>
-          for <%= price @order.calculated_final_price %>
-        <% end %>
       <% end %>
     <% end %>
 

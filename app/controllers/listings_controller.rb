@@ -13,13 +13,11 @@ class ListingsController < ApplicationController
 
   def index
     listings = Listing.all
+      .with_average_prices
       .open
       .order(created_at: :desc)
       .paginate(page: page, per_page: per_page)
-      .joins(:orders)
       .includes(:images)
-      .group("listings.id")
-      .select("listings.*, avg(orders.final_price) as average_price")
     @listings = ListingsPresenter.new(listings)
   end
 

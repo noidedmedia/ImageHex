@@ -4,8 +4,7 @@ class CommissionsDashboardPresenter::ListingsPresenter < ApplicationPresenter
   end
 
   autowrap :open,
-    :unopen,
-    :draft
+    :unopen
 
   delegate_to :listings
 
@@ -14,11 +13,11 @@ class CommissionsDashboardPresenter::ListingsPresenter < ApplicationPresenter
   end
 
 
-  def unopen
+  def closed
     @listings.reject(&:open?)
   end
 
   def types
-    %w(open unopen)
+    %w(open closed)
   end
 end

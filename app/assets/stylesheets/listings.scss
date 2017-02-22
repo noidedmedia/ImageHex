@@ -109,7 +109,7 @@ $header-text-color: rgba(255, 255, 255, 0.8);
   margin: $standard-padding 0;
   background-color: #fff;
   font-size: 14px;
-  border-radius: 6px;
+  box-shadow: $card-shadow;
 }
 
 .listing-order-button {

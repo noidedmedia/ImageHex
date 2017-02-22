@@ -16,7 +16,7 @@ class Order::Group < ActiveRecord::Base
 
   has_many :tags,
     class_name: "::Tag",
-    through: :reference_tags
+    through: :group_tags
 
   validates :order,
     presence: true

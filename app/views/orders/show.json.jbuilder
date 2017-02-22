@@ -10,3 +10,5 @@ end
 json.extract! @order,
   :description,
   :name
+
+json.groups @order.groups, partial: "group", as: :group

@@ -24,6 +24,17 @@ class Listing < ActiveRecord::Base
   # SCOPES
   scope :open, -> { where(open: true) }
 
+  def self.with_average_prices
+    listings = Listing.arel_table
+    orders = Order.arel_table
+    join = listings.join(orders, Arel::Nodes::OuterJoin)
+      .on(orders[:listing_id].eq(listings[:id]))
+      .join_sources
+    self.joins(join)
+      .group("listings.id")
+      .select("listings.*, AVG(orders.final_price) AS average_price")
+  end
+
   def completely_safe?
     ! (nsfw_gore? || nsfw_nudity? || nsfw_language? || nsfw_sexuality?)
   end

@@ -141,3 +141,19 @@
     margin-top: 10px;
   }
 }
+
+// Generic header with centered, non-bold text
+.generic-center-header {
+  text-align: center;
+  font-weight: normal;
+}
+
+
+.generic-card {
+  box-shadow: $card-shadow;
+  background-color: #fefefe;
+}
+
+.generic-padding {
+  padding: 10px;
+}

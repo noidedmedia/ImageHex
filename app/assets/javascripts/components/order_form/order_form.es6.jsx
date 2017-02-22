@@ -7,16 +7,19 @@ import TransitionGroup from 'react-addons-css-transition-group';
 class OrderForm extends React.Component {
   constructor(props) {
     super(props);
+    let groups = props.groups ? props.groups : [{id: -1}];
     this.state = {
-      groups: props.reference_groups || [{id: -1}],
+      groups: groups,
       removedGroupIds: []
     };
+    console.log("props.groups", groups, !! groups);
+    console.log("state.groups",this.state.groups);
     this.refKey = -2;
   }
 
   render() {
     let groups = this.state.groups.map((rg, idx) => {
-      let baseFieldName = `order[reference_groups][${idx}]`;
+      let baseFieldName = `order[groups_attributes][${idx}]`;
       return <ReferenceGroupForm
         key={rg.id}
         baseFieldName={baseFieldName}
