@@ -172,6 +172,12 @@
   }
 }
 
+.small-first-tag {
+  > li:first-of-type {
+    height: auto;
+  }
+}
+
 .edit-generic-tag-group {
   cursor: pointer;
   position: absolute;

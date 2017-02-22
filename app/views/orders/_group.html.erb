@@ -1,4 +1,14 @@
 <li class="order-group generic-card generic-padding">
+  <div class="markdown-area order-group-description">
+    <%= markdown_parse group.description %>
+  </div>
+  <ul class="generic-tag-list small-first-tag">
+    <% group.tags.each do |t| %>
+      <li class="generic-tag">
+        <%= link_to t.name, t %>
+      </li>
+    <% end %>
+  </ul>
   <ul class="reference-image-gallery">
     <%= render partial: "image", collection: group.images %>
   </ul>

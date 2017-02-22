@@ -1,5 +1,9 @@
-<li class="order-reference-image">
+<li class="order-image-display">
   <%= link_to image.img.url(:original) do %>
     <%= image_tag image.img.url(:medium) %>
   <% end %>
+
+  <div class="order-image-description markdown-area">
+    <%= markdown_parse image.description %>
+  </div>
 </li>

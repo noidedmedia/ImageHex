@@ -38,6 +38,35 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
 }
 
 
+.order-image-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  a {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.order-image-description {
+  flex-grow: 2;
+  margin: 0 20px;
+}
+
+.order-group-description {
+  padding: 20px;
+  margin-bottom: 5px;
+}
+
+.order-group {
+  .generic-tag-list {
+    margin-bottom: 20px;
+  }
+}
+
 .order-form-header {
   padding: $standard-padding;
   margin-bottom: $standard-padding;
