@@ -89,7 +89,7 @@ class Notification < ActiveRecord::Base
 
   private
   def notify_cables
-    NewNotificationJob.perform_now(self)
+    NewNotificationJob.set(wait: 30.seconds).perform_later(self)
   end
 
 end
