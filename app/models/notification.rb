@@ -84,7 +84,7 @@ class Notification < ActiveRecord::Base
   end
 
   def send_email
-    NotificationMailer.notification_email(self).deliver_later
+    NotificationMailer.notification_email(self).deliver_now
   end
 
   private
