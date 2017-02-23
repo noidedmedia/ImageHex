@@ -139,6 +139,7 @@ class User < ActiveRecord::Base
   #############
 
   before_save :coerce_content_pref!
+  before_validation :coerce_notifications_pref!
 
   #################
   # CLASS METHODS #
@@ -309,5 +310,13 @@ class User < ActiveRecord::Base
         [k, v]
       end
     end.to_h
+  end
+
+  def coerce_notifications_pref!
+    return unless notifications_pref
+    map = notifications_pref.map do |k, v|
+      [k, !(v == "0")]
+    end
+    self.notifications_pref = Hash[map]
   end
 end

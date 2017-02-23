@@ -43,7 +43,7 @@ class Notification < ActiveRecord::Base
               :order_filled,
               :order_rejected]
 
-  after_commit :send_email, if: :should_send_email?, on: :create
+  after_commit :send_email, on: :create
   after_commit :notify_cables
 
 
@@ -80,11 +80,13 @@ class Notification < ActiveRecord::Base
   end
 
   def should_send_email?
-    user.notifications_pref[self.kind]
+    user.notifications_pref[self.kind.to_s]
   end
 
   def send_email
-    NotificationMailer.notification_email(self).deliver_now
+    if should_send_email?
+      NotificationMailer.notification_email(self).deliver_later
+    end
   end
 
   private
