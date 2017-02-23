@@ -11,3 +11,4 @@ import './components/order_form/order_form';
 import './components/commissions_plan';
 import './components/quote_picker';
 import './components/collection_adder';
+import './components/order_filler';

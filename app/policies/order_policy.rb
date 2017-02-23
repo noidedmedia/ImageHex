@@ -45,7 +45,10 @@ class OrderPolicy < ApplicationPolicy
   end
 
   def reject?
-    listing_owner? && @order.confirmed? && ! @order.rejected?
+    listing_owner? && 
+      @order.confirmed? && 
+      ! @order.rejected? &&
+      ! @order.confirmed?
   end
 
   protected

@@ -34,4 +34,8 @@ Message.order_rejected = ({seller_name}) => (
 );
 
 
+Message.order_filled = ({seller_name}) => (
+  `${seller_name} just filled your order!`
+);
+
 export default Message;

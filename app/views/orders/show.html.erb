@@ -21,22 +21,17 @@
 
 
   <% if policy(@order).confirm? %>
-    <%= link_to confirm_listing_order_path(@listing, @order), 
-      method: :post, 
-      confirm: "Are you sure?",
-      :class =>  "checkmark-submit-button order-confirm-button" do %>
-        Confirm order
-      <% end %>
+    <%= form_tag confirm_listing_order_path(@listing, @order) do  %>
+      <%= submit_tag "Confirm Order", class: "checkmark-submit-button order-confirm-button" %>
     <% end %>
+  <% end %>
 
     <% if policy(@order).accept? %>
       <%= form_tag accept_listing_order_path(@listing, @order),
         method: :post, 
         :class => "order-confirm-form flex-row" do %>
-          <% if @listing.quote_only? %>
-            <%= react_component("QuotePicker") %>
-          <% end %>
-          <%= submit_tag("Accept Order", :class => "checkmark-submit-button order-confirm-button") %>
+        <%= react_component("QuotePicker") %>
+        <%= submit_tag "Accept Order", class: "btn btn-green btn-check" %>
         <% end %>
       <% end %>
 
@@ -58,7 +53,7 @@
               data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
               data-amount="<%= @order.final_price %>"
               data-name="Commission from <%= escape_javascript(@listing.user.name) %>"
-              data-image="<%= @listing.user.avatar(:tiny) %>"
+              data-image="<%= @listing.user.avatar.url(:tiny) %>"
               data-locale="auto"> 
             </script>
         <% end %>

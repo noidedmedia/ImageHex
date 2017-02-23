@@ -1,7 +1,9 @@
 import ImagePicker from './image_picker/image_picker.es6.jsx';
 import NM from '../api/global.es6';
+import ReactUJS from '../react_ujs';
+import React, { Component } from 'react';
 
-class OrderFiller extends React.Component {
+class OrderFiller extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -80,4 +82,4 @@ class OrderFiller extends React.Component {
   }
 }
 
-window.OrderFiller = OrderFiller;
+ReactUJS.register("OrderFiller", OrderFiller);
