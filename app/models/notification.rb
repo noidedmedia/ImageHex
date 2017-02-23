@@ -43,8 +43,8 @@ class Notification < ActiveRecord::Base
               :order_filled,
               :order_rejected]
 
-  after_create :send_email, if: :should_send_email?
-  after_create :notify_cables
+  after_commit :send_email, if: :should_send_email?, on: :create
+  after_commit :notify_cables
 
 
   def subject=(sub)
@@ -89,7 +89,7 @@ class Notification < ActiveRecord::Base
 
   private
   def notify_cables
-    NewNotificationJob.set(wait: 30.seconds).perform_later(self)
+    NewNotificationJob.perform_later(self)
   end
 
 end
