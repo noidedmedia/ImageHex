@@ -10,10 +10,6 @@ class StaticStuffController < ApplicationController
 
   def guidelines
   end
-  ##
-  # Commissions "About" page
-  def commissions_plan
-  end
 
   ##
   # About page. Information about what ImageHex is.

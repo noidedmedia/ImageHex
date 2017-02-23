@@ -183,7 +183,6 @@ Rails.application.routes.draw do
   get 'faq', to: "static_stuff#faq"
   get 'help', to: "static_stuff#help"
   get 'press', to: "static_stuff#press"
-  get 'commissions', to: "static_stuff#commissions_about"
   get "terms_of_service", to: "static_stuff#terms_of_service"
 
   get 'search', to: "images#search"
