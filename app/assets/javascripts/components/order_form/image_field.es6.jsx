@@ -50,10 +50,11 @@ class ImageField extends React.Component {
           type="file" />;
       </div>
       <div className="reference-image-info-section">
-        <TextareaInput
+        <textarea
+          className="reference-image-input"
+          placeholder="Image description"
           name={fieldName("description")}
-          defaultValue={this.props.image.description}
-          label={"Image Description"} />
+          defaultValue={this.props.image.description} />
         <button
           onClick={this.remove.bind(this)}
           className="commission-remove-button">

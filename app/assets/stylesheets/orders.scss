@@ -382,3 +382,13 @@ $fields-text-color: rgba(0, 0, 0, 0.9);
     margin-left: 10px;
   }
 }
+
+.reference-image-input {
+  border: 1px solid #eee;
+  flex-grow: 1;
+
+  &:focus {
+    border: 1px solid #333;
+    outline: transparent;
+  }
+}
