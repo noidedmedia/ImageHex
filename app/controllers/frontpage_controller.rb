@@ -21,9 +21,9 @@ class FrontpageController < ApplicationController
       render "index_with_user"
     else
       @images = Image.all
-        .paginate(page: page, per_page: per_page)
         .order('created_at DESC')
         .for_content(content_pref)
+        .take(20)
       render "index"
     end
   end

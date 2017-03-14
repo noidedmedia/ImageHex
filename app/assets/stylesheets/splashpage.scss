@@ -79,12 +79,13 @@ $darker-background: rgb(249, 250, 251);
 
 .big-showcase {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
   .showcase-example {
-    width: 50%;
+    width: 30%;
     order: 1;
+    margin-right: 5%;
 
     img {
       max-width: 100%;

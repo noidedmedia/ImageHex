@@ -1,5 +1,4 @@
 <%# This space intentionally left blank. No title needed for the home page. %>
-<% unless params[:page] %>
 <div class="frontpage-logo frontpage-section alt-background">
   <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
 </div>
@@ -73,11 +72,9 @@
 </div>
 
 <div class="frontpage-call">
-    <%= link_to new_user_registration_path, 
-      :class => "frontpage-call-button" do %>
-      <%= image_tag "logo/imagehex-monochrome-white.svg" %>
-      <div>Get started today</div>
-    <% end %>
+  <%= link_to new_user_registration_path, 
+    :class => "frontpage-call-button" do %>
+    <%= image_tag "logo/imagehex-monochrome-black.svg" %>
+    <div>Get started today</div>
+  <% end %>
 </div>
-<% end %>
-
