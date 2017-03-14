@@ -36,28 +36,42 @@
         <%# If the current user is already following the user, render the Unfollow button as active. If pressed, the Unfollow button is replaced by the Follow button. %>
         <% if current_user.try(:subscribed_to?, @user) %>
 
-          <%= form_tag(unsubscribe_user_path(@user.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+          <%= form_tag(unsubscribe_user_path(@user.id), 
+                       "data-signed-in": "ajax", 
+                       method: :delete, 
+                       remote: true,
+                      authenticity_token: true) do %>
             <%= button_tag id: "user-unfollow", class: "btn btn-unfollow active" do %>
               <span class="btn-text-following"> <%= t(".following") %> </span>
               <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
             <% end %>
           <% end %>
 
-          <%= form_tag(subscribe_user_path(@user.id), "data-signed-in": "ajax", remote: true) do %>
+          <%= form_tag(subscribe_user_path(@user.id), 
+                       "data-signed-in": "ajax", 
+                       remote: true,
+                      authenticity_token: true) do %>
             <%= button_tag t(".follow"), id: "user-follow", class: "btn btn-follow inactive" %>
           <% end %>
 
         <%# If the current user isn't following the user, do the opposite. %>
         <% else %>
 
-          <%= form_tag(unsubscribe_user_path(@user.id), "data-signed-in": "ajax", method: :delete, remote: true) do %>
+          <%= form_tag(unsubscribe_user_path(@user.id), 
+                       "data-signed-in": "ajax", 
+                       method: :delete, 
+                       remote: true,
+                      authenticity_token: true) do %>
             <%= button_tag id: "user-unfollow", class: "btn btn-unfollow inactive" do %>
               <span class="btn-text-following"> <%= t(".following") %> </span>
               <span class="btn-text-unfollow"> <%= t(".unfollow") %> </span>
             <% end %>
           <% end %>
 
-          <%= form_tag(subscribe_user_path(@user.id), "data-signed-in": "ajax", remote: true) do %>
+          <%= form_tag(subscribe_user_path(@user.id), 
+                       "data-signed-in": "ajax", 
+                       remote: true,
+                      authenticity_token: true) do %>
             <%= button_tag t(".follow"), id: "user-follow", class: "btn btn-follow active" %>
           <% end %>
 
