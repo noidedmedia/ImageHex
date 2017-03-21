@@ -252,6 +252,10 @@ class User < ActiveRecord::Base
     Image.feed_for(self)
   end
 
+  def note_feed
+    Note.feed_for(self)
+  end
+
   ##
   # Add a collection to the user's subscriptions.
   # c:: The collection to add.

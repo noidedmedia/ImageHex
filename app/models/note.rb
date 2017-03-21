@@ -15,10 +15,16 @@ class Note < ApplicationRecord
     allow_blank: false
 
 
+  def self.feed_for(user)
+    where(user: user.subscribed_artists)
+  end
+
+
   def slug_candidates
     [
       [:title],
       [:title, :created_at]
     ]
   end
+
 end

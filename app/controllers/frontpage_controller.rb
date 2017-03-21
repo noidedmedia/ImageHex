@@ -18,6 +18,9 @@ class FrontpageController < ApplicationController
         .includes(:creators)
         .where("sort_created_at < ?", after)
         .limit(5)
+      @notes = current_user.note_feed
+        .where("created_at < ?", after)
+        .limit(5)
       render "index_with_user"
     else
       @images = Image.all
