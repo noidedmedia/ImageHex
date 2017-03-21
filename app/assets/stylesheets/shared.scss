@@ -147,6 +147,14 @@
 .markdown-area {
   font-size: 14px;
 
+  p {
+    text-indent: 30px;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1em;
+    }
+  }
+
   ol {
     list-style-type: decimal;
     margin-left: 2em;
@@ -158,6 +166,10 @@
 
   li {
     display: list-item;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   code {

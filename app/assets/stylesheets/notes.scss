@@ -1,15 +1,26 @@
 @import "variables";
 
-.note-container {
-  max-width: 900px;
-  margin: auto;
+$avatar-size: 75px;
+$avatar-space: 20px;
+
+.note-container-outer {
+  max-width: 1125px;
   display: flex;
+  margin: auto;
+}
+
+.note-container-inner {
+  min-height: 250px;
+  display: flex;
+  flex-grow: 1;
+  margin-right: ($avatar-size + $avatar-space);
 }
 
 .note-user-container {
-  max-width: 100px;
+  width: $avatar-size;
   overflow: hidden;
   margin-top: 25px;
+  flex-shrink: 0;
 
   img {
     width: 100%;
@@ -25,7 +36,7 @@
 
 .note-show-inner {
   flex-grow: 1;
-  margin-left: 25px;
+  margin-left: $avatar-space;
   padding: 25px;
 
   .note-title {
@@ -64,5 +75,14 @@
 }
 
 .show-note-container {
-  margin-top: 200px;
+  padding-top: 10vh;
+}
+
+.notes-list {
+  padding-top: 25px;
+}
+
+.note-form {
+  max-width: 600px;
+  margin: auto;
 }

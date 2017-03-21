@@ -1,0 +1,16 @@
+<div class="note-form">
+  <%= form_for @note do |f| %>
+    <div class="field-container">
+      <%= f.label :title, class: "label input-empty" %>
+      <%= f.text_field :title, class: "input", autocomplete: :off %>
+    </div>
+
+    <div class="field-container">
+      <%= f.label :body, class: "label input-empty" %>
+      <%= f.text_area :body, class: "input" %>
+    </div>
+
+    <%= f.submit %>
+
+  <% end %>
+</div>

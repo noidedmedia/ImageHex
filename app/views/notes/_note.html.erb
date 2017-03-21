@@ -1,17 +1,17 @@
-<div class="note-container-outer show-note-container">
+<div class="note-container-outer">
   <div class="note-container-inner">
     <div class="note-user-container">
-      <%= image_tag @note.user.avatar_img %>
+      <%= image_tag note.user.avatar_img %>
       <span class="note-user-name">
-        <%= link_to @note.user.name, @note.user %>
+        <%= link_to note.user.name, note.user %>
       </span>
     </div>
 
     <article class="note-show-inner generic-card">
-      <h1 class="note-title"><%= @note.title %></h1>
-      <hr></hr>
+      <h1 class="note-title"><%= note.title %></h1>
+      <hr/>
       <div class="markdown-area">
-        <%= markdown_parse @note.body %>
+        <%= markdown_parse note.body %>
       </div>
     </article>
   </div>
