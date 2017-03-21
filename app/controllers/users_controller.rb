@@ -178,6 +178,7 @@ class UsersController < ApplicationController
     @favorites = @user.favorite_images
       .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
+    @notes = @user.notes
     @collections = @user.collections
     listings = policy_scope(@user.listings).includes(:images)
     @listings = ListingsPresenter.new(listings)

@@ -17,12 +17,8 @@ class Note < ApplicationRecord
 
   def slug_candidates
     [
-      [:user_name, :title],
-      [:user_name, :title, :created_at]
+      [:title],
+      [:title, :created_at]
     ]
-  end
-
-  def user_name
-    user.name
   end
 end

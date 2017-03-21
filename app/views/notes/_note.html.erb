@@ -8,7 +8,9 @@
     </div>
 
     <article class="note-show-inner generic-card">
-      <h1 class="note-title"><%= note.title %></h1>
+      <h1 class="note-title">
+        <%= link_to note.title, note %>
+      </h1>
       <hr/>
       <div class="markdown-area">
         <%= markdown_parse note.body %>

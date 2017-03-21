@@ -7,6 +7,7 @@ $avatar-space: 20px;
   max-width: 1125px;
   display: flex;
   margin: auto;
+  width: 100%;
 }
 
 .note-container-inner {
@@ -43,6 +44,15 @@ $avatar-space: 20px;
     font-size: 2.7rem;
     color: black;
     text-align: center;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   h1 {
@@ -80,6 +90,8 @@ $avatar-space: 20px;
 
 .notes-list {
   padding-top: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .note-form {

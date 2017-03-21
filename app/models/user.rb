@@ -78,6 +78,8 @@ class User < ActiveRecord::Base
   has_many :curatorships
   has_many :collections, through: :curatorships
 
+  has_many :notes
+
   has_many :user_creations
   has_many :creations, -> { order(created_at: :desc) }, through: :user_creations
 

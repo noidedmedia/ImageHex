@@ -64,6 +64,6 @@ class NotesController < ApplicationController
     params.require(:note)
       .permit(:title,
               :body)
-      .merge(user_id: current_user.id)
+      .merge(user_id: current_user.id, slug: nil)
   end
 end

@@ -5,6 +5,10 @@
       <%= image_tag "icons/upload.svg" %>
       <span>Image</span>
     <% end %>
+    <%= link_to new_note_path do %>
+      <%= image_tag "icons/quote.svg" %>
+      <span>Note</span>
+    <% end %>
     <%= link_to new_collection_path do %>
       <%= image_tag "icons/collection.svg" %>
       <span>Collection</span>
@@ -13,11 +17,8 @@
       <%= image_tag "icons/listings.svg" %>
       <span>Listing</span>
     <% end %>
-    <%= link_to "" do %>
-      <%= image_tag "icons/quote.svg" %>
-      <span>Post</span>
-    <% end %>
+
   </nav>
-   <%= react_component("Dashboard",
-      render(file: "frontpage/index_with_user.json.jbuilder")) %>
+  <%= react_component("Dashboard",
+    render(file: "frontpage/index_with_user.json.jbuilder")) %>
 </div>
