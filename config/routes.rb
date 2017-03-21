@@ -1,6 +1,7 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "rails/letter_opener"
   end
@@ -147,6 +148,8 @@ Rails.application.routes.draw do
       post 'read'
     end
   end
+
+  resources :notes
 
   ################
   # ADMIN ROUTES #

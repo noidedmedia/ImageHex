@@ -1,9 +1,23 @@
 <%# This space intentionally left blank. No title needed for the home page. %>
 <div class="home-container">
-  <div class="frontpage-logo">
-    <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
-  </div>
-
-  <%= react_component("Dashboard",
+  <nav class="home-create-buttons generic-card">
+    <%= link_to new_image_path do %>
+      <%= image_tag "icons/upload.svg" %>
+      <span>Image</span>
+    <% end %>
+    <%= link_to new_collection_path do %>
+      <%= image_tag "icons/collection.svg" %>
+      <span>Collection</span>
+    <% end %>
+    <%= link_to new_listing_path do %>
+      <%= image_tag "icons/listings.svg" %>
+      <span>Listing</span>
+    <% end %>
+    <%= link_to "" do %>
+      <%= image_tag "icons/quote.svg" %>
+      <span>Post</span>
+    <% end %>
+  </nav>
+   <%= react_component("Dashboard",
       render(file: "frontpage/index_with_user.json.jbuilder")) %>
 </div>

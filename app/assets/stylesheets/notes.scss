@@ -1,0 +1,68 @@
+@import "variables";
+
+.note-container {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+}
+
+.note-user-container {
+  max-width: 100px;
+  overflow: hidden;
+  margin-top: 25px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .note-user-name {
+    font-size: 16px;
+    display: block;
+    text-align: center;
+  }
+}
+
+.note-show-inner {
+  flex-grow: 1;
+  margin-left: 25px;
+  padding: 25px;
+
+  .note-title {
+    font-size: 2.7rem;
+    color: black;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.3rem;
+  }
+
+  h2 {
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    font-size: 1.7rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: #333;
+  }
+}
+
+.show-note-container {
+  margin-top: 200px;
+}
