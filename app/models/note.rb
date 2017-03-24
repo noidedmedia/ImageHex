@@ -1,5 +1,6 @@
 class Note < ApplicationRecord
   extend FriendlyId
+  include Replyable
 
   friendly_id :slug_candidates, 
     use: :slugged
@@ -28,3 +29,5 @@ class Note < ApplicationRecord
   end
 
 end
+
+require_dependency 'note/reply'

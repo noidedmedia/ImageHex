@@ -98,3 +98,29 @@ $avatar-space: 20px;
   max-width: 600px;
   margin: auto;
 }
+
+.note-reply {
+  display: flex;
+}
+
+.reply-user-avatar {
+  width: 50px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.reply-main-content {
+  margin-left: 20px;
+  flex-grow: 1;
+
+  .reply-user-name {
+    font-size: 16px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}

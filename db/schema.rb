@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321042207) do
+ActiveRecord::Schema.define(version: 20170324204247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,6 +205,16 @@ ActiveRecord::Schema.define(version: 20170321042207) do
     t.text     "body"
     t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "note_replies", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "note_id",    null: false
+    t.text     "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_note_replies_on_note_id", using: :btree
+    t.index ["user_id"], name: "index_note_replies_on_user_id", using: :btree
   end
 
   create_table "notes", force: :cascade do |t|
@@ -422,6 +432,8 @@ ActiveRecord::Schema.define(version: 20170321042207) do
   add_foreign_key "listings", "users", on_delete: :cascade
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "messages", "users", on_delete: :cascade
+  add_foreign_key "note_replies", "notes", on_delete: :cascade
+  add_foreign_key "note_replies", "users", on_delete: :cascade
   add_foreign_key "notes", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "order_group_images", "order_groups"

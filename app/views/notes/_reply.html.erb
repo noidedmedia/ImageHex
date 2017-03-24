@@ -1,0 +1,14 @@
+<li class="note-reply">
+  <div class="reply-user-avatar">
+    <%= image_tag reply.user.avatar_img %>
+  </div>
+
+  <div class="reply-main-content">
+    <span class="reply-user-name">
+      <%= link_to reply.user.name, reply.user %>
+    </span>
+    <div class="reply-body markdown-area">
+      <%= markdown_parse reply.body %>
+    </div>
+  </div>
+</li>

@@ -1,8 +1,11 @@
 <%- title @tag.name %>
 
-<% cache @tag, expires_in: 4.hours do %>
+<%= cache @tag, expires_in: 4.hours do %>
   <div class="tag-information">
     <header>
+      <h1 class="tag-breadcrumb">
+        <%= link_to "Tags", tags_path %>
+      </h1>
       <h1><%= @tag.name %></h1>
       <%= link_to t(".edit"), edit_tag_path(@tag), class: "tag-edit-link" %>
     </header>

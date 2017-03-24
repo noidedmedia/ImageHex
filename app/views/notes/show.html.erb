@@ -13,6 +13,15 @@
       <div class="markdown-area">
         <%= markdown_parse @note.body %>
       </div>
+      <hr></hr>
+      <div class="note-replies-outer">
+        <h4 class="generic-smallcaps-title">
+          Replies
+        </h4>
+        <ul class="note-replies-list">
+          <%= render collection: @replies, partial: "reply", as: :reply %>
+        </ul>
+      </div>
     </article>
   </div>
 </div>

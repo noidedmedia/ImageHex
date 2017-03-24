@@ -1,0 +1,10 @@
+<div class="tag-stub generic-card">
+  <% cache tag do %>
+    <div class="tag-stub-info">
+      <h1><%= link_to tag.name, tag %></h1>
+      <div class="markdown-area">
+        <%= markdown_parse tag.description %>
+      </div>
+    </div>
+  <% end %>
+</div>

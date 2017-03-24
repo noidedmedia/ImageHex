@@ -90,3 +90,32 @@
     }
   }
 }
+
+.tag-index-container {
+  max-width: 900px;
+  padding-top: 20px;
+  margin: auto;
+}
+
+.tag-stub {
+  padding: 20px;
+
+  h1 a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.tag-breadcrumb {
+  a {
+    text-decoration: none;
+  }
+
+  &:after {
+    content: "▸";
+  }
+}

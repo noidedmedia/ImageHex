@@ -37,7 +37,9 @@ class TagsController < ApplicationController
   # Maybe somebody will find this useful?
   # @tags:: All the tags.
   def index
-    @tags = Tag.all.paginate(page: page, per_page: per_page)
+    @tags = Tag.all
+      .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
   end
 
   ##

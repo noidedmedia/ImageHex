@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     get :comments, on: :member
   end
 
+  concern :replyable do
+    resources :replies
+  end
+
   ##################
   # RESTFUL ROUTES #
   ##################
@@ -149,7 +153,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notes
+  resources :notes do
+    concerns :replyable
+  end
 
   ################
   # ADMIN ROUTES #
