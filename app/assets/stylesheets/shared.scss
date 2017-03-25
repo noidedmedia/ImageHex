@@ -147,13 +147,10 @@
 .markdown-area {
   font-size: 14px;
 
-  p {
-    text-indent: 30px;
-
-    &:not(:last-of-type) {
-      margin-bottom: 1em;
-    }
+  p:not(:last-of-type) {
+    margin-bottom: 1em;
   }
+  
 
   ol {
     list-style-type: decimal;

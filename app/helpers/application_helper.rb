@@ -79,6 +79,16 @@ module ApplicationHelper
     polymorphic_path(comment.commentable) + "##{comment.id}" if comment.commentable
   end
 
+
+  def topic_path(topic)
+    case topic
+    when Tag::Topic
+      polymorphic_path(topic.tag) + "/topics/#{CGI.escape topic.slug}"
+    else
+      polymorphic_path(topic)
+    end
+  end
+
   ##
   # Used on the About, People, and Contact pages to add a "current"
   # class to the tab link if the page linked is the current page.

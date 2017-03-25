@@ -1,0 +1,16 @@
+<div class="show-topic-outer">
+  <article class="show-topic generic-card">
+    <div class="topic-top-bar">
+      <h4 class="topic-breadcrumb generic-breadcrumb">
+        <%= link_to @topic.parent_name, @topic.parent %>
+      </h4>
+      <h4>
+        <%= @topic.title %>
+      </h4>
+    </div>
+
+    <ul class="replies">
+      <%= render collection: @replies, as: :reply, partial: "reply" %>
+    </ul>
+  </article>
+</div>

@@ -1,0 +1,16 @@
+<div class="topics-index-outer">
+  <div class="topics-index generic-card">
+    <div class="topics-index-header">
+      <h4 class="generic-breadcrumb">
+        <%= link_to @parent.name, @parent %>
+      </h4>
+      <h4>
+        Discussion
+      </h4>
+    </div>
+
+    <ul class="topic-list">
+      <%= render collection: @topics, as: :topic, partial: "topic" %>
+    </ul>
+  </div>
+</div>

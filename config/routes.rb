@@ -33,6 +33,12 @@ Rails.application.routes.draw do
     resources :replies
   end
 
+  concern :forumable do
+    resources :topics do
+      concerns :replyable
+    end
+  end
+
   ##################
   # RESTFUL ROUTES #
   ##################
@@ -52,6 +58,7 @@ Rails.application.routes.draw do
     collection do
       get "suggest"
     end
+    concerns :forumable
   end
 
   resources :commissions_dashboard, only: :index

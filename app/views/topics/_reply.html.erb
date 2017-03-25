@@ -1,0 +1,11 @@
+<li class="topic-reply">
+  <div class="topic-reply-user-sidebar">
+    <%= image_tag reply.user.avatar_img %>
+    <%= link_to reply.user.name, reply.user %>
+    <%= time_tag reply.created_at %>
+  </div>
+
+  <div class="reply-body markdown-area">
+    <%= markdown_parse reply.body %>
+  </div>
+</li>

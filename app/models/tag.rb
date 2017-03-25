@@ -7,6 +7,7 @@
 # "do thing"), trailing and leading whitespace " do thing " becomes "do thing"),
 class Tag < ActiveRecord::Base
   extend FriendlyId
+  include Forumable
   friendly_id :name, use: :slugged
   ##
   # CALLBACKS:

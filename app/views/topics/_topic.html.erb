@@ -1,0 +1,13 @@
+<li class="topic-item">
+
+  <h5>
+    <%= link_to topic.title, topic_path(topic) %>
+  </h5>
+
+  <div class="topic-item-user">
+    <%= image_tag topic.user.avatar_img %>
+    <%= link_to topic.user.name, topic.user %>
+  </div>
+
+  <%= time_tag topic.updated_at %>
+</li>
