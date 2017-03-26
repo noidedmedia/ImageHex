@@ -1,6 +1,7 @@
 class RepliesController < ApplicationController
   before_action :get_parent
   before_action :get_reply, only: [:show, :edit, :update, :destroy]
+  include Pundit
 
   def index
     puts @parent
@@ -13,7 +14,7 @@ class RepliesController < ApplicationController
   end
 
   def new
-    @reply = @parent.replies.build(:note)
+    @reply = @parent.replies.build
     authorize @reply
   end
 

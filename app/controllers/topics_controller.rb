@@ -14,6 +14,16 @@ class TopicsController < ApplicationController
     @topics = @parent.topics.order(updated_at: :desc)
   end
 
+
+  def create
+    @topic = @parent.topics.build(topic_params)
+    @reply = @topic.replies.build(reply_params)
+  end
+
+  def new
+    @topic = @parent.topics.build
+  end
+
   private
   def set_parent
     @parent = if params[:tag_id]
@@ -25,5 +35,13 @@ class TopicsController < ApplicationController
 
   def set_topic
     @topic = @parent.topics.friendly.find(params[:id])
+  end
+
+  def topic_params
+    params.require(:topic).permit(:title).merge(user: current_user)
+  end
+
+  def reply_params
+    params.require(:tag_topic_reply)
   end
 end
