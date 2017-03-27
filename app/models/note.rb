@@ -20,6 +20,9 @@ class Note < ApplicationRecord
     where(user: user.subscribed_artists)
   end
 
+  def self.use_relative_model_naming?
+    true
+  end
 
   def slug_candidates
     [

@@ -22,6 +22,9 @@
           <%= render collection: @replies, partial: "reply", as: :reply %>
         </ul>
       </div>
+      <% if user_signed_in? %>
+        <%= render 'reply_form' %>
+      <% end %>
     </article>
   </div>
 </div>
