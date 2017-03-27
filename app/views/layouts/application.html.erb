@@ -79,6 +79,17 @@
 
   <%# Description for Google, etc. %>
   <meta name="description" content="<%= t(".imagehex_meta_description") %>">
+
+  <%# opengraph stuff %>
+  <% if content_for?(:meta_og) %>
+    <%= yield :meta_og %>
+  <% else %>
+    <meta property="og:title"
+    content="<%= content_for?(:title) ? content_for(:title) + " - ImageHex" : "ImageHex"%>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <%= tag :meta, property: "og:image", content: image_url("logos/imagehex-color.png") %>
+  <% end %>
 </head>
 
 <body class="<% if user_signed_in? %>signed-in<% end %>">

@@ -12,5 +12,15 @@
 <div id="image-page-bottom-container">
 
   <%= render 'image_page_information' %>
-
 </div>
+
+<%= content_for(:meta_og) do %>
+  <meta property="og:title" content="<%= t(".image_page_title", id: @image.id) %>" />
+  <meta property="og:type" content="article"/>
+  <meta property="og:image" content="<%= @image.f.url(:medium) %>"/>
+  <meta property="og:url" content="<%= image_url(@image) %>"/>
+  <meta property="og:site_name" content="ImageHex"/>
+  <% @image.creators.each do |c| %>
+    <meta property="og:author:username" content="<%= c.name %>"/>
+  <% end %>
+<% end %>
