@@ -339,16 +339,6 @@ ActiveRecord::Schema.define(version: 20170325021917) do
     t.index ["image_id"], name: "index_tag_groups_on_image_id", using: :btree
   end
 
-  create_table "tag_replies", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "tag_id"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_tag_replies_on_tag_id", using: :btree
-    t.index ["user_id"], name: "index_tag_replies_on_user_id", using: :btree
-  end
-
   create_table "tag_topic_replies", force: :cascade do |t|
     t.integer  "tag_topic_id"
     t.integer  "user_id"
@@ -482,8 +472,6 @@ ActiveRecord::Schema.define(version: 20170325021917) do
   add_foreign_key "tag_group_changes", "tag_groups", on_delete: :cascade
   add_foreign_key "tag_group_changes", "users", on_delete: :nullify
   add_foreign_key "tag_groups", "images", on_delete: :cascade
-  add_foreign_key "tag_replies", "tags"
-  add_foreign_key "tag_replies", "users"
   add_foreign_key "tag_topic_replies", "tag_topics", on_delete: :cascade
   add_foreign_key "tag_topic_replies", "users", on_delete: :cascade
   add_foreign_key "tag_topics", "tags"

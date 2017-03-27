@@ -115,7 +115,7 @@
     text-decoration: none;
   }
 
-  &:after {
+  &::after {
     content: "▸";
   }
 }

@@ -10,7 +10,7 @@
     }
   }
 
-  &:after {
+  &::after {
     content: "▸ ";
   }
 
