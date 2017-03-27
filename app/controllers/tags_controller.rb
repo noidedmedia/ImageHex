@@ -26,6 +26,7 @@ class TagsController < ApplicationController
   def show
     @tag = Tag.friendly.find(params[:id])
     @neighbors = @tag.neighbors.limit(10)
+    @topics = @tag.topics.order(updated_at: :desc)
     @images = @tag.images
       .group("images.id")
       .for_content(content_pref)

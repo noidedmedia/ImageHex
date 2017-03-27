@@ -1,0 +1,18 @@
+<% cache @topics do %>
+  <div class="topics-index-outer">
+    <div class="topics-index generic-card">
+      <div class="topics-onpage-header">
+        <h4><%= link_to "Discussion", tag_topics_path(@tag) %></h4>
+
+        <%= link_to new_tag_topic_path(@tag) do %>
+          <%= image_tag "icons/add.svg" %>
+        <% end %>
+
+
+      </div>
+      <ul class="topic-list">
+        <%= render collection: @topics, as: :topic, partial: "topics/topic" %>
+      </ul>
+    </div>
+  </div>
+<% end %>

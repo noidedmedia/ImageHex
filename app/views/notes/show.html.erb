@@ -25,6 +25,8 @@
       <% if user_signed_in? %>
         <%= render 'reply_form' %>
       <% end %>
+
+      <%= will_paginate @replies %>
     </article>
   </div>
 </div>

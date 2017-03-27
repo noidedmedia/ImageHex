@@ -30,7 +30,7 @@ class NotesController < ApplicationController
   def show
     @note = Note.friendly.find(params[:id])
     @replies = @note.replies
-        .order(created_at: :desc)
+        .order(created_at: :asc)
         .paginate(page: page, per_page: 50)
         .includes(:user)
   end
