@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :note_reply, class: 'Note::Reply' do
-    user nil
-    note nil
-    body "MyText"
+    user 
+    note 
+    body { Faker::Lorem.paragraph }
   end
 end

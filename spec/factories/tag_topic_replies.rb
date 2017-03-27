@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :tag_topic_reply, class: 'Tag::Topic::Reply' do
-    topic nil
-    user nil
-    body "MyText"
+    association :topic, factory: :tag_topic
+    user 
+    body { Faker::Lorem.paragraph } 
   end
 end
