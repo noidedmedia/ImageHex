@@ -1,4 +1,6 @@
 class TopicsController < ApplicationController
+  include TopicsHelper
+  before_filter :ensure_user, except: [:index, :show]
   before_filter :set_parent
   before_filter :set_topic, only: [:show, :edit, :update, :destroy]
 
@@ -14,14 +16,32 @@ class TopicsController < ApplicationController
     @topics = @parent.topics.order(updated_at: :desc)
   end
 
+  def new
+    @topic = @parent.topics.build
+    @reply = @topic.replies.build
+  end
 
   def create
     @topic = @parent.topics.build(topic_params)
     @reply = @topic.replies.build(reply_params)
+    respond_to do |format|
+      if @topic.save
+        format.html { redirect_to [@parent, @topic] }
+        format.json { render 'show' }
+      else
+        format.html do
+          flash[:warning] = "Could not save!"
+          render 'new'
+        end
+        format.json { render json: @topic.errors, status: 401 }
+      end
+    end
   end
 
-  def new
-    @topic = @parent.topics.build
+  def edit
+  end
+
+  def update
   end
 
   private
@@ -42,6 +62,6 @@ class TopicsController < ApplicationController
   end
 
   def reply_params
-    params.require(:tag_topic_reply)
+    params.require(:reply).permit(:body).merge(user: current_user)
   end
 end

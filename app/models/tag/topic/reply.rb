@@ -3,7 +3,9 @@ class Tag::Topic::Reply < ApplicationRecord
     class_name: "Tag::Topic",
     foreign_key: :tag_topic_id,
     required: true,
-    touch: true
+    touch: true,
+    inverse_of: :replies
 
-  belongs_to :user
+  belongs_to :user,
+    required: true
 end

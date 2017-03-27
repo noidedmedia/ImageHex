@@ -1,15 +1,18 @@
 <div class="fields-page-container">
-  <%= form_for @topic do |f| %>
+  <%= form_for [@parent, @topic], as: :topic do |f| %>
     <div class="field-container">
       <%= f.label :title, class: "label input-empty" %>
       <%= f.text_field :title, class: "input" %>
     </div>
 
-    <%= fields_for @topic.replies.build do |f| %>
-      <div class="field-container">
-        <%= f.label :body, class: "label input-empty" %>
-        <%= f.text_area :body, class: "input" %>
-      </div>
+    <% if defined?(@reply) %>
+      <%= fields_for :reply, @reply do |f| %>
+        <div class="field-container">
+          <%= f.label :body, class: "label input-empty" %>
+          <%= f.text_area :body, class: "input" %>
+        </div>
+      <% end %>
+
     <% end %>
 
     <%= f.submit class: "btn btn-green btn-full-width" %>

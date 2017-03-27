@@ -48,6 +48,10 @@ class Tag < ActiveRecord::Base
     joins(:images).where(tag_groups: {image: Image.for_content(content)})
   end
 
+  def self.use_relative_model_naming?
+    true
+  end
+
   ####################
   # INSTANCE METHODS #
   ####################

@@ -4,11 +4,13 @@ class Tag::Topic < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  belongs_to :tag
-  belongs_to :user
+  belongs_to :tag, required: true
+
+  belongs_to :user, required: true
 
   has_many :replies,
-    foreign_key: :tag_topic_id
+    foreign_key: :tag_topic_id,
+    inverse_of: :topic
 
   def parent_name
     tag.name
@@ -23,5 +25,9 @@ class Tag::Topic < ApplicationRecord
       [:created_at, :title],
       [:created_at, :title, :user_id]
     ]
+  end
+
+  def self.use_relative_model_naming?
+    true
   end
 end

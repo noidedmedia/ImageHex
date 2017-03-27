@@ -12,5 +12,15 @@
     <ul class="replies">
       <%= render collection: @replies, as: :reply, partial: "reply" %>
     </ul>
+
+    <% if user_signed_in? %>
+      <%= form_for [@parent, @topic, @topic.replies.build] do |f| %>
+        <div class="field-container">
+          <%= f.label :body, class: "label input-empty" %>
+          <%= f.text_area :body, class: "input" %>
+        </div>
+        <%= f.submit %>
+      <% end %>
+    <% end %>
   </article>
 </div>
