@@ -1,0 +1,25 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "7ab1d7b0ded9d11c1016eba6b196ccbec31d895f96dc0c7e8c0f27d5cec14040",
+      "check_name": "LinkToHref",
+      "message": "Unsafe model attribute in link_to href",
+      "file": "app/views/topics/show.html.erb",
+      "line": 5,
+      "link": "http://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Tag.friendly.find(params[:tag_id]) or raise(ActiveRecord::RecordNotFound)).topics.build(topic_params).parent_name, (Tag.friendly.find(params[:tag_id]) or raise(ActiveRecord::RecordNotFound)).topics.build(topic_params).parent)",
+      "render_path": [{"type":"controller","class":"TopicsController","method":"create","line":30,"file":"app/controllers/topics_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "topics/show"
+      },
+      "user_input": "Tag.friendly",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2017-03-27 14:34:12 -0600",
+  "brakeman_version": "3.5.0"
+}

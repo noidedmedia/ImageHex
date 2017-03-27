@@ -30,7 +30,7 @@ class RepliesController < ApplicationController
           flash[:warning] = "Could not save!"
           render 'new'
         end
-        format.json { render @reply.errors, status: 401 }
+        format.json { render json: @reply.errors, status: 401 }
       end
     end
   end
@@ -45,7 +45,7 @@ class RepliesController < ApplicationController
           flash[:warning] = "reply could not update"
           render 'edit'
         end
-        format.json { render @reply.errors, status: 401 }
+        format.json { render json: @reply.errors, status: 401 }
       end
     end
   end

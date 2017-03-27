@@ -27,7 +27,7 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @topic.save
         format.html { redirect_to [@parent, @topic] }
-        format.json { render 'show' }
+        format.json { render 'show', format: :json }
       else
         format.html do
           flash[:warning] = "Could not save!"
