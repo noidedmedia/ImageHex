@@ -3,78 +3,14 @@
   <img src=<%= asset_path("logo/imagehex-color-black-text.svg") %> alt="<%= t(".imagehex") %>">
 </div>
 
-<div class="frontpage-section example-showcase">
-  <div class="description-section showcase-info">
-    <h1 class="big-shadow-title">
-      Your own Exhibition
-    </h1>
-    <div class="frontpage-seperated-text">
-      ImageHex is a great way to showcase your art, and makes it easy to follow artists you like.
-      We'll even notify you when an artist you follow becomes available to commission.
-    </div>
-  </div>
-  <div class="showcase-example">
-    <%= image_tag "splash/gallery.png" %>
-  </div>
-</div>
-
-<div class="frontpage-section big-showcase alt-background">
-  <div class="description-section showcase-info">
-    <h1 class="big-shadow-title">
-      Smarter Search
-    </h1>
-    <div class="frontpage-seperated-text">
-      On ImageHex, tags apply to a subject within an image, not an entire image.
-      This makes <%= link_to "searching", search_path %> much more accurate&mdash;and makes it easier for you to find the artwork you want to see.
-    </div>
-  </div>
-
-  <div class="showcase-example">
-    <%= image_tag "splash/taggroup.png" %>
-  </div>
-</div>
-
-<div class="frontpage-section example-showcase">
-  <div class="description-section showcase-info">
-    <h1 class="big-shadow-title">
-      Better Sharing
-    </h1>
-    <div class="frontpage-seperated-text">
-      Create <%= link_to "collections", collections_path %> of images based on anything you want&mdash;a common subject, a particular mood, or maybe just images you find interesting.
-      If you find a collection you like, you can follow it, so you never miss a new image.
-    </div>
-
-  </div>
-
-  <div class="showcase-example">
-    <%= image_tag "splash/collections.png" %>
-  </div>
-</div>
-
-<div class="frontpage-section big-showcase">
-  <div class="description-section showcase-info">
-    <h1 class="big-shadow-title">
-      Integrated Commissions
-    </h1>
-
-    <div class="frontpage-seperated-text">
-      ImageHex has a 
-      <%= link_to "commisions marketplace", listings_path %>
-      built right in.
-      Buy and sell art&mdash;safely and securely.
-    </div>
-
-  </div>
-
-  <div class="showcase-example">
-    <%= image_tag "splash/commissions-huge.png" %>
-  </div>
-</div>
-
-<div class="frontpage-call">
-  <%= link_to new_user_registration_path, 
-    :class => "frontpage-call-button" do %>
-    <%= image_tag "logo/imagehex-monochrome-black.svg" %>
-    <div>Get started today</div>
-  <% end %>
+<div id="image-list-container">
+  <ul class="image-gallery">
+    <% @images.each do |img| %>
+      <li class="image-gallery-item">
+        <%= link_to image_path(img) do %>
+          <%= image_tag img.f(:medium) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>

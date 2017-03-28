@@ -26,7 +26,7 @@ class FrontpageController < ApplicationController
       @images = Image.all
         .order('created_at DESC')
         .for_content(content_pref)
-        .take(20)
+        .take(30)
       render "index"
     end
   end
