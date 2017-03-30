@@ -95,7 +95,11 @@ class FeedStore {
   }
 
   getEarliestDate() {
-    return this.items[this.items.length - 1].created_at;
+    let item = this.items[this.items.length - 1];
+    if(item) {
+      return item.created_at;
+    }
+    return new Date();
   }
 
 
