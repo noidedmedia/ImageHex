@@ -56,18 +56,16 @@
         <%= react_component("HeaderSearch") %>
       </div>
       <% if user_signed_in? %>
-        <div id="chat-container" data-turbolinks-permanent>
-          <%= react_component("Chat") %>
-        </div>
+        
         <%# Upload %>
         <div class="header-item" id="header-create">
           <div id="header-create-button">
-            <i class="icon icon-add"></i>
+            ⬆
           </div>
 
           <div class="create-dropdown inactive" data-showon="#header-create">
             <ul>
-              <li><%= link_to t(".upload"), new_image_path %></li>
+              <li><%= link_to t(".upload"),  new_image_path %></li>
               <li><%= link_to t(".new_collection"), new_collection_path %></li>
               <li><%= link_to t(".new_listing"), new_listing_path %></li>
               

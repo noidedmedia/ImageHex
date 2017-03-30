@@ -1,5 +1,7 @@
 @import "variables";
 
+$create-active-width: 170px;
+
 // Container for the header item, always fixed to the top of the screen.
 #header-container {
   background-color: $header-color;
@@ -97,7 +99,7 @@
 }
 // Items aligned to the right side of the header.
 #header-right {
-  display: inline-block;
+  display: flex;
   text-align: right;
   height: 100%;
 
@@ -178,25 +180,14 @@
 #header-create.header-item {
   display: inline-block;
   cursor: pointer;
+  text-align: center;
   margin-right: 4px;
-  width: 38px;
-  height: $header-height;
-  padding: 12px;
-
-  i::before {
-    // Firefox hack to get the "+" icon to center within the header-create div.
-    // scss-lint:disable VendorPrefix
-    -moz-transform: translateX(-13px);
-    // scss-lint:enable VendorPrefix
-  }
+  height: calc(#{$header-height} + 1px);
 
   &.active {
     background-color: $white;
-    
-    i,
-    i::before {
-      color: $off-black;
-    }
+    color: $off-black;
+    width: $create-active-width;
   }
 
   @media #{$mobile} {
@@ -219,6 +210,8 @@
 
 #header-create-button {
   display: block;
+  padding: 4px;
+  font-size: 26px;
 
   i {
     &::before {
@@ -229,7 +222,7 @@
 
 .create-dropdown {
   // remove padding from parent
-  margin-top: calc(#{$header-height} - 12px);
+  width: $create-active-width;
 
   @media #{$mobile} {
     // remove padding from parent
@@ -237,12 +230,9 @@
   }
 
   // Remove padding from parent
-  margin-left: -12px;
-  display: inline-block;
+  display: block;
   background-color: $white;
-  box-shadow: 0 6px 10px 1px rgba($black, 0.05);
   text-align: left;
-  white-space: nowrap;
 
   li {
     display: block;

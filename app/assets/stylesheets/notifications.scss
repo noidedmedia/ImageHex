@@ -15,6 +15,30 @@ $_notifications-unread-width: 36px;
     height: auto;
   }
 
+  .notifications-unread-count {
+    max-height: 40px;
+    overflow: hidden;
+
+    a {
+      font-size: 1.4rem;
+      font-weight: 400;
+      background-color: #eee;
+      color: $off-black;
+      text-decoration: none;
+      transition: color 300ms ease-in-out;
+      padding: 12px 15px;
+      display: inline-block;
+      cursor: pointer;
+
+      &:hover {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+
+
+
   &.has-unread {
     background-color: #b70f3b;
 
@@ -36,21 +60,6 @@ $_notifications-unread-width: 36px;
     }
   }
 
-  .notifications-unread-count a {
-    font-size: 1.4rem;
-    font-weight: 400;
-    color: $gray;
-    text-decoration: none;
-    transition: color 300ms ease-in-out;
-    padding: 12px 15px;
-    display: inline-block;
-    cursor: pointer;
-
-    &:hover {
-      color: $white;
-      text-decoration: none;
-    }
-  }
 
   .notifications-dropdown {
     background-color: $white;

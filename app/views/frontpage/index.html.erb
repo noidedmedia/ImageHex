@@ -8,7 +8,7 @@
     <% @images.each do |img| %>
       <li class="image-gallery-item">
         <%= link_to image_path(img) do %>
-          <%= image_tag img.f(:medium) %>
+          <%= image_tag img.f(:huge) %>
         <% end %>
       </li>
     <% end %>
