@@ -49,69 +49,74 @@
           <%= form_for Favorite.new(image: @image), 
             html: {id: "img-action-favorite", 
                    class: "image-actions active"} do |f| %>
-            <%= f.hidden_field :image_id %>
-            <span class="icon icon-medium icon-favorite"></span>
-            <p>Favorite</p>
-          <% end %>
-        <% end %>
-      </div>
-      <a>
-        <div class="image-actions" id="img-action-collection"
-          data-image-id="<%= @image.id %>">
-          <span class="icon icon-medium icon-add"></span>
-          <p><%= t(".add_to_collection") %>
-        </div>
+                   <%= f.hidden_field :image_id %>
+                   <span class="icon icon-medium icon-favorite"></span>
+                   <p>Favorite</p>
+                 <% end %>
+               <% end %>
+             </div>
+             <a>
+               <div class="image-actions" id="img-action-collection"
+                 data-image-id="<%= @image.id %>">
+                 <span class="icon icon-medium icon-add"></span>
+                 <p><%= t(".add_to_collection") %>
+               </div>
 
-        <div class="image-actions-tooltip" id="img-action-collection-tooltip" data-showon="#img-action-collection">
-          
-        </div>
-      </a>
-    <% end %>
+               <div class="image-actions-tooltip" id="img-action-collection-tooltip" data-showon="#img-action-collection">
 
-    <%# Share %>
-    <a>
-      <div class="image-actions" id="img-action-share">
-        <span class="icon icon-medium icon-share"></span>
-        <p><%= t(".share") %>
-      </div>
-    </a>
+               </div>
+             </a>
+           <% end %>
 
-    <div class="image-actions-tooltip" id="img-action-share-tooltip" data-showon="#img-action-share" data-signed-in="showon">
-      <p class="tooltip-title"><%= t(".share") %></p>
-      <div class="share-icons-container">
-        <div class="share-icon" id="share-facebook"><a></a></div>
-        <div class="share-icon" id="share-twitter"><a></a></div>
-        <div class="share-icon" id="share-google-plus"><a></a></div>
-        <div class="share-icon" id="share-tumblr"><a></a></div>
-        <div class="share-icon" id="share-pinterest"><a></a></div>
-      </div>
-    </div>
+           <%# Share %>
+           <a>
+             <div class="image-actions" id="img-action-share">
+               <span class="icon icon-medium icon-share"></span>
+               <p><%= t(".share") %>
+             </div>
+           </a>
 
-    <% if user_signed_in? %>
-      <%# Report %>
-      <a> 
-        <div class="image-actions" id="img-action-report">
-          <span class="icon icon-medium icon-report"></span>
-          <p><%= t(".report") %>
-        </div>
+           <div class="image-actions-tooltip" id="img-action-share-tooltip" data-showon="#img-action-share" data-signed-in="showon">
+             <p class="tooltip-title"><%= t(".share") %></p>
+             <div class="share-icons-container">
+               <div class="share-icon" id="share-facebook"><a></a></div>
+               <div class="share-icon" id="share-twitter"><a></a></div>
+               <div class="share-icon" id="share-google-plus"><a></a></div>
+               <div class="share-icon" id="share-tumblr"><a></a></div>
+               <div class="share-icon" id="share-pinterest"><a></a></div>
+             </div>
+           </div>
 
-        <div class="image-actions-tooltip" id="img-action-report-tooltip" data-showon="#img-action-report" data-signed-in="showon">
-          <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
-        </div>
-      </a>
-    <% end %>
+           <% if user_signed_in? %>
+             <%# Report %>
+             <a> 
+               <div class="image-actions" id="img-action-report">
+                 <span class="icon icon-medium icon-report"></span>
+                 <p><%= t(".report") %>
+               </div>
 
-    <%# Delete %>
-    <%# Only accessible to users with admin privileges or the uploader for the first 24 hours after uploading an image. %>
-    <% if policy(@image).destroy? %>
-      <%= link_to image_path(@image), method: :delete do %>
-        <div class="image-actions" id="img-action-delete">
-          <span class="icon icon-medium icon-delete"></span>
-          <p><%= t(".delete") %>
-        </div>
-      <% end %>
-    <% end %>
+               <div class="image-actions-tooltip" id="img-action-report-tooltip" data-showon="#img-action-report" data-signed-in="showon">
+                 <%= render "shared/report_stub", subject: @image, url: report_image_path(@image) if current_user %>
+               </div>
+             </a>
+           <% end %>
 
-  </div>
+           <%# Delete %>
+           <%# Only accessible to users with admin privileges or the uploader for the first 24 hours after uploading an image. %>
+           <% if policy(@image).destroy? %>
 
-</div>
+             <a href="#" id="image-delete-link">
+               <%= form_tag image_path(@image), 
+                 method: :delete, id: "image-delete-form" do %>
+                 <div class="image-actions" id="img-action-delete">
+                   <span class="icon icon-medium icon-delete"></span>
+                   <p><%= t(".delete") %>
+                 </div>
+               <% end %>
+
+             </a>
+           <% end %>
+
+         </div>
+
+       </div>

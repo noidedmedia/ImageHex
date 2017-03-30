@@ -84,6 +84,11 @@ var ready = function() {
   if (document.querySelector("#report-cancel-button")) {
     cancelReportButton();
   }
+
+  $("#image-delete-link").on("click", function(event) {
+    event.preventDefault();
+    $("#image-delete-form").submit();
+  });
   
   if (document.querySelector(".add-to-collection-form")) {
     addToCollection();
