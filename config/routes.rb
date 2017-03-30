@@ -97,6 +97,10 @@ Rails.application.routes.draw do
       post "created"
     end
 
+    collection do
+      get "feed"
+    end
+
     resources :tag_groups do
       resources :changes, only: [:index], controller: :tag_group_changes
     end
@@ -161,6 +165,9 @@ Rails.application.routes.draw do
   end
 
   resources :notes do
+    collection do
+      get 'feed'
+    end
     concerns :replyable
   end
 

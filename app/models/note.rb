@@ -17,7 +17,13 @@ class Note < ApplicationRecord
 
 
   def self.feed_for(user)
-    where(user: user.subscribed_artists)
+    join = <<-SQL
+    INNER JOIN artist_subscriptions 
+      ON notes.user_id = artist_subscriptions.artist_id
+      SQL
+    joins(join)
+      .where("artist_subscriptions.user_id = ?",user.id)
+      .order("notes.created_at DESC");
   end
 
   def self.use_relative_model_naming?

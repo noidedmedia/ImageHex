@@ -178,6 +178,16 @@ class ImagesController < ApplicationController
       .for_content(content_pref)
   end
 
+
+  def feed
+    @images = Image.feed_for(current_user)
+      .limit(30)
+    if params[:fetch_after]
+      time = Time.at(params[:fetch_after].to_f)
+      @images = @images.where("sort_created_at < ?", time)
+    end
+  end
+
   ##
   # Show a image.
   # Sets the following variables:

@@ -3,7 +3,7 @@
 # A single-action controller used for tag suggestion.
 class TagsController < ApplicationController
   include TrainTrack
-  before_action :ensure_user, only: [:edit, :update]
+  before_action :ensure_user, only: [:create, :new, :edit, :update]
 
   ##
   # Given a partial tag name in "params['name']", suggests ten possible

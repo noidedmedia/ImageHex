@@ -62,6 +62,15 @@ class NotesController < ApplicationController
     end
   end
 
+  def feed
+    @notes = Note.feed_for(current_user).limit(40)
+    if params[:fetch_after]
+      time = Time.at(params[:fetch_after].to_f)
+      @notes = @notes.where("notes.created_at < ?",time)
+    end
+    render 'index'
+  end
+
   protected
 
   def note_params

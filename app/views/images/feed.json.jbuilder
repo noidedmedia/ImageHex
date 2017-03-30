@@ -1,4 +1,4 @@
-json.images @images do |img|
+json.array! @images do |img|
   json.extract! img,
     :reason,
     :reason_id,
@@ -18,19 +18,5 @@ json.images @images do |img|
       :slug
 
     json.avatar_path path_to_image(c.avatar_img_thumb)
-  end
-end
-
-json.notes @notes do |note|
-  json.extract! note,
-    :id,
-    :created_at,
-    :body,
-    :title
-
-  json.html_body markdown_parse(note.body)
-
-  json.user do
-    json.partial! "users/stub", user: note.user
   end
 end

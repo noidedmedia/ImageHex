@@ -189,3 +189,36 @@
 .home-container {
   padding-top: 20px;
 }
+
+.subscription-item-note-body {
+  padding: 30px;
+}
+
+
+@keyframes SwirlyBackground {
+  from {
+    background-color: lighten($logo-green, 50%);
+  }
+
+  to {
+    background-color: lighten($logo-green, 70%);
+  }
+}
+
+.swirly-background {
+  transition: 0.5s linear;
+  background-color: lighten($logo-green, 50%);
+  animation-delay: 0.5s;
+  animation: SwirlyBackground 5s infinite;
+}
+
+
+.frontpage-slide-enter {
+  transition: 500ms linear;
+  transform: translateX(-120%);
+  overflow: hidden;
+
+  &.frontpage-slide-enter-active {
+    transform: translateX(0%);
+  }
+}

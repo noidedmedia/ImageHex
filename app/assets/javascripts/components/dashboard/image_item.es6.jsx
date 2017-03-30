@@ -29,7 +29,7 @@ function ImageItem(props) {
         {props.reason}
       </a>
       <span>
-        <time dateTime={new Date(props.sort_created_at)}>
+        <time dateTime={props.created_at}>
           {date.toLocaleString()}
         </time>
       </span>

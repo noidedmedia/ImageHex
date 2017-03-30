@@ -1,5 +1,11 @@
 import ActionCable from 'actioncable';
+
 let App = {};
-App.cable = ActionCable.createConsumer();
+if(window["USER_SIGNED_IN"]) {
+  App.cable = ActionCable.createConsumer();
+}
+else {
+  App.cable = null;
+}
 
 export default App;
