@@ -99,7 +99,7 @@ $create-active-width: 170px;
 }
 // Items aligned to the right side of the header.
 #header-right {
-  display: flex;
+  display: inline-block;
   text-align: right;
   height: 100%;
 
