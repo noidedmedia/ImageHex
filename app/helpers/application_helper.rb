@@ -102,4 +102,17 @@ module ApplicationHelper
   def title(page_title)
     content_for(:title) { page_title }
   end
+
+  ##
+  # Render an inline svg
+  def svg(name)
+    path = File.join(Rails.root, "app", "assets", "images", "#{name}.svg")
+    if File.exists? path
+      return Rails.cache.fetch("svg-path-#{path}") do
+        File.read(path)
+      end.html_safe
+    else
+      return "(no svg found: #{path})"
+    end
+  end
 end

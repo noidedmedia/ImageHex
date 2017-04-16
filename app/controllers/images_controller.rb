@@ -174,8 +174,8 @@ class ImagesController < ApplicationController
   # @images:: the paginated list of images.
   def index
     @images = Image.browse(params)
-      .paginate(page: page, per_page: per_page)
       .for_content(content_pref)
+      .paginate(page: page, per_page: per_page)
   end
 
 

@@ -12,3 +12,4 @@ import './components/commissions_plan';
 import './components/quote_picker';
 import './components/collection_adder';
 import './components/order_filler';
+import './components/image_gallery/image_gallery';
