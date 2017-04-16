@@ -1,5 +1,8 @@
 @import "variables";
 
+$button-width: 125px;
+$num-buttons: 4;
+
 .imagehex-empty-note-container {
   width: 100%;
   display: block;
@@ -15,25 +18,13 @@
 }
 
 // Container for ImageHex tabs with:
-// Current tab underlined green
-// Full-width white background
-// Centered tabs
 .imagehex-tab-container {
-  width: 100vw;
   background-color: $white;
   display: flex;
   text-align: center;
   padding-top: 4px;
-
-  .imagehex-tabs {
-    display: inline-block;
-    margin: auto;
-
-    a {
-      display: inline-block;
-      padding: 10px 25px;
-    }
-  }
+  margin: 60px auto;
+  max-width: calc(100vw - 30px);
 
   a {
     color: $off-black;
@@ -53,11 +44,35 @@
     &::after {
       content: '';
       background-color: $active-tab-color;
-      width: calc(100% + 30px);
-      transform: translate(-15px, 6px);
+      width: calc(100% + 50px);
       height: 3px;
       display: block;
+      transform: translateY(10px);
     }
+  }
+}
+
+.imagehex-tabs {
+  width: 100%;
+  display: flex;
+
+  a {
+    display: inline-flex;
+    padding: 10px 25px;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &:not(:last-of-type) {
+      border-right: 1px solid #eee;
+    }
+  }
+
+  svg {
+    display: block;
+    width: 32px;
+    height: 32px;
   }
 }
 

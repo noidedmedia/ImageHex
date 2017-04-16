@@ -19,14 +19,18 @@ class ImageGallery extends Component {
       hasFurther={this.state.hasFurther}
       fetchFurther={this.fetchFurther.bind(this)}
       listenerName="gallery-listener" />;
+    let fetch = <span></span>;
+    if(this.state.fetching) {
+      fetch = <progress className="image-progress" />;
+    }
     return <ul className="image-gallery">
       {imgs}
       {scrollSigil}
+      {fetch}
     </ul>;
   }
 
   async fetchFurther() {
-    console.log("In component, fetching further...",this);
     this.store.fetchFurther();
   }
 };

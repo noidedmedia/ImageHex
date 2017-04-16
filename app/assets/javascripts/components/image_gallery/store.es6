@@ -13,9 +13,7 @@ class Store {
   }
 
   async fetchFurther() {
-    console.log("Fetching further...");
     if(this.fetching) {
-      console.log("Already fetching, bailing...");
       return false;
     }
     this.fetching = true;
@@ -53,11 +51,12 @@ class Store {
   }
 
   pushHistory() {
+    return; // pushhistory doesn't work yet
     let url = this.currentUrl;
-    if(! window.History || ! window.History.enabled) {
+    if((! window.history) || (! window.history.pushState)) {
       return;
     }
-    window.History.pushState(null,
+    window.history.pushState(null,
       `Page ${this.currentPage}`,
       url);
   }

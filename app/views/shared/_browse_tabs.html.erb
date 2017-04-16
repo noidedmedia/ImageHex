@@ -1,8 +1,23 @@
-<nav class="imagehex-tab-container">
+<nav class="generic-card imagehex-tab-container">
   <div class="imagehex-tabs">
-    <%= link_to t(".images"), images_path, class: current(images_path) %>
-    <%= link_to t(".collections"), collections_path, class: current(collections_path) %>
-    <%= link_to t(".creators"), users_path, class: current(users_path) %>
-    <%= link_to "Listings", listings_path, class: current(listings_path) %>
+    <%= link_to images_path, class: current(images_path) do %>
+      <%= svg "icons/image" %>
+      <div><%= t(".images") %></div>
+    <% end %>
+
+    <%= link_to collections_path, class: current(collections_path) do %>
+      <%= svg "icons/collection" %>
+      <div><%=  t(".collections") %></div>
+    <% end %> 
+    
+    <%= link_to users_path, class: current(users_path) do %>
+      <%= svg "default-avatar-no-background" %>
+      <div><%= t(".creators") %></div>
+    <% end %>
+
+    <%= link_to listings_path, class: current(listings_path) do %>
+      <%= svg "icons/listings" %>
+      <div>Listings</div>
+    <% end %>
   </div>
 </nav>
