@@ -6,7 +6,8 @@
 <%= react_component("ImageBrowserForm", params) %>
 
 <div id="image-list-container">
-  <%= render 'images/show_stub', images: @images %>
+  <%= react_component("ImageGallery", 
+                     render(file: "images/index.json.jbuilder")) %>
 </div>
 
 </div>
