@@ -1,8 +1,13 @@
-ImageHex [![Circle CI](https://circleci.com/gh/connorshea/ImageHex.svg?style=svg&circle-token=73cd8359ee558fddcfcb428772629af6ef8c6ad2)](https://circleci.com/gh/connorshea/ImageHex)
+ImageHex
 ========
-### ImageHex wants to be *the* place to buy, sell, search, and share your artwork.
 
-[View the Wiki for more information.](https://github.com/connorshea/ImageHex/wiki)
+ImageHex was an attempt at an art website and the first major product of Noided Media.
+It failed to find a market fit, unfortunately.
+While it is still online (for the moment) at [ImageHex.com](https://www.imagehex.com), it is not under active development, and may be taken offline rather soon.
+Despite being a commercial failure it was quite the learning experience for all involved.
+We're open-sourcing it in the hopes others can learn from it as well.
+
+## Old README follows.
 
 **Notes:**
 
